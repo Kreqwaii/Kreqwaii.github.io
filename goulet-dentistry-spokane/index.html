@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Goulet Dentistry in Spokane, WA. Interactive Preventive & Restorative Dental Treatment Estimator with instant price range calculation and online visit booking.">
+  <title>Goulet Dentistry | Spokane, WA • Patient Estimate &amp; Booking</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230E3A40'/%3E%3Cpath d='M16 6c-4.2 0-7 2.8-7 6.5 0 2.6 1.2 4.6 1.9 7.8.5 2.4 1.3 5.7 2.6 5.7 1 0 1.4-2.1 2.5-2.1s1.5 2.1 2.5 2.1c1.3 0 2.1-3.3 2.6-5.7.7-3.2 1.9-5.2 1.9-7.8C23 8.8 20.2 6 16 6z' fill='%23FAF8F5'/%3E%3Ccircle cx='22.5' cy='9.5' r='3' fill='%23D46A43'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-cream: #F8F6F2;
+      --bg-surface: #FFFFFF;
+      --bg-warm: #F2EDE4;
+      --teal-dark: #0E3A40;
+      --teal-mid: #18525A;
+      --teal-light: #E8F1F2;
+      --coral: #D46A43;
+      --coral-soft: #F9ECE7;
+      --ink: #192628;
+      --ink-muted: #56676A;
+      --border-sand: #DFD8CC;
+      --shadow-sm: 0 4px 12px rgba(14, 58, 64, 0.05);
+      --shadow-lg: 0 16px 36px rgba(14, 58, 64, 0.08);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-cream);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(248, 246, 242, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-sand);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 74px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--teal-dark);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--teal-dark), var(--teal-mid));
+      display: grid;
+      place-items: center;
+      color: #FFFFFF;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 1.1rem;
+      line-height: 1.15;
+      color: var(--teal-dark);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-city {
+      font-size: 0.76rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--teal-dark);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--teal-light);
+      transition: background-color 0.2s ease, transform 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .phone-pill:hover {
+      background-color: #dbebed;
+      transform: translateY(-1px);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background-color: var(--coral);
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(212, 106, 67, 0.25);
+    }
+
+    .btn-primary:hover {
+      background-color: #be5934;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(212, 106, 67, 0.32);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 48px 0 36px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background-color: var(--teal-light);
+      color: var(--teal-dark);
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      border: 1px solid rgba(24, 82, 90, 0.15);
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      line-height: 1.2;
+      color: var(--teal-dark);
+      margin: 0 0 16px;
+      font-weight: 700;
+    }
+
+    @media (min-width: 768px) {
+      .hero h1 {
+        font-size: 3rem;
+      }
+    }
+
+    .hero-p {
+      max-width: 680px;
+      margin: 0 auto 24px;
+      color: var(--ink-muted);
+      font-size: 1.05rem;
+    }
+
+    .chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .chip {
+      display: inline-flex;
+      padding: 6px 12px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-sand);
+      border-radius: 20px;
+      font-size: 0.84rem;
+      color: var(--teal-dark);
+      font-weight: 500;
+    }
+
+    /* Calculator & Booking Grid */
+    .app-section {
+      padding: 12px 0 56px;
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    @media (min-width: 960px) {
+      .app-grid {
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: start;
+      }
+    }
+
+    .card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-sand);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-header {
+      margin-bottom: 22px;
+    }
+
+    .card-header h2 {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      color: var(--teal-dark);
+      margin: 0 0 6px;
+    }
+
+    .card-header p {
+      margin: 0;
+      color: var(--ink-muted);
+      font-size: 0.92rem;
+    }
+
+    /* Calc items */
+    .calc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .calc-item {
+      position: relative;
+    }
+
+    .calc-checkbox {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .calc-item-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-sand);
+      background-color: var(--bg-cream);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .calc-item-label:hover {
+      border-color: var(--teal-mid);
+      background-color: #FAF9F6;
+    }
+
+    .calc-checkbox:checked + .calc-item-label {
+      border-color: var(--teal-dark);
+      background-color: var(--teal-light);
+    }
+
+    .custom-check {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      border-radius: 6px;
+      border: 2px solid var(--border-sand);
+      background-color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      color: #FFFFFF;
+      margin-top: 2px;
+      transition: all 0.18s ease;
+    }
+
+    .calc-checkbox:checked + .calc-item-label .custom-check {
+      background-color: var(--teal-dark);
+      border-color: var(--teal-dark);
+    }
+
+    .custom-check svg {
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .calc-checkbox:checked + .calc-item-label .custom-check svg {
+      opacity: 1;
+    }
+
+    .calc-item-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .calc-item-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+
+    .calc-item-desc {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+
+    .calc-item-price {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--teal-dark);
+      white-space: nowrap;
+      margin-left: 8px;
+    }
+
+    /* Summary bar */
+    .calc-summary-box {
+      background: linear-gradient(135deg, var(--teal-dark), var(--teal-mid));
+      color: #FFFFFF;
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .summary-left h4 {
+      margin: 0 0 2px;
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #C3E2E6;
+    }
+
+    .summary-left p {
+      margin: 0;
+      font-size: 0.8rem;
+      color: #E0EFF1;
+    }
+
+    .summary-amount {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 700;
+      white-space: nowrap;
+      color: #FFFFFF;
+    }
+
+    /* Booking Card */
+    .booking-card {
+      background-color: var(--teal-dark);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .booking-card h2 {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      color: #FFFFFF;
+      margin: 0 0 6px;
+    }
+
+    .booking-card p {
+      color: #B9D1D5;
+      font-size: 0.9rem;
+      margin: 0 0 20px;
+    }
+
+    .booking-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #D2E4E7;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background-color: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--coral);
+      background-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .form-input::placeholder {
+      color: #8CAAB0;
+    }
+
+    .form-select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background-color: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+    }
+
+    .form-select option {
+      background-color: var(--teal-dark);
+      color: #FFFFFF;
+    }
+
+    .alert-box {
+      display: none;
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      background-color: rgba(212, 106, 67, 0.25);
+      border: 1px solid var(--coral);
+      color: #FFEAE2;
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .alert-box.is-active {
+      display: block;
+    }
+
+    /* Trust & FAQ */
+    .trust-section {
+      padding: 24px 0 48px;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .trust-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .trust-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-sand);
+      border-radius: var(--radius-md);
+      padding: 22px;
+    }
+
+    .trust-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--teal-dark);
+      margin: 0 0 8px;
+    }
+
+    .trust-card p {
+      margin: 0;
+      color: var(--ink-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--teal-dark);
+      color: #B5CED2;
+      padding: 40px 0 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-top {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    @media (min-width: 640px) {
+      .footer-top {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    .footer-brand {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+
+    .footer-contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .footer-link {
+      color: #DDEEF0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+      display: inline-block;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .footer-link:hover {
+      color: var(--coral);
+    }
+
+    .footer-bottom {
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: #8FAEB3;
+    }
+
+    @media (min-width: 640px) {
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    .footer-origin-link {
+      color: #C2E2E6;
+      text-decoration: none;
+      display: inline-block;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .footer-origin-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="brand">
+        <span class="brand-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2zm0-10h2v8h-2z"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Goulet Dentistry</span>
+          <span class="brand-city">Spokane, WA</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a href="tel:(509) 838-4141" class="phone-pill tabular">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>(509) 838-4141</span>
+        </a>
+        <a href="#calculator-section" class="btn btn-primary">Book Examination</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Verified Private Clinic Demo • Live Interactive Prototype</span>
+      </div>
+      <h1>Goulet Dentistry • Treatment Fee Estimator</h1>
+      <p class="hero-p">Select required dental procedures below for an instant preliminary estimate tailored for patients in Spokane, WA.</p>
+      <div class="chips-row">
+        <span class="chip">Preventive Dentistry</span><span class="chip">Dental Crowns & Bridges</span><span class="chip">Cosmetic Whitening</span><span class="chip">Restorative Care</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Calculator & Booking Grid -->
+  <section id="calculator-section" class="app-section">
+    <div class="container app-grid">
+      
+      <!-- Calculator Column -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Select Services for Estimate</h2>
+          <p>Check the treatments you are interested in to calculate an instant cost projection.</p>
+        </div>
+        <div class="calc-list">
+          
+        <div class="calc-item">
+          <input type="checkbox" id="item-0" class="calc-checkbox" data-min="120" data-max="195" checked>
+          <label for="item-0" class="calc-item-label">
+            <span class="custom-check">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+            <span class="calc-item-info">
+              <span class="calc-item-name">Comprehensive Exam & Full-Mouth X-Rays</span>
+              <span class="calc-item-desc">Thorough dental assessment and preventive charting</span>
+            </span>
+            <span class="calc-item-price tabular">$120 – $195</span>
+          </label>
+        </div>
+        <div class="calc-item">
+          <input type="checkbox" id="item-1" class="calc-checkbox" data-min="110" data-max="175" >
+          <label for="item-1" class="calc-item-label">
+            <span class="custom-check">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+            <span class="calc-item-info">
+              <span class="calc-item-name">Professional Dental Prophylaxis (Cleaning)</span>
+              <span class="calc-item-desc">Gentle tartar removal and ultrasonic polishing</span>
+            </span>
+            <span class="calc-item-price tabular">$110 – $175</span>
+          </label>
+        </div>
+        <div class="calc-item">
+          <input type="checkbox" id="item-2" class="calc-checkbox" data-min="185" data-max="340" >
+          <label for="item-2" class="calc-item-label">
+            <span class="custom-check">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+            <span class="calc-item-info">
+              <span class="calc-item-name">Tooth-Colored Composite Restoration</span>
+              <span class="calc-item-desc">Durable, natural-shade composite filling</span>
+            </span>
+            <span class="calc-item-price tabular">$185 – $340</span>
+          </label>
+        </div>
+        <div class="calc-item">
+          <input type="checkbox" id="item-3" class="calc-checkbox" data-min="950" data-max="1450" >
+          <label for="item-3" class="calc-item-label">
+            <span class="custom-check">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+            <span class="calc-item-info">
+              <span class="calc-item-name">Custom Zirconia / Porcelain Dental Crown</span>
+              <span class="calc-item-desc">Full anatomic restoration protecting compromised teeth</span>
+            </span>
+            <span class="calc-item-price tabular">$950 – $1450</span>
+          </label>
+        </div>
+        <div class="calc-item">
+          <input type="checkbox" id="item-4" class="calc-checkbox" data-min="350" data-max="580" >
+          <label for="item-4" class="calc-item-label">
+            <span class="custom-check">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+            <span class="calc-item-info">
+              <span class="calc-item-name">Professional In-Office Teeth Whitening</span>
+              <span class="calc-item-desc">Fast cosmetic whitening brightening smile by multiple shades</span>
+            </span>
+            <span class="calc-item-price tabular">$350 – $580</span>
+          </label>
+        </div>
+        <div class="calc-item">
+          <input type="checkbox" id="item-5" class="calc-checkbox" data-min="1950" data-max="3400" >
+          <label for="item-5" class="calc-item-label">
+            <span class="custom-check">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+            <span class="calc-item-info">
+              <span class="calc-item-name">Dental Implant Restoration Consultation</span>
+              <span class="calc-item-desc">Permanent tooth replacement solution restoring bite and aesthetics</span>
+            </span>
+            <span class="calc-item-price tabular">$1950 – $3400</span>
+          </label>
+        </div>
+        </div>
+        <div class="calc-summary-box">
+          <div class="summary-left">
+            <h4>Estimated Treatment Investment</h4>
+            <p>Preliminary guide based on selected procedures</p>
+          </div>
+          <div id="estimate-display" class="summary-amount tabular">
+            $0
+          </div>
+        </div>
+      </div>
+
+      <!-- Booking Column -->
+      <div class="booking-card">
+        <h2>Schedule Your Consultation</h2>
+        <p>Submit your selected procedure summary to our front desk for preferred scheduling.</p>
+        <form id="booking-form" class="booking-form">
+          <div class="form-group">
+            <label for="client-name">Patient Full Name</label>
+            <input type="text" id="client-name" class="form-input" placeholder="e.g. Alex Morgan" autocomplete="name" required>
+          </div>
+          <div class="form-group">
+            <label for="client-phone">Contact Phone Number</label>
+            <input type="tel" id="client-phone" class="form-input" placeholder="e.g. (509) 838-4141" autocomplete="tel" required>
+          </div>
+          <div class="form-group">
+            <label for="client-email">Email Address</label>
+            <input type="email" id="client-email" class="form-input" placeholder="e.g. alex@example.com" autocomplete="email" required>
+          </div>
+          <div class="form-group">
+            <label for="client-date">Preferred Day / Time</label>
+            <select id="client-date" class="form-select" autocomplete="off">
+              <option value="This Week">As soon as possible (This Week)</option>
+              <option value="Next Week">Next Week</option>
+              <option value="Next Month">Within next month</option>
+              <option value="Emergency">Urgent / Today</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" style="margin-top: 8px;">Submit Booking Request</button>
+          <div id="booking-confirmation" class="alert-box">
+            Thank you! Your estimate details and visit request have been received. Our scheduling coordinator will contact you shortly.
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ & Trust Section -->
+  <section class="trust-section">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-card">
+          <h3>Is dental insurance accepted?</h3>
+          <p>Yes, we work with and file claims for most major dental PPO insurance plans to maximize your benefits.</p>
+        </div>
+        <div class="trust-card">
+          <h3>Where is Goulet Dentistry located?</h3>
+          <p>We are conveniently located in Spokane, WA with ample free patient parking directly outside our clinic entrance.</p>
+        </div>
+        <div class="trust-card">
+          <h3>What should I do in a dental emergency?</h3>
+          <p>Call our office phone immediately. We prioritize same-day appointments for acute dental emergencies and pain.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">Goulet Dentistry</div>
+        <div class="footer-contact-row">
+          <a href="tel:(509) 838-4141" class="footer-link">
+            Direct Desk: (509) 838-4141
+          </a>
+          <a href="mailto:office@spokanedentalcare.com" class="footer-link">
+            office@spokanedentalcare.com
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>
+          Official Practice Website: <a href="https://spokanedentalcare.com" target="_blank" rel="noopener noreferrer" class="footer-origin-link">https://spokanedentalcare.com</a>
+        </div>
+        <div>
+          Interactive Demo Prototype • Tailored for Goulet Dentistry (Spokane, WA)
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for Real-Time Recalculation & Form Submission -->
+  <script>
+    (function() {
+      const curr = "$";
+      const isRu = false;
+      const checkboxes = document.querySelectorAll('.calc-checkbox');
+      const display = document.getElementById('estimate-display');
+      const form = document.getElementById('booking-form');
+      const confirmation = document.getElementById('booking-confirmation');
+
+      function formatNumber(n) {
+        if (isRu) {
+          return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        }
+        return n.toLocaleString('en-US');
+      }
+
+      function updateCalculation() {
+        let minTotal = 0;
+        let maxTotal = 0;
+        let selectedCount = 0;
+
+        checkboxes.forEach(cb => {
+          if (cb.checked) {
+            minTotal += parseInt(cb.dataset.min || '0', 10);
+            maxTotal += parseInt(cb.dataset.max || '0', 10);
+            selectedCount++;
+          }
+        });
+
+        if (selectedCount === 0) {
+          display.textContent = isRu ? "0 ₽" : curr + "0";
+          return;
+        }
+
+        if (minTotal === maxTotal) {
+          display.textContent = isRu ? formatNumber(minTotal) + " ₽" : curr + formatNumber(minTotal);
+        } else {
+          if (isRu) {
+            display.textContent = formatNumber(minTotal) + " – " + formatNumber(maxTotal) + " ₽";
+          } else {
+            display.textContent = curr + formatNumber(minTotal) + " – " + curr + formatNumber(maxTotal);
+          }
+        }
+      }
+
+      checkboxes.forEach(cb => {
+        cb.addEventListener('change', updateCalculation);
+      });
+
+      updateCalculation();
+
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          if (confirmation) {
+            confirmation.classList.add('is-active');
+            form.querySelector('button[type="submit"]').disabled = true;
+            form.querySelector('button[type="submit"]').style.opacity = '0.7';
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
