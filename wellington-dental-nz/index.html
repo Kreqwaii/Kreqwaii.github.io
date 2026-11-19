@@ -1,0 +1,3363 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Wellington Dental Practice — caring for Wellington patients since 1928. General and preventive dentistry, restorative and cosmetic care, dental hygiene, emergency care, live 2026 NZD fee estimator, and Mon-Fri appointment booking." />
+  <title>The Wellington Dental Practice — Since 1928 | Wellington, New Zealand</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2315403B'/%3E%3Crect x='5' y='5' width='54' height='54' rx='10' fill='none' stroke='%23966D3B' stroke-width='2'/%3E%3Cpath d='M22 18c-4.5 0-8 3.6-8 8.5 0 6.2 3.3 11.4 4.8 18.8.7 3.4 2.5 5 4.2 5 2 0 3.3-2.5 4.6-6.9.8-2.6 2.1-3.9 4.4-3.9s3.6 1.3 4.4 3.9c1.3 4.4 2.6 6.9 4.6 6.9 1.7 0 3.5-1.6 4.2-5 1.5-7.4 4.8-12.6 4.8-18.8 0-4.9-3.5-8.5-8-8.5-3.4 0-5.4 1.6-7.6 2.4-1.6.6-3.2.6-4.8 0-2.2-.8-4.2-2.4-7.6-2.4z' fill='%23F9F7F3'/%3E%3Ccircle cx='32' cy='11' r='2.5' fill='%23966D3B'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-canvas: #F9F7F3;
+      --bg-linen: #F1ECE3;
+      --bg-card: #FFFFFF;
+      --bg-pine: #15403B;
+      --bg-pine-deep: #0E2D29;
+      --bg-pine-soft: rgba(21, 64, 59, 0.07);
+      --accent-amber: #966D3B;
+      --accent-amber-deep: #7B572B;
+      --accent-amber-light: #D8B480;
+      --accent-amber-soft: rgba(150, 109, 59, 0.11);
+      --ink-primary: #182220;
+      --ink-secondary: #485652;
+      --ink-muted: #66736E;
+      --ink-on-pine: #F9F7F3;
+      --ink-on-pine-muted: #C4D2CD;
+      --border-hairline: #E0D9CD;
+      --border-strong: #C9BFAE;
+      --status-good: #1F6B54;
+      --status-good-bg: rgba(31, 107, 84, 0.1);
+      --status-warn: #965028;
+      --status-warn-bg: rgba(150, 80, 40, 0.1);
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-sans: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --shadow-card: 0 12px 32px -16px rgba(21, 64, 59, 0.14);
+      --shadow-elevated: 0 24px 48px -20px rgba(14, 45, 41, 0.24);
+      --container-max: 1200px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: clip;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
+      background-image: radial-gradient(rgba(21, 64, 59, 0.045) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    img, svg {
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent-amber);
+      outline-offset: 2px;
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    /* Top utility strip */
+    .utility-bar {
+      background-color: var(--bg-pine-deep);
+      color: var(--ink-on-pine-muted);
+      font-size: 0.8125rem;
+      border-bottom: 1px solid rgba(216, 180, 128, 0.2);
+    }
+
+    .utility-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-block: 8px;
+      flex-wrap: wrap;
+    }
+
+    .utility-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .utility-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+    }
+
+    .utility-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent-amber-light);
+      flex-shrink: 0;
+    }
+
+    .utility-link {
+      color: var(--ink-on-pine);
+      font-weight: 500;
+      transition: color 180ms ease;
+    }
+
+    .utility-link:hover {
+      color: var(--accent-amber-light);
+    }
+
+    /* Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(249, 247, 243, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.0625rem;
+      line-height: 1.2;
+      color: var(--bg-pine);
+      letter-spacing: -0.01em;
+      overflow-wrap: break-word;
+    }
+
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-amber-deep);
+      margin-top: 2px;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-shrink: 0;
+    }
+
+    .nav-link {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      padding-block: 6px;
+      position: relative;
+      transition: color 180ms ease;
+    }
+
+    .nav-link:hover {
+      color: var(--bg-pine);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      line-height: 1.2;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background-color: var(--bg-pine);
+      color: var(--ink-on-pine);
+      border-color: var(--bg-pine);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--bg-pine-deep);
+      border-color: var(--bg-pine-deep);
+    }
+
+    .btn-amber {
+      background-color: var(--accent-amber);
+      color: #FFFFFF;
+      border-color: var(--accent-amber);
+    }
+
+    .btn-amber:hover {
+      background-color: var(--accent-amber-deep);
+      border-color: var(--accent-amber-deep);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--bg-pine);
+      border-color: var(--border-strong);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--bg-linen);
+      border-color: var(--bg-pine);
+    }
+
+    .btn-ghost-light {
+      background-color: rgba(249, 247, 243, 0.1);
+      color: var(--ink-on-pine);
+      border-color: rgba(249, 247, 243, 0.25);
+    }
+
+    .btn-ghost-light:hover {
+      background-color: rgba(249, 247, 243, 0.18);
+      border-color: rgba(249, 247, 243, 0.45);
+    }
+
+    .btn-sm {
+      padding: 8px 14px;
+      font-size: 0.875rem;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-card);
+      color: var(--bg-pine);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .mobile-drawer {
+      display: none;
+      border-top: 1px solid var(--border-hairline);
+      background-color: var(--bg-canvas);
+      padding-block: 12px 18px;
+    }
+
+    .mobile-drawer.is-open {
+      display: block;
+    }
+
+    .mobile-drawer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .mobile-drawer-link {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-weight: 500;
+      color: var(--ink-primary);
+      transition: background-color 180ms ease;
+    }
+
+    .mobile-drawer-link:hover {
+      background-color: var(--bg-linen);
+    }
+
+    /* Section scaffold */
+    .section {
+      padding-block: 72px;
+    }
+
+    .section-tight {
+      padding-block: 52px;
+    }
+
+    .section-linen {
+      background-color: var(--bg-linen);
+      border-top: 1px solid var(--border-hairline);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--accent-amber-deep);
+      margin-bottom: 12px;
+    }
+
+    .eyebrow-rule {
+      width: 24px;
+      height: 1px;
+      background-color: var(--accent-amber);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      color: var(--ink-primary);
+      margin: 0;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 4.3vw, 3.55rem);
+      line-height: 1.08;
+      color: var(--bg-pine);
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 3vw, 2.45rem);
+      line-height: 1.15;
+      color: var(--bg-pine);
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      line-height: 1.3;
+    }
+
+    .section-desc {
+      max-width: 60ch;
+      color: var(--ink-secondary);
+      margin: 12px 0 0 0;
+      font-size: 1.03125rem;
+    }
+
+    /* Hero */
+    .hero {
+      padding-block: 56px 68px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 44px;
+      align-items: center;
+    }
+
+    .hero-lead {
+      font-size: 1.125rem;
+      color: var(--ink-secondary);
+      max-width: 54ch;
+      margin: 20px 0 28px 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .metric-cell {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .metric-val {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--bg-pine);
+      line-height: 1.2;
+    }
+
+    .metric-label {
+      font-size: 0.8125rem;
+      color: var(--ink-secondary);
+      margin-top: 4px;
+    }
+
+    /* Hero Dossier Card */
+    .dossier-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-elevated);
+      overflow: hidden;
+    }
+
+    .dossier-banner {
+      background-color: var(--bg-pine);
+      color: var(--ink-on-pine);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid rgba(216, 180, 128, 0.28);
+    }
+
+    .dossier-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-amber-light);
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(216, 180, 128, 0.35);
+      white-space: nowrap;
+    }
+
+    .dossier-body {
+      padding: 24px;
+    }
+
+    .dossier-svg-wrap {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 18px;
+    }
+
+    .dossier-svg {
+      width: 100%;
+      display: block;
+    }
+
+    .dossier-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .dossier-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--border-hairline);
+      font-size: 0.9375rem;
+    }
+
+    .dossier-row:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .dossier-key {
+      color: var(--ink-secondary);
+    }
+
+    .dossier-value {
+      font-weight: 600;
+      color: var(--bg-pine);
+      text-align: right;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      box-shadow: var(--shadow-card);
+      transition: border-color 180ms ease, transform 180ms ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--accent-amber);
+      transform: translateY(-2px);
+    }
+
+    .service-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .service-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-pine-soft);
+      color: var(--bg-pine);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border: 1px solid rgba(21, 64, 59, 0.14);
+    }
+
+    .service-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent-amber-deep);
+      background-color: var(--accent-amber-soft);
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .service-desc {
+      margin: 10px 0 0 0;
+      color: var(--ink-secondary);
+      font-size: 0.95rem;
+    }
+
+    .service-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-hairline);
+      flex-wrap: wrap;
+    }
+
+    .service-meta {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+    }
+
+    /* NZD Fee Calculator */
+    .calc-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .calc-panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .preset-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .preset-pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill-btn {
+      background-color: var(--bg-canvas);
+      color: var(--ink-secondary);
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding: 6px 13px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+    }
+
+    .pill-btn:hover {
+      border-color: var(--bg-pine);
+      color: var(--bg-pine);
+    }
+
+    .pill-btn.is-active {
+      background-color: var(--bg-pine);
+      border-color: var(--bg-pine);
+      color: var(--ink-on-pine);
+    }
+
+    .fee-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .fee-item {
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      background-color: var(--bg-canvas);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transition: border-color 180ms ease, background-color 180ms ease;
+    }
+
+    .fee-item.is-selected {
+      background-color: #FFFFFF;
+      border-color: var(--bg-pine);
+      box-shadow: 0 4px 14px -8px rgba(21, 64, 59, 0.25);
+    }
+
+    .fee-item-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .fee-item-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .fee-item-title {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--ink-primary);
+    }
+
+    .fee-item-duration {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      background-color: var(--bg-linen);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .fee-item-desc {
+      font-size: 0.875rem;
+      color: var(--ink-secondary);
+      margin-top: 4px;
+    }
+
+    .fee-item-controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .fee-unit-price {
+      text-align: right;
+    }
+
+    .fee-nzd {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--bg-pine);
+    }
+
+    .fee-unit-sub {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+    }
+
+    .toggle-check-btn {
+      min-width: 96px;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-card);
+      color: var(--bg-pine);
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+    }
+
+    .toggle-check-btn[aria-pressed="true"] {
+      background-color: var(--bg-pine);
+      border-color: var(--bg-pine);
+      color: var(--ink-on-pine);
+    }
+
+    .stepper {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-card);
+      overflow: hidden;
+    }
+
+    .stepper-btn {
+      width: 34px;
+      height: 36px;
+      border: 0;
+      background-color: transparent;
+      color: var(--bg-pine);
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 180ms ease;
+    }
+
+    .stepper-btn:hover {
+      background-color: var(--bg-linen);
+    }
+
+    .stepper-val {
+      min-width: 30px;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      color: var(--ink-primary);
+    }
+
+    /* ACC Switch card */
+    .acc-box {
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+      background-color: var(--accent-amber-soft);
+      border: 1px solid rgba(150, 109, 59, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .acc-copy-title {
+      font-weight: 600;
+      color: var(--ink-primary);
+      font-size: 0.96875rem;
+    }
+
+    .acc-copy-desc {
+      font-size: 0.84375rem;
+      color: var(--ink-secondary);
+      margin-top: 3px;
+    }
+
+    .switch-btn {
+      position: relative;
+      width: 56px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-amber);
+      background-color: var(--bg-card);
+      cursor: pointer;
+      flex-shrink: 0;
+      padding: 0;
+      transition: background-color 180ms ease, border-color 180ms ease;
+    }
+
+    .switch-btn[aria-checked="true"] {
+      background-color: var(--bg-pine);
+      border-color: var(--bg-pine);
+    }
+
+    .switch-thumb {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: var(--accent-amber);
+      transition: transform 180ms ease, background-color 180ms ease;
+    }
+
+    .switch-btn[aria-checked="true"] .switch-thumb {
+      transform: translateX(24px);
+      background-color: var(--ink-on-pine);
+    }
+
+    /* Ledger Summary Panel */
+    .ledger-card {
+      background-color: var(--bg-pine);
+      color: var(--ink-on-pine);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-elevated);
+      border: 1px solid rgba(216, 180, 128, 0.25);
+      position: sticky;
+      top: 92px;
+    }
+
+    .ledger-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(249, 247, 243, 0.16);
+    }
+
+    .ledger-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--ink-on-pine);
+    }
+
+    .ledger-year {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-amber-light);
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(216, 180, 128, 0.35);
+    }
+
+    .ledger-lines {
+      margin-block: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 80px;
+    }
+
+    .ledger-line {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.9125rem;
+      color: var(--ink-on-pine-muted);
+    }
+
+    .ledger-line-amt {
+      font-family: var(--font-mono);
+      color: var(--ink-on-pine);
+      white-space: nowrap;
+    }
+
+    .ledger-empty {
+      font-size: 0.9rem;
+      color: var(--ink-on-pine-muted);
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px dashed rgba(249, 247, 243, 0.22);
+      text-align: center;
+    }
+
+    .ledger-totals {
+      padding-top: 16px;
+      border-top: 1px solid rgba(249, 247, 243, 0.18);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ledger-subrow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: var(--ink-on-pine-muted);
+    }
+
+    .ledger-acc-row {
+      color: var(--accent-amber-light);
+    }
+
+    .ledger-grand {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(216, 180, 128, 0.32);
+    }
+
+    .ledger-grand-label {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .ledger-grand-val {
+      font-family: var(--font-mono);
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: var(--ink-on-pine);
+      white-space: nowrap;
+    }
+
+    .ledger-actions {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .ledger-note {
+      margin-top: 14px;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: var(--ink-on-pine-muted);
+    }
+
+    .inline-feedback {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: var(--accent-amber-light);
+      min-height: 1.2em;
+    }
+
+    /* Heritage Timeline & Digital Clinical Protocol */
+    .heritage-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .svg-stage-box {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .timeline-svg {
+      width: 100%;
+      display: block;
+    }
+
+    .svg-node-group {
+      cursor: pointer;
+    }
+
+    .svg-node-ring {
+      transition: r 180ms ease, stroke-width 180ms ease, opacity 180ms ease;
+    }
+
+    .svg-node-core {
+      transition: fill 180ms ease, r 180ms ease;
+    }
+
+    .svg-progress-line {
+      transition: stroke-dashoffset 260ms ease, d 260ms ease;
+    }
+
+    .era-buttons {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .era-tab {
+      text-align: left;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-hairline);
+      background-color: var(--bg-canvas);
+      cursor: pointer;
+      transition: background-color 180ms ease, border-color 180ms ease;
+    }
+
+    .era-tab:hover {
+      border-color: var(--accent-amber);
+    }
+
+    .era-tab.is-active {
+      background-color: var(--bg-pine);
+      border-color: var(--bg-pine);
+      color: var(--ink-on-pine);
+    }
+
+    .era-tab-year {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent-amber-deep);
+    }
+
+    .era-tab.is-active .era-tab-year {
+      color: var(--accent-amber-light);
+    }
+
+    .era-tab-name {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      margin-top: 3px;
+      color: var(--ink-primary);
+    }
+
+    .era-tab.is-active .era-tab-name {
+      color: var(--ink-on-pine);
+    }
+
+    .era-detail-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+      gap: 24px;
+      padding: 22px;
+      background-color: var(--bg-linen);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-hairline);
+    }
+
+    .era-detail-year {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--accent-amber-deep);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .era-detail-title {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      color: var(--bg-pine);
+      margin-top: 4px;
+    }
+
+    .era-detail-copy {
+      color: var(--ink-secondary);
+      margin: 10px 0 0 0;
+    }
+
+    .era-specs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+    }
+
+    .era-spec-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .era-spec-val {
+      font-weight: 600;
+      font-size: 0.925rem;
+      color: var(--bg-pine);
+      margin-top: 2px;
+    }
+
+    .protocol-divider {
+      margin-top: 36px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    /* Booking Section */
+    .booking-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .slot-panel, .form-panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .field-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--bg-pine);
+      margin-bottom: 10px;
+    }
+
+    .day-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .day-btn {
+      padding: 10px 8px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-canvas);
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+    }
+
+    .day-btn:hover {
+      border-color: var(--bg-pine);
+    }
+
+    .day-btn.is-active {
+      background-color: var(--bg-pine);
+      border-color: var(--bg-pine);
+      color: var(--ink-on-pine);
+    }
+
+    .day-name {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .day-date {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .day-btn.is-active .day-date {
+      color: var(--accent-amber-light);
+    }
+
+    .time-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .time-btn {
+      padding: 11px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-canvas);
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+    }
+
+    .time-btn:hover:not(:disabled) {
+      border-color: var(--bg-pine);
+    }
+
+    .time-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background-color: var(--bg-linen);
+    }
+
+    .time-btn.is-active {
+      background-color: var(--bg-pine);
+      border-color: var(--bg-pine);
+      color: var(--ink-on-pine);
+    }
+
+    .time-clock {
+      display: block;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .time-status {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .time-btn.is-active .time-status {
+      color: var(--accent-amber-light);
+    }
+
+    .selected-slot-banner {
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-pine-soft);
+      border: 1px solid rgba(21, 64, 59, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .selected-slot-label {
+      font-size: 0.8125rem;
+      color: var(--ink-secondary);
+    }
+
+    .selected-slot-val {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--bg-pine);
+      font-size: 0.95rem;
+    }
+
+    /* Form Controls */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-field-full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 11px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      transition: border-color 180ms ease, background-color 180ms ease;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      background-color: #FFFFFF;
+      border-color: var(--bg-pine);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 92px;
+    }
+
+    .form-error {
+      font-size: 0.84375rem;
+      color: var(--status-warn);
+      background-color: var(--status-warn-bg);
+      border: 1px solid rgba(150, 80, 40, 0.28);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      margin-top: 14px;
+      display: none;
+    }
+
+    .form-error.is-visible {
+      display: block;
+    }
+
+    .form-submit-row {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .reception-note {
+      font-size: 0.8125rem;
+      color: var(--ink-muted);
+    }
+
+    /* Confirmation Panel */
+    .confirm-box {
+      display: none;
+      margin-top: 4px;
+      padding: 22px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--bg-pine);
+    }
+
+    .confirm-box.is-visible {
+      display: block;
+    }
+
+    .confirm-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--status-good);
+      background-color: var(--status-good-bg);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .confirm-details {
+      margin-block: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 14px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+    }
+
+    .confirm-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .confirm-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg-pine);
+      color: var(--ink-on-pine);
+      padding-block: 56px 32px;
+      border-top: 1px solid rgba(216, 180, 128, 0.25);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 0.9fr);
+      gap: 32px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(249, 247, 243, 0.14);
+    }
+
+    .footer-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--ink-on-pine);
+      margin-bottom: 12px;
+    }
+
+    .footer-copy {
+      color: var(--ink-on-pine-muted);
+      font-size: 0.925rem;
+      margin: 0;
+      max-width: 44ch;
+    }
+
+    .footer-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      font-size: 0.925rem;
+      color: var(--ink-on-pine-muted);
+    }
+
+    .footer-list a {
+      color: var(--ink-on-pine);
+      transition: color 180ms ease;
+    }
+
+    .footer-list a:hover {
+      color: var(--accent-amber-light);
+    }
+
+    .footer-bottom {
+      padding-top: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 0.84375rem;
+      color: var(--ink-on-pine-muted);
+    }
+
+    .footer-tag {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--accent-amber-light);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .calc-layout,
+      .booking-grid,
+      .era-detail-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ledger-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .main-nav {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+
+      .header-phone-btn {
+        display: none;
+      }
+
+      .services-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .era-buttons {
+        grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding-inline: 16px;
+      }
+
+      .section {
+        padding-block: 48px;
+      }
+
+      .hero {
+        padding-block: 36px 48px;
+      }
+
+      .hero-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-title {
+        font-size: 0.95rem;
+      }
+
+      .brand-sub {
+        font-size: 0.625rem;
+      }
+
+      .header-book-btn {
+        padding: 9px 12px;
+        font-size: 0.825rem;
+      }
+
+      .fee-item {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .fee-item-controls {
+        justify-content: space-between;
+        padding-top: 10px;
+        border-top: 1px dashed var(--border-hairline);
+      }
+
+      .fee-unit-price {
+        text-align: left;
+      }
+
+      .day-grid {
+        grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .calc-panel, .ledger-card, .heritage-card, .slot-panel, .form-panel {
+        padding: 18px;
+        min-width: 0;
+      }
+
+      .header-inner {
+        gap: 10px;
+      }
+
+      .brand {
+        gap: 9px;
+      }
+
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *, *::before, *::after {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Practice Utility Bar -->
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="utility-group">
+        <span class="utility-item">
+          <span class="utility-dot" aria-hidden="true"></span>
+          <span>Wellington, New Zealand · Est. 1928</span>
+        </span>
+        <span class="utility-item">Mon-Fri by appointment</span>
+      </div>
+      <div class="utility-group">
+        <a class="utility-item utility-link tabular-nums" href="tel:044725516">04 472 5516</a>
+        <a class="utility-item utility-link" href="mailto:reception@twdp.co.nz">reception@twdp.co.nz</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Navigation Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="The Wellington Dental Practice Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="64" height="64" rx="14" fill="#15403B" />
+            <rect x="4" y="4" width="56" height="56" rx="10" stroke="#966D3B" stroke-width="1.5" />
+            <path d="M22 19C17.8 19 14.5 22.4 14.5 27C14.5 32.8 17.6 37.8 19 44.8C19.6 47.9 21.3 49.4 22.9 49.4C24.8 49.4 26 47.1 27.2 43C27.9 40.5 29.2 39.3 32 39.3C34.8 39.3 36.1 40.5 36.8 43C38 47.1 39.2 49.4 41.1 49.4C42.7 49.4 44.4 47.9 45 44.8C46.4 37.8 49.5 32.8 49.5 27C49.5 22.4 46.2 19 42 19C38.8 19 36.9 20.5 34.8 21.3C33 21.9 31 21.9 29.2 21.3C27.1 20.5 25.2 19 22 19Z" fill="#F9F7F3" />
+            <circle cx="32" cy="12" r="2.3" fill="#D8B480" />
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-title">The Wellington Dental Practice</span>
+          <span class="brand-sub">Caring for Patients Since 1928</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Primary Navigation">
+        <a class="nav-link" href="#services">Services</a>
+        <a class="nav-link" href="#fee-calculator">2026 Fees</a>
+        <a class="nav-link" href="#heritage">1928–2026 Protocol</a>
+        <a class="nav-link" href="#booking">Book Mon-Fri</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-outline btn-sm header-phone-btn tabular-nums" href="tel:044725516">04 472 5516</a>
+        <a class="btn btn-primary btn-sm header-book-btn" href="#booking">Book Visit</a>
+        <button
+          type="button"
+          class="mobile-menu-btn"
+          id="mobile-menu-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-drawer"
+          aria-label="Toggle navigation menu"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="7" x2="20" y2="7" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="17" x2="20" y2="17" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobile-drawer">
+      <div class="container mobile-drawer-links">
+        <a class="mobile-drawer-link" href="#services">Clinical Services</a>
+        <a class="mobile-drawer-link" href="#fee-calculator">2026 NZD Fee Estimator</a>
+        <a class="mobile-drawer-link" href="#heritage">1928–2026 Continuity &amp; Protocol</a>
+        <a class="mobile-drawer-link" href="#booking">Mon-Fri Slot Booking</a>
+        <a class="mobile-drawer-link tabular-nums" href="tel:044725516">Call Reception: 04 472 5516</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-rule" aria-hidden="true"></span>
+            <span>Wellington, New Zealand · Established 1928</span>
+          </div>
+          <h1>Nearly a century of quiet dental continuity in Wellington.</h1>
+          <p class="hero-lead">
+            For 98 years, The Wellington Dental Practice has paired conservative clinical judgment with unhurried personal care. Updated for 2026 with low-dose digital diagnostics, an interactive NZD fee estimator, and direct Mon-Fri appointment requests.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#fee-calculator">Calculate 2026 NZD Fees</a>
+            <a class="btn btn-outline" href="#booking">Select Mon-Fri Slot</a>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric-cell">
+              <div class="metric-val tabular-nums">1928–2026</div>
+              <div class="metric-label">98 years of practice continuity</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val tabular-nums">Mon–Fri</div>
+              <div class="metric-label">Calm care by appointment</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val tabular-nums">2026 NZD</div>
+              <div class="metric-label">Transparent fee &amp; ACC estimator</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="dossier-card" aria-label="Practice Dossier and Quick Fees">
+          <div class="dossier-banner">
+            <div>
+              <div style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 500;">2026 Reception Dossier</div>
+              <div style="font-size: 0.8125rem; color: var(--ink-on-pine-muted);">Wellington Central Clinical Practice</div>
+            </div>
+            <span class="dossier-badge tabular-nums">Est. 1928</span>
+          </div>
+          <div class="dossier-body">
+            <div class="dossier-svg-wrap">
+              <svg class="dossier-svg" viewBox="0 0 420 132" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Precision dental arch and 1928 to 2026 continuity dial">
+                <rect x="1" y="1" width="418" height="130" rx="10" fill="#FFFFFF" stroke="#E0D9CD" />
+                <line x1="24" y1="96" x2="396" y2="96" stroke="#E0D9CD" stroke-width="1.5" />
+                <path d="M40 96 C115 32, 305 32, 380 96" stroke="#15403B" stroke-width="2" stroke-dasharray="4 4" />
+                <path d="M40 96 C95 48, 210 40, 260 56" stroke="#966D3B" stroke-width="2.5" />
+                <circle cx="40" cy="96" r="6" fill="#15403B" />
+                <circle cx="153" cy="54" r="5" fill="#F9F7F3" stroke="#15403B" stroke-width="2" />
+                <circle cx="266" cy="54" r="5" fill="#F9F7F3" stroke="#966D3B" stroke-width="2" />
+                <circle cx="380" cy="96" r="7" fill="#966D3B" />
+                <circle cx="380" cy="96" r="12" stroke="#966D3B" stroke-opacity="0.3" stroke-width="1.5" />
+                <text x="40" y="116" text-anchor="middle" fill="#15403B" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600">1928</text>
+                <text x="153" y="116" text-anchor="middle" fill="#485652" font-family="JetBrains Mono, monospace" font-size="11">1964</text>
+                <text x="266" y="116" text-anchor="middle" fill="#485652" font-family="JetBrains Mono, monospace" font-size="11">2016</text>
+                <text x="380" y="116" text-anchor="middle" fill="#7B572B" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600">2026</text>
+                <text x="210" y="25" text-anchor="middle" fill="#15403B" font-family="DM Sans, sans-serif" font-size="11" font-weight="600">CONTINUOUS WELLINGTON CLINICAL CARE</text>
+              </svg>
+            </div>
+
+            <div class="dossier-rows">
+              <div class="dossier-row">
+                <span class="dossier-key">Hours</span>
+                <span class="dossier-value">Mon-Fri by appointment</span>
+              </div>
+              <div class="dossier-row">
+                <span class="dossier-key">Direct Phone</span>
+                <a class="dossier-value tabular-nums" href="tel:044725516">04 472 5516</a>
+              </div>
+              <div class="dossier-row">
+                <span class="dossier-key">Reception Email</span>
+                <a class="dossier-value" href="mailto:reception@twdp.co.nz">reception@twdp.co.nz</a>
+              </div>
+              <div class="dossier-row">
+                <span class="dossier-key">New Patient Exam + X-Rays</span>
+                <span class="dossier-value mono">$165 NZD</span>
+              </div>
+              <div class="dossier-row">
+                <span class="dossier-key">Dental Hygiene Session</span>
+                <span class="dossier-value mono">$145 NZD</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Core Clinical Services -->
+    <section class="section section-linen" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-rule" aria-hidden="true"></span>
+              <span>Clinical Disciplines</span>
+            </div>
+            <h2>Four core services built around tooth preservation.</h2>
+            <p class="section-desc">
+              Every appointment allows unhurried diagnostic time, digital imaging review, and straightforward options tailored to your long-term dental stability.
+            </p>
+          </div>
+          <a class="btn btn-outline btn-sm" href="#fee-calculator">View Full 2026 Estimator</a>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon-box" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 21c4.5-2.2 7-6.1 7-11V5l-7-2.5L5 5v5c0 4.9 2.5 8.8 7 11z" />
+                    <path d="M9 12l2 2 4-4" />
+                  </svg>
+                </div>
+                <span class="service-tag">Preventive Core</span>
+              </div>
+              <h3 style="margin-top: 16px;">General &amp; Preventive Dentistry</h3>
+              <p class="service-desc">
+                Thorough annual examinations, digital bitewing radiographs, early caries detection, and conservative treatment planning designed to protect natural enamel over decades.
+              </p>
+            </div>
+            <div class="service-foot">
+              <span class="service-meta tabular-nums">From $165 NZD · Exam + X-Rays</span>
+              <button type="button" class="btn btn-outline btn-sm quick-add-service" data-calc-item="exam">Add to Estimator</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon-box" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="8" />
+                    <path d="M8.5 12.5c1.2 1.8 5.8 1.8 7 0" />
+                    <path d="M12 4v3" />
+                  </svg>
+                </div>
+                <span class="service-tag">Precision Rehab</span>
+              </div>
+              <h3 style="margin-top: 16px;">Restorative &amp; Cosmetic Care</h3>
+              <p class="service-desc">
+                Shade-matched white composite fillings, precision ceramic crowns, inlays, and structural tooth repairs crafted for natural bite comfort and discreet aesthetics.
+              </p>
+            </div>
+            <div class="service-foot">
+              <span class="service-meta tabular-nums">Fillings $260 · Crowns $1,580 NZD</span>
+              <button type="button" class="btn btn-outline btn-sm quick-add-service" data-calc-item="filling">Add to Estimator</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon-box" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 12h16" />
+                    <path d="M12 4v16" />
+                    <circle cx="12" cy="12" r="9" />
+                  </svg>
+                </div>
+                <span class="service-tag">Periodontal Health</span>
+              </div>
+              <h3 style="margin-top: 16px;">Dental Hygiene &amp; Exams</h3>
+              <p class="service-desc">
+                Warm-water ultrasonic scaling, gentle stain removal, periodontal pocket charting, and tailored home hygiene coaching to keep gums resilient and inflammation-free.
+              </p>
+            </div>
+            <div class="service-foot">
+              <span class="service-meta tabular-nums">$145 NZD · 45 min hygiene care</span>
+              <button type="button" class="btn btn-outline btn-sm quick-add-service" data-calc-item="hygiene">Add to Estimator</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon-box" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9" />
+                    <polyline points="12 7 12 12 15.5 14" />
+                  </svg>
+                </div>
+                <span class="service-tag">Same-Day Priority</span>
+              </div>
+              <h3 style="margin-top: 16px;">Emergency Dental Care</h3>
+              <p class="service-desc">
+                Reserved daily Mon-Fri clinical windows for acute toothache, chipped teeth, lost fillings, and ACC-covered dental trauma requiring prompt stabilisation.
+              </p>
+            </div>
+            <div class="service-foot">
+              <span class="service-meta tabular-nums">$195 NZD · Urgent assessment</span>
+              <button type="button" class="btn btn-outline btn-sm quick-add-service" data-calc-item="emergency">Add to Estimator</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive 2026 NZD Fee Calculator -->
+    <section class="section" id="fee-calculator">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-rule" aria-hidden="true"></span>
+              <span>Updated 2026 Fee Schedule</span>
+            </div>
+            <h2>Interactive NZD treatment fee estimator.</h2>
+            <p class="section-desc">
+              Replacing static historical price lists with clear 2026 New Zealand Dollar estimates. Select services, adjust restoration counts, and test ACC Injury Cover reductions before booking.
+            </p>
+          </div>
+        </div>
+
+        <div class="calc-layout">
+          <div class="calc-panel">
+            <div class="preset-bar">
+              <div class="field-label" style="margin-bottom: 0;">Quick Scenarios</div>
+              <div class="preset-pills" role="group" aria-label="Fee Estimator Presets">
+                <button type="button" class="pill-btn" data-preset="new-patient">New Patient Check</button>
+                <button type="button" class="pill-btn" data-preset="routine-hygiene">Hygiene Recall</button>
+                <button type="button" class="pill-btn" data-preset="urgent-repair">Urgent ACC Repair</button>
+                <button type="button" class="pill-btn" data-preset="clear">Clear All</button>
+              </div>
+            </div>
+
+            <div class="fee-list" id="fee-list">
+              <!-- Item 1: New Patient Exam + X-Rays -->
+              <div class="fee-item is-selected" data-item-row="exam">
+                <div class="fee-item-info">
+                  <div class="fee-item-head">
+                    <span class="fee-item-title">New Patient Exam + X-Rays</span>
+                    <span class="fee-item-duration tabular-nums">45 min</span>
+                  </div>
+                  <div class="fee-item-desc">Full oral diagnostic exam, gum charting, and two low-dose digital radiographs.</div>
+                </div>
+                <div class="fee-item-controls">
+                  <div class="fee-unit-price">
+                    <span class="fee-nzd tabular-nums">$165</span>
+                    <span class="fee-unit-sub">NZD fixed</span>
+                  </div>
+                  <button type="button" class="toggle-check-btn" id="toggle-exam" aria-pressed="true">Included</button>
+                </div>
+              </div>
+
+              <!-- Item 2: Dental Hygiene -->
+              <div class="fee-item" data-item-row="hygiene">
+                <div class="fee-item-info">
+                  <div class="fee-item-head">
+                    <span class="fee-item-title">Dental Hygiene</span>
+                    <span class="fee-item-duration tabular-nums">45 min</span>
+                  </div>
+                  <div class="fee-item-desc">Ultrasonic scale, biofilm polish, periodontal care, and preventive coaching.</div>
+                </div>
+                <div class="fee-item-controls">
+                  <div class="fee-unit-price">
+                    <span class="fee-nzd tabular-nums">$145</span>
+                    <span class="fee-unit-sub">NZD per visit</span>
+                  </div>
+                  <button type="button" class="toggle-check-btn" id="toggle-hygiene" aria-pressed="false">Add</button>
+                </div>
+              </div>
+
+              <!-- Item 3: White Fillings -->
+              <div class="fee-item" data-item-row="filling">
+                <div class="fee-item-info">
+                  <div class="fee-item-head">
+                    <span class="fee-item-title">White Fillings</span>
+                    <span class="fee-item-duration tabular-nums">40 min each</span>
+                  </div>
+                  <div class="fee-item-desc">Shade-matched composite resin restoration for decay or chipped enamel.</div>
+                </div>
+                <div class="fee-item-controls">
+                  <div class="fee-unit-price">
+                    <span class="fee-nzd tabular-nums">$260</span>
+                    <span class="fee-unit-sub">NZD / tooth</span>
+                  </div>
+                  <div class="stepper" role="group" aria-label="White Fillings quantity">
+                    <button type="button" class="stepper-btn" data-step-target="filling" data-step="-1" aria-label="Decrease white fillings">-</button>
+                    <span class="stepper-val tabular-nums" id="qty-filling">0</span>
+                    <button type="button" class="stepper-btn" data-step-target="filling" data-step="1" aria-label="Increase white fillings">+</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 4: Crown / Restorative -->
+              <div class="fee-item" data-item-row="crown">
+                <div class="fee-item-info">
+                  <div class="fee-item-head">
+                    <span class="fee-item-title">Crown / Restorative</span>
+                    <span class="fee-item-duration tabular-nums">90 min total</span>
+                  </div>
+                  <div class="fee-item-desc">Custom laboratory ceramic or zirconia crown for fractured or structurally worn teeth.</div>
+                </div>
+                <div class="fee-item-controls">
+                  <div class="fee-unit-price">
+                    <span class="fee-nzd tabular-nums">$1,580</span>
+                    <span class="fee-unit-sub">NZD / unit</span>
+                  </div>
+                  <div class="stepper" role="group" aria-label="Crown Restorative quantity">
+                    <button type="button" class="stepper-btn" data-step-target="crown" data-step="-1" aria-label="Decrease crowns">-</button>
+                    <span class="stepper-val tabular-nums" id="qty-crown">0</span>
+                    <button type="button" class="stepper-btn" data-step-target="crown" data-step="1" aria-label="Increase crowns">+</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 5: Same-Day Emergency Relief -->
+              <div class="fee-item" data-item-row="emergency">
+                <div class="fee-item-info">
+                  <div class="fee-item-head">
+                    <span class="fee-item-title">Same-Day Emergency Relief</span>
+                    <span class="fee-item-duration tabular-nums">30 min</span>
+                  </div>
+                  <div class="fee-item-desc">Priority Mon-Fri acute assessment, targeted X-ray, and immediate pain stabilisation.</div>
+                </div>
+                <div class="fee-item-controls">
+                  <div class="fee-unit-price">
+                    <span class="fee-nzd tabular-nums">$195</span>
+                    <span class="fee-unit-sub">NZD triage</span>
+                  </div>
+                  <button type="button" class="toggle-check-btn" id="toggle-emergency" aria-pressed="false">Add</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- ACC Injury Cover Toggle -->
+            <div class="acc-box">
+              <div>
+                <div class="acc-copy-title">ACC Dental Injury Cover</div>
+                <div class="acc-copy-desc">
+                  Apply indicative New Zealand ACC co-payment subsidies for accidental tooth trauma (reduces eligible assessment, filling, and crown fees).
+                </div>
+              </div>
+              <button
+                type="button"
+                class="switch-btn"
+                id="acc-toggle"
+                role="switch"
+                aria-checked="false"
+                aria-label="Toggle ACC Dental Injury Cover"
+              >
+                <span class="switch-thumb" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Ledger Summary -->
+          <aside class="ledger-card" aria-label="Estimated NZD Treatment Summary">
+            <div class="ledger-header">
+              <div class="ledger-title">NZD Estimate Ledger</div>
+              <span class="ledger-year tabular-nums">2026 SCHEDULE</span>
+            </div>
+
+            <div class="ledger-lines" id="ledger-lines"></div>
+
+            <div class="ledger-totals">
+              <div class="ledger-subrow">
+                <span>Standard 2026 Fee</span>
+                <span class="mono tabular-nums" id="ledger-subtotal">$165 NZD</span>
+              </div>
+              <div class="ledger-subrow ledger-acc-row" id="ledger-acc-row" style="display: none;">
+                <span>Indicative ACC Subsidy</span>
+                <span class="mono tabular-nums" id="ledger-acc-amt">-$0 NZD</span>
+              </div>
+              <div class="ledger-subrow">
+                <span>Estimated Chair Time</span>
+                <span class="mono tabular-nums" id="ledger-duration">45 min</span>
+              </div>
+              <div class="ledger-grand">
+                <span class="ledger-grand-label">Estimated Patient Total</span>
+                <span class="ledger-grand-val tabular-nums" id="ledger-total">$165 NZD</span>
+              </div>
+            </div>
+
+            <div class="ledger-actions">
+              <button type="button" class="btn btn-amber" id="transfer-estimate-btn">Attach Estimate to Booking Form</button>
+              <button type="button" class="btn btn-ghost-light btn-sm" id="copy-estimate-btn">Copy NZD Summary</button>
+            </div>
+
+            <div class="inline-feedback" id="estimate-feedback" aria-live="polite"></div>
+
+            <p class="ledger-note">
+              Figures shown are 2026 NZD guides inclusive of GST. Final treatment plans and exact ACC claim co-payments are confirmed in writing prior to clinical treatment.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive 1928-2026 Continuity Timeline & Modern Clinical Protocol -->
+    <section class="section section-linen" id="heritage">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-rule" aria-hidden="true"></span>
+              <span>Practice Heritage &amp; Digital Protocol</span>
+            </div>
+            <h2>Continuity since 1928, engineered for 2026.</h2>
+            <p class="section-desc">
+              Explore our Wellington lineage from 1928 alongside the five-stage digital protocol that guides every appointment today.
+            </p>
+          </div>
+        </div>
+
+        <div class="heritage-card">
+          <!-- Part A: 1928-2026 Heritage SVG Timeline -->
+          <div class="field-label" style="margin-bottom: 12px;">Part 01 — Interactive Practice Continuity Timeline (1928–2026)</div>
+
+          <div class="svg-stage-box">
+            <svg class="timeline-svg" viewBox="0 0 920 154" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive timeline from 1928 to 2026">
+              <!-- Archival baseline -->
+              <line x1="76" y1="74" x2="844" y2="74" stroke="#D5CCC0" stroke-width="3" stroke-linecap="round" />
+              <!-- Subtle tick grid -->
+              <line x1="172" y1="68" x2="172" y2="80" stroke="#C9BFAE" stroke-width="1.5" />
+              <line x1="364" y1="68" x2="364" y2="80" stroke="#C9BFAE" stroke-width="1.5" />
+              <line x1="556" y1="68" x2="556" y2="80" stroke="#C9BFAE" stroke-width="1.5" />
+              <line x1="748" y1="68" x2="748" y2="80" stroke="#C9BFAE" stroke-width="1.5" />
+
+              <!-- Active animated progress bar -->
+              <line id="svg-timeline-progress" class="svg-progress-line" x1="76" y1="74" x2="844" y2="74" stroke="#15403B" stroke-width="4" stroke-linecap="round" stroke-dasharray="768" stroke-dashoffset="0" />
+
+              <!-- Node 0: 1928 -->
+              <g class="svg-node-group" data-era-index="0" tabindex="0" role="button" aria-label="1928 Practice Founded">
+                <circle class="svg-node-ring" cx="76" cy="74" r="18" fill="#F9F7F3" stroke="#966D3B" stroke-width="1.5" opacity="0" />
+                <circle class="svg-node-core" cx="76" cy="74" r="10" fill="#15403B" stroke="#F9F7F3" stroke-width="2.5" />
+                <text x="76" y="38" text-anchor="middle" fill="#15403B" font-family="JetBrains Mono, monospace" font-size="14" font-weight="600">1928</text>
+                <text x="76" y="114" text-anchor="middle" fill="#485652" font-family="DM Sans, sans-serif" font-size="12" font-weight="500">Founding</text>
+              </g>
+
+              <!-- Node 1: 1964 -->
+              <g class="svg-node-group" data-era-index="1" tabindex="0" role="button" aria-label="1964 Family Practice Expansion">
+                <circle class="svg-node-ring" cx="268" cy="74" r="18" fill="#F9F7F3" stroke="#966D3B" stroke-width="1.5" opacity="0" />
+                <circle class="svg-node-core" cx="268" cy="74" r="10" fill="#15403B" stroke="#F9F7F3" stroke-width="2.5" />
+                <text x="268" y="38" text-anchor="middle" fill="#15403B" font-family="JetBrains Mono, monospace" font-size="14" font-weight="600">1964</text>
+                <text x="268" y="114" text-anchor="middle" fill="#485652" font-family="DM Sans, sans-serif" font-size="12" font-weight="500">Family Continuity</text>
+              </g>
+
+              <!-- Node 2: 1996 -->
+              <g class="svg-node-group" data-era-index="2" tabindex="0" role="button" aria-label="1996 Preventive Hygiene Wing">
+                <circle class="svg-node-ring" cx="460" cy="74" r="18" fill="#F9F7F3" stroke="#966D3B" stroke-width="1.5" opacity="0" />
+                <circle class="svg-node-core" cx="460" cy="74" r="10" fill="#15403B" stroke="#F9F7F3" stroke-width="2.5" />
+                <text x="460" y="38" text-anchor="middle" fill="#15403B" font-family="JetBrains Mono, monospace" font-size="14" font-weight="600">1996</text>
+                <text x="460" y="114" text-anchor="middle" fill="#485652" font-family="DM Sans, sans-serif" font-size="12" font-weight="500">Preventive Wing</text>
+              </g>
+
+              <!-- Node 3: 2016 -->
+              <g class="svg-node-group" data-era-index="3" tabindex="0" role="button" aria-label="2016 Digital Radiology">
+                <circle class="svg-node-ring" cx="652" cy="74" r="18" fill="#F9F7F3" stroke="#966D3B" stroke-width="1.5" opacity="0" />
+                <circle class="svg-node-core" cx="652" cy="74" r="10" fill="#15403B" stroke="#F9F7F3" stroke-width="2.5" />
+                <text x="652" y="38" text-anchor="middle" fill="#15403B" font-family="JetBrains Mono, monospace" font-size="14" font-weight="600">2016</text>
+                <text x="652" y="114" text-anchor="middle" fill="#485652" font-family="DM Sans, sans-serif" font-size="12" font-weight="500">Digital Imaging</text>
+              </g>
+
+              <!-- Node 4: 2026 -->
+              <g class="svg-node-group" data-era-index="4" tabindex="0" role="button" aria-label="2026 Modern Digital Care">
+                <circle class="svg-node-ring" cx="844" cy="74" r="18" fill="#F9F7F3" stroke="#966D3B" stroke-width="2" opacity="1" />
+                <circle class="svg-node-core" cx="844" cy="74" r="11" fill="#966D3B" stroke="#F9F7F3" stroke-width="2.5" />
+                <text x="844" y="38" text-anchor="middle" fill="#7B572B" font-family="JetBrains Mono, monospace" font-size="14" font-weight="600">2026</text>
+                <text x="844" y="114" text-anchor="middle" fill="#15403B" font-family="DM Sans, sans-serif" font-size="12" font-weight="600">Transparent Care</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="era-buttons" role="tablist" aria-label="Practice Heritage Milestones">
+            <button type="button" class="era-tab" role="tab" aria-selected="false" data-era-btn="0">
+              <span class="era-tab-year tabular-nums">1928</span>
+              <span class="era-tab-name">Wellington Founding</span>
+            </button>
+            <button type="button" class="era-tab" role="tab" aria-selected="false" data-era-btn="1">
+              <span class="era-tab-year tabular-nums">1964</span>
+              <span class="era-tab-name">Family Continuity</span>
+            </button>
+            <button type="button" class="era-tab" role="tab" aria-selected="false" data-era-btn="2">
+              <span class="era-tab-year tabular-nums">1996</span>
+              <span class="era-tab-name">Preventive Hygiene</span>
+            </button>
+            <button type="button" class="era-tab" role="tab" aria-selected="false" data-era-btn="3">
+              <span class="era-tab-year tabular-nums">2016</span>
+              <span class="era-tab-name">Digital Diagnostics</span>
+            </button>
+            <button type="button" class="era-tab is-active" role="tab" aria-selected="true" data-era-btn="4">
+              <span class="era-tab-year tabular-nums">2026</span>
+              <span class="era-tab-name">Modern Standards</span>
+            </button>
+          </div>
+
+          <div class="era-detail-grid" id="era-detail-panel" aria-live="polite">
+            <div>
+              <div class="era-detail-year" id="era-year-label">ERA 2026 · 98TH YEAR IN WELLINGTON</div>
+              <h3 class="era-detail-title" id="era-title-label">Precision Digital Care &amp; Transparent NZD Planning</h3>
+              <p class="era-detail-copy" id="era-copy-label">
+                Today the practice combines nearly a century of conservative clinical wisdom with low-dose digital sensors, chairside visual explanations, online Mon-Fri scheduling, and open 2026 fee estimation.
+              </p>
+            </div>
+            <div class="era-specs">
+              <div>
+                <div class="era-spec-label">Clinical Focus</div>
+                <div class="era-spec-val" id="era-focus-label">Minimally invasive preservation</div>
+              </div>
+              <div>
+                <div class="era-spec-label">Patient Experience</div>
+                <div class="era-spec-val" id="era-exp-label">Open 2026 NZD fee clarity &amp; ACC support</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Part B: 2026 Modern Digital Clinical Protocol SVG -->
+          <div class="protocol-divider">
+            <div class="field-label" style="margin-bottom: 12px;">Part 02 — Interactive 2026 Digital Visit Protocol</div>
+
+            <div class="svg-stage-box">
+              <svg class="timeline-svg" viewBox="0 0 920 132" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Five-stage digital clinical protocol diagram">
+                <path d="M92 64 L828 64" stroke="#D5CCC0" stroke-width="2.5" stroke-dasharray="6 4" />
+                <line id="svg-protocol-progress" class="svg-progress-line" x1="92" y1="64" x2="828" y2="64" stroke="#966D3B" stroke-width="3.5" stroke-dasharray="736" stroke-dashoffset="736" />
+
+                <!-- Step 01 -->
+                <g class="svg-node-group" data-step-index="0" tabindex="0" role="button" aria-label="Step 01 Digital Triage">
+                  <rect class="proto-box" x="30" y="34" width="124" height="60" rx="10" fill="#15403B" stroke="#15403B" stroke-width="1.5" />
+                  <text class="proto-num" x="92" y="59" text-anchor="middle" fill="#D8B480" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="600">STEP 01</text>
+                  <text class="proto-lbl" x="92" y="78" text-anchor="middle" fill="#F9F7F3" font-family="DM Sans, sans-serif" font-size="12" font-weight="600">Digital Triage</text>
+                </g>
+
+                <!-- Step 02 -->
+                <g class="svg-node-group" data-step-index="1" tabindex="0" role="button" aria-label="Step 02 Low-Dose Scan">
+                  <rect class="proto-box" x="214" y="34" width="124" height="60" rx="10" fill="#FFFFFF" stroke="#C9BFAE" stroke-width="1.5" />
+                  <text class="proto-num" x="276" y="59" text-anchor="middle" fill="#7B572B" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="600">STEP 02</text>
+                  <text class="proto-lbl" x="276" y="78" text-anchor="middle" fill="#15403B" font-family="DM Sans, sans-serif" font-size="12" font-weight="600">Low-Dose X-Ray</text>
+                </g>
+
+                <!-- Step 03 -->
+                <g class="svg-node-group" data-step-index="2" tabindex="0" role="button" aria-label="Step 03 Intraoral Review">
+                  <rect class="proto-box" x="398" y="34" width="124" height="60" rx="10" fill="#FFFFFF" stroke="#C9BFAE" stroke-width="1.5" />
+                  <text class="proto-num" x="460" y="59" text-anchor="middle" fill="#7B572B" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="600">STEP 03</text>
+                  <text class="proto-lbl" x="460" y="78" text-anchor="middle" fill="#15403B" font-family="DM Sans, sans-serif" font-size="12" font-weight="600">Visual Plan</text>
+                </g>
+
+                <!-- Step 04 -->
+                <g class="svg-node-group" data-step-index="3" tabindex="0" role="button" aria-label="Step 04 Conservative Care">
+                  <rect class="proto-box" x="582" y="34" width="124" height="60" rx="10" fill="#FFFFFF" stroke="#C9BFAE" stroke-width="1.5" />
+                  <text class="proto-num" x="644" y="59" text-anchor="middle" fill="#7B572B" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="600">STEP 04</text>
+                  <text class="proto-lbl" x="644" y="78" text-anchor="middle" fill="#15403B" font-family="DM Sans, sans-serif" font-size="12" font-weight="600">Gentle Care</text>
+                </g>
+
+                <!-- Step 05 -->
+                <g class="svg-node-group" data-step-index="4" tabindex="0" role="button" aria-label="Step 05 Continuity Recall">
+                  <rect class="proto-box" x="766" y="34" width="124" height="60" rx="10" fill="#FFFFFF" stroke="#C9BFAE" stroke-width="1.5" />
+                  <text class="proto-num" x="828" y="59" text-anchor="middle" fill="#7B572B" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="600">STEP 05</text>
+                  <text class="proto-lbl" x="828" y="78" text-anchor="middle" fill="#15403B" font-family="DM Sans, sans-serif" font-size="12" font-weight="600">Recall Plan</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="era-buttons" role="tablist" aria-label="2026 Clinical Protocol Steps">
+              <button type="button" class="era-tab is-active" role="tab" aria-selected="true" data-proto-btn="0">
+                <span class="era-tab-year tabular-nums">STEP 01</span>
+                <span class="era-tab-name">Digital Triage</span>
+              </button>
+              <button type="button" class="era-tab" role="tab" aria-selected="false" data-proto-btn="1">
+                <span class="era-tab-year tabular-nums">STEP 02</span>
+                <span class="era-tab-name">Low-Dose Scan</span>
+              </button>
+              <button type="button" class="era-tab" role="tab" aria-selected="false" data-proto-btn="2">
+                <span class="era-tab-year tabular-nums">STEP 03</span>
+                <span class="era-tab-name">Chairside Review</span>
+              </button>
+              <button type="button" class="era-tab" role="tab" aria-selected="false" data-proto-btn="3">
+                <span class="era-tab-year tabular-nums">STEP 04</span>
+                <span class="era-tab-name">Conservative Care</span>
+              </button>
+              <button type="button" class="era-tab" role="tab" aria-selected="false" data-proto-btn="4">
+                <span class="era-tab-year tabular-nums">STEP 05</span>
+                <span class="era-tab-name">Preventive Recall</span>
+              </button>
+            </div>
+
+            <div class="era-detail-grid" id="proto-detail-panel" aria-live="polite">
+              <div>
+                <div class="era-detail-year" id="proto-step-label">PROTOCOL STAGE 01 OF 05</div>
+                <h3 class="era-detail-title" id="proto-title-label">Calm Reception Triage &amp; Medical Baseline</h3>
+                <p class="era-detail-copy" id="proto-copy-label">
+                  Prior to your arrival, reception reviews your preferred Mon-Fri slot, symptom notes, and any ACC accident reference so your clinician starts prepared with zero waiting room friction.
+                </p>
+              </div>
+              <div class="era-specs">
+                <div>
+                  <div class="era-spec-label">Clinical Output</div>
+                  <div class="era-spec-val" id="proto-output-label">Verified medical history &amp; priority slot</div>
+                </div>
+                <div>
+                  <div class="era-spec-label">Typical Timing</div>
+                  <div class="era-spec-val tabular-nums" id="proto-time-label">Pre-visit + first 5 minutes</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mon-Fri Slot Picker & Reception Booking Form -->
+    <section class="section" id="booking">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-rule" aria-hidden="true"></span>
+              <span>Mon-Fri Appointments</span>
+            </div>
+            <h2>Select a weekday slot and message reception.</h2>
+            <p class="section-desc">
+              The Wellington Dental Practice sees patients Monday to Friday by appointment. Pick your preferred weekday window and dispatch a structured request to <span class="mono">reception@twdp.co.nz</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="booking-grid">
+          <!-- Slot Picker -->
+          <div class="slot-panel">
+            <div class="field-label">1. Choose Preferred Weekday (Mon-Fri by Appointment)</div>
+            <div class="day-grid" id="day-grid" role="group" aria-label="Select appointment weekday"></div>
+
+            <div class="field-label">2. Select Available Time Window</div>
+            <div class="time-grid" id="time-grid" role="group" aria-label="Select appointment time slot"></div>
+
+            <div class="selected-slot-banner">
+              <div>
+                <div class="selected-slot-label">Selected Reception Slot</div>
+                <div class="selected-slot-val tabular-nums" id="selected-slot-display">Select a Mon-Fri time slot above</div>
+              </div>
+              <a class="btn btn-outline btn-sm tabular-nums" href="tel:044725516">Urgent Call: 04 472 5516</a>
+            </div>
+          </div>
+
+          <!-- Booking Form -->
+          <div class="form-panel">
+            <form id="booking-form" novalidate>
+              <div class="field-label">3. Patient Details for reception@twdp.co.nz</div>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="patient-name">Full Name</label>
+                  <input
+                    class="form-input"
+                    type="text"
+                    id="patient-name"
+                    name="name"
+                    autocomplete="name"
+                    placeholder="Charlotte Henderson"
+                    required
+                  />
+                </div>
+
+                <div class="form-field">
+                  <label for="patient-phone">Phone Number</label>
+                  <input
+                    class="form-input tabular-nums"
+                    type="tel"
+                    id="patient-phone"
+                    name="phone"
+                    autocomplete="tel"
+                    placeholder="021 482 1904"
+                    required
+                  />
+                </div>
+
+                <div class="form-field">
+                  <label for="patient-email">Email Address</label>
+                  <input
+                    class="form-input"
+                    type="email"
+                    id="patient-email"
+                    name="email"
+                    autocomplete="email"
+                    placeholder="name@example.co.nz"
+                    required
+                  />
+                </div>
+
+                <div class="form-field">
+                  <label for="patient-status">Visit Type</label>
+                  <select class="form-select" id="patient-status" name="status" autocomplete="off">
+                    <option value="New Patient">New Patient</option>
+                    <option value="Existing Patient">Existing Patient</option>
+                    <option value="Emergency Dental Care">Same-Day Emergency Request</option>
+                    <option value="ACC Injury Cover">ACC Dental Injury Claim</option>
+                  </select>
+                </div>
+
+                <div class="form-field form-field-full">
+                  <label for="patient-service">Primary Clinical Service</label>
+                  <select class="form-select" id="patient-service" name="service" autocomplete="off">
+                    <option value="General & Preventive Dentistry">General &amp; Preventive Dentistry</option>
+                    <option value="Dental Hygiene & Exams">Dental Hygiene &amp; Exams</option>
+                    <option value="Restorative & Cosmetic Care">Restorative &amp; Cosmetic Care</option>
+                    <option value="Emergency Dental Care">Emergency Dental Care</option>
+                  </select>
+                </div>
+
+                <div class="form-field form-field-full">
+                  <label for="patient-notes">Clinical Notes or Attached 2026 NZD Estimate</label>
+                  <textarea
+                    class="form-textarea"
+                    id="patient-notes"
+                    name="notes"
+                    autocomplete="off"
+                    placeholder="Share preferred clinician, symptoms, ACC claim number, or attach your NZD estimate above."
+                  ></textarea>
+                </div>
+              </div>
+
+              <div class="form-error" id="form-error" role="alert"></div>
+
+              <div class="form-submit-row">
+                <span class="reception-note">Direct dispatch to <span class="mono">reception@twdp.co.nz</span></span>
+                <button type="submit" class="btn btn-primary">Confirm Appointment Request</button>
+              </div>
+            </form>
+
+            <div class="confirm-box" id="booking-confirm" aria-live="polite">
+              <span class="confirm-badge tabular-nums" id="confirm-ref">REQUEST PREPARED · TWDP-2026</span>
+              <h3 style="color: var(--bg-pine);">Appointment request ready for reception.</h3>
+              <p style="margin: 8px 0 0 0; color: var(--ink-secondary); font-size: 0.925rem;">
+                Your Mon-Fri request dossier has been prepared for <span class="mono">reception@twdp.co.nz</span>. Our Wellington reception team confirms appointments during Mon-Fri clinic hours or by phone on <span class="tabular-nums">04 472 5516</span>.
+              </p>
+              <div class="confirm-details" id="confirm-details"></div>
+              <div class="confirm-actions">
+                <a class="btn btn-primary btn-sm" id="confirm-mailto-link" href="mailto:reception@twdp.co.nz">Open Email to reception@twdp.co.nz</a>
+                <button type="button" class="btn btn-outline btn-sm" id="copy-booking-btn">Copy Request Text</button>
+                <button type="button" class="btn btn-outline btn-sm" id="edit-booking-btn">Edit Details</button>
+              </div>
+              <div class="inline-feedback" id="booking-copy-feedback" style="color: var(--bg-pine);" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Heritage Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title">The Wellington Dental Practice</div>
+          <p class="footer-copy">
+            Caring for Wellington patients since 1928. Conservative general, restorative, hygiene, and emergency dental care in the heart of Wellington, New Zealand.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-title">Reception &amp; Hours</div>
+          <ul class="footer-list">
+            <li>City: Wellington, New Zealand</li>
+            <li>Hours: Mon-Fri by appointment</li>
+            <li>Phone: <a class="tabular-nums" href="tel:044725516">04 472 5516</a></li>
+            <li>Email: <a href="mailto:reception@twdp.co.nz">reception@twdp.co.nz</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-title">Practice Links</div>
+          <ul class="footer-list">
+            <li><a href="#services">Clinical Services</a></li>
+            <li><a href="#fee-calculator">2026 NZD Fee Estimator</a></li>
+            <li><a href="#heritage">1928–2026 Continuity Protocol</a></li>
+            <li><a href="#booking">Mon-Fri Online Booking</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 The Wellington Dental Practice. All rights reserved.</span>
+        <span class="footer-tag">2026 NZD SCHEDULE · EST. 1928</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---------------------------------------------
+       * 1. Mobile Navigation Drawer
+       * ------------------------------------------- */
+      var menuToggle = document.getElementById('mobile-menu-toggle');
+      var mobileDrawer = document.getElementById('mobile-drawer');
+      if (menuToggle && mobileDrawer) {
+        menuToggle.addEventListener('click', function () {
+          var isOpen = mobileDrawer.classList.toggle('is-open');
+          menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+        var drawerLinks = mobileDrawer.querySelectorAll('a');
+        for (var i = 0; i < drawerLinks.length; i++) {
+          drawerLinks[i].addEventListener('click', function () {
+            mobileDrawer.classList.remove('is-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          });
+        }
+      }
+
+      /* ---------------------------------------------
+       * 2. Interactive 2026 NZD Fee Calculator
+       * ------------------------------------------- */
+      var calcItems = {
+        exam: {
+          name: 'New Patient Exam + X-Rays',
+          unitPrice: 165,
+          accCredit: 55,
+          minutes: 45,
+          type: 'toggle',
+          qty: 1
+        },
+        hygiene: {
+          name: 'Dental Hygiene',
+          unitPrice: 145,
+          accCredit: 0,
+          minutes: 45,
+          type: 'toggle',
+          qty: 0
+        },
+        filling: {
+          name: 'White Fillings',
+          unitPrice: 260,
+          accCredit: 95,
+          minutes: 40,
+          type: 'qty',
+          qty: 0,
+          max: 4
+        },
+        crown: {
+          name: 'Crown / Restorative',
+          unitPrice: 1580,
+          accCredit: 420,
+          minutes: 90,
+          type: 'qty',
+          qty: 0,
+          max: 4
+        },
+        emergency: {
+          name: 'Same-Day Emergency Relief',
+          unitPrice: 195,
+          accCredit: 65,
+          minutes: 30,
+          type: 'toggle',
+          qty: 0
+        }
+      };
+
+      var accCovered = false;
+
+      var ledgerLinesEl = document.getElementById('ledger-lines');
+      var ledgerSubtotalEl = document.getElementById('ledger-subtotal');
+      var ledgerAccRowEl = document.getElementById('ledger-acc-row');
+      var ledgerAccAmtEl = document.getElementById('ledger-acc-amt');
+      var ledgerDurationEl = document.getElementById('ledger-duration');
+      var ledgerTotalEl = document.getElementById('ledger-total');
+      var accToggleBtn = document.getElementById('acc-toggle');
+      var estimateFeedbackEl = document.getElementById('estimate-feedback');
+
+      function formatNZD(amount) {
+        return '$' + Math.round(amount).toLocaleString('en-NZ');
+      }
+
+      function buildEstimateSummaryText() {
+        var lines = [];
+        var standardTotal = 0;
+        var accCreditTotal = 0;
+        var totalMinutes = 0;
+        var keys = ['exam', 'hygiene', 'filling', 'crown', 'emergency'];
+
+        for (var i = 0; i < keys.length; i++) {
+          var key = keys[i];
+          var item = calcItems[key];
+          if (item.qty > 0) {
+            var lineFee = item.unitPrice * item.qty;
+            standardTotal += lineFee;
+            accCreditTotal += item.accCredit * item.qty;
+            totalMinutes += item.minutes * item.qty;
+            var qtyPrefix = item.type === 'qty' ? item.qty + 'x ' : '';
+            lines.push(qtyPrefix + item.name + ': ' + formatNZD(lineFee) + ' NZD');
+          }
+        }
+
+        var appliedAcc = accCovered ? accCreditTotal : 0;
+        var finalTotal = Math.max(0, standardTotal - appliedAcc);
+
+        if (lines.length === 0) {
+          return 'No items selected yet in the 2026 NZD Fee Estimator.';
+        }
+
+        var summary = '2026 NZD Estimate (' + lines.join(' | ') + ')';
+        if (accCovered) {
+          summary += ' | ACC Injury Cover applied (-' + formatNZD(appliedAcc) + ' NZD)';
+        }
+        summary += ' | Estimated Patient Total: ' + formatNZD(finalTotal) + ' NZD (~' + totalMinutes + ' min)';
+        return summary;
+      }
+
+      function renderCalculator() {
+        var keys = ['exam', 'hygiene', 'filling', 'crown', 'emergency'];
+        var standardTotal = 0;
+        var accCreditTotal = 0;
+        var totalMinutes = 0;
+        var selectedCount = 0;
+
+        ledgerLinesEl.innerHTML = '';
+
+        for (var i = 0; i < keys.length; i++) {
+          var key = keys[i];
+          var item = calcItems[key];
+          var rowEl = document.querySelector('[data-item-row="' + key + '"]');
+
+          if (item.type === 'toggle') {
+            var toggleBtn = document.getElementById('toggle-' + key);
+            var active = item.qty > 0;
+            if (toggleBtn) {
+              toggleBtn.setAttribute('aria-pressed', active ? 'true' : 'false');
+              toggleBtn.textContent = active ? 'Included' : 'Add';
+            }
+          } else {
+            var qtyEl = document.getElementById('qty-' + key);
+            if (qtyEl) {
+              qtyEl.textContent = String(item.qty);
+            }
+          }
+
+          if (rowEl) {
+            if (item.qty > 0) {
+              rowEl.classList.add('is-selected');
+            } else {
+              rowEl.classList.remove('is-selected');
+            }
+          }
+
+          if (item.qty > 0) {
+            selectedCount++;
+            var lineFee = item.unitPrice * item.qty;
+            standardTotal += lineFee;
+            accCreditTotal += item.accCredit * item.qty;
+            totalMinutes += item.minutes * item.qty;
+
+            var lineDiv = document.createElement('div');
+            lineDiv.className = 'ledger-line';
+
+            var labelSpan = document.createElement('span');
+            labelSpan.textContent = (item.type === 'qty' ? item.qty + 'x ' : '') + item.name;
+
+            var amtSpan = document.createElement('span');
+            amtSpan.className = 'ledger-line-amt tabular-nums';
+            amtSpan.textContent = formatNZD(lineFee) + ' NZD';
+
+            lineDiv.appendChild(labelSpan);
+            lineDiv.appendChild(amtSpan);
+            ledgerLinesEl.appendChild(lineDiv);
+          }
+        }
+
+        if (selectedCount === 0) {
+          var emptyDiv = document.createElement('div');
+          emptyDiv.className = 'ledger-empty';
+          emptyDiv.textContent = 'Select one or more treatments on the left to compute a 2026 NZD estimate.';
+          ledgerLinesEl.appendChild(emptyDiv);
+        }
+
+        var appliedAcc = accCovered ? accCreditTotal : 0;
+        var grandTotal = Math.max(0, standardTotal - appliedAcc);
+
+        ledgerSubtotalEl.textContent = formatNZD(standardTotal) + ' NZD';
+        if (accCovered && appliedAcc > 0) {
+          ledgerAccRowEl.style.display = 'flex';
+          ledgerAccAmtEl.textContent = '-' + formatNZD(appliedAcc) + ' NZD';
+        } else if (accCovered) {
+          ledgerAccRowEl.style.display = 'flex';
+          ledgerAccAmtEl.textContent = '$0 NZD (no ACC items)';
+        } else {
+          ledgerAccRowEl.style.display = 'none';
+        }
+
+        ledgerDurationEl.textContent = totalMinutes + ' min';
+        ledgerTotalEl.textContent = formatNZD(grandTotal) + ' NZD';
+
+        if (accToggleBtn) {
+          accToggleBtn.setAttribute('aria-checked', accCovered ? 'true' : 'false');
+        }
+      }
+
+      // Toggle buttons
+      ['exam', 'hygiene', 'emergency'].forEach(function (key) {
+        var btn = document.getElementById('toggle-' + key);
+        if (btn) {
+          btn.addEventListener('click', function () {
+            calcItems[key].qty = calcItems[key].qty > 0 ? 0 : 1;
+            clearPresetHighlight();
+            renderCalculator();
+          });
+        }
+      });
+
+      // Quantity steppers
+      var stepperBtns = document.querySelectorAll('.stepper-btn');
+      for (var s = 0; s < stepperBtns.length; s++) {
+        stepperBtns[s].addEventListener('click', function () {
+          var target = this.getAttribute('data-step-target');
+          var delta = parseInt(this.getAttribute('data-step'), 10);
+          var item = calcItems[target];
+          if (item) {
+            var nextQty = item.qty + delta;
+            if (nextQty < 0) nextQty = 0;
+            if (nextQty > item.max) nextQty = item.max;
+            item.qty = nextQty;
+            clearPresetHighlight();
+            renderCalculator();
+          }
+        });
+      }
+
+      // ACC switch
+      if (accToggleBtn) {
+        accToggleBtn.addEventListener('click', function () {
+          accCovered = accCovered === false;
+          renderCalculator();
+        });
+      }
+
+      // Presets
+      var presetBtns = document.querySelectorAll('[data-preset]');
+      function clearPresetHighlight() {
+        for (var p = 0; p < presetBtns.length; p++) {
+          presetBtns[p].classList.remove('is-active');
+        }
+      }
+
+      for (var p = 0; p < presetBtns.length; p++) {
+        presetBtns[p].addEventListener('click', function () {
+          var preset = this.getAttribute('data-preset');
+          clearPresetHighlight();
+          if (preset !== 'clear') {
+            this.classList.add('is-active');
+          }
+
+          calcItems.exam.qty = 0;
+          calcItems.hygiene.qty = 0;
+          calcItems.filling.qty = 0;
+          calcItems.crown.qty = 0;
+          calcItems.emergency.qty = 0;
+          accCovered = false;
+
+          if (preset === 'new-patient') {
+            calcItems.exam.qty = 1;
+            calcItems.hygiene.qty = 1;
+          } else if (preset === 'routine-hygiene') {
+            calcItems.hygiene.qty = 1;
+          } else if (preset === 'urgent-repair') {
+            calcItems.emergency.qty = 1;
+            calcItems.filling.qty = 1;
+            accCovered = true;
+          }
+
+          renderCalculator();
+        });
+      }
+
+      // Quick-add from Services cards
+      var quickAddBtns = document.querySelectorAll('.quick-add-service');
+      for (var q = 0; q < quickAddBtns.length; q++) {
+        quickAddBtns[q].addEventListener('click', function () {
+          var key = this.getAttribute('data-calc-item');
+          var item = calcItems[key];
+          if (item) {
+            if (item.type === 'toggle') {
+              item.qty = 1;
+            } else if (item.qty === 0) {
+              item.qty = 1;
+            }
+            clearPresetHighlight();
+            renderCalculator();
+            var calcSection = document.getElementById('fee-calculator');
+            if (calcSection) {
+              calcSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      }
+
+      // Attach estimate to booking form
+      var transferBtn = document.getElementById('transfer-estimate-btn');
+      var copyEstimateBtn = document.getElementById('copy-estimate-btn');
+      var patientNotesEl = document.getElementById('patient-notes');
+      var patientStatusEl = document.getElementById('patient-status');
+      var patientServiceEl = document.getElementById('patient-service');
+
+      if (transferBtn) {
+        transferBtn.addEventListener('click', function () {
+          var summary = buildEstimateSummaryText();
+          if (patientNotesEl) {
+            patientNotesEl.value = summary;
+          }
+          if (patientStatusEl && accCovered) {
+            patientStatusEl.value = 'ACC Injury Cover';
+          }
+          if (patientServiceEl) {
+            if (calcItems.emergency.qty > 0) {
+              patientServiceEl.value = 'Emergency Dental Care';
+            } else if (calcItems.crown.qty > 0 || calcItems.filling.qty > 0) {
+              patientServiceEl.value = 'Restorative & Cosmetic Care';
+            } else if (calcItems.hygiene.qty > 0 && calcItems.exam.qty === 0) {
+              patientServiceEl.value = 'Dental Hygiene & Exams';
+            } else {
+              patientServiceEl.value = 'General & Preventive Dentistry';
+            }
+          }
+          if (estimateFeedbackEl) {
+            estimateFeedbackEl.textContent = 'Estimate attached to the Mon-Fri booking form below.';
+          }
+          var bookingEl = document.getElementById('booking');
+          if (bookingEl) {
+            bookingEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      }
+
+      if (copyEstimateBtn) {
+        copyEstimateBtn.addEventListener('click', function () {
+          var text = buildEstimateSummaryText() + ' — The Wellington Dental Practice (04 472 5516)';
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () {
+              estimateFeedbackEl.textContent = 'NZD estimate summary copied to clipboard.';
+            }, function () {
+              estimateFeedbackEl.textContent = 'Estimate summary ready: ' + text;
+            });
+          } else {
+            estimateFeedbackEl.textContent = text;
+          }
+        });
+      }
+
+      renderCalculator();
+
+      /* ---------------------------------------------
+       * 3. Interactive 1928-2026 Continuity Timeline
+       * ------------------------------------------- */
+      var eras = [
+        {
+          yearLabel: 'ERA 1928 · FOUNDING IN WELLINGTON',
+          title: 'The Wellington Dental Practice Opens Its Doors',
+          copy: 'Established in 1928 with an enduring focus on careful restorative craft, patient trust, and unhurried one-to-one appointments for Wellington residents.',
+          focus: 'Foundational conservative dentistry',
+          exp: 'Personal continuity & local family care',
+          dashOffset: 768
+        },
+        {
+          yearLabel: 'ERA 1964 · MULTI-GENERATIONAL CARE',
+          title: 'Expanding Multi-Clinician Family Continuity',
+          copy: 'Generations of Wellington families continued returning to the practice as dedicated diagnostic records and structured preventive recalls became central to clinic life.',
+          focus: 'Longitudinal oral health records',
+          exp: 'Generational family appointments',
+          dashOffset: 576
+        },
+        {
+          yearLabel: 'ERA 1996 · PREVENTIVE HYGIENE INTEGRATION',
+          title: 'Dedicated Dental Hygiene & Gum Preservation',
+          copy: 'Periodontal maintenance and gentle preventive hygiene care became formal partners to restorative treatment, extending the lifespan of natural teeth.',
+          focus: 'Periodontal resilience & recall cadence',
+          exp: 'Combined exam and hygiene visits',
+          dashOffset: 384
+        },
+        {
+          yearLabel: 'ERA 2016 · LOW-DOSE DIGITAL RADIOLOGY',
+          title: 'Transition to Digital Sensors & Chairside Imaging',
+          copy: 'Digital radiography significantly reduced radiation exposure while letting patients view high-definition images alongside their clinician.',
+          focus: 'Early interproximal detection',
+          exp: 'Transparent visual diagnosis',
+          dashOffset: 192
+        },
+        {
+          yearLabel: 'ERA 2026 · 98TH YEAR IN WELLINGTON',
+          title: 'Precision Digital Care & Transparent NZD Planning',
+          copy: 'Today the practice combines nearly a century of conservative clinical wisdom with low-dose digital sensors, chairside visual explanations, online Mon-Fri scheduling, and open 2026 fee estimation.',
+          focus: 'Minimally invasive preservation',
+          exp: 'Open 2026 NZD fee clarity & ACC support',
+          dashOffset: 0
+        }
+      ];
+
+      var eraTabs = document.querySelectorAll('[data-era-btn]');
+      var svgEraNodes = document.querySelectorAll('[data-era-index]');
+      var timelineProgress = document.getElementById('svg-timeline-progress');
+
+      function selectEra(idx) {
+        var era = eras[idx];
+        if (!era) return;
+
+        document.getElementById('era-year-label').textContent = era.yearLabel;
+        document.getElementById('era-title-label').textContent = era.title;
+        document.getElementById('era-copy-label').textContent = era.copy;
+        document.getElementById('era-focus-label').textContent = era.focus;
+        document.getElementById('era-exp-label').textContent = era.exp;
+
+        if (timelineProgress) {
+          timelineProgress.setAttribute('stroke-dashoffset', String(era.dashOffset));
+        }
+
+        for (var i = 0; i < eraTabs.length; i++) {
+          var isAct = i === idx;
+          eraTabs[i].classList.toggle('is-active', isAct);
+          eraTabs[i].setAttribute('aria-selected', isAct ? 'true' : 'false');
+        }
+
+        for (var j = 0; j < svgEraNodes.length; j++) {
+          var node = svgEraNodes[j];
+          var activeNode = j === idx;
+          var ring = node.querySelector('.svg-node-ring');
+          var core = node.querySelector('.svg-node-core');
+          if (ring) {
+            ring.setAttribute('opacity', activeNode ? '1' : '0');
+          }
+          if (core) {
+            core.setAttribute('fill', activeNode ? '#966D3B' : '#15403B');
+            core.setAttribute('r', activeNode ? '11' : '10');
+          }
+        }
+      }
+
+      for (var et = 0; et < eraTabs.length; et++) {
+        eraTabs[et].addEventListener('click', function () {
+          selectEra(parseInt(this.getAttribute('data-era-btn'), 10));
+        });
+      }
+
+      for (var en = 0; en < svgEraNodes.length; en++) {
+        svgEraNodes[en].addEventListener('click', function () {
+          selectEra(parseInt(this.getAttribute('data-era-index'), 10));
+        });
+        svgEraNodes[en].addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            selectEra(parseInt(this.getAttribute('data-era-index'), 10));
+          }
+        });
+      }
+
+      /* ---------------------------------------------
+       * 4. Interactive 2026 Digital Clinical Protocol
+       * ------------------------------------------- */
+      var protocolSteps = [
+        {
+          label: 'PROTOCOL STAGE 01 OF 05',
+          title: 'Calm Reception Triage & Medical Baseline',
+          copy: 'Prior to your arrival, reception reviews your preferred Mon-Fri slot, symptom notes, and any ACC accident reference so your clinician starts prepared with zero waiting room friction.',
+          output: 'Verified medical history & priority slot',
+          timing: 'Pre-visit + first 5 minutes',
+          dashOffset: 736
+        },
+        {
+          label: 'PROTOCOL STAGE 02 OF 05',
+          title: 'Low-Dose Digital Radiographic Imaging',
+          copy: 'Targeted digital bitewing and periapical X-rays capture crisp sub-enamel detail in seconds with minimal radiation exposure, immediately ready for diagnostic comparison.',
+          output: 'High-contrast digital radiographs',
+          timing: '5–8 minutes',
+          dashOffset: 552
+        },
+        {
+          label: 'PROTOCOL STAGE 03 OF 05',
+          title: 'Chairside Visual Walkthrough & NZD Option Plan',
+          copy: 'Your dentist talks through every finding on screen, distinguishes urgent priorities from watchful monitoring, and provides written 2026 NZD options before proceeding.',
+          output: 'Written treatment & NZD fee confirmation',
+          timing: '10 minutes',
+          dashOffset: 368
+        },
+        {
+          label: 'PROTOCOL STAGE 04 OF 05',
+          title: 'Conservative, Unhurried Clinical Treatment',
+          copy: 'Whether completing gentle ultrasonic hygiene, a shade-matched composite filling, or emergency stabilisation, treatment proceeds carefully with modern anaesthesia and isolation.',
+          output: 'Minimally invasive restoration or relief',
+          timing: '25–45 minutes',
+          dashOffset: 184
+        },
+        {
+          label: 'PROTOCOL STAGE 05 OF 05',
+          title: 'Tailored Preventive Recall & Continuity Care',
+          copy: 'Each visit concludes with a clear home-care guide and an individualized recall interval so small enamel or gum changes are managed early and affordably.',
+          output: 'Custom 6 or 12-month continuity schedule',
+          timing: 'End of visit',
+          dashOffset: 0
+        }
+      ];
+
+      var protoTabs = document.querySelectorAll('[data-proto-btn]');
+      var svgProtoNodes = document.querySelectorAll('[data-step-index]');
+      var protoProgress = document.getElementById('svg-protocol-progress');
+
+      function selectProtocolStep(idx) {
+        var step = protocolSteps[idx];
+        if (!step) return;
+
+        document.getElementById('proto-step-label').textContent = step.label;
+        document.getElementById('proto-title-label').textContent = step.title;
+        document.getElementById('proto-copy-label').textContent = step.copy;
+        document.getElementById('proto-output-label').textContent = step.output;
+        document.getElementById('proto-time-label').textContent = step.timing;
+
+        if (protoProgress) {
+          protoProgress.setAttribute('stroke-dashoffset', String(step.dashOffset));
+        }
+
+        for (var i = 0; i < protoTabs.length; i++) {
+          var isAct = i === idx;
+          protoTabs[i].classList.toggle('is-active', isAct);
+          protoTabs[i].setAttribute('aria-selected', isAct ? 'true' : 'false');
+        }
+
+        for (var j = 0; j < svgProtoNodes.length; j++) {
+          var node = svgProtoNodes[j];
+          var isActNode = j === idx;
+          var box = node.querySelector('.proto-box');
+          var num = node.querySelector('.proto-num');
+          var lbl = node.querySelector('.proto-lbl');
+          if (box) {
+            box.setAttribute('fill', isActNode ? '#15403B' : '#FFFFFF');
+            box.setAttribute('stroke', isActNode ? '#15403B' : '#C9BFAE');
+          }
+          if (num) {
+            num.setAttribute('fill', isActNode ? '#D8B480' : '#7B572B');
+          }
+          if (lbl) {
+            lbl.setAttribute('fill', isActNode ? '#F9F7F3' : '#15403B');
+          }
+        }
+      }
+
+      for (var pt = 0; pt < protoTabs.length; pt++) {
+        protoTabs[pt].addEventListener('click', function () {
+          selectProtocolStep(parseInt(this.getAttribute('data-proto-btn'), 10));
+        });
+      }
+
+      for (var pn = 0; pn < svgProtoNodes.length; pn++) {
+        svgProtoNodes[pn].addEventListener('click', function () {
+          selectProtocolStep(parseInt(this.getAttribute('data-step-index'), 10));
+        });
+        svgProtoNodes[pn].addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            selectProtocolStep(parseInt(this.getAttribute('data-step-index'), 10));
+          }
+        });
+      }
+
+      /* ---------------------------------------------
+       * 5. Mon-Fri Slot Picker & Reception Form
+       * ------------------------------------------- */
+      var weekdaysData = [
+        {
+          shortDay: 'Mon',
+          fullDay: 'Monday',
+          slots: [
+            { time: '08:30', status: 'Open', available: true },
+            { time: '09:45', status: 'Open', available: true },
+            { time: '11:15', status: 'Booked', available: false },
+            { time: '13:30', status: 'Open', available: true },
+            { time: '14:45', status: 'Urgent Window', available: true },
+            { time: '16:00', status: 'Open', available: true }
+          ]
+        },
+        {
+          shortDay: 'Tue',
+          fullDay: 'Tuesday',
+          slots: [
+            { time: '08:45', status: 'Open', available: true },
+            { time: '10:00', status: 'Booked', available: false },
+            { time: '11:30', status: 'Open', available: true },
+            { time: '13:45', status: 'Open', available: true },
+            { time: '15:00', status: 'Urgent Window', available: true },
+            { time: '16:15', status: 'Open', available: true }
+          ]
+        },
+        {
+          shortDay: 'Wed',
+          fullDay: 'Wednesday',
+          slots: [
+            { time: '08:30', status: 'Open', available: true },
+            { time: '09:45', status: 'Open', available: true },
+            { time: '11:00', status: 'Open', available: true },
+            { time: '13:30', status: 'Booked', available: false },
+            { time: '15:00', status: 'Urgent Window', available: true },
+            { time: '16:00', status: 'Open', available: true }
+          ]
+        },
+        {
+          shortDay: 'Thu',
+          fullDay: 'Thursday',
+          slots: [
+            { time: '09:00', status: 'Booked', available: false },
+            { time: '10:15', status: 'Open', available: true },
+            { time: '11:30', status: 'Open', available: true },
+            { time: '14:00', status: 'Open', available: true },
+            { time: '15:15', status: 'Urgent Window', available: true },
+            { time: '16:30', status: 'Open', available: true }
+          ]
+        },
+        {
+          shortDay: 'Fri',
+          fullDay: 'Friday',
+          slots: [
+            { time: '08:30', status: 'Open', available: true },
+            { time: '09:45', status: 'Open', available: true },
+            { time: '11:15', status: 'Open', available: true },
+            { time: '13:15', status: 'Urgent Window', available: true },
+            { time: '14:30', status: 'Booked', available: false },
+            { time: '15:30', status: 'Open', available: true }
+          ]
+        }
+      ];
+
+      // Assign real upcoming Mon-Fri dates in Wellington NZ format
+      function populateUpcomingWeekdayDates() {
+        var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var today = new Date();
+        // Find next Monday (day 1) if weekend or build upcoming Mon-Fri week
+        var currentDay = today.getDay(); // 0=Sun..6=Sat
+        var offsetToMonday = currentDay === 0 ? 1 : (currentDay === 6 ? 2 : 1 - currentDay);
+        // If late in week (Thu/Fri), show next full Mon-Fri week so all 5 days are upcoming
+        if (currentDay >= 4) {
+          offsetToMonday += 7;
+        }
+        var monday = new Date(today.getFullYear(), today.getMonth(), today.getDate() + offsetToMonday);
+        for (var i = 0; i < weekdaysData.length; i++) {
+          var d = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + i);
+          weekdaysData[i].dateLabel = d.getDate() + ' ' + monthNames[d.getMonth()];
+        }
+      }
+      populateUpcomingWeekdayDates();
+
+      var selectedDayIdx = 0;
+      var selectedTimeStr = '09:45';
+
+      var dayGridEl = document.getElementById('day-grid');
+      var timeGridEl = document.getElementById('time-grid');
+      var selectedSlotDisplayEl = document.getElementById('selected-slot-display');
+
+      function updateSlotReadout() {
+        var dayObj = weekdaysData[selectedDayIdx];
+        if (selectedSlotDisplayEl && dayObj) {
+          if (selectedTimeStr) {
+            selectedSlotDisplayEl.textContent = dayObj.fullDay + ' ' + dayObj.dateLabel + ' at ' + selectedTimeStr;
+          } else {
+            selectedSlotDisplayEl.textContent = dayObj.fullDay + ' ' + dayObj.dateLabel + ' — select an open time';
+          }
+        }
+      }
+
+      function renderSlots() {
+        dayGridEl.innerHTML = '';
+        for (var i = 0; i < weekdaysData.length; i++) {
+          (function (idx) {
+            var d = weekdaysData[idx];
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'day-btn' + (idx === selectedDayIdx ? ' is-active' : '');
+            btn.setAttribute('aria-pressed', idx === selectedDayIdx ? 'true' : 'false');
+
+            var spanDay = document.createElement('span');
+            spanDay.className = 'day-name';
+            spanDay.textContent = d.shortDay;
+
+            var spanDate = document.createElement('span');
+            spanDate.className = 'day-date tabular-nums';
+            spanDate.textContent = d.dateLabel;
+
+            btn.appendChild(spanDay);
+            btn.appendChild(spanDate);
+
+            btn.addEventListener('click', function () {
+              selectedDayIdx = idx;
+              // Select first available slot on newly chosen weekday
+              var slots = weekdaysData[idx].slots;
+              var found = '';
+              for (var s = 0; s < slots.length; s++) {
+                if (slots[s].time === selectedTimeStr && slots[s].available) {
+                  found = slots[s].time;
+                  break;
+                }
+              }
+              if (!found) {
+                for (var s2 = 0; s2 < slots.length; s2++) {
+                  if (slots[s2].available) {
+                    found = slots[s2].time;
+                    break;
+                  }
+                }
+              }
+              selectedTimeStr = found;
+              renderSlots();
+            });
+
+            dayGridEl.appendChild(btn);
+          })(i);
+        }
+
+        timeGridEl.innerHTML = '';
+        var currentSlots = weekdaysData[selectedDayIdx].slots;
+        for (var t = 0; t < currentSlots.length; t++) {
+          (function (slotObj) {
+            var tBtn = document.createElement('button');
+            tBtn.type = 'button';
+            var isAct = slotObj.available && slotObj.time === selectedTimeStr;
+            tBtn.className = 'time-btn' + (isAct ? ' is-active' : '');
+            tBtn.disabled = slotObj.available === false;
+            tBtn.setAttribute('aria-pressed', isAct ? 'true' : 'false');
+
+            var cSpan = document.createElement('span');
+            cSpan.className = 'time-clock tabular-nums';
+            cSpan.textContent = slotObj.time;
+
+            var sSpan = document.createElement('span');
+            sSpan.className = 'time-status';
+            sSpan.textContent = slotObj.status;
+
+            tBtn.appendChild(cSpan);
+            tBtn.appendChild(sSpan);
+
+            if (slotObj.available) {
+              tBtn.addEventListener('click', function () {
+                selectedTimeStr = slotObj.time;
+                renderSlots();
+              });
+            }
+
+            timeGridEl.appendChild(tBtn);
+          })(currentSlots[t]);
+        }
+
+        updateSlotReadout();
+      }
+
+      renderSlots();
+
+      // Booking Form Submission
+      var bookingForm = document.getElementById('booking-form');
+      var formErrorEl = document.getElementById('form-error');
+      var confirmBoxEl = document.getElementById('booking-confirm');
+      var confirmDetailsEl = document.getElementById('confirm-details');
+      var confirmRefEl = document.getElementById('confirm-ref');
+      var confirmMailtoEl = document.getElementById('confirm-mailto-link');
+      var copyBookingBtn = document.getElementById('copy-booking-btn');
+      var editBookingBtn = document.getElementById('edit-booking-btn');
+      var bookingCopyFeedback = document.getElementById('booking-copy-feedback');
+
+      var latestRequestText = '';
+
+      if (bookingForm) {
+        bookingForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          formErrorEl.classList.remove('is-visible');
+          formErrorEl.textContent = '';
+
+          var nameVal = document.getElementById('patient-name').value.trim();
+          var phoneVal = document.getElementById('patient-phone').value.trim();
+          var emailVal = document.getElementById('patient-email').value.trim();
+          var statusVal = document.getElementById('patient-status').value;
+          var serviceVal = document.getElementById('patient-service').value;
+          var notesVal = document.getElementById('patient-notes').value.trim();
+
+          if (nameVal.length < 2) {
+            formErrorEl.textContent = 'Please enter your full name before submitting.';
+            formErrorEl.classList.add('is-visible');
+            return;
+          }
+          if (phoneVal.length < 6) {
+            formErrorEl.textContent = 'Please enter a valid New Zealand contact phone number.';
+            formErrorEl.classList.add('is-visible');
+            return;
+          }
+          if (emailVal.indexOf('@') === -1 || emailVal.indexOf('.') === -1) {
+            formErrorEl.textContent = 'Please enter a valid email address so reception can reply.';
+            formErrorEl.classList.add('is-visible');
+            return;
+          }
+          if (!selectedTimeStr) {
+            formErrorEl.textContent = 'Please select an available Mon-Fri appointment time slot.';
+            formErrorEl.classList.add('is-visible');
+            return;
+          }
+
+          var dayObj = weekdaysData[selectedDayIdx];
+          var slotSummary = dayObj.fullDay + ' ' + dayObj.dateLabel + ' at ' + selectedTimeStr;
+          var refNumber = 'TWDP-2026-' + String(Math.floor(1000 + Math.random() * 9000));
+
+          confirmRefEl.textContent = 'REQUEST PREPARED · ' + refNumber;
+          confirmDetailsEl.innerHTML = '';
+
+          var rows = [
+            ['Recipient', 'reception@twdp.co.nz'],
+            ['Preferred Slot', slotSummary],
+            ['Patient Name', nameVal],
+            ['Phone / Email', phoneVal + ' · ' + emailVal],
+            ['Visit & Service', statusVal + ' — ' + serviceVal]
+          ];
+          if (notesVal) {
+            rows.push(['Clinical Notes', notesVal]);
+          }
+
+          for (var r = 0; r < rows.length; r++) {
+            var rowDiv = document.createElement('div');
+            rowDiv.className = 'confirm-row';
+            var k = document.createElement('strong');
+            k.textContent = rows[r][0];
+            var v = document.createElement('span');
+            v.textContent = rows[r][1];
+            rowDiv.appendChild(k);
+            rowDiv.appendChild(v);
+            confirmDetailsEl.appendChild(rowDiv);
+          }
+
+          latestRequestText = [
+            'Appointment Request Reference: ' + refNumber,
+            'Practice: The Wellington Dental Practice (04 472 5516)',
+            'Preferred Mon-Fri Slot: ' + slotSummary,
+            'Patient Name: ' + nameVal,
+            'Phone: ' + phoneVal,
+            'Email: ' + emailVal,
+            'Visit Type: ' + statusVal,
+            'Service: ' + serviceVal,
+            'Notes / Estimate: ' + (notesVal || 'None provided')
+          ].join('\n');
+
+          var mailSubject = encodeURIComponent('Appointment Request (' + slotSummary + ') - ' + nameVal);
+          var mailBody = encodeURIComponent(latestRequestText);
+          confirmMailtoEl.setAttribute('href', 'mailto:reception@twdp.co.nz?subject=' + mailSubject + '&body=' + mailBody);
+
+          bookingForm.style.display = 'none';
+          confirmBoxEl.classList.add('is-visible');
+          bookingCopyFeedback.textContent = '';
+        });
+      }
+
+      if (editBookingBtn) {
+        editBookingBtn.addEventListener('click', function () {
+          confirmBoxEl.classList.remove('is-visible');
+          bookingForm.style.display = 'block';
+        });
+      }
+
+      if (copyBookingBtn) {
+        copyBookingBtn.addEventListener('click', function () {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(latestRequestText).then(function () {
+              bookingCopyFeedback.textContent = 'Appointment request details copied to clipboard.';
+            }, function () {
+              bookingCopyFeedback.textContent = 'Please use the Open Email button above to send to reception@twdp.co.nz.';
+            });
+          } else {
+            bookingCopyFeedback.textContent = 'Please use the Open Email button above to send to reception@twdp.co.nz.';
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
