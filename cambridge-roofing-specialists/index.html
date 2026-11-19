@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cambridge Roofing — Pitched, Flat, Slate and Tile Roofing Specialists in Cambridge, Cambridgeshire. Instant GBP roof quote estimator, chimney repairs, lead flashing and guttering.">
+  <title>Cambridge Roofing — Pitched, Flat, Slate &amp; Tile Specialists</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231b2a38'/%3E%3Cpath d='M5 18L16 8l11 10' stroke='%23c25934' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M9 17v8h14v-8' stroke='%23f5f1ea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #faf8f5;
+      --bg-card: #ffffff;
+      --bg-subtle: #f2ede5;
+      --bg-slate: #1b2a38;
+      --bg-slate-deep: #13202b;
+      --text-primary: #1b2a38;
+      --text-secondary: #4a5968;
+      --text-muted: #6e7c8a;
+      --accent-terra: #c25934;
+      --accent-terra-hover: #a84928;
+      --accent-amber: #d97706;
+      --accent-tint: rgba(194, 89, 52, 0.1);
+      --border-light: #e5ded4;
+      --border-medium: #d4cabd;
+      --shadow-sm: 0 2px 8px rgba(27, 42, 56, 0.05);
+      --shadow-md: 0 10px 30px rgba(27, 42, 56, 0.08);
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: rgba(250, 248, 245, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: var(--bg-slate);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.05rem;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .header-phone {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background-color: var(--bg-subtle);
+      transition: background-color 0.2s ease;
+    }
+
+    .header-phone:hover {
+      background-color: var(--border-light);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #ffffff;
+      background-color: var(--accent-terra);
+      border: none;
+      border-radius: 10px;
+      padding: 11px 18px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-terra-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Hero + Estimator */
+    .hero-section {
+      padding: 34px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1.15fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-terra);
+      background-color: var(--accent-tint);
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.95rem, 3.3vw, 2.75rem);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin: 0 0 16px;
+      color: var(--text-primary);
+    }
+
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      margin: 0 0 24px;
+      max-width: 54ch;
+    }
+
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .trust-item {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .trust-val {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .trust-lbl {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .contact-card {
+      background-color: var(--bg-slate);
+      color: #f5f1ea;
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 16px;
+    }
+
+    .contact-card-title {
+      grid-column: 1 / -1;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+
+    .contact-item {
+      font-size: 0.85rem;
+      color: #d6dde4;
+    }
+
+    .contact-item strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .contact-link-row {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 11.5px;
+      color: #f5f1ea;
+      text-decoration: none;
+      padding: 6px 10px;
+      background-color: rgba(255, 255, 255, 0.08);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background-color 0.2s ease;
+    }
+
+    .contact-link-row:hover {
+      background-color: rgba(255, 255, 255, 0.14);
+    }
+
+    /* Estimator Card */
+    .estimator-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 24px;
+    }
+
+    .estimator-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .estimator-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.25rem;
+      margin: 0;
+      color: var(--text-primary);
+    }
+
+    .estimator-sub {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin: 4px 0 0;
+    }
+
+    .field-group {
+      margin-bottom: 16px;
+    }
+
+    .field-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.84rem;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .pill-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .pill-btn {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: 9px;
+      padding: 9px 12px;
+      cursor: pointer;
+      text-align: left;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .pill-btn:hover {
+      border-color: var(--border-medium);
+    }
+
+    .pill-btn.active {
+      background-color: var(--bg-slate);
+      color: #ffffff;
+      border-color: var(--bg-slate);
+    }
+
+    .range-wrap {
+      background-color: var(--bg-subtle);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent-terra);
+      cursor: pointer;
+    }
+
+    .range-scale {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .check-btn {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: 9px;
+      padding: 8px 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .check-btn.active {
+      background-color: var(--accent-tint);
+      color: var(--accent-terra);
+      border-color: var(--accent-terra);
+    }
+
+    .quote-output {
+      background-color: var(--bg-slate);
+      color: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      margin: 18px 0;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .quote-lbl {
+      font-size: 0.76rem;
+      color: #c5d0db;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .quote-price {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.55rem;
+      line-height: 1.15;
+      color: #ffffff;
+      margin-top: 2px;
+    }
+
+    .quote-duration {
+      text-align: right;
+    }
+
+    .quote-days {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #fbbf24;
+    }
+
+    /* Survey Request Form */
+    .survey-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .form-field input,
+    .form-field textarea {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      padding: 9px 11px;
+      border: 1px solid var(--border-medium);
+      border-radius: 8px;
+      background-color: #ffffff;
+      color: var(--text-primary);
+      width: 100%;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      outline: 2px solid var(--accent-terra);
+      border-color: transparent;
+    }
+
+    .form-submit-row {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .form-status {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #166534;
+      display: none;
+    }
+
+    .form-status.visible {
+      display: block;
+    }
+
+    /* Services Section */
+    .services-section {
+      padding: 46px 0 56px;
+      border-top: 1px solid var(--border-light);
+      background-color: #ffffff;
+    }
+
+    .section-head {
+      margin-bottom: 26px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.75rem;
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      margin: 0;
+      max-width: 60ch;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      background-color: var(--bg-page);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .service-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background-color: var(--accent-tint);
+      color: var(--accent-terra);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin: 0;
+    }
+
+    .service-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg-slate-deep);
+      color: #c5d0db;
+      padding: 28px 0;
+      font-size: 0.85rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .trust-strip,
+      .check-grid,
+      .services-grid,
+      .survey-form,
+      .quote-output {
+        grid-template-columns: 1fr;
+      }
+      .quote-duration {
+        text-align: left;
+      }
+      .header-phone {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+      .contact-link-row {
+        font-size: 10px;
+      }
+      .pill-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f5f1ea" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 11l9-7 9 7"/>
+            <path d="M6 10v9h12v-9"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Cambridge Roofing</div>
+          <div class="brand-sub">Pitched, Flat, Slate &amp; Tile Specialists</div>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="tel:01223901165" class="header-phone tabular">01223 901165</a>
+        <a href="#estimator" class="btn-primary">Free Quote Estimator</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-badge">Cambridge &amp; Cambridgeshire Roofing Specialists</div>
+          <h1 class="hero-title">Precision Pitched, Slate &amp; Flat Roofing Across Cambridge</h1>
+          <p class="hero-lead">
+            From Victorian terraced slate roofs to modern EPDM flat extensions and heritage clay tiles, Cambridge Roofing delivers durable weatherproofing, chimney leadwork and roofline installations backed by clear GBP pricing.
+          </p>
+
+          <div class="trust-strip">
+            <div class="trust-item">
+              <div class="trust-val tabular">10-Yr</div>
+              <div class="trust-lbl">Workmanship Cover</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-val tabular">48h</div>
+              <div class="trust-lbl">Site Survey Turnaround</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-val tabular">GBP £</div>
+              <div class="trust-lbl">Fixed Written Quotes</div>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card-title">Direct Cambridge Office</div>
+            <div class="contact-item"><strong>Phone:</strong> <span class="tabular">01223 901165</span></div>
+            <div class="contact-item"><strong>Area:</strong> Cambridge, Cambridgeshire, UK</div>
+            <a class="contact-link-row" href="mailto:info@cambridgeroofing.co.uk">
+              <span>Email: info@cambridgeroofing.co.uk</span>
+              <span>Send Enquiry</span>
+            </a>
+            <a class="contact-link-row" href="https://www.cambridgeroofing.co.uk" target="_blank" rel="noopener noreferrer">
+              <span>Web: https://www.cambridgeroofing.co.uk</span>
+              <span>Visit Site</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="estimator-card" id="estimator">
+          <div class="estimator-head">
+            <div>
+              <h2 class="estimator-title">Cambridge Pitched, Slate &amp; Flat Roof Quote Estimator</h2>
+              <p class="estimator-sub">Select property style, roofing material and area for an instant GBP guide.</p>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">1. Property Type</div>
+            <div class="pill-grid" id="property-group">
+              <button type="button" class="pill-btn active" data-prop="terraced" data-mult="1.0">Terraced House</button>
+              <button type="button" class="pill-btn" data-prop="semi" data-mult="1.08">Semi-Detached</button>
+              <button type="button" class="pill-btn" data-prop="detached" data-mult="1.18">Detached Home</button>
+              <button type="button" class="pill-btn" data-prop="heritage" data-mult="1.32">Period / Heritage</button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">2. Roofing Material</div>
+            <div class="pill-grid" id="material-group">
+              <button type="button" class="pill-btn active" data-mat="slate" data-rate="145">Natural Slate</button>
+              <button type="button" class="pill-btn" data-mat="clay" data-rate="125">Clay Tile</button>
+              <button type="button" class="pill-btn" data-mat="epdm" data-rate="98">EPDM Flat Roof</button>
+              <button type="button" class="pill-btn" data-mat="grp" data-rate="112">GRP Fibreglass</button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">
+              <span>3. Estimated Roof Area</span>
+              <span class="tabular" id="area-readout">65 m²</span>
+            </div>
+            <div class="range-wrap">
+              <label for="roof-area" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Estimated Roof Area in square metres</label>
+              <input type="range" id="roof-area" min="20" max="180" step="5" value="65" autocomplete="off">
+              <div class="range-scale tabular">
+                <span>20 m²</span>
+                <span>100 m²</span>
+                <span>180 m²</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">4. Additional Works</div>
+            <div class="check-grid" id="extras-group">
+              <button type="button" class="check-btn" data-extra="chimney" data-cost="680">Chimney Repairs</button>
+              <button type="button" class="check-btn" data-extra="lead" data-cost="540">Lead Flashing</button>
+              <button type="button" class="check-btn" data-extra="fascias" data-cost="820">Fascias &amp; Guttering</button>
+            </div>
+          </div>
+
+          <div class="quote-output">
+            <div>
+              <div class="quote-lbl">Estimated Guide Price (GBP)</div>
+              <div class="quote-price tabular" id="quote-range">£8,720 – £10,130</div>
+            </div>
+            <div class="quote-duration">
+              <div class="quote-lbl">Typical Schedule</div>
+              <div class="quote-days tabular" id="quote-days">5 – 7 working days</div>
+            </div>
+          </div>
+
+          <form class="survey-form" id="survey-form">
+            <div class="form-field">
+              <label for="cust-name">Your Name</label>
+              <input type="text" id="cust-name" name="name" placeholder="e.g. Oliver Bennett" autocomplete="name" required>
+            </div>
+            <div class="form-field">
+              <label for="cust-phone">Telephone</label>
+              <input type="tel" id="cust-phone" name="phone" placeholder="01223 000000" autocomplete="tel" required>
+            </div>
+            <div class="form-field full">
+              <label for="cust-postcode">Cambridge Postcode / Street</label>
+              <input type="text" id="cust-postcode" name="postal-code" placeholder="e.g. CB1 2AB" autocomplete="postal-code" required>
+            </div>
+            <div class="form-submit-row">
+              <button type="submit" class="btn-primary">Request Roof Inspection</button>
+              <div class="form-status" id="form-status">Inspection request logged. We will call you shortly.</div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Specialist Roofing Services in Cambridgeshire</h2>
+          <p class="section-desc">Complete new installations, heritage slate restoration, flat roof systems and roofline maintenance.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+            </div>
+            <h3 class="service-name">New Roof Installation</h3>
+            <p class="service-text">Full strip and re-roof packages with breathable felt membranes, treated battens and ventilation.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="8" rx="1"/><path d="M7 8V6m10 2V6"/></svg>
+            </div>
+            <h3 class="service-name">Flat &amp; Pitched Roofing</h3>
+            <p class="service-text">Seamless EPDM rubber, GRP fibreglass flat roofs and traditional pitched timber structures.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l8-10 8 10"/><path d="M8 17l4-5 4 5"/></svg>
+            </div>
+            <h3 class="service-name">Slate, Tile &amp; Felt Roofing</h3>
+            <p class="service-text">Welsh natural slate, handmade clay tiles and high-performance torch-on felt repairs.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16v4H4z"/><path d="M18 11v7a2 2 0 0 1-2 2h-1"/></svg>
+            </div>
+            <h3 class="service-name">Guttering, Fascias &amp; Soffits</h3>
+            <p class="service-text">uPVC and cast-iron rainwater goods, soffit ventilation and bargeboard replacements.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20V8h10v12"/><path d="M5 8h14"/><path d="M9 4h6v4H9z"/></svg>
+            </div>
+            <h3 class="service-name">Chimney Repairs &amp; Lead Flashing</h3>
+            <p class="service-text">Code 4 and Code 5 lead step flashings, chimney repointing, flaunching and pot cowls.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>Cambridge Roofing — Cambridge, Cambridgeshire, UK</div>
+      <div class="tabular">Tel: 01223 901165 | info@cambridgeroofing.co.uk</div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        propMult: 1.0,
+        matRate: 145,
+        area: 65,
+        extras: new Set()
+      };
+
+      const areaInput = document.getElementById('roof-area');
+      const areaReadout = document.getElementById('area-readout');
+      const quoteRange = document.getElementById('quote-range');
+      const quoteDays = document.getElementById('quote-days');
+
+      function formatGBP(val) {
+        return '£' + Math.round(val).toLocaleString('en-GB');
+      }
+
+      function updateQuote() {
+        let base = state.area * state.matRate * state.propMult;
+        let extrasTotal = 0;
+        document.querySelectorAll('#extras-group .check-btn.active').forEach(btn => {
+          extrasTotal += Number(btn.dataset.cost || 0);
+        });
+        const total = base + extrasTotal;
+        const low = total * 0.92;
+        const high = total * 1.07;
+        quoteRange.textContent = formatGBP(low) + ' – ' + formatGBP(high);
+
+        const daysMin = Math.max(2, Math.round(state.area / 16) + (extrasTotal > 0 ? 1 : 0));
+        const daysMax = daysMin + 2;
+        quoteDays.textContent = daysMin + ' – ' + daysMax + ' working days';
+      }
+
+      document.querySelectorAll('#property-group .pill-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('#property-group .pill-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.propMult = Number(btn.dataset.mult || 1.0);
+          updateQuote();
+        });
+      });
+
+      document.querySelectorAll('#material-group .pill-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('#material-group .pill-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.matRate = Number(btn.dataset.rate || 145);
+          updateQuote();
+        });
+      });
+
+      document.querySelectorAll('#extras-group .check-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.classList.toggle('active');
+          updateQuote();
+        });
+      });
+
+      areaInput.addEventListener('input', () => {
+        state.area = Number(areaInput.value);
+        areaReadout.textContent = state.area + ' m²';
+        updateQuote();
+      });
+
+      document.getElementById('survey-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        document.getElementById('form-status').classList.add('visible');
+      });
+
+      updateQuote();
+    })();
+  </script>
+</body>
+</html>

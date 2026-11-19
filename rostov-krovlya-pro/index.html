@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ростов Кровля — кровельные работы под ключ, ремонт и реконструкция крыш в Ростове-на-Дону. Онлайн-калькулятор сметы и вызов инженера на замер.">
+  <title>Ростов Кровля — Кровельные работы под ключ в Ростове-на-Дону</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231e2a38'/%3E%3Cpath d='M5 17L16 7l11 10' stroke='%23c8553d' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M9 17v8h14v-8' stroke='%23f4f3ef' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-stone: #f4f3ef;
+      --bg-surface: #ffffff;
+      --bg-muted: #eae8e1;
+      --ink-primary: #1e2a38;
+      --ink-secondary: #4a5564;
+      --ink-muted: #6c7684;
+      --accent: #c8553d;
+      --accent-hover: #b24630;
+      --accent-soft: #f9ebe8;
+      --border: #dcd9d0;
+      --border-strong: #c5c0b4;
+      --shadow-sm: 0 2px 8px rgba(30, 42, 56, 0.05);
+      --shadow-md: 0 10px 28px rgba(30, 42, 56, 0.08);
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --font-sans: 'Manrope', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background-color: var(--bg-stone);
+      color: var(--ink-primary);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 68px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink-primary);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      border-radius: 9px;
+      background-color: var(--ink-primary);
+      display: grid;
+      place-items: center;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .header-phone {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      text-decoration: none;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .header-phone:hover {
+      color: var(--accent);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--accent);
+      color: #ffffff;
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      padding: 11px 18px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    /* Hero + Calculator */
+    .hero-section {
+      padding: 32px 0 44px;
+    }
+
+    .hero-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      background-color: var(--accent-soft);
+      padding: 5px 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(24px, 3.4vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: var(--ink-primary);
+      max-width: 720px;
+    }
+
+    .hero-lead {
+      margin: 8px 0 0;
+      font-size: 15px;
+      color: var(--ink-secondary);
+      max-width: 620px;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel-title {
+      margin: 0 0 18px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .field-group {
+      margin-bottom: 20px;
+    }
+
+    .field-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-secondary);
+      margin-bottom: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .segmented-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .segmented-grid.cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .seg-btn {
+      appearance: none;
+      background-color: var(--bg-stone);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 12px;
+      text-align: left;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      color: var(--ink-primary);
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .seg-btn:hover {
+      border-color: var(--border-strong);
+    }
+
+    .seg-btn.active {
+      background-color: var(--ink-primary);
+      border-color: var(--ink-primary);
+      color: #ffffff;
+    }
+
+    .seg-btn-title {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .seg-btn-meta {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      margin-top: 3px;
+      opacity: 0.78;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .range-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .range-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-secondary);
+    }
+
+    .range-value {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+      height: 6px;
+    }
+
+    .range-scale {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      margin-top: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .checks-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      background-color: var(--bg-stone);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .check-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .check-left input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .check-left label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      cursor: pointer;
+    }
+
+    .check-price {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-secondary);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Estimate Result Panel */
+    .result-panel {
+      background-color: var(--ink-primary);
+      color: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .result-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #b7c2cf;
+      margin-bottom: 6px;
+    }
+
+    .result-total {
+      font-family: var(--font-mono);
+      font-size: clamp(28px, 3vw, 36px);
+      font-weight: 700;
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 16px;
+    }
+
+    .result-breakdown {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 14px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      margin-bottom: 18px;
+    }
+
+    .stat-box-label {
+      font-size: 12px;
+      color: #b7c2cf;
+    }
+
+    .stat-box-val {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 600;
+      margin-top: 2px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .lead-form {
+      display: grid;
+      gap: 10px;
+    }
+
+    .form-field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #d5dde6;
+      margin-bottom: 4px;
+    }
+
+    .form-field input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background-color: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      font-family: var(--font-sans);
+      font-size: 14px;
+    }
+
+    .form-field input::placeholder {
+      color: #9aa7b6;
+    }
+
+    .form-status {
+      font-size: 13px;
+      color: #a9e5bb;
+      min-height: 18px;
+      margin: 2px 0 0;
+    }
+
+    /* Services & Contacts */
+    .section {
+      padding: 20px 0 44px;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .service-card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--ink-secondary);
+    }
+
+    .contacts-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .contact-item {
+      background-color: var(--bg-stone);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      min-width: 0;
+    }
+
+    .contact-item.full-row {
+      grid-column: 1 / -1;
+    }
+
+    .contact-k {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-v {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      text-decoration: none;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .contact-item.full-row a[href^="mailto:"],
+    .contact-item.full-row a[href^="http"] {
+      display: inline-block;
+      font-size: 12px;
+      white-space: nowrap;
+      word-break: normal;
+      color: var(--ink-primary);
+      text-decoration: none;
+    }
+
+    .contact-item.full-row a:hover {
+      color: var(--accent);
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 20px 0 28px;
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    @media (max-width: 960px) {
+      .calc-grid {
+        grid-template-columns: 1fr;
+      }
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-phone {
+        display: none;
+      }
+      .segmented-grid.cols-3 {
+        grid-template-columns: 1fr;
+      }
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      .contacts-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .panel, .result-panel {
+        padding: 18px;
+      }
+      .segmented-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-item.full-row a[href^="mailto:"],
+      .contact-item.full-row a[href^="http"] {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M3 12L12 4l9 8" stroke="#c8553d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 12v7h12v-7" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Ростов Кровля</span>
+          <span class="brand-sub">Ростов-на-Дону</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a class="header-phone" href="tel:+79281288011">+7 (928) 128-80-11</a>
+        <a class="btn-primary" href="#orderForm">Вызвать замерщика</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-head">
+          <div>
+            <span class="hero-eyebrow">Кровельные работы под ключ</span>
+            <h1>Калькулятор монтажа и ремонта кровли в Ростове-на-Дону</h1>
+            <p class="hero-lead">Предварительный расчет стоимости материалов, работы и сроков монтажа с выездом инженера на объект.</p>
+          </div>
+        </div>
+
+        <div class="calc-grid">
+          <div class="panel">
+            <h2 class="panel-title">Параметры крыши</h2>
+
+            <div class="field-group">
+              <div class="field-label">Тип кровельного покрытия</div>
+              <div class="segmented-grid" id="materialGroup">
+                <button type="button" class="seg-btn active" data-price="1850" data-name="Металлочерепица">
+                  <span class="seg-btn-title">Металлочерепица</span>
+                  <span class="seg-btn-meta">от 1 850 ₽/м²</span>
+                </button>
+                <button type="button" class="seg-btn" data-price="2350" data-name="Гибкая черепица">
+                  <span class="seg-btn-title">Гибкая черепица</span>
+                  <span class="seg-btn-meta">от 2 350 ₽/м²</span>
+                </button>
+                <button type="button" class="seg-btn" data-price="2650" data-name="Фальцевая кровля">
+                  <span class="seg-btn-title">Фальц</span>
+                  <span class="seg-btn-meta">от 2 650 ₽/м²</span>
+                </button>
+                <button type="button" class="seg-btn" data-price="1550" data-name="Профнастил">
+                  <span class="seg-btn-title">Профнастил</span>
+                  <span class="seg-btn-meta">от 1 550 ₽/м²</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="range-header">
+                <label class="range-label" for="areaRange">Площадь кровли</label>
+                <span class="range-value" id="areaValue">140 м²</span>
+              </div>
+              <input id="areaRange" type="range" min="40" max="450" step="5" value="140" autocomplete="off">
+              <div class="range-scale">
+                <span>40 м²</span>
+                <span>245 м²</span>
+                <span>450 м²</span>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">Форма крыши</div>
+              <div class="segmented-grid cols-3" id="shapeGroup">
+                <button type="button" class="seg-btn active" data-mult="1" data-days="1">
+                  <span class="seg-btn-title">Двускатная</span>
+                  <span class="seg-btn-meta">базовая сложность</span>
+                </button>
+                <button type="button" class="seg-btn" data-mult="1.18" data-days="1.25">
+                  <span class="seg-btn-title">Вальмовая</span>
+                  <span class="seg-btn-meta">+18% к работе</span>
+                </button>
+                <button type="button" class="seg-btn" data-mult="1.35" data-days="1.5">
+                  <span class="seg-btn-title">Сложная</span>
+                  <span class="seg-btn-meta">+35% к работе</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">Дополнительные работы</div>
+              <div class="checks-list">
+                <div class="check-row">
+                  <div class="check-left">
+                    <input id="optInsulation" type="checkbox" data-rate="680" autocomplete="off" checked>
+                    <label for="optInsulation">Утепление + гидроизоляция</label>
+                  </div>
+                  <span class="check-price">+680 ₽/м²</span>
+                </div>
+                <div class="check-row">
+                  <div class="check-left">
+                    <input id="optGutter" type="checkbox" data-rate="320" autocomplete="off">
+                    <label for="optGutter">Водосточная система</label>
+                  </div>
+                  <span class="check-price">+320 ₽/м²</span>
+                </div>
+                <div class="check-row">
+                  <div class="check-left">
+                    <input id="optDismantle" type="checkbox" data-rate="290" autocomplete="off">
+                    <label for="optDismantle">Демонтаж старой кровли</label>
+                  </div>
+                  <span class="check-price">+290 ₽/м²</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="result-panel">
+            <div class="result-kicker">Предварительная смета</div>
+            <div class="result-total" id="totalCost">354 200 ₽</div>
+
+            <div class="result-breakdown">
+              <div>
+                <div class="stat-box-label">Материалы</div>
+                <div class="stat-box-val" id="matCost">198 352 ₽</div>
+              </div>
+              <div>
+                <div class="stat-box-label">Монтаж и работы</div>
+                <div class="stat-box-val" id="workCost">155 848 ₽</div>
+              </div>
+              <div>
+                <div class="stat-box-label">Срок монтажа</div>
+                <div class="stat-box-val" id="daysEst">6–8 дней</div>
+              </div>
+              <div>
+                <div class="stat-box-label">Покрытие</div>
+                <div class="stat-box-val" id="matLabel">Металлочерепица</div>
+              </div>
+            </div>
+
+            <form class="lead-form" id="orderForm">
+              <div class="form-field">
+                <label for="clientName">Ваше имя</label>
+                <input id="clientName" type="text" placeholder="Алексей" autocomplete="name" required>
+              </div>
+              <div class="form-field">
+                <label for="clientPhone">Телефон</label>
+                <input id="clientPhone" type="tel" placeholder="+7 (928) 000-00-00" autocomplete="tel" required>
+              </div>
+              <div class="form-field">
+                <label for="clientAddress">Район или адрес в Ростове-на-Дону</label>
+                <input id="clientAddress" type="text" placeholder="СЖМ / Батайск / Аксай" autocomplete="street-address">
+              </div>
+              <button type="submit" class="btn-primary">Вызвать инженера на замер</button>
+              <p class="form-status" id="formStatus" aria-live="polite"></p>
+            </form>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Услуги компании Ростов Кровля</h2>
+        <div class="services-grid">
+          <article class="service-card">
+            <h3>Монтаж кровли под ключ</h3>
+            <p>Полный цикл от проектирования стропильной системы до установки доборных элементов и сдачи объекта.</p>
+          </article>
+          <article class="service-card">
+            <h3>Ремонт и реконструкция крыш</h3>
+            <p>Устранение протечек, замена изношенных участков покрытия, усиление стропил и обновление обрешетки.</p>
+          </article>
+          <article class="service-card">
+            <h3>Устройство мягкой и металлической кровли</h3>
+            <p>Профессиональная укладка металлочерепицы, гибкой черепицы, фальца и профнастила по технологии.</p>
+          </article>
+          <article class="service-card">
+            <h3>Монтаж водосточных систем</h3>
+            <p>Расчет и установка металлических и пластиковых водостоков, снегозадержателей и подшивки свесов.</p>
+          </article>
+          <article class="service-card">
+            <h3>Утепление и гидроизоляция кровли</h3>
+            <p>Устройство кровельного пирога с паро- и гидроизоляционными мембранами для защиты от конденсата.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Контакты</h2>
+        <div class="contacts-card">
+          <div class="contact-item">
+            <div class="contact-k">Телефон</div>
+            <a class="contact-v" href="tel:+79281288011">+79281288011</a>
+          </div>
+          <div class="contact-item">
+            <div class="contact-k">Адрес</div>
+            <div class="contact-v">г. Ростов-на-Дону, Россия</div>
+          </div>
+          <div class="contact-item full-row">
+            <div class="contact-k">Электронная почта</div>
+            <a href="mailto:rostovkrovlya@mail.ru">rostovkrovlya@mail.ru</a>
+          </div>
+          <div class="contact-item full-row">
+            <div class="contact-k">Официальный сайт</div>
+            <a href="https://www.rostov-krovlya.ru/" target="_blank" rel="noopener noreferrer">https://www.rostov-krovlya.ru/</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      Ростов Кровля — кровельные работы и реконструкция крыш в Ростове-на-Дону.
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const areaRange = document.getElementById('areaRange');
+      const areaValue = document.getElementById('areaValue');
+      const totalCostEl = document.getElementById('totalCost');
+      const matCostEl = document.getElementById('matCost');
+      const workCostEl = document.getElementById('workCost');
+      const daysEstEl = document.getElementById('daysEst');
+      const matLabelEl = document.getElementById('matLabel');
+
+      const materialBtns = document.querySelectorAll('#materialGroup .seg-btn');
+      const shapeBtns = document.querySelectorAll('#shapeGroup .seg-btn');
+      const checkInputs = document.querySelectorAll('.checks-list input[type="checkbox"]');
+
+      let basePrice = 1850;
+      let materialName = 'Металлочерепица';
+      let shapeMult = 1;
+      let daysMult = 1;
+
+      function formatRub(num) {
+        return Math.round(num).toLocaleString('ru-RU') + ' ₽';
+      }
+
+      function recalc() {
+        const area = Number(areaRange.value);
+        areaValue.textContent = area + ' м²';
+
+        let extraRate = 0;
+        checkInputs.forEach((cb) => {
+          if (cb.checked) {
+            extraRate += Number(cb.dataset.rate || 0);
+          }
+        });
+
+        const total = area * (basePrice * shapeMult + extraRate);
+        const matCost = total * 0.56;
+        const workCost = total - matCost;
+
+        const baseDays = Math.max(3, Math.round((area / 32) * daysMult));
+        const maxDays = baseDays + 2;
+
+        totalCostEl.textContent = formatRub(total);
+        matCostEl.textContent = formatRub(matCost);
+        workCostEl.textContent = formatRub(workCost);
+        daysEstEl.textContent = baseDays + '–' + maxDays + ' дней';
+        matLabelEl.textContent = materialName;
+      }
+
+      materialBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          materialBtns.forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          basePrice = Number(btn.dataset.price);
+          materialName = btn.dataset.name;
+          recalc();
+        });
+      });
+
+      shapeBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          shapeBtns.forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          shapeMult = Number(btn.dataset.mult);
+          daysMult = Number(btn.dataset.days);
+          recalc();
+        });
+      });
+
+      areaRange.addEventListener('input', recalc);
+      checkInputs.forEach((cb) => cb.addEventListener('change', recalc));
+
+      const orderForm = document.getElementById('orderForm');
+      const formStatus = document.getElementById('formStatus');
+      orderForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('clientName').value.trim();
+        formStatus.textContent = (name ? name + ', заявка' : 'Заявка') + ' на замер принята. Инженер свяжется с вами в ближайшее время.';
+        orderForm.reset();
+      });
+
+      recalc();
+    })();
+  </script>
+</body>
+</html>
