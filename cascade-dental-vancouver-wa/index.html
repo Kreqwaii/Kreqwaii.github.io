@@ -1,0 +1,3005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cascade Dental in Vancouver, WA provides family and preventive dentistry, restorative crowns and bridges, cosmetic smile makeovers, and dental implants with an interactive USD insurance and treatment plan estimator.">
+  <title>Cascade Dental | Private Dental Practice in Vancouver, WA</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23153E35'/%3E%3Cpath d='M8.5 20L16 10l7.5 10' fill='none' stroke='%23F7F9F8' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M12 22.5h8' fill='none' stroke='%238DB39F' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #F7F9F8;
+      --bg-surface: #FFFFFF;
+      --bg-tint: #EFF4F1;
+      --bg-sage-soft: #E3EDE7;
+      --border-subtle: #D8E2DC;
+      --border-strong: #B9C9C0;
+      --pine-deep: #153E35;
+      --pine-hover: #0E2C25;
+      --sage-accent: #4E7966;
+      --sage-muted: #6C8C7D;
+      --text-primary: #13211D;
+      --text-secondary: #43554E;
+      --text-muted: #5C6F67;
+      --cedar-warm: #7A5C43;
+      --cedar-bg: #F6F0EA;
+      --cedar-border: #E5D6C7;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --shadow-card: 0 1px 2px rgba(19, 33, 29, 0.04), 0 8px 24px rgba(19, 33, 29, 0.03);
+      --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.55;
+      overflow-x: clip;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a[href^="mailto:"],
+    a[href^="tel:"] {
+      white-space: nowrap;
+      word-break: normal;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(247, 249, 248, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 74px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      background-color: var(--pine-deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-loc {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.18s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--pine-deep);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .header-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      white-space: nowrap;
+      word-break: normal;
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .header-phone:hover {
+      border-color: var(--pine-deep);
+      background-color: var(--bg-tint);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .mobile-drawer {
+      display: none;
+      border-top: 1px solid var(--border-subtle);
+      background-color: var(--bg-surface);
+      padding: 16px 24px 20px;
+    }
+
+    .mobile-drawer.open {
+      display: block;
+    }
+
+    .mobile-drawer-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .mobile-drawer-list a {
+      display: block;
+      padding: 8px 0;
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--text-primary);
+      border-bottom: 1px solid var(--bg-tint);
+    }
+
+    .mobile-drawer-contact {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      line-height: 1.25;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--pine-deep);
+      border-color: var(--pine-deep);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background-color: var(--pine-hover);
+      border-color: var(--pine-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-surface);
+      border-color: var(--border-strong);
+      color: var(--text-primary);
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:focus-visible {
+      background-color: var(--bg-tint);
+      border-color: var(--pine-deep);
+    }
+
+    .btn-sage {
+      background-color: var(--bg-sage-soft);
+      border-color: var(--border-subtle);
+      color: var(--pine-deep);
+    }
+
+    .btn-sage:hover,
+    .btn-sage:focus-visible {
+      background-color: #D5E4DC;
+      border-color: var(--sage-accent);
+    }
+
+    .btn-sm {
+      padding: 8px 14px;
+      font-size: 0.875rem;
+    }
+
+    .contact-inline-link {
+      white-space: nowrap;
+      word-break: normal;
+      text-decoration: none;
+      color: var(--pine-deep);
+      font-weight: 600;
+      border-bottom: 1px solid rgba(21, 62, 53, 0.25);
+      transition: border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .contact-inline-link:hover {
+      color: var(--pine-hover);
+      border-bottom-color: var(--pine-deep);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 56px 0 64px;
+      border-bottom: 1px solid var(--border-subtle);
+      background:
+        radial-gradient(circle at 86% 14%, rgba(78, 121, 102, 0.09), transparent 44%),
+        linear-gradient(180deg, #F7F9F8 0%, #F2F6F4 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-surface);
+      color: var(--pine-deep);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--sage-accent);
+      flex-shrink: 0;
+    }
+
+    .hero h1 {
+      margin: 0 0 18px;
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(2.45rem, 4.4vw, 3.85rem);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--pine-deep);
+    }
+
+    .hero-lead {
+      margin: 0 0 28px;
+      max-width: 58ch;
+      font-size: 1.0625rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .hero-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .pillar-box {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .pillar-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--sage-accent);
+      margin-bottom: 4px;
+    }
+
+    .pillar-value {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .hero-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 18px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .hero-card-title {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 1.65rem;
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--text-primary);
+    }
+
+    .hero-card-sub {
+      margin: 4px 0 0;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .practice-facts {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .fact-row {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-tint);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .fact-kicker {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .fact-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      max-width: 100%;
+    }
+
+    .fact-value a {
+      white-space: nowrap;
+      word-break: normal;
+      text-decoration: none;
+      color: var(--pine-deep);
+    }
+
+    .fact-value a:hover {
+      text-decoration: underline;
+    }
+
+    .hero-card-footer {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    /* Section scaffold */
+    .section {
+      padding: 68px 0;
+    }
+
+    .section-tint {
+      background-color: var(--bg-tint);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--sage-accent);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(1.9rem, 3vw, 2.55rem);
+      line-height: 1.12;
+      color: var(--text-primary);
+    }
+
+    .section-desc {
+      margin: 0;
+      max-width: 52ch;
+      color: var(--text-secondary);
+      font-size: 0.96875rem;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 26px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--border-strong);
+      box-shadow: 0 4px 16px rgba(19, 33, 29, 0.06);
+    }
+
+    .service-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-tint);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--pine-deep);
+    }
+
+    .service-title {
+      margin: 0 0 6px;
+      font-size: 1.1875rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .service-text {
+      margin: 0;
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .service-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .service-tag {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .service-jump {
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-tint);
+      color: var(--pine-deep);
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .service-jump:hover {
+      background-color: var(--bg-sage-soft);
+      border-color: var(--sage-accent);
+    }
+
+    /* Estimator & Appointment Workspace */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.92fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .panel-title {
+      margin: 0 0 4px;
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 1.15;
+      color: var(--text-primary);
+    }
+
+    .panel-subtitle {
+      margin: 0 0 22px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .step-block {
+      margin-bottom: 24px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .step-block:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .step-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background-color: var(--pine-deep);
+      color: #FFFFFF;
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .segmented-group {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .segment-btn {
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-canvas);
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .segment-btn[aria-checked="true"] {
+      background-color: var(--bg-sage-soft);
+      border-color: var(--pine-deep);
+      color: var(--pine-deep);
+    }
+
+    .segment-badge {
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+    .segment-btn[aria-checked="true"] .segment-badge {
+      background-color: var(--pine-deep);
+      border-color: var(--pine-deep);
+      color: #FFFFFF;
+    }
+
+    .controls-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .controls-grid .field-full {
+      grid-column: 1 / -1;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .field label {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .field-hint {
+      font-size: 0.79rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .control-input,
+    .control-select,
+    .control-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      font-size: 0.9375rem;
+      line-height: 1.4;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .control-input:focus,
+    .control-select:focus,
+    .control-textarea:focus {
+      outline: none;
+      border-color: var(--pine-deep);
+      box-shadow: 0 0 0 3px rgba(21, 62, 53, 0.12);
+    }
+
+    .control-select:disabled {
+      background-color: var(--bg-tint);
+      color: var(--text-muted);
+      cursor: not-allowed;
+    }
+
+    .patient-notice {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-tint);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* Preset & Category Filters */
+    .preset-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .preset-caption {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-right: 4px;
+    }
+
+    .chip-btn {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-canvas);
+      color: var(--text-secondary);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .chip-btn:hover {
+      border-color: var(--sage-accent);
+      color: var(--pine-deep);
+    }
+
+    .chip-btn.active {
+      background-color: var(--pine-deep);
+      border-color: var(--pine-deep);
+      color: #FFFFFF;
+    }
+
+    .category-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .tab-btn {
+      padding: 7px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-surface);
+      color: var(--text-secondary);
+      font-size: 0.83rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .tab-btn.active {
+      background-color: var(--bg-sage-soft);
+      border-color: var(--pine-deep);
+      color: var(--pine-deep);
+    }
+
+    /* Procedure Rows */
+    .procedure-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .procedure-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-canvas);
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .procedure-row.selected {
+      background-color: var(--bg-surface);
+      border-color: var(--pine-deep);
+      box-shadow: 0 2px 10px rgba(21, 62, 53, 0.06);
+    }
+
+    .proc-info {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .proc-title-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .proc-name {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .proc-code {
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background-color: var(--bg-tint);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+    .proc-subline {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.83rem;
+      color: var(--text-secondary);
+    }
+
+    .proc-benefit-note {
+      color: var(--pine-deep);
+      font-weight: 500;
+    }
+
+    .proc-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .proc-fee-col {
+      text-align: right;
+    }
+
+    .proc-unit-fee {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .proc-unit-label {
+      display: block;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    .stepper {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
+      overflow: hidden;
+    }
+
+    .step-btn {
+      width: 34px;
+      height: 34px;
+      border: none;
+      background-color: transparent;
+      color: var(--text-primary);
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .step-btn:hover:not(:disabled) {
+      background-color: var(--bg-tint);
+      color: var(--pine-deep);
+    }
+
+    .step-btn:disabled {
+      color: #B1BEB7;
+      cursor: not-allowed;
+    }
+
+    .step-qty {
+      min-width: 30px;
+      text-align: center;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      border-left: 1px solid var(--border-subtle);
+      border-right: 1px solid var(--border-subtle);
+      padding: 6px 4px;
+      line-height: 1.2;
+    }
+
+    /* Sticky Right Column */
+    .summary-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      position: sticky;
+      top: 94px;
+    }
+
+    .summary-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .status-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-tint);
+      color: var(--pine-deep);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .line-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .line-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .line-item-main {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .line-item-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .line-item-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .line-item-amounts {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .line-item-oop {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .line-item-benefit {
+      font-size: 0.77rem;
+      color: var(--sage-accent);
+      font-weight: 600;
+    }
+
+    .remove-line-btn {
+      margin-left: 6px;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-surface);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.9rem;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: border-color 0.16s ease, color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .remove-line-btn:hover {
+      border-color: var(--pine-deep);
+      color: var(--pine-deep);
+      background-color: var(--bg-tint);
+    }
+
+    .empty-plan {
+      padding: 20px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px dashed var(--border-strong);
+      background-color: var(--bg-canvas);
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .totals-box {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-bottom: 16px;
+    }
+
+    .total-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+    }
+
+    .total-row strong {
+      color: var(--text-primary);
+    }
+
+    .total-row.benefit-row {
+      color: var(--sage-accent);
+      font-weight: 600;
+    }
+
+    .oop-highlight {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-sage-soft);
+      border: 1px solid var(--pine-deep);
+      margin-top: 4px;
+    }
+
+    .oop-label {
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: var(--pine-deep);
+    }
+
+    .oop-sub {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .oop-amount {
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--pine-deep);
+      line-height: 1.1;
+    }
+
+    .estimate-disclaimer {
+      margin: 0 0 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .estimate-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .estimate-actions .btn {
+      flex: 1 1 auto;
+    }
+
+    .mailto-action {
+      white-space: nowrap;
+      word-break: normal;
+    }
+
+    .copy-feedback {
+      margin-top: 10px;
+      min-height: 20px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--pine-deep);
+    }
+
+    /* Appointment Form */
+    .appt-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .appt-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-canvas);
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin: 2px 0 0;
+      accent-color: var(--pine-deep);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .checkbox-row label {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .form-error {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--cedar-border);
+      background-color: var(--cedar-bg);
+      color: var(--cedar-warm);
+      font-size: 0.86rem;
+      font-weight: 500;
+    }
+
+    .request-confirmation {
+      padding: 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--pine-deep);
+      background-color: var(--bg-tint);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .request-confirmation-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--pine-deep);
+    }
+
+    .request-preview {
+      margin: 0;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-surface);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .confirmation-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Visit & Contact Section */
+    .visit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .visit-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .visit-card-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--sage-accent);
+    }
+
+    .visit-card h3 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 1.45rem;
+      color: var(--text-primary);
+    }
+
+    .visit-card p {
+      margin: 0;
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .visit-link-wrap {
+      margin-top: 4px;
+      max-width: 100%;
+    }
+
+    .visit-link-wrap a {
+      white-space: nowrap;
+      word-break: normal;
+      font-weight: 600;
+      color: var(--pine-deep);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(21, 62, 53, 0.3);
+    }
+
+    .visit-link-wrap a:hover {
+      border-bottom-color: var(--pine-deep);
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg-tint);
+      border-top: 1px solid var(--border-subtle);
+      padding: 36px 0;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .footer-brand {
+      max-width: 40ch;
+    }
+
+    .footer-name {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--text-primary);
+      margin: 0 0 6px;
+    }
+
+    .footer-copy {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+
+    .footer-links a {
+      white-space: nowrap;
+      word-break: normal;
+      text-decoration: none;
+      color: var(--pine-deep);
+      font-weight: 600;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1040px) {
+      .hero-grid,
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-stack {
+        position: static;
+      }
+
+      .visit-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 860px) {
+      .main-nav,
+      .header-phone {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        padding-inline: 16px;
+      }
+
+      .hero {
+        padding: 36px 0 44px;
+      }
+
+      .section {
+        padding: 46px 0;
+      }
+
+      .hero-pillars,
+      .services-grid,
+      .controls-grid,
+      .appt-row-2,
+      .segmented-group,
+      .visit-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .panel,
+      .hero-card,
+      .service-card,
+      .visit-card {
+        padding: 20px 18px;
+      }
+
+      .procedure-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .proc-controls {
+        justify-content: space-between;
+        padding-top: 10px;
+        border-top: 1px solid var(--border-subtle);
+      }
+
+      .proc-fee-col {
+        text-align: left;
+      }
+
+      .estimate-actions {
+        flex-direction: column;
+      }
+
+      .header-cta {
+        display: none;
+      }
+
+      .brand-name {
+        font-size: 1.32rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Cascade Dental Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M5 17L12 6.5L19 17" stroke="#F7F9F8" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8.5 19.5H15.5" stroke="#8DB39F" stroke-width="2.1" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <span class="brand-name">Cascade Dental</span>
+          <span class="brand-loc">Vancouver, WA</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#estimator">Insurance &amp; Fee Estimator</a></li>
+          <li><a href="#appointment">Appointment Request</a></li>
+          <li><a href="#contact">Visit Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="header-phone tabular-nums" href="tel:+13603090683">(360) 309-0683</a>
+        <a class="btn btn-primary btn-sm header-cta" href="#estimator">Plan &amp; Fees</a>
+        <button
+          type="button"
+          class="mobile-menu-btn"
+          id="mobile-menu-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-drawer"
+        >
+          Menu
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobile-drawer">
+      <ul class="mobile-drawer-list">
+        <li><a href="#services" class="drawer-link">Services</a></li>
+        <li><a href="#estimator" class="drawer-link">Insurance &amp; Fee Estimator</a></li>
+        <li><a href="#appointment" class="drawer-link">Appointment Request</a></li>
+        <li><a href="#contact" class="drawer-link">Visit Us</a></li>
+      </ul>
+      <div class="mobile-drawer-contact">
+        <a class="contact-inline-link tabular-nums" href="tel:+13603090683">(360) 309-0683</a>
+        <a class="contact-inline-link" href="mailto:marilyn.c@cascadedental.com">marilyn.c@cascadedental.com</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            Private Dental Practice · Vancouver, WA
+          </span>
+          <h1>Calm, thorough care built for <em>lasting smiles</em>.</h1>
+          <p class="hero-lead">
+            Located on SE McGillivray Blvd in East Vancouver, Cascade Dental pairs conservative preventive dentistry with precision restorative crowns, cosmetic smile makeovers, and guided dental implants. Preview your estimated insurance benefit and out-of-pocket fees before you schedule.
+          </p>
+          <div class="hero-cta-row">
+            <a class="btn btn-primary" href="#estimator">Open Fee &amp; Insurance Estimator</a>
+            <a class="btn btn-secondary" href="#appointment">Request an Appointment</a>
+          </div>
+          <div class="hero-pillars">
+            <div class="pillar-box">
+              <span class="pillar-label">Preventive Focus</span>
+              <span class="pillar-value">Family &amp; Hygiene Care</span>
+            </div>
+            <div class="pillar-box">
+              <span class="pillar-label">Clear Pricing</span>
+              <span class="pillar-value">Itemized USD Estimates</span>
+            </div>
+            <div class="pillar-box">
+              <span class="pillar-label">Direct Access</span>
+              <span class="pillar-value">Private Practice Continuity</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Practice Contact Card">
+          <div class="hero-card-top">
+            <div>
+              <h2 class="hero-card-title">Cascade Dental</h2>
+              <p class="hero-card-sub">East Vancouver Clinical Office</p>
+            </div>
+            <svg width="42" height="42" viewBox="0 0 42 42" fill="none" aria-hidden="true">
+              <rect width="42" height="42" rx="10" fill="#EFF4F1"/>
+              <path d="M12 25.5L21 12.5L30 25.5" stroke="#153E35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 29H26" stroke="#4E7966" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <div class="practice-facts">
+            <div class="fact-row">
+              <span class="fact-kicker">Office Address</span>
+              <span class="fact-value">16703 SE McGillivray Blvd, Ste 100, Vancouver, WA 98683</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-kicker">Scheduling Phone</span>
+              <span class="fact-value tabular-nums">
+                <a href="tel:+13603090683">(360) 309-0683</a>
+              </span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-kicker">Patient Coordinator Email</span>
+              <span class="fact-value">
+                <a href="mailto:marilyn.c@cascadedental.com">marilyn.c@cascadedental.com</a>
+              </span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-kicker">Practice Website</span>
+              <span class="fact-value">
+                <a href="https://www.cascadedental.com" target="_blank" rel="noopener noreferrer">https://www.cascadedental.com</a>
+              </span>
+            </div>
+          </div>
+
+          <div class="hero-card-footer">
+            <span>New and returning patients welcome</span>
+            <a class="contact-inline-link" href="#estimator">Preview coverage</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-kicker">Clinical Disciplines</span>
+            <h2 class="section-title">Comprehensive care under one Vancouver roof</h2>
+          </div>
+          <p class="section-desc">
+            Select any service below to filter our treatment estimator and see transparent unit pricing alongside common insurance tiers.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-top">
+              <div class="service-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3C7.5 3 5.5 6.2 5.5 9.8C5.5 14 7.3 19.5 9.4 20.8C10.4 21.4 11.2 19.2 12 16.5C12.8 19.2 13.6 21.4 14.6 20.8C16.7 19.5 18.5 14 18.5 9.8C18.5 6.2 16.5 3 12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="service-title">Family &amp; Preventive Dentistry</h3>
+                <p class="service-text">
+                  Thorough diagnostic exams, gentle adult and pediatric cleanings, low-dose digital X-rays, periodontal maintenance, and preventive enamel protection tailored for every stage of life.
+                </p>
+              </div>
+            </div>
+            <div class="service-meta">
+              <span class="service-tag">Typically 100% covered on PPO plans</span>
+              <button type="button" class="service-jump" data-filter-jump="preventive">Estimate Preventive Care</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-top">
+              <div class="service-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 10.5L9 5H15L18 10.5V16.5C18 18.2 16.7 19.5 15 19.5H9C7.3 19.5 6 18.2 6 16.5V10.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M6 11.5H18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="service-title">Restorative Crowns &amp; Bridges</h3>
+                <p class="service-text">
+                  Custom-shaded ceramic crowns, fixed multi-unit porcelain bridges, tooth-colored composite fillings, and structural core buildups engineered for natural bite comfort and durability.
+                </p>
+              </div>
+            </div>
+            <div class="service-meta">
+              <span class="service-tag">Custom shade matching &amp; bite fit</span>
+              <button type="button" class="service-jump" data-filter-jump="restorative">Estimate Crowns &amp; Bridges</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-top">
+              <div class="service-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M4.5 12C6.5 16.2 9 18 12 18C15 18 17.5 16.2 19.5 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  <path d="M7.5 8.5L12 5.5L16.5 8.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="service-title">Cosmetic Smile Makeovers</h3>
+                <p class="service-text">
+                  Conservative handcrafted porcelain veneers, professional in-office whitening, and clear aligner therapy designed to brighten and balance your natural smile without over-treatment.
+                </p>
+              </div>
+            </div>
+            <div class="service-meta">
+              <span class="service-tag">Wellness Plan direct savings eligible</span>
+              <button type="button" class="service-jump" data-filter-jump="cosmetic">Estimate Cosmetic Care</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-top">
+              <div class="service-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M8.5 4.5H15.5L14.8 10.5H9.2L8.5 4.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M10 10.5V19.5L12 21L14 19.5V10.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M9.6 13.8H14.4M9.8 16.8H14.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="service-title">Dental Implants</h3>
+                <p class="service-text">
+                  3D CBCT diagnostic planning, biocompatible implant fixtures, gentle site bone preservation, and custom implant crowns that restore full chewing stability and bone health.
+                </p>
+              </div>
+            </div>
+            <div class="service-meta">
+              <span class="service-tag">3D guided single &amp; multi-tooth planning</span>
+              <button type="button" class="service-jump" data-filter-jump="implants">Estimate Dental Implants</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tint" id="estimator">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-kicker">Interactive Financial Tool</span>
+            <h2 class="section-title">New Patient Insurance &amp; Treatment Plan Estimator</h2>
+          </div>
+          <p class="section-desc">
+            Choose your patient status, insurance coverage tier, and procedures by tooth or visit unit. Your itemized USD breakdown updates immediately and attaches directly to your appointment request.
+          </p>
+        </div>
+
+        <div class="workspace-grid">
+          <!-- Left Column: Controls & Procedure Steppers -->
+          <div class="panel">
+            <div class="step-block">
+              <h3 class="step-heading">
+                <span class="step-num">1</span>
+                Patient Status &amp; Insurance Coverage Tier
+              </h3>
+
+              <div class="segmented-group" role="radiogroup" aria-label="Patient Status">
+                <button type="button" class="segment-btn" role="radio" aria-checked="true" data-patient-status="new">
+                  <span>New Patient</span>
+                  <span class="segment-badge">First Visit</span>
+                </button>
+                <button type="button" class="segment-btn" role="radio" aria-checked="false" data-patient-status="returning">
+                  <span>Returning Patient</span>
+                  <span class="segment-badge">Active Care</span>
+                </button>
+              </div>
+
+              <div class="controls-grid">
+                <div class="field field-full">
+                  <label for="insurance-tier">Insurance or Wellness Coverage Tier</label>
+                  <select id="insurance-tier" class="control-select" autocomplete="off">
+                    <option value="ppo-premier">PPO Premier / Standard (100% Preventive · 80% Basic · 50% Major)</option>
+                    <option value="ppo-core">PPO Core Plan (100% Preventive · 70% Basic · 50% Major)</option>
+                    <option value="wellness">Cascade Wellness Plan (15% Direct Care Savings · No Cap)</option>
+                    <option value="self-pay">Self-Pay / No Insurance (Direct Transparent Fee Schedule)</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="deductible-status">Annual Deductible Status</label>
+                  <select id="deductible-status" class="control-select" autocomplete="off">
+                    <option value="0">Deductible Already Met ($0)</option>
+                    <option value="50" selected>$50 Individual Deductible Remaining</option>
+                    <option value="75">$75 Deductible Remaining</option>
+                    <option value="100">$100 High-Deductible Remaining</option>
+                  </select>
+                  <span class="field-hint" id="deductible-hint">Waived on preventive visits; applies once to Basic or Major care.</span>
+                </div>
+
+                <div class="field">
+                  <label for="annual-cap">Annual Insurance Maximum Remaining</label>
+                  <select id="annual-cap" class="control-select" autocomplete="off">
+                    <option value="1500" selected>$1,500 Annual Maximum</option>
+                    <option value="2000">$2,000 Annual Maximum</option>
+                    <option value="2500">$2,500 Annual Maximum</option>
+                    <option value="0">No Cap Preview (Percentage Only)</option>
+                  </select>
+                  <span class="field-hint" id="cap-hint">Limits estimated annual PPO payout if restorative total is high.</span>
+                </div>
+              </div>
+
+              <div class="patient-notice" id="patient-notice">
+                New patient appointments include a comprehensive oral evaluation, periodontal charting, and individualized treatment pacing.
+              </div>
+            </div>
+
+            <div class="step-block">
+              <h3 class="step-heading">
+                <span class="step-num">2</span>
+                Select Procedures &amp; Tooth / Unit Counts
+              </h3>
+
+              <div class="preset-bar" aria-label="Quick Sample Plans">
+                <span class="preset-caption">Quick scenarios:</span>
+                <button type="button" class="chip-btn active" data-preset="new-visit">New Patient Checkup</button>
+                <button type="button" class="chip-btn" data-preset="single-crown">Single Crown</button>
+                <button type="button" class="chip-btn" data-preset="single-implant">Single Implant</button>
+                <button type="button" class="chip-btn" data-preset="cosmetic-refresh">Smile Refresh</button>
+                <button type="button" class="chip-btn" data-preset="clear">Clear All</button>
+              </div>
+
+              <div class="category-tabs" role="tablist" aria-label="Filter Procedures by Service">
+                <button type="button" class="tab-btn active" role="tab" aria-selected="true" data-category="all">All Services</button>
+                <button type="button" class="tab-btn" role="tab" aria-selected="false" data-category="preventive">Family &amp; Preventive</button>
+                <button type="button" class="tab-btn" role="tab" aria-selected="false" data-category="restorative">Crowns &amp; Bridges</button>
+                <button type="button" class="tab-btn" role="tab" aria-selected="false" data-category="cosmetic">Cosmetic Makeovers</button>
+                <button type="button" class="tab-btn" role="tab" aria-selected="false" data-category="implants">Dental Implants</button>
+              </div>
+
+              <div class="procedure-list" id="procedure-list"></div>
+            </div>
+          </div>
+
+          <!-- Right Column: Sticky Itemized Estimate + Appointment Form -->
+          <div class="summary-stack">
+            <div class="panel" aria-live="polite">
+              <div class="summary-header">
+                <div>
+                  <h3 class="panel-title">Itemized USD Estimate</h3>
+                  <p class="panel-subtitle">Live preview updates as procedures change</p>
+                </div>
+              </div>
+
+              <div class="status-badges" id="summary-badges"></div>
+
+              <div id="line-items-container"></div>
+
+              <div class="totals-box" id="totals-box"></div>
+
+              <p class="estimate-disclaimer">
+                Fees reflect standard Cascade Dental Vancouver estimates in USD. Our team confirms exact in-network benefits and pre-authorization before care begins.
+              </p>
+
+              <div class="estimate-actions">
+                <button type="button" class="btn btn-secondary" id="copy-estimate-btn">Copy USD Estimate</button>
+                <a class="btn btn-sage mailto-action" id="quick-mailto-btn" href="mailto:marilyn.c@cascadedental.com">Email Estimate</a>
+              </div>
+              <div class="copy-feedback" id="copy-feedback" role="status"></div>
+            </div>
+
+            <div class="panel" id="appointment">
+              <h3 class="panel-title">Online Appointment Request</h3>
+              <p class="panel-subtitle">Send your preferred visit window and treatment estimate to our coordinator.</p>
+
+              <form class="appt-form" id="appointment-form" novalidate>
+                <div class="field">
+                  <label for="appt-patient-type">Patient Type</label>
+                  <select id="appt-patient-type" class="control-select" autocomplete="off">
+                    <option value="new">New Patient</option>
+                    <option value="returning">Returning Patient</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="appt-name">Full Name</label>
+                  <input id="appt-name" type="text" class="control-input" autocomplete="name" placeholder="Jordan Taylor" required>
+                </div>
+
+                <div class="appt-row-2">
+                  <div class="field">
+                    <label for="appt-email">Email Address</label>
+                    <input id="appt-email" type="email" class="control-input" autocomplete="email" placeholder="jordan@example.com" required>
+                  </div>
+                  <div class="field">
+                    <label for="appt-phone">Phone Number</label>
+                    <input id="appt-phone" type="tel" class="control-input" autocomplete="tel" placeholder="(360) 555-0148" required>
+                  </div>
+                </div>
+
+                <div class="appt-row-2">
+                  <div class="field">
+                    <label for="appt-window">Preferred Time Window</label>
+                    <select id="appt-window" class="control-select" autocomplete="off">
+                      <option value="Morning (8:00 AM - 11:30 AM)">Morning (8:00 AM - 11:30 AM)</option>
+                      <option value="Midday (11:30 AM - 2:30 PM)">Midday (11:30 AM - 2:30 PM)</option>
+                      <option value="Afternoon (2:30 PM - 5:00 PM)">Afternoon (2:30 PM - 5:00 PM)</option>
+                      <option value="First Available Opening">First Available Opening</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="appt-date">Preferred Date</label>
+                    <input id="appt-date" type="date" class="control-input" autocomplete="off">
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="appt-notes">Insurance Carrier or Clinical Notes</label>
+                  <textarea id="appt-notes" class="control-textarea" rows="3" placeholder="Optional: share your PPO carrier name, tooth focus, or comfort preferences."></textarea>
+                </div>
+
+                <div class="checkbox-row">
+                  <input id="appt-include-estimate" type="checkbox" autocomplete="off" checked>
+                  <label for="appt-include-estimate">Attach my itemized USD estimate and selected procedures</label>
+                </div>
+
+                <div class="form-error" id="form-error" hidden></div>
+
+                <button type="submit" class="btn btn-primary">Prepare Appointment Request</button>
+
+                <div class="request-confirmation" id="request-confirmation" hidden>
+                  <h4 class="request-confirmation-title">Request summary ready to send</h4>
+                  <pre class="request-preview" id="request-preview"></pre>
+                  <div class="confirmation-actions">
+                    <a class="btn btn-primary mailto-action" id="final-mailto-link" href="mailto:marilyn.c@cascadedental.com">Send Request via Email</a>
+                    <button type="button" class="btn btn-secondary" id="copy-request-btn">Copy Full Request Text</button>
+                    <p class="field-hint">Recipient: <a class="contact-inline-link" href="mailto:marilyn.c@cascadedental.com">marilyn.c@cascadedental.com</a></p>
+                  </div>
+                  <div class="copy-feedback" id="request-copy-feedback" role="status"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-kicker">East Vancouver Location</span>
+            <h2 class="section-title">Visit or contact Cascade Dental</h2>
+          </div>
+          <p class="section-desc">
+            Conveniently situated along SE McGillivray Blvd in Vancouver, Washington, with direct scheduling by phone or email.
+          </p>
+        </div>
+
+        <div class="visit-grid">
+          <div class="visit-card">
+            <span class="visit-card-label">Practice Address</span>
+            <h3>East Vancouver Office</h3>
+            <p>16703 SE McGillivray Blvd, Ste 100, Vancouver, WA 98683</p>
+            <div class="visit-link-wrap">
+              <a href="https://www.cascadedental.com" target="_blank" rel="noopener noreferrer">cascadedental.com</a>
+            </div>
+          </div>
+
+          <div class="visit-card">
+            <span class="visit-card-label">Telephone</span>
+            <h3>Direct Scheduling</h3>
+            <p>Speak with our front desk team to confirm upcoming openings or verify dental benefits.</p>
+            <div class="visit-link-wrap tabular-nums">
+              <a href="tel:+13603090683">(360) 309-0683</a>
+            </div>
+          </div>
+
+          <div class="visit-card">
+            <span class="visit-card-label">Coordinator Email</span>
+            <h3>Questions &amp; Estimates</h3>
+            <p>Send insurance card details, pre-visit questions, or your treatment estimator summary directly.</p>
+            <div class="visit-link-wrap">
+              <a href="mailto:marilyn.c@cascadedental.com">marilyn.c@cascadedental.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <p class="footer-name">Cascade Dental</p>
+        <p class="footer-copy">16703 SE McGillivray Blvd, Ste 100, Vancouver, WA 98683</p>
+        <p class="footer-copy">Family &amp; Preventive Dentistry · Restorative Crowns &amp; Bridges · Cosmetic Smile Makeovers · Dental Implants</p>
+      </div>
+      <div class="footer-links">
+        <a class="tabular-nums" href="tel:+13603090683">(360) 309-0683</a>
+        <a href="mailto:marilyn.c@cascadedental.com">marilyn.c@cascadedental.com</a>
+        <a href="https://www.cascadedental.com" target="_blank" rel="noopener noreferrer">https://www.cascadedental.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var PROCEDURES = [
+        {
+          id: 'np-exam-xray',
+          code: 'D0150 / D0210',
+          name: 'Comprehensive New Patient Exam & Digital X-Rays',
+          category: 'preventive',
+          categoryLabel: 'Family & Preventive',
+          benefitClass: 'preventive',
+          unitSingular: 'visit',
+          unitPlural: 'visits',
+          fee: 245,
+          maxQty: 2
+        },
+        {
+          id: 'adult-cleaning',
+          code: 'D1110',
+          name: 'Adult Routine Prophylaxis Cleaning',
+          category: 'preventive',
+          categoryLabel: 'Family & Preventive',
+          benefitClass: 'preventive',
+          unitSingular: 'visit',
+          unitPlural: 'visits',
+          fee: 145,
+          maxQty: 4
+        },
+        {
+          id: 'child-cleaning',
+          code: 'D1120 / D1206',
+          name: 'Child Preventive Cleaning & Fluoride Varnish',
+          category: 'preventive',
+          categoryLabel: 'Family & Preventive',
+          benefitClass: 'preventive',
+          unitSingular: 'child',
+          unitPlural: 'children',
+          fee: 125,
+          maxQty: 6
+        },
+        {
+          id: 'perio-maint',
+          code: 'D4910',
+          name: 'Periodontal Maintenance Visit',
+          category: 'preventive',
+          categoryLabel: 'Family & Preventive',
+          benefitClass: 'preventive',
+          unitSingular: 'visit',
+          unitPlural: 'visits',
+          fee: 185,
+          maxQty: 4
+        },
+        {
+          id: 'composite-filling',
+          code: 'D2392',
+          name: 'Tooth-Colored Composite Filling',
+          category: 'restorative',
+          categoryLabel: 'Crowns & Bridges',
+          benefitClass: 'basic',
+          unitSingular: 'tooth',
+          unitPlural: 'teeth',
+          fee: 265,
+          maxQty: 8
+        },
+        {
+          id: 'ceramic-crown',
+          code: 'D2740',
+          name: 'All-Ceramic Porcelain Crown',
+          category: 'restorative',
+          categoryLabel: 'Crowns & Bridges',
+          benefitClass: 'major',
+          unitSingular: 'tooth',
+          unitPlural: 'teeth',
+          fee: 1420,
+          maxQty: 8
+        },
+        {
+          id: 'bridge-unit',
+          code: 'D6245 / D6740',
+          name: 'Zirconia / Porcelain Bridge Unit',
+          category: 'restorative',
+          categoryLabel: 'Crowns & Bridges',
+          benefitClass: 'major',
+          unitSingular: 'unit',
+          unitPlural: 'units',
+          fee: 1380,
+          maxQty: 6
+        },
+        {
+          id: 'core-buildup',
+          code: 'D2950',
+          name: 'Restorative Core Buildup',
+          category: 'restorative',
+          categoryLabel: 'Crowns & Bridges',
+          benefitClass: 'major',
+          unitSingular: 'tooth',
+          unitPlural: 'teeth',
+          fee: 320,
+          maxQty: 8
+        },
+        {
+          id: 'porcelain-veneer',
+          code: 'D2962',
+          name: 'Custom Porcelain Veneer',
+          category: 'cosmetic',
+          categoryLabel: 'Cosmetic Makeovers',
+          benefitClass: 'cosmetic',
+          unitSingular: 'tooth',
+          unitPlural: 'teeth',
+          fee: 1490,
+          maxQty: 10
+        },
+        {
+          id: 'whitening-session',
+          code: 'D9972',
+          name: 'In-Office Professional Whitening',
+          category: 'cosmetic',
+          categoryLabel: 'Cosmetic Makeovers',
+          benefitClass: 'cosmetic',
+          unitSingular: 'session',
+          unitPlural: 'sessions',
+          fee: 485,
+          maxQty: 2
+        },
+        {
+          id: 'clear-aligners',
+          code: 'COS-ALIGN',
+          name: 'Clear Aligner Smile Package',
+          category: 'cosmetic',
+          categoryLabel: 'Cosmetic Makeovers',
+          benefitClass: 'cosmetic',
+          unitSingular: 'plan',
+          unitPlural: 'plans',
+          fee: 4650,
+          maxQty: 1
+        },
+        {
+          id: 'cbct-scan',
+          code: 'D0367',
+          name: '3D CBCT Diagnostic Implant Scan',
+          category: 'implants',
+          categoryLabel: 'Dental Implants',
+          benefitClass: 'basic',
+          unitSingular: 'scan',
+          unitPlural: 'scans',
+          fee: 340,
+          maxQty: 2
+        },
+        {
+          id: 'implant-fixture',
+          code: 'D6010',
+          name: 'Titanium / Ceramic Dental Implant Fixture',
+          category: 'implants',
+          categoryLabel: 'Dental Implants',
+          benefitClass: 'major',
+          unitSingular: 'implant',
+          unitPlural: 'implants',
+          fee: 2250,
+          maxQty: 6
+        },
+        {
+          id: 'implant-crown',
+          code: 'D6057 / D6058',
+          name: 'Custom Implant Abutment & Ceramic Crown',
+          category: 'implants',
+          categoryLabel: 'Dental Implants',
+          benefitClass: 'major',
+          unitSingular: 'unit',
+          unitPlural: 'units',
+          fee: 1950,
+          maxQty: 6
+        },
+        {
+          id: 'bone-graft',
+          code: 'D7953',
+          name: 'Socket Bone Graft & Site Preservation',
+          category: 'implants',
+          categoryLabel: 'Dental Implants',
+          benefitClass: 'major',
+          unitSingular: 'site',
+          unitPlural: 'sites',
+          fee: 620,
+          maxQty: 6
+        }
+      ];
+
+      var TIERS = {
+        'ppo-premier': {
+          label: 'PPO Premier / Standard',
+          isPpo: true,
+          rates: { preventive: 1.0, basic: 0.8, major: 0.5, cosmetic: 0.0 }
+        },
+        'ppo-core': {
+          label: 'PPO Core Plan',
+          isPpo: true,
+          rates: { preventive: 1.0, basic: 0.7, major: 0.5, cosmetic: 0.0 }
+        },
+        'wellness': {
+          label: 'Cascade Wellness Plan (15% Savings)',
+          isPpo: false,
+          rates: { preventive: 0.15, basic: 0.15, major: 0.15, cosmetic: 0.15 }
+        },
+        'self-pay': {
+          label: 'Self-Pay / Direct Schedule',
+          isPpo: false,
+          rates: { preventive: 0.0, basic: 0.0, major: 0.0, cosmetic: 0.0 }
+        }
+      };
+
+      var PRESETS = {
+        'new-visit': {
+          'np-exam-xray': 1,
+          'adult-cleaning': 1
+        },
+        'single-crown': {
+          'ceramic-crown': 1,
+          'core-buildup': 1
+        },
+        'single-implant': {
+          'cbct-scan': 1,
+          'implant-fixture': 1,
+          'implant-crown': 1
+        },
+        'cosmetic-refresh': {
+          'adult-cleaning': 1,
+          'whitening-session': 1,
+          'porcelain-veneer': 2
+        },
+        'clear': {}
+      };
+
+      var state = {
+        patientStatus: 'new',
+        tierId: 'ppo-premier',
+        deductible: 50,
+        annualCap: 1500,
+        activeCategory: 'all',
+        activePreset: 'new-visit',
+        quantities: {
+          'np-exam-xray': 1,
+          'adult-cleaning': 1
+        }
+      };
+
+      // DOM refs
+      var mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      var mobileDrawer = document.getElementById('mobile-drawer');
+      var patientButtons = document.querySelectorAll('[data-patient-status]');
+      var tierSelect = document.getElementById('insurance-tier');
+      var deductibleSelect = document.getElementById('deductible-status');
+      var annualCapSelect = document.getElementById('annual-cap');
+      var deductibleHint = document.getElementById('deductible-hint');
+      var capHint = document.getElementById('cap-hint');
+      var patientNotice = document.getElementById('patient-notice');
+      var presetButtons = document.querySelectorAll('[data-preset]');
+      var categoryTabs = document.querySelectorAll('[data-category]');
+      var procedureListEl = document.getElementById('procedure-list');
+      var summaryBadgesEl = document.getElementById('summary-badges');
+      var lineItemsEl = document.getElementById('line-items-container');
+      var totalsBoxEl = document.getElementById('totals-box');
+      var copyEstimateBtn = document.getElementById('copy-estimate-btn');
+      var quickMailtoBtn = document.getElementById('quick-mailto-btn');
+      var copyFeedbackEl = document.getElementById('copy-feedback');
+
+      var apptForm = document.getElementById('appointment-form');
+      var apptPatientSelect = document.getElementById('appt-patient-type');
+      var apptNameInput = document.getElementById('appt-name');
+      var apptEmailInput = document.getElementById('appt-email');
+      var apptPhoneInput = document.getElementById('appt-phone');
+      var apptWindowSelect = document.getElementById('appt-window');
+      var apptDateInput = document.getElementById('appt-date');
+      var apptNotesInput = document.getElementById('appt-notes');
+      var apptIncludeEstimate = document.getElementById('appt-include-estimate');
+      var formErrorEl = document.getElementById('form-error');
+      var confirmationBox = document.getElementById('request-confirmation');
+      var requestPreviewEl = document.getElementById('request-preview');
+      var finalMailtoLink = document.getElementById('final-mailto-link');
+      var copyRequestBtn = document.getElementById('copy-request-btn');
+      var requestCopyFeedback = document.getElementById('request-copy-feedback');
+
+      function formatUSD(amount) {
+        return '$' + Math.round(amount).toLocaleString('en-US');
+      }
+
+      function getCoverageDescriptor(tierId, benefitClass) {
+        var tier = TIERS[tierId];
+        var rate = tier.rates[benefitClass];
+        if (tier.isPpo) {
+          if (rate === 0) {
+            return 'Elective cosmetic · Direct fee';
+          }
+          var pct = Math.round(rate * 100);
+          if (benefitClass === 'preventive') {
+            return 'Est. ' + pct + '% covered · Deductible waived';
+          }
+          return 'Est. ' + pct + '% covered';
+        }
+        if (rate > 0) {
+          return Math.round(rate * 100) + '% Wellness Plan savings';
+        }
+        return 'Direct transparent fee';
+      }
+
+      function computeEstimate() {
+        var tier = TIERS[state.tierId];
+        var lines = [];
+        var standardTotal = 0;
+        var deductibleEligibleFeeTotal = 0;
+
+        PROCEDURES.forEach(function (proc) {
+          var qty = state.quantities[proc.id] || 0;
+          if (qty <= 0) {
+            return;
+          }
+          var lineFee = proc.fee * qty;
+          var rate = tier.rates[proc.benefitClass];
+          standardTotal += lineFee;
+          if (tier.isPpo && rate > 0 && proc.benefitClass !== 'preventive') {
+            deductibleEligibleFeeTotal += lineFee;
+          }
+          lines.push({
+            proc: proc,
+            qty: qty,
+            lineFee: lineFee,
+            rate: rate,
+            deductiblePart: 0,
+            benefitBeforeCap: 0,
+            finalBenefit: 0,
+            outOfPocket: lineFee
+          });
+        });
+
+        var appliedDeductible = 0;
+        if (tier.isPpo && state.deductible > 0 && deductibleEligibleFeeTotal > 0) {
+          appliedDeductible = Math.min(state.deductible, deductibleEligibleFeeTotal);
+        }
+
+        // Allocate deductible sequentially across deductible-eligible lines
+        var remainingDeductible = appliedDeductible;
+        var totalBenefitBeforeCap = 0;
+
+        lines.forEach(function (line) {
+          if (tier.isPpo && line.rate > 0 && line.proc.benefitClass !== 'preventive' && remainingDeductible > 0) {
+            var take = Math.min(remainingDeductible, line.lineFee);
+            line.deductiblePart = take;
+            remainingDeductible -= take;
+            line.benefitBeforeCap = Math.round((line.lineFee - take) * line.rate);
+          } else {
+            line.benefitBeforeCap = Math.round(line.lineFee * line.rate);
+          }
+          totalBenefitBeforeCap += line.benefitBeforeCap;
+        });
+
+        var capExcess = 0;
+        var totalPlanBenefit = totalBenefitBeforeCap;
+        if (tier.isPpo && state.annualCap > 0 && totalBenefitBeforeCap > state.annualCap) {
+          capExcess = totalBenefitBeforeCap - state.annualCap;
+          totalPlanBenefit = state.annualCap;
+        }
+
+        // Distribute final benefit cleanly so line OOP sums to exact total OOP
+        if (totalBenefitBeforeCap > 0 && totalPlanBenefit < totalBenefitBeforeCap) {
+          var scale = totalPlanBenefit / totalBenefitBeforeCap;
+          var allocated = 0;
+          lines.forEach(function (line, idx) {
+            if (idx === lines.length - 1) {
+              line.finalBenefit = Math.max(0, totalPlanBenefit - allocated);
+            } else {
+              line.finalBenefit = Math.round(line.benefitBeforeCap * scale);
+              allocated += line.finalBenefit;
+            }
+            line.outOfPocket = line.lineFee - line.finalBenefit;
+          });
+        } else {
+          lines.forEach(function (line) {
+            line.finalBenefit = line.benefitBeforeCap;
+            line.outOfPocket = line.lineFee - line.finalBenefit;
+          });
+        }
+
+        var estimatedOutOfPocket = Math.max(0, standardTotal - totalPlanBenefit);
+
+        return {
+          tier: tier,
+          lines: lines,
+          standardTotal: standardTotal,
+          appliedDeductible: appliedDeductible,
+          totalBenefitBeforeCap: totalBenefitBeforeCap,
+          capExcess: capExcess,
+          totalPlanBenefit: totalPlanBenefit,
+          estimatedOutOfPocket: estimatedOutOfPocket
+        };
+      }
+
+      function renderProcedures() {
+        procedureListEl.innerHTML = '';
+
+        var visibleProcs = PROCEDURES.filter(function (proc) {
+          return state.activeCategory === 'all' || proc.category === state.activeCategory;
+        });
+
+        visibleProcs.forEach(function (proc) {
+          var qty = state.quantities[proc.id] || 0;
+          var row = document.createElement('div');
+          row.className = 'procedure-row' + (qty > 0 ? ' selected' : '');
+
+          var info = document.createElement('div');
+          info.className = 'proc-info';
+
+          var titleLine = document.createElement('div');
+          titleLine.className = 'proc-title-line';
+
+          var nameEl = document.createElement('span');
+          nameEl.className = 'proc-name';
+          nameEl.textContent = proc.name;
+
+          var codeEl = document.createElement('span');
+          codeEl.className = 'proc-code';
+          codeEl.textContent = proc.code;
+
+          titleLine.appendChild(nameEl);
+          titleLine.appendChild(codeEl);
+
+          var subline = document.createElement('div');
+          subline.className = 'proc-subline';
+
+          var catEl = document.createElement('span');
+          catEl.textContent = proc.categoryLabel;
+
+          var benefitEl = document.createElement('span');
+          benefitEl.className = 'proc-benefit-note';
+          benefitEl.textContent = getCoverageDescriptor(state.tierId, proc.benefitClass);
+
+          subline.appendChild(catEl);
+          subline.appendChild(benefitEl);
+
+          info.appendChild(titleLine);
+          info.appendChild(subline);
+
+          var controls = document.createElement('div');
+          controls.className = 'proc-controls';
+
+          var feeCol = document.createElement('div');
+          feeCol.className = 'proc-fee-col';
+
+          var feeAmount = document.createElement('span');
+          feeAmount.className = 'proc-unit-fee tabular-nums';
+          feeAmount.textContent = formatUSD(proc.fee);
+
+          var unitLabel = document.createElement('span');
+          unitLabel.className = 'proc-unit-label';
+          unitLabel.textContent = 'per ' + proc.unitSingular;
+
+          feeCol.appendChild(feeAmount);
+          feeCol.appendChild(unitLabel);
+
+          var stepper = document.createElement('div');
+          stepper.className = 'stepper';
+
+          var decBtn = document.createElement('button');
+          decBtn.type = 'button';
+          decBtn.className = 'step-btn';
+          decBtn.textContent = '−';
+          decBtn.disabled = qty <= 0;
+          decBtn.setAttribute('aria-label', 'Decrease ' + proc.name + ' quantity');
+          decBtn.addEventListener('click', function () {
+            updateQty(proc.id, Math.max(0, (state.quantities[proc.id] || 0) - 1));
+          });
+
+          var qtySpan = document.createElement('span');
+          qtySpan.className = 'step-qty tabular-nums';
+          qtySpan.textContent = String(qty);
+
+          var incBtn = document.createElement('button');
+          incBtn.type = 'button';
+          incBtn.className = 'step-btn';
+          incBtn.textContent = '+';
+          incBtn.disabled = qty >= proc.maxQty;
+          incBtn.setAttribute('aria-label', 'Increase ' + proc.name + ' quantity');
+          incBtn.addEventListener('click', function () {
+            updateQty(proc.id, Math.min(proc.maxQty, (state.quantities[proc.id] || 0) + 1));
+          });
+
+          stepper.appendChild(decBtn);
+          stepper.appendChild(qtySpan);
+          stepper.appendChild(incBtn);
+
+          controls.appendChild(feeCol);
+          controls.appendChild(stepper);
+
+          row.appendChild(info);
+          row.appendChild(controls);
+          procedureListEl.appendChild(row);
+        });
+      }
+
+      function renderSummary() {
+        var est = computeEstimate();
+
+        // Status badges
+        summaryBadgesEl.innerHTML = '';
+        var patientPill = document.createElement('span');
+        patientPill.className = 'status-pill';
+        patientPill.textContent = state.patientStatus === 'new' ? 'New Patient' : 'Returning Patient';
+
+        var tierPill = document.createElement('span');
+        tierPill.className = 'status-pill';
+        tierPill.textContent = est.tier.label;
+
+        summaryBadgesEl.appendChild(patientPill);
+        summaryBadgesEl.appendChild(tierPill);
+
+        if (est.tier.isPpo) {
+          var capPill = document.createElement('span');
+          capPill.className = 'status-pill tabular-nums';
+          capPill.textContent = state.annualCap > 0 ? ('Max ' + formatUSD(state.annualCap)) : 'No Annual Cap';
+          summaryBadgesEl.appendChild(capPill);
+        }
+
+        // Line items
+        lineItemsEl.innerHTML = '';
+        if (est.lines.length === 0) {
+          var emptyDiv = document.createElement('div');
+          emptyDiv.className = 'empty-plan';
+          emptyDiv.textContent = 'Select at least one procedure on the left to build an itemized USD treatment estimate.';
+          lineItemsEl.appendChild(emptyDiv);
+        } else {
+          var list = document.createElement('div');
+          list.className = 'line-items';
+
+          est.lines.forEach(function (line) {
+            var item = document.createElement('div');
+            item.className = 'line-item';
+
+            var main = document.createElement('div');
+            main.className = 'line-item-main';
+
+            var title = document.createElement('div');
+            title.className = 'line-item-title';
+            title.textContent = line.proc.name;
+
+            var unitWord = line.qty === 1 ? line.proc.unitSingular : line.proc.unitPlural;
+            var meta = document.createElement('div');
+            meta.className = 'line-item-meta tabular-nums';
+            meta.textContent = line.qty + ' ' + unitWord + ' · Standard Fee ' + formatUSD(line.lineFee);
+
+            main.appendChild(title);
+            main.appendChild(meta);
+
+            var amounts = document.createElement('div');
+            amounts.className = 'line-item-amounts';
+
+            var oop = document.createElement('div');
+            oop.className = 'line-item-oop tabular-nums';
+            oop.textContent = formatUSD(line.outOfPocket);
+
+            var benefit = document.createElement('div');
+            benefit.className = 'line-item-benefit tabular-nums';
+            benefit.textContent = line.finalBenefit > 0 ? ('Est. benefit -' + formatUSD(line.finalBenefit)) : 'Direct fee';
+
+            amounts.appendChild(oop);
+            amounts.appendChild(benefit);
+
+            var removeBtn = document.createElement('button');
+            removeBtn.type = 'button';
+            removeBtn.className = 'remove-line-btn';
+            removeBtn.textContent = '×';
+            removeBtn.setAttribute('aria-label', 'Remove ' + line.proc.name);
+            removeBtn.addEventListener('click', function () {
+              updateQty(line.proc.id, 0);
+            });
+
+            item.appendChild(main);
+            item.appendChild(amounts);
+            item.appendChild(removeBtn);
+            list.appendChild(item);
+          });
+
+          lineItemsEl.appendChild(list);
+        }
+
+        // Totals Box
+        totalsBoxEl.innerHTML = '';
+
+        function appendTotalRow(label, valueText, extraClass) {
+          var row = document.createElement('div');
+          row.className = 'total-row' + (extraClass ? ' ' + extraClass : '');
+          var left = document.createElement('span');
+          left.textContent = label;
+          var right = document.createElement('strong');
+          right.className = 'tabular-nums';
+          right.textContent = valueText;
+          row.appendChild(left);
+          row.appendChild(right);
+          totalsBoxEl.appendChild(row);
+        }
+
+        appendTotalRow('Standard Practice Total', formatUSD(est.standardTotal));
+
+        var benefitLabel = 'Estimated Insurance Benefit';
+        if (state.tierId === 'wellness') {
+          benefitLabel = 'Wellness Plan Savings (15%)';
+        } else if (state.tierId === 'self-pay') {
+          benefitLabel = 'Plan Discount';
+        } else {
+          var benefitNotes = [];
+          if (est.appliedDeductible > 0) {
+            benefitNotes.push('after ' + formatUSD(est.appliedDeductible) + ' deductible');
+          }
+          if (est.capExcess > 0) {
+            benefitNotes.push('at ' + formatUSD(state.annualCap) + ' max');
+          }
+          if (benefitNotes.length > 0) {
+            benefitLabel += ' (' + benefitNotes.join(', ') + ')';
+          }
+        }
+
+        appendTotalRow(
+          benefitLabel,
+          est.totalPlanBenefit > 0 ? ('-' + formatUSD(est.totalPlanBenefit)) : '$0',
+          'benefit-row'
+        );
+
+        var highlight = document.createElement('div');
+        highlight.className = 'oop-highlight';
+
+        var oopLabelWrap = document.createElement('div');
+        var oopTitle = document.createElement('span');
+        oopTitle.className = 'oop-label';
+        oopTitle.textContent = 'Estimated Out-of-Pocket';
+
+        var oopSub = document.createElement('span');
+        oopSub.className = 'oop-sub';
+        oopSub.textContent = est.lines.length > 0 ? (est.lines.length + ' procedure' + (est.lines.length === 1 ? '' : 's') + ' selected') : 'No procedures selected';
+
+        oopLabelWrap.appendChild(oopTitle);
+        oopLabelWrap.appendChild(oopSub);
+
+        var oopVal = document.createElement('span');
+        oopVal.className = 'oop-amount tabular-nums';
+        oopVal.textContent = formatUSD(est.estimatedOutOfPocket);
+
+        highlight.appendChild(oopLabelWrap);
+        highlight.appendChild(oopVal);
+        totalsBoxEl.appendChild(highlight);
+
+        syncMailtoLinks(est);
+      }
+
+      function buildPlainEstimateText(est) {
+        var lines = [
+          'Cascade Dental - Treatment & Insurance Estimate (USD)',
+          'Location: 16703 SE McGillivray Blvd, Ste 100, Vancouver, WA 98683',
+          'Patient Status: ' + (state.patientStatus === 'new' ? 'New Patient' : 'Returning Patient'),
+          'Coverage Tier: ' + est.tier.label
+        ];
+
+        if (est.tier.isPpo) {
+          lines.push('Deductible Status: ' + (state.deductible > 0 ? formatUSD(state.deductible) + ' remaining' : '$0 remaining'));
+          lines.push('Annual Max Preview: ' + (state.annualCap > 0 ? formatUSD(state.annualCap) : 'No cap preview'));
+        }
+
+        lines.push('');
+        lines.push('Selected Procedures:');
+
+        if (est.lines.length === 0) {
+          lines.push('- Consultation / Evaluation only (no specific procedures added)');
+        } else {
+          est.lines.forEach(function (line) {
+            var unitWord = line.qty === 1 ? line.proc.unitSingular : line.proc.unitPlural;
+            lines.push(
+              '- ' + line.proc.name + ' (' + line.qty + ' ' + unitWord + '): Fee ' +
+              formatUSD(line.lineFee) + ' | Benefit -' + formatUSD(line.finalBenefit) +
+              ' | Est. Patient ' + formatUSD(line.outOfPocket)
+            );
+          });
+        }
+
+        lines.push('');
+        lines.push('Standard Practice Total: ' + formatUSD(est.standardTotal));
+        lines.push('Estimated Plan Benefit / Savings: -' + formatUSD(est.totalPlanBenefit));
+        lines.push('Estimated Out-of-Pocket Total: ' + formatUSD(est.estimatedOutOfPocket));
+        return lines.join('\n');
+      }
+
+      function buildAppointmentSummaryText(est) {
+        var nameVal = apptNameInput.value.trim() || '(Not provided)';
+        var emailVal = apptEmailInput.value.trim() || '(Not provided)';
+        var phoneVal = apptPhoneInput.value.trim() || '(Not provided)';
+        var pTypeLabel = apptPatientSelect.value === 'new' ? 'New Patient' : 'Returning Patient';
+        var windowVal = apptWindowSelect.value;
+        var dateVal = apptDateInput.value || 'Flexible / Next available';
+        var notesVal = apptNotesInput.value.trim() || 'None';
+
+        var lines = [
+          'Cascade Dental - Online Appointment Request',
+          'Patient Type: ' + pTypeLabel,
+          'Full Name: ' + nameVal,
+          'Email: ' + emailVal,
+          'Phone: ' + phoneVal,
+          'Preferred Time Window: ' + windowVal,
+          'Preferred Date: ' + dateVal,
+          'Notes / Insurance Details: ' + notesVal
+        ];
+
+        if (apptIncludeEstimate.checked) {
+          lines.push('');
+          lines.push(buildPlainEstimateText(est));
+        }
+
+        return lines.join('\n');
+      }
+
+      function createMailtoHref(subject, body) {
+        return 'mailto:marilyn.c@cascadedental.com?subject=' +
+          encodeURIComponent(subject) +
+          '&body=' +
+          encodeURIComponent(body);
+      }
+
+      function syncMailtoLinks(est) {
+        var estimateBody = buildPlainEstimateText(est);
+        quickMailtoBtn.href = createMailtoHref(
+          'Treatment Estimate Inquiry - Cascade Dental Vancouver WA',
+          estimateBody
+        );
+
+        var fullBody = buildAppointmentSummaryText(est);
+        var namePart = apptNameInput.value.trim();
+        var apptSubject = 'Appointment Request' + (namePart ? (' - ' + namePart) : '') + ' | Cascade Dental';
+        finalMailtoLink.href = createMailtoHref(apptSubject, fullBody);
+
+        if (!confirmationBox.hidden) {
+          requestPreviewEl.textContent = fullBody;
+        }
+      }
+
+      function updateQty(procId, newQty) {
+        if (newQty <= 0) {
+          delete state.quantities[procId];
+        } else {
+          state.quantities[procId] = newQty;
+        }
+        state.activePreset = '';
+        updatePresetChips();
+        renderProcedures();
+        renderSummary();
+      }
+
+      function updatePresetChips() {
+        presetButtons.forEach(function (btn) {
+          btn.classList.toggle('active', btn.getAttribute('data-preset') === state.activePreset);
+        });
+      }
+
+      function setPatientStatus(status) {
+        state.patientStatus = status;
+        patientButtons.forEach(function (btn) {
+          btn.setAttribute('aria-checked', btn.getAttribute('data-patient-status') === status ? 'true' : 'false');
+        });
+        apptPatientSelect.value = status;
+        patientNotice.textContent = status === 'new'
+          ? 'New patient appointments include a comprehensive oral evaluation, periodontal charting, and individualized treatment pacing.'
+          : 'Returning patient mode keeps your existing Cascade Dental care history in mind when estimating hygiene and restorative visits.';
+        renderSummary();
+      }
+
+      function updateTierControls() {
+        var tier = TIERS[state.tierId];
+        deductibleSelect.disabled = !tier.isPpo;
+        annualCapSelect.disabled = !tier.isPpo;
+
+        if (tier.isPpo) {
+          deductibleHint.textContent = 'Waived on preventive visits; applies once to Basic or Major care.';
+          capHint.textContent = 'Limits estimated annual PPO payout if restorative total is high.';
+        } else if (state.tierId === 'wellness') {
+          deductibleHint.textContent = 'Cascade Wellness Plan has $0 deductible and no waiting period.';
+          capHint.textContent = 'No annual maximum cap applies under Cascade Wellness Plan.';
+        } else {
+          deductibleHint.textContent = 'Not applicable for uninsured direct fee estimates.';
+          capHint.textContent = 'Not applicable for uninsured direct fee estimates.';
+        }
+      }
+
+      function copyTextToClipboard(text, feedbackEl, successMsg) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            feedbackEl.textContent = successMsg;
+          }, function () {
+            fallbackCopy(text, feedbackEl, successMsg);
+          });
+        } else {
+          fallbackCopy(text, feedbackEl, successMsg);
+        }
+      }
+
+      function fallbackCopy(text, feedbackEl, successMsg) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          feedbackEl.textContent = successMsg;
+        } catch (err) {
+          feedbackEl.textContent = 'Select and copy the summary above manually.';
+        }
+        document.body.removeChild(ta);
+      }
+
+      // Event bindings
+      mobileMenuToggle.addEventListener('click', function () {
+        var isOpen = mobileDrawer.classList.toggle('open');
+        mobileMenuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      document.querySelectorAll('.drawer-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          mobileDrawer.classList.remove('open');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      patientButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          setPatientStatus(btn.getAttribute('data-patient-status'));
+        });
+      });
+
+      apptPatientSelect.addEventListener('change', function () {
+        setPatientStatus(apptPatientSelect.value);
+      });
+
+      tierSelect.addEventListener('change', function () {
+        state.tierId = tierSelect.value;
+        updateTierControls();
+        renderProcedures();
+        renderSummary();
+      });
+
+      deductibleSelect.addEventListener('change', function () {
+        state.deductible = parseInt(deductibleSelect.value, 10) || 0;
+        renderSummary();
+      });
+
+      annualCapSelect.addEventListener('change', function () {
+        state.annualCap = parseInt(annualCapSelect.value, 10) || 0;
+        renderSummary();
+      });
+
+      presetButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var presetKey = btn.getAttribute('data-preset');
+          state.activePreset = presetKey;
+          state.quantities = Object.assign({}, PRESETS[presetKey] || {});
+          updatePresetChips();
+          renderProcedures();
+          renderSummary();
+        });
+      });
+
+      categoryTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var cat = tab.getAttribute('data-category');
+          state.activeCategory = cat;
+          categoryTabs.forEach(function (t) {
+            var active = t === tab;
+            t.classList.toggle('active', active);
+            t.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          renderProcedures();
+        });
+      });
+
+      document.querySelectorAll('[data-filter-jump]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var targetCat = btn.getAttribute('data-filter-jump');
+          state.activeCategory = targetCat;
+          categoryTabs.forEach(function (t) {
+            var active = t.getAttribute('data-category') === targetCat;
+            t.classList.toggle('active', active);
+            t.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          renderProcedures();
+          var estSection = document.getElementById('estimator');
+          if (estSection && estSection.scrollIntoView) {
+            estSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      copyEstimateBtn.addEventListener('click', function () {
+        var est = computeEstimate();
+        copyTextToClipboard(
+          buildPlainEstimateText(est),
+          copyFeedbackEl,
+          'Itemized USD estimate copied to clipboard.'
+        );
+      });
+
+      [apptNameInput, apptEmailInput, apptPhoneInput, apptWindowSelect, apptDateInput, apptNotesInput, apptIncludeEstimate].forEach(function (el) {
+        el.addEventListener('input', function () {
+          syncMailtoLinks(computeEstimate());
+        });
+        el.addEventListener('change', function () {
+          syncMailtoLinks(computeEstimate());
+        });
+      });
+
+      apptForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        formErrorEl.hidden = true;
+        formErrorEl.textContent = '';
+
+        var nameVal = apptNameInput.value.trim();
+        var emailVal = apptEmailInput.value.trim();
+        var phoneVal = apptPhoneInput.value.trim();
+
+        if (!nameVal) {
+          formErrorEl.textContent = 'Please enter your full name to prepare your appointment request.';
+          formErrorEl.hidden = false;
+          apptNameInput.focus();
+          return;
+        }
+
+        if (!emailVal || emailVal.indexOf('@') === -1 || emailVal.indexOf('.') === -1) {
+          formErrorEl.textContent = 'Please enter a valid email address so our coordinator can reply.';
+          formErrorEl.hidden = false;
+          apptEmailInput.focus();
+          return;
+        }
+
+        if (!phoneVal || phoneVal.replace(/\D/g, '').length < 7) {
+          formErrorEl.textContent = 'Please enter a contact phone number for scheduling confirmation.';
+          formErrorEl.hidden = false;
+          apptPhoneInput.focus();
+          return;
+        }
+
+        var est = computeEstimate();
+        var summaryText = buildAppointmentSummaryText(est);
+        requestPreviewEl.textContent = summaryText;
+        confirmationBox.hidden = false;
+        requestCopyFeedback.textContent = '';
+        syncMailtoLinks(est);
+      });
+
+      copyRequestBtn.addEventListener('click', function () {
+        var est = computeEstimate();
+        copyTextToClipboard(
+          buildAppointmentSummaryText(est),
+          requestCopyFeedback,
+          'Appointment request summary copied to clipboard.'
+        );
+      });
+
+      // Set sensible minimum date on date picker to today
+      var today = new Date();
+      var yyyy = today.getFullYear();
+      var mm = String(today.getMonth() + 1).padStart(2, '0');
+      var dd = String(today.getDate()).padStart(2, '0');
+      apptDateInput.min = yyyy + '-' + mm + '-' + dd;
+
+      // Initial render
+      updateTierControls();
+      renderProcedures();
+      renderSummary();
+    })();
+  </script>
+</body>
+</html>

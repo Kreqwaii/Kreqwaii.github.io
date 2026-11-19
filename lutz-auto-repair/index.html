@@ -1,0 +1,2629 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lutz Auto | Automotive Part Design &amp; Electronic Module Repair — San Luis Obispo, CA</title>
+  <meta name="description" content="Lutz Auto in San Luis Obispo, CA provides precision automotive part design, custom electronic module repair, bench diagnostics, and classic or specialty auto parts. Calculate USD repair and turnaround estimates online or contact sales@lutzauto.com and 805-464-7138.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' width='36' height='36'%3E%3Crect width='36' height='36' rx='7' fill='%231C1F24'/%3E%3Cpath d='M9.5 26.5V9.5h4.2v13.2h9.8v3.8H9.5z' fill='%23F7F6F3'/%3E%3Ccircle cx='25' cy='12' r='3.4' fill='%23B53123'/%3E%3Cpath d='M17.5 12h3.5M25 18v7' stroke='%236B9AC4' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F7F6F3;
+      --surface: #FFFFFF;
+      --surface-alt: #EFECE6;
+      --surface-muted: #E6E2DA;
+      --ink: #1C1F24;
+      --ink-body: #373D47;
+      --ink-muted: #5C6370;
+      --vermilion: #B53123;
+      --vermilion-dark: #912418;
+      --vermilion-soft: rgba(181, 49, 35, 0.08);
+      --vermilion-border: rgba(181, 49, 35, 0.28);
+      --steel: #234B6E;
+      --steel-dark: #193752;
+      --steel-soft: rgba(35, 75, 110, 0.08);
+      --steel-border: rgba(35, 75, 110, 0.28);
+      --ok: #1B6B4A;
+      --ok-soft: rgba(27, 107, 74, 0.09);
+      --warn: #8F5212;
+      --warn-soft: rgba(143, 82, 18, 0.10);
+      --border: #DCD8CE;
+      --border-strong: #C2BDB0;
+      --shadow-sm: 0 2px 6px rgba(28, 31, 36, 0.04);
+      --shadow-md: 0 10px 24px rgba(28, 31, 36, 0.06);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+      --font-mono: ui-monospace, 'Cascadia Mono', 'SFMono-Regular', Consolas, monospace;
+      --container: 1220px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink);
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(28, 31, 36, 0.045) 1px, transparent 0);
+      background-size: 28px 28px;
+      overflow-x: clip;
+    }
+
+    section[id] {
+      scroll-margin-top: 86px;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a[href^="mailto:"],
+    a[href^="tel:"] {
+      white-space: nowrap;
+      word-break: normal;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 10px;
+      z-index: 900;
+      background: var(--steel);
+      color: #FFFFFF;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+    }
+
+    .skip-link:focus {
+      left: 16px;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--steel);
+      outline-offset: 2px;
+    }
+
+    /* Top engineering utility bar */
+    .utility-bar {
+      background: var(--surface-alt);
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--ink-body);
+      padding-block: 8px;
+    }
+
+    .utility-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 20px;
+    }
+
+    .utility-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 18px;
+      min-width: 0;
+    }
+
+    .utility-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+    }
+
+    .utility-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--vermilion);
+      flex-shrink: 0;
+    }
+
+    .utility-link {
+      color: var(--steel);
+      font-weight: 600;
+      transition: color 160ms ease;
+    }
+
+    .utility-link:hover {
+      color: var(--vermilion);
+      text-decoration: underline;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(247, 246, 243, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-sans);
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-link {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--ink-body);
+      padding-block: 6px;
+      border-bottom: 1px solid transparent;
+      transition: color 160ms ease, border-color 160ms ease;
+    }
+
+    .nav-link:hover {
+      color: var(--ink);
+      border-bottom-color: var(--vermilion);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--ink);
+      padding: 0;
+    }
+
+    .mobile-drawer {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      padding: 16px 24px 20px;
+    }
+
+    .mobile-drawer.is-open {
+      display: block;
+    }
+
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .mobile-nav-link {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .mobile-drawer-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      font-size: 0.875rem;
+      padding-top: 4px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      line-height: 1.25;
+      transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: #FFFFFF;
+      border-color: var(--ink);
+    }
+
+    .btn-primary:hover {
+      background: var(--steel);
+      border-color: var(--steel);
+    }
+
+    .btn-accent {
+      background: var(--vermilion);
+      color: #FFFFFF;
+      border-color: var(--vermilion);
+    }
+
+    .btn-accent:hover {
+      background: var(--vermilion-dark);
+      border-color: var(--vermilion-dark);
+    }
+
+    .btn-outline {
+      background: var(--surface);
+      color: var(--ink);
+      border-color: var(--border-strong);
+    }
+
+    .btn-outline:hover {
+      background: var(--surface-alt);
+      border-color: var(--ink);
+    }
+
+    .btn-sm {
+      padding: 8px 13px;
+      font-size: 0.84375rem;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 46px 0 54px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 11px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--steel);
+      margin-bottom: 16px;
+    }
+
+    .eyebrow-bar {
+      width: 14px;
+      height: 2px;
+      background: var(--vermilion);
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.1rem, 4vw, 3.3rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin: 0 0 18px;
+    }
+
+    .hero-lead {
+      font-size: 1.0625rem;
+      color: var(--ink-body);
+      max-width: 60ch;
+      margin: 0 0 26px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .spec-strip {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .spec-cell {
+      padding: 13px 16px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      min-width: 0;
+    }
+
+    .spec-cell:nth-child(2n) {
+      border-right: none;
+    }
+
+    .spec-cell:nth-last-child(-n+2) {
+      border-bottom: none;
+    }
+
+    .spec-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      margin-bottom: 3px;
+    }
+
+    .spec-val {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* Blueprint Schematic Card */
+    .blueprint-card {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .blueprint-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 18px;
+      background: var(--surface-alt);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.8125rem;
+    }
+
+    .blueprint-id {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .blueprint-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      color: var(--ok);
+      font-size: 0.78rem;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--ok);
+    }
+
+    .blueprint-body {
+      padding: 18px;
+      background: #FCFBF9;
+    }
+
+    .schematic-svg {
+      width: 100%;
+      aspect-ratio: 520 / 340;
+    }
+
+    .blueprint-foot {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .bf-item {
+      padding: 11px 14px;
+      border-right: 1px solid var(--border);
+      min-width: 0;
+    }
+
+    .bf-item:last-child {
+      border-right: none;
+    }
+
+    .bf-k {
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .bf-v {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* Section scaffolding */
+    .section {
+      padding: 64px 0;
+    }
+
+    .section-alt {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 32px;
+    }
+
+    .section-kicker {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--vermilion);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.65rem, 2.8vw, 2.3rem);
+      font-weight: 600;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .section-desc {
+      max-width: 56ch;
+      color: var(--ink-body);
+      margin: 6px 0 0;
+    }
+
+    /* Services 4-grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+      min-width: 0;
+    }
+
+    .service-card:hover {
+      border-color: var(--steel-border);
+      box-shadow: var(--shadow-md);
+    }
+
+    .service-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .service-index {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--steel);
+      padding: 3px 8px;
+      background: var(--steel-soft);
+      border: 1px solid var(--steel-border);
+      border-radius: var(--radius-sm);
+    }
+
+    .service-icon-box {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--ink);
+    }
+
+    .service-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .service-copy {
+      font-size: 0.925rem;
+      color: var(--ink-body);
+      margin: 0 0 14px;
+    }
+
+    .service-specs {
+      list-style: none;
+      margin: 0;
+      padding: 12px 0 0;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.84rem;
+      color: var(--ink-muted);
+    }
+
+    .service-specs li {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .service-specs li::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 1px;
+      background: var(--vermilion);
+      flex-shrink: 0;
+      transform: translateY(-2px);
+    }
+
+    /* Estimator Workbench */
+    .estimator-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .panel-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 16px 22px;
+      background: var(--surface-alt);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .panel-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .panel-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      color: var(--steel);
+    }
+
+    .panel-body {
+      padding: 22px;
+    }
+
+    .control-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .field-block {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .field-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .field-hint {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+    }
+
+    .input-control,
+    .select-control,
+    .textarea-control {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 0.9375rem;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .input-control:focus,
+    .select-control:focus,
+    .textarea-control:focus {
+      border-color: var(--steel);
+      box-shadow: 0 0 0 3px var(--steel-soft);
+      outline: none;
+    }
+
+    .textarea-control {
+      resize: vertical;
+      min-height: 76px;
+    }
+
+    .two-col-fields {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    /* Quick option pills synced with selects */
+    .quick-pills {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .pill-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      text-align: left;
+      padding: 10px 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+      min-width: 0;
+    }
+
+    .pill-btn:hover {
+      border-color: var(--steel-border);
+      background: var(--surface);
+    }
+
+    .pill-btn.is-active {
+      background: var(--steel-soft);
+      border-color: var(--steel);
+    }
+
+    .pill-main {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .pill-sub {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+    }
+
+    /* Compatibility diagnostic box */
+    .compat-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 15px 16px;
+    }
+
+    .compat-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .compat-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+    }
+
+    .compat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: var(--ok-soft);
+      color: var(--ok);
+      border: 1px solid rgba(27, 107, 74, 0.25);
+    }
+
+    .compat-pill.is-advisory {
+      background: var(--warn-soft);
+      color: var(--warn);
+      border-color: rgba(143, 82, 18, 0.28);
+    }
+
+    .compat-summary {
+      font-size: 0.9rem;
+      color: var(--ink);
+      font-weight: 500;
+      margin: 0 0 8px;
+    }
+
+    .compat-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 12px;
+      font-size: 0.8rem;
+      color: var(--ink-body);
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Checkboxes */
+    .addon-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .addon-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 13px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      transition: border-color 160ms ease, background-color 160ms ease;
+    }
+
+    .addon-item:hover {
+      border-color: var(--steel-border);
+      background: #FCFBF9;
+    }
+
+    .addon-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .addon-check {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--steel);
+      flex-shrink: 0;
+    }
+
+    .addon-title {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .addon-desc {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .addon-price {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--steel);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Right column summary + form */
+    .quote-total-box {
+      padding: 18px 20px;
+      background: var(--surface-alt);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      margin-bottom: 18px;
+    }
+
+    .total-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .total-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+    }
+
+    .total-turnaround {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--vermilion);
+    }
+
+    .total-figure {
+      font-family: var(--font-sans);
+      font-size: clamp(1.9rem, 3.2vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 4px;
+    }
+
+    .total-range {
+      font-size: 0.8125rem;
+      color: var(--ink-body);
+    }
+
+    .ledger {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      font-size: 0.875rem;
+    }
+
+    .ledger td {
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .ledger tr:last-child td {
+      border-bottom: none;
+    }
+
+    .ledger-val {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+      padding-left: 12px;
+    }
+
+    .form-divider {
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+      margin-top: 6px;
+    }
+
+    .form-heading {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 12px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .form-feedback {
+      margin-top: 12px;
+      padding: 11px 13px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      display: none;
+    }
+
+    .form-feedback.is-visible {
+      display: block;
+    }
+
+    .form-feedback.is-ok {
+      background: var(--ok-soft);
+      border-color: rgba(27, 107, 74, 0.28);
+      color: var(--ok);
+    }
+
+    .form-feedback.is-error {
+      background: var(--vermilion-soft);
+      border-color: var(--vermilion-border);
+      color: var(--vermilion-dark);
+    }
+
+    /* Compatibility matrix table */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .filter-btn {
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--ink-body);
+      font-size: 0.84375rem;
+      font-weight: 600;
+      transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .filter-btn.is-active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #FFFFFF;
+    }
+
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .compat-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+      font-size: 0.8875rem;
+    }
+
+    .compat-table th {
+      text-align: left;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      background: var(--surface-alt);
+      padding: 12px 15px;
+      border-bottom: 1px solid var(--border-strong);
+    }
+
+    .compat-table td {
+      padding: 13px 15px;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-body);
+      vertical-align: middle;
+    }
+
+    .compat-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .compat-table tr:hover td {
+      background: #FCFBF9;
+    }
+
+    .era-tag {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: var(--steel-soft);
+      color: var(--steel);
+      border: 1px solid var(--steel-border);
+      white-space: nowrap;
+    }
+
+    /* Process 4 steps */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .process-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      min-width: 0;
+    }
+
+    .process-num {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--vermilion);
+      margin-bottom: 10px;
+    }
+
+    .process-title {
+      font-size: 1.03rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 8px;
+    }
+
+    .process-text {
+      font-size: 0.9rem;
+      color: var(--ink-body);
+      margin: 0;
+    }
+
+    /* FAQ + Direct Bench Card */
+    .faq-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .faq-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 15px 18px;
+      background: transparent;
+      border: none;
+      text-align: left;
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .faq-btn:hover {
+      background: #FCFBF9;
+    }
+
+    .faq-chevron {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      color: var(--steel);
+      transition: transform 160ms ease;
+    }
+
+    .faq-btn[aria-expanded="true"] .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-panel {
+      padding: 0 18px 16px;
+      font-size: 0.92rem;
+      color: var(--ink-body);
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+
+    .faq-panel[hidden] {
+      display: none;
+    }
+
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .contact-card-title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 0 0 8px;
+    }
+
+    .contact-card-desc {
+      font-size: 0.9rem;
+      color: var(--ink-body);
+      margin: 0 0 18px;
+    }
+
+    .contact-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .contact-row {
+      padding: 10px 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    .contact-key {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      margin-bottom: 2px;
+    }
+
+    .contact-val {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .contact-val a {
+      color: var(--steel);
+    }
+
+    .contact-val a:hover {
+      color: var(--vermilion);
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--surface-alt);
+      border-top: 1px solid var(--border-strong);
+      padding: 36px 0 28px;
+      font-size: 0.875rem;
+      color: var(--ink-body);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .footer-heading {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      margin: 0 0 10px;
+    }
+
+    .footer-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .footer-links a:hover {
+      color: var(--vermilion);
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 20px;
+      padding-top: 18px;
+      font-size: 0.8125rem;
+      color: var(--ink-muted);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1040px) {
+      .hero-grid,
+      .estimator-shell,
+      .faq-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid,
+      .process-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav-list,
+      .header-desktop-cta {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding-inline: 16px;
+      }
+
+      .hero {
+        padding: 32px 0 40px;
+      }
+
+      .section {
+        padding: 46px 0;
+      }
+
+      .services-grid,
+      .process-grid,
+      .two-col-fields,
+      .quick-pills,
+      .compat-meta,
+      .blueprint-foot {
+        grid-template-columns: 1fr;
+      }
+
+      .bf-item {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .bf-item:last-child {
+        border-bottom: none;
+      }
+
+      .spec-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .spec-cell {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .spec-cell:nth-last-child(-n+2) {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .spec-cell:last-child {
+        border-bottom: none;
+      }
+
+      .panel-body,
+      .panel-head {
+        padding: 16px;
+      }
+
+      .brand-sub {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#estimator">Skip to Repair &amp; Compatibility Estimator</a>
+
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="utility-group">
+        <span class="utility-item"><span class="utility-dot" aria-hidden="true"></span>San Luis Obispo, CA</span>
+        <span class="utility-item">Automotive Part Design &amp; Electronic Module Repair</span>
+      </div>
+      <div class="utility-group">
+        <a class="utility-link tabular" href="tel:+18054647138">805-464-7138</a>
+        <a class="utility-link" href="mailto:sales@lutzauto.com">sales@lutzauto.com</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Lutz Auto Home">
+        <svg class="brand-mark" width="38" height="38" viewBox="0 0 38 38" fill="none" aria-hidden="true">
+          <rect x="0.5" y="0.5" width="37" height="37" rx="7.5" fill="#1C1F24" stroke="#1C1F24"/>
+          <path d="M10 27.5V10.5H14.4V23.7H24.2V27.5H10Z" fill="#F7F6F3"/>
+          <circle cx="25.5" cy="12.5" r="3.4" fill="#B53123"/>
+          <path d="M18 12.5H20.6M25.5 17.5V22" stroke="#6B9AC4" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">Lutz Auto</span>
+          <span class="brand-sub">Part Design &amp; Module Engineering</span>
+        </span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#services">Services</a></li>
+          <li><a class="nav-link" href="#estimator">USD Estimator</a></li>
+          <li><a class="nav-link" href="#compatibility">Compatibility</a></li>
+          <li><a class="nav-link" href="#process">Bench Process</a></li>
+          <li><a class="nav-link" href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-accent btn-sm header-desktop-cta" href="#estimator">Estimate &amp; Quote</a>
+        <button class="menu-toggle" type="button" id="menu-toggle" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M3 5.5H17M3 10H17M3 14.5H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobile-drawer">
+      <div class="mobile-nav-links">
+        <a class="mobile-nav-link" href="#services">Services</a>
+        <a class="mobile-nav-link" href="#estimator">Repair &amp; Design Estimator (USD)</a>
+        <a class="mobile-nav-link" href="#compatibility">Part Compatibility Matrix</a>
+        <a class="mobile-nav-link" href="#process">Bench Engineering Process</a>
+        <a class="mobile-nav-link" href="#faq">FAQ &amp; Intake Details</a>
+      </div>
+      <div class="mobile-drawer-contacts">
+        <a class="utility-link tabular" href="tel:+18054647138">805-464-7138</a>
+        <a class="utility-link" href="mailto:sales@lutzauto.com">sales@lutzauto.com</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-bar" aria-hidden="true"></span>
+            San Luis Obispo, CA · Engineering Bench &amp; CAD Lab
+          </div>
+          <h1 class="hero-title">Precision automotive part design and component-level module repair.</h1>
+          <p class="hero-lead">
+            Lutz Auto engineers custom replacement assemblies, restores discontinued electronic control modules, and performs load-simulated bench diagnostics for classic domestic, European, Japanese, and modern specialty platforms.
+          </p>
+          <div class="hero-ctas">
+            <a class="btn btn-accent" href="#estimator">Open USD Estimator &amp; Compatibility Check</a>
+            <a class="btn btn-outline tabular" href="tel:+18054647138">Call 805-464-7138</a>
+          </div>
+
+          <div class="spec-strip" role="list" aria-label="Bench specifications">
+            <div class="spec-cell" role="listitem">
+              <div class="spec-label">Base Location</div>
+              <div class="spec-val">San Luis Obispo, CA</div>
+            </div>
+            <div class="spec-cell" role="listitem">
+              <div class="spec-label">Platforms</div>
+              <div class="spec-val">Classic to Specialty</div>
+            </div>
+            <div class="spec-cell" role="listitem">
+              <div class="spec-label">Turnaround Tiers</div>
+              <div class="spec-val tabular">Standard / 2–3d / Rush</div>
+            </div>
+            <div class="spec-cell" role="listitem">
+              <div class="spec-label">Engineering Desk</div>
+              <div class="spec-val"><a href="mailto:sales@lutzauto.com">sales@lutzauto.com</a></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="blueprint-card" aria-label="Bench diagnostics and CAD reference plate">
+          <div class="blueprint-head">
+            <span class="blueprint-id">DOC // LUTZ-SLO-MOD-04</span>
+            <span class="blueprint-status"><span class="status-dot" aria-hidden="true"></span>Bench Calibration Ready</span>
+          </div>
+          <div class="blueprint-body">
+            <svg class="schematic-svg" width="520" height="340" viewBox="0 0 520 340" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Technical schematic of automotive ECU circuit board, pinout connector, and machined bracket geometry">
+              <rect x="0.5" y="0.5" width="519" height="339" rx="6" fill="#FCFBF9" stroke="#DCD8CE"/>
+              <!-- Drafting grid lines -->
+              <path d="M40 0V340M120 0V340M200 0V340M280 0V340M360 0V340M440 0V340M0 60H520M0 140H520M0 220H520M0 300H520" stroke="#EFECE6" stroke-width="1"/>
+              <!-- Outer PCB Module Enclosure -->
+              <rect x="44" y="42" width="268" height="206" rx="8" fill="#FFFFFF" stroke="#1C1F24" stroke-width="1.6"/>
+              <rect x="54" y="52" width="248" height="186" rx="4" fill="#F7F6F3" stroke="#C2BDB0" stroke-width="1" stroke-dasharray="4 3"/>
+              <!-- Mounting flanges -->
+              <circle cx="56" cy="54" r="4" fill="#FFFFFF" stroke="#1C1F24" stroke-width="1.4"/>
+              <circle cx="300" cy="54" r="4" fill="#FFFFFF" stroke="#1C1F24" stroke-width="1.4"/>
+              <circle cx="56" cy="236" r="4" fill="#FFFFFF" stroke="#1C1F24" stroke-width="1.4"/>
+              <circle cx="300" cy="236" r="4" fill="#FFFFFF" stroke="#1C1F24" stroke-width="1.4"/>
+              <!-- MCU IC package -->
+              <rect x="118" y="92" width="76" height="76" rx="4" fill="#1C1F24"/>
+              <rect x="128" y="102" width="56" height="56" rx="2" fill="#2A3038" stroke="#6B9AC4" stroke-width="1"/>
+              <text x="156" y="128" text-anchor="middle" fill="#F7F6F3" font-family="monospace" font-size="10" font-weight="600">MCU-DRV</text>
+              <text x="156" y="143" text-anchor="middle" fill="#D4D1C7" font-family="monospace" font-size="8">BENCH OK</text>
+              <!-- IC pins -->
+              <path d="M128 84V92M140 84V92M152 84V92M164 84V92M176 84V92M188 84V92" stroke="#234B6E" stroke-width="2"/>
+              <path d="M128 168V176M140 168V176M152 168V176M164 168V176M176 168V176M188 168V176" stroke="#234B6E" stroke-width="2"/>
+              <path d="M110 104H118M110 116H118M110 128H118M110 140H118M110 152H118" stroke="#234B6E" stroke-width="2"/>
+              <path d="M194 104H202M194 116H202M194 128H202M194 140H202M194 152H202" stroke="#234B6E" stroke-width="2"/>
+              <!-- PCB traces -->
+              <path d="M202 116H236L250 130H286" stroke="#B53123" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M202 128H230L246 144H286" stroke="#234B6E" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M110 128H84L72 140V188H132" stroke="#234B6E" stroke-width="1.6" stroke-linecap="round"/>
+              <!-- Capacitor & Driver array -->
+              <circle cx="84" cy="86" r="11" fill="#FFFFFF" stroke="#B53123" stroke-width="1.8"/>
+              <path d="M78 86H90M84 80V92" stroke="#B53123" stroke-width="1.5"/>
+              <rect x="228" y="182" width="50" height="32" rx="3" fill="#FFFFFF" stroke="#1C1F24" stroke-width="1.4"/>
+              <text x="253" y="201" text-anchor="middle" fill="#1C1F24" font-family="monospace" font-size="9">FET ARRAY</text>
+              <!-- Edge Connector Pinout -->
+              <rect x="294" y="102" width="24" height="66" rx="2" fill="#EFECE6" stroke="#1C1F24" stroke-width="1.5"/>
+              <path d="M299 112H313M299 121H313M299 130H313M299 139H313M299 148H313M299 157H313" stroke="#1C1F24" stroke-width="2"/>
+              <!-- Right side Oscilloscope Trace Panel -->
+              <rect x="336" y="42" width="144" height="114" rx="6" fill="#FFFFFF" stroke="#234B6E" stroke-width="1.4"/>
+              <text x="348" y="61" fill="#234B6E" font-family="monospace" font-size="9" font-weight="600">SIGNAL CAPTURE</text>
+              <path d="M348 118H364V84H382V118H402V84H422V118H442V84H460V118H470" stroke="#B53123" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M348 134H468" stroke="#DCD8CE" stroke-width="1"/>
+              <text x="348" y="146" fill="#5C6370" font-family="monospace" font-size="8">5.0V TTL / LOAD PASS</text>
+              <!-- Right side CAD Part Geometry -->
+              <rect x="336" y="172" width="144" height="120" rx="6" fill="#FFFFFF" stroke="#1C1F24" stroke-width="1.4"/>
+              <text x="348" y="191" fill="#1C1F24" font-family="monospace" font-size="9" font-weight="600">CAD BRACKET REV-B</text>
+              <path d="M358 214H426L448 236V266H358V214Z" fill="#EFECE6" stroke="#1C1F24" stroke-width="1.5"/>
+              <circle cx="384" cy="240" r="11" fill="#FFFFFF" stroke="#234B6E" stroke-width="1.6"/>
+              <circle cx="426" cy="248" r="5" fill="#FFFFFF" stroke="#B53123" stroke-width="1.5"/>
+              <text x="358" y="281" fill="#5C6370" font-family="monospace" font-size="8">TOL +/- 0.05 MM</text>
+              <!-- Dimension callouts along bottom -->
+              <path d="M44 276H312" stroke="#5C6370" stroke-width="1" stroke-dasharray="3 2"/>
+              <path d="M44 270V282M312 270V282" stroke="#5C6370" stroke-width="1.2"/>
+              <rect x="130" y="267" width="96" height="18" rx="3" fill="#FCFBF9"/>
+              <text x="178" y="279" text-anchor="middle" fill="#1C1F24" font-family="monospace" font-size="9" font-weight="600">PINOUT VERIFIED</text>
+              <text x="44" y="314" fill="#5C6370" font-family="monospace" font-size="9">LUTZ AUTO · SAN LUIS OBISPO, CA · WWW.LUTZAUTO.COM</text>
+            </svg>
+          </div>
+          <div class="blueprint-foot">
+            <div class="bf-item">
+              <div class="bf-k">Board Restoration</div>
+              <div class="bf-v">Trace &amp; IC Level</div>
+            </div>
+            <div class="bf-item">
+              <div class="bf-k">Part Engineering</div>
+              <div class="bf-v">Reverse-CAD &amp; Fit</div>
+            </div>
+            <div class="bf-item">
+              <div class="bf-k">Test Standard</div>
+              <div class="bf-v">Thermal &amp; Load Cycle</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Core Capabilities</div>
+            <h2 class="section-title">Engineering &amp; electronic repair services</h2>
+            <p class="section-desc">Focused bench solutions when factory modules fail or original components are no longer produced.</p>
+          </div>
+          <a class="btn btn-outline btn-sm" href="#estimator">Configure Scope in Estimator</a>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <span class="service-index">01</span>
+                <span class="service-icon-box" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M3 15L15 3M11 3H15V7M4 8V16H12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+              <h3 class="service-title">Automotive Part Design</h3>
+              <p class="service-copy">Reverse-engineering and custom CAD development for discontinued brackets, sensor adapters, housings, and specialty mechanical subassemblies.</p>
+              <ul class="service-specs">
+                <li>Dimensional metrology from worn cores</li>
+                <li>Material specification for heat &amp; load</li>
+                <li>Direct bolt-in replacement fitment</li>
+              </ul>
+            </div>
+            <button class="btn btn-outline btn-sm service-select-btn" type="button" data-scope="design" data-module="mechanical">Price Part Design</button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <span class="service-index">02</span>
+                <span class="service-icon-box" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <rect x="5" y="5" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.7"/>
+                    <path d="M8 2V5M12 2V5M8 15V18M12 15V18M2 8H5M2 12H5M15 8H18M15 12H18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </div>
+              <h3 class="service-title">Custom Module Repair</h3>
+              <p class="service-copy">Component-level circuit restoration for ECUs, gauge clusters, ABS controllers, and relay panels without losing vehicle-specific calibration.</p>
+              <ul class="service-specs">
+                <li>Capacitor, MOSFET &amp; driver upgrades</li>
+                <li>Damaged copper trace &amp; via rebuilding</li>
+                <li>Conformal moisture protection coating</li>
+              </ul>
+            </div>
+            <button class="btn btn-outline btn-sm service-select-btn" type="button" data-scope="rebuild" data-module="ecu">Price Module Repair</button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <span class="service-index">03</span>
+                <span class="service-icon-box" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <rect x="2.5" y="3.5" width="15" height="11" rx="2" stroke="currentColor" stroke-width="1.7"/>
+                    <path d="M5 10H7.5L9 7L11 12.5L12.5 10H15M7 17H13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+              <h3 class="service-title">Electronic Diagnostics</h3>
+              <p class="service-copy">Controlled bench test simulation, oscilloscope signal analysis, and thermal profiling to isolate intermittent faults before vehicle reassembly.</p>
+              <ul class="service-specs">
+                <li>Pin-by-pin continuity &amp; load sweep</li>
+                <li>Cold-to-hot soak intermittent checks</li>
+                <li>Diagnostic fee credited toward repair</li>
+              </ul>
+            </div>
+            <button class="btn btn-outline btn-sm service-select-btn" type="button" data-scope="diagnostics" data-module="ecu">Price Bench Check</button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <span class="service-index">04</span>
+                <span class="service-icon-box" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.7"/>
+                    <path d="M10 2.5V4.5M10 15.5V17.5M2.5 10H4.5M15.5 10H17.5M4.7 4.7L6.1 6.1M13.9 13.9L15.3 15.3M15.3 4.7L13.9 6.1M6.1 13.9L4.7 15.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </div>
+              <h3 class="service-title">Classic &amp; Specialty Auto Parts</h3>
+              <p class="service-copy">Engineered replacement kits, modern solid-state relay conversions, and hard-to-source electrical hardware for restoration and low-volume builds.</p>
+              <ul class="service-specs">
+                <li>Solid-state upgrades for legacy units</li>
+                <li>Plug-and-play sensor interface adapters</li>
+                <li>Classic Domestic, Euro, Japanese &amp; restomod</li>
+              </ul>
+            </div>
+            <button class="btn btn-outline btn-sm service-select-btn" type="button" data-scope="kit" data-module="harness">Price Specialty Kit</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="estimator">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Interactive Engineering Tool</div>
+            <h2 class="section-title">Part Compatibility, Custom Module Repair &amp; Turnaround Estimator (USD)</h2>
+            <p class="section-desc">Configure vehicle architecture, service scope, and bench turnaround speed to inspect compatibility notes and generate a formatted quote for Lutz Auto.</p>
+          </div>
+          <button class="btn btn-outline btn-sm" type="button" id="reset-estimator-btn">Reset Defaults</button>
+        </div>
+
+        <div class="estimator-shell">
+          <!-- Left Workbench Configuration -->
+          <div class="panel">
+            <div class="panel-head">
+              <h3 class="panel-title">1. Platform, Scope &amp; Compatibility</h3>
+              <span class="panel-badge">USD Pricing Model</span>
+            </div>
+            <div class="panel-body">
+              <div class="control-stack">
+                <div class="field-block">
+                  <label class="field-label" for="est-era">
+                    <span>Vehicle Make / Era</span>
+                    <span class="field-hint">Architecture complexity</span>
+                  </label>
+                  <select class="select-control" id="est-era" name="era" autocomplete="off">
+                    <option value="classic-domestic">Classic Domestic (1960–1995 GM, Ford, Mopar, AMC)</option>
+                    <option value="european">European (Porsche, BMW, Mercedes-Benz, Bosch / VDO / Siemens)</option>
+                    <option value="japanese">Japanese (Toyota, Nissan, Honda, Mazda, Denso / Hitachi)</option>
+                    <option value="modern-specialty">Modern Specialty (CAN-bus, Motorsport, Restomod, Low-Volume)</option>
+                  </select>
+                  <div class="quick-pills" aria-label="Quick vehicle era presets">
+                    <button class="pill-btn is-active" type="button" data-era-pill="classic-domestic">
+                      <span class="pill-main">Classic Domestic</span>
+                      <span class="pill-sub">Discrete &amp; OBD-I · +$0</span>
+                    </button>
+                    <button class="pill-btn" type="button" data-era-pill="european">
+                      <span class="pill-main">European</span>
+                      <span class="pill-sub">Bosch / VDO · +$55</span>
+                    </button>
+                    <button class="pill-btn" type="button" data-era-pill="japanese">
+                      <span class="pill-main">Japanese</span>
+                      <span class="pill-sub">Denso / Hitachi · +$35</span>
+                    </button>
+                    <button class="pill-btn" type="button" data-era-pill="modern-specialty">
+                      <span class="pill-main">Modern Specialty</span>
+                      <span class="pill-sub">CAN / Restomod · +$85</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="two-col-fields">
+                  <div class="field-block">
+                    <label class="field-label" for="est-scope">
+                      <span>Service Scope</span>
+                    </label>
+                    <select class="select-control" id="est-scope" name="scope" autocomplete="off">
+                      <option value="rebuild">Module Rebuild &amp; Repair ($285 base)</option>
+                      <option value="design">Custom Part Design ($420 base)</option>
+                      <option value="diagnostics">Electronic Bench Diagnostics ($145 base)</option>
+                      <option value="kit">Specialty Replacement Kit ($310 base)</option>
+                    </select>
+                  </div>
+
+                  <div class="field-block">
+                    <label class="field-label" for="est-module">
+                      <span>Module or Part Family</span>
+                    </label>
+                    <select class="select-control" id="est-module" name="module" autocomplete="off">
+                      <option value="ecu">ECU / ECM / Fuel Injection Module (+$65)</option>
+                      <option value="cluster">Instrument Cluster &amp; Gauge Driver (+$40)</option>
+                      <option value="abs">ABS / Chassis / Transmission Unit (+$55)</option>
+                      <option value="relay">Ignition Amplifier / Relay &amp; Fuse Block (+$0)</option>
+                      <option value="harness">Custom Sensor Adapter / Interface (+$30)</option>
+                      <option value="mechanical">Mechanical Bracket / Housing CAD (+$25)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Live Compatibility Readout -->
+                <div class="compat-card" aria-live="polite">
+                  <div class="compat-top">
+                    <span class="compat-label">Part Compatibility Check</span>
+                    <span class="compat-pill" id="compat-badge">Supported In-House Fixture</span>
+                  </div>
+                  <p class="compat-summary" id="compat-summary"></p>
+                  <div class="compat-meta">
+                    <div><strong>Signal / Hardware:</strong> <span id="compat-signal"></span></div>
+                    <div><strong>Common Fault / Spec:</strong> <span id="compat-fault"></span></div>
+                  </div>
+                </div>
+
+                <div class="two-col-fields">
+                  <div class="field-block">
+                    <label class="field-label" for="est-turnaround">
+                      <span>Turnaround Speed</span>
+                    </label>
+                    <select class="select-control" id="est-turnaround" name="turnaround" autocomplete="off">
+                      <option value="standard">Standard (5–7 business days · +$0)</option>
+                      <option value="expedited">Expedited (2–3 business days · +$110)</option>
+                      <option value="rush">Rush Bench (24–48 hr priority · +$220)</option>
+                    </select>
+                  </div>
+
+                  <div class="field-block">
+                    <label class="field-label" for="est-qty">
+                      <span>Unit Quantity</span>
+                    </label>
+                    <select class="select-control" id="est-qty" name="quantity" autocomplete="off">
+                      <option value="1">1 Unit (Single Core / Prototype)</option>
+                      <option value="2">2 Units (10% Setup Savings)</option>
+                      <option value="3">3 Units (15% Small-Batch Rate)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="field-block">
+                  <span class="field-label">
+                    <span>Optional Bench &amp; Transit Protections</span>
+                  </span>
+                  <div class="addon-list">
+                    <div class="addon-item">
+                      <div class="addon-left">
+                        <input class="addon-check" type="checkbox" id="opt-bench-report" name="benchReport" autocomplete="off">
+                        <div>
+                          <label class="addon-title" for="opt-bench-report">Bench Test Report &amp; Waveform Sheet</label>
+                          <span class="addon-desc">Includes oscilloscope voltage trace, thermal soak readings, and pinout pass log.</span>
+                        </div>
+                      </div>
+                      <span class="addon-price">+$45</span>
+                    </div>
+
+                    <div class="addon-item">
+                      <div class="addon-left">
+                        <input class="addon-check" type="checkbox" id="opt-shipping-ins" name="shippingInsurance" autocomplete="off">
+                        <div>
+                          <label class="addon-title" for="opt-shipping-ins">Return Shipping Insurance &amp; ESD Packaging</label>
+                          <span class="addon-desc">Declared-value return transit coverage with anti-static shielding and custom foam.</span>
+                        </div>
+                      </div>
+                      <span class="addon-price">+$35</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Estimate Breakdown & Quote Form -->
+          <div class="panel">
+            <div class="panel-head">
+              <h3 class="panel-title">2. Estimate Summary &amp; Quote Request</h3>
+              <span class="panel-badge tabular" id="quote-ref-badge">REF: LA-BENCH</span>
+            </div>
+            <div class="panel-body">
+              <div class="quote-total-box" aria-live="polite">
+                <div class="total-top">
+                  <span class="total-label">Estimated Project Total (USD)</span>
+                  <span class="total-turnaround tabular" id="out-turnaround-label">5–7 business days</span>
+                </div>
+                <div class="total-figure" id="out-total">$350 USD</div>
+                <div class="total-range tabular" id="out-range">Typical bench range: $350 – $405 USD depending on core condition.</div>
+              </div>
+
+              <table class="ledger" aria-label="USD cost breakdown">
+                <tbody id="ledger-body">
+                  <tr>
+                    <td>Base Service Scope</td>
+                    <td class="ledger-val" id="line-base">$285</td>
+                  </tr>
+                  <tr>
+                    <td>Vehicle Make / Era Complexity</td>
+                    <td class="ledger-val" id="line-era">+$0</td>
+                  </tr>
+                  <tr>
+                    <td>Module / Part Category</td>
+                    <td class="ledger-val" id="line-module">+$65</td>
+                  </tr>
+                  <tr>
+                    <td>Turnaround Speed Priority</td>
+                    <td class="ledger-val" id="line-speed">+$0</td>
+                  </tr>
+                  <tr>
+                    <td>Optional Protections</td>
+                    <td class="ledger-val" id="line-addons">+$0</td>
+                  </tr>
+                  <tr>
+                    <td>Quantity Adjustment</td>
+                    <td class="ledger-val" id="line-qty">1x unit</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <form class="form-divider" id="quote-form" novalidate>
+                <h4 class="form-heading">Submit or Copy Bench Quote Request</h4>
+                <div class="control-stack">
+                  <div class="two-col-fields">
+                    <div class="field-block">
+                      <label class="field-label" for="quote-name">Full Name</label>
+                      <input class="input-control" type="text" id="quote-name" name="name" autocomplete="name" placeholder="Jordan Miller" required>
+                    </div>
+                    <div class="field-block">
+                      <label class="field-label" for="quote-email">Email Address</label>
+                      <input class="input-control" type="email" id="quote-email" name="email" autocomplete="email" placeholder="owner@shop-domain.com" required>
+                    </div>
+                  </div>
+
+                  <div class="two-col-fields">
+                    <div class="field-block">
+                      <label class="field-label" for="quote-phone">Phone Number</label>
+                      <input class="input-control" type="tel" id="quote-phone" name="phone" autocomplete="tel" placeholder="805-555-0142">
+                    </div>
+                    <div class="field-block">
+                      <label class="field-label" for="quote-vehicle">Year / Make / Model</label>
+                      <input class="input-control" type="text" id="quote-vehicle" name="vehicle" autocomplete="off" placeholder="1988 BMW 325is (E30)">
+                    </div>
+                  </div>
+
+                  <div class="field-block">
+                    <label class="field-label" for="quote-part">OEM Part Number or Dimensional Spec</label>
+                    <input class="input-control" type="text" id="quote-part" name="partNumber" autocomplete="off" placeholder="Bosch 0 261 200 173 or custom bracket drawing">
+                  </div>
+
+                  <div class="field-block">
+                    <label class="field-label" for="quote-notes">Symptoms, Fault Codes or Design Notes</label>
+                    <textarea class="textarea-control" id="quote-notes" name="notes" autocomplete="off" placeholder="Intermittent no-spark when engine bay warms up; no visible burn marks on housing."></textarea>
+                  </div>
+                </div>
+
+                <div class="btn-row">
+                  <button class="btn btn-primary" type="button" id="copy-quote-btn">Copy Quote Summary</button>
+                  <a class="btn btn-accent" id="mailto-quote-btn" href="mailto:sales@lutzauto.com">Email sales@lutzauto.com</a>
+                  <button class="btn btn-outline" type="submit">Validate &amp; Stage RMA Draft</button>
+                </div>
+
+                <div class="form-feedback" id="form-feedback" role="status" aria-live="polite"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="compatibility">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Reference Matrix</div>
+            <h2 class="section-title">Representative part &amp; module compatibility</h2>
+            <p class="section-desc">Select an era filter below or load any common platform configuration directly into the USD estimator.</p>
+          </div>
+        </div>
+
+        <div class="filter-bar" role="tablist" aria-label="Filter compatibility by vehicle era">
+          <button class="filter-btn is-active" type="button" data-filter="all">All Platforms</button>
+          <button class="filter-btn" type="button" data-filter="classic-domestic">Classic Domestic</button>
+          <button class="filter-btn" type="button" data-filter="european">European</button>
+          <button class="filter-btn" type="button" data-filter="japanese">Japanese</button>
+          <button class="filter-btn" type="button" data-filter="modern-specialty">Modern Specialty</button>
+        </div>
+
+        <div class="table-scroll">
+          <table class="compat-table">
+            <thead>
+              <tr>
+                <th>Vehicle Era</th>
+                <th>Module / Part Type</th>
+                <th>Representative Systems</th>
+                <th>Primary Scope</th>
+                <th>Starting USD</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="compat-table-body">
+              <tr data-era="classic-domestic">
+                <td><span class="era-tag">Classic Domestic</span></td>
+                <td><strong>ECM / Ignition &amp; Relay Control</strong></td>
+                <td>GM OBD-I, Ford EEC-IV, Mopar SBEC</td>
+                <td>Module Rebuild &amp; Repair</td>
+                <td class="mono">$350</td>
+                <td><button class="btn btn-outline btn-sm load-preset-btn" type="button" data-era="classic-domestic" data-scope="rebuild" data-module="ecu">Load in Estimator</button></td>
+              </tr>
+              <tr data-era="classic-domestic">
+                <td><span class="era-tag">Classic Domestic</span></td>
+                <td><strong>NLA Linkage &amp; Sensor Brackets</strong></td>
+                <td>Custom mechanical adapters &amp; housings</td>
+                <td>Custom Part Design</td>
+                <td class="mono">$445</td>
+                <td><button class="btn btn-outline btn-sm load-preset-btn" type="button" data-era="classic-domestic" data-scope="design" data-module="mechanical">Load in Estimator</button></td>
+              </tr>
+              <tr data-era="european">
+                <td><span class="era-tag">European</span></td>
+                <td><strong>Motronic / K-Jetronic / DME Units</strong></td>
+                <td>Bosch, Siemens, Magneti Marelli</td>
+                <td>Module Rebuild &amp; Repair</td>
+                <td class="mono">$405</td>
+                <td><button class="btn btn-outline btn-sm load-preset-btn" type="button" data-era="european" data-scope="rebuild" data-module="ecu">Load in Estimator</button></td>
+              </tr>
+              <tr data-era="european">
+                <td><span class="era-tag">European</span></td>
+                <td><strong>VDO Instrument Clusters &amp; Odometer Gear</strong></td>
+                <td>Cluster PCB, voltage regulators, stepper motors</td>
+                <td>Module Rebuild &amp; Repair</td>
+                <td class="mono">$380</td>
+                <td><button class="btn btn-outline btn-sm load-preset-btn" type="button" data-era="european" data-scope="rebuild" data-module="cluster">Load in Estimator</button></td>
+              </tr>
+              <tr data-era="japanese">
+                <td><span class="era-tag">Japanese</span></td>
+                <td><strong>JDM / USDM 90s ECU Capacitor Restoration</strong></td>
+                <td>Denso, Hitachi, Mitsubishi, JECS</td>
+                <td>Module Rebuild &amp; Repair</td>
+                <td class="mono">$385</td>
+                <td><button class="btn btn-outline btn-sm load-preset-btn" type="button" data-era="japanese" data-scope="rebuild" data-module="ecu">Load in Estimator</button></td>
+              </tr>
+              <tr data-era="japanese">
+                <td><span class="era-tag">Japanese</span></td>
+                <td><strong>ABS &amp; Active Chassis Control Units</strong></td>
+                <td>Pump drivers, wheel speed input stages</td>
+                <td>Electronic Bench Diagnostics</td>
+                <td class="mono">$235</td>
+                <td><button class="btn btn-outline btn-sm load-preset-btn" type="button" data-era="japanese" data-scope="diagnostics" data-module="abs">Load in Estimator</button></td>
+              </tr>
+              <tr data-era="modern-specialty">
+                <td><span class="era-tag">Modern Specialty</span></td>
+                <td><strong>CAN-Bus Signal Interface &amp; Swap Adapters</strong></td>
+                <td>Restomod gauges, standalone engine swaps</td>
+                <td>Specialty Replacement Kit</td>
+                <td class="mono">$425</td>
+                <td><button class="btn btn-outline btn-sm load-preset-btn" type="button" data-era="modern-specialty" data-scope="kit" data-module="harness">Load in Estimator</button></td>
+              </tr>
+              <tr data-era="modern-specialty">
+                <td><span class="era-tag">Modern Specialty</span></td>
+                <td><strong>Low-Volume Machined Mounts &amp; Enclosures</strong></td>
+                <td>Track, kit car &amp; custom sensor brackets</td>
+                <td>Custom Part Design</td>
+                <td class="mono">$530</td>
+                <td><button class="btn btn-outline btn-sm load-preset-btn" type="button" data-era="modern-specialty" data-scope="design" data-module="mechanical">Load in Estimator</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="process">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Workflow Standard</div>
+            <h2 class="section-title">How every bench job and custom part moves from intake to return</h2>
+          </div>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="process-num">STEP 01</div>
+            <h3 class="process-title">Compatibility &amp; Intake</h3>
+            <p class="process-text">Send part numbers, photos, or dimensional specs via <a class="utility-link" href="mailto:sales@lutzauto.com">sales@lutzauto.com</a> to confirm bench fixture support and obtain intake instructions.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-num">STEP 02</div>
+            <h3 class="process-title">Bench Diagnostics or Metrology</h3>
+            <p class="process-text">Electronic cores undergo pinout power-up, waveform capture, and thermal check. Mechanical parts are measured to verify critical mounting datums.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-num">STEP 03</div>
+            <h3 class="process-title">Precision Repair or Fabrication</h3>
+            <p class="process-text">Failed semiconductors, dried capacitors, and corroded traces are restored using high-temp rated components, or custom CAD parts are produced to spec.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-num">STEP 04</div>
+            <h3 class="process-title">Load Verification &amp; Return</h3>
+            <p class="process-text">Every module is tested under simulated load cycles before sealing and ESD-safe return shipment from San Luis Obispo, CA.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container faq-layout">
+        <div>
+          <div class="section-kicker">Technical Questions</div>
+          <h2 class="section-title" style="margin-bottom: 20px;">Common intake &amp; engineering questions</h2>
+
+          <div class="faq-list">
+            <div class="faq-item">
+              <button class="faq-btn" type="button" aria-expanded="true" aria-controls="faq-1">
+                <span>Can I ship a module or sample part to San Luis Obispo, CA from anywhere in the US?</span>
+                <svg class="faq-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="faq-panel" id="faq-1">
+                Yes. Most electronic module repairs and reverse-engineered parts are handled via mail-in bench service. Contact <a class="utility-link" href="mailto:sales@lutzauto.com">sales@lutzauto.com</a> or call <a class="utility-link tabular" href="tel:+18054647138">805-464-7138</a> before shipping so your package receives a bench intake reference and ESD packing guidance.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-2">
+                <span>What should I include if I need custom automotive part design?</span>
+                <svg class="faq-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="faq-panel" id="faq-2" hidden>
+                Provide the vehicle make/year, target mating surfaces, operating environment (under-hood heat, fluid exposure, vibration load), and either a worn original core or dimensioned sketch. Lutz Auto evaluates tooling feasibility and quotes first-article validation in USD prior to fabrication.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-3">
+                <span>Is the bench diagnostic fee applied if I proceed with module repair?</span>
+                <svg class="faq-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="faq-panel" id="faq-3" hidden>
+                Yes. When a unit starts as an Electronic Bench Diagnostic order and moves directly into a Module Rebuild &amp; Repair on the same core, the diagnostic charge is credited toward the approved rebuild balance.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-4">
+                <span>Will module repair erase vehicle keys, VIN coding, or custom engine tunes?</span>
+                <svg class="faq-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="faq-panel" id="faq-4" hidden>
+                Component-level repair preserves your original EEPROM, immobilizer pairing, and calibration maps whenever memory chips remain intact. That avoids dealer programming or aftermarket re-tuning after reinstallation.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="contact-card" aria-label="Direct engineering desk contact details">
+          <h3 class="contact-card-title">Lutz Auto Engineering Desk</h3>
+          <p class="contact-card-desc">Speak directly with San Luis Obispo bench intake regarding part numbers, compatibility questions, or rush queue capacity.</p>
+
+          <div class="contact-rows">
+            <div class="contact-row">
+              <div class="contact-key">Company</div>
+              <div class="contact-val">Lutz Auto</div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-key">Location</div>
+              <div class="contact-val">San Luis Obispo, CA</div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-key">Phone</div>
+              <div class="contact-val tabular"><a href="tel:+18054647138">805-464-7138</a></div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-key">Email</div>
+              <div class="contact-val"><a href="mailto:sales@lutzauto.com">sales@lutzauto.com</a></div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-key">Website</div>
+              <div class="contact-val"><a href="https://www.lutzauto.com" target="_blank" rel="noopener noreferrer">https://www.lutzauto.com</a></div>
+            </div>
+          </div>
+
+          <a class="btn btn-primary" style="width: 100%;" href="mailto:sales@lutzauto.com?subject=Lutz%20Auto%20Part%20or%20Module%20Inquiry">Email sales@lutzauto.com</a>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-heading">Lutz Auto</h3>
+          <p style="margin: 0 0 10px; max-width: 44ch;">
+            Automotive Part Design, Custom Module Repair, Electronic Diagnostics, and Classic &amp; Specialty Auto Parts based in San Luis Obispo, CA.
+          </p>
+          <p style="margin: 0;">
+            <a class="utility-link" href="https://www.lutzauto.com" target="_blank" rel="noopener noreferrer">https://www.lutzauto.com</a>
+          </p>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Capabilities</h3>
+          <ul class="footer-links">
+            <li><a href="#services">Automotive Part Design</a></li>
+            <li><a href="#services">Custom Module Repair</a></li>
+            <li><a href="#services">Electronic Diagnostics</a></li>
+            <li><a href="#services">Classic &amp; Specialty Auto Parts</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">San Luis Obispo Intake</h3>
+          <ul class="footer-links">
+            <li>San Luis Obispo, CA</li>
+            <li>Phone: <a class="utility-link tabular" href="tel:+18054647138">805-464-7138</a></li>
+            <li>Email: <a class="utility-link" href="mailto:sales@lutzauto.com">sales@lutzauto.com</a></li>
+            <li><a href="#estimator">USD Estimator &amp; Compatibility Check</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>Lutz Auto · San Luis Obispo, CA</span>
+        <span>All estimator figures shown in USD pending physical bench inspection.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var PRICING = {
+        scopes: {
+          rebuild: { label: 'Module Rebuild & Repair', base: 285, variance: 55 },
+          design: { label: 'Custom Part Design', base: 420, variance: 95 },
+          diagnostics: { label: 'Electronic Bench Diagnostics', base: 145, variance: 25 },
+          kit: { label: 'Specialty Replacement Kit', base: 310, variance: 65 }
+        },
+        eras: {
+          'classic-domestic': { label: 'Classic Domestic (1960–1995)', fee: 0, arch: 'Through-hole PCB, discrete drivers, OBD-I / analog' },
+          european: { label: 'European (Bosch / VDO / Siemens)', fee: 55, arch: 'Bosch Motronic, VDO stepper, hybrid ceramic boards' },
+          japanese: { label: 'Japanese (Denso / Hitachi / JECS)', fee: 35, arch: 'Dense double-sided PCB, radial electrolytic drivers' },
+          'modern-specialty': { label: 'Modern Specialty (CAN / Motorsport)', fee: 85, arch: 'High-density SMD, CAN-FD bus & custom swap interfaces' }
+        },
+        modules: {
+          ecu: { label: 'ECU / ECM / Fuel Injection Module', fee: 65, fault: 'Injector driver failure, power supply capacitor leakage, cold-solder pins' },
+          cluster: { label: 'Instrument Cluster & Gauge Driver', fee: 40, fault: 'Voltage regulator drift, dead gauge stepper coils, backlight trace loss' },
+          abs: { label: 'ABS / Chassis / Transmission Unit', fee: 55, fault: 'Solenoid valve driver open circuit, pump relay failure, wheel-speed drop' },
+          relay: { label: 'Ignition Amplifier / Relay & Fuse Block', fee: 0, fault: 'Overheated terminal pins, cracked relay bus bars, ignition Darlington fault' },
+          harness: { label: 'Custom Sensor Adapter / Interface', fee: 30, fault: 'Signal level conversion, tach/speedo scaling, obsolete plug adaptation' },
+          mechanical: { label: 'Mechanical Bracket / Housing CAD', fee: 25, fault: 'Cracked NLA cast bracket, custom sensor alignment, spacer & mount geometry' }
+        },
+        turnarounds: {
+          standard: { label: 'Standard (5–7 business days)', window: '5–7 business days', fee: 0 },
+          expedited: { label: 'Expedited (2–3 business days)', window: '2–3 business days', fee: 110 },
+          rush: { label: 'Rush Bench (24–48 hr priority)', window: '24–48 hours priority', fee: 220 }
+        },
+        addons: {
+          benchReport: 45,
+          shippingInsurance: 35
+        },
+        discounts: {
+          1: { rate: 0, label: '1x unit (standard rate)' },
+          2: { rate: 0.10, label: '2x units (10% setup savings)' },
+          3: { rate: 0.15, label: '3x units (15% batch savings)' }
+        }
+      };
+
+      var els = {
+        era: document.getElementById('est-era'),
+        scope: document.getElementById('est-scope'),
+        module: document.getElementById('est-module'),
+        turnaround: document.getElementById('est-turnaround'),
+        qty: document.getElementById('est-qty'),
+        benchReport: document.getElementById('opt-bench-report'),
+        shippingIns: document.getElementById('opt-shipping-ins'),
+        eraPills: document.querySelectorAll('[data-era-pill]'),
+        compatBadge: document.getElementById('compat-badge'),
+        compatSummary: document.getElementById('compat-summary'),
+        compatSignal: document.getElementById('compat-signal'),
+        compatFault: document.getElementById('compat-fault'),
+        outTurnaroundLabel: document.getElementById('out-turnaround-label'),
+        outTotal: document.getElementById('out-total'),
+        outRange: document.getElementById('out-range'),
+        lineBase: document.getElementById('line-base'),
+        lineEra: document.getElementById('line-era'),
+        lineModule: document.getElementById('line-module'),
+        lineSpeed: document.getElementById('line-speed'),
+        lineAddons: document.getElementById('line-addons'),
+        lineQty: document.getElementById('line-qty'),
+        refBadge: document.getElementById('quote-ref-badge'),
+        quoteForm: document.getElementById('quote-form'),
+        quoteName: document.getElementById('quote-name'),
+        quoteEmail: document.getElementById('quote-email'),
+        quotePhone: document.getElementById('quote-phone'),
+        quoteVehicle: document.getElementById('quote-vehicle'),
+        quotePart: document.getElementById('quote-part'),
+        quoteNotes: document.getElementById('quote-notes'),
+        copyBtn: document.getElementById('copy-quote-btn'),
+        mailtoBtn: document.getElementById('mailto-quote-btn'),
+        feedback: document.getElementById('form-feedback'),
+        resetBtn: document.getElementById('reset-estimator-btn'),
+        menuToggle: document.getElementById('menu-toggle'),
+        mobileDrawer: document.getElementById('mobile-drawer')
+      };
+
+      function fmtUSD(amount) {
+        return '$' + Math.round(amount).toLocaleString('en-US');
+      }
+
+      function computeState() {
+        var eraKey = els.era.value;
+        var scopeKey = els.scope.value;
+        var modKey = els.module.value;
+        var speedKey = els.turnaround.value;
+        var qtyNum = parseInt(els.qty.value, 10) || 1;
+
+        var era = PRICING.eras[eraKey];
+        var scope = PRICING.scopes[scopeKey];
+        var mod = PRICING.modules[modKey];
+        var speed = PRICING.turnarounds[speedKey];
+        var disc = PRICING.discounts[qtyNum] || PRICING.discounts[1];
+
+        var singleUnitCore = scope.base + era.fee + mod.fee;
+        var discountedCore = singleUnitCore * qtyNum * (1 - disc.rate);
+        var speedTotal = speed.fee * (qtyNum > 1 ? 1 + (qtyNum - 1) * 0.45 : 1);
+
+        var addonsTotal = 0;
+        var activeAddonNames = [];
+        if (els.benchReport.checked) {
+          addonsTotal += PRICING.addons.benchReport;
+          activeAddonNames.push('Bench Test Report (+$45)');
+        }
+        if (els.shippingIns.checked) {
+          addonsTotal += PRICING.addons.shippingInsurance;
+          activeAddonNames.push('Return Shipping Insurance (+$35)');
+        }
+
+        var estimatedTotal = Math.round(discountedCore + speedTotal + addonsTotal);
+        var highRange = Math.round(estimatedTotal + scope.variance * qtyNum);
+
+        var codeRef = 'LA-' + eraKey.slice(0, 3).toUpperCase() + '-' + scopeKey.slice(0, 3).toUpperCase();
+
+        return {
+          eraKey: eraKey,
+          scopeKey: scopeKey,
+          modKey: modKey,
+          speedKey: speedKey,
+          qtyNum: qtyNum,
+          era: era,
+          scope: scope,
+          mod: mod,
+          speed: speed,
+          disc: disc,
+          speedTotal: Math.round(speedTotal),
+          addonsTotal: addonsTotal,
+          activeAddonNames: activeAddonNames,
+          estimatedTotal: estimatedTotal,
+          highRange: highRange,
+          codeRef: codeRef
+        };
+      }
+
+      function updateCompatibility(state) {
+        var advisory = false;
+        var badgeText = 'Supported In-House Fixture';
+        var summaryText = '';
+
+        if (state.modKey === 'mechanical' && (state.scopeKey === 'rebuild' || state.scopeKey === 'diagnostics')) {
+          advisory = true;
+          badgeText = 'Scope Advisory: Metrology / CAD';
+          summaryText = 'Mechanical brackets and housings are best matched with Custom Part Design or a Specialty Replacement Kit for dimensional reverse-engineering.';
+        } else if (state.modKey === 'ecu' && state.scopeKey === 'design') {
+          advisory = true;
+          badgeText = 'Custom Interface Scope';
+          summaryText = 'Full custom ECU replacement boards require pinout confirmation; if your OEM core is intact, Module Rebuild & Repair preserves original firmware.';
+        } else if (state.scopeKey === 'design') {
+          badgeText = 'Metrology & CAD Supported';
+          summaryText = 'Lutz Auto performs reverse-engineering and precision CAD modeling for ' + state.era.label + ' hardware with bolt-in tolerance verification.';
+        } else if (state.scopeKey === 'diagnostics') {
+          badgeText = 'Load-Bench Test Ready';
+          summaryText = 'Bench pinout sweep, thermal profiling, and signal verification ready for ' + state.mod.label + '; diagnostic fee credits toward full repair.';
+        } else {
+          summaryText = 'Direct component-level service supported for ' + state.era.label + ' ' + state.mod.label + ' cores in San Luis Obispo, CA.';
+        }
+
+        els.compatBadge.textContent = badgeText;
+        els.compatBadge.classList.toggle('is-advisory', advisory);
+        els.compatSummary.textContent = summaryText;
+        els.compatSignal.textContent = state.era.arch;
+        els.compatFault.textContent = state.mod.fault;
+      }
+
+      function buildSummaryText(state) {
+        var lines = [
+          'Lutz Auto — Bench Estimate & Quote Summary',
+          'Reference Code: ' + state.codeRef,
+          '----------------------------------------',
+          'Vehicle Make / Era: ' + state.era.label,
+          'Service Scope: ' + state.scope.label,
+          'Module / Part Family: ' + state.mod.label,
+          'Turnaround Tier: ' + state.speed.label,
+          'Unit Quantity: ' + state.disc.label,
+          'Optional Protections: ' + (state.activeAddonNames.length ? state.activeAddonNames.join(', ') : 'None selected'),
+          'Estimated Total: ' + fmtUSD(state.estimatedTotal) + ' USD (Range: ' + fmtUSD(state.estimatedTotal) + ' – ' + fmtUSD(state.highRange) + ' USD)',
+          '----------------------------------------',
+          'Customer Name: ' + (els.quoteName.value.trim() || 'Not provided'),
+          'Customer Email: ' + (els.quoteEmail.value.trim() || 'Not provided'),
+          'Customer Phone: ' + (els.quotePhone.value.trim() || 'Not provided'),
+          'Vehicle Year / Make / Model: ' + (els.quoteVehicle.value.trim() || 'Not provided'),
+          'OEM Part / Drawing Spec: ' + (els.quotePart.value.trim() || 'Not provided'),
+          'Notes / Symptoms: ' + (els.quoteNotes.value.trim() || 'Not provided'),
+          '----------------------------------------',
+          'Lutz Auto · San Luis Obispo, CA · 805-464-7138 · sales@lutzauto.com'
+        ];
+        return lines.join('\n');
+      }
+
+      function renderEstimator() {
+        var state = computeState();
+
+        els.eraPills.forEach(function (pill) {
+          pill.classList.toggle('is-active', pill.getAttribute('data-era-pill') === state.eraKey);
+        });
+
+        updateCompatibility(state);
+
+        els.refBadge.textContent = 'REF: ' + state.codeRef;
+        els.outTurnaroundLabel.textContent = state.speed.window;
+        els.outTotal.textContent = fmtUSD(state.estimatedTotal) + ' USD';
+        els.outRange.textContent = 'Typical bench range: ' + fmtUSD(state.estimatedTotal) + ' – ' + fmtUSD(state.highRange) + ' USD depending on core condition.';
+
+        els.lineBase.textContent = fmtUSD(state.scope.base);
+        els.lineEra.textContent = '+' + fmtUSD(state.era.fee);
+        els.lineModule.textContent = '+' + fmtUSD(state.mod.fee);
+        els.lineSpeed.textContent = '+' + fmtUSD(state.speedTotal);
+        els.lineAddons.textContent = '+' + fmtUSD(state.addonsTotal);
+        els.lineQty.textContent = state.disc.label;
+
+        var subject = encodeURIComponent('Lutz Auto Quote Request (' + state.codeRef + ') - ' + state.scope.label);
+        var body = encodeURIComponent(buildSummaryText(state));
+        els.mailtoBtn.setAttribute('href', 'mailto:sales@lutzauto.com?subject=' + subject + '&body=' + body);
+      }
+
+      function showFeedback(message, isError) {
+        els.feedback.textContent = message;
+        els.feedback.classList.add('is-visible');
+        els.feedback.classList.toggle('is-error', Boolean(isError));
+        els.feedback.classList.toggle('is-ok', !isError);
+      }
+
+      /* Estimator change listeners */
+      [els.era, els.scope, els.module, els.turnaround, els.qty, els.benchReport, els.shippingIns].forEach(function (ctrl) {
+        ctrl.addEventListener('change', renderEstimator);
+      });
+
+      [els.quoteName, els.quoteEmail, els.quotePhone, els.quoteVehicle, els.quotePart, els.quoteNotes].forEach(function (field) {
+        field.addEventListener('input', renderEstimator);
+      });
+
+      els.eraPills.forEach(function (pill) {
+        pill.addEventListener('click', function () {
+          els.era.value = pill.getAttribute('data-era-pill');
+          renderEstimator();
+        });
+      });
+
+      /* Service cards & Compatibility table quick loaders */
+      function loadPreset(era, scope, mod) {
+        if (era) els.era.value = era;
+        if (scope) els.scope.value = scope;
+        if (mod) els.module.value = mod;
+        renderEstimator();
+        document.getElementById('estimator').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      document.querySelectorAll('.service-select-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          loadPreset(null, btn.getAttribute('data-scope'), btn.getAttribute('data-module'));
+        });
+      });
+
+      document.querySelectorAll('.load-preset-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          loadPreset(btn.getAttribute('data-era'), btn.getAttribute('data-scope'), btn.getAttribute('data-module'));
+        });
+      });
+
+      /* Reset button */
+      els.resetBtn.addEventListener('click', function () {
+        els.era.value = 'classic-domestic';
+        els.scope.value = 'rebuild';
+        els.module.value = 'ecu';
+        els.turnaround.value = 'standard';
+        els.qty.value = '1';
+        els.benchReport.checked = false;
+        els.shippingIns.checked = false;
+        els.feedback.classList.remove('is-visible');
+        renderEstimator();
+      });
+
+      /* Copy summary button */
+      els.copyBtn.addEventListener('click', function () {
+        var summary = buildSummaryText(computeState());
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(summary).then(function () {
+            showFeedback('Quote summary copied to clipboard. Paste directly into an email to sales@lutzauto.com.', false);
+          }, function () {
+            showFeedback('Clipboard access unavailable in this browser. Use the Email sales@lutzauto.com button to send your summary.', true);
+          });
+        } else {
+          showFeedback('Clipboard access unavailable in this browser. Use the Email sales@lutzauto.com button to send your summary.', true);
+        }
+      });
+
+      /* Form validation & staging */
+      els.quoteForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var nameVal = els.quoteName.value.trim();
+        var emailVal = els.quoteEmail.value.trim();
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!nameVal || !emailPattern.test(emailVal)) {
+          showFeedback('Please enter your name and a valid email address before staging an intake draft.', true);
+          if (!nameVal) {
+            els.quoteName.focus();
+          } else {
+            els.quoteEmail.focus();
+          }
+          return;
+        }
+
+        renderEstimator();
+        var state = computeState();
+        showFeedback('Intake draft ' + state.codeRef + ' staged for ' + nameVal + '. Click Email sales@lutzauto.com or Copy Quote Summary to dispatch.', false);
+      });
+
+      /* Compatibility Matrix filter */
+      var filterBtns = document.querySelectorAll('[data-filter]');
+      var tableRows = document.querySelectorAll('#compat-table-body tr');
+      filterBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var target = btn.getAttribute('data-filter');
+          filterBtns.forEach(function (item) {
+            item.classList.toggle('is-active', item === btn);
+          });
+          tableRows.forEach(function (row) {
+            var rowEra = row.getAttribute('data-era');
+            row.hidden = target !== 'all' && rowEra !== target;
+          });
+        });
+      });
+
+      /* FAQ Accordion */
+      document.querySelectorAll('.faq-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var panelId = btn.getAttribute('aria-controls');
+          var panel = document.getElementById(panelId);
+          var isOpen = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!isOpen));
+          if (panel) {
+            panel.hidden = isOpen;
+          }
+        });
+      });
+
+      /* Mobile Navigation Drawer */
+      if (els.menuToggle && els.mobileDrawer) {
+        els.menuToggle.addEventListener('click', function () {
+          var expanded = els.menuToggle.getAttribute('aria-expanded') === 'true';
+          els.menuToggle.setAttribute('aria-expanded', String(!expanded));
+          els.mobileDrawer.classList.toggle('is-open', !expanded);
+        });
+
+        els.mobileDrawer.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            els.menuToggle.setAttribute('aria-expanded', 'false');
+            els.mobileDrawer.classList.remove('is-open');
+          });
+        });
+      }
+
+      renderEstimator();
+    })();
+  </script>
+</body>
+</html>

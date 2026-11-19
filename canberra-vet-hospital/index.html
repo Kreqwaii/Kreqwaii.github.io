@@ -1,0 +1,2589 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Canberra Vet Hospital in Lyneham, Canberra, ACT. Pet consultations and vaccinations, veterinary surgery, dental care, and diagnostic imaging with an interactive AUD visit cost estimator and booking request tool.">
+  <title>Canberra Vet Hospital | Veterinary Clinic in Lyneham, Canberra, ACT</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Crect width='36' height='36' rx='9' fill='%231B4D3E'/%3E%3Cpath d='M18 9v18M9 18h18' stroke='%23FAF1E6' stroke-width='3.6' stroke-linecap='round'/%3E%3Ccircle cx='26' cy='10' r='2.5' fill='%23B5651D'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #F8F7F4;
+      --bg-surface: #FFFFFF;
+      --bg-tint: #F2EFE8;
+      --bg-eucalyptus-soft: #EBF2EF;
+      --bg-ochre-soft: #FAF1E6;
+      --border-subtle: #E3E1DA;
+      --border-strong: #C9C5B8;
+      --text-primary: #1B2420;
+      --text-secondary: #48544E;
+      --text-muted: #5F6B64;
+      --accent-green: #1B4D3E;
+      --accent-green-hover: #13392D;
+      --accent-green-border: #BED3CA;
+      --accent-ochre: #9A5012;
+      --accent-ochre-hover: #7D3F0C;
+      --accent-ochre-border: #E5CBB0;
+      --error-red: #9B2C2C;
+      --error-bg: #FDF2F2;
+      --error-border: #E8BABA;
+      --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+      --font-body: 'Outfit', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-card: 0 1px 2px rgba(27, 36, 32, 0.04), 0 6px 18px rgba(27, 36, 32, 0.04);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--accent-green);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    a:hover {
+      color: var(--accent-green-hover);
+    }
+
+    a[href^="mailto:"],
+    a[href^="tel:"] {
+      white-space: nowrap;
+      word-break: normal;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent-ochre);
+      outline-offset: 2px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(8px);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .brand-mark {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background-color: var(--accent-green);
+      border: 1px solid var(--accent-green);
+    }
+
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.08rem;
+      line-height: 1.2;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .desktop-nav {
+      display: none;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .desktop-nav a {
+      text-decoration: none;
+      font-size: 0.94rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.18s ease;
+    }
+
+    .desktop-nav a:hover {
+      color: var(--accent-green);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .header-phone {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--accent-green);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-surface);
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .header-phone:hover {
+      border-color: var(--accent-green-border);
+      background-color: var(--bg-eucalyptus-soft);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.94rem;
+      line-height: 1.25;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-green);
+      border-color: var(--accent-green);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-green-hover);
+      border-color: var(--accent-green-hover);
+      color: #FFFFFF;
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-surface);
+      border-color: var(--border-strong);
+      color: var(--text-primary);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-tint);
+      border-color: var(--accent-green);
+      color: var(--accent-green);
+    }
+
+    .btn-ochre {
+      background-color: var(--accent-ochre);
+      border-color: var(--accent-ochre);
+      color: #FFFFFF;
+    }
+
+    .btn-ochre:hover {
+      background-color: var(--accent-ochre-hover);
+      border-color: var(--accent-ochre-hover);
+      color: #FFFFFF;
+    }
+
+    .btn-sm {
+      padding: 8px 13px;
+      font-size: 0.86rem;
+    }
+
+    .menu-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .menu-toggle:hover {
+      background-color: var(--bg-tint);
+      border-color: var(--accent-green);
+    }
+
+    .mobile-drawer {
+      display: none;
+      padding: 14px 20px 18px;
+      border-top: 1px solid var(--border-subtle);
+      background-color: var(--bg-surface);
+    }
+
+    .mobile-drawer.is-open {
+      display: block;
+    }
+
+    .mobile-drawer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .mobile-drawer-links a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.98rem;
+      color: var(--text-primary);
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    /* Sections */
+    .section {
+      padding: 56px 0;
+    }
+
+    .section-tight {
+      padding: 40px 0;
+    }
+
+    .section-header {
+      max-width: 720px;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--accent-green);
+      background-color: var(--bg-eucalyptus-soft);
+      border: 1px solid var(--accent-green-border);
+      margin-bottom: 14px;
+    }
+
+    .eyebrow-ochre {
+      color: var(--accent-ochre);
+      background-color: var(--bg-ochre-soft);
+      border-color: var(--accent-ochre-border);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      color: var(--text-primary);
+      margin-top: 0;
+      letter-spacing: -0.01em;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4.1vw, 3.05rem);
+      line-height: 1.13;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: clamp(1.55rem, 2.8vw, 2.15rem);
+      line-height: 1.2;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    h3 {
+      font-size: 1.24rem;
+      line-height: 1.3;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-top: 0;
+      color: var(--text-secondary);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 44px 0 48px;
+      border-bottom: 1px solid var(--border-subtle);
+      background-color: var(--bg-canvas);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .hero-lead {
+      font-size: 1.07rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      max-width: 60ch;
+      margin-bottom: 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .hero-pillars {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .hero-pillar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      min-width: 0;
+    }
+
+    .clinic-card {
+      overflow: hidden;
+    }
+
+    .clinic-card-top {
+      padding: 18px 22px;
+      background-color: var(--bg-eucalyptus-soft);
+      border-bottom: 1px solid var(--accent-green-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .clinic-card-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent-green);
+      margin: 0;
+    }
+
+    .status-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent-ochre);
+      background-color: var(--bg-ochre-soft);
+      border: 1px solid var(--accent-ochre-border);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .clinic-card-body {
+      padding: 20px 22px;
+    }
+
+    .info-rows {
+      display: grid;
+      gap: 14px;
+    }
+
+    .info-row {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .info-row:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .info-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .info-value {
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .info-value a {
+      font-weight: 600;
+    }
+
+    /* Estimator Tool */
+    .estimator-section {
+      background-color: var(--bg-tint);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .estimator-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .workspace-card {
+      padding: 22px;
+    }
+
+    .step-block {
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .step-block:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    .step-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background-color: var(--accent-green);
+      color: #FFFFFF;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 1.18rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    fieldset {
+      border: none;
+      margin: 0;
+      padding: 0;
+      min-width: 0;
+    }
+
+    legend.field-legend {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      padding: 0;
+      display: block;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .field-label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .field-hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 0.96rem;
+      color: var(--text-primary);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      line-height: 1.4;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    input[type="date"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 3px rgba(27, 77, 62, 0.12);
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 84px;
+    }
+
+    .radio-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .choice-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      cursor: pointer;
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .choice-card:hover {
+      border-color: var(--accent-green);
+      background-color: var(--bg-canvas);
+    }
+
+    .choice-card.is-active {
+      border-color: var(--accent-green);
+      background-color: var(--bg-eucalyptus-soft);
+    }
+
+    .choice-card input[type="radio"],
+    .choice-card input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin: 2px 0 0 0;
+      accent-color: var(--accent-green);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .choice-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .choice-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .choice-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.38;
+    }
+
+    .choice-price {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--accent-ochre);
+      margin-top: 2px;
+    }
+
+    .scope-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .addons-stack {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    /* Sticky Summary Panel */
+    .summary-card {
+      overflow: hidden;
+    }
+
+    .summary-head {
+      padding: 20px 22px;
+      background-color: var(--bg-eucalyptus-soft);
+      border-bottom: 1px solid var(--accent-green-border);
+    }
+
+    .summary-meta-pill {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-green);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--accent-green-border);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .summary-total-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .summary-total-range {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--accent-green);
+      margin-bottom: 4px;
+    }
+
+    .summary-tax-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .summary-body {
+      padding: 20px 22px;
+    }
+
+    .breakdown-title {
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .breakdown-list {
+      list-style: none;
+      margin: 0 0 18px 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .breakdown-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.92rem;
+    }
+
+    .breakdown-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .breakdown-name {
+      color: var(--text-primary);
+      font-weight: 500;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .breakdown-sub {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .breakdown-amount {
+      font-weight: 600;
+      color: var(--text-primary);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .prep-box {
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-ochre-soft);
+      border: 1px solid var(--accent-ochre-border);
+      margin-bottom: 16px;
+    }
+
+    .prep-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-ochre);
+      margin-bottom: 4px;
+    }
+
+    .prep-text {
+      font-size: 0.86rem;
+      color: var(--text-primary);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .summary-actions {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .copy-feedback {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--accent-green);
+      min-height: 20px;
+      margin: 0 0 8px 0;
+    }
+
+    .disclaimer-note {
+      font-size: 0.8rem;
+      line-height: 1.48;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* Form Validation & Confirmation */
+    .form-error {
+      display: none;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--error-bg);
+      border: 1px solid var(--error-border);
+      color: var(--error-red);
+      font-size: 0.88rem;
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    .form-error.is-visible {
+      display: block;
+    }
+
+    .booking-confirmation {
+      display: none;
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-eucalyptus-soft);
+      border: 1px solid var(--accent-green-border);
+    }
+
+    .booking-confirmation.is-visible {
+      display: block;
+    }
+
+    .booking-confirmation h4 {
+      color: var(--accent-green);
+      font-size: 1.08rem;
+      margin-bottom: 6px;
+    }
+
+    .booking-ref {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--accent-ochre);
+      margin-bottom: 10px;
+    }
+
+    .booking-summary-pre {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-family: var(--font-body);
+      font-size: 0.86rem;
+      line-height: 1.5;
+      color: var(--text-primary);
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+      max-width: 100%;
+      margin: 0 0 14px 0;
+    }
+
+    .header-cta {
+      display: none;
+    }
+
+    @media (min-width: 540px) {
+      .header-cta {
+        display: inline-flex;
+      }
+    }
+
+    @media (max-width: 479px) {
+      .workspace-card,
+      .summary-body,
+      .summary-head,
+      .clinic-card-body,
+      .clinic-card-top,
+      .service-card,
+      .contact-card {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      #summary-mailto-link,
+      #confirm-mailto-link {
+        font-size: 0.88rem;
+        padding: 10px 12px;
+      }
+    }
+
+    .booking-confirm-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* Services Section */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .service-card {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--accent-green-border);
+    }
+
+    .service-icon-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background-color: var(--bg-eucalyptus-soft);
+      border: 1px solid var(--accent-green-border);
+      color: var(--accent-green);
+      margin-bottom: 14px;
+    }
+
+    .service-bullets {
+      list-style: none;
+      margin: 12px 0 0 0;
+      padding: 0;
+      display: grid;
+      gap: 7px;
+    }
+
+    .service-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .service-bullets svg {
+      flex-shrink: 0;
+      margin-top: 3px;
+      color: var(--accent-ochre);
+    }
+
+    .service-card-footer {
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .service-guide-price {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent-ochre);
+    }
+
+    /* Canberra Guide */
+    .guide-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .guide-card {
+      padding: 22px;
+    }
+
+    .guide-kicker {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-ochre);
+      margin-bottom: 8px;
+    }
+
+    /* FAQ */
+    .faq-section {
+      background-color: var(--bg-tint);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 12px;
+      max-width: 840px;
+    }
+
+    details.faq-item {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+    }
+
+    details.faq-item summary {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--text-primary);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    details.faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-chevron {
+      flex-shrink: 0;
+      color: var(--accent-green);
+      transition: transform 0.2s ease;
+    }
+
+    details.faq-item[open] .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .contact-card {
+      padding: 24px;
+    }
+
+    .contact-detail-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .contact-detail-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .contact-detail-row:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 0.94rem;
+    }
+
+    .hours-table th,
+    .hours-table td {
+      padding: 10px 4px;
+      border-bottom: 1px solid var(--border-subtle);
+      text-align: left;
+    }
+
+    .hours-table tr:last-child th,
+    .hours-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .hours-table th {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .hours-table td {
+      text-align: right;
+      color: var(--text-secondary);
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: #EFECE3;
+      border-top: 1px solid var(--border-strong);
+      padding: 36px 0 32px;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: space-between;
+    }
+
+    .footer-meta {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-top: 8px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 24px;
+      align-items: center;
+    }
+
+    .footer-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-green);
+      text-decoration: underline;
+    }
+
+    /* Responsive Breakpoints */
+    @media (min-width: 640px) {
+      .form-grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-pillars {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .scope-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 768px) {
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .guide-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .contact-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+      }
+
+      .footer-grid {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    @media (min-width: 960px) {
+      .desktop-nav {
+        display: flex;
+      }
+
+      .header-phone {
+        display: inline-flex;
+      }
+
+      .menu-toggle,
+      .mobile-drawer {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 36px;
+      }
+
+      .estimator-layout {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 28px;
+      }
+
+      .summary-card {
+        position: sticky;
+        top: 90px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="#top" class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 4.5V19.5M4.5 12H19.5" stroke="#FAF1E6" stroke-width="2.8" stroke-linecap="round"/>
+              <circle cx="18.5" cy="5.5" r="2" fill="#E5A362"/>
+            </svg>
+          </span>
+          <span class="brand-copy">
+            <span class="brand-name">Canberra Vet Hospital</span>
+            <span class="brand-sub">Lyneham, Canberra, ACT</span>
+          </span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Primary navigation">
+          <a href="#estimator">Cost Estimator</a>
+          <a href="#services">Services</a>
+          <a href="#care-guide">Canberra Care Guide</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <a href="tel:+61262413333" class="header-phone tabular">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            +61262413333
+          </a>
+          <a href="#estimator" class="btn btn-primary btn-sm header-cta">Estimate Visit</a>
+          <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle navigation menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobile-drawer">
+      <div class="mobile-drawer-links">
+        <a href="#estimator">Cost Estimator &amp; Booking</a>
+        <a href="#services">Veterinary Services</a>
+        <a href="#care-guide">Canberra Care Guide</a>
+        <a href="#faq">Frequently Asked Questions</a>
+        <a href="#contact">Clinic Details &amp; Hours</a>
+      </div>
+      <a href="tel:+61262413333" class="btn btn-secondary btn-sm tabular">Call +61262413333</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">Lyneham, Canberra, ACT · Veterinary Clinic</span>
+            <h1>Thoughtful veterinary care for Canberra pets, with clear fees upfront.</h1>
+            <p class="hero-lead">
+              At Canberra Vet Hospital in Lyneham, we provide pet consultations and vaccinations, veterinary surgery, dental care for pets, and diagnostic imaging and lab services. Build an itemised Australian Dollar visit estimate below and prepare your booking request in minutes.
+            </p>
+            <div class="hero-actions">
+              <a href="#estimator" class="btn btn-primary">Open AUD Cost Estimator</a>
+              <a href="tel:+61262413333" class="btn btn-secondary tabular">Call +61262413333</a>
+            </div>
+            <div class="hero-pillars">
+              <div class="hero-pillar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M20 6L9 17l-5-5" stroke="#1B4D3E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Pet Consultations &amp; Vaccinations
+              </div>
+              <div class="hero-pillar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M20 6L9 17l-5-5" stroke="#1B4D3E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Veterinary Surgery &amp; Day Stay
+              </div>
+              <div class="hero-pillar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M20 6L9 17l-5-5" stroke="#1B4D3E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Dental Care for Pets
+              </div>
+              <div class="hero-pillar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M20 6L9 17l-5-5" stroke="#1B4D3E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Diagnostic Imaging &amp; Lab
+              </div>
+            </div>
+          </div>
+
+          <aside class="card clinic-card" aria-label="Clinic summary and direct contact">
+            <div class="clinic-card-top">
+              <h2 class="clinic-card-title">Clinic Contact &amp; Location</h2>
+              <span class="status-tag">Dogs &amp; Cats · ACT</span>
+            </div>
+            <div class="clinic-card-body">
+              <div class="info-rows">
+                <div class="info-row">
+                  <span class="info-label">Clinic</span>
+                  <span class="info-value">Canberra Vet Hospital</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Location</span>
+                  <span class="info-value">Lyneham, Canberra, ACT, Australia</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Phone</span>
+                  <span class="info-value"><a href="tel:+61262413333" class="tabular">+61262413333</a></span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Email</span>
+                  <span class="info-value"><a href="mailto:vets@canberravet.com.au">vets@canberravet.com.au</a></span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Website</span>
+                  <span class="info-value"><a href="https://www.canberravet.com.au" target="_blank" rel="noopener noreferrer">https://www.canberravet.com.au</a></span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Estimator & Booking Tool -->
+    <section class="section estimator-section" id="estimator">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow eyebrow-ochre">Interactive Visit Planner</span>
+          <h2>Pet Vaccination, Wellness &amp; Visit Cost Estimator (AUD)</h2>
+          <p>
+            Select your pet's species, age stage, weight band, visit scope, and optional preventive care to inspect a live itemised AUD estimate and prepare an appointment booking request.
+          </p>
+        </div>
+
+        <div class="estimator-layout">
+          <!-- Controls & Booking Form -->
+          <div class="card workspace-card">
+            <form id="booking-form" novalidate>
+              <!-- Step 1: Patient Profile -->
+              <div class="step-block">
+                <div class="step-heading">
+                  <span class="step-num" aria-hidden="true">1</span>
+                  <h3 class="step-title">Pet Profile</h3>
+                </div>
+
+                <fieldset>
+                  <legend class="field-legend">Species</legend>
+                  <div class="radio-pair">
+                    <label for="species-dog" class="choice-card is-active" id="card-species-dog">
+                      <input type="radio" id="species-dog" name="species" value="dog" autocomplete="off" checked>
+                      <span class="choice-content">
+                        <span class="choice-title">Dog</span>
+                        <span class="choice-desc">Canine care &amp; C3/C5 schedule</span>
+                      </span>
+                    </label>
+                    <label for="species-cat" class="choice-card" id="card-species-cat">
+                      <input type="radio" id="species-cat" name="species" value="cat" autocomplete="off">
+                      <span class="choice-content">
+                        <span class="choice-title">Cat</span>
+                        <span class="choice-desc">Feline care &amp; F3/FIV schedule</span>
+                      </span>
+                    </label>
+                  </div>
+                </fieldset>
+
+                <div class="form-grid-2">
+                  <div class="form-field">
+                    <label for="pet-age" class="field-label">Age Stage</label>
+                    <select id="pet-age" name="petAge" autocomplete="off">
+                      <option value="young">Puppy (under 1 year)</option>
+                      <option value="adult" selected>Adult (1 to 7 years)</option>
+                      <option value="senior">Senior (7+ years)</option>
+                    </select>
+                  </div>
+                  <div class="form-field">
+                    <label for="pet-weight" class="field-label">Weight Band</label>
+                    <select id="pet-weight" name="petWeight" autocomplete="off">
+                      <option value="dog-sm">Small (under 10 kg)</option>
+                      <option value="dog-md" selected>Medium (10 to 25 kg)</option>
+                      <option value="dog-lg">Large (25 to 40 kg)</option>
+                      <option value="dog-xl">Giant (over 40 kg)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2: Visit Scope -->
+              <div class="step-block">
+                <div class="step-heading">
+                  <span class="step-num" aria-hidden="true">2</span>
+                  <h3 class="step-title">Visit Scope</h3>
+                </div>
+
+                <fieldset>
+                  <legend class="field-legend">Primary Reason for Visit</legend>
+                  <div class="scope-grid" id="scope-grid">
+                    <label for="scope-consult" class="choice-card is-active" data-scope-card="consult">
+                      <input type="radio" id="scope-consult" name="scope" value="consult" autocomplete="off" checked>
+                      <span class="choice-content">
+                        <span class="choice-title">Consult</span>
+                        <span class="choice-desc">General exam, unwell visit, or senior check</span>
+                      </span>
+                    </label>
+                    <label for="scope-vaccination" class="choice-card" data-scope-card="vaccination">
+                      <input type="radio" id="scope-vaccination" name="scope" value="vaccination" autocomplete="off">
+                      <span class="choice-content">
+                        <span class="choice-title">Vaccination</span>
+                        <span class="choice-desc">Annual booster or puppy/kitten series</span>
+                      </span>
+                    </label>
+                    <label for="scope-dental" class="choice-card" data-scope-card="dental">
+                      <input type="radio" id="scope-dental" name="scope" value="dental" autocomplete="off">
+                      <span class="choice-content">
+                        <span class="choice-title">Dental</span>
+                        <span class="choice-desc">Scale, polish, charting, or extractions</span>
+                      </span>
+                    </label>
+                    <label for="scope-surgery" class="choice-card" data-scope-card="surgery">
+                      <input type="radio" id="scope-surgery" name="scope" value="surgery" autocomplete="off">
+                      <span class="choice-content">
+                        <span class="choice-title">Surgery</span>
+                        <span class="choice-desc">Desexing, lump removal, or wound care</span>
+                      </span>
+                    </label>
+                    <label for="scope-diagnostics" class="choice-card" data-scope-card="diagnostics">
+                      <input type="radio" id="scope-diagnostics" name="scope" value="diagnostics" autocomplete="off">
+                      <span class="choice-content">
+                        <span class="choice-title">Diagnostics</span>
+                        <span class="choice-desc">Digital X-ray, ultrasound, or lab workup</span>
+                      </span>
+                    </label>
+                  </div>
+                </fieldset>
+
+                <div class="form-field">
+                  <label for="visit-tier" class="field-label">Specific Appointment or Procedure Option</label>
+                  <select id="visit-tier" name="visitTier" autocomplete="off"></select>
+                  <span class="field-hint">Options adjust automatically based on species and visit scope.</span>
+                </div>
+              </div>
+
+              <!-- Step 3: Optional Preventive & Diagnostic Add-Ons -->
+              <div class="step-block">
+                <div class="step-heading">
+                  <span class="step-num" aria-hidden="true">3</span>
+                  <h3 class="step-title">Optional Clinical Add-Ons</h3>
+                </div>
+
+                <div class="addons-stack">
+                  <label for="addon-blood" class="choice-card" id="card-addon-blood">
+                    <input type="checkbox" id="addon-blood" name="addonBlood" autocomplete="off">
+                    <span class="choice-content">
+                      <span class="choice-title">In-House Blood Panel (Haematology &amp; Biochemistry)</span>
+                      <span class="choice-desc">Pre-anaesthetic organ screen or senior wellness profile with same-day results.</span>
+                      <span class="choice-price tabular" id="price-addon-blood">+ A$145 – A$175</span>
+                    </span>
+                  </label>
+
+                  <label for="addon-microchip" class="choice-card" id="card-addon-microchip">
+                    <input type="checkbox" id="addon-microchip" name="addonMicrochip" autocomplete="off">
+                    <span class="choice-content">
+                      <span class="choice-title">ISO Microchipping &amp; ACT Registration</span>
+                      <span class="choice-desc">Standard 15-digit microchip implantation and registry update for ACT compliance.</span>
+                      <span class="choice-price tabular" id="price-addon-microchip">+ A$75 – A$90</span>
+                    </span>
+                  </label>
+
+                  <label for="addon-parasite" class="choice-card" id="card-addon-parasite">
+                    <input type="checkbox" id="addon-parasite" name="addonParasite" autocomplete="off">
+                    <span class="choice-content">
+                      <span class="choice-title">Parasite Prevention Pack (Flea, Tick &amp; Worming)</span>
+                      <span class="choice-desc">Weight-matched protection covering Canberra seasonal risks and coastal tick travel.</span>
+                      <span class="choice-price tabular" id="price-addon-parasite">+ A$72 – A$92</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Step 4: Appointment Booking Request -->
+              <div class="step-block">
+                <div class="step-heading">
+                  <span class="step-num" aria-hidden="true">4</span>
+                  <h3 class="step-title">Appointment Booking Request</h3>
+                </div>
+
+                <div class="form-error" id="booking-error" role="alert"></div>
+
+                <div class="form-grid-2">
+                  <div class="form-field">
+                    <label for="owner-name" class="field-label">Owner Full Name</label>
+                    <input type="text" id="owner-name" name="ownerName" autocomplete="name" placeholder="e.g. Sarah Mitchell" required>
+                  </div>
+                  <div class="form-field">
+                    <label for="pet-name" class="field-label">Pet Name</label>
+                    <input type="text" id="pet-name" name="petName" autocomplete="off" placeholder="e.g. Darcy" required>
+                  </div>
+                  <div class="form-field">
+                    <label for="owner-email" class="field-label">Email Address</label>
+                    <input type="email" id="owner-email" name="ownerEmail" autocomplete="email" placeholder="you@example.com.au" required>
+                  </div>
+                  <div class="form-field">
+                    <label for="owner-phone" class="field-label">Phone Number</label>
+                    <input type="tel" id="owner-phone" name="ownerPhone" autocomplete="tel" placeholder="0400 000 000" required>
+                  </div>
+                  <div class="form-field">
+                    <label for="visit-date" class="field-label">Preferred Date</label>
+                    <input type="date" id="visit-date" name="visitDate" autocomplete="off">
+                  </div>
+                  <div class="form-field">
+                    <label for="visit-window" class="field-label">Preferred Time Window</label>
+                    <select id="visit-window" name="visitWindow" autocomplete="off">
+                      <option value="Morning (8:00 am – 12:00 pm)">Morning (8:00 am – 12:00 pm)</option>
+                      <option value="Midday (12:00 pm – 3:00 pm)">Midday (12:00 pm – 3:00 pm)</option>
+                      <option value="Afternoon (3:00 pm – 6:00 pm)">Afternoon (3:00 pm – 6:00 pm)</option>
+                      <option value="Saturday Morning (8:30 am – 1:00 pm)">Saturday Morning (8:30 am – 1:00 pm)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-field" style="margin-top: 14px;">
+                  <label for="visit-notes" class="field-label">Clinical Notes, Symptoms, or Questions</label>
+                  <textarea id="visit-notes" name="visitNotes" autocomplete="off" placeholder="Share any symptoms, prior vaccine dates, current medications, or preferred veterinarian notes."></textarea>
+                </div>
+
+                <div style="margin-top: 18px; display: flex; flex-wrap: wrap; gap: 10px;">
+                  <button type="submit" class="btn btn-primary">Prepare Booking Request</button>
+                  <button type="button" class="btn btn-secondary" id="reset-estimator">Reset Selections</button>
+                </div>
+
+                <div class="booking-confirmation" id="booking-confirmation" aria-live="polite">
+                  <h4>Booking Request Prepared</h4>
+                  <div class="booking-ref tabular" id="booking-ref-code"></div>
+                  <pre class="booking-summary-pre" id="booking-summary-text"></pre>
+                  <div class="booking-confirm-actions">
+                    <a href="mailto:vets@canberravet.com.au" class="btn btn-ochre btn-sm" id="confirm-mailto-link">Email vets@canberravet.com.au</a>
+                    <button type="button" class="btn btn-secondary btn-sm" id="confirm-copy-btn">Copy Full Summary</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Sticky Live Estimate Panel -->
+          <aside class="card summary-card" aria-label="Live itemised AUD cost estimate">
+            <div class="summary-head">
+              <span class="summary-meta-pill" id="summary-pet-pill">Dog · Adult (1–7 yrs) · 10–25 kg</span>
+              <div class="summary-total-label">Estimated Visit Range (AUD)</div>
+              <div class="summary-total-range tabular" id="summary-total-range">A$92 – A$112</div>
+              <div class="summary-tax-note tabular" id="summary-duration-note">Estimated clinic time: 20 to 30 minutes · Inclusive of GST</div>
+            </div>
+
+            <div class="summary-body">
+              <div class="breakdown-title">Itemised Breakdown</div>
+              <ul class="breakdown-list" id="breakdown-list"></ul>
+
+              <div class="prep-box">
+                <div class="prep-title">Visit Preparation Guidance</div>
+                <p class="prep-text" id="prep-guidance"></p>
+              </div>
+
+              <div class="summary-actions">
+                <button type="button" class="btn btn-secondary" id="copy-estimate-btn">Copy Estimate Summary</button>
+                <a href="mailto:vets@canberravet.com.au" class="btn btn-ochre" id="summary-mailto-link">Email vets@canberravet.com.au</a>
+              </div>
+
+              <p class="copy-feedback" id="copy-feedback" aria-live="polite"></p>
+
+              <p class="disclaimer-note">
+                Figures are transparent guide estimates in Australian Dollars (AUD, inclusive of GST) for Canberra Vet Hospital in Lyneham. Your veterinarian confirms exact treatment costs following physical assessment.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Veterinary Services -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Clinical Capabilities</span>
+          <h2>Veterinary Services in Lyneham, Canberra</h2>
+          <p>
+            Comprehensive medical, surgical, dental, and diagnostic care under one roof for dogs and cats across Canberra's Inner North and wider ACT.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="card service-card">
+            <div>
+              <div class="service-icon-box" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 21c4.5-3.2 7.5-6.7 7.5-10.5A4.5 4.5 0 0 0 12 7.2 4.5 4.5 0 0 0 4.5 10.5C4.5 14.3 7.5 17.8 12 21z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
+                  <path d="M9.5 11.5h5M12 9v5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3>Pet Consultations &amp; Vaccinations</h3>
+              <p>
+                Thorough nose-to-tail physical examinations, unwell consultations, puppy and kitten immunisation schedules, annual C3/C5 and F3/FIV boosters, and senior wellness plans.
+              </p>
+              <ul class="service-bullets">
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Extended 40-minute consultations for complex medical cases
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Canberra-specific parasite, heartworm, and tick prevention advice
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  ISO microchipping and ACT domestic animal registration support
+                </li>
+              </ul>
+            </div>
+            <div class="service-card-footer">
+              <span class="service-guide-price tabular">Guide from A$90 – A$175</span>
+              <button type="button" class="btn btn-secondary btn-sm service-jump" data-jump-scope="vaccination">Estimate Consult / Vaccine</button>
+            </div>
+          </article>
+
+          <article class="card service-card">
+            <div>
+              <div class="service-icon-box" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 20L10.5 13.5M14.5 9.5L20 4M15 4h5v5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M9.5 14.5l-2-2 6-6 2 2-6 6z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3>Veterinary Surgery</h3>
+              <p>
+                Dedicated sterile surgical theatre for routine desexing, soft-tissue procedures, lump removals with biopsy, and laceration repairs with multi-modal pain relief.
+              </p>
+              <ul class="service-bullets">
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Continuous pulse oximetry, ECG, blood pressure, and warming support
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Pre-anaesthetic blood screening options for young and senior pets
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Clear discharge instructions and follow-up suture checks
+                </li>
+              </ul>
+            </div>
+            <div class="service-card-footer">
+              <span class="service-guide-price tabular">Guide from A$270+</span>
+              <button type="button" class="btn btn-secondary btn-sm service-jump" data-jump-scope="surgery">Estimate Surgery</button>
+            </div>
+          </article>
+
+          <article class="card service-card">
+            <div>
+              <div class="service-icon-box" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.5 4.5C5.2 4.5 4 6.4 4 8.7c0 2.7 1.3 4.5 1.8 6.8.4 2 .8 4 2.1 4 1.2 0 1.7-2 2.4-3.7.4-1 1-1.3 1.7-1.3s1.3.3 1.7 1.3c.7 1.7 1.2 3.7 2.4 3.7 1.3 0 1.7-2 2.1-4 .5-2.3 1.8-4.1 1.8-6.8 0-2.3-1.2-4.2-3.5-4.2-1.8 0-2.8 1-4.5 1s-2.7-1-4.5-1z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3>Dental Care for Pets</h3>
+              <p>
+                Preventive ultrasonic scaling and polishing, full periodontal probing and oral charting, dental radiography, and gentle surgical extractions under monitored anaesthesia.
+              </p>
+              <ul class="service-bullets">
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Addresses tartar build-up, gingivitis, and fractured teeth
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Stage-based estimates separating clean-and-polish from extractions
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Tailored home dental nutrition and brushing routines
+                </li>
+              </ul>
+            </div>
+            <div class="service-card-footer">
+              <span class="service-guide-price tabular">Guide from A$420+</span>
+              <button type="button" class="btn btn-secondary btn-sm service-jump" data-jump-scope="dental">Estimate Dental Care</button>
+            </div>
+          </article>
+
+          <article class="card service-card">
+            <div>
+              <div class="service-icon-box" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.9"/>
+                  <path d="M8 14l2.5-3 2.5 2.5 3-4.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3>Diagnostic Imaging &amp; Lab</h3>
+              <p>
+                On-site digital radiography, abdominal ultrasound, urinalysis, microscopy, and same-day blood biochemistry so clinical answers arrive without unnecessary waiting.
+              </p>
+              <ul class="service-bullets">
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Digital X-ray assessment for orthopaedic, thoracic, and dental cases
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  In-house haematology, kidney, liver, and electrolyte panels
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Clear visual walkthrough of imaging results with pet owners
+                </li>
+              </ul>
+            </div>
+            <div class="service-card-footer">
+              <span class="service-guide-price tabular">Guide from A$310+</span>
+              <button type="button" class="btn btn-secondary btn-sm service-jump" data-jump-scope="diagnostics">Estimate Diagnostics</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Canberra Pet Care Guide -->
+    <section class="section section-tight" id="care-guide">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">ACT &amp; Inner North Guidance</span>
+          <h2>Seasonal &amp; Local Care Notes for Canberra Owners</h2>
+        </div>
+
+        <div class="guide-grid">
+          <article class="card guide-card">
+            <div class="guide-kicker">Grass Seeds &amp; Spring Reserves</div>
+            <h3>Lyneham &amp; O'Connor Trails</h3>
+            <p>
+              Warm dry conditions around Canberra reserves increase barley grass seed injuries in paws, ears, and eyelids from late spring through summer. Check between toes after bush walks and book early if your dog develops sudden head shaking or licking.
+            </p>
+          </article>
+
+          <article class="card guide-card">
+            <div class="guide-kicker">South Coast Travel</div>
+            <h3>Paralysis Tick Prevention</h3>
+            <p>
+              While paralysis ticks are uncommon inside suburban Canberra, pets travelling east toward Batemans Bay, Ulladulla, or Broulee face high year-round tick risk. Maintain continuous vet-prescribed tick prevention before any coastal trip.
+            </p>
+          </article>
+
+          <article class="card guide-card">
+            <div class="guide-kicker">ACT Registration &amp; Wellness</div>
+            <h3>Microchipping &amp; Desexing</h3>
+            <p>
+              Under ACT legislation, dogs and cats require microchipping and desexing within prescribed ages unless exempt. Our team assists with microchip verification, registration details, and age-appropriate surgical timing.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Before You Book</span>
+          <h2>Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>
+              How accurate is the online AUD cost estimator?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="faq-answer">
+              The estimator provides realistic itemised Australian Dollar ranges (inclusive of GST) reflecting standard consultation fees, vaccination protocols, weight-adjusted anaesthetic volumes, and common optional screening. Because surgical complexity, dental extractions, or unexpected findings can only be confirmed during examination, your veterinarian reviews a tailored written quote with you prior to proceeding.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Does my pet need to fast before a dental or surgical appointment?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="faq-answer">
+              For adult dogs and cats booked for general anaesthesia (dental care, desexing, soft-tissue surgery, or sedated imaging), food is typically withheld after 10:00 pm the evening before admission while fresh water remains available until morning. Puppies, kittens, and diabetic pets follow modified fasting instructions provided by our nursing team when confirming your booking.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              What should I bring to a vaccination or new-pet consultation?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="faq-answer">
+              Please bring any previous vaccination certificates, clinical history from prior clinics, current medication packaging, and your microchip paperwork if recently adopted. Dogs should arrive on a secure lead and cats in a sturdy, closed carrier.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How should I reach the clinic if my pet requires urgent attention?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="faq-answer">
+              For urgent illness, trauma, breathing difficulty, or suspected toxin ingestion during clinic hours, call our reception desk directly on <a href="tel:+61262413333" class="tabular">+61262413333</a> rather than submitting an email form so our veterinary nurses can triage your pet immediately.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Can I send my itemised estimate directly to the clinic team?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="faq-answer">
+              Yes. Both the Copy Summary button and the <a href="mailto:vets@canberravet.com.au">vets@canberravet.com.au</a> email button automatically include your pet's species, age band, weight band, selected procedure, optional add-ons, itemised AUD range, and preferred booking window.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Clinic Details -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Visit Our Lyneham Clinic</span>
+          <h2>Canberra Vet Hospital Contact &amp; Hours</h2>
+          <p>
+            Conveniently positioned in Lyneham for pet owners across Inner North Canberra, Dickson, O'Connor, Turner, Braddon, and Belconnen.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card contact-card">
+            <h3>Direct Reception &amp; Enquiries</h3>
+            <p>
+              Speak with our veterinary nurses to schedule consultations, confirm fasting guidance, or transfer clinical records from a previous clinic.
+            </p>
+            <div class="contact-detail-list">
+              <div class="contact-detail-row">
+                <span class="info-label">Clinic Address</span>
+                <span class="info-value">Lyneham, Canberra, ACT, Australia</span>
+              </div>
+              <div class="contact-detail-row">
+                <span class="info-label">Telephone</span>
+                <span class="info-value"><a href="tel:+61262413333" class="tabular">+61262413333</a></span>
+              </div>
+              <div class="contact-detail-row">
+                <span class="info-label">Email</span>
+                <span class="info-value"><a href="mailto:vets@canberravet.com.au">vets@canberravet.com.au</a></span>
+              </div>
+              <div class="contact-detail-row">
+                <span class="info-label">Official Website</span>
+                <span class="info-value"><a href="https://www.canberravet.com.au" target="_blank" rel="noopener noreferrer">https://www.canberravet.com.au</a></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card contact-card">
+            <h3>Standard Consultation Hours</h3>
+            <p>
+              Morning surgical and dental admissions typically open from 8:00 am by prior booking.
+            </p>
+            <table class="hours-table">
+              <tbody>
+                <tr>
+                  <th scope="row">Monday – Friday</th>
+                  <td class="tabular">8:00 am – 6:00 pm</td>
+                </tr>
+                <tr>
+                  <th scope="row">Saturday</th>
+                  <td class="tabular">8:30 am – 1:00 pm</td>
+                </tr>
+                <tr>
+                  <th scope="row">Sunday &amp; ACT Public Holidays</th>
+                  <td>Closed (Emergency referral advised)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand">
+            <span class="brand-mark" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 4.5V19.5M4.5 12H19.5" stroke="#FAF1E6" stroke-width="2.8" stroke-linecap="round"/>
+                <circle cx="18.5" cy="5.5" r="2" fill="#E5A362"/>
+              </svg>
+            </span>
+            <span class="brand-copy">
+              <span class="brand-name">Canberra Vet Hospital</span>
+              <span class="brand-sub">Lyneham, Canberra, ACT, Australia</span>
+            </span>
+          </div>
+          <p class="footer-meta">
+            Pet Consultations &amp; Vaccinations · Veterinary Surgery · Dental Care for Pets · Diagnostic Imaging &amp; Lab
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <a href="#estimator">AUD Cost Estimator</a>
+          <a href="#services">Services</a>
+          <a href="tel:+61262413333" class="tabular">+61262413333</a>
+          <a href="mailto:vets@canberravet.com.au">vets@canberravet.com.au</a>
+          <a href="https://www.canberravet.com.au" target="_blank" rel="noopener noreferrer">canberravet.com.au</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var WEIGHT_OPTIONS = {
+        dog: [
+          { value: 'dog-sm', label: 'Small (under 10 kg)', shortLabel: 'Under 10 kg', procAdd: [0, 0], parasite: [58, 75] },
+          { value: 'dog-md', label: 'Medium (10 to 25 kg)', shortLabel: '10–25 kg', procAdd: [65, 110], parasite: [72, 92] },
+          { value: 'dog-lg', label: 'Large (25 to 40 kg)', shortLabel: '25–40 kg', procAdd: [130, 200], parasite: [85, 108] },
+          { value: 'dog-xl', label: 'Giant (over 40 kg)', shortLabel: 'Over 40 kg', procAdd: [210, 320], parasite: [98, 125] }
+        ],
+        cat: [
+          { value: 'cat-std', label: 'Standard Cat (under 5 kg)', shortLabel: 'Under 5 kg', procAdd: [0, 0], parasite: [52, 68] },
+          { value: 'cat-lrg', label: 'Large Breed Cat (5 kg and over)', shortLabel: '5 kg+', procAdd: [35, 55], parasite: [58, 76] }
+        ]
+      };
+
+      var AGE_LABELS = {
+        dog: {
+          young: 'Puppy (under 1 year)',
+          adult: 'Adult (1 to 7 years)',
+          senior: 'Senior (7+ years)'
+        },
+        cat: {
+          young: 'Kitten (under 1 year)',
+          adult: 'Adult (1 to 7 years)',
+          senior: 'Senior (7+ years)'
+        }
+      };
+
+      var TIERS = {
+        consult: {
+          dog: [
+            { value: 'standard', label: 'Standard Consultation (20 min)', range: [92, 112], duration: '20 to 30 minutes', weightScaled: false, anaesthesia: false },
+            { value: 'extended', label: 'Extended / Complex Consultation (40 min)', range: [145, 175], duration: '40 to 45 minutes', weightScaled: false, anaesthesia: false },
+            { value: 'senior-check', label: 'Senior Wellness & Mobility Assessment', range: [135, 165], duration: '35 to 45 minutes', weightScaled: false, anaesthesia: false }
+          ],
+          cat: [
+            { value: 'standard', label: 'Standard Feline Consultation (20 min)', range: [90, 110], duration: '20 to 30 minutes', weightScaled: false, anaesthesia: false },
+            { value: 'extended', label: 'Extended / Complex Feline Consult (40 min)', range: [140, 170], duration: '40 to 45 minutes', weightScaled: false, anaesthesia: false },
+            { value: 'senior-check', label: 'Senior Cat Wellness & Kidney Check Consult', range: [130, 160], duration: '35 to 45 minutes', weightScaled: false, anaesthesia: false }
+          ]
+        },
+        vaccination: {
+          dog: [
+            { value: 'core', label: 'C3 Core Vaccination + Physical Exam', range: [120, 140], duration: '20 to 30 minutes', weightScaled: false, anaesthesia: false },
+            { value: 'comprehensive', label: 'C5 Comprehensive (inc. Kennel Cough) + Exam', range: [150, 175], duration: '20 to 30 minutes', weightScaled: false, anaesthesia: false },
+            { value: 'series', label: 'Puppy Vaccination Series Visit + Exam', range: [135, 160], duration: '30 minutes', weightScaled: false, anaesthesia: false }
+          ],
+          cat: [
+            { value: 'core', label: 'F3 Core Vaccination + Physical Exam', range: [115, 135], duration: '20 to 30 minutes', weightScaled: false, anaesthesia: false },
+            { value: 'comprehensive', label: 'F3 + FIV Protection + Physical Exam', range: [165, 195], duration: '25 to 30 minutes', weightScaled: false, anaesthesia: false },
+            { value: 'series', label: 'Kitten Vaccination Series Visit + Exam', range: [130, 155], duration: '30 minutes', weightScaled: false, anaesthesia: false }
+          ]
+        },
+        dental: {
+          dog: [
+            { value: 'stage12', label: 'Dental Scale, Polish & Charting (Stage 1–2)', range: [470, 590], duration: 'Day stay (morning drop-off)', weightScaled: true, anaesthesia: true },
+            { value: 'stage34', label: 'Dental Prophylaxis with Extractions & X-Ray (Stage 3–4)', range: [780, 1180], duration: 'Full day surgical stay', weightScaled: true, anaesthesia: true }
+          ],
+          cat: [
+            { value: 'stage12', label: 'Feline Dental Scale, Polish & Charting (Stage 1–2)', range: [420, 520], duration: 'Day stay (morning drop-off)', weightScaled: true, anaesthesia: true },
+            { value: 'stage34', label: 'Feline Dental Care with Extractions & X-Ray (Stage 3–4)', range: [680, 990], duration: 'Full day surgical stay', weightScaled: true, anaesthesia: true }
+          ]
+        },
+        surgery: {
+          dog: [
+            { value: 'desex', label: 'Canine Desexing (Day Stay, Fluids & Pain Relief)', range: [390, 520], duration: 'Day stay (morning admission)', weightScaled: true, anaesthesia: true },
+            { value: 'lump', label: 'Soft-Tissue Lump Removal & Histopathology', range: [640, 940], duration: 'Day stay (morning admission)', weightScaled: true, anaesthesia: true },
+            { value: 'wound', label: 'Wound Repair / Minor Surgical Closure', range: [450, 710], duration: 'Half-day to full-day stay', weightScaled: true, anaesthesia: true }
+          ],
+          cat: [
+            { value: 'desex', label: 'Feline Desexing (Day Stay & Pain Relief)', range: [270, 380], duration: 'Day stay (morning admission)', weightScaled: true, anaesthesia: true },
+            { value: 'lump', label: 'Soft-Tissue Mass Removal & Biopsy', range: [560, 820], duration: 'Day stay (morning admission)', weightScaled: true, anaesthesia: true },
+            { value: 'wound', label: 'Abscess / Wound Repair Procedure', range: [390, 610], duration: 'Half-day stay', weightScaled: true, anaesthesia: true }
+          ]
+        },
+        diagnostics: {
+          dog: [
+            { value: 'xray', label: 'Digital Radiography Series (2–3 Views)', range: [340, 480], duration: '60 to 120 minutes', weightScaled: true, anaesthesia: false },
+            { value: 'ultrasound', label: 'Focused Abdominal Ultrasound & Review', range: [410, 560], duration: '45 to 60 minutes', weightScaled: false, anaesthesia: false },
+            { value: 'combo', label: 'Combined Diagnostic Imaging & Clinical Workup', range: [620, 840], duration: 'Half-day hospital stay', weightScaled: true, anaesthesia: false }
+          ],
+          cat: [
+            { value: 'xray', label: 'Feline Digital Radiography Series (2–3 Views)', range: [310, 440], duration: '60 to 120 minutes', weightScaled: true, anaesthesia: false },
+            { value: 'ultrasound', label: 'Feline Abdominal Ultrasound & Review', range: [390, 530], duration: '45 to 60 minutes', weightScaled: false, anaesthesia: false },
+            { value: 'combo', label: 'Combined Diagnostic Imaging & Workup', range: [580, 790], duration: 'Half-day hospital stay', weightScaled: true, anaesthesia: false }
+          ]
+        }
+      };
+
+      var PREP_GUIDANCE = {
+        consult: 'Bring any recent medications, diet notes, or clinical records. For senior pets, bringing a fresh morning urine sample can assist screening.',
+        vaccination: 'Bring your pet\'s vaccination booklet or digital history. Please let reception know ahead of arrival if your pet shows any coughing or lethargy.',
+        dental: 'Withhold food from 10:00 pm the evening before admission while keeping fresh water available until morning check-in. Nursing staff confirm exact discharge timing.',
+        surgery: 'Withhold food from 10:00 pm the evening before surgery unless your pet is under 4 months old or diabetic, in which case our team provides tailored instructions.',
+        diagnostics: 'Keep your pet fasted for 6 to 8 hours prior if abdominal ultrasound or light sedation is planned, while maintaining access to fresh water.'
+      };
+
+      var SCOPE_NAMES = {
+        consult: 'Pet Consultations',
+        vaccination: 'Vaccinations',
+        dental: 'Dental Care for Pets',
+        surgery: 'Veterinary Surgery',
+        diagnostics: 'Diagnostic Imaging & Lab'
+      };
+
+      var ADDON_BLOOD = [145, 175];
+      var ADDON_MICROCHIP = [75, 90];
+
+      // Elements
+      var menuToggle = document.getElementById('menu-toggle');
+      var mobileDrawer = document.getElementById('mobile-drawer');
+      var speciesRadios = document.querySelectorAll('input[name="species"]');
+      var scopeRadios = document.querySelectorAll('input[name="scope"]');
+      var ageSelect = document.getElementById('pet-age');
+      var weightSelect = document.getElementById('pet-weight');
+      var tierSelect = document.getElementById('visit-tier');
+      var addonBlood = document.getElementById('addon-blood');
+      var addonMicrochip = document.getElementById('addon-microchip');
+      var addonParasite = document.getElementById('addon-parasite');
+
+      var priceAddonParasite = document.getElementById('price-addon-parasite');
+      var summaryPetPill = document.getElementById('summary-pet-pill');
+      var summaryTotalRange = document.getElementById('summary-total-range');
+      var summaryDurationNote = document.getElementById('summary-duration-note');
+      var breakdownList = document.getElementById('breakdown-list');
+      var prepGuidance = document.getElementById('prep-guidance');
+      var copyEstimateBtn = document.getElementById('copy-estimate-btn');
+      var summaryMailtoLink = document.getElementById('summary-mailto-link');
+      var copyFeedback = document.getElementById('copy-feedback');
+
+      var bookingForm = document.getElementById('booking-form');
+      var bookingError = document.getElementById('booking-error');
+      var bookingConfirmation = document.getElementById('booking-confirmation');
+      var bookingRefCode = document.getElementById('booking-ref-code');
+      var bookingSummaryText = document.getElementById('booking-summary-text');
+      var confirmMailtoLink = document.getElementById('confirm-mailto-link');
+      var confirmCopyBtn = document.getElementById('confirm-copy-btn');
+      var resetBtn = document.getElementById('reset-estimator');
+
+      var ownerName = document.getElementById('owner-name');
+      var petName = document.getElementById('pet-name');
+      var ownerEmail = document.getElementById('owner-email');
+      var ownerPhone = document.getElementById('owner-phone');
+      var visitDate = document.getElementById('visit-date');
+      var visitWindow = document.getElementById('visit-window');
+      var visitNotes = document.getElementById('visit-notes');
+
+      var latestEstimate = null;
+
+      // Mobile nav toggle
+      if (menuToggle && mobileDrawer) {
+        menuToggle.addEventListener('click', function () {
+          var isOpen = mobileDrawer.classList.toggle('is-open');
+          menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        mobileDrawer.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            mobileDrawer.classList.remove('is-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      function formatAud(amount) {
+        return 'A$' + Number(amount).toLocaleString('en-AU');
+      }
+
+      function formatRange(low, high) {
+        if (low === high) {
+          return formatAud(low);
+        }
+        return formatAud(low) + ' – ' + formatAud(high);
+      }
+
+      function getSelectedSpecies() {
+        var checked = document.querySelector('input[name="species"]:checked');
+        return checked ? checked.value : 'dog';
+      }
+
+      function getSelectedScope() {
+        var checked = document.querySelector('input[name="scope"]:checked');
+        return checked ? checked.value : 'consult';
+      }
+
+      function syncChoiceCardStates() {
+        var sp = getSelectedSpecies();
+        document.getElementById('card-species-dog').classList.toggle('is-active', sp === 'dog');
+        document.getElementById('card-species-cat').classList.toggle('is-active', sp === 'cat');
+
+        var sc = getSelectedScope();
+        document.querySelectorAll('[data-scope-card]').forEach(function (el) {
+          el.classList.toggle('is-active', el.getAttribute('data-scope-card') === sc);
+        });
+
+        document.getElementById('card-addon-blood').classList.toggle('is-active', addonBlood.checked);
+        document.getElementById('card-addon-microchip').classList.toggle('is-active', addonMicrochip.checked);
+        document.getElementById('card-addon-parasite').classList.toggle('is-active', addonParasite.checked);
+      }
+
+      function populateAgeOptions(species) {
+        var currentVal = ageSelect.value || 'adult';
+        var labels = AGE_LABELS[species];
+        ageSelect.innerHTML = '';
+        ['young', 'adult', 'senior'].forEach(function (key) {
+          var opt = document.createElement('option');
+          opt.value = key;
+          opt.textContent = labels[key];
+          if (key === currentVal) {
+            opt.selected = true;
+          }
+          ageSelect.appendChild(opt);
+        });
+      }
+
+      function populateWeightOptions(species, preserveCurrent) {
+        var currentVal = preserveCurrent ? weightSelect.value : '';
+        var list = WEIGHT_OPTIONS[species];
+        weightSelect.innerHTML = '';
+        var matched = false;
+        list.forEach(function (item, index) {
+          var opt = document.createElement('option');
+          opt.value = item.value;
+          opt.textContent = item.label;
+          if (preserveCurrent && item.value === currentVal) {
+            opt.selected = true;
+            matched = true;
+          } else if (!preserveCurrent && ((species === 'dog' && index === 1) || (species === 'cat' && index === 0))) {
+            opt.selected = true;
+            matched = true;
+          }
+          weightSelect.appendChild(opt);
+        });
+        if (!matched && weightSelect.options.length > 0) {
+          weightSelect.options[0].selected = true;
+        }
+      }
+
+      function populateTierOptions(species, scope) {
+        var list = TIERS[scope][species];
+        var previousVal = tierSelect.value;
+        tierSelect.innerHTML = '';
+        var matched = false;
+        list.forEach(function (item) {
+          var opt = document.createElement('option');
+          opt.value = item.value;
+          opt.textContent = item.label + ' (' + formatRange(item.range[0], item.range[1]) + ')';
+          if (item.value === previousVal) {
+            opt.selected = true;
+            matched = true;
+          }
+          tierSelect.appendChild(opt);
+        });
+        if (!matched && tierSelect.options.length > 0) {
+          tierSelect.options[0].selected = true;
+        }
+      }
+
+      function getCurrentWeightMeta(species) {
+        var val = weightSelect.value;
+        var list = WEIGHT_OPTIONS[species];
+        for (var i = 0; i < list.length; i++) {
+          if (list[i].value === val) {
+            return list[i];
+          }
+        }
+        return list[0];
+      }
+
+      function getCurrentTierMeta(species, scope) {
+        var val = tierSelect.value;
+        var list = TIERS[scope][species];
+        for (var i = 0; i < list.length; i++) {
+          if (list[i].value === val) {
+            return list[i];
+          }
+        }
+        return list[0];
+      }
+
+      function buildSummaryPlainText(includeBookingFields, refId) {
+        if (!latestEstimate) {
+          return '';
+        }
+        var lines = [
+          'Canberra Vet Hospital — Visit & Cost Estimate (AUD)',
+          'Location: Lyneham, Canberra, ACT, Australia | Phone: +61262413333',
+          '----------------------------',
+          'Species: ' + (latestEstimate.species === 'dog' ? 'Dog' : 'Cat'),
+          'Age Stage: ' + latestEstimate.ageLabel,
+          'Weight Band: ' + latestEstimate.weightLabel,
+          'Visit Scope: ' + latestEstimate.scopeName,
+          'Selected Option: ' + latestEstimate.tierLabel,
+          '',
+          'Itemised Estimate (AUD, inclusive of GST):'
+        ];
+
+        latestEstimate.items.forEach(function (item) {
+          lines.push(' - ' + item.name + ': ' + formatRange(item.range[0], item.range[1]));
+        });
+
+        lines.push('Total Estimated Range: ' + formatRange(latestEstimate.totalLow, latestEstimate.totalHigh) + ' AUD');
+        lines.push('Estimated Visit Time: ' + latestEstimate.duration);
+
+        if (includeBookingFields) {
+          lines.push('');
+          lines.push('Appointment Booking Details:');
+          if (refId) {
+            lines.push('Reference ID: ' + refId);
+          }
+          lines.push('Owner Name: ' + (ownerName.value.trim() || 'Not provided'));
+          lines.push('Pet Name: ' + (petName.value.trim() || 'Not provided'));
+          lines.push('Email: ' + (ownerEmail.value.trim() || 'Not provided'));
+          lines.push('Phone: ' + (ownerPhone.value.trim() || 'Not provided'));
+          lines.push('Preferred Date: ' + (visitDate.value || 'Flexible / Next available'));
+          lines.push('Preferred Time Window: ' + visitWindow.value);
+          if (visitNotes.value.trim()) {
+            lines.push('Clinical Notes: ' + visitNotes.value.trim());
+          }
+        }
+
+        lines.push('');
+        lines.push('Note: Guide estimate only. Final costs are confirmed by your veterinarian following clinical assessment.');
+        return lines.join('\n');
+      }
+
+      function buildMailtoHref(includeBookingFields, refId) {
+        var subjectPet = petName.value.trim() ? ' for ' + petName.value.trim() : '';
+        var subject = 'Appointment & Estimate Request' + subjectPet + ' (' + SCOPE_NAMES[latestEstimate.scope] + ')';
+        var body = buildSummaryPlainText(includeBookingFields, refId);
+        return 'mailto:vets@canberravet.com.au?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      }
+
+      function calculateAndRender() {
+        syncChoiceCardStates();
+
+        var species = getSelectedSpecies();
+        var scope = getSelectedScope();
+        var age = ageSelect.value;
+        var ageLabel = AGE_LABELS[species][age];
+        var weightMeta = getCurrentWeightMeta(species);
+        var tierMeta = getCurrentTierMeta(species, scope);
+
+        priceAddonParasite.textContent = '+ ' + formatRange(weightMeta.parasite[0], weightMeta.parasite[1]);
+
+        var items = [];
+        items.push({
+          name: tierMeta.label,
+          sub: SCOPE_NAMES[scope] + ' base allocation',
+          range: [tierMeta.range[0], tierMeta.range[1]]
+        });
+
+        if (tierMeta.weightScaled && (weightMeta.procAdd[0] > 0 || weightMeta.procAdd[1] > 0)) {
+          items.push({
+            name: 'Weight-Based Clinical & Fluid Care',
+            sub: weightMeta.label + ' anaesthetic & consumables',
+            range: [weightMeta.procAdd[0], weightMeta.procAdd[1]]
+          });
+        }
+
+        if (age === 'senior' && tierMeta.anaesthesia) {
+          items.push({
+            name: 'Senior Peri-Anaesthetic Fluid & Monitoring Care',
+            sub: 'Enhanced blood pressure & warmth support (7+ years)',
+            range: [75, 95]
+          });
+        }
+
+        if (addonBlood.checked) {
+          items.push({
+            name: 'In-House Blood Panel',
+            sub: 'Haematology & biochemistry screening',
+            range: [ADDON_BLOOD[0], ADDON_BLOOD[1]]
+          });
+        }
+
+        if (addonMicrochip.checked) {
+          items.push({
+            name: 'ISO Microchipping & ACT Registration',
+            sub: '15-digit microchip implant & registry filing',
+            range: [ADDON_MICROCHIP[0], ADDON_MICROCHIP[1]]
+          });
+        }
+
+        if (addonParasite.checked) {
+          items.push({
+            name: 'Parasite Prevention Pack',
+            sub: 'Flea, tick & worming for ' + weightMeta.shortLabel,
+            range: [weightMeta.parasite[0], weightMeta.parasite[1]]
+          });
+        }
+
+        var totalLow = 0;
+        var totalHigh = 0;
+        items.forEach(function (item) {
+          totalLow += item.range[0];
+          totalHigh += item.range[1];
+        });
+
+        latestEstimate = {
+          species: species,
+          scope: scope,
+          scopeName: SCOPE_NAMES[scope],
+          age: age,
+          ageLabel: ageLabel,
+          weightLabel: weightMeta.label,
+          weightShort: weightMeta.shortLabel,
+          tierLabel: tierMeta.label,
+          duration: tierMeta.duration,
+          items: items,
+          totalLow: totalLow,
+          totalHigh: totalHigh
+        };
+
+        summaryPetPill.textContent = (species === 'dog' ? 'Dog' : 'Cat') + ' · ' + (age === 'young' ? (species === 'dog' ? 'Puppy' : 'Kitten') : age === 'adult' ? 'Adult' : 'Senior') + ' · ' + weightMeta.shortLabel;
+        summaryTotalRange.textContent = formatRange(totalLow, totalHigh);
+        summaryDurationNote.textContent = 'Estimated clinic time: ' + tierMeta.duration + ' · Inclusive of GST';
+
+        breakdownList.innerHTML = '';
+        items.forEach(function (item) {
+          var li = document.createElement('li');
+          li.className = 'breakdown-item';
+
+          var left = document.createElement('span');
+          left.className = 'breakdown-name';
+          left.textContent = item.name;
+
+          var sub = document.createElement('span');
+          sub.className = 'breakdown-sub';
+          sub.textContent = item.sub;
+          left.appendChild(sub);
+
+          var right = document.createElement('span');
+          right.className = 'breakdown-amount tabular';
+          right.textContent = formatRange(item.range[0], item.range[1]);
+
+          li.appendChild(left);
+          li.appendChild(right);
+          breakdownList.appendChild(li);
+        });
+
+        prepGuidance.textContent = PREP_GUIDANCE[scope];
+        summaryMailtoLink.setAttribute('href', buildMailtoHref(false, null));
+      }
+
+      function copyTextToClipboard(text, targetFeedbackEl, doneMessage) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            targetFeedbackEl.textContent = doneMessage;
+          }, function () {
+            fallbackCopy(text, targetFeedbackEl, doneMessage);
+          });
+        } else {
+          fallbackCopy(text, targetFeedbackEl, doneMessage);
+        }
+      }
+
+      function fallbackCopy(text, targetFeedbackEl, doneMessage) {
+        var helper = document.createElement('textarea');
+        helper.value = text;
+        helper.setAttribute('readonly', '');
+        helper.style.position = 'fixed';
+        helper.style.left = '-9999px';
+        document.body.appendChild(helper);
+        helper.select();
+        try {
+          document.execCommand('copy');
+          targetFeedbackEl.textContent = doneMessage;
+        } catch (err) {
+          targetFeedbackEl.textContent = 'Select and copy the summary text above.';
+        }
+        document.body.removeChild(helper);
+      }
+
+      // Event listeners
+      speciesRadios.forEach(function (radio) {
+        radio.addEventListener('change', function () {
+          var sp = getSelectedSpecies();
+          var sc = getSelectedScope();
+          populateAgeOptions(sp);
+          populateWeightOptions(sp, false);
+          populateTierOptions(sp, sc);
+          calculateAndRender();
+        });
+      });
+
+      scopeRadios.forEach(function (radio) {
+        radio.addEventListener('change', function () {
+          var sp = getSelectedSpecies();
+          var sc = getSelectedScope();
+          populateTierOptions(sp, sc);
+          calculateAndRender();
+        });
+      });
+
+      [ageSelect, weightSelect, tierSelect, addonBlood, addonMicrochip, addonParasite].forEach(function (el) {
+        el.addEventListener('change', function () {
+          copyFeedback.textContent = '';
+          calculateAndRender();
+        });
+      });
+
+      copyEstimateBtn.addEventListener('click', function () {
+        var hasOwner = ownerName.value.trim().length > 0 || petName.value.trim().length > 0;
+        var summary = buildSummaryPlainText(hasOwner, null);
+        copyTextToClipboard(summary, copyFeedback, 'Estimate summary copied to clipboard.');
+      });
+
+      document.querySelectorAll('.service-jump').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var targetScope = btn.getAttribute('data-jump-scope');
+          var targetRadio = document.getElementById('scope-' + targetScope);
+          if (targetRadio) {
+            targetRadio.checked = true;
+            populateTierOptions(getSelectedSpecies(), targetScope);
+            calculateAndRender();
+          }
+          document.getElementById('estimator').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      resetBtn.addEventListener('click', function () {
+        document.getElementById('species-dog').checked = true;
+        document.getElementById('scope-consult').checked = true;
+        populateAgeOptions('dog');
+        ageSelect.value = 'adult';
+        populateWeightOptions('dog', false);
+        populateTierOptions('dog', 'consult');
+        addonBlood.checked = false;
+        addonMicrochip.checked = false;
+        addonParasite.checked = false;
+        bookingError.classList.remove('is-visible');
+        bookingError.textContent = '';
+        bookingConfirmation.classList.remove('is-visible');
+        copyFeedback.textContent = '';
+        calculateAndRender();
+      });
+
+      bookingForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        bookingError.classList.remove('is-visible');
+        bookingError.textContent = '';
+
+        var missing = [];
+        if (!ownerName.value.trim()) missing.push('Owner Full Name');
+        if (!petName.value.trim()) missing.push('Pet Name');
+        if (!ownerEmail.value.trim() || ownerEmail.value.indexOf('@') === -1) missing.push('valid Email Address');
+        if (!ownerPhone.value.trim()) missing.push('Phone Number');
+
+        if (missing.length > 0) {
+          bookingError.textContent = 'Please provide ' + missing.join(', ') + ' to prepare your booking request.';
+          bookingError.classList.add('is-visible');
+          bookingConfirmation.classList.remove('is-visible');
+          return;
+        }
+
+        var now = new Date();
+        var refId = 'CVH-' + String(now.getFullYear()).slice(-2) + String(now.getMonth() + 1).padStart(2, '0') + String(now.getDate()).padStart(2, '0') + '-' + String(Math.floor(100 + Math.random() * 900));
+        var summaryText = buildSummaryPlainText(true, refId);
+
+        bookingRefCode.textContent = 'Reference: ' + refId + ' · Ready to send or copy';
+        bookingSummaryText.textContent = summaryText;
+        confirmMailtoLink.setAttribute('href', buildMailtoHref(true, refId));
+        summaryMailtoLink.setAttribute('href', buildMailtoHref(true, refId));
+        bookingConfirmation.classList.add('is-visible');
+      });
+
+      confirmCopyBtn.addEventListener('click', function () {
+        copyTextToClipboard(bookingSummaryText.textContent, copyFeedback, 'Full booking request copied to clipboard.');
+      });
+
+      // Set sensible default minimum date to today
+      if (visitDate) {
+        var today = new Date();
+        var iso = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+        visitDate.setAttribute('min', iso);
+      }
+
+      // Initialize
+      populateAgeOptions('dog');
+      ageSelect.value = 'adult';
+      populateWeightOptions('dog', false);
+      populateTierOptions('dog', 'consult');
+      calculateAndRender();
+    })();
+  </script>
+</body>
+</html>
