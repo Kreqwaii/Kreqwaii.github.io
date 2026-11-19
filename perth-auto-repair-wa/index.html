@@ -1,0 +1,3409 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Perth Auto Repair on Archer St, Carlisle WA 6101. Logbook servicing, brake repair, clutch and transmission, cooling systems, OBD-II diagnostics and pre-purchase inspections. Instant AUD repair estimator.">
+  <meta name="theme-color" content="#F7F6F2">
+  <title>Perth Auto Repair | Carlisle WA Logbook Servicing &amp; Mechanical Estimator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23181C22'/%3E%3Ccircle cx='32' cy='32' r='19' fill='none' stroke='%23F7F6F2' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='8' fill='none' stroke='%239E4322' stroke-width='4'/%3E%3Cpath d='M32 7v8M32 49v8M7 32h8M49 32h8' stroke='%231C4B6D' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F7F6F2;
+      --surface: #FFFFFF;
+      --surface-alt: #EFECE5;
+      --surface-muted: #E6E2D8;
+      --ink: #181C22;
+      --ink-secondary: #3A404B;
+      --ink-muted: #5A626E;
+      --border: #D7D2C8;
+      --border-strong: #B9B2A5;
+      --accent: #1C4B6D;
+      --accent-hover: #143852;
+      --accent-soft: #E8EFF4;
+      --accent-border: #ADC4D6;
+      --copper: #9E4322;
+      --copper-hover: #7F3419;
+      --copper-soft: #F7ECE7;
+      --copper-border: #DFBEB2;
+      --ok: #1F6E52;
+      --ok-soft: #E6F2ED;
+      --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+      --font-body: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', monospace;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-card: 0 1px 2px rgba(24, 28, 34, 0.05), 0 8px 24px rgba(24, 28, 34, 0.04);
+      --shadow-elevated: 0 4px 14px rgba(24, 28, 34, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.58;
+      overflow-x: clip;
+    }
+
+    img, svg {
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1260px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: var(--ink);
+      color: var(--bg);
+      padding: 10px 16px;
+      z-index: 200;
+      font-weight: 600;
+    }
+
+    .skip-link:focus {
+      left: 12px;
+      top: 12px;
+    }
+
+    .utility-bar {
+      background-color: var(--ink);
+      color: #EAE7DF;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      border-bottom: 1px solid #2A303A;
+    }
+
+    .utility-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 18px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    .utility-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 16px;
+    }
+
+    .utility-sep {
+      color: #6B7280;
+    }
+
+    .utility-link {
+      color: #EAE7DF;
+      border-bottom: 1px solid rgba(234, 231, 223, 0.3);
+      transition: color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .utility-link:hover {
+      color: #FFFFFF;
+      border-bottom-color: #FFFFFF;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background-color: rgba(247, 246, 242, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 68px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background-color: var(--ink);
+      color: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .main-nav a {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      padding: 6px 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .main-nav a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 1.2;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    .btn-dark {
+      background-color: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .btn-dark:hover {
+      background-color: #2A303A;
+      border-color: #2A303A;
+    }
+
+    .btn-copper {
+      background-color: var(--copper);
+      color: #FFFFFF;
+      border-color: var(--copper);
+    }
+
+    .btn-copper:hover {
+      background-color: var(--copper-hover);
+      border-color: var(--copper-hover);
+    }
+
+    .btn-outline {
+      background-color: var(--surface);
+      color: var(--ink);
+      border-color: var(--border-strong);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--surface-alt);
+      border-color: var(--ink);
+    }
+
+    .btn-sm {
+      padding: 8px 13px;
+      font-size: 13px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .mobile-drawer {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      padding: 14px 20px 18px;
+    }
+
+    .mobile-drawer.open {
+      display: block;
+    }
+
+    .mobile-drawer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .mobile-drawer-links a {
+      font-weight: 600;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--surface-alt);
+      color: var(--ink);
+    }
+
+    .hero {
+      padding-top: 44px;
+      padding-bottom: 52px;
+      border-bottom: 1px solid var(--border);
+      background-image:
+        linear-gradient(to right, rgba(24, 28, 34, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(24, 28, 34, 0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 11px;
+      border-radius: 4px;
+      background-color: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--copper);
+      flex-shrink: 0;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      color: var(--ink);
+      margin-top: 0;
+      letter-spacing: -0.025em;
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 4.1vw, 3.55rem);
+      line-height: 1.06;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .hero-lead {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--ink-secondary);
+      max-width: 61ch;
+      margin-top: 0;
+      margin-bottom: 24px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .metric-label {
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.35;
+    }
+
+    .spec-sheet {
+      background-color: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .spec-sheet-head {
+      background-color: var(--ink);
+      color: var(--bg);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .spec-sheet-title {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .spec-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background-color: rgba(255, 255, 255, 0.12);
+      color: #F7F6F2;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .status-led {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #4ADE80;
+    }
+
+    .spec-sheet-body {
+      padding: 18px 20px;
+    }
+
+    .spec-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 14px;
+    }
+
+    .spec-row:last-child {
+      border-bottom: none;
+    }
+
+    .spec-key {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      flex-shrink: 0;
+    }
+
+    .spec-val {
+      font-weight: 600;
+      color: var(--ink);
+      text-align: right;
+    }
+
+    .spec-quick-presets {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .spec-quick-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+      margin-bottom: 10px;
+    }
+
+    .preset-btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .preset-chip {
+      padding: 7px 11px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface-alt);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .preset-chip:hover {
+      background-color: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .section {
+      padding-top: 64px;
+      padding-bottom: 64px;
+      scroll-margin-top: 78px;
+    }
+
+    .hero {
+      scroll-margin-top: 78px;
+    }
+
+    .section-alt {
+      background-color: var(--surface-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 32px;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      line-height: 1.12;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      color: var(--ink-secondary);
+      max-width: 64ch;
+      margin: 0;
+    }
+
+    .estimator-shell {
+      background-color: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .estimator-topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 24px;
+      background-color: var(--surface-alt);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .estimator-topbar-title {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .estimator-topbar-meta {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .estimator-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr);
+    }
+
+    .estimator-controls {
+      padding: 24px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .estimator-output {
+      padding: 24px;
+      background-color: #FAF9F6;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    @media (min-width: 1081px) {
+      .estimator-output {
+        position: sticky;
+        top: 82px;
+        align-self: start;
+      }
+    }
+
+    .control-block {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .control-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .control-step {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+
+    .control-hint {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .vehicle-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .radio-card {
+      position: relative;
+    }
+
+    .sr-only-input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .radio-card-label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 12px 14px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      background-color: var(--surface);
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .radio-card-label:hover {
+      border-color: var(--accent);
+      background-color: var(--accent-soft);
+    }
+
+    .sr-only-input:focus-visible + .radio-card-label,
+    .sr-only-input:focus-visible + .parts-card-label,
+    .sr-only-input:focus-visible + .tier-pill-label {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .sr-only-input:checked + .radio-card-label {
+      border-color: var(--accent);
+      background-color: var(--accent-soft);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+
+    .radio-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .radio-card-name {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .radio-card-mult {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .radio-card-examples {
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.35;
+    }
+
+    .interval-box {
+      background-color: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .interval-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: end;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      margin-bottom: 5px;
+    }
+
+    .input-control, .select-control, .textarea-control {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface);
+      color: var(--ink);
+      font-size: 15px;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .input-control:focus, .select-control:focus, .textarea-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(28, 75, 109, 0.14);
+    }
+
+    .range-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .range-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .range-readout {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .interval-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--copper);
+      background-color: var(--copper-soft);
+      border: 1px solid var(--copper-border);
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+    }
+
+    .work-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .work-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background-color: var(--surface);
+      padding: 11px 14px;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .work-item.active {
+      border-color: var(--accent);
+      background-color: #F4F8FB;
+    }
+
+    .work-item-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .work-check-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .work-checkbox {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .work-label {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--ink);
+      cursor: pointer;
+      display: block;
+      line-height: 1.3;
+    }
+
+    .work-desc {
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    .work-price-col {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .work-price-val {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .work-hours-val {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    .logbook-tier-bar {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tier-caption {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      margin-right: 4px;
+    }
+
+    .tier-pill {
+      position: relative;
+    }
+
+    .tier-pill-label {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .sr-only-input:checked + .tier-pill-label {
+      background-color: var(--ink);
+      color: #FFFFFF;
+      border-color: var(--ink);
+    }
+
+    .parts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .parts-card {
+      position: relative;
+    }
+
+    .parts-card-label {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface);
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .sr-only-input:checked + .parts-card-label {
+      border-color: var(--copper);
+      background-color: var(--copper-soft);
+      box-shadow: inset 0 0 0 1px var(--copper);
+    }
+
+    .parts-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .parts-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.35;
+    }
+
+    .schematic-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+    }
+
+    .schematic-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .schematic-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-secondary);
+    }
+
+    .schematic-legend {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    .legend-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 4px;
+    }
+
+    .svg-node {
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .svg-node .node-shape {
+      fill: #EFECE5;
+      stroke: #9A9589;
+      stroke-width: 1.5;
+      transition: fill 0.2s ease, stroke 0.2s ease;
+    }
+
+    .svg-node .node-text {
+      fill: #505762;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 600;
+      transition: fill 0.2s ease;
+    }
+
+    .svg-node.is-active .node-shape {
+      fill: #D9E7F2;
+      stroke: #1C4B6D;
+      stroke-width: 2;
+    }
+
+    .svg-node.is-active .node-text {
+      fill: #1C4B6D;
+    }
+
+    .svg-node.is-highlight .node-shape {
+      fill: #F6DFD6;
+      stroke: #9E4322;
+      stroke-width: 2;
+    }
+
+    .svg-node.is-highlight .node-text {
+      fill: #7F3419;
+    }
+
+    .total-panel {
+      background-color: var(--ink);
+      color: var(--bg);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .total-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid rgba(247, 246, 242, 0.16);
+      padding-bottom: 12px;
+    }
+
+    .total-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #C7C2B6;
+    }
+
+    .total-aud {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 2.7vw, 2.2rem);
+      font-weight: 800;
+      line-height: 1.08;
+      color: #FFFFFF;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .total-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .total-meta-box {
+      background-color: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-sm);
+      padding: 9px 11px;
+    }
+
+    .total-meta-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #B8B3A7;
+      margin-bottom: 2px;
+    }
+
+    .total-meta-val {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .breakdown-box {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .breakdown-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+      margin-bottom: 8px;
+    }
+
+    .breakdown-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .breakdown-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 13px;
+    }
+
+    .breakdown-item:last-child {
+      border-bottom: none;
+    }
+
+    .breakdown-item-name {
+      color: var(--ink-secondary);
+      font-weight: 600;
+    }
+
+    .breakdown-item-price {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .output-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .output-actions .btn-primary {
+      flex: 1 1 200px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-elevated);
+      transform: translateY(-2px);
+    }
+
+    .service-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .service-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background-color: var(--accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .service-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink-muted);
+    }
+
+    .service-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+
+    .service-copy {
+      font-size: 14px;
+      color: var(--ink-secondary);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .service-foot {
+      padding-top: 12px;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .service-rate {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--copper);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 42px;
+    }
+
+    .process-step {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .process-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .process-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .process-desc {
+      font-size: 14px;
+      color: var(--ink-secondary);
+      margin: 0;
+    }
+
+    .two-col-editorial {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .faq-item {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .faq-btn {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: 0;
+      padding: 15px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .faq-btn:hover {
+      background-color: var(--surface-alt);
+    }
+
+    .faq-plus {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .faq-panel {
+      display: none;
+      padding: 0 18px 16px;
+      font-size: 15px;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+      border-top: 1px solid var(--surface-alt);
+    }
+
+    .faq-panel.open {
+      display: block;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .review-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .review-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      background-color: var(--accent-soft);
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .review-quote {
+      font-size: 15px;
+      color: var(--ink-secondary);
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    .review-author {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--ink);
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .workshop-panel {
+      background-color: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .contact-table {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--border);
+      font-size: 14px;
+    }
+
+    .contact-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .contact-k {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .contact-v {
+      font-weight: 600;
+      color: var(--ink);
+      text-align: right;
+    }
+
+    .map-frame {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background-color: var(--bg);
+      padding: 10px;
+    }
+
+    .suburb-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .suburb-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background-color: var(--surface-alt);
+      color: var(--ink-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .booking-form-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .transferred-banner {
+      background-color: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .transferred-banner.is-synced {
+      background-color: var(--ok-soft);
+      border-color: #9CCCB9;
+    }
+
+    .transferred-head {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+
+    .transferred-banner.is-synced .transferred-head {
+      color: var(--ok);
+    }
+
+    .transferred-body {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .form-field-full {
+      grid-column: 1 / -1;
+    }
+
+    .form-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .form-note {
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    .booking-receipt {
+      display: none;
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: var(--radius-md);
+      background-color: var(--ok-soft);
+      border: 1px solid #9CCCB9;
+    }
+
+    .booking-receipt.visible {
+      display: block;
+    }
+
+    .receipt-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ok);
+      margin-bottom: 6px;
+    }
+
+    .receipt-text {
+      font-size: 14px;
+      color: var(--ink);
+      margin: 0 0 10px 0;
+    }
+
+    .receipt-code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-secondary);
+      background: var(--surface);
+      padding: 8px 10px;
+      border-radius: 4px;
+      border: 1px solid #B7DBCD;
+    }
+
+    .site-footer {
+      background-color: var(--ink);
+      color: #DDD9CE;
+      padding-top: 44px;
+      padding-bottom: 32px;
+      border-top: 1px solid #2A303A;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-heading {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #A6A195;
+      margin-bottom: 12px;
+    }
+
+    .footer-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      padding-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+      color: #B4AFA4;
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .estimator-grid,
+      .two-col-editorial,
+      .booking-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .estimator-controls {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .reviews-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 820px) {
+      .main-nav,
+      .header-actions .btn-outline {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+
+      .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 580px) {
+      .utility-bar {
+        font-size: 11px;
+      }
+
+      .utility-hours-item,
+      .utility-hours-sep {
+        display: none;
+      }
+
+      .header-actions .btn-dark {
+        display: none;
+      }
+
+      .brand-name {
+        font-size: 16px;
+      }
+
+      .hero {
+        padding-top: 24px;
+        padding-bottom: 34px;
+      }
+
+      .section {
+        padding-top: 44px;
+        padding-bottom: 44px;
+      }
+
+      .hero-metrics,
+      .vehicle-grid,
+      .parts-grid,
+      .interval-row,
+      .services-grid,
+      .process-grid,
+      .form-grid,
+      .total-meta-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .estimator-controls,
+      .estimator-output,
+      .workshop-panel,
+      .booking-form-card {
+        padding: 16px;
+      }
+
+      .work-item-row {
+        flex-direction: column;
+      }
+
+      .work-price-col {
+        text-align: left;
+        padding-left: 28px;
+      }
+
+      .contact-row {
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .contact-v {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="utility-group">
+        <span>PERTH AUTO REPAIR</span>
+        <span class="utility-sep">|</span>
+        <span>ARCHER ST, CARLISLE WA 6101</span>
+      </div>
+      <div class="utility-group">
+        <span class="utility-hours-item">OPEN 7 DAYS (MON-FRI 7:30AM - 5:30PM, SAT 8:00AM - 2:00PM)</span>
+        <span class="utility-sep utility-hours-sep">|</span>
+        <a class="utility-link" href="tel:0481222774">0481 222 774</a>
+        <span class="utility-sep">|</span>
+        <a class="utility-link" href="mailto:info@perthautorepair.com.au">info@perthautorepair.com.au</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="height:auto;">
+            <circle cx="12" cy="12" r="8"></circle>
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Perth Auto Repair</span>
+          <span class="brand-sub">Carlisle WA 6101 Workshop</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="#estimator">AUD Estimator</a>
+        <a href="#services">Services</a>
+        <a href="#diagnostics">Process &amp; FAQ</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#booking">Book Bay</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-outline btn-sm" href="tel:0481222774">0481 222 774</a>
+        <a class="btn btn-dark btn-sm" href="#booking">Book Appointment</a>
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="height:auto;">
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobile-drawer">
+      <div class="mobile-drawer-links">
+        <a href="#estimator">AUD Repair Estimator</a>
+        <a href="#services">Mechanical Services</a>
+        <a href="#diagnostics">Process &amp; FAQ</a>
+        <a href="#reviews">Customer Feedback</a>
+        <a href="#booking">Carlisle Workshop &amp; Booking</a>
+      </div>
+      <div class="hero-cta-row">
+        <a class="btn btn-outline btn-sm" href="tel:0481222774">Call 0481 222 774</a>
+        <a class="btn btn-primary btn-sm" href="#booking">Book Carlisle Bay</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>Archer St, Carlisle WA 6101 / Mechanical &amp; Logbook Specialists</span>
+          </div>
+          <h1 class="hero-title">Precision Logbook Servicing and Mechanical Repair in Perth</h1>
+          <p class="hero-lead">
+            Independent mechanical diagnostics, statutory warranty logbook servicing, brake machining, clutch and transmission work, cooling system repairs, and pre-purchase inspections. Transparent upfront AUD pricing with zero hidden fees in Carlisle.
+          </p>
+          <div class="hero-cta-row">
+            <a class="btn btn-primary" href="#estimator">Launch AUD Service Estimator</a>
+            <a class="btn btn-outline" href="tel:0481222774">Call 0481 222 774</a>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric-card">
+              <div class="metric-val tabular">7 Days</div>
+              <div class="metric-label">Workshop access across Perth Metro and Carlisle corridor</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val tabular">OEM / Spec</div>
+              <div class="metric-label">Quality-tested and genuine spare parts protecting warranties</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val tabular">6101 WA</div>
+              <div class="metric-label">Archer Street workshop near Victoria Park and Welshpool</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="spec-sheet" aria-label="Workshop specification summary">
+          <div class="spec-sheet-head">
+            <span class="spec-sheet-title">Carlisle Service Desk / Spec Sheet</span>
+            <span class="spec-status-pill">
+              <span class="status-led" aria-hidden="true"></span>
+              <span>Bays Ready</span>
+            </span>
+          </div>
+          <div class="spec-sheet-body">
+            <ul class="spec-list">
+              <li class="spec-row">
+                <span class="spec-key">Workshop</span>
+                <span class="spec-val">Archer St, Carlisle WA 6101</span>
+              </li>
+              <li class="spec-row">
+                <span class="spec-key">Direct Phone</span>
+                <span class="spec-val mono"><a href="tel:0481222774">0481 222 774</a></span>
+              </li>
+              <li class="spec-row">
+                <span class="spec-key">Email Desk</span>
+                <span class="spec-val mono"><a href="mailto:info@perthautorepair.com.au">info@perthautorepair.com.au</a></span>
+              </li>
+              <li class="spec-row">
+                <span class="spec-key">Coordinates</span>
+                <span class="spec-val mono">-31.975324, 115.914646</span>
+              </li>
+              <li class="spec-row">
+                <span class="spec-key">Hours</span>
+                <span class="spec-val">Mon-Fri 7:30am - 5:30pm, Sat 8am - 2pm, Sun by booking</span>
+              </li>
+              <li class="spec-row">
+                <span class="spec-key">Quote Policy</span>
+                <span class="spec-val">Written inspection quote before work begins</span>
+              </li>
+            </ul>
+            <div class="spec-quick-presets">
+              <div class="spec-quick-title">Jump Directly Into Estimator Preset</div>
+              <div class="preset-btn-group">
+                <button class="preset-chip" type="button" data-quick-preset="logbook60">60,000 km Logbook</button>
+                <button class="preset-chip" type="button" data-quick-preset="brakes">Brakes + OBD-II</button>
+                <button class="preset-chip" type="button" data-quick-preset="cooling">Perth Summer Cooling</button>
+                <button class="preset-chip" type="button" data-quick-preset="ppi">Pre-Purchase Check</button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="estimator">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Interactive Workshop Tool</div>
+            <h2 class="section-title">Perth Logbook Service &amp; Mechanical Repair Estimator (AUD)</h2>
+            <p class="section-sub">
+              Configure your vehicle class, odometer interval, required mechanical repairs, and spare parts grade to calculate an indicative Carlisle workshop estimate in AUD and bay turnaround time.
+            </p>
+          </div>
+          <div class="mono" style="font-size:12px; color:var(--ink-muted);">
+            ALL FIGURES INC. 10% GST / CARLISLE BENCH RATES
+          </div>
+        </div>
+
+        <div class="estimator-shell">
+          <div class="estimator-topbar">
+            <span class="estimator-topbar-title">Workbench Configurator / Unit PAR-WA-6101</span>
+            <span class="estimator-topbar-meta" id="topbar-live-summary">SEDAN / WAGON - 60,000 KM - QUALITY AFTERMARKET</span>
+          </div>
+
+          <div class="estimator-grid">
+            <div class="estimator-controls">
+              <div class="control-block">
+                <div class="control-head">
+                  <span class="control-step">01 / Select Vehicle Class</span>
+                  <span class="control-hint">Adjusts oil capacity, labour time &amp; part sizing</span>
+                </div>
+                <div class="vehicle-grid" role="radiogroup" aria-label="Vehicle class">
+                  <div class="radio-card">
+                    <input class="sr-only-input" type="radio" name="vehicleClass" id="veh-hatch" value="hatch" data-mult="1.00" data-label="Small / Hatch">
+                    <label class="radio-card-label" for="veh-hatch">
+                      <span class="radio-card-top">
+                        <span class="radio-card-name">Small / Hatch</span>
+                        <span class="radio-card-mult">1.00x</span>
+                      </span>
+                      <span class="radio-card-examples">Corolla, i30, Mazda 3, Yaris, Swift</span>
+                    </label>
+                  </div>
+
+                  <div class="radio-card">
+                    <input class="sr-only-input" type="radio" name="vehicleClass" id="veh-sedan" value="sedan" data-mult="1.15" data-label="Sedan / Wagon" checked>
+                    <label class="radio-card-label" for="veh-sedan">
+                      <span class="radio-card-top">
+                        <span class="radio-card-name">Sedan / Wagon</span>
+                        <span class="radio-card-mult">1.15x</span>
+                      </span>
+                      <span class="radio-card-examples">Camry, Mazda 6, Outback, Accord, Commodore</span>
+                    </label>
+                  </div>
+
+                  <div class="radio-card">
+                    <input class="sr-only-input" type="radio" name="vehicleClass" id="veh-suv" value="suv" data-mult="1.32" data-label="SUV / 4WD / Ute">
+                    <label class="radio-card-label" for="veh-suv">
+                      <span class="radio-card-top">
+                        <span class="radio-card-name">SUV / 4WD / Ute</span>
+                        <span class="radio-card-mult">1.32x</span>
+                      </span>
+                      <span class="radio-card-examples">HiLux, Ranger, Prado, RAV4, CX-5, Triton</span>
+                    </label>
+                  </div>
+
+                  <div class="radio-card">
+                    <input class="sr-only-input" type="radio" name="vehicleClass" id="veh-euro" value="euro" data-mult="1.48" data-label="European / Performance">
+                    <label class="radio-card-label" for="veh-euro">
+                      <span class="radio-card-top">
+                        <span class="radio-card-name">European / Performance</span>
+                        <span class="radio-card-mult">1.48x</span>
+                      </span>
+                      <span class="radio-card-examples">VW Golf, Tiguan, BMW, Audi, Mercedes, WRX</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="control-block">
+                <div class="control-head">
+                  <span class="control-step">02 / Odometer &amp; Service Interval</span>
+                  <span class="control-hint">Sets manufacturer inspection checklist</span>
+                </div>
+                <div class="interval-box">
+                  <div class="interval-row">
+                    <div>
+                      <label class="field-label" for="interval-preset">Logbook Interval Bracket</label>
+                      <select class="select-control" id="interval-preset" autocomplete="off">
+                        <option value="minor">10,000 - 30,000 km (Minor Interval)</option>
+                        <option value="intermediate" selected>40,000 - 60,000 km (Intermediate)</option>
+                        <option value="major">80,000 - 100,000 km (Major Interval)</option>
+                        <option value="high">120,000+ km (High-Mileage Inspection)</option>
+                      </select>
+                    </div>
+                    <div class="range-wrap">
+                      <div class="range-header">
+                        <label class="field-label" for="odometer-range" style="margin-bottom:0;">Current Odometer</label>
+                        <span class="range-readout tabular" id="odometer-readout">60,000 km</span>
+                      </div>
+                      <input type="range" id="odometer-range" min="10000" max="220000" step="5000" value="60000" autocomplete="off">
+                    </div>
+                  </div>
+                  <div class="interval-badge" id="interval-advice">
+                    Recommended at 60,000 km: Logbook intermediate fluids, brake pad wear gauge and radiator pressure test.
+                  </div>
+                </div>
+              </div>
+
+              <div class="control-block">
+                <div class="control-head">
+                  <span class="control-step">03 / Mechanical &amp; Servicing Scope</span>
+                  <span class="control-hint">Select one or more bay operations</span>
+                </div>
+                <div class="work-list">
+                  <div class="work-item active" data-work-card="logbook">
+                    <div class="work-item-row">
+                      <div class="work-check-group">
+                        <input class="work-checkbox" type="checkbox" id="work-logbook" value="logbook" checked autocomplete="off">
+                        <div>
+                          <label class="work-label" for="work-logbook">Logbook Minor / Major Service</label>
+                          <div class="work-desc">Manufacturer-schedule oil and filter change, safety inspection, fluid top-ups and warranty book stamp.</div>
+                        </div>
+                      </div>
+                      <div class="work-price-col">
+                        <div class="work-price-val tabular" id="item-price-logbook">From $265</div>
+                        <div class="work-hours-val tabular" id="item-hours-logbook">1.5 hrs</div>
+                      </div>
+                    </div>
+                    <div class="logbook-tier-bar" id="logbook-tier-bar">
+                      <span class="tier-caption">Logbook Scope:</span>
+                      <div class="tier-pill">
+                        <input class="sr-only-input" type="radio" name="logbookTier" id="tier-minor" value="minor" checked>
+                        <label class="tier-pill-label" for="tier-minor">Minor Service</label>
+                      </div>
+                      <div class="tier-pill">
+                        <input class="sr-only-input" type="radio" name="logbookTier" id="tier-major" value="major">
+                        <label class="tier-pill-label" for="tier-major">Major Service</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="work-item" data-work-card="brakes">
+                    <div class="work-item-row">
+                      <div class="work-check-group">
+                        <input class="work-checkbox" type="checkbox" id="work-brakes" value="brakes" autocomplete="off">
+                        <div>
+                          <label class="work-label" for="work-brakes">Brake Pads &amp; Rotors</label>
+                          <div class="work-desc">Front or rear pad replacement, rotor machining/replacement, caliper slide lube and DOT4 fluid check.</div>
+                        </div>
+                      </div>
+                      <div class="work-price-col">
+                        <div class="work-price-val tabular" id="item-price-brakes">From $320</div>
+                        <div class="work-hours-val tabular" id="item-hours-brakes">1.8 hrs</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="work-item" data-work-card="transmission">
+                    <div class="work-item-row">
+                      <div class="work-check-group">
+                        <input class="work-checkbox" type="checkbox" id="work-transmission" value="transmission" autocomplete="off">
+                        <div>
+                          <label class="work-label" for="work-transmission">Clutch &amp; Transmission Service</label>
+                          <div class="work-desc">Automatic transmission fluid/filter service or manual hydraulic bleed, clutch travel and driveline inspection.</div>
+                        </div>
+                      </div>
+                      <div class="work-price-col">
+                        <div class="work-price-val tabular" id="item-price-transmission">From $340</div>
+                        <div class="work-hours-val tabular" id="item-hours-transmission">2.0 hrs</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="work-item" data-work-card="cooling">
+                    <div class="work-item-row">
+                      <div class="work-check-group">
+                        <input class="work-checkbox" type="checkbox" id="work-cooling" value="cooling" autocomplete="off">
+                        <div>
+                          <label class="work-label" for="work-cooling">Cooling System Flush &amp; Radiator</label>
+                          <div class="work-desc">Pressure leak test, thermostat and hose check, complete coolant flush and radiator flow service.</div>
+                        </div>
+                      </div>
+                      <div class="work-price-col">
+                        <div class="work-price-val tabular" id="item-price-cooling">From $195</div>
+                        <div class="work-hours-val tabular" id="item-hours-cooling">1.2 hrs</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="work-item" data-work-card="diagnostics">
+                    <div class="work-item-row">
+                      <div class="work-check-group">
+                        <input class="work-checkbox" type="checkbox" id="work-diagnostics" value="diagnostics" autocomplete="off">
+                        <div>
+                          <label class="work-label" for="work-diagnostics">OBD-II Diagnostics</label>
+                          <div class="work-desc">Full ECU fault-code scan, live sensor telemetry, battery/alternator load test and printed diagnostic report.</div>
+                        </div>
+                      </div>
+                      <div class="work-price-col">
+                        <div class="work-price-val tabular" id="item-price-diagnostics">From $135</div>
+                        <div class="work-hours-val tabular" id="item-hours-diagnostics">0.8 hrs</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="work-item" data-work-card="timing">
+                    <div class="work-item-row">
+                      <div class="work-check-group">
+                        <input class="work-checkbox" type="checkbox" id="work-timing" value="timing" autocomplete="off">
+                        <div>
+                          <label class="work-label" for="work-timing">Timing Belt / Spark Plugs</label>
+                          <div class="work-desc">Timing belt and tensioner service allowance or iridium spark plug and ignition tune-up.</div>
+                        </div>
+                      </div>
+                      <div class="work-price-col">
+                        <div class="work-price-val tabular" id="item-price-timing">From $390</div>
+                        <div class="work-hours-val tabular" id="item-hours-timing">2.4 hrs</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="work-item" data-work-card="ppi">
+                    <div class="work-item-row">
+                      <div class="work-check-group">
+                        <input class="work-checkbox" type="checkbox" id="work-ppi" value="ppi" autocomplete="off">
+                        <div>
+                          <label class="work-label" for="work-ppi">Pre-Purchase Inspection</label>
+                          <div class="work-desc">110-point hoist, suspension, leak, OBD-II scan and Carlisle road test inspection before buying used.</div>
+                        </div>
+                      </div>
+                      <div class="work-price-col">
+                        <div class="work-price-val tabular" id="item-price-ppi">From $210</div>
+                        <div class="work-hours-val tabular" id="item-hours-ppi">1.5 hrs</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="control-block">
+                <div class="control-head">
+                  <span class="control-step">04 / Spare Parts Grade</span>
+                  <span class="control-hint">Warranty-approved component tiers</span>
+                </div>
+                <div class="parts-grid" role="radiogroup" aria-label="Spare parts quality">
+                  <div class="parts-card">
+                    <input class="sr-only-input" type="radio" name="partsGrade" id="parts-aftermarket" value="aftermarket" data-mult="1.00" data-label="Quality Aftermarket" checked>
+                    <label class="parts-card-label" for="parts-aftermarket">
+                      <span class="parts-title">Quality Aftermarket</span>
+                      <span class="parts-sub">Ryco, Bendix, Gates and Penrite equivalents meeting Australian OEM specs</span>
+                    </label>
+                  </div>
+                  <div class="parts-card">
+                    <input class="sr-only-input" type="radio" name="partsGrade" id="parts-oem" value="oem" data-mult="1.22" data-label="OEM Genuine">
+                    <label class="parts-card-label" for="parts-oem">
+                      <span class="parts-title">OEM Genuine</span>
+                      <span class="parts-sub">Original factory branded filters, pads, belts and manufacturer fluids</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="estimator-output">
+              <div class="schematic-card">
+                <div class="schematic-header">
+                  <span class="schematic-title">Interactive Chassis &amp; Node Schematic</span>
+                  <span class="schematic-legend">
+                    <span><span class="legend-dot" style="background:#1C4B6D;"></span>Active</span>
+                    <span><span class="legend-dot" style="background:#9E4322;"></span>Priority</span>
+                  </span>
+                </div>
+                <svg viewBox="0 0 600 260" style="width:100%;height:auto;display:block;" role="img" aria-label="Interactive mechanical chassis system schematic. Click a component node to toggle it in your estimate.">
+                  <rect x="4" y="4" width="592" height="252" rx="10" fill="#F7F6F2" stroke="#D7D2C8" stroke-width="1.2"></rect>
+                  <path d="M90 130h420M300 42v176" stroke="#E5E0D6" stroke-width="1" stroke-dasharray="4 4"></path>
+                  <path d="M120 76 C155 58, 420 56, 485 78 L508 106 L508 154 L485 182 C420 204, 155 202, 120 184 L96 154 L96 106 Z" fill="#FFFFFF" stroke="#B9B2A5" stroke-width="1.8"></path>
+                  <rect x="205" y="78" width="185" height="104" rx="12" fill="none" stroke="#D7D2C8" stroke-width="1.2" stroke-dasharray="5 3"></rect>
+
+                  <g aria-hidden="true" style="pointer-events:none;">
+                    <line x1="479" y1="44" x2="450" y2="74" stroke="#9A9589" stroke-width="1.2" stroke-dasharray="3 2"></line>
+                    <line x1="138" y1="48" x2="174" y2="92" stroke="#9A9589" stroke-width="1.2" stroke-dasharray="3 2"></line>
+                    <line x1="344" y1="130" x2="432" y2="130" stroke="#78736A" stroke-width="4"></line>
+                    <line x1="482" y1="218" x2="450" y2="186" stroke="#9A9589" stroke-width="1.2" stroke-dasharray="3 2"></line>
+                  </g>
+
+                  <g class="svg-node is-active" id="svg-node-logbook" data-toggle-work="logbook" tabindex="0">
+                    <rect class="node-shape" x="392" y="16" width="174" height="28" rx="5"></rect>
+                    <text class="node-text" x="479" y="33" text-anchor="middle">LOGBOOK &amp; CHASSIS CHECK</text>
+                  </g>
+
+                  <g class="svg-node" id="svg-node-cooling" data-toggle-work="cooling" tabindex="0">
+                    <rect class="node-shape" x="18" y="98" width="84" height="64" rx="6"></rect>
+                    <line x1="28" y1="112" x2="92" y2="112" stroke="#9A9589" stroke-width="1.2"></line>
+                    <line x1="28" y1="126" x2="92" y2="126" stroke="#9A9589" stroke-width="1.2"></line>
+                    <line x1="28" y1="140" x2="92" y2="140" stroke="#9A9589" stroke-width="1.2"></line>
+                    <text class="node-text" x="60" y="156" text-anchor="middle">RADIATOR</text>
+                  </g>
+
+                  <g class="svg-node" id="svg-node-timing" data-toggle-work="timing" tabindex="0">
+                    <rect class="node-shape" x="128" y="92" width="92" height="76" rx="8"></rect>
+                    <circle cx="152" cy="116" r="10" fill="none" stroke="#9A9589" stroke-width="1.5"></circle>
+                    <circle cx="192" cy="144" r="8" fill="none" stroke="#9A9589" stroke-width="1.5"></circle>
+                    <line x1="152" y1="106" x2="192" y2="136" stroke="#9A9589" stroke-width="1.2"></line>
+                    <text class="node-text" x="174" y="161" text-anchor="middle">ENGINE / BELT</text>
+                  </g>
+
+                  <g class="svg-node" id="svg-node-diagnostics" data-toggle-work="diagnostics" tabindex="0">
+                    <rect class="node-shape" x="16" y="16" width="142" height="32" rx="5"></rect>
+                    <text class="node-text" x="87" y="36" text-anchor="middle">OBD-II ECU SCAN</text>
+                  </g>
+
+                  <g class="svg-node" id="svg-node-transmission" data-toggle-work="transmission" tabindex="0">
+                    <rect class="node-shape" x="234" y="106" width="110" height="48" rx="6"></rect>
+                    <text class="node-text" x="289" y="134" text-anchor="middle">CLUTCH / TRANS</text>
+                  </g>
+
+                  <g class="svg-node" id="svg-node-brakes" data-toggle-work="brakes" tabindex="0">
+                    <rect class="node-shape" x="148" y="42" width="46" height="22" rx="4"></rect>
+                    <rect class="node-shape" x="148" y="196" width="46" height="22" rx="4"></rect>
+                    <rect class="node-shape" x="412" y="42" width="46" height="22" rx="4"></rect>
+                    <rect class="node-shape" x="412" y="196" width="46" height="22" rx="4"></rect>
+                    <text class="node-text" x="171" y="56" text-anchor="middle">BRK-FL</text>
+                    <text class="node-text" x="171" y="210" text-anchor="middle">BRK-FR</text>
+                    <text class="node-text" x="435" y="56" text-anchor="middle">BRK-RL</text>
+                    <text class="node-text" x="435" y="210" text-anchor="middle">BRK-RR</text>
+                  </g>
+
+                  <g class="svg-node" id="svg-node-ppi" data-toggle-work="ppi" tabindex="0">
+                    <rect class="node-shape" x="394" y="218" width="176" height="28" rx="5"></rect>
+                    <text class="node-text" x="482" y="236" text-anchor="middle">110-PT PRE-PURCHASE</text>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="total-panel" aria-live="polite">
+                <div class="total-top">
+                  <div>
+                    <div class="total-kicker">Estimated Workshop Total (Inc. GST)</div>
+                    <div class="total-aud" id="total-aud-range">$305 - $350 AUD</div>
+                  </div>
+                  <div class="mono" style="font-size:12px; color:#D7D2C8;" id="total-midpoint">Midpoint: $327 AUD</div>
+                </div>
+                <div class="total-meta-grid">
+                  <div class="total-meta-box">
+                    <div class="total-meta-label">Estimated Bay Time</div>
+                    <div class="total-meta-val tabular" id="total-bay-time">1.5 - 2.0 hrs</div>
+                  </div>
+                  <div class="total-meta-box">
+                    <div class="total-meta-label">Turnaround Window</div>
+                    <div class="total-meta-val" id="total-turnaround">Same-day pickup</div>
+                  </div>
+                  <div class="total-meta-box">
+                    <div class="total-meta-label">Parts Allowance</div>
+                    <div class="total-meta-val tabular" id="total-parts-cost">$125 AUD</div>
+                  </div>
+                  <div class="total-meta-box">
+                    <div class="total-meta-label">Labour &amp; Bay Bench</div>
+                    <div class="total-meta-val tabular" id="total-labour-cost">$202 AUD</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="breakdown-box">
+                <div class="breakdown-title">Selected Itemized Breakdown</div>
+                <ul class="breakdown-list" id="breakdown-list">
+                  <li class="breakdown-item">
+                    <span class="breakdown-item-name">Logbook Minor Service (Sedan / Wagon)</span>
+                    <span class="breakdown-item-price">$305 - $350 AUD</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="output-actions">
+                <button class="btn btn-primary" type="button" id="transfer-estimate-btn">Transfer Estimate to Booking Form</button>
+                <button class="btn btn-outline" type="button" id="reset-estimate-btn">Reset Spec</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="services">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Carlisle Mechanical Capabilities</div>
+            <h2 class="section-title">Workshop Services &amp; Systems Covered</h2>
+            <p class="section-sub">
+              Every service listed on perthautorepair.com.au alongside routine WA logbook maintenance and pre-purchase vehicle checks, delivered from our Archer Street workshop in Carlisle.
+            </p>
+          </div>
+          <a class="btn btn-dark btn-sm" href="#booking">Request Written Quote</a>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-card-head">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="height:auto;">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                  </svg>
+                </span>
+                <span class="service-code">SRV-01</span>
+              </div>
+              <h3 class="service-title">Logbook Servicing</h3>
+              <p class="service-copy">
+                Minor and major manufacturer-specified services using quality-tested or OEM filters and oils, preserving statutory new-car warranty.
+              </p>
+            </div>
+            <div class="service-foot">
+              <span class="service-rate">From $265 AUD</span>
+              <button class="preset-chip" type="button" data-select-work="logbook">Add to Estimate</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-head">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="height:auto;">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M12 3v3M12 18v3"></path>
+                  </svg>
+                </span>
+                <span class="service-code">SRV-02</span>
+              </div>
+              <h3 class="service-title">Brake Service &amp; Repair</h3>
+              <p class="service-copy">
+                Inspection and replacement of brake discs, rotors, pads, drums, wheel bearings, calipers and hydraulic brake fluid flushes.
+              </p>
+            </div>
+            <div class="service-foot">
+              <span class="service-rate">From $320 AUD</span>
+              <button class="preset-chip" type="button" data-select-work="brakes">Add to Estimate</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-head">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="height:auto;">
+                    <circle cx="7" cy="7" r="3"></circle>
+                    <circle cx="17" cy="17" r="3"></circle>
+                    <path d="M7 10v7h7"></path>
+                  </svg>
+                </span>
+                <span class="service-code">SRV-03</span>
+              </div>
+              <h3 class="service-title">Transmission &amp; Clutch Service</h3>
+              <p class="service-copy">
+                Auto transmission servicing, fluid and filter changes, manual clutch pedal noise diagnostics, hydraulic cylinders and clutch replacement.
+              </p>
+            </div>
+            <div class="service-foot">
+              <span class="service-rate">From $340 AUD</span>
+              <button class="preset-chip" type="button" data-select-work="transmission">Add to Estimate</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-head">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="height:auto;">
+                    <rect x="3" y="7" width="18" height="10" rx="2"></rect>
+                    <path d="M7 7V4h10v3M12 11v2"></path>
+                  </svg>
+                </span>
+                <span class="service-code">SRV-04</span>
+              </div>
+              <h3 class="service-title">Engine Repair &amp; Diagnostics</h3>
+              <p class="service-copy">
+                Computerized OBD-II fault diagnostics, timing belt and spark plug maintenance, misfire rectification, battery checks and engine rebuilds.
+              </p>
+            </div>
+            <div class="service-foot">
+              <span class="service-rate">From $135 AUD</span>
+              <button class="preset-chip" type="button" data-select-work="diagnostics">Add to Estimate</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-head">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="height:auto;">
+                    <path d="M12 2v20M5 7h14M5 12h14M5 17h14"></path>
+                  </svg>
+                </span>
+                <span class="service-code">SRV-05</span>
+              </div>
+              <h3 class="service-title">Cooling System &amp; Radiator</h3>
+              <p class="service-copy">
+                Radiator repairs and replacements, pressure tests, thermostat replacements and full coolant flushes built for Perth summer conditions.
+              </p>
+            </div>
+            <div class="service-foot">
+              <span class="service-rate">From $195 AUD</span>
+              <button class="preset-chip" type="button" data-select-work="cooling">Add to Estimate</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-head">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="height:auto;">
+                    <path d="M8 3v4l4 2-4 2 4 2-4 2v6M16 3v18"></path>
+                  </svg>
+                </span>
+                <span class="service-code">SRV-06</span>
+              </div>
+              <h3 class="service-title">Suspension &amp; Steering</h3>
+              <p class="service-copy">
+                Shock absorber leak repairs, strut and spring replacements, steering rack assessment and bush restoration for stable handling.
+              </p>
+            </div>
+            <div class="service-foot">
+              <span class="service-rate">Quote on hoist</span>
+              <a class="preset-chip" href="#booking">Book Hoist Check</a>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-head">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="height:auto;">
+                    <path d="M9 11l3 3L22 4"></path>
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                  </svg>
+                </span>
+                <span class="service-code">SRV-07</span>
+              </div>
+              <h3 class="service-title">Pre-Purchase Inspection</h3>
+              <p class="service-copy">
+                Independent 110-point mechanical check, underbody rust and leak scan, full OBD-II check and road test before you commit to a used car.
+              </p>
+            </div>
+            <div class="service-foot">
+              <span class="service-rate">From $210 AUD</span>
+              <button class="preset-chip" type="button" data-select-work="ppi">Add to Estimate</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-head">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="height:auto;">
+                    <path d="M12 3v18M4.5 7.5l15 9M19.5 7.5l-15 9"></path>
+                  </svg>
+                </span>
+                <span class="service-code">SRV-08</span>
+              </div>
+              <h3 class="service-title">Air Conditioning &amp; Exhaust</h3>
+              <p class="service-copy">
+                Car aircon regas, compressor and condenser repairs, cabin filter cleaning plus exhaust system leak and emissions restoration.
+              </p>
+            </div>
+            <div class="service-foot">
+              <span class="service-rate">Available 7 Days</span>
+              <a class="preset-chip" href="#booking">Enquire Now</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="diagnostics">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Transparent Workshop Workflow</div>
+            <h2 class="section-title">How Your Vehicle Moves Through Our Carlisle Bays</h2>
+            <p class="section-sub">
+              Perth Auto Repair discloses every mechanical finding and line-item price before turning a spanner, with zero surprise add-ons.
+            </p>
+          </div>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-step">
+            <div class="process-num">STEP 01</div>
+            <h3 class="process-title">Digital &amp; Hoist Check</h3>
+            <p class="process-desc">Live OBD-II ECU scan paired with mechanical hoist inspection of brakes, cooling hoses, clutch, engine and suspension.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-num">STEP 02</div>
+            <h3 class="process-title">Itemized AUD Quote</h3>
+            <p class="process-desc">You approve a transparent breakdown showing Aftermarket or OEM parts and exact workshop hours prior to repair.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-num">STEP 03</div>
+            <h3 class="process-title">Precision Repair</h3>
+            <p class="process-desc">Skilled mechanics carry out scheduled replacements, fluid flushes and torque checks using quality-tested components.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-num">STEP 04</div>
+            <h3 class="process-title">Road Test &amp; Stamp</h3>
+            <p class="process-desc">Post-repair road test in Carlisle, logbook stamped and clear notes on items to monitor at your next service interval.</p>
+          </div>
+        </div>
+
+        <div class="two-col-editorial">
+          <div>
+            <div class="section-kicker">Common Questions</div>
+            <h3 class="section-title" style="font-size:1.65rem;">Workshop Technical FAQ</h3>
+            <p class="section-sub" style="margin-bottom:18px;">
+              Direct answers on spare parts standards, warranty logbook compliance, and Perth service intervals.
+            </p>
+            <div class="metric-card" style="background:var(--surface-alt);">
+              <div class="metric-val" style="font-size:15px;">Zero Hidden Invoices Policy</div>
+              <div class="metric-label" style="margin-top:4px;">
+                Every extra repair found during inspection requires your direct phone or email sign-off before proceeding.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-list">
+            <div class="faq-item">
+              <button class="faq-btn" type="button" aria-expanded="true" aria-controls="faq-panel-1">
+                <span>Do you use original or quality-tested spare parts?</span>
+                <span class="faq-plus">-</span>
+              </button>
+              <div class="faq-panel open" id="faq-panel-1">
+                Yes. Perth Auto Repair fits only high-standard, quality-tested aftermarket equivalents or genuine OEM manufacturer spare parts depending on your preference and budget.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-panel-2">
+                <span>Does logbook servicing here protect my new-car warranty?</span>
+                <span class="faq-plus">+</span>
+              </button>
+              <div class="faq-panel" id="faq-panel-2">
+                Yes. Under Australian Consumer Law, independent workshops that follow manufacturer schedules and use OEM-spec parts and lubricants maintain your statutory new-car warranty in full.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-panel-3">
+                <span>How often should I service my vehicle in Perth?</span>
+                <span class="faq-plus">+</span>
+              </button>
+              <div class="faq-panel" id="faq-panel-3">
+                Most manufacturers recommend servicing every 10,000 to 15,000 km or once every 12 months, whichever comes first. High Perth summer temperatures also make regular cooling system and brake fluid checks worthwhile.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-panel-4">
+                <span>Where is the workshop located and when can I drop my car off?</span>
+                <span class="faq-plus">+</span>
+              </button>
+              <div class="faq-panel" id="faq-panel-4">
+                We operate on Archer St, Carlisle WA 6101 with workshop availability 7 days a week (Mon-Fri 7:30am to 5:30pm, Sat 8:00am to 2:00pm, and Sunday pre-booked bays). Call 0481 222 774 to confirm your slot.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="reviews">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Verified Perth Client Feedback</div>
+            <h2 class="section-title">What Local Drivers Say About Perth Auto Repair</h2>
+          </div>
+          <a class="btn btn-outline btn-sm" href="tel:0481222774">Speak With A Mechanic</a>
+        </div>
+
+        <div class="reviews-grid">
+          <article class="review-card">
+            <div>
+              <span class="review-tag">ENGINE &amp; DIAGNOSTICS</span>
+              <p class="review-quote">
+                "I visited several auto maintenance and repair shops before finding Perth Auto Repair. They diagnosed and resolved every issue on my vehicle clearly and efficiently."
+              </p>
+            </div>
+            <div class="review-author">Jack Richardson</div>
+          </article>
+
+          <article class="review-card">
+            <div>
+              <span class="review-tag">LOGBOOK &amp; MAINTENANCE</span>
+              <p class="review-quote">
+                "From front-desk communication to the mechanical work in the bay, the team provided thorough, impressive service. Happy to recommend them across Perth."
+              </p>
+            </div>
+            <div class="review-author">Jessica James</div>
+          </article>
+
+          <article class="review-card">
+            <div>
+              <span class="review-tag">BRAKES &amp; DRIVABILITY</span>
+              <p class="review-quote">
+                "They repaired my vehicle on schedule and took the time to answer every question plainly. The car now drives smoothly and quietly."
+              </p>
+            </div>
+            <div class="review-author">Patricia Wade</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="booking">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Archer St, Carlisle WA 6101</div>
+            <h2 class="section-title">Workshop Location &amp; Bay Booking Request</h2>
+            <p class="section-sub">
+              Send your transferred AUD estimate or repair details directly to our Carlisle service desk, or call 0481 222 774 for same-week bay availability.
+            </p>
+          </div>
+        </div>
+
+        <div class="booking-grid">
+          <div class="workshop-panel">
+            <div>
+              <div class="section-kicker">Direct Workshop Details</div>
+              <h3 style="font-size:1.35rem; margin-bottom:10px;">Perth Auto Repair, Carlisle</h3>
+              <div class="contact-table">
+                <div class="contact-row">
+                  <span class="contact-k">Address</span>
+                  <span class="contact-v">Archer St, Carlisle WA 6101, Australia</span>
+                </div>
+                <div class="contact-row">
+                  <span class="contact-k">Phone</span>
+                  <span class="contact-v mono"><a href="tel:0481222774">0481 222 774</a></span>
+                </div>
+                <div class="contact-row">
+                  <span class="contact-k">Email</span>
+                  <span class="contact-v mono"><a href="mailto:info@perthautorepair.com.au">info@perthautorepair.com.au</a></span>
+                </div>
+                <div class="contact-row">
+                  <span class="contact-k">Opening Hours</span>
+                  <span class="contact-v">Open 7 Days (Mon-Fri 7:30am - 5:30pm, Sat 8am - 2pm, Sun booked)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="map-frame">
+              <svg viewBox="0 0 520 220" style="width:100%;height:auto;display:block;" role="img" aria-label="Carlisle WA 6101 corridor map showing Archer Street near Orrong Road and Albany Highway">
+                <rect x="0" y="0" width="520" height="220" rx="6" fill="#F7F6F2"></rect>
+                <path d="M0 110h520M140 0v220M375 0v220" stroke="#E2DDD2" stroke-width="1"></path>
+                <path d="M20 45 L495 170" stroke="#D1CBBF" stroke-width="8" stroke-linecap="round"></path>
+                <path d="M55 185 L440 30" stroke="#C5BEB1" stroke-width="6" stroke-linecap="round"></path>
+                <path d="M165 20 L290 205" stroke="#1C4B6D" stroke-width="5" stroke-linecap="round" stroke-opacity="0.32"></path>
+                <text x="86" y="42" fill="#5A626E" font-family="JetBrains Mono, monospace" font-size="10">ORRONG RD</text>
+                <text x="355" y="42" fill="#5A626E" font-family="JetBrains Mono, monospace" font-size="10">GREAT EASTERN HWY</text>
+                <text x="295" y="198" fill="#1C4B6D" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700">ARCHER ST (CARLISLE 6101)</text>
+                <text x="42" y="168" fill="#5A626E" font-family="JetBrains Mono, monospace" font-size="10">ALBANY HWY</text>
+                <circle cx="222" cy="105" r="14" fill="#F7ECE7" stroke="#9E4322" stroke-width="2"></circle>
+                <circle cx="222" cy="105" r="5" fill="#9E4322"></circle>
+                <rect x="242" y="88" width="166" height="34" rx="5" fill="#181C22"></rect>
+                <text x="252" y="103" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700">PERTH AUTO REPAIR</text>
+                <text x="252" y="116" fill="#D7D2C8" font-family="JetBrains Mono, monospace" font-size="9">-31.9753, 115.9146</text>
+              </svg>
+            </div>
+
+            <div>
+              <div class="spec-quick-title">Surrounding Perth Suburbs Served</div>
+              <div class="suburb-tags">
+                <span class="suburb-tag">Carlisle</span>
+                <span class="suburb-tag">Victoria Park</span>
+                <span class="suburb-tag">East Victoria Park</span>
+                <span class="suburb-tag">Lathlain</span>
+                <span class="suburb-tag">Welshpool</span>
+                <span class="suburb-tag">Kewdale</span>
+                <span class="suburb-tag">Belmont</span>
+                <span class="suburb-tag">Rivervale</span>
+                <span class="suburb-tag">Bentley</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="booking-form-card">
+            <div class="transferred-banner" id="transferred-banner">
+              <span class="transferred-head" id="transferred-head">Live Estimator Linked</span>
+              <span class="transferred-body" id="transferred-body">
+                Sedan / Wagon (60,000 km) - Logbook Minor Service - Quality Aftermarket: $305 - $350 AUD
+              </span>
+            </div>
+
+            <form id="booking-form">
+              <div class="form-grid">
+                <div>
+                  <label class="field-label" for="booking-name">Full Name</label>
+                  <input class="input-control" type="text" id="booking-name" name="name" autocomplete="name" placeholder="e.g. Jordan Mitchell" required>
+                </div>
+                <div>
+                  <label class="field-label" for="booking-phone">Mobile Phone</label>
+                  <input class="input-control" type="tel" id="booking-phone" name="phone" autocomplete="tel" placeholder="04XX XXX XXX" required>
+                </div>
+                <div>
+                  <label class="field-label" for="booking-email">Email Address</label>
+                  <input class="input-control" type="email" id="booking-email" name="email" autocomplete="email" placeholder="you@example.com.au" required>
+                </div>
+                <div>
+                  <label class="field-label" for="booking-vehicle">Vehicle Make, Model &amp; Year</label>
+                  <input class="input-control" type="text" id="booking-vehicle" name="vehicle" autocomplete="off" placeholder="e.g. 2019 Toyota Camry" required>
+                </div>
+                <div>
+                  <label class="field-label" for="booking-date">Preferred Workshop Date</label>
+                  <input class="input-control" type="date" id="booking-date" name="date" autocomplete="off" required>
+                </div>
+                <div>
+                  <label class="field-label" for="booking-window">Preferred Drop-Off Window</label>
+                  <select class="select-control" id="booking-window" name="window" autocomplete="off">
+                    <option value="Morning Drop-Off (7:30am - 9:00am)">Morning Drop-Off (7:30am - 9:00am)</option>
+                    <option value="Midday Bay Slot (11:30am - 1:30pm)">Midday Bay Slot (11:30am - 1:30pm)</option>
+                    <option value="Afternoon Check (2:00pm - 4:00pm)">Afternoon Check (2:00pm - 4:00pm)</option>
+                    <option value="Weekend / Pre-Booked Sunday">Weekend / Pre-Booked Sunday</option>
+                  </select>
+                </div>
+                <div class="form-field-full">
+                  <label class="field-label" for="booking-notes">Estimated Scope &amp; Mechanical Notes</label>
+                  <textarea class="textarea-control" id="booking-notes" name="notes" rows="4" autocomplete="off" placeholder="Service items, warning lights, brake noise or pre-purchase location details"></textarea>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <span class="form-note">Direct desk confirmation via 0481 222 774 or info@perthautorepair.com.au</span>
+                <button class="btn btn-copper" type="submit">Request Carlisle Bay Booking</button>
+              </div>
+            </form>
+
+            <div class="booking-receipt" id="booking-receipt" role="status" aria-live="polite">
+              <div class="receipt-title">Booking Request Prepared for Carlisle Service Desk</div>
+              <p class="receipt-text" id="receipt-summary-text">
+                Thank you. Your indicative AUD estimate and vehicle details have been formatted for confirmation.
+              </p>
+              <div class="receipt-code" id="receipt-ref-code">REF: PAR-6101</div>
+              <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:10px;">
+                <a class="btn btn-dark btn-sm" id="receipt-mailto-link" href="mailto:info@perthautorepair.com.au">Open in Email Client</a>
+                <a class="btn btn-outline btn-sm" href="tel:0481222774">Confirm by Phone: 0481 222 774</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-name" style="color:#FFFFFF; margin-bottom:8px;">Perth Auto Repair</div>
+          <p style="font-size:14px; color:#C5C0B4; max-width:38ch; margin:0 0 12px 0;">
+            Independent mechanical servicing, logbook maintenance, brake and clutch repair, cooling systems and diagnostics in Carlisle, Perth WA.
+          </p>
+          <div class="mono" style="font-size:13px; color:#EAE7DF;">
+            Archer St, Carlisle WA 6101, Australia
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Core Services</div>
+          <ul class="footer-links">
+            <li><a href="#services">Logbook Servicing</a></li>
+            <li><a href="#services">Brake Service &amp; Repair</a></li>
+            <li><a href="#services">Transmission &amp; Clutch Service</a></li>
+            <li><a href="#services">Engine Repair &amp; Diagnostics</a></li>
+            <li><a href="#services">Cooling System &amp; Radiator</a></li>
+            <li><a href="#services">Pre-Purchase Inspection</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Carlisle Service Desk</div>
+          <ul class="footer-links">
+            <li><a href="tel:0481222774">Phone: 0481 222 774</a></li>
+            <li><a href="mailto:info@perthautorepair.com.au">Email: info@perthautorepair.com.au</a></li>
+            <li><a href="#estimator">AUD Repair Estimator</a></li>
+            <li><a href="#booking">Book Workshop Bay</a></li>
+            <li><a href="https://perthautorepair.com.au" rel="noopener noreferrer" target="_blank">Official Website: perthautorepair.com.au</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>Interactive redesign concept prepared for Perth Auto Repair.</span>
+        <span class="mono">Carlisle WA 6101 / AUD Incl. GST</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const WORK_CATALOG = {
+        logbook: {
+          titleMinor: 'Logbook Minor Service',
+          titleMajor: 'Logbook Major Service',
+          partsMinor: 110,
+          labourMinor: 155,
+          hoursMinor: 1.5,
+          partsMajor: 215,
+          labourMajor: 265,
+          hoursMajor: 2.6,
+          priority: false
+        },
+        brakes: {
+          title: 'Brake Pads & Rotors',
+          parts: 155,
+          labour: 165,
+          hours: 1.8,
+          priority: true
+        },
+        transmission: {
+          title: 'Clutch & Transmission Service',
+          parts: 145,
+          labour: 195,
+          hours: 2.0,
+          priority: true
+        },
+        cooling: {
+          title: 'Cooling System Flush & Radiator',
+          parts: 80,
+          labour: 115,
+          hours: 1.2,
+          priority: false
+        },
+        diagnostics: {
+          title: 'OBD-II Diagnostics',
+          parts: 0,
+          labour: 135,
+          hours: 0.8,
+          priority: false
+        },
+        timing: {
+          title: 'Timing Belt / Spark Plugs',
+          parts: 165,
+          labour: 225,
+          hours: 2.4,
+          priority: true
+        },
+        ppi: {
+          title: 'Pre-Purchase Inspection',
+          parts: 0,
+          labour: 210,
+          hours: 1.5,
+          priority: false
+        }
+      };
+
+      const INTERVAL_ADVICE = {
+        minor: 'Recommended at 10,000 - 30,000 km: Logbook minor service, synthetic oil, filter and safety check.',
+        intermediate: 'Recommended at 40,000 - 60,000 km: Logbook intermediate fluids, brake pad wear gauge and radiator pressure test.',
+        major: 'Recommended at 80,000 - 100,000 km: Major logbook service, transmission fluid check, spark plugs and cooling flush.',
+        high: 'Recommended at 120,000+ km: Comprehensive major interval plus timing belt, suspension mounts and cooling hose audit.'
+      };
+
+      const VEHICLE_SELECTORS = Array.from(document.querySelectorAll('input[name="vehicleClass"]'));
+      const PARTS_SELECTORS = Array.from(document.querySelectorAll('input[name="partsGrade"]'));
+      const TIER_SELECTORS = Array.from(document.querySelectorAll('input[name="logbookTier"]'));
+      const WORK_CHECKBOXES = Array.from(document.querySelectorAll('.work-checkbox'));
+      const INTERVAL_SELECT = document.getElementById('interval-preset');
+      const ODOMETER_RANGE = document.getElementById('odometer-range');
+      const ODOMETER_READOUT = document.getElementById('odometer-readout');
+      const INTERVAL_ADVICE_EL = document.getElementById('interval-advice');
+      const TOPBAR_SUMMARY = document.getElementById('topbar-live-summary');
+
+      const TOTAL_AUD_EL = document.getElementById('total-aud-range');
+      const TOTAL_MIDPOINT_EL = document.getElementById('total-midpoint');
+      const TOTAL_BAY_TIME_EL = document.getElementById('total-bay-time');
+      const TOTAL_TURNAROUND_EL = document.getElementById('total-turnaround');
+      const TOTAL_PARTS_EL = document.getElementById('total-parts-cost');
+      const TOTAL_LABOUR_EL = document.getElementById('total-labour-cost');
+      const BREAKDOWN_LIST = document.getElementById('breakdown-list');
+      const LOGBOOK_TIER_BAR = document.getElementById('logbook-tier-bar');
+
+      const TRANSFERRED_BANNER = document.getElementById('transferred-banner');
+      const TRANSFERRED_HEAD = document.getElementById('transferred-head');
+      const TRANSFERRED_BODY = document.getElementById('transferred-body');
+      const BOOKING_NOTES = document.getElementById('booking-notes');
+      const BOOKING_DATE = document.getElementById('booking-date');
+      const BOOKING_FORM = document.getElementById('booking-form');
+      const BOOKING_RECEIPT = document.getElementById('booking-receipt');
+      const RECEIPT_SUMMARY = document.getElementById('receipt-summary-text');
+      const RECEIPT_CODE = document.getElementById('receipt-ref-code');
+      const RECEIPT_MAILTO = document.getElementById('receipt-mailto-link');
+
+      let lastCalculatedState = null;
+
+      function formatAud(amount) {
+        return '$' + Math.round(amount).toLocaleString('en-AU');
+      }
+
+      function formatKm(kmVal) {
+        return Number(kmVal).toLocaleString('en-AU') + ' km';
+      }
+
+      function getCheckedRadio(list) {
+        for (let i = 0; i < list.length; i += 1) {
+          if (list[i].checked) {
+            return list[i];
+          }
+        }
+        return list[0];
+      }
+
+      function getIntervalMultiplier(bracket) {
+        if (bracket === 'minor') return 1.00;
+        if (bracket === 'intermediate') return 1.04;
+        if (bracket === 'major') return 1.10;
+        return 1.14;
+      }
+
+      function updateEstimate() {
+        const vehicleInput = getCheckedRadio(VEHICLE_SELECTORS);
+        const partsInput = getCheckedRadio(PARTS_SELECTORS);
+        const tierInput = getCheckedRadio(TIER_SELECTORS);
+
+        const vehicleMult = parseFloat(vehicleInput.getAttribute('data-mult'));
+        const vehicleLabel = vehicleInput.getAttribute('data-label');
+        const partsMult = parseFloat(partsInput.getAttribute('data-mult'));
+        const partsLabel = partsInput.getAttribute('data-label');
+        const logbookTier = tierInput.value;
+        const intervalBracket = INTERVAL_SELECT.value;
+        const intervalMult = getIntervalMultiplier(intervalBracket);
+        const odometerKm = Number(ODOMETER_RANGE.value);
+
+        ODOMETER_READOUT.textContent = formatKm(odometerKm);
+        INTERVAL_ADVICE_EL.textContent = INTERVAL_ADVICE[intervalBracket];
+        TOPBAR_SUMMARY.textContent = (vehicleLabel + ' - ' + formatKm(odometerKm) + ' - ' + partsLabel).toUpperCase();
+
+        let totalParts = 0;
+        let totalLabour = 0;
+        let totalHours = 0;
+        const selectedItems = [];
+
+        const logbookChecked = document.getElementById('work-logbook').checked;
+        if (logbookChecked) {
+          LOGBOOK_TIER_BAR.style.display = 'flex';
+        } else {
+          LOGBOOK_TIER_BAR.style.display = 'none';
+        }
+
+        WORK_CHECKBOXES.forEach(function (cb) {
+          const key = cb.value;
+          const spec = WORK_CATALOG[key];
+          const card = document.querySelector('[data-work-card="' + key + '"]');
+          const priceLabel = document.getElementById('item-price-' + key);
+          const hoursLabel = document.getElementById('item-hours-' + key);
+          const svgNode = document.getElementById('svg-node-' + key);
+
+          let baseParts = 0;
+          let baseLabour = 0;
+          let baseHours = 0;
+          let itemName = '';
+
+          if (key === 'logbook') {
+            if (logbookTier === 'major') {
+              baseParts = spec.partsMajor;
+              baseLabour = spec.labourMajor;
+              baseHours = spec.hoursMajor;
+              itemName = spec.titleMajor;
+            } else {
+              baseParts = spec.partsMinor;
+              baseLabour = spec.labourMinor;
+              baseHours = spec.hoursMinor;
+              itemName = spec.titleMinor;
+            }
+          } else {
+            baseParts = spec.parts;
+            baseLabour = spec.labour;
+            baseHours = spec.hours;
+            itemName = spec.title;
+          }
+
+          const itemParts = Math.round(baseParts * vehicleMult * partsMult);
+          const labourFactor = 1 + ((vehicleMult - 1) * 0.68);
+          const itemLabour = Math.round(baseLabour * labourFactor * (key === 'logbook' ? intervalMult : 1));
+          const itemHours = Number((baseHours * (1 + ((vehicleMult - 1) * 0.45))).toFixed(1));
+          const itemMid = itemParts + itemLabour;
+          const itemLow = Math.round((itemMid * 0.94) / 5) * 5;
+          const itemHigh = Math.round((itemMid * 1.07) / 5) * 5;
+
+          if (priceLabel) {
+            priceLabel.textContent = formatAud(itemLow) + ' - ' + formatAud(itemHigh);
+          }
+          if (hoursLabel) {
+            hoursLabel.textContent = itemHours.toFixed(1) + ' hrs';
+          }
+
+          if (cb.checked) {
+            if (card) card.classList.add('active');
+            if (svgNode) {
+              svgNode.classList.add('is-active');
+              if (spec.priority) {
+                svgNode.classList.add('is-highlight');
+              } else {
+                svgNode.classList.remove('is-highlight');
+              }
+            }
+            totalParts += itemParts;
+            totalLabour += itemLabour;
+            totalHours += itemHours;
+            selectedItems.push({
+              key: key,
+              name: itemName,
+              low: itemLow,
+              high: itemHigh,
+              mid: itemMid,
+              hours: itemHours
+            });
+          } else {
+            if (card) card.classList.remove('active');
+            if (svgNode) {
+              svgNode.classList.remove('is-active');
+              svgNode.classList.remove('is-highlight');
+            }
+          }
+        });
+
+        BREAKDOWN_LIST.innerHTML = '';
+
+        if (selectedItems.length === 0) {
+          TOTAL_AUD_EL.textContent = '$0 AUD';
+          TOTAL_MIDPOINT_EL.textContent = 'Select at least 1 service item';
+          TOTAL_BAY_TIME_EL.textContent = '0.0 hrs';
+          TOTAL_TURNAROUND_EL.textContent = 'Awaiting selection';
+          TOTAL_PARTS_EL.textContent = '$0 AUD';
+          TOTAL_LABOUR_EL.textContent = '$0 AUD';
+
+          const emptyLi = document.createElement('li');
+          emptyLi.className = 'breakdown-item';
+          emptyLi.innerHTML = '<span class="breakdown-item-name">No mechanical scope selected yet</span><span class="breakdown-item-price">$0 AUD</span>';
+          BREAKDOWN_LIST.appendChild(emptyLi);
+
+          lastCalculatedState = {
+            vehicleLabel: vehicleLabel,
+            odometerKm: odometerKm,
+            partsLabel: partsLabel,
+            rangeText: '$0 AUD',
+            hoursText: '0.0 hrs',
+            items: []
+          };
+          updateBanner(false);
+          return;
+        }
+
+        const totalMid = totalParts + totalLabour;
+        const totalLow = Math.round((totalMid * 0.94) / 5) * 5;
+        const totalHigh = Math.round((totalMid * 1.07) / 5) * 5;
+        const hoursLow = Math.max(0.5, Number((totalHours * 0.92).toFixed(1)));
+        const hoursHigh = Number((totalHours * 1.15).toFixed(1));
+
+        let turnaroundText = 'Same-day pickup';
+        if (hoursHigh > 5.5) {
+          turnaroundText = 'Full workshop day';
+        } else if (hoursHigh > 3.2) {
+          turnaroundText = 'Drop 8am, ready late PM';
+        }
+
+        const rangeText = formatAud(totalLow) + ' - ' + formatAud(totalHigh) + ' AUD';
+        const hoursText = hoursLow.toFixed(1) + ' - ' + hoursHigh.toFixed(1) + ' hrs';
+
+        TOTAL_AUD_EL.textContent = rangeText;
+        TOTAL_MIDPOINT_EL.textContent = 'Midpoint: ' + formatAud(totalMid) + ' AUD';
+        TOTAL_BAY_TIME_EL.textContent = hoursText;
+        TOTAL_TURNAROUND_EL.textContent = turnaroundText;
+        TOTAL_PARTS_EL.textContent = formatAud(totalParts) + ' AUD';
+        TOTAL_LABOUR_EL.textContent = formatAud(totalLabour) + ' AUD';
+
+        selectedItems.forEach(function (item) {
+          const li = document.createElement('li');
+          li.className = 'breakdown-item';
+          const nameSpan = document.createElement('span');
+          nameSpan.className = 'breakdown-item-name';
+          nameSpan.textContent = item.name + ' (' + vehicleLabel + ')';
+          const priceSpan = document.createElement('span');
+          priceSpan.className = 'breakdown-item-price';
+          priceSpan.textContent = formatAud(item.low) + ' - ' + formatAud(item.high) + ' AUD';
+          li.appendChild(nameSpan);
+          li.appendChild(priceSpan);
+          BREAKDOWN_LIST.appendChild(li);
+        });
+
+        lastCalculatedState = {
+          vehicleLabel: vehicleLabel,
+          odometerKm: odometerKm,
+          partsLabel: partsLabel,
+          rangeText: rangeText,
+          hoursText: hoursText,
+          items: selectedItems
+        };
+        updateBanner(false);
+      }
+
+      function updateBanner(isExplicitTransfer) {
+        if (lastCalculatedState === null) return;
+        const itemNames = lastCalculatedState.items.map(function (it) { return it.name; }).join(', ');
+        const summaryLine = lastCalculatedState.vehicleLabel +
+          ' (' + formatKm(lastCalculatedState.odometerKm) + ') - ' +
+          (itemNames.length > 0 ? itemNames : 'Custom Workshop Check') +
+          ' - ' + lastCalculatedState.partsLabel + ': ' + lastCalculatedState.rangeText;
+        TRANSFERRED_BODY.textContent = summaryLine;
+
+        if (isExplicitTransfer) {
+          TRANSFERRED_BANNER.classList.add('is-synced');
+          TRANSFERRED_HEAD.textContent = 'Estimate Transferred To Booking Request';
+        } else {
+          TRANSFERRED_BANNER.classList.remove('is-synced');
+          TRANSFERRED_HEAD.textContent = 'Live Estimator Linked';
+        }
+      }
+
+      function syncOdometerToInterval() {
+        const km = Number(ODOMETER_RANGE.value);
+        if (km <= 35000) {
+          INTERVAL_SELECT.value = 'minor';
+        } else if (km <= 75000) {
+          INTERVAL_SELECT.value = 'intermediate';
+        } else if (km <= 115000) {
+          INTERVAL_SELECT.value = 'major';
+        } else {
+          INTERVAL_SELECT.value = 'high';
+        }
+      }
+
+      function syncIntervalToOdometer() {
+        const val = INTERVAL_SELECT.value;
+        if (val === 'minor') ODOMETER_RANGE.value = 20000;
+        if (val === 'intermediate') ODOMETER_RANGE.value = 60000;
+        if (val === 'major') ODOMETER_RANGE.value = 90000;
+        if (val === 'high') ODOMETER_RANGE.value = 140000;
+      }
+
+      function transferToBooking() {
+        updateEstimate();
+        updateBanner(true);
+        if (lastCalculatedState) {
+          const lines = [
+            'ESTIMATED SCOPE FROM CALCULATOR:',
+            'Vehicle Class: ' + lastCalculatedState.vehicleLabel,
+            'Odometer: ' + formatKm(lastCalculatedState.odometerKm),
+            'Parts Specification: ' + lastCalculatedState.partsLabel,
+            'Estimated Bay Time: ' + lastCalculatedState.hoursText,
+            'Estimated Total (Inc. GST): ' + lastCalculatedState.rangeText,
+            'Selected Services:'
+          ];
+          lastCalculatedState.items.forEach(function (it) {
+            lines.push('- ' + it.name + ' (' + formatAud(it.low) + ' - ' + formatAud(it.high) + ' AUD)');
+          });
+          BOOKING_NOTES.value = lines.join('\n');
+        }
+        const bookingSection = document.getElementById('booking');
+        if (bookingSection) {
+          bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        const nameInput = document.getElementById('booking-name');
+        if (nameInput) {
+          setTimeout(function () {
+            nameInput.focus({ preventScroll: true });
+          }, 450);
+        }
+      }
+
+      function applyPreset(presetId) {
+        WORK_CHECKBOXES.forEach(function (cb) {
+          cb.checked = false;
+        });
+
+        if (presetId === 'logbook60') {
+          document.getElementById('veh-sedan').checked = true;
+          INTERVAL_SELECT.value = 'intermediate';
+          ODOMETER_RANGE.value = 60000;
+          document.getElementById('work-logbook').checked = true;
+          document.getElementById('tier-minor').checked = true;
+          document.getElementById('parts-aftermarket').checked = true;
+        } else if (presetId === 'brakes') {
+          document.getElementById('veh-suv').checked = true;
+          INTERVAL_SELECT.value = 'intermediate';
+          ODOMETER_RANGE.value = 70000;
+          document.getElementById('work-brakes').checked = true;
+          document.getElementById('work-diagnostics').checked = true;
+          document.getElementById('parts-oem').checked = true;
+        } else if (presetId === 'cooling') {
+          document.getElementById('veh-sedan').checked = true;
+          INTERVAL_SELECT.value = 'major';
+          ODOMETER_RANGE.value = 95000;
+          document.getElementById('work-cooling').checked = true;
+          document.getElementById('work-logbook').checked = true;
+          document.getElementById('tier-major').checked = true;
+          document.getElementById('parts-aftermarket').checked = true;
+        } else if (presetId === 'ppi') {
+          document.getElementById('veh-hatch').checked = true;
+          INTERVAL_SELECT.value = 'intermediate';
+          ODOMETER_RANGE.value = 65000;
+          document.getElementById('work-ppi').checked = true;
+          document.getElementById('work-diagnostics').checked = true;
+          document.getElementById('parts-aftermarket').checked = true;
+        }
+
+        updateEstimate();
+        const estSection = document.getElementById('estimator');
+        if (estSection) {
+          estSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+
+      VEHICLE_SELECTORS.forEach(function (el) { el.addEventListener('change', updateEstimate); });
+      PARTS_SELECTORS.forEach(function (el) { el.addEventListener('change', updateEstimate); });
+      TIER_SELECTORS.forEach(function (el) { el.addEventListener('change', updateEstimate); });
+      WORK_CHECKBOXES.forEach(function (el) { el.addEventListener('change', updateEstimate); });
+
+      INTERVAL_SELECT.addEventListener('change', function () {
+        syncIntervalToOdometer();
+        updateEstimate();
+      });
+
+      ODOMETER_RANGE.addEventListener('input', function () {
+        syncOdometerToInterval();
+        updateEstimate();
+      });
+
+      document.getElementById('transfer-estimate-btn').addEventListener('click', transferToBooking);
+
+      document.getElementById('reset-estimate-btn').addEventListener('click', function () {
+        document.getElementById('veh-sedan').checked = true;
+        INTERVAL_SELECT.value = 'intermediate';
+        ODOMETER_RANGE.value = 60000;
+        WORK_CHECKBOXES.forEach(function (cb) {
+          cb.checked = (cb.value === 'logbook');
+        });
+        document.getElementById('tier-minor').checked = true;
+        document.getElementById('parts-aftermarket').checked = true;
+        updateEstimate();
+      });
+
+      Array.from(document.querySelectorAll('[data-quick-preset]')).forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          applyPreset(btn.getAttribute('data-quick-preset'));
+        });
+      });
+
+      Array.from(document.querySelectorAll('[data-select-work]')).forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const workKey = btn.getAttribute('data-select-work');
+          const checkbox = document.getElementById('work-' + workKey);
+          if (checkbox) {
+            checkbox.checked = true;
+            updateEstimate();
+          }
+          const estSection = document.getElementById('estimator');
+          if (estSection) {
+            estSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      Array.from(document.querySelectorAll('[data-toggle-work]')).forEach(function (node) {
+        function toggleNodeWork() {
+          const workKey = node.getAttribute('data-toggle-work');
+          const checkbox = document.getElementById('work-' + workKey);
+          if (checkbox) {
+            checkbox.checked = checkbox.checked === false;
+            updateEstimate();
+          }
+        }
+        node.addEventListener('click', toggleNodeWork);
+        node.addEventListener('keydown', function (ev) {
+          if (ev.key === 'Enter' || ev.key === ' ') {
+            ev.preventDefault();
+            toggleNodeWork();
+          }
+        });
+      });
+
+      Array.from(document.querySelectorAll('.faq-btn')).forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const panelId = btn.getAttribute('aria-controls');
+          const panel = document.getElementById(panelId);
+          const plus = btn.querySelector('.faq-plus');
+          const isOpen = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+          if (panel) {
+            if (isOpen) {
+              panel.classList.remove('open');
+            } else {
+              panel.classList.add('open');
+            }
+          }
+          if (plus) {
+            plus.textContent = isOpen ? '+' : '-';
+          }
+        });
+      });
+
+      const mobileToggle = document.getElementById('mobile-menu-toggle');
+      const mobileDrawer = document.getElementById('mobile-drawer');
+      if (mobileToggle && mobileDrawer) {
+        mobileToggle.addEventListener('click', function () {
+          const isOpen = mobileDrawer.classList.contains('open');
+          if (isOpen) {
+            mobileDrawer.classList.remove('open');
+            mobileToggle.setAttribute('aria-expanded', 'false');
+          } else {
+            mobileDrawer.classList.add('open');
+            mobileToggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+        Array.from(mobileDrawer.querySelectorAll('a')).forEach(function (link) {
+          link.addEventListener('click', function () {
+            mobileDrawer.classList.remove('open');
+            mobileToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      if (BOOKING_DATE) {
+        const tomorrow = new Date(Date.now() + 86400000);
+        const yyyy = tomorrow.getFullYear();
+        const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+        const dd = String(tomorrow.getDate()).padStart(2, '0');
+        const minDate = yyyy + '-' + mm + '-' + dd;
+        BOOKING_DATE.min = minDate;
+        if (BOOKING_DATE.value === '') {
+          BOOKING_DATE.value = minDate;
+        }
+      }
+
+      BOOKING_FORM.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        const nameVal = document.getElementById('booking-name').value.trim();
+        const phoneVal = document.getElementById('booking-phone').value.trim();
+        const emailVal = document.getElementById('booking-email').value.trim();
+        const vehicleVal = document.getElementById('booking-vehicle').value.trim();
+        const dateVal = BOOKING_DATE.value;
+        const windowVal = document.getElementById('booking-window').value;
+        const notesVal = BOOKING_NOTES.value.trim();
+
+        const refNum = 'PAR-' + String(Math.floor(10000 + Math.random() * 89999));
+        const estSummary = lastCalculatedState ? lastCalculatedState.rangeText : 'On inspection';
+
+        RECEIPT_SUMMARY.textContent = 'Prepared for ' + nameVal + ' (' + vehicleVal + ') on ' + dateVal + ' [' + windowVal + ']. Indicative estimate: ' + estSummary + '.';
+        RECEIPT_CODE.textContent = 'REF: ' + refNum + ' | CALL DESK: 0481 222 774';
+
+        const subject = encodeURIComponent('Workshop Bay Request ' + refNum + ' - ' + vehicleVal);
+        const body = encodeURIComponent(
+          'Perth Auto Repair - Carlisle Booking Request\n' +
+          'Reference: ' + refNum + '\n' +
+          'Customer: ' + nameVal + '\n' +
+          'Phone: ' + phoneVal + '\n' +
+          'Email: ' + emailVal + '\n' +
+          'Vehicle: ' + vehicleVal + '\n' +
+          'Preferred Date: ' + dateVal + '\n' +
+          'Window: ' + windowVal + '\n\n' +
+          (notesVal.length > 0 ? notesVal : ('Indicative Estimate: ' + estSummary))
+        );
+        RECEIPT_MAILTO.setAttribute('href', 'mailto:info@perthautorepair.com.au?subject=' + subject + '&body=' + body);
+        BOOKING_RECEIPT.classList.add('visible');
+      });
+
+      updateEstimate();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,3075 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Brisbane Dental at Ground Floor, 420 George Street, Brisbane CBD. Interactive dental treatment guide and Australian Health Fund HICAPS rebate estimator in AUD.">
+  <title>Brisbane Dental | 420 George Street, Brisbane CBD | Treatment &amp; Rebate Guide</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2312575B'/%3E%3Cpath d='M21 18c-5 0-9 4.5-9 10.5 0 6.5 3.5 11.5 5 18.5 1 4.2 3.2 5 4.8 5 1.8 0 3.2-2.6 4.4-7.4.8-3.1 2.9-4.6 5.8-4.6s5 1.5 5.8 4.6c1.2 4.8 2.6 7.4 4.4 7.4 1.6 0 3.8-.8 4.8-5 1.5-7 5-12 5-18.5C52 22.5 48 18 43 18c-3.5 0-6.2 2-11 2s-7.5-2-11-2z' fill='none' stroke='%23FAF9F6' stroke-width='3.5' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='28' r='2.5' fill='%23FAF9F6'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..500&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-paper: #FAF9F6;
+      --bg-surface: #FFFFFF;
+      --bg-sand: #F2EFE8;
+      --bg-sand-deep: #E8E3D8;
+      --ink-primary: #162026;
+      --ink-secondary: #3E4D56;
+      --ink-muted: #5F6E77;
+      --teal-core: #12575B;
+      --teal-dark: #0D4043;
+      --teal-tint: #E6EFEF;
+      --teal-border: #B6D2D4;
+      --teal-bright: #64B8BC;
+      --eucalyptus: #1B684E;
+      --eucalyptus-bg: #E7F3EE;
+      --sandstone: #9D632B;
+      --sandstone-bg: #FCF4EA;
+      --border-hairline: #DED9CE;
+      --border-strong: #C9C3B6;
+      --shadow-card: 0 1px 2px rgba(22, 32, 38, 0.04), 0 10px 28px -12px rgba(22, 32, 38, 0.08);
+      --shadow-elevated: 0 18px 42px -18px rgba(18, 87, 91, 0.16), 0 4px 12px rgba(22, 32, 38, 0.05);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+      --font-sans: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: clip;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-paper);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: clip;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    img, svg {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--teal-core);
+      outline-offset: 2px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1220px;
+      margin: 0 auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    /* Top utility strip */
+    .utility-strip {
+      background-color: var(--ink-primary);
+      color: #E7ECEE;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .utility-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 20px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    .utility-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 18px;
+    }
+
+    .utility-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #D7E1E4;
+    }
+
+    .utility-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--teal-bright);
+      flex-shrink: 0;
+    }
+
+    .utility-link {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.01em;
+    }
+
+    .utility-link:hover {
+      color: var(--teal-bright);
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(250, 249, 246, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: var(--teal-core);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+    }
+
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-desktop {
+      display: none;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      transition: color 160ms ease;
+    }
+
+    .nav-link:hover {
+      color: var(--teal-core);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.2;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background-color 170ms ease, border-color 170ms ease, color 170ms ease, transform 170ms ease, box-shadow 170ms ease;
+      white-space: nowrap;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background-color: var(--teal-core);
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(18, 87, 91, 0.22);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--teal-dark);
+      box-shadow: 0 6px 16px rgba(18, 87, 91, 0.28);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-sand);
+      border-color: var(--teal-core);
+    }
+
+    .btn-ghost-teal {
+      background-color: var(--teal-tint);
+      color: var(--teal-dark);
+      border-color: var(--teal-border);
+    }
+
+    .btn-ghost-teal:hover {
+      background-color: #D7E7E8;
+    }
+
+    .header-phone-btn,
+    .header-book-btn {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      cursor: pointer;
+      color: var(--ink-primary);
+    }
+
+    .mobile-drawer {
+      display: none;
+      border-top: 1px solid var(--border-hairline);
+      background-color: var(--bg-paper);
+      padding: 16px 20px 22px;
+    }
+
+    .mobile-drawer.is-open {
+      display: block;
+    }
+
+    .mobile-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .mobile-nav-link {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--ink-primary);
+    }
+
+    .mobile-nav-link:hover {
+      background-color: var(--bg-sand);
+    }
+
+    /* Hero section */
+    .hero {
+      padding-top: 42px;
+      padding-bottom: 54px;
+      border-bottom: 1px solid var(--border-hairline);
+      background-image:
+        radial-gradient(circle at 88% 12%, rgba(18, 87, 91, 0.06), transparent 46%),
+        linear-gradient(180deg, #FAF9F6 0%, #F5F2EB 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background-color: var(--teal-tint);
+      border: 1px solid var(--teal-border);
+      color: var(--teal-dark);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(2.1rem, 4.6vw, 3.55rem);
+      line-height: 1.07;
+      letter-spacing: -0.025em;
+      margin: 0 0 18px;
+      color: var(--ink-primary);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--teal-core);
+    }
+
+    .hero-lead {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--ink-secondary);
+      max-width: 58ch;
+      margin: 0 0 26px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .hero-cta-row .btn {
+      padding: 13px 20px;
+      font-size: 15px;
+    }
+
+    .hero-specs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .hero-spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .hero-spec-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+    }
+
+    .hero-spec-val {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    /* Hero right editorial dossier card */
+    .hero-dossier {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-elevated);
+      overflow: hidden;
+    }
+
+    .dossier-top {
+      background-color: var(--teal-core);
+      color: #FFFFFF;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .dossier-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #BFE2E4;
+      margin-bottom: 4px;
+    }
+
+    .dossier-heading {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background-color: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #74E1B2;
+    }
+
+    .dossier-visual {
+      background-color: #F6F4EE;
+      border-bottom: 1px solid var(--border-hairline);
+      padding: 18px 24px;
+    }
+
+    .dossier-rows {
+      padding: 18px 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .dossier-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .dossier-row:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .dossier-row-label {
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    .dossier-row-val {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      text-align: right;
+    }
+
+    .funds-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .mini-chip {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background-color: var(--bg-sand);
+      border: 1px solid var(--border-hairline);
+      color: var(--ink-secondary);
+    }
+
+    .mini-chip.is-preferred {
+      background-color: var(--teal-tint);
+      border-color: var(--teal-border);
+      color: var(--teal-dark);
+    }
+
+    /* Trust ledger strip */
+    .trust-strip {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-hairline);
+      padding-top: 22px;
+      padding-bottom: 22px;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .trust-cell {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .trust-num {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--teal-core);
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+      min-width: 68px;
+    }
+
+    .trust-text strong {
+      display: block;
+      font-size: 14px;
+      color: var(--ink-primary);
+    }
+
+    .trust-text span {
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    /* Section framing */
+    .section {
+      padding-top: 64px;
+      padding-bottom: 64px;
+    }
+
+    .section-sand {
+      background-color: var(--bg-sand);
+      border-top: 1px solid var(--border-hairline);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .section-head {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 34px;
+      max-width: 72ch;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal-core);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(1.75rem, 3.2vw, 2.55rem);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: var(--ink-primary);
+    }
+
+    .section-desc {
+      margin: 0;
+      color: var(--ink-secondary);
+      font-size: 16px;
+    }
+
+    /* Treatments grid */
+    .treatments-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .treatment-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      box-shadow: var(--shadow-card);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    }
+
+    .treatment-card:hover {
+      border-color: var(--teal-border);
+      box-shadow: var(--shadow-elevated);
+      transform: translateY(-2px);
+    }
+
+    .treatment-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .treatment-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 9px;
+      border-radius: 6px;
+      background-color: var(--bg-sand);
+      color: var(--ink-secondary);
+    }
+
+    .treatment-duration {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .treatment-title {
+      font-family: var(--font-display);
+      font-size: 21px;
+      font-weight: 500;
+      line-height: 1.25;
+      margin: 0 0 8px;
+      color: var(--ink-primary);
+    }
+
+    .treatment-copy {
+      margin: 0;
+      font-size: 14.5px;
+      color: var(--ink-secondary);
+    }
+
+    .treatment-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .treatment-fee {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .card-action-btn {
+      background: transparent;
+      border: 1px solid var(--teal-border);
+      background-color: var(--teal-tint);
+      color: var(--teal-dark);
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 160ms ease, color 160ms ease;
+    }
+
+    .card-action-btn:hover {
+      background-color: var(--teal-core);
+      color: #FFFFFF;
+    }
+
+    .anxiety-banner {
+      margin-top: 24px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .anxiety-banner h3 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      margin: 0 0 4px;
+    }
+
+    .anxiety-banner p {
+      margin: 0;
+      font-size: 14.5px;
+      color: var(--ink-secondary);
+      max-width: 72ch;
+    }
+
+    /* Interactive Estimator */
+    .estimator-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .estimator-controls {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+      min-width: 0;
+    }
+
+    .est-step-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .est-step-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin: 0;
+    }
+
+    .step-badge {
+      display: inline-grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      background-color: var(--teal-core);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .preset-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .preset-btn {
+      background-color: var(--bg-sand);
+      border: 1px solid var(--border-hairline);
+      border-radius: 999px;
+      padding: 5px 11px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      cursor: pointer;
+      transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+
+    .preset-btn:hover {
+      border-color: var(--teal-core);
+      color: var(--teal-core);
+    }
+
+    .proc-selector-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+      margin-bottom: 26px;
+    }
+
+    .proc-option {
+      width: 100%;
+      text-align: left;
+      background-color: var(--bg-paper);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 15px 16px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      cursor: pointer;
+      transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .proc-option:hover {
+      border-color: var(--teal-core);
+      background-color: var(--bg-surface);
+    }
+
+    .proc-option.is-selected {
+      background-color: var(--teal-tint);
+      border-color: var(--teal-core);
+      box-shadow: inset 0 0 0 1px var(--teal-core);
+    }
+
+    .proc-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .proc-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      display: grid;
+      place-items: center;
+      margin-top: 2px;
+      flex-shrink: 0;
+      transition: background-color 150ms ease, border-color 150ms ease;
+    }
+
+    .proc-option.is-selected .proc-check {
+      background-color: var(--teal-core);
+      border-color: var(--teal-core);
+      color: #FFFFFF;
+    }
+
+    .proc-name {
+      display: block;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--ink-primary);
+      margin-bottom: 2px;
+    }
+
+    .proc-meta {
+      display: block;
+      font-size: 12.5px;
+      color: var(--ink-muted);
+    }
+
+    .proc-price {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .fund-context-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .fund-chip {
+      padding: 7px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border-hairline);
+      background-color: var(--bg-paper);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      cursor: pointer;
+      transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+
+    .fund-chip:hover {
+      border-color: var(--teal-core);
+    }
+
+    .fund-chip.is-active {
+      background-color: var(--ink-primary);
+      border-color: var(--ink-primary);
+      color: #FFFFFF;
+    }
+
+    .tier-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .tier-option {
+      text-align: left;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-hairline);
+      background-color: var(--bg-paper);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .tier-option:hover {
+      border-color: var(--teal-core);
+    }
+
+    .tier-option.is-active {
+      background-color: var(--teal-tint);
+      border-color: var(--teal-core);
+      box-shadow: inset 0 0 0 1px var(--teal-core);
+    }
+
+    .tier-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .tier-name {
+      font-weight: 700;
+      font-size: 14.5px;
+      color: var(--ink-primary);
+    }
+
+    .tier-rate {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      color: var(--teal-dark);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tier-note {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+    }
+
+    /* Estimator live ledger summary */
+    .estimator-summary {
+      background-color: var(--ink-primary);
+      color: #F4F7F8;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-elevated);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      min-width: 0;
+    }
+
+    .summary-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      margin-bottom: 18px;
+    }
+
+    .summary-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal-bright);
+      margin-bottom: 4px;
+    }
+
+    .summary-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+      margin: 0;
+      color: #FFFFFF;
+    }
+
+    .currency-tag {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      padding: 4px 9px;
+      border-radius: 6px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #D9ECEE;
+      flex-shrink: 0;
+    }
+
+    .selected-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-bottom: 18px;
+      min-height: 52px;
+    }
+
+    .selected-line {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13.5px;
+      color: #D9E2E6;
+    }
+
+    .selected-line-name {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .selected-line-price {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      color: #FFFFFF;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .empty-state-box {
+      padding: 14px;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.06);
+      border: 1px dashed rgba(255, 255, 255, 0.22);
+      font-size: 13.5px;
+      color: #C7D3D8;
+    }
+
+    .ledger-metrics {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 14px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 16px;
+    }
+
+    .metric-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .metric-label {
+      font-size: 13px;
+      color: #C2D0D6;
+    }
+
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+
+    .metric-val.is-rebate {
+      color: #7BE0B7;
+    }
+
+    .metric-divider {
+      height: 1px;
+      background-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .metric-gap-box {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .metric-gap-label {
+      font-size: 12.5px;
+      color: #B4C3CA;
+    }
+
+    .metric-gap-amount {
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 1.1;
+      color: #FFFFFF;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ratio-track {
+      height: 9px;
+      width: 100%;
+      border-radius: 999px;
+      background-color: rgba(255, 255, 255, 0.14);
+      overflow: hidden;
+      display: flex;
+      margin-bottom: 8px;
+    }
+
+    .ratio-rebate {
+      height: 100%;
+      background-color: var(--teal-bright);
+      transition: width 260ms ease;
+    }
+
+    .ratio-legend {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #B7C6CC;
+      margin-bottom: 18px;
+    }
+
+    .financing-note {
+      padding: 11px 13px;
+      border-radius: 10px;
+      background-color: rgba(100, 184, 188, 0.13);
+      border: 1px solid rgba(100, 184, 188, 0.28);
+      font-size: 12.5px;
+      color: #DDF1F2;
+      margin-bottom: 18px;
+    }
+
+    .summary-cta {
+      width: 100%;
+      background-color: #FFFFFF;
+      color: var(--ink-primary);
+      padding: 14px 18px;
+      font-size: 14.5px;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 160ms ease, transform 160ms ease;
+    }
+
+    .summary-cta:hover {
+      background-color: #E6EFEF;
+    }
+
+    .summary-disclaimer {
+      margin: 12px 0 0;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #9FB0B8;
+    }
+
+    /* Team section */
+    .team-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .filter-tab {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      cursor: pointer;
+      transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+    }
+
+    .filter-tab:hover {
+      border-color: var(--teal-core);
+      color: var(--teal-core);
+    }
+
+    .filter-tab.is-active {
+      background-color: var(--teal-core);
+      border-color: var(--teal-core);
+      color: #FFFFFF;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .doctor-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .doctor-card.is-hidden {
+      display: none;
+    }
+
+    .doctor-head {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .doctor-monogram {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background-color: var(--teal-tint);
+      border: 1px solid var(--teal-border);
+      color: var(--teal-dark);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 17px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .doctor-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.2;
+      margin: 0;
+      color: var(--ink-primary);
+    }
+
+    .doctor-cred {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--teal-core);
+      margin-top: 2px;
+    }
+
+    .doctor-bio {
+      margin: 0;
+      font-size: 14px;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+    }
+
+    .doctor-foot {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .lang-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    .doctor-book-link {
+      background: transparent;
+      border: none;
+      padding: 4px 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal-core);
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .doctor-book-link:hover {
+      color: var(--teal-dark);
+    }
+
+    /* Visit, hours & booking section */
+    .visit-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .clinic-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-card);
+      min-width: 0;
+    }
+
+    .clinic-card h3 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+      margin: 0 0 14px;
+    }
+
+    .contact-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .contact-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+    }
+
+    .contact-val {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-val:hover {
+      color: var(--teal-core);
+    }
+
+    .hours-list {
+      list-style: none;
+      margin: 0 0 18px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hours-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 8px;
+    }
+
+    .hours-row.is-today {
+      background-color: var(--teal-tint);
+      color: var(--teal-dark);
+      font-weight: 600;
+    }
+
+    .hours-time {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .transit-note {
+      padding: 14px;
+      border-radius: 12px;
+      background-color: var(--bg-sand);
+      border: 1px solid var(--border-hairline);
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+    }
+
+    /* Booking form */
+    .booking-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-elevated);
+      min-width: 0;
+    }
+
+    .booking-card h3 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 500;
+      margin: 0 0 6px;
+    }
+
+    .booking-sub {
+      margin: 0 0 20px;
+      font-size: 14.5px;
+      color: var(--ink-secondary);
+    }
+
+    .carried-banner {
+      display: none;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background-color: var(--eucalyptus-bg);
+      border: 1px solid #B5DACB;
+      margin-bottom: 20px;
+      font-size: 13.5px;
+      color: #134B38;
+    }
+
+    .carried-banner.is-visible {
+      display: block;
+    }
+
+    .carried-banner-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .clear-carry-btn {
+      background: transparent;
+      border: none;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .field label {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      padding: 11px 13px;
+      border-radius: 10px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-paper);
+      font-size: 15px;
+      color: var(--ink-primary);
+      transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      background-color: var(--bg-surface);
+      border-color: var(--teal-core);
+      box-shadow: 0 0 0 3px rgba(18, 87, 91, 0.12);
+      outline: none;
+    }
+
+    .field input[readonly],
+    .field textarea[readonly] {
+      background-color: var(--bg-sand);
+      color: var(--ink-secondary);
+      font-weight: 500;
+      resize: none;
+    }
+
+    .form-submit-row {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .booking-confirmation {
+      display: none;
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: 12px;
+      background-color: var(--teal-tint);
+      border: 1px solid var(--teal-border);
+      color: var(--ink-primary);
+    }
+
+    .booking-confirmation.is-visible {
+      display: block;
+    }
+
+    .booking-confirmation h4 {
+      font-family: var(--font-display);
+      font-size: 19px;
+      margin: 0 0 6px;
+      color: var(--teal-dark);
+    }
+
+    .booking-confirmation p {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: var(--ink-secondary);
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--ink-primary);
+      color: #DCE4E7;
+      padding-top: 44px;
+      padding-bottom: 34px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      margin-bottom: 22px;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+      color: #FFFFFF;
+      margin: 0 0 8px;
+    }
+
+    .footer-copy {
+      margin: 0;
+      font-size: 14px;
+      color: #B4C2C9;
+      max-width: 44ch;
+    }
+
+    .footer-col-title {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal-bright);
+      margin: 0 0 12px;
+    }
+
+    .footer-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .footer-list a {
+      text-decoration: none;
+      color: #DCE4E7;
+    }
+
+    .footer-list a:hover {
+      color: var(--teal-bright);
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+      color: #A4B4BC;
+    }
+
+    .footer-concept-line {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    /* Responsive Breakpoints */
+    @media (min-width: 480px) {
+      .header-book-btn {
+        display: inline-flex;
+      }
+      .brand-name {
+        font-size: 20px;
+      }
+      .brand-sub {
+        font-size: 11px;
+      }
+    }
+
+    @media (min-width: 640px) {
+      .treatments-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .proc-selector-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .tier-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .field-full {
+        grid-column: 1 / -1;
+      }
+      .trust-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .anxiety-banner {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    @media (min-width: 960px) {
+      .nav-desktop {
+        display: flex;
+      }
+      .header-phone-btn {
+        display: inline-flex;
+      }
+      .menu-toggle {
+        display: none;
+      }
+      .hero {
+        padding-top: 58px;
+        padding-bottom: 68px;
+      }
+      .hero-grid {
+        grid-template-columns: 1.12fr 0.88fr;
+        gap: 44px;
+      }
+      .hero-specs {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+      .trust-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+      .treatments-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .estimator-shell {
+        grid-template-columns: 1.24fr 0.76fr;
+        gap: 28px;
+      }
+      .estimator-summary {
+        position: sticky;
+        top: 90px;
+      }
+      .team-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+      .visit-grid {
+        grid-template-columns: 0.86fr 1.14fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1.3fr 1fr 1fr;
+      }
+      .footer-bottom {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="utility-strip">
+    <div class="container utility-inner">
+      <div class="utility-meta">
+        <span class="utility-item">
+          <span class="utility-dot" aria-hidden="true"></span>
+          <span>Ground Floor, 420 George Street, Brisbane CBD QLD 4000</span>
+        </span>
+        <span class="utility-item tabular">Mon-Thu 8:00am-6:00pm | Fri 8:00am-4:00pm | Sat 9:00am-2:00pm</span>
+      </div>
+      <div class="utility-meta">
+        <a class="utility-link" href="tel:0732362984">(07) 3236 2984</a>
+        <a class="utility-link" href="mailto:reception@brisbanedental.com.au">reception@brisbanedental.com.au</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Brisbane Dental Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 64 64" fill="none">
+            <path d="M21 17c-5 0-9 4.5-9 10.5 0 6.5 3.5 11.5 5 18.5 1 4.2 3.2 5 4.8 5 1.8 0 3.2-2.6 4.4-7.4.8-3.1 2.9-4.6 5.8-4.6s5 1.5 5.8 4.6c1.2 4.8 2.6 7.4 4.4 7.4 1.6 0 3.8-.8 4.8-5 1.5-7 5-12 5-18.5C52 21.5 48 17 43 17c-3.5 0-6.2 2-11 2s-7.5-2-11-2z" stroke="#FAF9F6" stroke-width="4" stroke-linejoin="round"/>
+            <circle cx="32" cy="27" r="3" fill="#64B8BC"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Brisbane Dental</span>
+          <span class="brand-sub">Est. 30+ Years · Brisbane CBD</span>
+        </span>
+      </a>
+
+      <nav class="nav-desktop" aria-label="Primary Navigation">
+        <a class="nav-link" href="#treatments">Treatments</a>
+        <a class="nav-link" href="#estimator">Rebate Estimator</a>
+        <a class="nav-link" href="#team">Our 8 Dentists</a>
+        <a class="nav-link" href="#visit">420 George St</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-secondary header-phone-btn tabular" href="tel:0732362984">(07) 3236 2984</a>
+        <a class="btn btn-primary header-book-btn" href="#book-visit">Book Visit</a>
+        <button class="menu-toggle" type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="7" x2="20" y2="7"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <line x1="4" y1="17" x2="20" y2="17"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobile-drawer">
+      <nav class="mobile-nav-list" aria-label="Mobile Navigation">
+        <a class="mobile-nav-link" href="#treatments">Clinical Treatments</a>
+        <a class="mobile-nav-link" href="#estimator">Health Fund Rebate Estimator (AUD)</a>
+        <a class="mobile-nav-link" href="#team">Meet the 8 Dentists</a>
+        <a class="mobile-nav-link" href="#visit">Location &amp; Opening Hours</a>
+      </nav>
+      <div style="display:grid; gap:10px;">
+        <a class="btn btn-primary" style="width:100%;" href="#book-visit">Book at 420 George Street</a>
+        <a class="btn btn-secondary tabular" style="width:100%;" href="tel:0732362984">Call (07) 3236 2984</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="utility-dot" aria-hidden="true"></span>
+            <span>Your Smile, Our Priority · Ground Floor, 420 George Street</span>
+          </div>
+          <h1 class="hero-title">Calm, restorative dentistry in <em>the heart of Brisbane CBD</em>.</h1>
+          <p class="hero-lead">
+            For more than 30 years on George Street, Brisbane Dental has cared for generations of Brisbane families and CBD professionals. From 45-minute preventive cleanings and CEREC same-day ceramic crowns to urgent pain relief and titanium implants, every treatment plan comes with clear AUD expectations and on-the-spot HICAPS claiming.
+          </p>
+          <div class="hero-cta-row">
+            <a class="btn btn-primary" href="#estimator">Calculate Fee &amp; HICAPS Rebate</a>
+            <a class="btn btn-secondary" href="#book-visit">Book at 420 George Street</a>
+          </div>
+          <div class="hero-specs">
+            <div class="hero-spec-item">
+              <span class="hero-spec-label">Preferred Providers</span>
+              <span class="hero-spec-val">Bupa &amp; HCF + All HICAPS</span>
+            </div>
+            <div class="hero-spec-item">
+              <span class="hero-spec-label">Same-Day Tech</span>
+              <span class="hero-spec-val">CEREC CAD/CAM Crowns</span>
+            </div>
+            <div class="hero-spec-item">
+              <span class="hero-spec-label">CBD Access</span>
+              <span class="hero-spec-val">Near Roma St &amp; Queen St</span>
+            </div>
+            <div class="hero-spec-item">
+              <span class="hero-spec-label">Weekend Care</span>
+              <span class="hero-spec-val tabular">Saturdays 9:00am - 2:00pm</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-dossier" aria-label="Clinic Specification Overview">
+          <div class="dossier-top">
+            <div>
+              <div class="dossier-kicker">Brisbane City Practice Dossier</div>
+              <h2 class="dossier-heading">420 George Street, Ground Floor</h2>
+            </div>
+            <span class="status-pill">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span id="live-status-label">CBD Clinic Open</span>
+            </span>
+          </div>
+
+          <div class="dossier-visual">
+            <svg viewBox="0 0 480 136" style="width:100%; height:auto;" role="img" aria-label="Architectural precision CAD/CAM and CBD clinic care schematic">
+              <rect x="0" y="0" width="480" height="136" rx="10" fill="#FAF9F6" stroke="#DED9CE"/>
+              <path d="M0 101 C95 91, 170 115, 260 97 C345 81, 410 107, 480 93 L480 136 L0 136 Z" fill="#E6EFEF"/>
+              <path d="M0 108 C100 99, 180 120, 270 104 C355 90, 420 112, 480 101" fill="none" stroke="#12575B" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <g transform="translate(14,18)">
+                <rect x="0" y="0" width="142" height="72" rx="8" fill="#FFFFFF" stroke="#D7D2C5"/>
+                <text x="12" y="22" font-family="JetBrains Mono, monospace" font-size="10" fill="#5F6E77">STEP 01 · DIGITAL</text>
+                <text x="12" y="42" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="700" fill="#162026">iTero &amp; 3D Scan</text>
+                <text x="12" y="59" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#12575B">No putty moulds</text>
+              </g>
+              <g transform="translate(169,18)">
+                <rect x="0" y="0" width="142" height="72" rx="8" fill="#FFFFFF" stroke="#D7D2C5"/>
+                <text x="12" y="22" font-family="JetBrains Mono, monospace" font-size="10" fill="#5F6E77">STEP 02 · CEREC</text>
+                <text x="12" y="42" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="700" fill="#162026">Same-Day Crown</text>
+                <text x="12" y="59" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#12575B">Milled chairside</text>
+              </g>
+              <g transform="translate(324,18)">
+                <rect x="0" y="0" width="142" height="72" rx="8" fill="#FFFFFF" stroke="#B6D2D4"/>
+                <text x="12" y="22" font-family="JetBrains Mono, monospace" font-size="10" fill="#5F6E77">STEP 03 · HICAPS</text>
+                <text x="12" y="42" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="700" fill="#162026">Instant Rebate</text>
+                <text x="12" y="59" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#1B684E">Pay gap onsite</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="dossier-rows">
+            <div class="dossier-row">
+              <span class="dossier-row-label">Direct Reception</span>
+              <span class="dossier-row-val tabular">(07) 3236 2984</span>
+            </div>
+            <div class="dossier-row">
+              <span class="dossier-row-label">Clinical Team</span>
+              <span class="dossier-row-val">8 Dentists · 6 Languages Spoken</span>
+            </div>
+            <div class="dossier-row">
+              <span class="dossier-row-label">Health Funds &amp; Claiming</span>
+              <div class="dossier-row-val">
+                <div class="funds-badge-row" style="justify-content:flex-end;">
+                  <span class="mini-chip is-preferred">Bupa Preferred</span>
+                  <span class="mini-chip is-preferred">HCF Preferred</span>
+                  <span class="mini-chip">Medibank</span>
+                  <span class="mini-chip">nib / HICAPS</span>
+                </div>
+              </div>
+            </div>
+            <div class="dossier-row">
+              <span class="dossier-row-label">Anxiety &amp; Financing</span>
+              <span class="dossier-row-val">IV Sedation · Installments · SuperCare</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="Practice Credentials">
+      <div class="container trust-grid">
+        <div class="trust-cell">
+          <div class="trust-num">30+ yrs</div>
+          <div class="trust-text">
+            <strong>George Street Heritage</strong>
+            <span>Serving three generations of Brisbane CBD &amp; inner-suburb patients</span>
+          </div>
+        </div>
+        <div class="trust-cell">
+          <div class="trust-num">8</div>
+          <div class="trust-text">
+            <strong>Experienced Dentists</strong>
+            <span>General, implant, endodontic, paediatric &amp; orthodontic care in one clinic</span>
+          </div>
+        </div>
+        <div class="trust-cell">
+          <div class="trust-num">2,000+</div>
+          <div class="trust-text">
+            <strong>Implants Placed</strong>
+            <span>Surgical &amp; restorative precision led by AAID Associate Fellow Dr R. Bashour</span>
+          </div>
+        </div>
+        <div class="trust-cell">
+          <div class="trust-num">1 Visit</div>
+          <div class="trust-text">
+            <strong>CEREC Same-Day Crowns</strong>
+            <span>Digital scan, precision ceramic milling and fitting without temporary crowns</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="treatments">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Core Clinical Disciplines</span>
+          <h2 class="section-title">Preventative, restorative and emergency dentistry under one George Street roof.</h2>
+          <p class="section-desc">
+            Select any treatment below to load its typical Brisbane CBD fee range and HICAPS rebate calculation directly into the interactive estimator.
+          </p>
+        </div>
+
+        <div class="treatments-grid">
+          <article class="treatment-card">
+            <div>
+              <div class="treatment-card-top">
+                <span class="treatment-tag">Preventive · ADA 011 / 114 / 121</span>
+                <span class="treatment-duration">~45 mins</span>
+              </div>
+              <h3 class="treatment-title">Check-Up &amp; Professional Clean</h3>
+              <p class="treatment-copy">
+                Comprehensive oral and gum exam, ultrasonic tartar removal above and below the gumline, enamel polishing, and high-concentration fluoride protection.
+              </p>
+            </div>
+            <div class="treatment-foot">
+              <span class="treatment-fee">$260 - $340 AUD</span>
+              <button class="card-action-btn" type="button" data-select-proc="checkup">Estimate Rebate</button>
+            </div>
+          </article>
+
+          <article class="treatment-card">
+            <div>
+              <div class="treatment-card-top">
+                <span class="treatment-tag">CEREC CAD/CAM · ADA 613 / 615</span>
+                <span class="treatment-duration">Single Visit</span>
+              </div>
+              <h3 class="treatment-title">CEREC Same-Day Crowns</h3>
+              <p class="treatment-copy">
+                Optical 3D scans capture your tooth geometry cleanly without traditional moulds. Custom ceramic crowns are milled chairside and permanently bonded the same day.
+              </p>
+            </div>
+            <div class="treatment-foot">
+              <span class="treatment-fee">$1,750 - $2,150 AUD</span>
+              <button class="card-action-btn" type="button" data-select-proc="cerec">Estimate Rebate</button>
+            </div>
+          </article>
+
+          <article class="treatment-card">
+            <div>
+              <div class="treatment-card-top">
+                <span class="treatment-tag">Urgent Care · ADA 013 / 022 / 911</span>
+                <span class="treatment-duration">Same-Day Slots</span>
+              </div>
+              <h3 class="treatment-title">Emergency Dental &amp; Pain Relief</h3>
+              <p class="treatment-copy">
+                Rapid diagnosis, digital X-rays, abscess drainage, fractured tooth stabilisation, knocked-out tooth management, and TMJ jaw pain relief for adults and children.
+              </p>
+            </div>
+            <div class="treatment-foot">
+              <span class="treatment-fee">$180 - $360 AUD</span>
+              <button class="card-action-btn" type="button" data-select-proc="emergency">Estimate Rebate</button>
+            </div>
+          </article>
+
+          <article class="treatment-card">
+            <div>
+              <div class="treatment-card-top">
+                <span class="treatment-tag">Oral Surgery · ADA 322 / 324</span>
+                <span class="treatment-duration">45 - 75 mins</span>
+              </div>
+              <h3 class="treatment-title">Wisdom Teeth Extraction</h3>
+              <p class="treatment-copy">
+                Careful imaging and extraction for erupted or impacted third molars threatening nearby roots, paired with structured post-operative healing instructions.
+              </p>
+            </div>
+            <div class="treatment-foot">
+              <span class="treatment-fee">$350 - $690 AUD</span>
+              <button class="card-action-btn" type="button" data-select-proc="wisdom">Estimate Rebate</button>
+            </div>
+          </article>
+
+          <article class="treatment-card">
+            <div>
+              <div class="treatment-card-top">
+                <span class="treatment-tag">Endodontics · ADA 415 - 418</span>
+                <span class="treatment-duration">1 - 2 Visits</span>
+              </div>
+              <h3 class="treatment-title">Root Canal Treatment</h3>
+              <p class="treatment-copy">
+                Gentle local anaesthesia, thorough root canal disinfection, biocompatible gutta-percha sealing, and structural rebuild to preserve infected natural teeth.
+              </p>
+            </div>
+            <div class="treatment-foot">
+              <span class="treatment-fee">$1,250 - $1,950 AUD</span>
+              <button class="card-action-btn" type="button" data-select-proc="rootcanal">Estimate Rebate</button>
+            </div>
+          </article>
+
+          <article class="treatment-card">
+            <div>
+              <div class="treatment-card-top">
+                <span class="treatment-tag">Implantology · ADA 688 / 672</span>
+                <span class="treatment-duration">Staged Plan</span>
+              </div>
+              <h3 class="treatment-title">Single &amp; Full-Arch Implants</h3>
+              <p class="treatment-copy">
+                Pure titanium implant fixtures integrated over ~12 weeks and finished with custom ceramic crowns. Also available: porcelain veneers, whitening and iTero clear aligners.
+              </p>
+            </div>
+            <div class="treatment-foot">
+              <span class="treatment-fee">$4,200 - $5,600 AUD</span>
+              <button class="card-action-btn" type="button" data-select-proc="implant">Estimate Rebate</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="anxiety-banner">
+          <div>
+            <h3>Dental Anxiety Solutions, Clear Aligners &amp; Cosmetic Smile Design</h3>
+            <p>
+              Nervous patients can access IV sedation or hospital general anaesthesia pathways, while cosmetic consultations cover porcelain and composite veneers, iTero 3D clear aligner simulations, and night guards for bruxism.
+            </p>
+          </div>
+          <a class="btn btn-ghost-teal" href="#book-visit">Discuss Sedation or Cosmetic Plan</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-sand" id="estimator">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Interactive Fee &amp; HICAPS Planning Tool</span>
+          <h2 class="section-title">Brisbane CBD Dental Treatment &amp; Health Fund Rebate Estimator (AUD)</h2>
+          <p class="section-desc">
+            Combine one or more procedures and select your Australian Extras cover tier to preview an indicative fee range, HICAPS instant rebate estimate, and likely out-of-pocket gap before booking at 420 George Street.
+          </p>
+        </div>
+
+        <div class="estimator-shell">
+          <div class="estimator-controls">
+            <div class="est-step-head">
+              <h3 class="est-step-title">
+                <span class="step-badge">1</span>
+                <span>Select Procedures (Combine multiple if needed)</span>
+              </h3>
+              <div class="preset-bar" aria-label="Quick treatment presets">
+                <button class="preset-btn" type="button" data-preset="checkup">Routine Check-Up</button>
+                <button class="preset-btn" type="button" data-preset="crown">Same-Day CEREC</button>
+                <button class="preset-btn" type="button" data-preset="urgent">Urgent Root Canal Plan</button>
+                <button class="preset-btn" type="button" data-preset="clear">Clear All</button>
+              </div>
+            </div>
+
+            <div class="proc-selector-grid" id="proc-selector-grid" role="group" aria-label="Dental treatment options">
+              <button class="proc-option is-selected" type="button" role="checkbox" aria-checked="true" data-proc-id="checkup">
+                <span class="proc-left">
+                  <span class="proc-check" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+                  </span>
+                  <span>
+                    <span class="proc-name">Comprehensive Check-Up &amp; Clean</span>
+                    <span class="proc-meta">Exam, ultrasonic scale, polish &amp; fluoride · 45m</span>
+                  </span>
+                </span>
+                <span class="proc-price">$260-$340</span>
+              </button>
+
+              <button class="proc-option" type="button" role="checkbox" aria-checked="false" data-proc-id="cerec">
+                <span class="proc-left">
+                  <span class="proc-check" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+                  </span>
+                  <span>
+                    <span class="proc-name">CEREC Same-Day Crown</span>
+                    <span class="proc-meta">3D CAD/CAM ceramic scan, mill &amp; bond · 1 visit</span>
+                  </span>
+                </span>
+                <span class="proc-price">$1,750-$2,150</span>
+              </button>
+
+              <button class="proc-option" type="button" role="checkbox" aria-checked="false" data-proc-id="emergency">
+                <span class="proc-left">
+                  <span class="proc-check" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+                  </span>
+                  <span>
+                    <span class="proc-name">Emergency Pain Relief Visit</span>
+                    <span class="proc-meta">Urgent assessment, X-ray &amp; pain relief</span>
+                  </span>
+                </span>
+                <span class="proc-price">$180-$360</span>
+              </button>
+
+              <button class="proc-option" type="button" role="checkbox" aria-checked="false" data-proc-id="wisdom">
+                <span class="proc-left">
+                  <span class="proc-check" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+                  </span>
+                  <span>
+                    <span class="proc-name">Wisdom Tooth Extraction</span>
+                    <span class="proc-meta">Simple to surgical third molar removal</span>
+                  </span>
+                </span>
+                <span class="proc-price">$350-$690</span>
+              </button>
+
+              <button class="proc-option" type="button" role="checkbox" aria-checked="false" data-proc-id="rootcanal">
+                <span class="proc-left">
+                  <span class="proc-check" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+                  </span>
+                  <span>
+                    <span class="proc-name">Root Canal Treatment</span>
+                    <span class="proc-meta">1 to 3 canals cleaned, disinfected &amp; sealed</span>
+                  </span>
+                </span>
+                <span class="proc-price">$1,250-$1,950</span>
+              </button>
+
+              <button class="proc-option" type="button" role="checkbox" aria-checked="false" data-proc-id="implant">
+                <span class="proc-left">
+                  <span class="proc-check" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+                  </span>
+                  <span>
+                    <span class="proc-name">Dental Implant</span>
+                    <span class="proc-meta">Titanium fixture + custom ceramic crown</span>
+                  </span>
+                </span>
+                <span class="proc-price">$4,200-$5,600</span>
+              </button>
+            </div>
+
+            <div class="est-step-head">
+              <h3 class="est-step-title">
+                <span class="step-badge">2</span>
+                <span>Australian Health Fund &amp; Extras Cover Level</span>
+              </h3>
+            </div>
+
+            <div class="fund-context-row" id="fund-chip-row" role="group" aria-label="Health fund provider context">
+              <button class="fund-chip is-active" type="button" data-fund="Bupa (Preferred Provider)">Bupa (Preferred)</button>
+              <button class="fund-chip" type="button" data-fund="HCF (Preferred Provider)">HCF (Preferred)</button>
+              <button class="fund-chip" type="button" data-fund="Medibank (HICAPS)">Medibank</button>
+              <button class="fund-chip" type="button" data-fund="nib / ahm (HICAPS)">nib / ahm</button>
+              <button class="fund-chip" type="button" data-fund="Other HICAPS Fund">Other HICAPS Fund</button>
+              <button class="fund-chip" type="button" data-fund="No Private Health Fund">No Fund</button>
+            </div>
+
+            <div class="tier-grid" id="tier-grid" role="radiogroup" aria-label="Australian Extras cover rebate rate">
+              <button class="tier-option" type="button" role="radio" aria-checked="false" data-tier="none" data-rate="0" data-label="No Extras (0%)">
+                <span class="tier-top">
+                  <span class="tier-name">No Extras Cover</span>
+                  <span class="tier-rate">0% rebate</span>
+                </span>
+                <span class="tier-note">Self-funded private visit, installment plans eligible</span>
+              </button>
+
+              <button class="tier-option" type="button" role="radio" aria-checked="false" data-tier="basic" data-rate="0.50" data-label="Basic Extras (~50%)">
+                <span class="tier-top">
+                  <span class="tier-name">Basic Extras</span>
+                  <span class="tier-rate">~50% HICAPS</span>
+                </span>
+                <span class="tier-note">Entry dental Extras cover, subject to annual caps</span>
+              </button>
+
+              <button class="tier-option is-active" type="button" role="radio" aria-checked="true" data-tier="mid" data-rate="0.65" data-label="Mid Extras (~65%)">
+                <span class="tier-top">
+                  <span class="tier-name">Mid Extras</span>
+                  <span class="tier-rate">~65% HICAPS</span>
+                </span>
+                <span class="tier-note">Balanced general &amp; major dental cover</span>
+              </button>
+
+              <button class="tier-option" type="button" role="radio" aria-checked="false" data-tier="comprehensive" data-rate="0.80" data-label="Comprehensive (~80% HICAPS instant claim)">
+                <span class="tier-top">
+                  <span class="tier-name">Comprehensive Extras</span>
+                  <span class="tier-rate">~80% HICAPS</span>
+                </span>
+                <span class="tier-note">Instant HICAPS claim · higher major &amp; crown limits</span>
+              </button>
+            </div>
+          </div>
+
+          <aside class="estimator-summary" aria-live="polite" aria-label="Live AUD Rebate Calculation">
+            <div class="summary-header">
+              <div>
+                <div class="summary-kicker">420 George Street Fee Preview</div>
+                <h3 class="summary-title">Estimated Treatment Breakdown</h3>
+              </div>
+              <span class="currency-tag">AUD</span>
+            </div>
+
+            <div class="selected-items-list" id="selected-items-list"></div>
+
+            <div class="ledger-metrics">
+              <div class="metric-row">
+                <span class="metric-label">Clinic Fee Range</span>
+                <span class="metric-val" id="est-gross-range">$260 - $340 AUD</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-label" id="est-rebate-caption">Est. Health Fund Rebate (~65%)</span>
+                <span class="metric-val is-rebate" id="est-rebate-range">-$169 to -$221 AUD</span>
+              </div>
+              <div class="metric-divider"></div>
+              <div class="metric-gap-box">
+                <span class="metric-gap-label">Estimated Out-of-Pocket Gap</span>
+                <span class="metric-gap-amount" id="est-gap-range">$91 - $119 AUD</span>
+              </div>
+            </div>
+
+            <div class="ratio-track" aria-hidden="true">
+              <div class="ratio-rebate" id="ratio-rebate-bar" style="width: 65%;"></div>
+            </div>
+            <div class="ratio-legend">
+              <span id="legend-rebate">HICAPS Rebate: 65%</span>
+              <span id="legend-gap">Out-of-Pocket: 35%</span>
+            </div>
+
+            <div class="financing-note" id="financing-note" style="display:none;">
+              Flexible installment plans and superannuation access guidance are available at Brisbane Dental for treatments over $1,500 AUD.
+            </div>
+
+            <button class="summary-cta" type="button" id="transfer-to-booking-btn">
+              Carry Estimate to 420 George St Booking
+            </button>
+
+            <p class="summary-disclaimer">
+              Indicative Brisbane CBD fee guide only. Exact quotes depend on clinical imaging, canal complexity, and your fund's remaining annual Extras limits swiped via HICAPS on arrival.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="team">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Meet Your Clinical Team</span>
+          <h2 class="section-title">Eight dedicated dentists, never rushing through an appointment.</h2>
+          <p class="section-desc">
+            Every dentist at Brisbane Dental takes time to explain imaging and treatment options clearly, with care available in English, Arabic, Turkish, Mandarin, Malay and Portuguese.
+          </p>
+        </div>
+
+        <div class="team-toolbar" role="tablist" aria-label="Filter dentists by specialty">
+          <button class="filter-tab is-active" type="button" role="tab" aria-selected="true" data-filter="all">All 8 Dentists</button>
+          <button class="filter-tab" type="button" role="tab" aria-selected="false" data-filter="implant-cosmetic">Implants &amp; Cosmetic</button>
+          <button class="filter-tab" type="button" role="tab" aria-selected="false" data-filter="preventive-urgent">Preventive &amp; Urgent Care</button>
+          <button class="filter-tab" type="button" role="tab" aria-selected="false" data-filter="ortho-tmd">Ortho, TMD &amp; Multilingual</button>
+        </div>
+
+        <div class="team-grid" id="team-grid">
+          <article class="doctor-card" data-cats="implant-cosmetic ortho-tmd">
+            <div>
+              <div class="doctor-head">
+                <div class="doctor-monogram" aria-hidden="true">RB</div>
+                <div>
+                  <h3 class="doctor-name">Dr Raghed Bashour</h3>
+                  <div class="doctor-cred">DDS, AAID Associate Fellow</div>
+                </div>
+              </div>
+              <p class="doctor-bio" style="margin-top:12px;">
+                Placed over 2,000 implants since 2010 and completed 1,500+ veneer cases. Specialises in Digital Smile Design, CEREC same-day crowns, dental lasers and IV sedation / GA cases.
+              </p>
+            </div>
+            <div class="doctor-foot">
+              <span class="lang-pill">English · Arabic</span>
+              <button class="doctor-book-link" type="button" data-doctor="Dr Raghed Bashour">Request Dr R. Bashour</button>
+            </div>
+          </article>
+
+          <article class="doctor-card" data-cats="implant-cosmetic ortho-tmd preventive-urgent">
+            <div>
+              <div class="doctor-head">
+                <div class="doctor-monogram" aria-hidden="true">CL</div>
+                <div>
+                  <h3 class="doctor-name">Dr Cheryl Liew</h3>
+                  <div class="doctor-cred">BDS (Univ. of Adelaide, 1996)</div>
+                </div>
+              </div>
+              <p class="doctor-bio" style="margin-top:12px;">
+                Nearly three decades of preventive and cosmetic practice. Accredited by the Australasian Academy of Dento-Facial Aesthetics for non-surgical bruxism and TMD care.
+              </p>
+            </div>
+            <div class="doctor-foot">
+              <span class="lang-pill">English</span>
+              <button class="doctor-book-link" type="button" data-doctor="Dr Cheryl Liew">Request Dr Liew</button>
+            </div>
+          </article>
+
+          <article class="doctor-card" data-cats="implant-cosmetic">
+            <div>
+              <div class="doctor-head">
+                <div class="doctor-monogram" aria-hidden="true">MB</div>
+                <div>
+                  <h3 class="doctor-name">Dr Meylad Bashour</h3>
+                  <div class="doctor-cred">DDS, Restorative (Lyon Univ.)</div>
+                </div>
+              </div>
+              <p class="doctor-bio" style="margin-top:12px;">
+                Over 10 years clinical experience in implants, veneers and full smile makeovers, known for a calm, unhurried approach tailored for anxious patients.
+              </p>
+            </div>
+            <div class="doctor-foot">
+              <span class="lang-pill">English · Arabic</span>
+              <button class="doctor-book-link" type="button" data-doctor="Dr Meylad Bashour">Request Dr M. Bashour</button>
+            </div>
+          </article>
+
+          <article class="doctor-card" data-cats="ortho-tmd preventive-urgent">
+            <div>
+              <div class="doctor-head">
+                <div class="doctor-monogram" aria-hidden="true">AG</div>
+                <div>
+                  <h3 class="doctor-name">Dr Ana Grossi</h3>
+                  <div class="doctor-cred">BDS, MClinDent Paediatric &amp; Ortho</div>
+                </div>
+              </div>
+              <p class="doctor-bio" style="margin-top:12px;">
+                General dentist with postgraduate orthodontic training and a Master in Paediatric Dentistry, focusing on clear aligners, children's visits and smile aesthetics.
+              </p>
+            </div>
+            <div class="doctor-foot">
+              <span class="lang-pill">English · Portuguese · Spanish</span>
+              <button class="doctor-book-link" type="button" data-doctor="Dr Ana Grossi">Request Dr Grossi</button>
+            </div>
+          </article>
+
+          <article class="doctor-card" data-cats="implant-cosmetic preventive-urgent">
+            <div>
+              <div class="doctor-head">
+                <div class="doctor-monogram" aria-hidden="true">MD</div>
+                <div>
+                  <h3 class="doctor-name">Dr Michael Daniell</h3>
+                  <div class="doctor-cred">General, Implant &amp; Endodontics</div>
+                </div>
+              </div>
+              <p class="doctor-bio" style="margin-top:12px;">
+                Committed to long-term patient relationships with special interests in cosmetic rehabilitation, dental implants, pain relief and root canal therapy.
+              </p>
+            </div>
+            <div class="doctor-foot">
+              <span class="lang-pill">English</span>
+              <button class="doctor-book-link" type="button" data-doctor="Dr Michael Daniell">Request Dr Daniell</button>
+            </div>
+          </article>
+
+          <article class="doctor-card" data-cats="preventive-urgent ortho-tmd">
+            <div>
+              <div class="doctor-head">
+                <div class="doctor-monogram" aria-hidden="true">HO</div>
+                <div>
+                  <h3 class="doctor-name">Dr Hazan Olfat</h3>
+                  <div class="doctor-cred">ADC Certified (Marmara Univ.)</div>
+                </div>
+              </div>
+              <p class="doctor-bio" style="margin-top:12px;">
+                Experienced across Adelaide and Queensland in preventive and restorative care, taking time to explain each diagnostic option collaboratively with patients.
+              </p>
+            </div>
+            <div class="doctor-foot">
+              <span class="lang-pill">English · Turkish</span>
+              <button class="doctor-book-link" type="button" data-doctor="Dr Hazan Olfat">Request Dr Olfat</button>
+            </div>
+          </article>
+
+          <article class="doctor-card" data-cats="preventive-urgent ortho-tmd">
+            <div>
+              <div class="doctor-head">
+                <div class="doctor-monogram" aria-hidden="true">AL</div>
+                <div>
+                  <h3 class="doctor-name">Dr Arthur Low</h3>
+                  <div class="doctor-cred">BDS (Griffith Univ., QLD)</div>
+                </div>
+              </div>
+              <p class="doctor-bio" style="margin-top:12px;">
+                Queensland graduate with training in Sleep Apnoea, Bruxism and TMD. Holistic preventive approach and active volunteer dentist with the Tzu Chi Foundation.
+              </p>
+            </div>
+            <div class="doctor-foot">
+              <span class="lang-pill">English · Mandarin · Malay</span>
+              <button class="doctor-book-link" type="button" data-doctor="Dr Arthur Low">Request Dr Low</button>
+            </div>
+          </article>
+
+          <article class="doctor-card" data-cats="preventive-urgent">
+            <div>
+              <div class="doctor-head">
+                <div class="doctor-monogram" aria-hidden="true">ZN</div>
+                <div>
+                  <h3 class="doctor-name">Dr Zainab Noor ("Dr Zee")</h3>
+                  <div class="doctor-cred">BHSc Dent, MDent (La Trobe Univ.)</div>
+                </div>
+              </div>
+              <p class="doctor-bio" style="margin-top:12px;">
+                Gold Coast local passionate about gentle family care, immediate dental pain relief and urgent treatment honed across regional and rural Australian clinics.
+              </p>
+            </div>
+            <div class="doctor-foot">
+              <span class="lang-pill">English</span>
+              <button class="doctor-book-link" type="button" data-doctor="Dr Zainab Noor">Request Dr Zee</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-sand" id="visit">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Visit &amp; Appointment Request</span>
+          <h2 class="section-title">Ground Floor, 420 George Street, Brisbane CBD QLD 4000</h2>
+          <p class="section-desc">
+            Step-free street access just minutes from Roma Street Transit Centre and Queen Street Mall, open six days a week including Saturdays until 2:00pm.
+          </p>
+        </div>
+
+        <div class="visit-grid">
+          <div class="clinic-card">
+            <h3>Clinic Contact &amp; Hours</h3>
+            <div class="contact-stack">
+              <div class="contact-row">
+                <span class="contact-label">Street Address</span>
+                <span class="contact-val">Ground Floor, 420 George Street, Brisbane QLD 4000</span>
+              </div>
+              <div class="contact-row">
+                <span class="contact-label">Telephone &amp; Urgent Line</span>
+                <a class="contact-val tabular" href="tel:0732362984">(07) 3236 2984</a>
+              </div>
+              <div class="contact-row">
+                <span class="contact-label">Email</span>
+                <a class="contact-val" href="mailto:reception@brisbanedental.com.au">reception@brisbanedental.com.au</a>
+              </div>
+              <div class="contact-row">
+                <span class="contact-label">Fax</span>
+                <span class="contact-val tabular">(07) 3236 2998</span>
+              </div>
+            </div>
+
+            <ul class="hours-list" id="hours-list">
+              <li class="hours-row" data-day="1"><span>Monday</span><span class="hours-time">8:00 am - 6:00 pm</span></li>
+              <li class="hours-row" data-day="2"><span>Tuesday</span><span class="hours-time">8:00 am - 6:00 pm</span></li>
+              <li class="hours-row" data-day="3"><span>Wednesday</span><span class="hours-time">8:00 am - 6:00 pm</span></li>
+              <li class="hours-row" data-day="4"><span>Thursday</span><span class="hours-time">8:00 am - 6:00 pm</span></li>
+              <li class="hours-row" data-day="5"><span>Friday</span><span class="hours-time">8:00 am - 4:00 pm</span></li>
+              <li class="hours-row" data-day="6"><span>Saturday</span><span class="hours-time">9:00 am - 2:00 pm</span></li>
+              <li class="hours-row" data-day="0"><span>Sunday</span><span class="hours-time">Closed</span></li>
+            </ul>
+
+            <div class="transit-note">
+              <strong>Getting to 420 George Street:</strong> Two minutes on foot from the Brisbane Transit Centre on Roma Street and a short stroll from Queen Street Mall, Supreme Court precinct and King George Square busway.
+            </div>
+          </div>
+
+          <div class="booking-card" id="book-visit">
+            <h3>Request an Appointment at 420 George Street</h3>
+            <p class="booking-sub">
+              Your selected treatments and AUD rebate estimate can be attached below for our reception team to check exact HICAPS item availability.
+            </p>
+
+            <div class="carried-banner" id="carried-banner" aria-live="polite">
+              <div class="carried-banner-head">
+                <span>Estimate Loaded from Rebate Calculator</span>
+                <button class="clear-carry-btn" type="button" id="clear-carried-btn">Reset Estimate</button>
+              </div>
+              <div id="carried-banner-details"></div>
+            </div>
+
+            <form id="booking-form" novalidate>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="patient-name">Full Name</label>
+                  <input id="patient-name" name="patient-name" type="text" autocomplete="name" placeholder="e.g. Claire Henderson" required>
+                </div>
+
+                <div class="field">
+                  <label for="patient-phone">Australian Mobile or Phone</label>
+                  <input id="patient-phone" name="patient-phone" type="tel" autocomplete="tel" placeholder="e.g. 0412 345 678" required>
+                </div>
+
+                <div class="field">
+                  <label for="patient-email">Email Address</label>
+                  <input id="patient-email" name="patient-email" type="email" autocomplete="email" placeholder="you@example.com.au" required>
+                </div>
+
+                <div class="field">
+                  <label for="preferred-time">Preferred Time Window</label>
+                  <select id="preferred-time" name="preferred-time" autocomplete="off">
+                    <option value="First Available / Same-Day Urgent">First Available / Same-Day Urgent</option>
+                    <option value="Early CBD (8:00am - 10:30am)">Early CBD (8:00am - 10:30am)</option>
+                    <option value="Midday / Lunchtime (11:30am - 2:00pm)">Midday / Lunchtime (11:30am - 2:00pm)</option>
+                    <option value="Late Afternoon (3:00pm - 6:00pm)">Late Afternoon (3:00pm - 6:00pm)</option>
+                    <option value="Saturday Morning (9:00am - 2:00pm)">Saturday Morning (9:00am - 2:00pm)</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="preferred-dentist">Preferred Dentist</label>
+                  <select id="preferred-dentist" name="preferred-dentist" autocomplete="off">
+                    <option value="First Available Brisbane Dental Clinician">First Available Brisbane Dental Clinician</option>
+                    <option value="Dr Raghed Bashour">Dr Raghed Bashour (Implants, CEREC, Arabic)</option>
+                    <option value="Dr Cheryl Liew">Dr Cheryl Liew (Preventive, Cosmetic, TMD)</option>
+                    <option value="Dr Meylad Bashour">Dr Meylad Bashour (Cosmetic, Implants, Anxious Care)</option>
+                    <option value="Dr Ana Grossi">Dr Ana Grossi (Ortho, Kids, Portuguese/Spanish)</option>
+                    <option value="Dr Michael Daniell">Dr Michael Daniell (Root Canal, Implants)</option>
+                    <option value="Dr Hazan Olfat">Dr Hazan Olfat (Restorative, Turkish)</option>
+                    <option value="Dr Arthur Low">Dr Arthur Low (TMD/Sleep, Mandarin/Malay)</option>
+                    <option value="Dr Zainab Noor">Dr Zainab Noor (Urgent Relief, Gentle Family)</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="booking-fund">Private Health Fund / Extras Level</label>
+                  <select id="booking-fund" name="booking-fund" autocomplete="off">
+                    <option value="Bupa (Preferred Provider) - Mid Extras (~65%)">Bupa (Preferred) - Mid Extras (~65%)</option>
+                    <option value="HCF (Preferred Provider) - Mid Extras (~65%)">HCF (Preferred) - Mid Extras (~65%)</option>
+                    <option value="Comprehensive Extras (~80% HICAPS)">Comprehensive Extras (~80% HICAPS)</option>
+                    <option value="Mid Extras (~65% HICAPS)">Mid Extras (~65% HICAPS)</option>
+                    <option value="Basic Extras (~50% HICAPS)">Basic Extras (~50% HICAPS)</option>
+                    <option value="No Extras / Private Pay">No Extras / Private Pay</option>
+                  </select>
+                </div>
+
+                <div class="field field-full">
+                  <label for="carried-treatment">Selected Care &amp; AUD Rebate Summary</label>
+                  <textarea id="carried-treatment" name="carried-treatment" rows="3" autocomplete="off" readonly>Comprehensive Check-Up &amp; Clean | Est. Out-of-Pocket: $91 - $119 AUD</textarea>
+                </div>
+
+                <div class="field field-full">
+                  <label for="clinical-notes">Symptoms, Preferred Language or Anxiety Notes</label>
+                  <textarea id="clinical-notes" name="clinical-notes" rows="3" autocomplete="off" placeholder="Share any tooth sensitivity, urgent pain, preferred language, or sedation questions."></textarea>
+                </div>
+              </div>
+
+              <div class="form-submit-row">
+                <button class="btn btn-primary" style="width:100%; padding:14px 20px; font-size:15px;" type="submit">
+                  Prepare Appointment Dossier for 420 George Street
+                </button>
+              </div>
+            </form>
+
+            <div class="booking-confirmation" id="booking-confirmation" aria-live="polite">
+              <h4 id="confirm-title">Appointment Summary Prepared</h4>
+              <p id="confirm-body"></p>
+              <p style="font-family:var(--font-mono); font-size:12.5px; color:var(--teal-dark); margin-bottom:0;" id="confirm-ref"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h2 class="footer-brand">Brisbane Dental</h2>
+          <p class="footer-copy">
+            Ground Floor, 420 George Street, Brisbane QLD 4000. Personalised general, emergency, implant and cosmetic dentistry for Brisbane CBD patients for more than 30 years.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="footer-col-title">Quick Sections</h3>
+          <ul class="footer-list">
+            <li><a href="#treatments">Dental Treatments</a></li>
+            <li><a href="#estimator">AUD Fee &amp; HICAPS Estimator</a></li>
+            <li><a href="#team">Meet the 8 Dentists</a></li>
+            <li><a href="#book-visit">420 George St Booking</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-col-title">Direct Reception</h3>
+          <ul class="footer-list">
+            <li><a class="tabular" href="tel:0732362984">Tel: (07) 3236 2984</a></li>
+            <li><span class="tabular">Fax: (07) 3236 2998</span></li>
+            <li><a href="mailto:reception@brisbanedental.com.au">reception@brisbanedental.com.au</a></li>
+            <li><span>www.brisbanedental.com.au</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-concept-line">Interactive redesign concept prepared for Brisbane Dental.</span>
+        <span>Fee ranges and HICAPS rebate figures are illustrative AUD estimates; clinical examination confirms exact fees.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var PROCEDURES = {
+        checkup: {
+          id: 'checkup',
+          name: 'Comprehensive Check-Up & Clean',
+          code: 'ADA 011 / 114 / 121',
+          min: 260,
+          max: 340
+        },
+        cerec: {
+          id: 'cerec',
+          name: 'CEREC Same-Day Crown',
+          code: 'ADA 613 / 615',
+          min: 1750,
+          max: 2150
+        },
+        emergency: {
+          id: 'emergency',
+          name: 'Emergency Pain Relief Visit',
+          code: 'ADA 013 / 022 / 911',
+          min: 180,
+          max: 360
+        },
+        wisdom: {
+          id: 'wisdom',
+          name: 'Wisdom Tooth Extraction',
+          code: 'ADA 322 / 324',
+          min: 350,
+          max: 690
+        },
+        rootcanal: {
+          id: 'rootcanal',
+          name: 'Root Canal Treatment',
+          code: 'ADA 415 - 418',
+          min: 1250,
+          max: 1950
+        },
+        implant: {
+          id: 'implant',
+          name: 'Dental Implant',
+          code: 'ADA 688 / 672',
+          min: 4200,
+          max: 5600
+        }
+      };
+
+      var state = {
+        selectedProcs: ['checkup'],
+        fundName: 'Bupa (Preferred Provider)',
+        tierKey: 'mid',
+        tierRate: 0.65,
+        tierLabel: 'Mid Extras (~65%)'
+      };
+
+      var procButtons = Array.prototype.slice.call(document.querySelectorAll('.proc-option'));
+      var fundChips = Array.prototype.slice.call(document.querySelectorAll('.fund-chip'));
+      var tierButtons = Array.prototype.slice.call(document.querySelectorAll('.tier-option'));
+      var presetButtons = Array.prototype.slice.call(document.querySelectorAll('.preset-btn'));
+      var cardEstimateButtons = Array.prototype.slice.call(document.querySelectorAll('[data-select-proc]'));
+      var filterTabs = Array.prototype.slice.call(document.querySelectorAll('.filter-tab'));
+      var doctorCards = Array.prototype.slice.call(document.querySelectorAll('.doctor-card'));
+      var doctorPickButtons = Array.prototype.slice.call(document.querySelectorAll('[data-doctor]'));
+
+      var selectedItemsListEl = document.getElementById('selected-items-list');
+      var grossRangeEl = document.getElementById('est-gross-range');
+      var rebateCaptionEl = document.getElementById('est-rebate-caption');
+      var rebateRangeEl = document.getElementById('est-rebate-range');
+      var gapRangeEl = document.getElementById('est-gap-range');
+      var ratioBarEl = document.getElementById('ratio-rebate-bar');
+      var legendRebateEl = document.getElementById('legend-rebate');
+      var legendGapEl = document.getElementById('legend-gap');
+      var financingNoteEl = document.getElementById('financing-note');
+      var transferBtn = document.getElementById('transfer-to-booking-btn');
+
+      var bookingForm = document.getElementById('booking-form');
+      var carriedBanner = document.getElementById('carried-banner');
+      var carriedBannerDetails = document.getElementById('carried-banner-details');
+      var clearCarriedBtn = document.getElementById('clear-carried-btn');
+      var carriedInput = document.getElementById('carried-treatment');
+      var bookingFundSelect = document.getElementById('booking-fund');
+      var dentistSelect = document.getElementById('preferred-dentist');
+      var confirmBox = document.getElementById('booking-confirmation');
+      var confirmTitle = document.getElementById('confirm-title');
+      var confirmBody = document.getElementById('confirm-body');
+      var confirmRef = document.getElementById('confirm-ref');
+
+      var mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      var mobileDrawer = document.getElementById('mobile-drawer');
+
+      function formatAud(num) {
+        return '$' + Math.round(num).toLocaleString('en-AU');
+      }
+
+      function computeTotals() {
+        var minGross = 0;
+        var maxGross = 0;
+        var i;
+        for (i = 0; i < state.selectedProcs.length; i += 1) {
+          var proc = PROCEDURES[state.selectedProcs[i]];
+          if (proc) {
+            minGross += proc.min;
+            maxGross += proc.max;
+          }
+        }
+        var minRebate = Math.round(minGross * state.tierRate);
+        var maxRebate = Math.round(maxGross * state.tierRate);
+        var minGap = minGross - minRebate;
+        var maxGap = maxGross - maxRebate;
+        return {
+          minGross: minGross,
+          maxGross: maxGross,
+          minRebate: minRebate,
+          maxRebate: maxRebate,
+          minGap: minGap,
+          maxGap: maxGap
+        };
+      }
+
+      function syncEstimatorUI() {
+        var i;
+        for (i = 0; i < procButtons.length; i += 1) {
+          var btn = procButtons[i];
+          var pid = btn.getAttribute('data-proc-id');
+          var active = state.selectedProcs.indexOf(pid) > -1;
+          btn.classList.toggle('is-selected', active);
+          btn.setAttribute('aria-checked', active ? 'true' : 'false');
+        }
+
+        for (i = 0; i < fundChips.length; i += 1) {
+          var chip = fundChips[i];
+          var isMatch = chip.getAttribute('data-fund') === state.fundName;
+          chip.classList.toggle('is-active', isMatch);
+        }
+
+        for (i = 0; i < tierButtons.length; i += 1) {
+          var tBtn = tierButtons[i];
+          var tMatch = tBtn.getAttribute('data-tier') === state.tierKey;
+          tBtn.classList.toggle('is-active', tMatch);
+          tBtn.setAttribute('aria-checked', tMatch ? 'true' : 'false');
+        }
+
+        while (selectedItemsListEl.firstChild) {
+          selectedItemsListEl.removeChild(selectedItemsListEl.firstChild);
+        }
+
+        if (state.selectedProcs.length === 0) {
+          var emptyDiv = document.createElement('div');
+          emptyDiv.className = 'empty-state-box';
+          emptyDiv.textContent = 'Select one or more dental procedures on the left to calculate AUD fees and HICAPS rebates.';
+          selectedItemsListEl.appendChild(emptyDiv);
+        } else {
+          for (i = 0; i < state.selectedProcs.length; i += 1) {
+            var proc = PROCEDURES[state.selectedProcs[i]];
+            if (proc) {
+              var row = document.createElement('div');
+              row.className = 'selected-line';
+              var leftSpan = document.createElement('span');
+              leftSpan.className = 'selected-line-name';
+              leftSpan.textContent = proc.name + ' (' + proc.code + ')';
+              var rightSpan = document.createElement('span');
+              rightSpan.className = 'selected-line-price';
+              rightSpan.textContent = formatAud(proc.min) + ' - ' + formatAud(proc.max);
+              row.appendChild(leftSpan);
+              row.appendChild(rightSpan);
+              selectedItemsListEl.appendChild(row);
+            }
+          }
+        }
+
+        var totals = computeTotals();
+        var pctRebate = Math.round(state.tierRate * 100);
+        var pctGap = 100 - pctRebate;
+
+        if (state.selectedProcs.length === 0) {
+          grossRangeEl.textContent = '$0 AUD';
+          rebateCaptionEl.textContent = 'Est. Health Fund Rebate (' + pctRebate + '%)';
+          rebateRangeEl.textContent = '$0 AUD';
+          gapRangeEl.textContent = '$0 AUD';
+          ratioBarEl.style.width = '0%';
+          legendRebateEl.textContent = 'HICAPS Rebate: 0%';
+          legendGapEl.textContent = 'Out-of-Pocket: 0%';
+          financingNoteEl.style.display = 'none';
+        } else {
+          grossRangeEl.textContent = formatAud(totals.minGross) + ' - ' + formatAud(totals.maxGross) + ' AUD';
+          rebateCaptionEl.textContent = state.tierRate === 0
+            ? 'Est. Health Fund Rebate (No Extras)'
+            : 'Est. ' + state.fundName + ' Rebate (~' + pctRebate + '%)';
+          rebateRangeEl.textContent = state.tierRate === 0
+            ? '$0 AUD'
+            : '-' + formatAud(totals.minRebate) + ' to -' + formatAud(totals.maxRebate) + ' AUD';
+          gapRangeEl.textContent = formatAud(totals.minGap) + ' - ' + formatAud(totals.maxGap) + ' AUD';
+          ratioBarEl.style.width = pctRebate + '%';
+          legendRebateEl.textContent = 'HICAPS Rebate: ~' + pctRebate + '%';
+          legendGapEl.textContent = 'Out-of-Pocket: ~' + pctGap + '%';
+          financingNoteEl.style.display = totals.maxGross >= 1500 ? 'block' : 'none';
+        }
+      }
+
+      function toggleProcedure(id) {
+        var idx = state.selectedProcs.indexOf(id);
+        if (idx > -1) {
+          state.selectedProcs.splice(idx, 1);
+        } else {
+          state.selectedProcs.push(id);
+        }
+        syncEstimatorUI();
+      }
+
+      procButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          toggleProcedure(btn.getAttribute('data-proc-id'));
+        });
+      });
+
+      fundChips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          state.fundName = chip.getAttribute('data-fund');
+          if (state.fundName === 'No Private Health Fund') {
+            state.tierKey = 'none';
+            state.tierRate = 0;
+            state.tierLabel = 'No Extras (0%)';
+          } else if (state.tierKey === 'none') {
+            state.tierKey = 'mid';
+            state.tierRate = 0.65;
+            state.tierLabel = 'Mid Extras (~65%)';
+          }
+          syncEstimatorUI();
+        });
+      });
+
+      tierButtons.forEach(function (tBtn) {
+        tBtn.addEventListener('click', function () {
+          state.tierKey = tBtn.getAttribute('data-tier');
+          state.tierRate = parseFloat(tBtn.getAttribute('data-rate'));
+          state.tierLabel = tBtn.getAttribute('data-label');
+          if (state.tierKey === 'none') {
+            state.fundName = 'No Private Health Fund';
+          } else if (state.fundName === 'No Private Health Fund') {
+            state.fundName = 'Bupa (Preferred Provider)';
+          }
+          syncEstimatorUI();
+        });
+      });
+
+      presetButtons.forEach(function (pBtn) {
+        pBtn.addEventListener('click', function () {
+          var preset = pBtn.getAttribute('data-preset');
+          if (preset === 'checkup') {
+            state.selectedProcs = ['checkup'];
+          } else if (preset === 'crown') {
+            state.selectedProcs = ['cerec'];
+          } else if (preset === 'urgent') {
+            state.selectedProcs = ['emergency', 'rootcanal'];
+          } else if (preset === 'clear') {
+            state.selectedProcs = [];
+          }
+          syncEstimatorUI();
+        });
+      });
+
+      cardEstimateButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var id = btn.getAttribute('data-select-proc');
+          state.selectedProcs = [id];
+          syncEstimatorUI();
+          var target = document.getElementById('estimator');
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      function buildEstimateSummaryText() {
+        var names = [];
+        var i;
+        for (i = 0; i < state.selectedProcs.length; i += 1) {
+          var p = PROCEDURES[state.selectedProcs[i]];
+          if (p) {
+            names.push(p.name);
+          }
+        }
+        if (names.length === 0) {
+          return 'General Brisbane CBD Consultation | 420 George Street';
+        }
+        var totals = computeTotals();
+        return names.join(' + ') +
+          ' | Fee: ' + formatAud(totals.minGross) + '-' + formatAud(totals.maxGross) +
+          ' | Est. Gap: ' + formatAud(totals.minGap) + '-' + formatAud(totals.maxGap) + ' AUD (' + state.tierLabel + ')';
+      }
+
+      function syncFundToBookingSelect() {
+        var desiredValue = 'Mid Extras (~65% HICAPS)';
+        if (state.tierKey === 'none') {
+          desiredValue = 'No Extras / Private Pay';
+        } else if (state.tierKey === 'basic') {
+          desiredValue = 'Basic Extras (~50% HICAPS)';
+        } else if (state.tierKey === 'comprehensive') {
+          desiredValue = 'Comprehensive Extras (~80% HICAPS)';
+        } else if (state.fundName.indexOf('Bupa') === 0) {
+          desiredValue = 'Bupa (Preferred Provider) - Mid Extras (~65%)';
+        } else if (state.fundName.indexOf('HCF') === 0) {
+          desiredValue = 'HCF (Preferred Provider) - Mid Extras (~65%)';
+        }
+        bookingFundSelect.value = desiredValue;
+      }
+
+      transferBtn.addEventListener('click', function () {
+        if (state.selectedProcs.length === 0) {
+          state.selectedProcs = ['checkup'];
+          syncEstimatorUI();
+        }
+        var summaryText = buildEstimateSummaryText();
+        carriedInput.value = summaryText;
+        syncFundToBookingSelect();
+        carriedBannerDetails.textContent = summaryText + ' | Fund: ' + state.fundName;
+        carriedBanner.classList.add('is-visible');
+
+        var bookingSection = document.getElementById('book-visit');
+        if (bookingSection) {
+          bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        var nameInput = document.getElementById('patient-name');
+        if (nameInput) {
+          window.setTimeout(function () {
+            nameInput.focus();
+          }, 420);
+        }
+      });
+
+      clearCarriedBtn.addEventListener('click', function () {
+        carriedBanner.classList.remove('is-visible');
+        carriedInput.value = 'General Brisbane CBD Dental Consultation | 420 George Street';
+      });
+
+      filterTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var filter = tab.getAttribute('data-filter');
+          filterTabs.forEach(function (t) {
+            var match = t === tab;
+            t.classList.toggle('is-active', match);
+            t.setAttribute('aria-selected', match ? 'true' : 'false');
+          });
+          doctorCards.forEach(function (card) {
+            var cats = card.getAttribute('data-cats') || '';
+            var visible = filter === 'all' || cats.indexOf(filter) > -1;
+            card.classList.toggle('is-hidden', visible === false);
+          });
+        });
+      });
+
+      doctorPickButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var docName = btn.getAttribute('data-doctor');
+          if (dentistSelect) {
+            dentistSelect.value = docName;
+          }
+          var bookingSection = document.getElementById('book-visit');
+          if (bookingSection) {
+            bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      bookingForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var nameVal = document.getElementById('patient-name').value.trim();
+        var phoneVal = document.getElementById('patient-phone').value.trim();
+        var emailVal = document.getElementById('patient-email').value.trim();
+        var timeVal = document.getElementById('preferred-time').value;
+        var dentistVal = dentistSelect.value;
+        var summaryVal = carriedInput.value.trim();
+
+        if (nameVal.length < 2 || phoneVal.length < 6 || emailVal.indexOf('@') === -1) {
+          confirmBox.classList.add('is-visible');
+          confirmTitle.textContent = 'Please Complete Contact Details';
+          confirmBody.textContent = 'Enter your full name, Australian phone number and email address so reception at 420 George Street can confirm your visit.';
+          confirmRef.textContent = 'Direct Reception Desk: (07) 3236 2984';
+          return;
+        }
+
+        var refCode = 'BD-CBD-' + String(Math.floor(1000 + Math.random() * 9000));
+        confirmBox.classList.add('is-visible');
+        confirmTitle.textContent = 'Appointment Dossier Prepared for ' + nameVal;
+        confirmBody.textContent = 'Preferred slot: ' + timeVal + ' with ' + dentistVal + '. Care plan: ' + summaryVal + '. In a live clinic deployment this submits to reception@brisbanedental.com.au; for immediate CBD bookings please call (07) 3236 2984.';
+        confirmRef.textContent = 'Preview Reference: ' + refCode + ' | Ground Floor, 420 George Street, Brisbane QLD 4000';
+      });
+
+      if (mobileMenuBtn && mobileDrawer) {
+        mobileMenuBtn.addEventListener('click', function () {
+          var open = mobileDrawer.classList.toggle('is-open');
+          mobileMenuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+
+        var drawerLinks = Array.prototype.slice.call(mobileDrawer.querySelectorAll('a'));
+        drawerLinks.forEach(function (link) {
+          link.addEventListener('click', function () {
+            mobileDrawer.classList.remove('is-open');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      // Highlight current Brisbane weekday hours
+      try {
+        var now = new Date();
+        var dayIndex = now.getDay();
+        var hoursRows = Array.prototype.slice.call(document.querySelectorAll('#hours-list .hours-row'));
+        hoursRows.forEach(function (row) {
+          if (parseInt(row.getAttribute('data-day'), 10) === dayIndex) {
+            row.classList.add('is-today');
+          }
+        });
+        var statusEl = document.getElementById('live-status-label');
+        if (statusEl) {
+          statusEl.textContent = dayIndex === 0 ? 'Reopens Mon 8:00am' : 'Mon-Sat CBD Hours';
+        }
+      } catch (err) {
+        // Fallback preserves default status text
+      }
+
+      syncEstimatorUI();
+    }());
+  </script>
+</body>
+</html>
