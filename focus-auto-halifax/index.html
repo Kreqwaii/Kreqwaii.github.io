@@ -1,0 +1,3518 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Auto | 100% Mobile On-Site Auto Care in Halifax, NS</title>
+  <meta name="description" content="Focus Auto provides 100% mobile on-site tire changes, tire sales, brake service, synthetic oil changes, battery boost/replacement, diagnostics, and TPMS repair across Halifax, Dartmouth, Bedford, and Sackville. Text or call 902-220-6646.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' width='36' height='36' fill='none'%3E%3Crect width='36' height='36' rx='8' fill='%23173B5E'/%3E%3Ccircle cx='18' cy='18' r='10' stroke='%23F6F7F8' stroke-width='2.4'/%3E%3Ccircle cx='18' cy='18' r='4.2' fill='%23C2590C' stroke='%23F6F7F8' stroke-width='1.6'/%3E%3Cpath d='M18 4V9M18 27V32M4 18H9M27 18H32' stroke='%23F6F7F8' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F6F7F8;
+      --bg-grid: #ECEFF3;
+      --surface: #FFFFFF;
+      --surface-subtle: #EDF1F5;
+      --surface-inset: #E4E9EF;
+      --ink: #131C26;
+      --ink-body: #32404F;
+      --ink-muted: #526273;
+      --navy: #173B5E;
+      --navy-hover: #102B46;
+      --navy-deep: #0E2338;
+      --navy-soft: #E8EFF6;
+      --navy-border: #B8C9DB;
+      --accent: #C2590C;
+      --accent-btn: #AF4C07;
+      --accent-btn-hover: #923F05;
+      --accent-text: #994306;
+      --accent-soft: #FCF0E6;
+      --accent-border: #E5BC9E;
+      --ok: #146B48;
+      --ok-soft: #E8F5EF;
+      --ok-border: #A8D9C2;
+      --border: #D2DBE4;
+      --border-strong: #B6C2CF;
+      --shadow-sm: 0 2px 6px rgba(19, 28, 38, 0.04);
+      --shadow-md: 0 10px 26px rgba(19, 28, 38, 0.07);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --font-display: 'Space Grotesk', system-ui, sans-serif;
+      --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+      --container: 1240px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      overflow-x: clip;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.58;
+      color: var(--ink);
+      background-color: var(--bg);
+      overflow-x: clip;
+    }
+
+    section[id],
+    div[id="calculator"],
+    div[id="booking"] {
+      scroll-margin-top: 84px;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--navy);
+      outline-offset: 2px;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 8px;
+      z-index: 999;
+      background: var(--navy);
+      color: #FFFFFF;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+    }
+
+    .skip-link:focus {
+      left: 16px;
+    }
+
+    /* Top utility strip */
+    .utility-bar {
+      background-color: var(--navy-deep);
+      color: #E3EBF3;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .utility-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 20px;
+      padding-block: 8px;
+    }
+
+    .utility-left,
+    .utility-right {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 18px;
+    }
+
+    .utility-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #DDE7F0;
+    }
+
+    .utility-link {
+      color: #FFFFFF;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      transition: border-color 160ms ease, color 160ms ease;
+    }
+
+    .utility-link:hover {
+      color: #FFD5B8;
+      border-bottom-color: #FFD5B8;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #FFFFFF;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #38D399;
+      flex-shrink: 0;
+    }
+
+    /* Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background-color: var(--navy);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-links a {
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-body);
+      white-space: nowrap;
+      transition: background-color 160ms ease, color 160ms ease;
+    }
+
+    .nav-links a:hover {
+      background-color: var(--navy-soft);
+      color: var(--navy);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      cursor: pointer;
+    }
+
+    .mobile-drawer {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      padding: 14px 24px 18px;
+    }
+
+    .mobile-drawer.is-open {
+      display: block;
+    }
+
+    .mobile-drawer-links {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .mobile-drawer-links a {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      color: var(--ink);
+      background: var(--surface-subtle);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 1.25;
+      border: 1px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 140ms ease;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background-color: var(--navy);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--navy-hover);
+    }
+
+    .btn-accent {
+      background-color: var(--accent-btn);
+      color: #FFFFFF;
+    }
+
+    .btn-accent:hover {
+      background-color: var(--accent-btn-hover);
+    }
+
+    .btn-outline {
+      background-color: var(--surface);
+      border-color: var(--border-strong);
+      color: var(--ink);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--navy);
+      background-color: var(--navy-soft);
+      color: var(--navy);
+    }
+
+    .btn-sm {
+      padding: 8px 13px;
+      font-size: 13px;
+    }
+
+    /* Hero */
+    .hero {
+      padding-block: 52px 56px;
+      background-image:
+        linear-gradient(to right, rgba(23, 59, 94, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(23, 59, 94, 0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      align-self: flex-start;
+      padding: 5px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      color: var(--accent-text);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-marker {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      background-color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0;
+      font-family: var(--font-display);
+      letter-spacing: -0.025em;
+      color: var(--ink);
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 4.1vw, 48px);
+      line-height: 1.08;
+      font-weight: 700;
+    }
+
+    .hero-lead {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.62;
+      color: var(--ink-body);
+      max-width: 62ch;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 4px;
+    }
+
+    .hero-specs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .spec-tile {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--navy);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .spec-tile.is-accent {
+      border-left-color: var(--accent);
+    }
+
+    .spec-val {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+    }
+
+    .spec-tile.is-accent .spec-val {
+      color: var(--accent-text);
+    }
+
+    .spec-label {
+      margin-top: 4px;
+      font-size: 12.5px;
+      line-height: 1.38;
+      color: var(--ink-muted);
+    }
+
+    /* Hero Dispatch Board */
+    .dispatch-panel {
+      background-color: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .dispatch-head {
+      background-color: var(--navy);
+      color: #FFFFFF;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .dispatch-head-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .dispatch-coords {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: #C7D8E8;
+    }
+
+    .dispatch-body {
+      padding: 18px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+
+    .dispatch-meta-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 10px 12px;
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+    }
+
+    .dispatch-meta-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .dispatch-meta-value {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .quick-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .quick-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background-color: var(--bg);
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 150ms ease, background-color 150ms ease;
+    }
+
+    .quick-item:hover {
+      border-color: var(--navy);
+      background-color: var(--navy-soft);
+    }
+
+    .quick-item-title {
+      display: block;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .quick-item-sub {
+      display: block;
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .quick-item-price {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-text);
+      white-space: nowrap;
+    }
+
+    .dispatch-foot {
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--ink-body);
+    }
+
+    /* Section scaffold */
+    .section {
+      padding-block: 64px;
+    }
+
+    .section-alt {
+      background-color: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px 28px;
+      margin-bottom: 30px;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-text);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: clamp(26px, 3vw, 34px);
+      line-height: 1.15;
+      font-weight: 700;
+    }
+
+    .section-desc {
+      margin: 8px 0 0;
+      max-width: 64ch;
+      color: var(--ink-body);
+      font-size: 15.5px;
+    }
+
+    /* Services filter & grid */
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-tab {
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink-body);
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+
+    .filter-tab:hover {
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+
+    .filter-tab.is-active {
+      background-color: var(--navy);
+      border-color: var(--navy);
+      color: #FFFFFF;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--navy-border);
+      box-shadow: var(--shadow-md);
+    }
+
+    .service-card.is-hidden {
+      display: none;
+    }
+
+    .service-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .service-code {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background-color: var(--navy-soft);
+      color: var(--navy);
+    }
+
+    .service-rate {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-text);
+    }
+
+    .service-title {
+      font-size: 19px;
+      line-height: 1.25;
+      font-weight: 700;
+    }
+
+    .service-copy {
+      margin: 0;
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: var(--ink-body);
+    }
+
+    .service-points {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 7px;
+      font-size: 13.5px;
+      color: var(--ink-body);
+    }
+
+    .service-points li {
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .service-points li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 1px;
+      background-color: var(--accent);
+    }
+
+    .service-actions {
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .service-time {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    /* Interactive Quote Calculator */
+    .calc-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.32fr) minmax(0, 0.88fr);
+      gap: 26px;
+      align-items: start;
+    }
+
+    .calc-controls {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .preset-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .preset-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      margin-right: 4px;
+    }
+
+    .preset-btn {
+      padding: 6px 11px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-body);
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+
+    .preset-btn:hover {
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+
+    .preset-btn.is-active {
+      background-color: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent-text);
+    }
+
+    .calc-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .calc-group-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .calc-step-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .calc-step-hint {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .seg-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .seg-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .seg-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .choice-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
+      padding: 12px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg);
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    .choice-btn:hover {
+      border-color: var(--navy);
+      background-color: var(--navy-soft);
+    }
+
+    .choice-btn.is-active {
+      background-color: var(--navy);
+      border-color: var(--navy);
+      color: #FFFFFF;
+    }
+
+    .choice-btn.is-accent-active.is-active {
+      background-color: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--ink);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+
+    .choice-title {
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .choice-sub {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      opacity: 0.86;
+    }
+
+    .choice-btn.is-active .choice-sub {
+      color: #DCE8F5;
+      opacity: 1;
+    }
+
+    .choice-btn.is-accent-active.is-active .choice-sub {
+      color: var(--accent-text);
+    }
+
+    .addon-stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .addon-card {
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg);
+      padding: 13px 14px;
+      transition: border-color 150ms ease, background-color 150ms ease;
+    }
+
+    .addon-card.is-selected {
+      background-color: var(--surface);
+      border-color: var(--navy);
+      box-shadow: inset 3px 0 0 var(--accent);
+    }
+
+    .addon-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .addon-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      text-align: left;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .addon-box {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 2px solid var(--border-strong);
+      background-color: var(--surface);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: all 140ms ease;
+    }
+
+    .addon-card.is-selected .addon-box {
+      background-color: var(--navy);
+      border-color: var(--navy);
+    }
+
+    .addon-name {
+      font-weight: 700;
+      font-size: 14.5px;
+      color: var(--ink);
+    }
+
+    .addon-desc {
+      display: block;
+      font-size: 12.5px;
+      color: var(--ink-muted);
+    }
+
+    .addon-price {
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    .addon-suboptions {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .addon-card:not(.is-selected) .addon-suboptions {
+      display: none;
+    }
+
+    .sub-pill {
+      padding: 5px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface-subtle);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-body);
+      cursor: pointer;
+    }
+
+    .sub-pill.is-active {
+      background-color: var(--navy);
+      border-color: var(--navy);
+      color: #FFFFFF;
+    }
+
+    /* Calculator Receipt Summary */
+    .receipt-card {
+      position: sticky;
+      top: 86px;
+      background-color: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-top: 4px solid var(--navy);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .receipt-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .receipt-title {
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .receipt-badge {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background-color: var(--accent-soft);
+      color: var(--accent-text);
+      border: 1px solid var(--accent-border);
+      white-space: nowrap;
+    }
+
+    .receipt-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      font-size: 12.5px;
+      background-color: var(--surface-subtle);
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+    }
+
+    .receipt-meta span {
+      display: block;
+      color: var(--ink-muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .receipt-meta strong {
+      color: var(--ink);
+      font-size: 13px;
+    }
+
+    .receipt-lines {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 9px;
+      font-size: 14px;
+    }
+
+    .receipt-line {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .receipt-line-name {
+      color: var(--ink-body);
+    }
+
+    .receipt-line-price {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .receipt-totals {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .total-subrow {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13.5px;
+      color: var(--ink-muted);
+    }
+
+    .total-main {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 8px;
+      margin-top: 4px;
+      border-top: 1px solid var(--border-strong);
+    }
+
+    .total-main-label {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .total-main-val {
+      font-family: var(--font-mono);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.1;
+    }
+
+    .receipt-actions {
+      display: grid;
+      gap: 9px;
+    }
+
+    .receipt-secondary-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .feedback-note {
+      min-height: 18px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ok);
+    }
+
+    .receipt-disclaimer {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.48;
+      color: var(--ink-muted);
+    }
+
+    /* Technical SVG Schematic Section */
+    .schematic-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .schematic-canvas-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .schematic-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .schematic-title-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .station-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .station-btn {
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink-body);
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+
+    .station-btn:hover {
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+
+    .station-btn.is-active {
+      background-color: var(--navy);
+      border-color: var(--navy);
+      color: #FFFFFF;
+    }
+
+    .svg-frame {
+      background-color: #F4F7FA;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 10px;
+    }
+
+    .schematic-svg {
+      width: 100%;
+      aspect-ratio: 780 / 460;
+      display: block;
+    }
+
+    .svg-station {
+      transition: opacity 180ms ease;
+      cursor: pointer;
+    }
+
+    .svg-station.is-dimmed {
+      opacity: 0.42;
+    }
+
+    .svg-station.is-highlighted {
+      opacity: 1;
+    }
+
+    .schematic-detail-card {
+      background-color: var(--bg);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .station-code-pill {
+      display: inline-flex;
+      align-self: flex-start;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background-color: var(--accent-soft);
+      color: var(--accent-text);
+      border: 1px solid var(--accent-border);
+    }
+
+    .spec-table {
+      display: grid;
+      gap: 10px;
+    }
+
+    .spec-row {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+    }
+
+    .spec-row-k {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 3px;
+    }
+
+    .spec-row-v {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* Coverage & Process */
+    .zones-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .zone-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .zone-card.is-primary {
+      border-top: 3px solid var(--navy);
+    }
+
+    .zone-card.is-accent {
+      border-top: 3px solid var(--accent);
+    }
+
+    .zone-name {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .zone-fee {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-text);
+    }
+
+    .zone-corridors {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--ink-body);
+    }
+
+    .zone-eta {
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .prep-strip {
+      margin-top: 22px;
+      background-color: var(--navy-soft);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .prep-item-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .prep-item-copy {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--ink-body);
+    }
+
+    /* Driveway Slot & SMS-Ready Booking Form */
+    .booking-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      gap: 26px;
+      align-items: start;
+    }
+
+    .booking-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    .field-label {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .field-label-opt {
+      font-weight: 400;
+      color: var(--ink-muted);
+      font-size: 12.5px;
+    }
+
+    .input-ctrl {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg);
+      font-size: 14.5px;
+      color: var(--ink);
+      transition: border-color 150ms ease, background-color 150ms ease;
+    }
+
+    .input-ctrl:focus {
+      outline: none;
+      border-color: var(--navy);
+      background-color: var(--surface);
+      box-shadow: 0 0 0 3px rgba(23, 59, 94, 0.12);
+    }
+
+    .slot-group {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .slot-btn {
+      padding: 10px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg);
+      text-align: left;
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+
+    .slot-btn:hover {
+      border-color: var(--navy);
+      background-color: var(--navy-soft);
+    }
+
+    .slot-btn.is-active {
+      background-color: var(--navy);
+      border-color: var(--navy);
+      color: #FFFFFF;
+    }
+
+    .slot-time {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .slot-window {
+      display: block;
+      font-size: 11.5px;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    .channel-group {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    .visible-checkbox {
+      width: 18px;
+      height: 18px;
+      margin: 2px 0 0;
+      accent-color: var(--navy);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .checkbox-label {
+      font-size: 13.5px;
+      line-height: 1.45;
+      color: var(--ink-body);
+      cursor: pointer;
+    }
+
+    .booking-output {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--ok-border);
+      background-color: var(--ok-soft);
+      display: none;
+    }
+
+    .booking-output.is-visible {
+      display: block;
+    }
+
+    .booking-output.is-error {
+      border-color: var(--accent-border);
+      background-color: var(--accent-soft);
+      color: var(--ink);
+    }
+
+    .sms-preview-box {
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      color: var(--ink);
+    }
+
+    .booking-output-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .contact-sidebar {
+      display: grid;
+      gap: 16px;
+    }
+
+    .contact-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-card-dark {
+      background-color: var(--navy);
+      color: #FFFFFF;
+      border-color: var(--navy);
+    }
+
+    .contact-card-dark h3,
+    .contact-card-dark .contact-val {
+      color: #FFFFFF;
+    }
+
+    .contact-card-dark .contact-lbl {
+      color: #BFD2E4;
+    }
+
+    .contact-row {
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(182, 194, 207, 0.35);
+    }
+
+    .contact-row:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .contact-lbl {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      margin-bottom: 3px;
+    }
+
+    .contact-val {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--ink);
+      word-break: break-word;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--navy-deep);
+      color: #D5E1EC;
+      padding-block: 42px 28px;
+      border-top: 3px solid var(--accent);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr));
+      gap: 28px;
+      padding-bottom: 26px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .footer-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+    }
+
+    .footer-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 7px;
+      font-size: 14px;
+    }
+
+    .footer-list a:hover {
+      color: #FFD5B8;
+    }
+
+    .footer-bottom {
+      padding-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 20px;
+      font-size: 13px;
+      color: #AFC1D4;
+    }
+
+    /* Responsive breakpoints */
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .calc-shell,
+      .schematic-grid,
+      .booking-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .receipt-card {
+        position: static;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .zones-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav-links,
+      .header-actions .btn-outline {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+
+      .prep-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding-inline: 16px;
+      }
+
+      .hero {
+        padding-block: 34px 40px;
+      }
+
+      .section {
+        padding-block: 46px;
+      }
+
+      .hero-specs,
+      .services-grid,
+      .zones-grid,
+      .seg-grid-3,
+      .seg-grid-4,
+      .seg-grid-2,
+      .slot-group,
+      .channel-group,
+      .form-grid,
+      .footer-grid,
+      .receipt-secondary-row {
+        grid-template-columns: 1fr;
+      }
+
+      .dispatch-meta-row,
+      .receipt-meta {
+        grid-template-columns: 1fr;
+      }
+
+      .header-inner {
+        min-height: 62px;
+        gap: 10px;
+      }
+
+      .brand {
+        gap: 8px;
+      }
+
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+      }
+
+      .brand-name {
+        font-size: 16px;
+      }
+
+      .brand-sub {
+        font-size: 9.5px;
+      }
+
+      .header-actions {
+        gap: 8px;
+      }
+
+      .header-actions .btn-accent {
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+
+      .mobile-menu-btn {
+        width: 36px;
+        height: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#calculator">Skip to CAD Quote Calculator</a>
+
+  <!-- Top Utility Bar -->
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="utility-left">
+        <span class="utility-item">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 1.5C5.24 1.5 3 3.74 3 6.5C3 10.25 8 14.5 8 14.5C8 14.5 13 10.25 13 6.5C13 3.74 10.76 1.5 8 1.5Z" stroke="#FFD5B8" stroke-width="1.5"/>
+            <circle cx="8" cy="6.5" r="1.8" fill="#FFD5B8"/>
+          </svg>
+          <span>MB204, 103-287 Lacewood Dr, Halifax, NS B3M 3Y7</span>
+        </span>
+        <span class="utility-item">100% Mobile On-Site Auto Care</span>
+      </div>
+      <div class="utility-right">
+        <span class="status-pill" id="halifax-status-pill">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="halifax-clock">Halifax AST/ADT · Mobile by Appointment</span>
+        </span>
+        <a class="utility-link mono" href="sms:+19022206646">SMS 902-220-6646</a>
+        <a class="utility-link" href="mailto:focus20auto@gmail.com">focus20auto@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Focus Auto Halifax Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="8.5" stroke="#F6F7F8" stroke-width="1.8"/>
+            <circle cx="12" cy="12" r="3.4" fill="#C2590C" stroke="#F6F7F8" stroke-width="1.4"/>
+            <path d="M12 2V6M12 18V22M2 12H6M18 12H22" stroke="#F6F7F8" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">FOCUS AUTO</span>
+          <span class="brand-sub">Halifax Mobile Auto Care</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#services">Services</a>
+        <a href="#calculator">CAD Quote</a>
+        <a href="#schematic">Rig Schematic</a>
+        <a href="#coverage">Halifax Zones</a>
+        <a href="#booking">Book Slot</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-outline btn-sm mono" href="sms:+19022206646">Text 902-220-6646</a>
+        <a class="btn btn-accent btn-sm" href="#calculator">Calculate Quote</a>
+        <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M3 5H17M3 10H17M3 15H17" stroke="#131C26" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobile-drawer">
+      <div class="mobile-drawer-links">
+        <a href="#services">Mobile Services</a>
+        <a href="#calculator">Halifax CAD Quote Calculator</a>
+        <a href="#schematic">Wheel-End &amp; Brake Schematic</a>
+        <a href="#coverage">Halifax Service Zones</a>
+        <a href="#booking">Driveway Slot &amp; SMS Booking</a>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <a class="btn btn-primary btn-sm mono" href="sms:+19022206646">SMS 902-220-6646</a>
+        <a class="btn btn-outline btn-sm mono" href="tel:+19022206646">Call 902-220-6646</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-marker" aria-hidden="true"></span>
+            <span>Halifax · Dartmouth · Bedford · Sackville</span>
+          </div>
+
+          <h1 class="hero-title">Driveway Tire Changes, Brake Service &amp; Diagnostics Across Halifax</h1>
+
+          <p class="hero-lead">
+            Focus Auto delivers 100% mobile on-site auto care directly to your residential driveway or workplace parking lot. Skip waiting rooms, tow trucks, and seasonal tire-shop queues with transparent CAD pricing and direct SMS dispatch from Lacewood Dr.
+          </p>
+
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#calculator">Open CAD Quote Calculator</a>
+            <a class="btn btn-accent mono" href="sms:+19022206646">Text 902-220-6646 (Preferred)</a>
+            <a class="btn btn-outline" href="#booking">Book Driveway Slot</a>
+          </div>
+
+          <div class="hero-specs">
+            <div class="spec-tile">
+              <div class="spec-val">100% Mobile</div>
+              <div class="spec-label">On-site home or office lot setup across HRM</div>
+            </div>
+            <div class="spec-tile is-accent">
+              <div class="spec-val">CAD + 14% HST</div>
+              <div class="spec-label">Instant itemized quote before booking a slot</div>
+            </div>
+            <div class="spec-tile">
+              <div class="spec-val">902-220-6646</div>
+              <div class="spec-label">Direct technician SMS or focus20auto@gmail.com</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="dispatch-panel" aria-label="Focus Auto Mobile Dispatch Overview">
+          <div class="dispatch-head">
+            <span class="dispatch-head-title">Mobile Dispatch Console</span>
+            <span class="dispatch-coords">HALIFAX, NS · B3M 3Y7</span>
+          </div>
+          <div class="dispatch-body">
+            <div class="dispatch-meta-row">
+              <div>
+                <span class="dispatch-meta-label">Dispatch Origin</span>
+                <span class="dispatch-meta-value">103-287 Lacewood Dr (MB204)</span>
+              </div>
+              <div>
+                <span class="dispatch-meta-label">Preferred Contact</span>
+                <span class="dispatch-meta-value mono">Text / SMS · 902-220-6646</span>
+              </div>
+            </div>
+
+            <div class="quick-list" aria-label="Quick service estimator jumps">
+              <button type="button" class="quick-item" data-preset="on-rim">
+                <span>
+                  <span class="quick-item-title">On-Site On-Rim Tire Swap (4 Wheels)</span>
+                  <span class="quick-item-sub">Hub clean + calibrated lug torque at your driveway</span>
+                </span>
+                <span class="quick-item-price">From $85 CAD</span>
+              </button>
+
+              <button type="button" class="quick-item" data-preset="off-rim-brakes">
+                <span>
+                  <span class="quick-item-title">Off-Rim Mount &amp; Balance / Brake Service</span>
+                  <span class="quick-item-sub">Bead mount, spin balance, pads, rotors &amp; slide pins</span>
+                </span>
+                <span class="quick-item-price">From $145 CAD</span>
+              </button>
+
+              <button type="button" class="quick-item" data-preset="tire-package">
+                <span>
+                  <span class="quick-item-title">Tire Sale &amp; Driveway Install Package</span>
+                  <span class="quick-item-sub">Winter 3PMSF, all-weather or all-season delivered</span>
+                </span>
+                <span class="quick-item-price">Custom CAD Quote</span>
+              </button>
+
+              <button type="button" class="quick-item" data-preset="oil-battery">
+                <span>
+                  <span class="quick-item-title">Synthetic Oil, Battery &amp; OBD-II Diagnostics</span>
+                  <span class="quick-item-sub">Containment mat, load test &amp; fault code scan</span>
+                </span>
+                <span class="quick-item-price">From $65 CAD</span>
+              </button>
+
+              <button type="button" class="quick-item" data-preset="tpms">
+                <span>
+                  <span class="quick-item-title">TPMS Sensor Install &amp; Tire Repair</span>
+                  <span class="quick-item-sub">315/433 MHz programming, relearn &amp; plug-patch</span>
+                </span>
+                <span class="quick-item-price">From $45 CAD</span>
+              </button>
+            </div>
+
+            <div class="dispatch-foot">
+              <span>Service Model: <strong>By Appointment</strong></span>
+              <a class="utility-link" style="color:var(--navy);border-color:var(--navy-border);" href="mailto:focus20auto@gmail.com">focus20auto@gmail.com</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Core Mobile Services Section -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-kicker">Mobile Field Scope</span>
+            <h2 class="section-title">Five Core On-Site Services Built for Halifax Conditions</h2>
+            <p class="section-desc">
+              Coastal road salt, freeze-thaw potholes, and steep driveways demand shop-grade tooling brought to your curb. Select any service category below or send a card straight into the CAD estimator.
+            </p>
+          </div>
+
+          <div class="filter-tabs" role="tablist" aria-label="Filter mobile services">
+            <button type="button" class="filter-tab is-active" role="tab" aria-selected="true" data-filter="all">All Services (5)</button>
+            <button type="button" class="filter-tab" role="tab" aria-selected="false" data-filter="tires">Tires &amp; TPMS</button>
+            <button type="button" class="filter-tab" role="tab" aria-selected="false" data-filter="mechanical">Brakes &amp; Oil</button>
+            <button type="button" class="filter-tab" role="tab" aria-selected="false" data-filter="electrical">Diagnostics &amp; Battery</button>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card" data-category="tires">
+            <div class="service-top">
+              <span class="service-code">SVC-01 · TIRES</span>
+              <span class="service-rate">$85 – $185 CAD</span>
+            </div>
+            <h3 class="service-title">On-Site Off/On Rim Tire Change</h3>
+            <p class="service-copy">
+              Complete seasonal changeover in your driveway or workplace parking spot. Handles both already-mounted wheel sets (on-rim) and loose rubber mount-and-balance swaps (off-rim).
+            </p>
+            <ul class="service-points">
+              <li>Hub face wire-brushed against Atlantic salt corrosion</li>
+              <li>Calibrated torque wrench tightening to factory Nm spec</li>
+              <li>Tread depth, valve stem, and cold PSI check on all 4 tires</li>
+            </ul>
+            <div class="service-actions">
+              <span class="service-time">~35–75 min on-site</span>
+              <button type="button" class="btn btn-outline btn-sm" data-add-service="off-rim">Add to CAD Quote</button>
+            </div>
+          </article>
+
+          <article class="service-card" data-category="tires">
+            <div class="service-top">
+              <span class="service-code">SVC-02 · SUPPLY + INSTALL</span>
+              <span class="service-rate">Package CAD Pricing</span>
+            </div>
+            <h3 class="service-title">Tire Sale &amp; Installation Package</h3>
+            <p class="service-copy">
+              Order new passenger, SUV, or light-truck tires without hauling dirty wheels across town. Focus Auto sources, delivers, mounts, balances, and installs directly at your address.
+            </p>
+            <ul class="service-points">
+              <li>Winter 3PMSF, all-weather, and touring all-season options</li>
+              <li>New rubber valve stems and computer spin balancing included</li>
+              <li>Optional old tire haul-away and disposal coordination</li>
+            </ul>
+            <div class="service-actions">
+              <span class="service-time">Pre-ordered via SMS</span>
+              <button type="button" class="btn btn-outline btn-sm" data-add-service="tire-package">Price Tire Package</button>
+            </div>
+          </article>
+
+          <article class="service-card" data-category="mechanical">
+            <div class="service-top">
+              <span class="service-code">SVC-03 · MECHANICAL</span>
+              <span class="service-rate">From $95 CAD</span>
+            </div>
+            <h3 class="service-title">Mobile Brake Service &amp; Oil Change</h3>
+            <p class="service-copy">
+              Front and rear brake pad and rotor replacement paired with full synthetic oil and filter service over heavy-duty driveway drip containment mats.
+            </p>
+            <ul class="service-points">
+              <li>Caliper slide pins cleaned, de-rusted, and silicone-lubricated</li>
+              <li>Coated rotors selected for Nova Scotia winter salt exposure</li>
+              <li>Used motor oil sealed and transported off-site responsibly</li>
+            </ul>
+            <div class="service-actions">
+              <span class="service-time">~45–110 min on-site</span>
+              <button type="button" class="btn btn-outline btn-sm" data-add-service="brakes">Estimate Brakes / Oil</button>
+            </div>
+          </article>
+
+          <article class="service-card" data-category="electrical">
+            <div class="service-top">
+              <span class="service-code">SVC-04 · ELECTRICAL</span>
+              <span class="service-rate">From $65 CAD</span>
+            </div>
+            <h3 class="service-title">Diagnostics &amp; Battery Boost/Change</h3>
+            <p class="service-copy">
+              No-start rescue and check-engine troubleshooting right where your car is parked. Avoid tow truck waits in sub-zero Halifax mornings.
+            </p>
+            <ul class="service-points">
+              <li>Multi-system OBD-II scan with fault freeze-frame printout</li>
+              <li>12V battery CCA load test and alternator charging check</li>
+              <li>On-site AGM, EFB, or flooded battery swap + terminal seal</li>
+            </ul>
+            <div class="service-actions">
+              <span class="service-time">~25–45 min on-site</span>
+              <button type="button" class="btn btn-outline btn-sm" data-add-service="battery">Add Battery / Scan</button>
+            </div>
+          </article>
+
+          <article class="service-card" data-category="tires">
+            <div class="service-top">
+              <span class="service-code">SVC-05 · TPMS &amp; REPAIR</span>
+              <span class="service-rate">From $45 CAD</span>
+            </div>
+            <h3 class="service-title">TPMS Sensor Installation &amp; Tire Repair</h3>
+            <p class="service-copy">
+              Clear persistent dashboard tire pressure warnings and fix slow leaks caused by nails, screws, or corroded aluminum alloy bead seats.
+            </p>
+            <ul class="service-points">
+              <li>315 / 433 MHz programmable TPMS sensor cloning and relearn</li>
+              <li>Internal mushroom plug-patch repair from inside the tire</li>
+              <li>Alloy wheel bead corrosion clean-up and bead sealer coat</li>
+            </ul>
+            <div class="service-actions">
+              <span class="service-time">~25–50 min on-site</span>
+              <button type="button" class="btn btn-outline btn-sm" data-add-service="tpms">Add TPMS / Repair</button>
+            </div>
+          </article>
+
+          <article class="service-card" data-category="mechanical" style="background-color:var(--navy-soft);border-color:var(--navy-border);">
+            <div class="service-top">
+              <span class="service-code" style="background-color:var(--navy);color:#FFFFFF;">DIRECT DISPATCH</span>
+              <span class="service-rate">Halifax HRM</span>
+            </div>
+            <h3 class="service-title">Multi-Vehicle Driveway Booking</h3>
+            <p class="service-copy">
+              Have two family vehicles or a small commercial pair parked at the same address? Combine seasonal tire swaps, oil changes, and brake inspections under a single mobile dispatch fee.
+            </p>
+            <ul class="service-points">
+              <li>One mobile dispatch charge per residential or office visit</li>
+              <li>Text photos of tire sidewall size or dash warnings to 902-220-6646</li>
+              <li>Written CAD quote verified before technician arrival</li>
+            </ul>
+            <div class="service-actions">
+              <span class="service-time">Single visit fee</span>
+              <a class="btn btn-primary btn-sm" href="#calculator">Configure Multi-Car Quote</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Halifax Mobile Tire & Brake Quote Calculator -->
+    <section class="section section-alt" id="calculator">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-kicker">Interactive CAD Estimator</span>
+            <h2 class="section-title">Halifax Mobile Tire &amp; Brake Quote Calculator</h2>
+            <p class="section-desc">
+              Configure your vehicle class, HRM zone, on-rim vs off-rim tire setup, and mechanical add-ons to get a transparent CAD driveway estimate including 14% Nova Scotia HST.
+            </p>
+          </div>
+        </div>
+
+        <div class="calc-shell">
+          <div class="calc-controls">
+            <div class="preset-strip" aria-label="Common Halifax service bundles">
+              <span class="preset-label">Quick Presets:</span>
+              <button type="button" class="preset-btn is-active" data-calc-preset="on-rim">On-Rim Swap</button>
+              <button type="button" class="preset-btn" data-calc-preset="off-rim-brakes">Off-Rim + Front Brakes</button>
+              <button type="button" class="preset-btn" data-calc-preset="oil-battery">Oil + Battery + Scan</button>
+              <button type="button" class="preset-btn" data-calc-preset="winter-prep">Full Winter Prep</button>
+            </div>
+
+            <!-- 1. Vehicle Type -->
+            <div class="calc-group">
+              <div class="calc-group-head">
+                <span class="calc-step-title" id="grp-vehicle-lbl">1. Vehicle Platform</span>
+                <span class="calc-step-hint">Scales wheel weight, jack capacity &amp; brake/oil sizing</span>
+              </div>
+              <div class="seg-grid-3" role="radiogroup" aria-labelledby="grp-vehicle-lbl">
+                <button type="button" class="choice-btn is-active" role="radio" aria-checked="true" data-vehicle="sedan">
+                  <span class="choice-title">Sedan / Hatchback</span>
+                  <span class="choice-sub">Standard 15"–17" · Base CAD</span>
+                </button>
+                <button type="button" class="choice-btn" role="radio" aria-checked="false" data-vehicle="suv">
+                  <span class="choice-title">SUV / Crossover</span>
+                  <span class="choice-sub">AWD / 17"–20" · +$15–$35</span>
+                </button>
+                <button type="button" class="choice-btn" role="radio" aria-checked="false" data-vehicle="truck">
+                  <span class="choice-title">Truck / Van</span>
+                  <span class="choice-sub">LT / 18"–22" · +$25–$60</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 2. Service Area -->
+            <div class="calc-group">
+              <div class="calc-group-head">
+                <span class="calc-step-title" id="grp-zone-lbl">2. Halifax Mobile Service Zone</span>
+                <span class="calc-step-hint">Dispatched from 103-287 Lacewood Dr</span>
+              </div>
+              <div class="seg-grid-4" role="radiogroup" aria-labelledby="grp-zone-lbl">
+                <button type="button" class="choice-btn is-active" role="radio" aria-checked="true" data-zone="halifax">
+                  <span class="choice-title">Halifax</span>
+                  <span class="choice-sub">$20 dispatch · 15–25 min</span>
+                </button>
+                <button type="button" class="choice-btn" role="radio" aria-checked="false" data-zone="bedford">
+                  <span class="choice-title">Bedford</span>
+                  <span class="choice-sub">$25 dispatch · 20–30 min</span>
+                </button>
+                <button type="button" class="choice-btn" role="radio" aria-checked="false" data-zone="dartmouth">
+                  <span class="choice-title">Dartmouth</span>
+                  <span class="choice-sub">$30 dispatch · 25–35 min</span>
+                </button>
+                <button type="button" class="choice-btn" role="radio" aria-checked="false" data-zone="sackville">
+                  <span class="choice-title">Sackville</span>
+                  <span class="choice-sub">$30 dispatch · 25–40 min</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. Tire Change Mode -->
+            <div class="calc-group">
+              <div class="calc-group-head">
+                <span class="calc-step-title" id="grp-tire-lbl">3. Tire Changeover Mode (On-Rim vs Off-Rim)</span>
+                <span class="calc-step-hint">Select seasonal swap type or pair with new tires</span>
+              </div>
+              <div class="seg-grid-3" role="radiogroup" aria-labelledby="grp-tire-lbl">
+                <button type="button" class="choice-btn" role="radio" aria-checked="false" data-tiremode="none">
+                  <span class="choice-title">No Tire Swap</span>
+                  <span class="choice-sub">Brakes / Oil / Battery only</span>
+                </button>
+                <button type="button" class="choice-btn is-accent-active is-active" role="radio" aria-checked="true" data-tiremode="on-rim">
+                  <span class="choice-title">On-Rim Tire Swap</span>
+                  <span class="choice-sub">Already on 4 rims · From $85</span>
+                </button>
+                <button type="button" class="choice-btn is-accent-active" role="radio" aria-checked="false" data-tiremode="off-rim">
+                  <span class="choice-title">Off-Rim Mount &amp; Balance</span>
+                  <span class="choice-sub">Swap rubber on rims · From $145</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 4. Additional Mobile Services -->
+            <div class="calc-group">
+              <div class="calc-group-head">
+                <span class="calc-step-title">4. Additional On-Site Services</span>
+                <span class="calc-step-hint">Toggle any combination for one driveway visit</span>
+              </div>
+
+              <div class="addon-stack">
+                <!-- Tire Sale Package -->
+                <div class="addon-card" id="addon-tire-package">
+                  <div class="addon-top">
+                    <button type="button" class="addon-toggle" aria-pressed="false" data-addon="tirePackage">
+                      <span class="addon-box" aria-hidden="true">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                          <path d="M2.2 6.2L4.8 8.8L9.8 3.2" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>
+                        <span class="addon-name">Tire Sale &amp; Installation Package (4 New Tires)</span>
+                        <span class="addon-desc">Includes tire supply, mobile mount, balance &amp; valve stems</span>
+                      </span>
+                    </button>
+                    <span class="addon-price" id="price-lbl-tirePackage">+$640 CAD</span>
+                  </div>
+                  <div class="addon-suboptions" role="group" aria-label="New tire tier">
+                    <button type="button" class="sub-pill is-active" data-sub="tirePackage" data-val="all-season">All-Season Set</button>
+                    <button type="button" class="sub-pill" data-sub="tirePackage" data-val="winter">Winter 3PMSF Set</button>
+                    <button type="button" class="sub-pill" data-sub="tirePackage" data-val="all-weather">All-Weather Set</button>
+                  </div>
+                </div>
+
+                <!-- Mobile Brakes -->
+                <div class="addon-card" id="addon-brakes">
+                  <div class="addon-top">
+                    <button type="button" class="addon-toggle" aria-pressed="false" data-addon="brakes">
+                      <span class="addon-box" aria-hidden="true">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                          <path d="M2.2 6.2L4.8 8.8L9.8 3.2" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>
+                        <span class="addon-name">Mobile Brake Service</span>
+                        <span class="addon-desc">Coated rotors, ceramic pads &amp; seized slide-pin clean</span>
+                      </span>
+                    </button>
+                    <span class="addon-price" id="price-lbl-brakes">+$320 CAD</span>
+                  </div>
+                  <div class="addon-suboptions" role="group" aria-label="Brake axle option">
+                    <button type="button" class="sub-pill is-active" data-sub="brakes" data-val="front">Front Pads &amp; Rotors</button>
+                    <button type="button" class="sub-pill" data-sub="brakes" data-val="rear">Rear Pads &amp; Rotors</button>
+                    <button type="button" class="sub-pill" data-sub="brakes" data-val="both">All 4 Wheels</button>
+                    <button type="button" class="sub-pill" data-sub="brakes" data-val="service">Pin Clean &amp; Inspect</button>
+                  </div>
+                </div>
+
+                <!-- Oil Change -->
+                <div class="addon-card" id="addon-oil">
+                  <div class="addon-top">
+                    <button type="button" class="addon-toggle" aria-pressed="false" data-addon="oil">
+                      <span class="addon-box" aria-hidden="true">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                          <path d="M2.2 6.2L4.8 8.8L9.8 3.2" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>
+                        <span class="addon-name">Full Synthetic Oil &amp; Filter Change</span>
+                        <span class="addon-desc">Driveway containment mat, OEM-grade filter &amp; fluid top-up</span>
+                      </span>
+                    </button>
+                    <span class="addon-price" id="price-lbl-oil">+$95 CAD</span>
+                  </div>
+                </div>
+
+                <!-- TPMS & Tire Repair -->
+                <div class="addon-card" id="addon-tpms">
+                  <div class="addon-top">
+                    <button type="button" class="addon-toggle" aria-pressed="false" data-addon="tpms">
+                      <span class="addon-box" aria-hidden="true">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                          <path d="M2.2 6.2L4.8 8.8L9.8 3.2" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>
+                        <span class="addon-name">TPMS Sensor Installation &amp; Tire Repair</span>
+                        <span class="addon-desc">315/433 MHz sensor programming or internal puncture repair</span>
+                      </span>
+                    </button>
+                    <span class="addon-price" id="price-lbl-tpms">+$95 CAD</span>
+                  </div>
+                  <div class="addon-suboptions" role="group" aria-label="TPMS or repair scope">
+                    <button type="button" class="sub-pill" data-sub="tpms" data-val="repair">Puncture Plug-Patch</button>
+                    <button type="button" class="sub-pill is-active" data-sub="tpms" data-val="one">1x TPMS + Program</button>
+                    <button type="button" class="sub-pill" data-sub="tpms" data-val="four">4x TPMS Full Set</button>
+                  </div>
+                </div>
+
+                <!-- Diagnostics & Battery -->
+                <div class="addon-card" id="addon-battery">
+                  <div class="addon-top">
+                    <button type="button" class="addon-toggle" aria-pressed="false" data-addon="battery">
+                      <span class="addon-box" aria-hidden="true">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                          <path d="M2.2 6.2L4.8 8.8L9.8 3.2" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>
+                        <span class="addon-name">Diagnostics &amp; Battery Boost / Replacement</span>
+                        <span class="addon-desc">OBD-II fault scan, boost start, or new 12V battery install</span>
+                      </span>
+                    </button>
+                    <span class="addon-price" id="price-lbl-battery">+$75 CAD</span>
+                  </div>
+                  <div class="addon-suboptions" role="group" aria-label="Diagnostics or battery scope">
+                    <button type="button" class="sub-pill is-active" data-sub="battery" data-val="obd">OBD-II Scan &amp; Load Test</button>
+                    <button type="button" class="sub-pill" data-sub="battery" data-val="boost">Emergency Battery Boost</button>
+                    <button type="button" class="sub-pill" data-sub="battery" data-val="replace">New 12V Battery + Install</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5. Vehicles at Same Driveway -->
+            <div class="calc-group">
+              <div class="calc-group-head">
+                <span class="calc-step-title" id="grp-cars-lbl">5. Vehicles at Same Address</span>
+                <span class="calc-step-hint">Multi-car driveway visits share 1 mobile dispatch fee</span>
+              </div>
+              <div class="seg-grid-2" role="radiogroup" aria-labelledby="grp-cars-lbl">
+                <button type="button" class="choice-btn is-active" role="radio" aria-checked="true" data-cars="1">
+                  <span class="choice-title">1 Vehicle</span>
+                  <span class="choice-sub">Standard single-car driveway visit</span>
+                </button>
+                <button type="button" class="choice-btn" role="radio" aria-checked="false" data-cars="2">
+                  <span class="choice-title">2 Vehicles (Same Driveway)</span>
+                  <span class="choice-sub">Single dispatch fee · 2x selected services</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sticky CAD Summary Receipt -->
+          <aside class="receipt-card" aria-live="polite" aria-label="Live CAD Quote Summary">
+            <div class="receipt-head">
+              <div>
+                <h3 class="receipt-title">Driveway CAD Estimate</h3>
+                <span style="font-size:13px;color:var(--ink-muted);">Direct-to-driveway mobile unit</span>
+              </div>
+              <span class="receipt-badge mono" id="est-duration-badge">~40 min on-site</span>
+            </div>
+
+            <div class="receipt-meta">
+              <div>
+                <span>Platform</span>
+                <strong id="est-meta-vehicle">Sedan / Hatchback</strong>
+              </div>
+              <div>
+                <span>Dispatch Zone</span>
+                <strong id="est-meta-zone">Halifax ($20 CAD)</strong>
+              </div>
+            </div>
+
+            <ul class="receipt-lines" id="est-line-items"></ul>
+
+            <div class="receipt-totals">
+              <div class="total-subrow">
+                <span>Subtotal (CAD)</span>
+                <span class="mono" id="est-subtotal">$105.00 CAD</span>
+              </div>
+              <div class="total-subrow">
+                <span>Est. NS HST (14%)</span>
+                <span class="mono" id="est-hst">$14.70 CAD</span>
+              </div>
+              <div class="total-main">
+                <span class="total-main-label">Estimated Total</span>
+                <span class="total-main-val" id="est-total">$119.70 CAD</span>
+              </div>
+            </div>
+
+            <div class="receipt-actions">
+              <button type="button" class="btn btn-accent" id="btn-transfer-quote">Transfer Estimate to Booking Form</button>
+              <div class="receipt-secondary-row">
+                <button type="button" class="btn btn-outline btn-sm" id="btn-copy-quote">Copy CAD Breakdown</button>
+                <button type="button" class="btn btn-outline btn-sm" id="btn-reset-quote">Reset Defaults</button>
+              </div>
+              <div class="feedback-note" id="copy-feedback" role="status"></div>
+            </div>
+
+            <p class="receipt-disclaimer">
+              Transparent planning estimate in Canadian Dollars. Specialty locking lug removal, seized caliper hardware, or exact tire brand sizes are confirmed via SMS at 902-220-6646 prior to dispatch.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Inline SVG Schematic Section -->
+    <section class="section" id="schematic">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-kicker">Engineering Field Diagram</span>
+            <h2 class="section-title">On-Site Wheel-End, Torque &amp; Brake Service Schematic</h2>
+            <p class="section-desc">
+              Every mobile appointment follows a repeatable shop-grade driveway protocol. Select a subsystem tag to inspect torque tolerances, Nova Scotia salt-belt wear checks, and containment standards.
+            </p>
+          </div>
+        </div>
+
+        <div class="schematic-grid">
+          <div class="schematic-canvas-card">
+            <div class="schematic-bar">
+              <span class="schematic-title-tag">FIG 01 // DRIVEWAY WHEEL-END RIG // HALIFAX SPEC</span>
+              <div class="station-tabs" role="tablist" aria-label="Schematic subsystems">
+                <button type="button" class="station-btn is-active" role="tab" aria-selected="true" data-station="jack">01 Jack &amp; Chock</button>
+                <button type="button" class="station-btn" role="tab" aria-selected="false" data-station="rim">02 Bead &amp; Balance</button>
+                <button type="button" class="station-btn" role="tab" aria-selected="false" data-station="brake">03 Rotor &amp; Caliper</button>
+                <button type="button" class="station-btn" role="tab" aria-selected="false" data-station="tpms">04 TPMS &amp; Torque</button>
+              </div>
+            </div>
+
+            <div class="svg-frame">
+              <svg class="schematic-svg" viewBox="0 0 780 460" width="780" height="460" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Technical cross-section schematic of mobile tire change, wheel torque sequence, brake rotor caliper service, and driveway jack setup">
+                <defs>
+                  <pattern id="draftGrid" width="26" height="26" patternUnits="userSpaceOnUse">
+                    <path d="M 26 0 L 0 0 0 26" fill="none" stroke="#DDE5EE" stroke-width="1"/>
+                  </pattern>
+                </defs>
+
+                <!-- Technical grid & frame -->
+                <rect x="0" y="0" width="780" height="460" rx="8" fill="#F8FAFC"/>
+                <rect x="14" y="14" width="752" height="432" fill="url(#draftGrid)" stroke="#B6C2CF" stroke-width="1.2"/>
+
+                <!-- Driveway ground datum & protective containment mat -->
+                <line x1="34" y1="396" x2="746" y2="396" stroke="#173B5E" stroke-width="2.5"/>
+                <rect x="112" y="388" width="440" height="8" rx="2" fill="#173B5E" opacity="0.22"/>
+                <text x="38" y="424" fill="#526273" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600">DATUM 0.00 // ASPHALT OR CONCRETE DRIVEWAY + CONTAINMENT MAT</text>
+
+                <!-- Station 01: Pinch-weld, Jack Stand & Wheel Chocks -->
+                <g class="svg-station is-highlighted" data-svg-station="jack">
+                  <!-- Vehicle Rocker Panel / Frame Rail -->
+                  <path d="M46 150 H226 L252 178 H410" stroke="#173B5E" stroke-width="2.4" fill="none"/>
+                  <rect x="92" y="150" width="112" height="20" fill="#E8EFF6" stroke="#173B5E" stroke-width="1.6"/>
+                  <rect x="128" y="170" width="38" height="12" fill="#C2590C"/>
+
+                  <!-- Hydraulic Floor Jack -->
+                  <rect x="126" y="182" width="42" height="14" rx="2" fill="#173B5E"/>
+                  <path d="M139 196 L120 362 H174 L155 196 Z" fill="#DCE6F0" stroke="#173B5E" stroke-width="2"/>
+                  <rect x="108" y="362" width="82" height="26" rx="4" fill="#173B5E"/>
+                  <circle cx="122" cy="388" r="8" fill="#32404F"/>
+                  <circle cx="176" cy="388" r="8" fill="#32404F"/>
+
+                  <!-- Safety Jack Stand -->
+                  <path d="M204 208 H230 L246 388 H188 Z" fill="#FCF0E6" stroke="#C2590C" stroke-width="2"/>
+                  <rect x="208" y="178" width="18" height="30" fill="#C2590C"/>
+
+                  <!-- Wheel Chock -->
+                  <path d="M58 396 L92 396 L92 366 Z" fill="#C2590C" stroke="#131C26" stroke-width="1.4"/>
+
+                  <!-- Leader callout 01 -->
+                  <circle cx="147" cy="148" r="3.5" fill="#C2590C"/>
+                  <line x1="147" y1="145" x2="147" y2="82" stroke="#C2590C" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <rect x="34" y="36" width="222" height="46" rx="4" fill="#FFFFFF" stroke="#C2590C" stroke-width="1.6"/>
+                  <text x="44" y="55" fill="#994306" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">01 // PINCH-WELD + CHOCKS</text>
+                  <text x="44" y="71" fill="#32404F" font-family="IBM Plex Sans, sans-serif" font-size="11">Rubber puck + safety stand lock</text>
+                </g>
+
+                <!-- Station 02: Tire Sidewall, Rim & Spin Balance Plane -->
+                <g class="svg-station is-highlighted" data-svg-station="rim">
+                  <!-- Tire Outer Profile -->
+                  <circle cx="378" cy="242" r="130" fill="#EDF1F5" stroke="#131C26" stroke-width="3"/>
+                  <circle cx="378" cy="242" r="120" fill="none" stroke="#526273" stroke-width="1.5" stroke-dasharray="10 6"/>
+                  <!-- Alloy Rim Outer & Inner Barrel -->
+                  <circle cx="378" cy="242" r="88" fill="#FFFFFF" stroke="#173B5E" stroke-width="2.6"/>
+                  <circle cx="378" cy="242" r="80" fill="#F8FAFC" stroke="#B6C2CF" stroke-width="1.4"/>
+
+                  <!-- Balance weight indicator -->
+                  <rect x="364" y="156" width="28" height="8" rx="2" fill="#C2590C"/>
+
+                  <!-- Leader callout 02 -->
+                  <circle cx="378" cy="156" r="3.5" fill="#173B5E"/>
+                  <polyline points="378,152 378,59 532,59" fill="none" stroke="#173B5E" stroke-width="1.5"/>
+                  <rect x="532" y="36" width="218" height="46" rx="4" fill="#FFFFFF" stroke="#173B5E" stroke-width="1.6"/>
+                  <text x="542" y="55" fill="#173B5E" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">02 // BEAD + SPIN BALANCE</text>
+                  <text x="542" y="71" fill="#32404F" font-family="IBM Plex Sans, sans-serif" font-size="11">Alloy bead clean + dynamic weight</text>
+                </g>
+
+                <!-- Station 03: Brake Rotor, Pads & Floating Caliper -->
+                <g class="svg-station is-highlighted" data-svg-station="brake">
+                  <!-- Ventilated Brake Rotor -->
+                  <circle cx="378" cy="242" r="62" fill="#E4E9EF" stroke="#173B5E" stroke-width="2.2"/>
+                  <circle cx="378" cy="242" r="51" fill="none" stroke="#526273" stroke-width="1.2" stroke-dasharray="4 4"/>
+                  <!-- Brake Caliper Body -->
+                  <path d="M418 192 C448 208, 456 250, 432 282 L412 271 C428 247, 424 220, 404 205 Z" fill="#C2590C" stroke="#131C26" stroke-width="1.8"/>
+                  <!-- Slide Pins -->
+                  <circle cx="430" cy="214" r="3.8" fill="#FFFFFF" stroke="#131C26" stroke-width="1.2"/>
+                  <circle cx="432" cy="262" r="3.8" fill="#FFFFFF" stroke="#131C26" stroke-width="1.2"/>
+
+                  <!-- Leader callout 03 -->
+                  <circle cx="445" cy="218" r="3.5" fill="#C2590C"/>
+                  <line x1="449" y1="218" x2="532" y2="218" stroke="#C2590C" stroke-width="1.6"/>
+                  <rect x="532" y="186" width="218" height="64" rx="4" fill="#FFFFFF" stroke="#C2590C" stroke-width="1.6"/>
+                  <text x="542" y="205" fill="#994306" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">03 // BRAKE ASSEMBLY</text>
+                  <text x="542" y="221" fill="#32404F" font-family="IBM Plex Sans, sans-serif" font-size="11">Coated rotor + ceramic pads</text>
+                  <text x="542" y="237" fill="#32404F" font-family="IBM Plex Sans, sans-serif" font-size="11">Slide-pin salt-seize service</text>
+                </g>
+
+                <!-- Station 04: Hub, 5-Lug Torque Star Sequence & TPMS Sensor -->
+                <g class="svg-station is-highlighted" data-svg-station="tpms">
+                  <!-- Center Hub Flange -->
+                  <circle cx="378" cy="242" r="35" fill="#FFFFFF" stroke="#173B5E" stroke-width="2"/>
+                  <circle cx="378" cy="242" r="12" fill="#173B5E"/>
+
+                  <!-- 5-Lug Star Pattern -->
+                  <circle cx="378" cy="216" r="5" fill="#C2590C" stroke="#131C26" stroke-width="1.2"/>
+                  <circle cx="402" cy="234" r="5" fill="#173B5E"/>
+                  <circle cx="393" cy="262" r="5" fill="#C2590C" stroke="#131C26" stroke-width="1.2"/>
+                  <circle cx="363" cy="262" r="5" fill="#173B5E"/>
+                  <circle cx="354" cy="234" r="5" fill="#173B5E"/>
+
+                  <!-- Star Torque Lines -->
+                  <path d="M378 216 L393 262 L354 234 L402 234 L363 262 Z" stroke="#C2590C" stroke-width="1.2" stroke-dasharray="3 2" fill="none"/>
+
+                  <!-- TPMS Valve Stem & Sensor at 5 o'clock -->
+                  <rect x="404" y="286" width="22" height="9" rx="2" transform="rotate(38 404 286)" fill="#173B5E"/>
+                  <circle cx="418" cy="298" r="5" fill="#C2590C"/>
+
+                  <!-- Leader callout 04 -->
+                  <circle cx="422" cy="302" r="3.5" fill="#173B5E"/>
+                  <polyline points="424,304 468,332 532,332" fill="none" stroke="#173B5E" stroke-width="1.5"/>
+                  <rect x="532" y="298" width="218" height="64" rx="4" fill="#FFFFFF" stroke="#173B5E" stroke-width="1.6"/>
+                  <text x="542" y="317" fill="#173B5E" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">04 // TPMS + TORQUE SPEC</text>
+                  <text x="542" y="333" fill="#32404F" font-family="IBM Plex Sans, sans-serif" font-size="11">315/433 MHz sensor relearn</text>
+                  <text x="542" y="349" fill="#32404F" font-family="IBM Plex Sans, sans-serif" font-size="11">Star sequence 110–140 Nm</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <aside class="schematic-detail-card" aria-live="polite">
+            <span class="station-code-pill" id="sch-code">SUBSYSTEM 01 // JACK &amp; CHOCKS</span>
+            <h3 id="sch-title" style="font-size:22px;line-height:1.2;">Driveway Lift Safety &amp; Pinch-Weld Support</h3>
+            <p id="sch-desc" style="margin:0;font-size:14.5px;color:var(--ink-body);">
+              Driveways across Clayton Park and the Halifax Peninsula often sit on slight slopes. Heavy-duty wheel chocks lock opposing tires before a rubber-padded floor jack and mechanical safety stand ever take load.
+            </p>
+
+            <div class="spec-table">
+              <div class="spec-row">
+                <span class="spec-row-k">Nova Scotia Salt-Belt Focus</span>
+                <span class="spec-row-v" id="sch-salt">Inspects rocker pinch-welds for rust before lifting; avoids soft underbody seams</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-row-k">Field Tolerance / Procedure</span>
+                <span class="spec-row-v mono" id="sch-tol">Dual wheel chocks + secondary safety jack stand + drip mat</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-row-k">Linked Mobile Service</span>
+                <span class="spec-row-v" id="sch-svc">Standard across all On-Site Tire, Brake &amp; Oil appointments</span>
+              </div>
+            </div>
+
+            <div style="margin-top:auto;">
+              <button type="button" class="btn btn-primary" style="width:100%;" id="sch-add-btn" data-sch-action="on-rim">Configure This in Quote Calculator</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coverage & Driveway Readiness -->
+    <section class="section section-alt" id="coverage">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-kicker">Service Territory</span>
+            <h2 class="section-title">Halifax Regional Municipality Mobile Coverage</h2>
+            <p class="section-desc">
+              Focus Auto dispatches from MB204, 103-287 Lacewood Dr, Halifax, NS B3M 3Y7 directly to homes, condo surface lots, and workplace parking spaces. Note: This is a 100% mobile dispatch operation with no customer waiting room.
+            </p>
+          </div>
+        </div>
+
+        <div class="zones-grid">
+          <div class="zone-card is-primary">
+            <span class="zone-fee">Dispatch Fee: $20 CAD</span>
+            <h3 class="zone-name">Halifax</h3>
+            <p class="zone-corridors">Clayton Park, Lacewood, Fairview, North End, South End, West End, Rockingham, and Armdale.</p>
+            <div class="zone-eta">Typical Arrival: 15–25 min</div>
+          </div>
+
+          <div class="zone-card is-primary">
+            <span class="zone-fee">Dispatch Fee: $25 CAD</span>
+            <h3 class="zone-name">Bedford</h3>
+            <p class="zone-corridors">Larry Uteck Blvd, West Bedford, Basinview, Hammonds Plains Rd corridor, and Sunnyside area.</p>
+            <div class="zone-eta">Typical Arrival: 20–30 min</div>
+          </div>
+
+          <div class="zone-card is-accent">
+            <span class="zone-fee">Dispatch Fee: $30 CAD</span>
+            <h3 class="zone-name">Dartmouth</h3>
+            <p class="zone-corridors">Burnside Industrial Park, Downtown Dartmouth, Woodlawn, Micmac corridor, and Portland Hills.</p>
+            <div class="zone-eta">Typical Arrival: 25–35 min</div>
+          </div>
+
+          <div class="zone-card is-accent">
+            <span class="zone-fee">Dispatch Fee: $30 CAD</span>
+            <h3 class="zone-name">Sackville</h3>
+            <p class="zone-corridors">Lower Sackville, Middle Sackville, Sackville Dr retail lots, and First Lake residential streets.</p>
+            <div class="zone-eta">Typical Arrival: 25–40 min</div>
+          </div>
+        </div>
+
+        <div class="prep-strip">
+          <div>
+            <div class="prep-item-title">1. Clearance Around Vehicle</div>
+            <p class="prep-item-copy">Allow ~1.2 metres of open space beside each wheel being serviced on a paved, gravel, or flat concrete surface.</p>
+          </div>
+          <div>
+            <div class="prep-item-title">2. Wheel Lock Key Ready</div>
+            <p class="prep-item-copy">Place your anti-theft wheel lock socket in the cupholder or glovebox prior to appointment arrival.</p>
+          </div>
+          <div>
+            <div class="prep-item-title">3. Direct SMS Coordination</div>
+            <p class="prep-item-copy">Text tire sidewall sizes (e.g. 225/65R17) or VIN photos directly to 902-220-6646 for fast confirmation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Driveway Slot & SMS-Ready Booking Form -->
+    <section class="section" id="booking">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-kicker">Appointment Dispatch</span>
+            <h2 class="section-title">Driveway Slot &amp; SMS-Ready Booking</h2>
+            <p class="section-desc">
+              Select your preferred arrival window and generate a formatted dispatch message ready to send via SMS to 902-220-6646 or email to focus20auto@gmail.com.
+            </p>
+          </div>
+        </div>
+
+        <div class="booking-grid">
+          <div class="booking-card">
+            <form id="booking-form" novalidate>
+              <div class="form-grid">
+                <div class="field">
+                  <label class="field-label" for="book-name">Your Name</label>
+                  <input class="input-ctrl" id="book-name" name="name" type="text" autocomplete="name" placeholder="Jordan MacLeod" required>
+                </div>
+
+                <div class="field">
+                  <label class="field-label" for="book-phone">Mobile Phone (SMS)</label>
+                  <input class="input-ctrl mono" id="book-phone" name="phone" type="tel" autocomplete="tel" placeholder="902-555-0148" required>
+                </div>
+
+                <div class="field">
+                  <label class="field-label" for="book-email">Email <span class="field-label-opt">(Optional)</span></label>
+                  <input class="input-ctrl" id="book-email" name="email" type="email" autocomplete="email" placeholder="driver@example.ca">
+                </div>
+
+                <div class="field">
+                  <label class="field-label" for="book-zone">Halifax Zone</label>
+                  <select class="input-ctrl" id="book-zone" name="zone">
+                    <option value="Halifax">Halifax (Peninsula / Clayton Park)</option>
+                    <option value="Bedford">Bedford (Larry Uteck / West Bedford)</option>
+                    <option value="Dartmouth">Dartmouth (Burnside / Downtown)</option>
+                    <option value="Sackville">Lower / Middle Sackville</option>
+                  </select>
+                </div>
+
+                <div class="field field-full">
+                  <label class="field-label" for="book-address">Street Address or Parking Lot</label>
+                  <input class="input-ctrl" id="book-address" name="address" type="text" autocomplete="street-address" placeholder="e.g. 42 Main Ave, Fairview / Workplace Lot" required>
+                </div>
+
+                <div class="field">
+                  <label class="field-label" for="book-vehicle">Vehicle Year, Make &amp; Model</label>
+                  <input class="input-ctrl" id="book-vehicle" name="vehicle" type="text" placeholder="2022 Honda CR-V · 235/60R18" required>
+                </div>
+
+                <div class="field">
+                  <label class="field-label" for="book-date">Preferred Date</label>
+                  <input class="input-ctrl mono" id="book-date" name="date" type="date">
+                </div>
+
+                <!-- Accessible Slot Picker using buttons (ZERO <label> attached to hidden inputs) -->
+                <div class="field field-full">
+                  <span class="field-label" id="slot-group-label">Preferred Driveway Arrival Window</span>
+                  <div class="slot-group" role="radiogroup" aria-labelledby="slot-group-label">
+                    <button type="button" class="slot-btn is-active" role="radio" aria-checked="true" data-slot="08:30 AM – 10:30 AM">
+                      <span class="slot-time">08:30 – 10:30</span>
+                      <span class="slot-window">Morning Driveway Window</span>
+                    </button>
+                    <button type="button" class="slot-btn" role="radio" aria-checked="false" data-slot="11:00 AM – 01:00 PM">
+                      <span class="slot-time">11:00 – 13:00</span>
+                      <span class="slot-window">Midday / Lunch Lot</span>
+                    </button>
+                    <button type="button" class="slot-btn" role="radio" aria-checked="false" data-slot="01:30 PM – 03:30 PM">
+                      <span class="slot-time">13:30 – 15:30</span>
+                      <span class="slot-window">Afternoon Window</span>
+                    </button>
+                    <button type="button" class="slot-btn" role="radio" aria-checked="false" data-slot="04:00 PM – 06:00 PM">
+                      <span class="slot-time">16:00 – 18:00</span>
+                      <span class="slot-window">Late Afternoon / After Work</span>
+                    </button>
+                    <button type="button" class="slot-btn" role="radio" aria-checked="false" data-slot="Weekend Morning Slot">
+                      <span class="slot-time">Weekend AM</span>
+                      <span class="slot-window">Sat / Sun by Appointment</span>
+                    </button>
+                    <button type="button" class="slot-btn" role="radio" aria-checked="false" data-slot="First Available SMS">
+                      <span class="slot-time">First Open</span>
+                      <span class="slot-window">Earliest Halifax Route</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Preferred Contact Method -->
+                <div class="field field-full">
+                  <span class="field-label" id="channel-group-label">Preferred Reply Channel</span>
+                  <div class="channel-group" role="radiogroup" aria-labelledby="channel-group-label">
+                    <button type="button" class="slot-btn is-active" role="radio" aria-checked="true" data-channel="Text / SMS (Preferred)">
+                      <span class="slot-time">Text / SMS</span>
+                      <span class="slot-window">Fastest via 902-220-6646</span>
+                    </button>
+                    <button type="button" class="slot-btn" role="radio" aria-checked="false" data-channel="Email (focus20auto@gmail.com)">
+                      <span class="slot-time">Email</span>
+                      <span class="slot-window">focus20auto@gmail.com</span>
+                    </button>
+                    <button type="button" class="slot-btn" role="radio" aria-checked="false" data-channel="Phone Call (902-220-6646)">
+                      <span class="slot-time">Voice Call</span>
+                      <span class="slot-window">Callback when off-tools</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="field field-full">
+                  <label class="field-label" for="book-notes">Requested Work, Tire Size &amp; CAD Quote Summary</label>
+                  <textarea class="input-ctrl" id="book-notes" name="notes" rows="4" placeholder="Example: On-Rim Winter Swap + Front Brake Check. Tires are already bagged in garage."></textarea>
+                </div>
+
+                <div class="field field-full">
+                  <div class="checkbox-row">
+                    <input class="visible-checkbox" id="book-locks" type="checkbox" checked>
+                    <label class="checkbox-label" for="book-locks">
+                      Vehicle has clearance on a level driveway/parking space, and any anti-theft wheel lock key will be accessible inside the cabin.
+                    </label>
+                  </div>
+                </div>
+
+                <div class="field field-full">
+                  <button type="submit" class="btn btn-primary" style="width:100%;padding:13px 20px;font-size:15px;">
+                    Generate SMS &amp; Email Dispatch Draft
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <div class="booking-output" id="booking-output" role="status" aria-live="polite"></div>
+          </div>
+
+          <!-- Contact & Dispatch Sidebar -->
+          <aside class="contact-sidebar">
+            <div class="contact-card contact-card-dark">
+              <h3 style="font-size:19px;">Direct Mobile Dispatch</h3>
+              <div class="contact-row">
+                <span class="contact-lbl">Text / SMS (Preferred) &amp; Phone</span>
+                <a class="contact-val mono" href="sms:+19022206646">902-220-6646</a>
+              </div>
+              <div class="contact-row">
+                <span class="contact-lbl">Email Dispatch</span>
+                <a class="contact-val" href="mailto:focus20auto@gmail.com">focus20auto@gmail.com</a>
+              </div>
+              <div class="contact-row">
+                <span class="contact-lbl">Registered Address (Mobile Dispatch Base)</span>
+                <span class="contact-val">MB204, 103-287 Lacewood Dr, Halifax, NS B3M 3Y7, Canada</span>
+              </div>
+              <div class="contact-row">
+                <span class="contact-lbl">Service Schedule</span>
+                <span class="contact-val">Mobile On-Site Service by Appointment</span>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:10px;padding-top:4px;">
+                <a class="btn btn-accent btn-sm mono" href="sms:+19022206646">Open SMS App</a>
+                <a class="btn btn-outline btn-sm mono" style="color:#FFFFFF;background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.35);" href="tel:+19022206646">Call 902-220-6646</a>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <h3 style="font-size:17px;">What to Text for Instant Tire Quotes</h3>
+              <ul class="service-points">
+                <li>Tire sidewall code (example: <span class="mono">225/65R17</span>)</li>
+                <li>Whether replacement tires are already on rims or off rims</li>
+                <li>Street or neighbourhood in Halifax, Dartmouth, Bedford, or Sackville</li>
+                <li>Preferred weekday morning, afternoon, or weekend slot</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title">Focus Auto · Halifax Mobile Auto Care</div>
+          <p style="margin:0;max-width:46ch;font-size:14px;line-height:1.6;color:#C2D1E0;">
+            100% mobile on-site tire changes, tire sales, mobile brake service, synthetic oil changes, battery boost/replacement, diagnostics, and TPMS sensor installation across Halifax Regional Municipality.
+          </p>
+        </div>
+        <div>
+          <div class="footer-title">Dispatch Details</div>
+          <ul class="footer-list">
+            <li>MB204, 103-287 Lacewood Dr</li>
+            <li>Halifax, NS B3M 3Y7, Canada</li>
+            <li>SMS / Tel: <a class="mono" href="sms:+19022206646">902-220-6646</a></li>
+            <li>Email: <a href="mailto:focus20auto@gmail.com">focus20auto@gmail.com</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Quick Navigation</div>
+          <ul class="footer-list">
+            <li><a href="#services">On-Site Service Scope</a></li>
+            <li><a href="#calculator">CAD Tire &amp; Brake Calculator</a></li>
+            <li><a href="#schematic">Wheel-End Engineering Schematic</a></li>
+            <li><a href="#coverage">Halifax, Dartmouth, Bedford, Sackville</a></li>
+            <li><a href="#booking">Driveway Slot &amp; SMS Booking</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Focus Auto · Halifax, NS · Mobile On-Site Auto Care by Appointment</span>
+        <span class="mono">CAD Estimator &amp; SMS Dispatch</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // Mobile Navigation Drawer
+      var menuBtn = document.getElementById('mobile-menu-btn');
+      var mobileDrawer = document.getElementById('mobile-drawer');
+      if (menuBtn && mobileDrawer) {
+        menuBtn.addEventListener('click', function () {
+          var open = mobileDrawer.classList.toggle('is-open');
+          menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        mobileDrawer.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            mobileDrawer.classList.remove('is-open');
+            menuBtn.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      // Live Halifax Atlantic Time indicator
+      function updateHalifaxClock() {
+        var el = document.getElementById('halifax-clock');
+        if (!el) return;
+        try {
+          var fmt = new Intl.DateTimeFormat('en-CA', {
+            timeZone: 'America/Halifax',
+            weekday: 'short',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+          });
+          el.textContent = 'Halifax ' + fmt.format(new Date()) + ' · Mobile by Appointment';
+        } catch (err) {
+          el.textContent = 'Halifax AST/ADT · Mobile by Appointment';
+        }
+      }
+      updateHalifaxClock();
+      setInterval(updateHalifaxClock, 30000);
+
+      // Default Booking Date (tomorrow in local Halifax date)
+      var dateInput = document.getElementById('book-date');
+      if (dateInput && !dateInput.value) {
+        var tmr = new Date(Date.now() + 86400000);
+        var yyyy = tmr.getFullYear();
+        var mm = String(tmr.getMonth() + 1).padStart(2, '0');
+        var dd = String(tmr.getDate()).padStart(2, '0');
+        dateInput.value = yyyy + '-' + mm + '-' + dd;
+      }
+
+      // Services Filter Tabs
+      var filterTabs = document.querySelectorAll('.filter-tab');
+      var serviceCards = document.querySelectorAll('.service-card[data-category]');
+      filterTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var target = tab.getAttribute('data-filter');
+          filterTabs.forEach(function (t) {
+            var active = t === tab;
+            t.classList.toggle('is-active', active);
+            t.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          serviceCards.forEach(function (card) {
+            var cat = card.getAttribute('data-category');
+            var visible = target === 'all' || cat === target;
+            card.classList.toggle('is-hidden', !visible);
+          });
+        });
+      });
+
+      // CAD Quote Calculator State & Pricing Matrix
+      var PRICING = {
+        vehicles: {
+          sedan: { label: 'Sedan / Hatchback', tireAdd: 0, offRimAdd: 0, brakeAdd: 0, oilBase: 95, batteryAdd: 0, pkgAdd: 0 },
+          suv:   { label: 'SUV / Crossover',   tireAdd: 15, offRimAdd: 20, brakeAdd: 35, oilBase: 110, batteryAdd: 25, pkgAdd: 120 },
+          truck: { label: 'Truck / Van',       tireAdd: 25, offRimAdd: 40, brakeAdd: 60, oilBase: 125, batteryAdd: 50, pkgAdd: 220 }
+        },
+        zones: {
+          halifax:   { label: 'Halifax',   fee: 20, eta: '15–25 min' },
+          bedford:   { label: 'Bedford',   fee: 25, eta: '20–30 min' },
+          dartmouth: { label: 'Dartmouth', fee: 30, eta: '25–35 min' },
+          sackville: { label: 'Sackville', fee: 30, eta: '25–40 min' }
+        },
+        tireModes: {
+          'none':    { label: 'No Tire Swap', base: 0, mins: 0 },
+          'on-rim':  { label: 'On-Rim Tire Swap (4 Wheels)', base: 85, mins: 40 },
+          'off-rim': { label: 'Off-Rim Mount & Balance (4 Tires)', base: 145, mins: 70 }
+        },
+        tirePackageTiers: {
+          'all-season':  { label: '4x All-Season Tires + Install Bundle', base: 640, mins: 45 },
+          'winter':      { label: '4x Winter 3PMSF Tires + Install Bundle', base: 740, mins: 45 },
+          'all-weather': { label: '4x All-Weather 3PMSF Tires + Install Bundle', base: 790, mins: 45 }
+        },
+        brakeOptions: {
+          'front':   { label: 'Front Brake Pads & Coated Rotors', base: 320, mins: 70 },
+          'rear':    { label: 'Rear Brake Pads & Coated Rotors', base: 310, mins: 70 },
+          'both':    { label: '4-Wheel Brake Pads & Coated Rotors', base: 590, mins: 130 },
+          'service': { label: 'Caliper Slide-Pin Service & Inspection', base: 110, mins: 45 }
+        },
+        tpmsOptions: {
+          'repair': { label: 'Tire Puncture Plug-Patch Repair', base: 45, mins: 30 },
+          'one':    { label: '1x TPMS Sensor + OBD Relearn', base: 95, mins: 30 },
+          'four':   { label: '4x TPMS Sensor Set + Program', base: 320, mins: 50 }
+        },
+        batteryOptions: {
+          'obd':     { label: 'OBD-II Diagnostics & Charging Test', base: 75, mins: 30 },
+          'boost':   { label: 'Mobile Battery Boost & Load Check', base: 65, mins: 25 },
+          'replace': { label: 'New 12V Battery Supply & Install', base: 245, mins: 40 }
+        }
+      };
+
+      var state = {
+        vehicle: 'sedan',
+        zone: 'halifax',
+        tireMode: 'on-rim',
+        cars: 1,
+        addons: {
+          tirePackage: { enabled: false, sub: 'all-season' },
+          brakes:      { enabled: false, sub: 'front' },
+          oil:         { enabled: false, sub: 'std' },
+          tpms:        { enabled: false, sub: 'one' },
+          battery:     { enabled: false, sub: 'obd' }
+        },
+        bookingSlot: '08:30 AM – 10:30 AM',
+        bookingChannel: 'Text / SMS (Preferred)'
+      };
+
+      function fmtCAD(num) {
+        return '$' + num.toFixed(2) + ' CAD';
+      }
+
+      function computeEstimate() {
+        var v = PRICING.vehicles[state.vehicle];
+        var z = PRICING.zones[state.zone];
+        var lines = [];
+        var perCarSubtotal = 0;
+        var totalMins = 0;
+
+        // Tire Swap
+        if (state.tireMode === 'on-rim') {
+          var onRimCost = PRICING.tireModes['on-rim'].base + v.tireAdd;
+          perCarSubtotal += onRimCost;
+          totalMins += PRICING.tireModes['on-rim'].mins;
+          lines.push({ name: 'On-Rim Tire Swap (4 Wheels · ' + v.label + ')', price: onRimCost * state.cars });
+        } else if (state.tireMode === 'off-rim') {
+          var offRimCost = PRICING.tireModes['off-rim'].base + v.offRimAdd;
+          perCarSubtotal += offRimCost;
+          totalMins += PRICING.tireModes['off-rim'].mins;
+          lines.push({ name: 'Off-Rim Mount & Balance (4 Tires · ' + v.label + ')', price: offRimCost * state.cars });
+        }
+
+        // Tire Sale & Install Package
+        var pkgTier = PRICING.tirePackageTiers[state.addons.tirePackage.sub];
+        var pkgPrice = pkgTier.base + v.pkgAdd;
+        document.getElementById('price-lbl-tirePackage').textContent = '+$' + pkgPrice + ' CAD';
+        if (state.addons.tirePackage.enabled) {
+          perCarSubtotal += pkgPrice;
+          totalMins += (state.tireMode === 'none' ? pkgTier.mins : 15);
+          lines.push({ name: pkgTier.label, price: pkgPrice * state.cars });
+        }
+
+        // Brakes
+        var brkOpt = PRICING.brakeOptions[state.addons.brakes.sub];
+        var brkMult = state.addons.brakes.sub === 'both' ? 1.5 : (state.addons.brakes.sub === 'service' ? 0.45 : 1);
+        var brkPrice = Math.round(brkOpt.base + v.brakeAdd * brkMult);
+        document.getElementById('price-lbl-brakes').textContent = '+$' + brkPrice + ' CAD';
+        if (state.addons.brakes.enabled) {
+          perCarSubtotal += brkPrice;
+          totalMins += brkOpt.mins;
+          lines.push({ name: brkOpt.label, price: brkPrice * state.cars });
+        }
+
+        // Oil Change
+        var oilPrice = v.oilBase;
+        document.getElementById('price-lbl-oil').textContent = '+$' + oilPrice + ' CAD';
+        if (state.addons.oil.enabled) {
+          perCarSubtotal += oilPrice;
+          totalMins += 35;
+          lines.push({ name: 'Full Synthetic Oil & Filter Change', price: oilPrice * state.cars });
+        }
+
+        // TPMS & Repair
+        var tpmsOpt = PRICING.tpmsOptions[state.addons.tpms.sub];
+        var tpmsPrice = tpmsOpt.base;
+        document.getElementById('price-lbl-tpms').textContent = '+$' + tpmsPrice + ' CAD';
+        if (state.addons.tpms.enabled) {
+          perCarSubtotal += tpmsPrice;
+          totalMins += tpmsOpt.mins;
+          lines.push({ name: tpmsOpt.label, price: tpmsPrice * state.cars });
+        }
+
+        // Battery & Diagnostics
+        var batOpt = PRICING.batteryOptions[state.addons.battery.sub];
+        var batPrice = batOpt.base + (state.addons.battery.sub === 'replace' ? v.batteryAdd : 0);
+        document.getElementById('price-lbl-battery').textContent = '+$' + batPrice + ' CAD';
+        if (state.addons.battery.enabled) {
+          perCarSubtotal += batPrice;
+          totalMins += batOpt.mins;
+          lines.push({ name: batOpt.label, price: batPrice * state.cars });
+        }
+
+        if (lines.length === 0) {
+          lines.push({ name: 'Mobile Diagnostic / On-Site Inspection Minimum', price: 75 * state.cars });
+          perCarSubtotal += 75;
+          totalMins += 30;
+        }
+
+        // Single driveway dispatch fee regardless of 1 or 2 cars
+        lines.push({ name: 'Mobile Dispatch & Driveway Setup (' + z.label + ')', price: z.fee });
+
+        var subtotal = perCarSubtotal * state.cars + z.fee;
+        var hst = subtotal * 0.14;
+        var total = subtotal + hst;
+        var estDurationMins = Math.max(25, totalMins * state.cars);
+        var durLabel = estDurationMins >= 60
+          ? '~' + (Math.round((estDurationMins / 60) * 10) / 10) + ' hrs on-site'
+          : '~' + estDurationMins + ' min on-site';
+
+        return {
+          vehicleLabel: v.label,
+          zoneLabel: z.label,
+          zoneFee: z.fee,
+          cars: state.cars,
+          lines: lines,
+          subtotal: subtotal,
+          hst: hst,
+          total: total,
+          duration: durLabel
+        };
+      }
+
+      function renderCalculator() {
+        // Sync radio groups
+        document.querySelectorAll('[data-vehicle]').forEach(function (btn) {
+          var active = btn.getAttribute('data-vehicle') === state.vehicle;
+          btn.classList.toggle('is-active', active);
+          btn.setAttribute('aria-checked', active ? 'true' : 'false');
+        });
+        document.querySelectorAll('[data-zone]').forEach(function (btn) {
+          var active = btn.getAttribute('data-zone') === state.zone;
+          btn.classList.toggle('is-active', active);
+          btn.setAttribute('aria-checked', active ? 'true' : 'false');
+        });
+        document.querySelectorAll('[data-tiremode]').forEach(function (btn) {
+          var active = btn.getAttribute('data-tiremode') === state.tireMode;
+          btn.classList.toggle('is-active', active);
+          btn.setAttribute('aria-checked', active ? 'true' : 'false');
+        });
+        document.querySelectorAll('[data-cars]').forEach(function (btn) {
+          var active = Number(btn.getAttribute('data-cars')) === state.cars;
+          btn.classList.toggle('is-active', active);
+          btn.setAttribute('aria-checked', active ? 'true' : 'false');
+        });
+
+        // Sync addon cards
+        Object.keys(state.addons).forEach(function (key) {
+          var item = state.addons[key];
+          var toggleBtn = document.querySelector('[data-addon="' + key + '"]');
+          if (toggleBtn) {
+            toggleBtn.setAttribute('aria-pressed', item.enabled ? 'true' : 'false');
+            var card = toggleBtn.closest('.addon-card');
+            if (card) card.classList.toggle('is-selected', item.enabled);
+          }
+          document.querySelectorAll('[data-sub="' + key + '"]').forEach(function (subBtn) {
+            subBtn.classList.toggle('is-active', subBtn.getAttribute('data-val') === item.sub);
+          });
+        });
+
+        var est = computeEstimate();
+
+        document.getElementById('est-duration-badge').textContent = est.duration;
+        document.getElementById('est-meta-vehicle').textContent = est.vehicleLabel + (est.cars > 1 ? ' (x2)' : '');
+        document.getElementById('est-meta-zone').textContent = est.zoneLabel + ' ($' + est.zoneFee + ' CAD)';
+
+        var ul = document.getElementById('est-line-items');
+        ul.innerHTML = '';
+        est.lines.forEach(function (ln) {
+          var li = document.createElement('li');
+          li.className = 'receipt-line';
+          var spanName = document.createElement('span');
+          spanName.className = 'receipt-line-name';
+          spanName.textContent = ln.name + (state.cars > 1 && ln.name.indexOf('Mobile Dispatch') === -1 ? ' (x2)' : '');
+          var spanPrice = document.createElement('span');
+          spanPrice.className = 'receipt-line-price';
+          spanPrice.textContent = '$' + ln.price.toFixed(0) + ' CAD';
+          li.appendChild(spanName);
+          li.appendChild(spanPrice);
+          ul.appendChild(li);
+        });
+
+        document.getElementById('est-subtotal').textContent = fmtCAD(est.subtotal);
+        document.getElementById('est-hst').textContent = fmtCAD(est.hst);
+        document.getElementById('est-total').textContent = fmtCAD(est.total);
+      }
+
+      // Wire vehicle, zone, tireMode, cars controls
+      document.querySelectorAll('[data-vehicle]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.vehicle = btn.getAttribute('data-vehicle');
+          clearPresetHighlight();
+          renderCalculator();
+        });
+      });
+
+      document.querySelectorAll('[data-zone]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.zone = btn.getAttribute('data-zone');
+          var zoneSelect = document.getElementById('book-zone');
+          if (zoneSelect) zoneSelect.value = PRICING.zones[state.zone].label;
+          renderCalculator();
+        });
+      });
+
+      document.querySelectorAll('[data-tiremode]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.tireMode = btn.getAttribute('data-tiremode');
+          clearPresetHighlight();
+          renderCalculator();
+        });
+      });
+
+      document.querySelectorAll('[data-cars]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.cars = Number(btn.getAttribute('data-cars'));
+          renderCalculator();
+        });
+      });
+
+      // Addon toggles and sub-pills
+      document.querySelectorAll('[data-addon]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var key = btn.getAttribute('data-addon');
+          state.addons[key].enabled = !state.addons[key].enabled;
+          clearPresetHighlight();
+          renderCalculator();
+        });
+      });
+
+      document.querySelectorAll('[data-sub]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var key = btn.getAttribute('data-sub');
+          var val = btn.getAttribute('data-val');
+          state.addons[key].sub = val;
+          state.addons[key].enabled = true;
+          clearPresetHighlight();
+          renderCalculator();
+        });
+      });
+
+      function clearPresetHighlight() {
+        document.querySelectorAll('[data-calc-preset]').forEach(function (b) {
+          b.classList.remove('is-active');
+        });
+      }
+
+      function applyPreset(presetId) {
+        state.addons.tirePackage.enabled = false;
+        state.addons.brakes.enabled = false;
+        state.addons.oil.enabled = false;
+        state.addons.tpms.enabled = false;
+        state.addons.battery.enabled = false;
+
+        if (presetId === 'on-rim') {
+          state.tireMode = 'on-rim';
+        } else if (presetId === 'off-rim' || presetId === 'off-rim-brakes') {
+          state.tireMode = 'off-rim';
+          if (presetId === 'off-rim-brakes') {
+            state.addons.brakes.enabled = true;
+            state.addons.brakes.sub = 'front';
+          }
+        } else if (presetId === 'tire-package') {
+          state.tireMode = 'none';
+          state.addons.tirePackage.enabled = true;
+          state.addons.tirePackage.sub = 'winter';
+        } else if (presetId === 'brakes') {
+          state.tireMode = 'none';
+          state.addons.brakes.enabled = true;
+          state.addons.brakes.sub = 'front';
+        } else if (presetId === 'oil-battery') {
+          state.tireMode = 'none';
+          state.addons.oil.enabled = true;
+          state.addons.battery.enabled = true;
+          state.addons.battery.sub = 'obd';
+        } else if (presetId === 'battery') {
+          state.tireMode = 'none';
+          state.addons.battery.enabled = true;
+          state.addons.battery.sub = 'replace';
+        } else if (presetId === 'tpms') {
+          state.tireMode = 'none';
+          state.addons.tpms.enabled = true;
+          state.addons.tpms.sub = 'one';
+        } else if (presetId === 'winter-prep') {
+          state.tireMode = 'on-rim';
+          state.addons.oil.enabled = true;
+          state.addons.tpms.enabled = true;
+          state.addons.tpms.sub = 'one';
+          state.addons.brakes.enabled = true;
+          state.addons.brakes.sub = 'service';
+        }
+
+        document.querySelectorAll('[data-calc-preset]').forEach(function (b) {
+          b.classList.toggle('is-active', b.getAttribute('data-calc-preset') === presetId);
+        });
+        renderCalculator();
+      }
+
+      document.querySelectorAll('[data-calc-preset]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          applyPreset(btn.getAttribute('data-calc-preset'));
+        });
+      });
+
+      document.querySelectorAll('[data-preset], [data-add-service]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var p = btn.getAttribute('data-preset') || btn.getAttribute('data-add-service');
+          applyPreset(p);
+          document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      function buildQuoteText() {
+        var est = computeEstimate();
+        var itemLines = est.lines.map(function (l) {
+          return '- ' + l.name + ': $' + l.price.toFixed(0) + ' CAD';
+        }).join('\n');
+        return [
+          'Focus Auto Halifax Quote Summary',
+          'Platform: ' + est.vehicleLabel + (est.cars > 1 ? ' (2 Vehicles)' : ''),
+          'Service Zone: ' + est.zoneLabel,
+          itemLines,
+          'Subtotal: ' + fmtCAD(est.subtotal) + ' | Est. 14% HST: ' + fmtCAD(est.hst),
+          'Estimated Total: ' + fmtCAD(est.total) + ' (' + est.duration + ')'
+        ].join('\n');
+      }
+
+      document.getElementById('btn-transfer-quote').addEventListener('click', function () {
+        var notesEl = document.getElementById('book-notes');
+        var zoneSelect = document.getElementById('book-zone');
+        if (zoneSelect) zoneSelect.value = PRICING.zones[state.zone].label;
+        notesEl.value = buildQuoteText();
+        document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        notesEl.focus();
+      });
+
+      document.getElementById('btn-copy-quote').addEventListener('click', function () {
+        var fb = document.getElementById('copy-feedback');
+        var text = buildQuoteText();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            fb.textContent = 'CAD breakdown copied to clipboard.';
+            setTimeout(function () { fb.textContent = ''; }, 3000);
+          });
+        } else {
+          fb.textContent = 'Use Transfer Estimate to attach quote directly to booking.';
+        }
+      });
+
+      document.getElementById('btn-reset-quote').addEventListener('click', function () {
+        state.vehicle = 'sedan';
+        state.zone = 'halifax';
+        state.cars = 1;
+        applyPreset('on-rim');
+      });
+
+      // Technical SVG Schematic Interactive Stations
+      var STATIONS = {
+        jack: {
+          code: 'SUBSYSTEM 01 // JACK & CHOCKS',
+          title: 'Driveway Lift Safety & Pinch-Weld Support',
+          desc: 'Driveways across Clayton Park and the Halifax Peninsula often sit on slight slopes. Heavy-duty wheel chocks lock opposing tires before a rubber-padded floor jack and mechanical safety stand ever take load.',
+          salt: 'Inspects rocker pinch-welds for rust before lifting; avoids soft underbody seams',
+          tol: 'Dual wheel chocks + secondary safety jack stand + drip mat',
+          svc: 'Standard across all On-Site Tire, Brake & Oil appointments',
+          preset: 'on-rim'
+        },
+        rim: {
+          code: 'SUBSYSTEM 02 // BEAD & BALANCE',
+          title: 'Off-Rim Bead Seat Clean & Dynamic Balance',
+          desc: 'Atlantic winter brine causes aluminum alloy wheel rims to flake along the inner tire bead, creating slow morning pressure drops. Off-rim swaps include bead wire-brushing, fresh bead sealer, and spin balancing.',
+          salt: 'Removes aluminum oxidation along inner bead lip and hub center bore',
+          tol: '0.00 oz residual imbalance target · Cold inflation set to door-jamb PSI',
+          svc: 'On-Site Off-Rim Tire Change & Tire Sale Installation Package',
+          preset: 'off-rim'
+        },
+        brake: {
+          code: 'SUBSYSTEM 03 // ROTOR & CALIPER',
+          title: 'Salt-Belt Brake Pad, Rotor & Slide-Pin Service',
+          desc: 'In Nova Scotia, outer brake pads rarely wear out before inner caliper slide pins seize from winter salt. Mobile brake jobs always disassemble, wire-brush, and re-lubricate caliper guide pins and abutment clips.',
+          salt: 'Corrosion-coated rotor hats + high-temp silicone slide-pin grease',
+          tol: 'Minimum pad lining check < 3 mm · Caliper bracket torque checked',
+          svc: 'Mobile Brake Service (Front, Rear, or 4-Wheel Package)',
+          preset: 'brakes'
+        },
+        tpms: {
+          code: 'SUBSYSTEM 04 // TPMS & TORQUE',
+          title: 'TPMS Sensor Relearn & Two-Stage Star Torque',
+          desc: 'Lug nuts are run snug with controlled power, lowered until tire tread contacts pavement, and finished with a calibrated click torque wrench in a star cross-pattern. TPMS sensors are cloned or relearned via OBD-II.',
+          salt: 'Applies light anti-corrosive film on hub face (never on lug threads)',
+          tol: '110–140 Nm calibrated star pattern · 315 / 433 MHz OBD-II sync',
+          svc: 'TPMS Sensor Installation, Tire Repair & Seasonal Torque Protocol',
+          preset: 'tpms'
+        }
+      };
+
+      function selectStation(id) {
+        var info = STATIONS[id];
+        if (!info) return;
+
+        document.querySelectorAll('[data-station]').forEach(function (btn) {
+          var active = btn.getAttribute('data-station') === id;
+          btn.classList.toggle('is-active', active);
+          btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+
+        document.querySelectorAll('[data-svg-station]').forEach(function (g) {
+          var match = g.getAttribute('data-svg-station') === id;
+          g.classList.toggle('is-highlighted', match);
+          g.classList.toggle('is-dimmed', !match);
+        });
+
+        document.getElementById('sch-code').textContent = info.code;
+        document.getElementById('sch-title').textContent = info.title;
+        document.getElementById('sch-desc').textContent = info.desc;
+        document.getElementById('sch-salt').textContent = info.salt;
+        document.getElementById('sch-tol').textContent = info.tol;
+        document.getElementById('sch-svc').textContent = info.svc;
+        document.getElementById('sch-add-btn').setAttribute('data-sch-action', info.preset);
+      }
+
+      document.querySelectorAll('[data-station]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          selectStation(btn.getAttribute('data-station'));
+        });
+      });
+
+      document.querySelectorAll('[data-svg-station]').forEach(function (g) {
+        g.addEventListener('click', function () {
+          selectStation(g.getAttribute('data-svg-station'));
+        });
+      });
+
+      document.getElementById('sch-add-btn').addEventListener('click', function () {
+        var preset = this.getAttribute('data-sch-action') || 'on-rim';
+        applyPreset(preset);
+        document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      // Booking Slot & Channel Selectors
+      document.querySelectorAll('[data-slot]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.bookingSlot = btn.getAttribute('data-slot');
+          document.querySelectorAll('[data-slot]').forEach(function (b) {
+            var active = b === btn;
+            b.classList.toggle('is-active', active);
+            b.setAttribute('aria-checked', active ? 'true' : 'false');
+          });
+        });
+      });
+
+      document.querySelectorAll('[data-channel]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.bookingChannel = btn.getAttribute('data-channel');
+          document.querySelectorAll('[data-channel]').forEach(function (b) {
+            var active = b === btn;
+            b.classList.toggle('is-active', active);
+            b.setAttribute('aria-checked', active ? 'true' : 'false');
+          });
+        });
+      });
+
+      // Booking Form Submit -> Generates SMS & Email Dispatch Draft
+      function escHtml(str) {
+        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+
+      document.getElementById('booking-form').addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        var nameVal = document.getElementById('book-name').value.trim();
+        var phoneVal = document.getElementById('book-phone').value.trim();
+        var emailVal = document.getElementById('book-email').value.trim();
+        var zoneVal = document.getElementById('book-zone').value;
+        var addrVal = document.getElementById('book-address').value.trim();
+        var vehicleVal = document.getElementById('book-vehicle').value.trim();
+        var dateVal = document.getElementById('book-date').value || 'Next available';
+        var notesVal = document.getElementById('book-notes').value.trim();
+        var locksReady = document.getElementById('book-locks').checked;
+        var out = document.getElementById('booking-output');
+
+        if (!nameVal || !phoneVal || !addrVal || !vehicleVal) {
+          out.className = 'booking-output is-visible is-error';
+          out.innerHTML = '<strong>Missing Dispatch Details:</strong> Please complete your name, mobile number, Halifax address, and vehicle model so Focus Auto can prepare your SMS dispatch draft.';
+          return;
+        }
+
+        var refCode = 'FA-' + String(Math.floor(1000 + Math.random() * 9000));
+        var quoteBlock = notesVal ? notesVal : buildQuoteText();
+        var smsBodyText = [
+          'Focus Auto Request (' + refCode + ')',
+          'Name: ' + nameVal + ' (' + phoneVal + ')',
+          'Vehicle: ' + vehicleVal,
+          'Location: ' + addrVal + ', ' + zoneVal,
+          'Preferred Slot: ' + dateVal + ' · ' + state.bookingSlot,
+          'Reply via: ' + state.bookingChannel,
+          'Locks/Clearance Ready: ' + (locksReady ? 'Yes' : 'Need confirmation'),
+          '',
+          quoteBlock
+        ].join('\n');
+
+        var smsHref = 'sms:+19022206646?&body=' + encodeURIComponent(smsBodyText);
+        var mailSubject = encodeURIComponent('Mobile Dispatch Request ' + refCode + ' - ' + vehicleVal + ' (' + zoneVal + ')');
+        var mailBody = encodeURIComponent(smsBodyText + (emailVal ? '\nCustomer Email: ' + emailVal : ''));
+
+        out.className = 'booking-output is-visible';
+        out.innerHTML =
+          '<strong>SMS &amp; Email Dispatch Draft Ready (' + escHtml(refCode) + ')</strong><br>' +
+          'Prepared for <strong>' + escHtml(nameVal) + '</strong> · ' + escHtml(vehicleVal) + ' in ' + escHtml(zoneVal) + ' on <span class="mono">' + escHtml(dateVal) + '</span> (' + escHtml(state.bookingSlot) + ').' +
+          '<div class="sms-preview-box" id="sms-draft-preview"></div>' +
+          '<div class="booking-output-actions">' +
+            '<a class="btn btn-accent btn-sm mono" href="' + smsHref + '">Send via SMS (902-220-6646)</a>' +
+            '<a class="btn btn-primary btn-sm" href="mailto:focus20auto@gmail.com?subject=' + mailSubject + '&amp;body=' + mailBody + '">Open Email Draft (focus20auto@gmail.com)</a>' +
+            '<button type="button" class="btn btn-outline btn-sm" id="btn-copy-sms">Copy Dispatch Text</button>' +
+          '</div>';
+
+        document.getElementById('sms-draft-preview').textContent = smsBodyText;
+
+        var copySmsBtn = document.getElementById('btn-copy-sms');
+        copySmsBtn.addEventListener('click', function () {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(smsBodyText).then(function () {
+              copySmsBtn.textContent = 'Copied to Clipboard';
+              setTimeout(function () { copySmsBtn.textContent = 'Copy Dispatch Text'; }, 2500);
+            });
+          }
+        });
+      });
+
+      // Initialize default renders
+      renderCalculator();
+      selectStation('jack');
+    })();
+  </script>
+</body>
+</html>

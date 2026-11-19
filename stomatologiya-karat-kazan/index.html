@@ -1,0 +1,3735 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Карат — Частная стоматологическая клиника в Казани | ул. Четаева, 28</title>
+  <meta name="description" content="Частная стоматологическая клиника «Карат» в Казани (ул. Четаева, 28, бесплатная парковка). Имплантация и протезирование, брекеты и виниры, лечение дёсен аппаратом Вектор, лечение каналов, детская стоматология, рассрочка и расчёт налогового вычета 13% НДФЛ.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F4F4A'/%3E%3Cpath d='M32 11L49 24L32 53L15 24Z' fill='none' stroke='%23F8F7F4' stroke-width='2.6' stroke-linejoin='round'/%3E%3Cpath d='M15 24H49M23 24L32 53L41 24M24 17L32 24L40 17' fill='none' stroke='%239A7B4F' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-paper: #F8F7F4;
+      --bg-linen: #EFECE5;
+      --bg-stone: #E5E0D5;
+      --bg-card: #FFFFFF;
+      --ink-primary: #172120;
+      --ink-secondary: #3E4C4A;
+      --ink-muted: #5A6866;
+      --accent: #0F4F4A;
+      --accent-dark: #0A3834;
+      --accent-mid: #166862;
+      --accent-tint: #E5EFEE;
+      --accent-tint-strong: #C9DFDC;
+      --brass: #9A7B4F;
+      --brass-dark: #755B34;
+      --brass-tint: #F4EFE6;
+      --brass-line: rgba(154, 123, 79, 0.34);
+      --line-hair: rgba(23, 33, 32, 0.11);
+      --line-strong: rgba(23, 33, 32, 0.22);
+      --status-open: #0F4F4A;
+      --status-open-bg: #E3F0EE;
+      --status-closed: #755B34;
+      --status-closed-bg: #F4ECE0;
+      --error-ink: #8E2C2C;
+      --error-bg: #FBF1F1;
+      --shadow-sm: 0 2px 10px rgba(23, 33, 32, 0.04);
+      --shadow-md: 0 14px 32px rgba(23, 33, 32, 0.06);
+      --shadow-lg: 0 20px 44px rgba(15, 79, 74, 0.08);
+      --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --font-sans: 'Golos Text', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --max-w: 1220px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg-paper);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.58;
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    [hidden],
+    .mobile-drawer[hidden],
+    .summary-line[hidden],
+    .scheme-svg[hidden],
+    .calc-attach-banner[hidden],
+    .form-error[hidden],
+    .booking-confirm[hidden] {
+      display: none;
+    }
+
+    .tabular,
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    /* Top utility strip */
+    .utility-bar {
+      background-color: var(--bg-linen);
+      border-bottom: 1px solid var(--line-hair);
+      font-size: 13px;
+      color: var(--ink-secondary);
+    }
+
+    .utility-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 20px;
+      padding-block: 9px;
+    }
+
+    .utility-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 18px;
+    }
+
+    .utility-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+    }
+
+    .utility-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--brass);
+      flex-shrink: 0;
+    }
+
+    .utility-link {
+      font-weight: 500;
+      color: var(--accent);
+      transition: color 0.18s ease;
+    }
+
+    .utility-link:hover {
+      color: var(--accent-dark);
+      text-decoration: underline;
+    }
+
+    /* Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(248, 247, 244, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line-hair);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 74px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 27px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--ink-primary);
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      padding-block: 6px;
+      position: relative;
+      transition: color 0.18s ease;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1.5px;
+      background-color: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--accent);
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.25;
+      padding: 12px 20px;
+      border: 1px solid transparent;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
+      text-align: center;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-dark);
+      border-color: var(--accent-dark);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-card);
+      color: var(--ink-primary);
+      border-color: var(--line-strong);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background-color: var(--accent-tint);
+    }
+
+    .btn-brass {
+      background-color: var(--brass-tint);
+      color: var(--brass-dark);
+      border-color: var(--brass-line);
+    }
+
+    .btn-brass:hover {
+      background-color: #EDE3D4;
+      border-color: var(--brass);
+    }
+
+    .btn-sm {
+      padding: 9px 15px;
+      font-size: 13px;
+    }
+
+    .burger-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line-strong);
+      background-color: var(--bg-card);
+      color: var(--ink-primary);
+    }
+
+    .mobile-drawer {
+      border-top: 1px solid var(--line-hair);
+      background-color: var(--bg-paper);
+      padding: 16px 24px 22px;
+    }
+
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .mobile-nav a {
+      padding: 8px 0;
+      font-size: 15px;
+      font-weight: 500;
+      border-bottom: 1px solid var(--line-hair);
+    }
+
+    /* Section scaffold */
+    .section {
+      padding-block: 72px;
+      border-bottom: 1px solid var(--line-hair);
+      scroll-margin-top: 84px;
+    }
+
+    .section-tint {
+      background-color: var(--bg-linen);
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px 32px;
+      margin-bottom: 38px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--brass-dark);
+      margin-bottom: 10px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 18px;
+      height: 1.5px;
+      background-color: var(--brass);
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--ink-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4vw, 44px);
+      line-height: 1.08;
+      max-width: 660px;
+    }
+
+    .section-lead {
+      margin: 0;
+      font-size: 15.5px;
+      color: var(--ink-secondary);
+      max-width: 460px;
+    }
+
+    /* Hero */
+    .hero {
+      padding-block: 56px 68px;
+      border-bottom: 1px solid var(--line-hair);
+      background:
+        radial-gradient(circle at 92% 12%, rgba(154, 123, 79, 0.08), transparent 42%),
+        radial-gradient(circle at 8% 85%, rgba(15, 79, 74, 0.06), transparent 46%),
+        var(--bg-paper);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+      gap: 44px;
+      align-items: start;
+    }
+
+    .hero-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 14px;
+      margin-bottom: 18px;
+    }
+
+    .pill-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 500;
+      background-color: var(--bg-linen);
+      border: 1px solid var(--line-hair);
+      color: var(--ink-secondary);
+    }
+
+    .pill-tag-accent {
+      background-color: var(--accent-tint);
+      border-color: var(--accent-tint-strong);
+      color: var(--accent-dark);
+    }
+
+    .hero-title {
+      font-size: clamp(38px, 4.9vw, 58px);
+      line-height: 1.04;
+      margin-bottom: 20px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hero-subtitle {
+      font-size: 17px;
+      color: var(--ink-secondary);
+      max-width: 590px;
+      margin: 0 0 28px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 34px;
+    }
+
+    .hero-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      border-top: 1px solid var(--line-hair);
+      padding-top: 24px;
+    }
+
+    .hero-fact {
+      padding: 14px 16px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--line-hair);
+      border-radius: var(--radius-md);
+    }
+
+    .hero-fact-label {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .hero-fact-value {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    /* Hero Passport Card */
+    .passport-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .passport-head {
+      background-color: var(--accent);
+      color: #FFFFFF;
+      padding: 20px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .passport-head-title {
+      font-family: var(--font-display);
+      font-size: 25px;
+      font-weight: 600;
+      line-height: 1.1;
+      color: #FFFFFF;
+    }
+
+    .passport-head-sub {
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.84);
+      margin-top: 3px;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      background-color: rgba(255, 255, 255, 0.14);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #9EE2CE;
+    }
+
+    .status-chip.is-closed .status-dot {
+      background-color: #E7C893;
+    }
+
+    .passport-body {
+      padding: 22px 24px 24px;
+    }
+
+    .passport-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .passport-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--line-hair);
+      font-size: 14px;
+    }
+
+    .passport-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .passport-row-key {
+      color: var(--ink-muted);
+      flex-shrink: 0;
+    }
+
+    .passport-row-val {
+      font-weight: 600;
+      text-align: right;
+      color: var(--ink-primary);
+    }
+
+    .passport-benchmarks {
+      background-color: var(--bg-paper);
+      border: 1px solid var(--line-hair);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      margin-bottom: 18px;
+    }
+
+    .passport-bench-title {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--brass-dark);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .bench-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 13.5px;
+      padding-block: 5px;
+    }
+
+    .bench-price {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    /* Services Editorial Catalog */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      grid-column: span 2;
+      background-color: var(--bg-card);
+      border: 1px solid var(--line-hair);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--accent-mid);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .service-card.is-wide {
+      grid-column: span 3;
+    }
+
+    .service-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .service-code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brass-dark);
+      background-color: var(--brass-tint);
+      border: 1px solid var(--brass-line);
+      padding: 4px 9px;
+      border-radius: 6px;
+    }
+
+    .service-badge {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-dark);
+      background-color: var(--accent-tint);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .service-title {
+      font-size: 27px;
+      line-height: 1.12;
+      margin: 12px 0 8px;
+    }
+
+    .service-desc {
+      margin: 0 0 14px;
+      font-size: 14.5px;
+      color: var(--ink-secondary);
+    }
+
+    .service-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      font-size: 13.5px;
+      color: var(--ink-primary);
+    }
+
+    .service-list li {
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .service-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 6px;
+      height: 1.5px;
+      background-color: var(--brass);
+    }
+
+    .service-foot {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line-hair);
+    }
+
+    .service-price-note {
+      font-size: 12px;
+      color: var(--ink-muted);
+      display: block;
+    }
+
+    .service-price-val {
+      font-family: var(--font-mono);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .service-card-promo {
+      background: linear-gradient(155deg, #0F4F4A 0%, #0A3834 100%);
+      color: #FFFFFF;
+      border-color: var(--accent-dark);
+    }
+
+    .service-card-promo .service-title,
+    .service-card-promo .service-price-val {
+      color: #FFFFFF;
+    }
+
+    .service-card-promo .service-desc,
+    .service-card-promo .service-list,
+    .service-card-promo .service-price-note {
+      color: rgba(248, 247, 244, 0.88);
+    }
+
+    .service-card-promo .service-code {
+      background-color: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+      color: #F4EFE6;
+    }
+
+    .service-card-promo .service-badge {
+      background-color: rgba(154, 123, 79, 0.28);
+      color: #F8F0E3;
+    }
+
+    .service-card-promo .service-foot {
+      border-top-color: rgba(255, 255, 255, 0.18);
+    }
+
+    /* Interactive Calculator */
+    .calc-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.32fr) minmax(0, 0.88fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .calc-panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--line-hair);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .calc-step {
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--line-hair);
+    }
+
+    .calc-step:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .calc-step-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .calc-step-label {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .step-num {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--accent);
+      background-color: var(--accent-tint);
+      padding: 2px 7px;
+      border-radius: 5px;
+    }
+
+    .calc-step-hint {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+    }
+
+    .dir-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .choice-pill {
+      padding: 9px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line-strong);
+      background-color: var(--bg-paper);
+      color: var(--ink-primary);
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: all 0.16s ease;
+    }
+
+    .choice-pill:hover {
+      border-color: var(--accent);
+      background-color: var(--accent-tint);
+    }
+
+    .choice-pill[aria-pressed="true"] {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .protocol-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .protocol-btn {
+      text-align: left;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line-hair);
+      background-color: var(--bg-paper);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: all 0.16s ease;
+    }
+
+    .protocol-btn:hover {
+      border-color: var(--accent-mid);
+      background-color: var(--bg-card);
+    }
+
+    .protocol-btn[aria-pressed="true"] {
+      border-color: var(--accent);
+      background-color: var(--accent-tint);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+
+    .protocol-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .protocol-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .protocol-cost {
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .protocol-sub {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+
+    .qty-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .stepper {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-paper);
+      overflow: hidden;
+    }
+
+    .stepper-btn {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      background-color: transparent;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.15s ease;
+    }
+
+    .stepper-btn:hover:not(:disabled) {
+      background-color: var(--accent-tint);
+      color: var(--accent);
+    }
+
+    .stepper-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .stepper-val {
+      min-width: 112px;
+      padding-inline: 12px;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 600;
+      border-inline: 1px solid var(--line-hair);
+      line-height: 42px;
+      background-color: var(--bg-card);
+    }
+
+    .quick-qty {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .quick-qty-btn {
+      min-width: 40px;
+      height: 36px;
+      padding-inline: 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line-hair);
+      background-color: var(--bg-paper);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .quick-qty-btn[aria-pressed="true"] {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .addons-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .addon-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line-hair);
+      background-color: var(--bg-paper);
+      text-align: left;
+      transition: all 0.16s ease;
+    }
+
+    .addon-toggle:hover {
+      border-color: var(--accent-mid);
+    }
+
+    .addon-toggle[aria-pressed="true"] {
+      background-color: var(--accent-tint);
+      border-color: var(--accent);
+    }
+
+    .addon-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      font-weight: 500;
+    }
+
+    .addon-check {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1.5px solid var(--line-strong);
+      background-color: var(--bg-card);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .addon-toggle[aria-pressed="true"] .addon-check {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .addon-check-mark {
+      display: none;
+      width: 6px;
+      height: 10px;
+      border-right: 2px solid #FFFFFF;
+      border-bottom: 2px solid #FFFFFF;
+      transform: rotate(42deg) translate(-1px, -1px);
+    }
+
+    .addon-toggle[aria-pressed="true"] .addon-check-mark {
+      display: block;
+    }
+
+    .addon-price {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .segmented-group {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .segmented-btn {
+      padding: 11px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line-strong);
+      background-color: var(--bg-paper);
+      font-size: 13.5px;
+      font-weight: 500;
+      text-align: center;
+      transition: all 0.16s ease;
+    }
+
+    .segmented-btn[aria-pressed="true"] {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .tax-mode-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .tax-mode-btn {
+      padding: 11px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line-hair);
+      background-color: var(--bg-paper);
+      text-align: left;
+      transition: all 0.16s ease;
+    }
+
+    .tax-mode-btn[aria-pressed="true"] {
+      background-color: var(--brass-tint);
+      border-color: var(--brass);
+      box-shadow: inset 0 0 0 1px var(--brass);
+    }
+
+    .tax-mode-title {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .tax-mode-sub {
+      display: block;
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    /* Sticky Summary Receipt */
+    .calc-summary {
+      position: sticky;
+      top: 96px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .summary-header {
+      padding: 20px 24px;
+      background-color: var(--bg-linen);
+      border-bottom: 1px solid var(--line-hair);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .summary-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    .summary-tag {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      padding: 4px 9px;
+      border-radius: 6px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--line-hair);
+      color: var(--ink-secondary);
+    }
+
+    .summary-body {
+      padding: 22px 24px 24px;
+    }
+
+    .summary-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px dashed var(--line-strong);
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+      font-size: 14px;
+    }
+
+    .summary-line-name {
+      color: var(--ink-secondary);
+    }
+
+    .summary-line-val {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      white-space: nowrap;
+      color: var(--ink-primary);
+    }
+
+    .summary-total-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .summary-total-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .summary-total-amount {
+      font-family: var(--font-mono);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+
+    .summary-finance-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .finance-box {
+      padding: 13px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line-hair);
+      background-color: var(--bg-paper);
+    }
+
+    .finance-box-accent {
+      background-color: var(--accent-tint);
+      border-color: var(--accent-tint-strong);
+    }
+
+    .finance-box-brass {
+      background-color: var(--brass-tint);
+      border-color: var(--brass-line);
+    }
+
+    .finance-box-label {
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .finance-box-val {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .finance-box-sub {
+      font-size: 11.5px;
+      color: var(--ink-secondary);
+      margin-top: 3px;
+    }
+
+    .net-cost-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 15px;
+      border-radius: var(--radius-md);
+      background-color: var(--accent);
+      color: #FFFFFF;
+      margin-bottom: 18px;
+    }
+
+    .net-cost-label {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .net-cost-val {
+      font-family: var(--font-mono);
+      font-size: 19px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .summary-note {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      margin: 12px 0 0;
+      line-height: 1.5;
+    }
+
+    /* Interactive SVG Schematic */
+    .scheme-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .mode-switch {
+      display: inline-flex;
+      padding: 4px;
+      background-color: var(--bg-linen);
+      border: 1px solid var(--line-hair);
+      border-radius: var(--radius-sm);
+      gap: 4px;
+    }
+
+    .mode-btn {
+      padding: 9px 16px;
+      border: 0;
+      border-radius: 5px;
+      background-color: transparent;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      transition: all 0.16s ease;
+    }
+
+    .mode-btn[aria-pressed="true"] {
+      background-color: var(--bg-card);
+      color: var(--accent);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .scheme-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .scheme-canvas-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .scheme-svg-frame {
+      width: 100%;
+      aspect-ratio: 680 / 420;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--line-hair);
+      background-color: #FBF9F5;
+    }
+
+    .scheme-svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .svg-zone {
+      cursor: pointer;
+      transition: opacity 0.18s ease;
+    }
+
+    .svg-zone:hover .zone-surface {
+      fill: #DCEBE8;
+    }
+
+    .svg-zone.is-active .zone-surface {
+      fill: #0F4F4A;
+    }
+
+    .svg-zone.is-active .zone-stroke {
+      stroke: #0A3834;
+    }
+
+    .svg-zone.is-active .zone-title,
+    .svg-zone.is-active .zone-code,
+    .svg-zone.is-active .zone-sub {
+      fill: #F8F7F4;
+    }
+
+    .svg-stage-node {
+      cursor: pointer;
+    }
+
+    .svg-stage-node:hover .stage-box {
+      fill: #DCEBE8;
+    }
+
+    .svg-stage-node.is-active .stage-box {
+      fill: #0F4F4A;
+      stroke: #9A7B4F;
+    }
+
+    .svg-stage-node.is-active .stage-num,
+    .svg-stage-node.is-active .stage-title,
+    .svg-stage-node.is-active .stage-sub {
+      fill: #F8F7F4;
+    }
+
+    .scheme-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .scheme-detail-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--line-hair);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .detail-code-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .detail-title {
+      font-size: 30px;
+      line-height: 1.12;
+      margin-bottom: 10px;
+    }
+
+    .detail-desc {
+      font-size: 14.5px;
+      color: var(--ink-secondary);
+      margin: 0 0 18px;
+    }
+
+    .detail-spec-list {
+      list-style: none;
+      margin: 0 0 20px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .detail-spec-list li {
+      padding: 11px 13px;
+      background-color: var(--bg-paper);
+      border: 1px solid var(--line-hair);
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .detail-spec-key {
+      color: var(--ink-muted);
+    }
+
+    .detail-spec-val {
+      font-weight: 600;
+      text-align: right;
+      color: var(--ink-primary);
+    }
+
+    /* Trust / Specialists / Cases / Licenses */
+    .trust-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .trust-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--line-hair);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .trust-card-title {
+      font-size: 24px;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+
+    .trust-card-meta {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--brass-dark);
+      margin-bottom: 8px;
+    }
+
+    .trust-card-text {
+      margin: 0;
+      font-size: 14px;
+      color: var(--ink-secondary);
+    }
+
+    .trust-card-foot {
+      padding-top: 12px;
+      border-top: 1px solid var(--line-hair);
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Booking & Contacts */
+    .booking-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .booking-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .booking-block {
+      margin-bottom: 22px;
+    }
+
+    .booking-block-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      margin-bottom: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px 10px;
+    }
+
+    .booking-hours-badge {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: var(--accent-tint);
+      color: var(--accent-dark);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .booking-hours-badge.is-sunday {
+      background-color: var(--brass-tint);
+      color: var(--brass-dark);
+    }
+
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .day-btn {
+      padding: 10px 6px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line-hair);
+      background-color: var(--bg-paper);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      transition: all 0.16s ease;
+    }
+
+    .day-btn:hover {
+      border-color: var(--accent);
+    }
+
+    .day-btn[aria-pressed="true"] {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .day-wk {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.82;
+    }
+
+    .day-num {
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    .day-mode {
+      font-size: 10.5px;
+      opacity: 0.78;
+    }
+
+    .slots-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .slot-btn {
+      padding: 10px 8px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line-strong);
+      background-color: var(--bg-paper);
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.16s ease;
+    }
+
+    .slot-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      background-color: var(--accent-tint);
+      color: var(--accent-dark);
+    }
+
+    .slot-btn[aria-pressed="true"] {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .slot-btn:disabled {
+      opacity: 0.36;
+      background-color: var(--bg-linen);
+      border-style: dashed;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+
+    .slots-note {
+      margin: 8px 0 0;
+      font-size: 12.5px;
+      color: var(--ink-muted);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-field-full {
+      grid-column: 1 / -1;
+    }
+
+    .form-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 11px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line-strong);
+      background-color: var(--bg-paper);
+      font-size: 14.5px;
+      color: var(--ink-primary);
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .form-input:focus {
+      background-color: var(--bg-card);
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    .calc-attach-banner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-tint);
+      border: 1px solid var(--accent-tint-strong);
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+
+    .form-error {
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--error-bg);
+      border: 1px solid rgba(142, 44, 44, 0.25);
+      color: var(--error-ink);
+      font-size: 13.5px;
+      margin-bottom: 14px;
+    }
+
+    .booking-confirm {
+      padding: 22px;
+      border-radius: var(--radius-md);
+      background-color: var(--accent-tint);
+      border: 1px solid var(--accent);
+    }
+
+    .booking-confirm-title {
+      font-size: 27px;
+      margin-bottom: 8px;
+      color: var(--accent-dark);
+    }
+
+    .confirm-meta {
+      list-style: none;
+      margin: 14px 0 18px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .confirm-meta li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px dashed rgba(15, 79, 74, 0.22);
+      padding-bottom: 6px;
+    }
+
+    /* Location Side Card */
+    .contact-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--line-hair);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .contact-item {
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line-hair);
+    }
+
+    .contact-item:last-of-type {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .contact-key {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-val {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .contact-val-mono {
+      font-family: var(--font-mono);
+    }
+
+    .mini-map-frame {
+      width: 100%;
+      aspect-ratio: 360 / 180;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--line-hair);
+      background-color: var(--bg-paper);
+    }
+
+    .mini-map-svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: #132120;
+      color: #EAE7DF;
+      padding-block: 44px 36px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) repeat(2, minmax(0, 0.85fr));
+      gap: 30px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-brand-name {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 600;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+
+    .footer-text {
+      margin: 0;
+      font-size: 13.5px;
+      color: rgba(234, 231, 223, 0.78);
+      max-width: 420px;
+    }
+
+    .footer-col-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #D2B88C;
+      margin: 0 0 12px;
+      font-weight: 600;
+    }
+
+    .footer-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13.5px;
+      color: rgba(234, 231, 223, 0.88);
+    }
+
+    .footer-bottom {
+      padding-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px 24px;
+      font-size: 12px;
+      color: rgba(234, 231, 223, 0.68);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .calc-layout,
+      .scheme-grid,
+      .booking-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .calc-summary {
+        position: static;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .service-card,
+      .service-card.is-wide {
+        grid-column: span 1;
+      }
+
+      .trust-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 880px) {
+      .nav-list,
+      .header-cta-desktop {
+        display: none;
+      }
+
+      .burger-btn {
+        display: inline-flex;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding-inline: 16px;
+      }
+
+      .section {
+        padding-block: 52px;
+      }
+
+      .hero {
+        padding-block: 36px 48px;
+      }
+
+      .hero-facts,
+      .services-grid,
+      .protocol-grid,
+      .addons-grid,
+      .segmented-group,
+      .tax-mode-row,
+      .summary-finance-grid,
+      .trust-grid,
+      .form-grid,
+      .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .days-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .slots-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .calc-panel,
+      .booking-card,
+      .contact-card {
+        padding: 20px;
+      }
+
+      .utility-item-hide-sm {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Utility Bar -->
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="utility-group">
+        <span class="utility-item">
+          <span class="utility-dot" aria-hidden="true"></span>
+          г. Казань, ул. Четаева, 28 (бесплатная парковка)
+        </span>
+        <span class="utility-item utility-item-hide-sm">
+          Пн–Сб <span class="mono">09:00–20:00</span> · Вс <span class="mono">09:00–15:00</span>
+        </span>
+      </div>
+      <div class="utility-group">
+        <a class="utility-item utility-link mono" href="tel:+78435178283">8 (843) 517-82-83</a>
+        <a class="utility-item utility-link" href="mailto:karat_fns@mail.ru">karat_fns@mail.ru</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Стоматологическая клиника Карат">
+        <svg class="brand-mark" viewBox="0 0 40 40" width="40" height="40" aria-hidden="true">
+          <rect width="40" height="40" rx="10" fill="#0F4F4A"/>
+          <path d="M20 7L31 15.5L20 33L9 15.5Z" fill="none" stroke="#F8F7F4" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M9 15.5H31M14.5 15.5L20 33L25.5 15.5M14.8 11.2L20 15.5L25.2 11.2" fill="none" stroke="#9A7B4F" stroke-width="1.4" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">Карат</span>
+          <span class="brand-sub">Стоматология · Казань</span>
+        </span>
+      </a>
+
+      <nav aria-label="Основная навигация">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#services">Направления</a></li>
+          <li><a class="nav-link" href="#calculator">Калькулятор и 13% НДФЛ</a></li>
+          <li><a class="nav-link" href="#scheme">Схема и этапы</a></li>
+          <li><a class="nav-link" href="#trust">Врачи и лицензии</a></li>
+          <li><a class="nav-link" href="#booking">Запись на приём</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-primary btn-sm header-cta-desktop" href="#booking">Записаться на приём</a>
+        <button type="button" class="burger-btn" id="burger-toggle" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Открыть меню навигации">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobile-drawer" hidden>
+      <div class="mobile-nav">
+        <a href="#services">Направления и услуги</a>
+        <a href="#calculator">Калькулятор и вычет 13%</a>
+        <a href="#scheme">Схема клиники и этапы</a>
+        <a href="#trust">Врачи, работы и лицензии</a>
+        <a href="#booking">Онлайн-запись на Четаева, 28</a>
+      </div>
+      <a class="btn btn-primary" href="#booking" style="width: 100%;">Записаться на ул. Четаева, 28</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-meta-row">
+            <span class="pill-tag pill-tag-accent">Частная стоматологическая клиника</span>
+            <span class="pill-tag">г. Казань · ул. Четаева, 28</span>
+            <span class="pill-tag">Бесплатная парковка</span>
+          </div>
+          <h1 class="hero-title">Стоматология <em>«Карат»</em> в Казани: точный план лечения, рассрочка и вычет 13%</h1>
+          <p class="hero-subtitle">
+            Ведём полный цикл стоматологической помощи на ул. Четаева, 28: от детской профилактики и терапии дёсен аппаратом Вектор до ортодонтии, виниров, имплантации и протезирования с прозрачной сметой до начала приёма.
+          </p>
+          <div class="hero-cta-row">
+            <a class="btn btn-primary" href="#calculator">Рассчитать стоимость и вычет 13%</a>
+            <a class="btn btn-secondary" href="#booking">Выбрать время на ул. Четаева, 28</a>
+          </div>
+
+          <div class="hero-facts">
+            <div class="hero-fact">
+              <div class="hero-fact-label">Рассрочка клиники</div>
+              <div class="hero-fact-value num">6 или 12 мес. без переплат</div>
+            </div>
+            <div class="hero-fact">
+              <div class="hero-fact-label">Налоговый вычет</div>
+              <div class="hero-fact-value num">Возврат 13% НДФЛ для ФНС</div>
+            </div>
+            <div class="hero-fact">
+              <div class="hero-fact-label">Приём без выходных</div>
+              <div class="hero-fact-value num">Пн–Сб 09–20 · Вс 09–15</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="passport-card" aria-label="Паспорт клиники Карат">
+          <div class="passport-head">
+            <div>
+              <div class="passport-head-title">Клиника «Карат»</div>
+              <div class="passport-head-sub">г. Казань, ул. Четаева, 28</div>
+            </div>
+            <div class="status-chip" id="live-status-chip">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span id="live-status-text">Проверяем график</span>
+            </div>
+          </div>
+          <div class="passport-body">
+            <div class="passport-rows">
+              <div class="passport-row">
+                <span class="passport-row-key">Телефон регистратуры</span>
+                <a class="passport-row-val mono" href="tel:+78435178283">8 (843) 517-82-83</a>
+              </div>
+              <div class="passport-row">
+                <span class="passport-row-key">Почта для ФНС и справок</span>
+                <a class="passport-row-val" href="mailto:karat_fns@mail.ru">karat_fns@mail.ru</a>
+              </div>
+              <div class="passport-row">
+                <span class="passport-row-key">Будни и суббота</span>
+                <span class="passport-row-val mono">09:00–20:00</span>
+              </div>
+              <div class="passport-row">
+                <span class="passport-row-key">Воскресенье</span>
+                <span class="passport-row-val mono">09:00–15:00</span>
+              </div>
+              <div class="passport-row">
+                <span class="passport-row-key">Парковка для пациентов</span>
+                <span class="passport-row-val">Бесплатная у клиники</span>
+              </div>
+            </div>
+
+            <div class="passport-benchmarks">
+              <div class="passport-bench-title">Ориентиры ключевых направлений</div>
+              <div class="bench-item">
+                <span>Имплантация и коронка</span>
+                <span class="bench-price">от 28 500 ₽</span>
+              </div>
+              <div class="bench-item">
+                <span>Лечение дёсен (аппарат Вектор)</span>
+                <span class="bench-price">от 7 200 ₽</span>
+              </div>
+              <div class="bench-item">
+                <span>Брекеты и керамические виниры</span>
+                <span class="bench-price">от 29 000 ₽</span>
+              </div>
+              <div class="bench-item">
+                <span>Профгигиена и детский приём</span>
+                <span class="bench-price">от 4 200 ₽</span>
+              </div>
+            </div>
+
+            <a class="btn btn-brass" href="#scheme" style="width: 100%;">Открыть схему клиники и этапы приёма</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Клинические направления</div>
+            <h2 class="section-title">Шесть ключевых решений клиники «Карат» в одном маршруте</h2>
+          </div>
+          <p class="section-lead">
+            Каждое направление можно сразу перенести в калькулятор, чтобы увидеть стоимость по единицам, платёж по рассрочке и возврат 13% НДФЛ.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card is-wide">
+            <div>
+              <div class="service-card-top">
+                <span class="service-code">01 / ХИРУРГИЯ И ОРТОПЕДИЯ</span>
+                <span class="service-badge">Код вычета 02</span>
+              </div>
+              <h3 class="service-title">Имплантация и протезирование</h3>
+              <p class="service-desc">
+                Восстановление одиночных дефектов и полного зубного ряда по цифровому 3D-плану с ортопедической фиксацией коронок.
+              </p>
+              <ul class="service-list">
+                <li>Установка имплантата с формирователем десны</li>
+                <li>Циркониевые и металлокерамические коронки</li>
+                <li>Протезирование с опорой на 4 или 6 имплантатов</li>
+              </ul>
+            </div>
+            <div class="service-foot">
+              <div>
+                <span class="service-price-note">Базовый этап от</span>
+                <span class="service-price-val">28 500 ₽</span>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm js-jump-calc" data-service="implant">Рассчитать в смете</button>
+            </div>
+          </article>
+
+          <article class="service-card is-wide">
+            <div>
+              <div class="service-card-top">
+                <span class="service-code">02 / ОРТОДОНТИЯ И ЭСТЕТИКА</span>
+                <span class="service-badge">Рассрочка 6 / 12 мес.</span>
+              </div>
+              <h3 class="service-title">Брекеты и виниры</h3>
+              <p class="service-desc">
+                Исправление прикуса самолигирующими системами и восстановление формы, оттенка и эмали керамическими винирами.
+              </p>
+              <ul class="service-list">
+                <li>Металлические и керамические брекет-системы на челюсть</li>
+                <li>Тонкие керамические виниры с цифровым макетом улыбки</li>
+                <li>Ретейнеры и контрольные коррекции после снятия</li>
+              </ul>
+            </div>
+            <div class="service-foot">
+              <div>
+                <span class="service-price-note">За единицу / систему от</span>
+                <span class="service-price-val">29 000 ₽</span>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm js-jump-calc" data-service="ortho">Рассчитать в смете</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-top">
+                <span class="service-code">03 / ПАРОДОНТОЛОГИЯ</span>
+                <span class="service-badge">Аппарат Vector</span>
+              </div>
+              <h3 class="service-title">Лечение дёсен аппаратом Вектор</h3>
+              <p class="service-desc">
+                Бережная ультразвуковая обработка пародонтальных карманов без травмирования эмали и цемента корня.
+              </p>
+              <ul class="service-list">
+                <li>Устранение поддесневой биоплёнки и кровоточивости</li>
+                <li>Полировка корня гидроксиапатитной суспензией</li>
+                <li>Поддерживающая вектор-терапия при пародонтите</li>
+              </ul>
+            </div>
+            <div class="service-foot">
+              <div>
+                <span class="service-price-note">За 1 сегмент / челюсть</span>
+                <span class="service-price-val">7 200 ₽</span>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm js-jump-calc" data-service="vector">Рассчитать</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-top">
+                <span class="service-code">04 / ЭНДОДОНТИЯ И ХИРУРГИЯ</span>
+                <span class="service-badge">Сложные случаи</span>
+              </div>
+              <h3 class="service-title">Лечение каналов и удаление зуба мудрости</h3>
+              <p class="service-desc">
+                Пломбирование корневых каналов при пульпите и периодонтите, а также атравматичное удаление дистопированных восьмёрок.
+              </p>
+              <ul class="service-list">
+                <li>Механическая и медикаментозная обработка 1–3 каналов</li>
+                <li>Перелечивание и подготовка зуба под коронку</li>
+                <li>Удаление ретинированного зуба мудрости с ушиванием</li>
+              </ul>
+            </div>
+            <div class="service-foot">
+              <div>
+                <span class="service-price-note">Приём по протоколу от</span>
+                <span class="service-price-val">6 800 ₽</span>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm js-jump-calc" data-service="endo">Рассчитать</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-top">
+                <span class="service-code">05 / ПРОФИЛАКТИКА</span>
+                <span class="service-badge">Семьям скидки</span>
+              </div>
+              <h3 class="service-title">Детский стоматолог и профгигиена</h3>
+              <p class="service-desc">
+                Адаптационные визиты без стресса для детей, герметизация фиссур, профессиональная чистка Air-Flow и реминерализация.
+              </p>
+              <ul class="service-list">
+                <li>Комплексная гигиена полости рта (ультразвук + Air-Flow)</li>
+                <li>Адаптационное лечение молочных зубов</li>
+                <li>Профилактика кариеса и обучение гигиене</li>
+              </ul>
+            </div>
+            <div class="service-foot">
+              <div>
+                <span class="service-price-note">Визит / чистка от</span>
+                <span class="service-price-val">4 200 ₽</span>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm js-jump-calc" data-service="kids">Рассчитать</button>
+            </div>
+          </article>
+
+          <article class="service-card service-card-promo">
+            <div>
+              <div class="service-card-top">
+                <span class="service-code">06 / ФИНАНСОВЫЕ УСЛОВИЯ</span>
+                <span class="service-badge">0% переплат</span>
+              </div>
+              <h3 class="service-title">Рассрочка, акции и справка 13%</h3>
+              <p class="service-desc">
+                Плановое лечение можно разделить на 6 или 12 месяцев, а полный пакет документов для налогового вычета 13% готовит регистратура.
+              </p>
+              <ul class="service-list">
+                <li>Рассрочка на имплантацию, брекеты и протезирование</li>
+                <li>Семейные и сезонные акции на профгигиену</li>
+                <li>Справка об оплате медуслуг через <span class="mono">karat_fns@mail.ru</span></li>
+              </ul>
+            </div>
+            <div class="service-foot">
+              <div>
+                <span class="service-price-note">Возврат НДФЛ</span>
+                <span class="service-price-val">13% по закону РФ</span>
+              </div>
+              <a class="btn btn-brass btn-sm" href="#calculator">Проверить вычет</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Calculator -->
+    <section class="section section-tint" id="calculator">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Интерактивная смета</div>
+            <h2 class="section-title">Калькулятор лечения, имплантации, рассрочки и вычета 13%</h2>
+          </div>
+          <p class="section-lead">
+            Выберите направление, клинический протокол, количество единиц и срок рассрочки — расчёт покажет платёж в месяц и возврат НДФЛ.
+          </p>
+        </div>
+
+        <div class="calc-layout">
+          <div class="calc-panel">
+            <!-- Step 1: Service Direction -->
+            <div class="calc-step">
+              <div class="calc-step-head">
+                <span class="calc-step-label"><span class="step-num">01</span> Направление лечения</span>
+                <span class="calc-step-hint">5 отделений клиники</span>
+              </div>
+              <div class="dir-tabs" id="calc-directions" role="group" aria-label="Выбор направления лечения">
+                <button type="button" class="choice-pill" data-dir="implant" aria-pressed="true">Имплантация и протезирование</button>
+                <button type="button" class="choice-pill" data-dir="ortho" aria-pressed="false">Брекеты и виниры</button>
+                <button type="button" class="choice-pill" data-dir="vector" aria-pressed="false">Лечение дёсен (Вектор)</button>
+                <button type="button" class="choice-pill" data-dir="endo" aria-pressed="false">Каналы и зуб мудрости</button>
+                <button type="button" class="choice-pill" data-dir="kids" aria-pressed="false">Детский приём и профгигиена</button>
+              </div>
+            </div>
+
+            <!-- Step 2: Clinical Protocol -->
+            <div class="calc-step">
+              <div class="calc-step-head">
+                <span class="calc-step-label"><span class="step-num">02</span> Клинический протокол</span>
+                <span class="calc-step-hint" id="protocol-unit-hint">Расчёт за 1 единицу</span>
+              </div>
+              <div class="protocol-grid" id="calc-protocols" role="group" aria-label="Выбор протокола"></div>
+            </div>
+
+            <!-- Step 3: Quantity -->
+            <div class="calc-step">
+              <div class="calc-step-head">
+                <span class="calc-step-label"><span class="step-num">03</span> Количество единиц / этапов</span>
+                <span class="calc-step-hint">От 1 до 12 позиций</span>
+              </div>
+              <div class="qty-row">
+                <div class="stepper">
+                  <button type="button" class="stepper-btn" id="qty-minus" aria-label="Уменьшить количество">−</button>
+                  <div class="stepper-val" id="qty-display">1 единица</div>
+                  <button type="button" class="stepper-btn" id="qty-plus" aria-label="Увеличить количество">+</button>
+                </div>
+                <div class="quick-qty" id="quick-qty" role="group" aria-label="Быстрый выбор количества">
+                  <button type="button" class="quick-qty-btn" data-qty="1" aria-pressed="true">1</button>
+                  <button type="button" class="quick-qty-btn" data-qty="2" aria-pressed="false">2</button>
+                  <button type="button" class="quick-qty-btn" data-qty="4" aria-pressed="false">4</button>
+                  <button type="button" class="quick-qty-btn" data-qty="6" aria-pressed="false">6</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Addons -->
+            <div class="calc-step">
+              <div class="calc-step-head">
+                <span class="calc-step-label"><span class="step-num">04</span> Подготовка и диагностика</span>
+                <span class="calc-step-hint">Добавляется 1 раз к плану</span>
+              </div>
+              <div class="addons-grid" id="calc-addons" role="group" aria-label="Дополнительные опции">
+                <button type="button" class="addon-toggle" data-addon="ct" aria-pressed="true">
+                  <span class="addon-info">
+                    <span class="addon-check" aria-hidden="true"><span class="addon-check-mark"></span></span>
+                    <span>3D-КТ снимок и цифровой план</span>
+                  </span>
+                  <span class="addon-price">+ 3 200 ₽</span>
+                </button>
+                <button type="button" class="addon-toggle" data-addon="hygiene" aria-pressed="false">
+                  <span class="addon-info">
+                    <span class="addon-check" aria-hidden="true"><span class="addon-check-mark"></span></span>
+                    <span>Профгигиена перед началом</span>
+                  </span>
+                  <span class="addon-price">+ 4 500 ₽</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 5: Installment -->
+            <div class="calc-step">
+              <div class="calc-step-head">
+                <span class="calc-step-label"><span class="step-num">05</span> График оплаты (рассрочка 0%)</span>
+                <span class="calc-step-hint">Без переплаты и комиссий</span>
+              </div>
+              <div class="segmented-group" id="calc-installment" role="group" aria-label="Выбор графика оплаты">
+                <button type="button" class="segmented-btn" data-months="1" aria-pressed="true">Оплата сразу</button>
+                <button type="button" class="segmented-btn" data-months="6" aria-pressed="false">Рассрочка 6 мес.</button>
+                <button type="button" class="segmented-btn" data-months="12" aria-pressed="false">Рассрочка 12 мес.</button>
+              </div>
+            </div>
+
+            <!-- Step 6: 13% Tax Deduction Code -->
+            <div class="calc-step">
+              <div class="calc-step-head">
+                <span class="calc-step-label"><span class="step-num">06</span> Код справки для налогового вычета 13%</span>
+                <span class="calc-step-hint">Оформляем для ИФНС по месту учёта</span>
+              </div>
+              <div class="tax-mode-row" id="calc-tax-mode" role="group" aria-label="Выбор кода справки 13% НДФЛ">
+                <button type="button" class="tax-mode-btn" data-tax="01" aria-pressed="false">
+                  <span class="tax-mode-title">Код «01» — обычное лечение</span>
+                  <span class="tax-mode-sub">Возврат 13% с лимита до 150 000 ₽ в год (до 19 500 ₽)</span>
+                </button>
+                <button type="button" class="tax-mode-btn" data-tax="02" aria-pressed="true">
+                  <span class="tax-mode-title">Код «02» — дорогостоящее лечение</span>
+                  <span class="tax-mode-sub">Возврат 13% от полной суммы (имплантация, сложная ортопедия)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Summary Sidebar -->
+          <aside class="calc-summary" aria-label="Предварительная смета лечения">
+            <div class="summary-header">
+              <div class="summary-title">Предварительный расчёт</div>
+              <span class="summary-tag" id="sum-code-badge">Код ИФНС 02</span>
+            </div>
+
+            <div class="summary-body">
+              <div class="summary-lines">
+                <div class="summary-line">
+                  <span class="summary-line-name" id="sum-protocol-label">Имплантация (имплантат + формирователь) × 1</span>
+                  <span class="summary-line-val" id="sum-protocol-cost">28 500 ₽</span>
+                </div>
+                <div class="summary-line" id="sum-addon-ct-row">
+                  <span class="summary-line-name">3D-КТ снимок и цифровой план</span>
+                  <span class="summary-line-val">3 200 ₽</span>
+                </div>
+                <div class="summary-line" id="sum-addon-hyg-row" hidden>
+                  <span class="summary-line-name">Профгигиена перед началом</span>
+                  <span class="summary-line-val">4 500 ₽</span>
+                </div>
+                <div class="summary-line">
+                  <span class="summary-line-name">Режим оплаты</span>
+                  <span class="summary-line-val" id="sum-plan-name">Полная оплата</span>
+                </div>
+              </div>
+
+              <div class="summary-total-box">
+                <span class="summary-total-label">Полная стоимость плана</span>
+                <span class="summary-total-amount" id="sum-total">31 700 ₽</span>
+              </div>
+
+              <div class="summary-finance-grid">
+                <div class="finance-box finance-box-accent">
+                  <div class="finance-box-label" id="sum-monthly-label">Платёж по графику</div>
+                  <div class="finance-box-val" id="sum-monthly">31 700 ₽</div>
+                  <div class="finance-box-sub" id="sum-monthly-sub">Единовременно</div>
+                </div>
+                <div class="finance-box finance-box-brass">
+                  <div class="finance-box-label">Возврат 13% НДФЛ</div>
+                  <div class="finance-box-val" id="sum-tax-return">− 4 121 ₽</div>
+                  <div class="finance-box-sub" id="sum-tax-sub">По справке «Карат»</div>
+                </div>
+              </div>
+
+              <div class="net-cost-bar">
+                <span class="net-cost-label">Фактическая нагрузка после вычета 13%</span>
+                <span class="net-cost-val" id="sum-net-total">27 579 ₽</span>
+              </div>
+
+              <button type="button" class="btn btn-primary" id="apply-calc-booking" style="width: 100%;">
+                Перенести расчёт в запись на ул. Четаева, 28
+              </button>
+
+              <p class="summary-note">
+                Справка для ИФНС оформляется бесплатно после оплаты лечения по запросу на стойке администратора или на <span class="mono">karat_fns@mail.ru</span>. Итоговая смета уточняется врачом после очного осмотра.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Inline SVG Scheme -->
+    <section class="section" id="scheme">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Архитектура клиники и маршрут</div>
+            <h2 class="section-title">Интерактивная схема клиники на Четаева, 28 и этапы лечения</h2>
+          </div>
+          <p class="section-lead">
+            Переключайтесь между планом помещений клиники с бесплатной парковкой и пошаговой картой лечения, нажимая на блоки схемы.
+          </p>
+        </div>
+
+        <div class="scheme-controls">
+          <div class="mode-switch" role="group" aria-label="Режим схемы">
+            <button type="button" class="mode-btn" id="mode-clinic-btn" data-mode="clinic" aria-pressed="true">План клиники · ул. Четаева, 28</button>
+            <button type="button" class="mode-btn" id="mode-stages-btn" data-mode="stages" aria-pressed="false">Этапы лечения в «Карате»</button>
+          </div>
+          <span class="pill-tag">Нажмите на любую зону или этап на чертеже</span>
+        </div>
+
+        <div class="scheme-grid">
+          <div class="scheme-canvas-card">
+            <div class="scheme-svg-frame">
+              <!-- Mode A: Clinic Floorplan SVG -->
+              <svg id="svg-clinic-plan" class="scheme-svg" viewBox="0 0 680 420" role="img" aria-label="Схема клиники Карат на улице Четаева, 28">
+                <rect x="0" y="0" width="680" height="420" fill="#FAF8F4"/>
+                <!-- Subtle grid -->
+                <path d="M40 0V420M120 0V420M200 0V420M280 0V420M360 0V420M440 0V420M520 0V420M600 0V420M0 60H680M0 140H680M0 220H680M0 300H680M0 380H680" stroke="#E7E1D6" stroke-width="0.7"/>
+                <!-- Building outline -->
+                <rect x="32" y="28" width="616" height="340" rx="10" fill="#FFFFFF" stroke="#B7AEA0" stroke-width="1.5"/>
+                <!-- Street label -->
+                <line x1="32" y1="392" x2="648" y2="392" stroke="#9A7B4F" stroke-width="2" stroke-dasharray="6 5"/>
+                <text x="340" y="408" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#755B34">УЛ. ЧЕТАЕВА, 28 · ПОДЪЕЗД И ПАРКОВКА СО СТОРОНЫ ФАСАДА</text>
+
+                <!-- Zone 1: Parking & Entrance -->
+                <g class="svg-zone is-active" data-zone="parking" tabindex="0" role="button" aria-label="Зона А: Бесплатная парковка и вход">
+                  <rect class="zone-surface zone-stroke" x="48" y="246" width="210" height="106" rx="8" fill="#EBF3F1" stroke="#0F4F4A" stroke-width="1.5"/>
+                  <text class="zone-code" x="64" y="270" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#9A7B4F">ЗОНА А</text>
+                  <text class="zone-title" x="64" y="294" font-family="Golos Text, sans-serif" font-size="15" font-weight="600" fill="#172120">Парковка и вход</text>
+                  <text class="zone-sub" x="64" y="316" font-family="Golos Text, sans-serif" font-size="12" fill="#43514F">Бесплатные места у клиники</text>
+                  <text class="zone-sub" x="64" y="334" font-family="JetBrains Mono, monospace" font-size="11" fill="#5A6866">Без шлагбаума · пандус</text>
+                </g>
+
+                <!-- Zone 2: Reception & 13% FNS Desk -->
+                <g class="svg-zone" data-zone="reception" tabindex="0" role="button" aria-label="Зона Б: Регистратура, рассрочка и документы 13 процентов">
+                  <rect class="zone-surface zone-stroke" x="272" y="246" width="186" height="106" rx="8" fill="#F4F1EA" stroke="#B2A898" stroke-width="1.5"/>
+                  <text class="zone-code" x="286" y="270" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#9A7B4F">ЗОНА Б</text>
+                  <text class="zone-title" x="286" y="294" font-family="Golos Text, sans-serif" font-size="15" font-weight="600" fill="#172120">Регистратура и ФНС</text>
+                  <text class="zone-sub" x="286" y="316" font-family="Golos Text, sans-serif" font-size="11.5" fill="#43514F">Рассрочка 0% и документы</text>
+                  <text class="zone-sub" x="286" y="334" font-family="JetBrains Mono, monospace" font-size="11" fill="#5A6866">Справки 13% НДФЛ</text>
+                </g>
+
+                <!-- Zone 3: Diagnostics & Vector Therapy -->
+                <g class="svg-zone" data-zone="vector_cab" tabindex="0" role="button" aria-label="Зона В: Кабинет диагностики, профгигиены и Вектор-терапии">
+                  <rect class="zone-surface zone-stroke" x="48" y="46" width="192" height="170" rx="8" fill="#F4F1EA" stroke="#B2A898" stroke-width="1.5"/>
+                  <text class="zone-code" x="64" y="72" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#9A7B4F">КАБИНЕТ 01</text>
+                  <text class="zone-title" x="64" y="98" font-family="Golos Text, sans-serif" font-size="15" font-weight="600" fill="#172120">Гигиена и Вектор</text>
+                  <text class="zone-sub" x="64" y="122" font-family="Golos Text, sans-serif" font-size="12" fill="#43514F">Лечение дёсен Vector</text>
+                  <text class="zone-sub" x="64" y="141" font-family="Golos Text, sans-serif" font-size="12" fill="#43514F">Профчистка Air-Flow</text>
+                  <text class="zone-sub" x="64" y="160" font-family="Golos Text, sans-serif" font-size="12" fill="#43514F">Цифровая диагностика</text>
+                  <rect x="64" y="178" width="144" height="22" rx="4" fill="rgba(154,123,79,0.16)"/>
+                  <text class="zone-sub" x="72" y="193" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#755B34">Первый визит 45 мин</text>
+                </g>
+
+                <!-- Zone 4: Implantology & Surgery -->
+                <g class="svg-zone" data-zone="surgery_cab" tabindex="0" role="button" aria-label="Зона Г: Блок имплантации, удаления и эндодонтии">
+                  <rect class="zone-surface zone-stroke" x="256" y="46" width="194" height="170" rx="8" fill="#F4F1EA" stroke="#B2A898" stroke-width="1.5"/>
+                  <text class="zone-code" x="272" y="72" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#9A7B4F">КАБИНЕТ 02</text>
+                  <text class="zone-title" x="272" y="98" font-family="Golos Text, sans-serif" font-size="15" font-weight="600" fill="#172120">Хирургия и каналы</text>
+                  <text class="zone-sub" x="272" y="122" font-family="Golos Text, sans-serif" font-size="12" fill="#43514F">Имплантация зубов</text>
+                  <text class="zone-sub" x="272" y="141" font-family="Golos Text, sans-serif" font-size="12" fill="#43514F">Удаление зуба мудрости</text>
+                  <text class="zone-sub" x="272" y="160" font-family="Golos Text, sans-serif" font-size="12" fill="#43514F">Лечение каналов</text>
+                  <rect x="272" y="178" width="126" height="22" rx="4" fill="rgba(154,123,79,0.16)"/>
+                  <text class="zone-sub" x="280" y="193" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#755B34">Стерильный контур</text>
+                </g>
+
+                <!-- Zone 5: Ortho, Veneers & Pediatric -->
+                <g class="svg-zone" data-zone="ortho_cab" tabindex="0" role="button" aria-label="Зона Д: Кабинет ортодонтии, виниров и детского приёма">
+                  <rect class="zone-surface zone-stroke" x="466" y="46" width="166" height="306" rx="8" fill="#F4F1EA" stroke="#B2A898" stroke-width="1.5"/>
+                  <text class="zone-code" x="482" y="72" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#9A7B4F">КАБИНЕТ 03</text>
+                  <text class="zone-title" x="482" y="98" font-family="Golos Text, sans-serif" font-size="15" font-weight="600" fill="#172120">Ортодонтия</text>
+                  <text class="zone-title" x="482" y="118" font-family="Golos Text, sans-serif" font-size="15" font-weight="600" fill="#172120">и детский приём</text>
+                  <text class="zone-sub" x="482" y="148" font-family="Golos Text, sans-serif" font-size="12" fill="#43514F">Брекеты и виниры</text>
+                  <text class="zone-sub" x="482" y="168" font-family="Golos Text, sans-serif" font-size="12" fill="#43514F">Протезирование</text>
+                  <text class="zone-sub" x="482" y="188" font-family="Golos Text, sans-serif" font-size="12" fill="#43514F">Детский стоматолог</text>
+                  <line x1="482" y1="214" x2="614" y2="214" stroke="#D5CEC0" stroke-width="1"/>
+                  <text class="zone-sub" x="482" y="238" font-family="Golos Text, sans-serif" font-size="11.5" fill="#43514F">Адаптационный</text>
+                  <text class="zone-sub" x="482" y="254" font-family="Golos Text, sans-serif" font-size="11.5" fill="#43514F">приём и модели</text>
+                  <rect x="482" y="302" width="126" height="24" rx="4" fill="rgba(154,123,79,0.16)"/>
+                  <text class="zone-sub" x="490" y="318" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#755B34">Пн–Сб и Вс 09–15</text>
+                </g>
+
+                <!-- Route arrows between hall and cabinets -->
+                <path d="M153 246V230H366V216M366 246V230M458 299H466" fill="none" stroke="#9A7B4F" stroke-width="1.6" stroke-dasharray="4 3"/>
+              </svg>
+
+              <!-- Mode B: Treatment Stages SVG -->
+              <svg id="svg-stages-plan" class="scheme-svg" viewBox="0 0 680 420" role="img" aria-label="Схема четырёх этапов лечения в клинике Карат" hidden>
+                <rect x="0" y="0" width="680" height="420" fill="#FAF8F4"/>
+                <path d="M40 0V420M160 0V420M280 0V420M400 0V420M520 0V420M640 0V420M0 70H680M0 140H680M0 210H680M0 280H680M0 350H680" stroke="#E7E1D6" stroke-width="0.7"/>
+                <text x="34" y="42" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="600" fill="#755B34">КЛИНИЧЕСКИЙ МАРШРУТ ПАЦИЕНТА · ОТ ПЕРВОЙ КОНСУЛЬТАЦИИ ДО СПРАВКИ 13% НДФЛ</text>
+
+                <!-- Connector curve -->
+                <path d="M170 144H210M350 144H390M530 144H570C594 144 606 158 606 184V218C606 244 594 256 570 256H110" fill="none" stroke="#9A7B4F" stroke-width="2" stroke-dasharray="5 4"/>
+
+                <!-- Stage 1 -->
+                <g class="svg-stage-node is-active" data-stage="s1" tabindex="0" role="button" aria-label="Этап 01: Консультация и 3D-планирование">
+                  <rect class="stage-box" x="34" y="76" width="138" height="136" rx="10" fill="#0F4F4A" stroke="#9A7B4F" stroke-width="1.8"/>
+                  <text class="stage-num" x="50" y="102" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="600" fill="#F8F7F4">ЭТАП 01</text>
+                  <text class="stage-title" x="50" y="130" font-family="Golos Text, sans-serif" font-size="14.5" font-weight="600" fill="#F8F7F4">Диагностика</text>
+                  <text class="stage-title" x="50" y="149" font-family="Golos Text, sans-serif" font-size="14.5" font-weight="600" fill="#F8F7F4">и смета</text>
+                  <text class="stage-sub" x="50" y="176" font-family="Golos Text, sans-serif" font-size="11.5" fill="#F8F7F4">Осмотр, снимки</text>
+                  <text class="stage-sub" x="50" y="194" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#F8F7F4">1 визит · 45 мин</text>
+                </g>
+
+                <!-- Stage 2 -->
+                <g class="svg-stage-node" data-stage="s2" tabindex="0" role="button" aria-label="Этап 02: Подготовка, профгигиена и Вектор-терапия">
+                  <rect class="stage-box" x="210" y="76" width="142" height="136" rx="10" fill="#FFFFFF" stroke="#B2A898" stroke-width="1.5"/>
+                  <text class="stage-num" x="226" y="102" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="600" fill="#9A7B4F">ЭТАП 02</text>
+                  <text class="stage-title" x="226" y="130" font-family="Golos Text, sans-serif" font-size="14.5" font-weight="600" fill="#172120">Подготовка</text>
+                  <text class="stage-title" x="226" y="149" font-family="Golos Text, sans-serif" font-size="14.5" font-weight="600" fill="#172120">и санация</text>
+                  <text class="stage-sub" x="226" y="176" font-family="Golos Text, sans-serif" font-size="11.5" fill="#43514F">Гигиена, Вектор</text>
+                  <text class="stage-sub" x="226" y="194" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#5A6866">1–2 визита</text>
+                </g>
+
+                <!-- Stage 3 -->
+                <g class="svg-stage-node" data-stage="s3" tabindex="0" role="button" aria-label="Этап 03: Основное лечение, имплантация, брекеты или виниры">
+                  <rect class="stage-box" x="390" y="76" width="142" height="136" rx="10" fill="#FFFFFF" stroke="#B2A898" stroke-width="1.5"/>
+                  <text class="stage-num" x="406" y="102" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="600" fill="#9A7B4F">ЭТАП 03</text>
+                  <text class="stage-title" x="406" y="130" font-family="Golos Text, sans-serif" font-size="14.5" font-weight="600" fill="#172120">Основной</text>
+                  <text class="stage-title" x="406" y="149" font-family="Golos Text, sans-serif" font-size="14.5" font-weight="600" fill="#172120">протокол</text>
+                  <text class="stage-sub" x="406" y="176" font-family="Golos Text, sans-serif" font-size="11.5" fill="#43514F">Имплант / виниры</text>
+                  <text class="stage-sub" x="406" y="194" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#5A6866">По графику врача</text>
+                </g>
+
+                <!-- Stage 4 (Bottom wide bar) -->
+                <g class="svg-stage-node" data-stage="s4" tabindex="0" role="button" aria-label="Этап 04: Ортопедия, профилактика и оформление вычета 13 процентов">
+                  <rect class="stage-box" x="34" y="256" width="612" height="118" rx="10" fill="#FFFFFF" stroke="#B2A898" stroke-width="1.5"/>
+                  <text class="stage-num" x="54" y="286" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="600" fill="#9A7B4F">ЭТАП 04 · ЗАВЕРШЕНИЕ И ГАРАНТИЯ</text>
+                  <text class="stage-title" x="54" y="314" font-family="Golos Text, sans-serif" font-size="15" font-weight="600" fill="#172120">Фиксация результата, наблюдение и справка 13% НДФЛ</text>
+                  <text class="stage-sub" x="54" y="342" font-family="JetBrains Mono, monospace" font-size="11" fill="#43514F">Документы для ФНС (karat_fns@mail.ru) · Осмотр каждые 6 мес.</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="scheme-pills" id="scheme-quick-pills" role="group" aria-label="Быстрый выбор элемента схемы"></div>
+          </div>
+
+          <aside class="scheme-detail-card" aria-live="polite">
+            <div class="detail-code-row">
+              <span class="service-code" id="scheme-detail-code">ЗОНА А</span>
+              <span class="service-badge" id="scheme-detail-badge">ул. Четаева, 28</span>
+            </div>
+            <h3 class="detail-title" id="scheme-detail-title">Бесплатная парковка и вход в клинику</h3>
+            <p class="detail-desc" id="scheme-detail-desc">
+              Собственные парковочные места прямо перед входом в клинику на ул. Четаева, 28. Не нужно искать платную стоянку в соседних дворах перед визитом.
+            </p>
+            <ul class="detail-spec-list" id="scheme-detail-specs"></ul>
+            <a class="btn btn-primary" href="#booking" id="scheme-cta-btn" style="width: 100%;">Записаться на удобный час</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust: Specialists, Clinical Cases, Licenses & 13% FNS -->
+    <section class="section section-tint" id="trust">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Стандарты клиники «Карат»</div>
+            <h2 class="section-title">Врачи, клинические работы, отзывы и лицензии</h2>
+          </div>
+          <p class="section-lead">
+            Структурированная информация по отделениям клиники на ул. Четаева, 28 — без лишних вложенных меню и перегруженных страниц.
+          </p>
+        </div>
+
+        <div class="trust-tabs" id="trust-tabs" role="group" aria-label="Разделы информации о клинике">
+          <button type="button" class="choice-pill" data-tab="doctors" aria-pressed="true">Специализации врачей</button>
+          <button type="button" class="choice-pill" data-tab="cases" aria-pressed="false">Примеры протоколов работ</button>
+          <button type="button" class="choice-pill" data-tab="licenses" aria-pressed="false">Лицензии и вычет 13% НДФЛ</button>
+        </div>
+
+        <div class="trust-grid" id="trust-content"></div>
+      </div>
+    </section>
+
+    <!-- Online Booking & Contacts -->
+    <section class="section" id="booking">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Запись без звонка и ожидания</div>
+            <h2 class="section-title">Онлайн-запись на ул. Четаева, 28 с выбором времени</h2>
+          </div>
+          <p class="section-lead">
+            Выберите дату и удобный временной слот с учётом реального графика клиники: Пн–Сб 09:00–20:00, Вс 09:00–15:00.
+          </p>
+        </div>
+
+        <div class="booking-grid">
+          <div class="booking-card">
+            <div id="booking-form-wrap">
+              <div class="calc-attach-banner" id="calc-attach-banner" hidden>
+                <span id="calc-attach-text"></span>
+                <button type="button" class="btn btn-secondary btn-sm" id="clear-calc-attach">Сбросить</button>
+              </div>
+
+              <!-- Day Selection -->
+              <div class="booking-block">
+                <div class="booking-block-title">
+                  <span>1. Выберите день визита</span>
+                  <span class="booking-hours-badge" id="booking-hours-badge">Пн–Сб: 09:00–20:00</span>
+                </div>
+                <div class="days-grid" id="booking-days" role="group" aria-label="Выбор даты приёма"></div>
+              </div>
+
+              <!-- Time Slot Selection -->
+              <div class="booking-block">
+                <div class="booking-block-title">
+                  <span>2. Выберите удобное время</span>
+                  <span class="mono" style="font-size: 12.5px; color: var(--ink-muted); white-space: nowrap;" id="selected-slot-label">Выбрано: 10:30</span>
+                </div>
+                <div class="slots-grid" id="booking-slots" role="group" aria-label="Выбор времени приёма"></div>
+                <p class="slots-note" id="booking-slots-note">
+                  В будни и субботу принимаем с 09:00 до 20:00. По воскресеньям слоты после 14:15 закрыты (клиника работает до 15:00).
+                </p>
+              </div>
+
+              <!-- Patient Form (all inputs visible, zero hidden inputs with labels) -->
+              <form id="booking-form" novalidate>
+                <div class="form-grid">
+                  <div class="form-field form-field-full">
+                    <label class="form-label" for="book-service">3. Направление или причина обращения</label>
+                    <select class="form-input" id="book-service" name="service">
+                      <option value="Имплантация и протезирование">Имплантация и протезирование</option>
+                      <option value="Брекеты и виниры">Брекеты и виниры</option>
+                      <option value="Лечение дёсен аппаратом Вектор">Лечение дёсен аппаратом Вектор</option>
+                      <option value="Лечение каналов и удаление зуба мудрости">Лечение каналов и удаление зуба мудрости</option>
+                      <option value="Детский стоматолог и профгигиена">Детский стоматолог и профгигиена</option>
+                      <option value="Консультация и расчёт рассрочки">Консультация и расчёт рассрочки</option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label class="form-label" for="book-name">4. Ваше имя</label>
+                    <input class="form-input" id="book-name" name="name" type="text" placeholder="Например, Альбина" autocomplete="name" required>
+                  </div>
+
+                  <div class="form-field">
+                    <label class="form-label" for="book-phone">5. Контактный телефон</label>
+                    <input class="form-input mono" id="book-phone" name="phone" type="tel" placeholder="+7 (9__) ___-__-__" autocomplete="tel" required>
+                  </div>
+
+                  <div class="form-field form-field-full">
+                    <label class="form-label" for="book-comment">6. Комментарий к визиту (необязательно)</label>
+                    <textarea class="form-input" id="book-comment" name="comment" rows="2" placeholder="Удобный способ связи, нужна ли справка на вычет 13% или место на парковке"></textarea>
+                  </div>
+                </div>
+
+                <div class="form-error" id="booking-error" role="alert" hidden></div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 16px;">
+                  Подтвердить запись на ул. Четаева, 28
+                </button>
+              </form>
+            </div>
+
+            <!-- Booking Confirmation View -->
+            <div class="booking-confirm" id="booking-confirm" hidden aria-live="polite">
+              <div class="eyebrow">Заявка сформирована</div>
+              <h3 class="booking-confirm-title">Запись зафиксирована в расписании клиники «Карат»</h3>
+              <p style="margin: 0; font-size: 14.5px; color: var(--ink-secondary);">
+                Администратор регистратуры подтвердит выбранный слот по указанному телефону в рабочее время клиники.
+              </p>
+              <ul class="confirm-meta" id="confirm-meta-list"></ul>
+              <button type="button" class="btn btn-secondary" id="booking-reset-btn">Выбрать другое время или записать ещё раз</button>
+            </div>
+          </div>
+
+          <!-- Contact & Mini-Map Side Card -->
+          <aside class="contact-card" aria-label="Адрес и контакты клиники Карат">
+            <div class="contact-item">
+              <div class="contact-key">Клиника</div>
+              <div class="contact-val">Частная стоматологическая клиника «Карат»</div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-key">Адрес в Казани</div>
+              <div class="contact-val">г. Казань, ул. Четаева, 28</div>
+              <div style="font-size: 13.5px; color: var(--accent); margin-top: 4px; font-weight: 500;">Бесплатная парковка у клиники</div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-key">Телефон регистратуры</div>
+              <a class="contact-val contact-val-mono" href="tel:+78435178283">8 (843) 517-82-83</a>
+            </div>
+            <div class="contact-item">
+              <div class="contact-key">Электронная почта (ФНС и вопросы)</div>
+              <a class="contact-val" href="mailto:karat_fns@mail.ru">karat_fns@mail.ru</a>
+            </div>
+            <div class="contact-item">
+              <div class="contact-key">Часы работы</div>
+              <div class="contact-val contact-val-mono" style="font-size: 14.5px;">Пн–Сб: 09:00–20:00</div>
+              <div class="contact-val contact-val-mono" style="font-size: 14.5px; margin-top: 2px;">Вс: 09:00–15:00</div>
+            </div>
+
+            <div class="mini-map-frame">
+              <svg class="mini-map-svg" viewBox="0 0 360 180" role="img" aria-label="Ориентир проезда к клинике Карат на ул. Четаева, 28">
+                <rect width="360" height="180" fill="#F4F1EA"/>
+                <!-- Streets -->
+                <path d="M0 108H360" stroke="#FFFFFF" stroke-width="16"/>
+                <path d="M0 108H360" stroke="#D8D1C4" stroke-width="1"/>
+                <path d="M96 0V180" stroke="#FFFFFF" stroke-width="14"/>
+                <path d="M276 0V180" stroke="#FFFFFF" stroke-width="12"/>
+                <!-- Street names -->
+                <text x="208" y="112" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#5A6866">УЛ. ЧЕТАЕВА</text>
+                <text x="96" y="42" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#755B34" transform="rotate(-90 96 42)">АБСАЛЯМОВА</text>
+                <text x="276" y="42" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#755B34" transform="rotate(-90 276 42)">АМИРХАНА</text>
+                <!-- Clinic Building -->
+                <rect x="150" y="54" width="76" height="36" rx="5" fill="#0F4F4A"/>
+                <text x="188" y="71" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="15" font-weight="600" fill="#FFFFFF">Карат</text>
+                <text x="188" y="83" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#E3F0EE">дом 28</text>
+                <!-- Free parking badge -->
+                <rect x="148" y="128" width="124" height="24" rx="4" fill="#FFFFFF" stroke="#9A7B4F" stroke-width="1.2"/>
+                <text x="210" y="144" text-anchor="middle" font-family="Golos Text, sans-serif" font-size="10.5" font-weight="600" fill="#755B34">Бесплатная парковка</text>
+                <path d="M188 90V128" stroke="#9A7B4F" stroke-width="1.4" stroke-dasharray="3 2"/>
+              </svg>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Стоматология «Карат»</div>
+          <p class="footer-text">
+            Частная стоматологическая клиника в Ново-Савиновском районе Казани. Имплантация и протезирование, ортодонтия, пародонтология аппаратом Вектор, терапия и детский приём с прозрачной сметой, рассрочкой и пакетом документов на вычет 13% НДФЛ.
+          </p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Навигация</h4>
+          <ul class="footer-list">
+            <li><a href="#services">Направления и услуги</a></li>
+            <li><a href="#calculator">Калькулятор и 13% НДФЛ</a></li>
+            <li><a href="#scheme">Схема клиники и этапы</a></li>
+            <li><a href="#trust">Врачи и лицензии</a></li>
+            <li><a href="#booking">Онлайн-запись на приём</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Контакты · Казань</h4>
+          <ul class="footer-list">
+            <li>г. Казань, ул. Четаева, 28 (бесплатная парковка)</li>
+            <li><a class="mono" href="tel:+78435178283">8 (843) 517-82-83</a></li>
+            <li><a href="mailto:karat_fns@mail.ru">karat_fns@mail.ru</a></li>
+            <li class="mono">Пн–Сб: 09:00–20:00 · Вс: 09:00–15:00</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Частная стоматологическая клиника «Карат», г. Казань. Расчёт в калькуляторе носит ориентировочный характер; окончательный план лечения определяется на очной консультации врача.</span>
+        <span>Имеются противопоказания, требуется консультация специалиста.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* -----------------------------------------------------------
+       * 1. Live Kazan Working Hours Status (Europe/Moscow UTC+3)
+       * ----------------------------------------------------------- */
+      function getKazanNow() {
+        var now = new Date();
+        var utcMs = now.getTime() + now.getTimezoneOffset() * 60000;
+        return new Date(utcMs + 3 * 3600000);
+      }
+
+      function updateLiveClinicStatus() {
+        var chip = document.getElementById('live-status-chip');
+        var textEl = document.getElementById('live-status-text');
+        if (!chip || !textEl) return;
+
+        var kz = getKazanNow();
+        var day = kz.getDay(); // 0 = Sun, 1..6 = Mon..Sat
+        var minutes = kz.getHours() * 60 + kz.getMinutes();
+        var openMin = 9 * 60;
+        var closeMin = day === 0 ? 15 * 60 : 20 * 60;
+
+        if (minutes >= openMin && minutes < closeMin) {
+          chip.classList.remove('is-closed');
+          textEl.textContent = day === 0 ? 'Открыто до 15:00' : 'Открыто до 20:00';
+        } else {
+          chip.classList.add('is-closed');
+          textEl.textContent = minutes < openMin ? 'Приём сегодня с 09:00' : 'Приём завтра с 09:00';
+        }
+      }
+
+      /* -----------------------------------------------------------
+       * 2. Mobile Navigation Drawer
+       * ----------------------------------------------------------- */
+      var burgerBtn = document.getElementById('burger-toggle');
+      var mobileDrawer = document.getElementById('mobile-drawer');
+      if (burgerBtn && mobileDrawer) {
+        burgerBtn.addEventListener('click', function () {
+          var isOpen = burgerBtn.getAttribute('aria-expanded') === 'true';
+          burgerBtn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+          mobileDrawer.hidden = isOpen;
+        });
+
+        mobileDrawer.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            burgerBtn.setAttribute('aria-expanded', 'false');
+            mobileDrawer.hidden = true;
+          });
+        });
+      }
+
+      /* -----------------------------------------------------------
+       * 3. Interactive Treatment, Installment & 13% Tax Calculator
+       * ----------------------------------------------------------- */
+      var SERVICES_DATA = {
+        implant: {
+          title: 'Имплантация и протезирование',
+          defaultTax: '02',
+          unitWord: ['единица', 'единицы', 'единиц'],
+          unitHint: 'Расчёт за 1 зуб / конструкцию',
+          protocols: [
+            { id: 'imp_base', name: 'Установка имплантата + формирователь', price: 28500, sub: 'Хирургический этап по 3D-шаблону' },
+            { id: 'imp_zircon', name: 'Имплантат + коронка из диоксида циркония', price: 54000, sub: 'Полное восстановление одного зуба' },
+            { id: 'crown_zircon', name: 'Циркониевая коронка (протезирование)', price: 24500, sub: 'Ортопедическая реставрация' },
+            { id: 'all_on_4', name: 'Протезирование на имплантах (сегмент)', price: 145000, sub: 'Восстановление зубного ряда' }
+          ]
+        },
+        ortho: {
+          title: 'Брекеты и виниры',
+          defaultTax: '01',
+          unitWord: ['позиция', 'позиции', 'позиций'],
+          unitHint: 'Расчёт за 1 винир или 1 челюсть',
+          protocols: [
+            { id: 'braces_metal', name: 'Металлическая брекет-система (1 челюсть)', price: 34000, sub: 'Самолигирующая система с фиксацией' },
+            { id: 'braces_ceramic', name: 'Керамическая брекет-система (1 челюсть)', price: 48000, sub: 'Эстетический вариант коррекции' },
+            { id: 'veneer_ceram', name: 'Керамический винир E-max', price: 29000, sub: 'Тонкая накладка с цифровым макетом' },
+            { id: 'veneer_comp', name: 'Композитная реставрация зоны улыбки', price: 11500, sub: 'Восстановление формы за 1 визит' }
+          ]
+        },
+        vector: {
+          title: 'Лечение дёсен (Вектор)',
+          defaultTax: '01',
+          unitWord: ['сегмент', 'сегмента', 'сегментов'],
+          unitHint: 'Расчёт по сегментам / челюстям',
+          protocols: [
+            { id: 'vec_one', name: 'Вектор-терапия (1 челюсть / сектор)', price: 7200, sub: 'Обработка пародонтальных карманов' },
+            { id: 'vec_both', name: 'Вектор-терапия (обе челюсти)', price: 13800, sub: 'Полный курс гидроксиапатитом' },
+            { id: 'vec_support', name: 'Поддерживающий визит Vector', price: 5400, sub: 'Повторный контроль через 3–6 месяцев' },
+            { id: 'vec_curettage', name: 'Пародонтологическая чистка + повязка', price: 6900, sub: 'Снятие поддесневых отложений' }
+          ]
+        },
+        endo: {
+          title: 'Каналы и зуб мудрости',
+          defaultTax: '01',
+          unitWord: ['зуб', 'зуба', 'зубов'],
+          unitHint: 'Расчёт за 1 зуб',
+          protocols: [
+            { id: 'endo_2c', name: 'Лечение 2-канального зуба с пломбой', price: 9600, sub: 'Эндодонтия + пломбирование каналов' },
+            { id: 'endo_3c', name: 'Лечение 3-канального зуба / перелечивание', price: 13400, sub: 'Восстановление сложной анатомии' },
+            { id: 'wisdom_simple', name: 'Удаление прорезавшегося зуба мудрости', price: 6800, sub: 'Атравматичная хирургия с анестезией' },
+            { id: 'wisdom_ret', name: 'Сложное удаление ретинированной восьмёрки', price: 10900, sub: 'Швы и контрольный осмотр включены' }
+          ]
+        },
+        kids: {
+          title: 'Детский приём и профгигиена',
+          defaultTax: '01',
+          unitWord: ['визит', 'визита', 'визитов'],
+          unitHint: 'Расчёт за 1 визит / ребёнка / процедуру',
+          protocols: [
+            { id: 'prof_hyg', name: 'Профессиональная гигиена Air-Flow + УЗ', price: 4500, sub: 'Снятие налёта, полировка, фторирование' },
+            { id: 'kids_caries', name: 'Лечение кариеса молочного зуба', price: 4200, sub: 'Адаптационный приём без стресса' },
+            { id: 'kids_fissure', name: 'Герметизация фиссур постоянного зуба', price: 3200, sub: 'Защита эмали у детей' },
+            { id: 'kids_family', name: 'Семейная профгигиена (взрослый + ребёнок)', price: 7800, sub: 'Специальное условие в один визит' }
+          ]
+        }
+      };
+
+      var ADDONS_PRICE = { ct: 3200, hygiene: 4500 };
+
+      var calcState = {
+        dir: 'implant',
+        protocolId: 'imp_base',
+        qty: 1,
+        addons: { ct: true, hygiene: false },
+        months: 1,
+        taxCode: '02',
+        attachedToBooking: false
+      };
+
+      function formatRub(val) {
+        return Math.round(val).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
+      }
+
+      function pluralize(n, forms) {
+        var mod100 = n % 100;
+        var mod10 = n % 10;
+        if (mod100 >= 11 && mod100 <= 14) return forms[2];
+        if (mod10 === 1) return forms[0];
+        if (mod10 >= 2 && mod10 <= 4) return forms[1];
+        return forms[2];
+      }
+
+      function getActiveProtocol() {
+        var dirObj = SERVICES_DATA[calcState.dir];
+        for (var i = 0; i < dirObj.protocols.length; i++) {
+          if (dirObj.protocols[i].id === calcState.protocolId) {
+            return dirObj.protocols[i];
+          }
+        }
+        return dirObj.protocols[0];
+      }
+
+      function renderProtocols() {
+        var container = document.getElementById('calc-protocols');
+        var hintEl = document.getElementById('protocol-unit-hint');
+        if (!container) return;
+
+        var dirObj = SERVICES_DATA[calcState.dir];
+        if (hintEl) hintEl.textContent = dirObj.unitHint;
+
+        container.innerHTML = '';
+        dirObj.protocols.forEach(function (item) {
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'protocol-btn';
+          btn.setAttribute('aria-pressed', item.id === calcState.protocolId ? 'true' : 'false');
+          btn.innerHTML =
+            '<span class="protocol-top">' +
+              '<span class="protocol-name">' + item.name + '</span>' +
+              '<span class="protocol-cost">' + formatRub(item.price) + '</span>' +
+            '</span>' +
+            '<span class="protocol-sub">' + item.sub + '</span>';
+
+          btn.addEventListener('click', function () {
+            calcState.protocolId = item.id;
+            renderProtocols();
+            updateCalculatorSummary();
+          });
+          container.appendChild(btn);
+        });
+      }
+
+      function updateCalculatorSummary() {
+        var dirObj = SERVICES_DATA[calcState.dir];
+        var protocol = getActiveProtocol();
+
+        var baseTotal = protocol.price * calcState.qty;
+        var addonsTotal = (calcState.addons.ct ? ADDONS_PRICE.ct : 0) + (calcState.addons.hygiene ? ADDONS_PRICE.hygiene : 0);
+        var fullTotal = baseTotal + addonsTotal;
+
+        var monthlyPay = fullTotal / calcState.months;
+
+        // 13% tax deduction calculation: code 01 caps annual base at 150,000 RUB; code 02 has no cap
+        var taxableBase = calcState.taxCode === '01' ? Math.min(fullTotal, 150000) : fullTotal;
+        var taxReturn = Math.round(taxableBase * 0.13);
+        var netTotal = fullTotal - taxReturn;
+
+        // Update stepper & quick pills
+        var qtyDisplay = document.getElementById('qty-display');
+        if (qtyDisplay) {
+          qtyDisplay.textContent = calcState.qty + ' ' + pluralize(calcState.qty, dirObj.unitWord);
+        }
+        var minusBtn = document.getElementById('qty-minus');
+        var plusBtn = document.getElementById('qty-plus');
+        if (minusBtn) minusBtn.disabled = calcState.qty <= 1;
+        if (plusBtn) plusBtn.disabled = calcState.qty >= 12;
+
+        document.querySelectorAll('#quick-qty .quick-qty-btn').forEach(function (btn) {
+          btn.setAttribute('aria-pressed', Number(btn.getAttribute('data-qty')) === calcState.qty ? 'true' : 'false');
+        });
+
+        // Update tax code buttons state
+        document.querySelectorAll('#calc-tax-mode .tax-mode-btn').forEach(function (btn) {
+          btn.setAttribute('aria-pressed', btn.getAttribute('data-tax') === calcState.taxCode ? 'true' : 'false');
+        });
+
+        // Update receipt DOM
+        document.getElementById('sum-code-badge').textContent = 'Код ИФНС ' + calcState.taxCode;
+        document.getElementById('sum-protocol-label').textContent = protocol.name + ' × ' + calcState.qty;
+        document.getElementById('sum-protocol-cost').textContent = formatRub(baseTotal);
+
+        var ctRow = document.getElementById('sum-addon-ct-row');
+        var hygRow = document.getElementById('sum-addon-hyg-row');
+        if (ctRow) ctRow.hidden = !calcState.addons.ct;
+        if (hygRow) hygRow.hidden = !calcState.addons.hygiene;
+
+        var planName = calcState.months === 1 ? 'Полная оплата' : 'Рассрочка ' + calcState.months + ' мес. (0%)';
+        document.getElementById('sum-plan-name').textContent = planName;
+        document.getElementById('sum-total').textContent = formatRub(fullTotal);
+
+        var monthlyLabel = calcState.months === 1 ? 'Платёж по графику' : 'Платёж в месяц (' + calcState.months + ' мес.)';
+        var monthlySub = calcState.months === 1 ? 'Единовременно' : 'Переплата 0 ₽';
+        document.getElementById('sum-monthly-label').textContent = monthlyLabel;
+        document.getElementById('sum-monthly').textContent = formatRub(monthlyPay);
+        document.getElementById('sum-monthly-sub').textContent = monthlySub;
+
+        document.getElementById('sum-tax-return').textContent = '− ' + formatRub(taxReturn);
+        document.getElementById('sum-tax-sub').textContent = calcState.taxCode === '01'
+          ? (fullTotal > 150000 ? 'Лимит базы 150 000 ₽' : '13% от суммы (код 01)')
+          : '13% без лимита (код 02)';
+
+        document.getElementById('sum-net-total').textContent = formatRub(netTotal);
+      }
+
+      function switchDirection(dirKey) {
+        if (!SERVICES_DATA[dirKey]) return;
+        calcState.dir = dirKey;
+        calcState.protocolId = SERVICES_DATA[dirKey].protocols[0].id;
+        calcState.taxCode = SERVICES_DATA[dirKey].defaultTax;
+
+        document.querySelectorAll('#calc-directions .choice-pill').forEach(function (btn) {
+          btn.setAttribute('aria-pressed', btn.getAttribute('data-dir') === dirKey ? 'true' : 'false');
+        });
+
+        renderProtocols();
+        updateCalculatorSummary();
+      }
+
+      // Bind direction buttons
+      document.querySelectorAll('#calc-directions .choice-pill').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          switchDirection(btn.getAttribute('data-dir'));
+        });
+      });
+
+      // Bind service card jump buttons
+      document.querySelectorAll('.js-jump-calc').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var targetDir = btn.getAttribute('data-service');
+          switchDirection(targetDir);
+          var calcSec = document.getElementById('calculator');
+          if (calcSec) calcSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+
+      // Bind stepper & quick qty
+      document.getElementById('qty-minus').addEventListener('click', function () {
+        if (calcState.qty > 1) {
+          calcState.qty -= 1;
+          updateCalculatorSummary();
+        }
+      });
+
+      document.getElementById('qty-plus').addEventListener('click', function () {
+        if (calcState.qty < 12) {
+          calcState.qty += 1;
+          updateCalculatorSummary();
+        }
+      });
+
+      document.querySelectorAll('#quick-qty .quick-qty-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          calcState.qty = Number(btn.getAttribute('data-qty'));
+          updateCalculatorSummary();
+        });
+      });
+
+      // Bind addons
+      document.querySelectorAll('#calc-addons .addon-toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var key = btn.getAttribute('data-addon');
+          calcState.addons[key] = !calcState.addons[key];
+          btn.setAttribute('aria-pressed', calcState.addons[key] ? 'true' : 'false');
+          updateCalculatorSummary();
+        });
+      });
+
+      // Bind installment segmented toggle
+      document.querySelectorAll('#calc-installment .segmented-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          calcState.months = Number(btn.getAttribute('data-months'));
+          document.querySelectorAll('#calc-installment .segmented-btn').forEach(function (b) {
+            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+          });
+          updateCalculatorSummary();
+        });
+      });
+
+      // Bind tax mode buttons
+      document.querySelectorAll('#calc-tax-mode .tax-mode-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          calcState.taxCode = btn.getAttribute('data-tax');
+          updateCalculatorSummary();
+        });
+      });
+
+      // Bind apply calculator to booking
+      document.getElementById('apply-calc-booking').addEventListener('click', function () {
+        var dirObj = SERVICES_DATA[calcState.dir];
+        var protocol = getActiveProtocol();
+        var fullTotal = document.getElementById('sum-total').textContent;
+        var taxReturn = document.getElementById('sum-tax-return').textContent;
+        var payPlan = calcState.months === 1 ? 'оплата сразу' : 'рассрочка ' + calcState.months + ' мес.';
+
+        var summaryText = 'Из калькулятора: ' + protocol.name + ' (×' + calcState.qty + '), ' + payPlan + ', смета ' + fullTotal + ', вычет 13%: ' + taxReturn + '.';
+
+        var selectEl = document.getElementById('book-service');
+        if (selectEl) {
+          for (var i = 0; i < selectEl.options.length; i++) {
+            if (selectEl.options[i].value.indexOf(dirObj.title.split(' ')[0]) !== -1 ||
+                (calcState.dir === 'endo' && selectEl.options[i].value.indexOf('каналов') !== -1) ||
+                (calcState.dir === 'kids' && selectEl.options[i].value.indexOf('Детский') !== -1)) {
+              selectEl.selectedIndex = i;
+              break;
+            }
+          }
+        }
+
+        calcState.attachedToBooking = summaryText;
+        var banner = document.getElementById('calc-attach-banner');
+        var bannerText = document.getElementById('calc-attach-text');
+        if (banner && bannerText) {
+          bannerText.textContent = summaryText;
+          banner.hidden = false;
+        }
+
+        // Make sure form is visible if previously submitted
+        document.getElementById('booking-form-wrap').hidden = false;
+        document.getElementById('booking-confirm').hidden = true;
+
+        var bookingSec = document.getElementById('booking');
+        if (bookingSec) bookingSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      document.getElementById('clear-calc-attach').addEventListener('click', function () {
+        calcState.attachedToBooking = false;
+        document.getElementById('calc-attach-banner').hidden = true;
+      });
+
+      /* -----------------------------------------------------------
+       * 4. Interactive SVG Clinic Plan & Treatment Stages
+       * ----------------------------------------------------------- */
+      var SCHEME_DATA = {
+        clinic: {
+          parking: {
+            code: 'ЗОНА А',
+            badge: 'ул. Четаева, 28',
+            title: 'Бесплатная парковка и вход в клинику',
+            desc: 'Перед фасадом здания на ул. Четаева, 28 предусмотрены бесплатные парковочные места для пациентов клиники «Карат». Без шлагбаумов и долгого поиска места.',
+            specs: [
+              ['Подъезд на автомобиле', 'Свободный заезд с ул. Четаева'],
+              ['Стоимость для пациентов', 'Бесплатно на всё время визита'],
+              ['Доступность входа', 'Первый этаж, удобный вход']
+            ],
+            cta: 'Записаться на приём'
+          },
+          reception: {
+            code: 'ЗОНА Б',
+            badge: 'Финансы и ФНС',
+            title: 'Регистратура, рассрочка и справка 13%',
+            desc: 'Администраторы оформляют договор, график беспроцентной рассрочки на 6 или 12 месяцев и подготавливают справку для налогового вычета 13% НДФЛ.',
+            specs: [
+              ['Почта для запроса справок', 'karat_fns@mail.ru'],
+              ['Варианты рассрочки', '6 или 12 месяцев без переплат'],
+              ['Телефон регистратуры', '8 (843) 517-82-83']
+            ],
+            cta: 'Перейти к онлайн-записи'
+          },
+          vector_cab: {
+            code: 'КАБИНЕТ 01',
+            badge: 'Пародонтология',
+            title: 'Гигиена и лечение дёсен аппаратом Вектор',
+            desc: 'Кабинет оснащён аппаратом Vector для деликатной обработки пародонтальных карманов и оборудованием для комплексной профессиональной гигиены.',
+            specs: [
+              ['Основные процедуры', 'Вектор-терапия, Air-Flow, УЗ-чистка'],
+              ['Показания', 'Кровоточивость дёсен, профилактика имплантов'],
+              ['Среднее время приёма', '45–60 минут']
+            ],
+            cta: 'Записаться на Вектор или чистку'
+          },
+          surgery_cab: {
+            code: 'КАБИНЕТ 02',
+            badge: 'Хирургия и каналы',
+            title: 'Блок имплантации, удаления и эндодонтии',
+            desc: 'Проводим установку имплантатов, сложное удаление ретинированных зубов мудрости и лечение корневых каналов в условиях строгого стерильного контура.',
+            specs: [
+              ['Ключевые протоколы', 'Имплантация, восьмёрки, лечение каналов'],
+              ['Подготовка к лечению', 'Предварительная диагностика и расчёт сметы'],
+              ['Код вычета НДФЛ', 'Имплантация подходит под код «02» (13% без лимита)']
+            ],
+            cta: 'Записаться к хирургу или терапевту'
+          },
+          ortho_cab: {
+            code: 'КАБИНЕТ 03',
+            badge: 'Ортодонтия и дети',
+            title: 'Брекеты, виниры и детский приём',
+            desc: 'Отдельное пространство для ортодонтической коррекции прикуса, примерки керамических виниров и спокойных адаптационных визитов для детей.',
+            specs: [
+              ['Эстетика и прикус', 'Брекеты, виниры, ортопедия'],
+              ['Детский приём', 'Профилактика, герметизация фиссур, лечение'],
+              ['Часы работы', 'Пн–Сб 09:00–20:00, Вс 09:00–15:00']
+            ],
+            cta: 'Выбрать время для консультации'
+          }
+        },
+        stages: {
+          s1: {
+            code: 'ЭТАП 01',
+            badge: 'Первый визит',
+            title: 'Диагностика, осмотр и фиксация сметы',
+            desc: 'Врач оценивает состояние полости рта, анализирует снимки и составляет детальный план в нескольких ценовых вариантах — стоимость согласовывается до начала работ.',
+            specs: [
+              ['Длительность визита', '45 минут на ул. Четаева, 28'],
+              ['Итог консультации', 'Фиксированная смета + выбор рассрочки'],
+              ['Что взять с собой', 'Паспорт и прежние снимки при наличии']
+            ],
+            cta: 'Записаться на первичную консультацию'
+          },
+          s2: {
+            code: 'ЭТАП 02',
+            badge: 'Санация',
+            title: 'Подготовка, профгигиена и Вектор-терапия',
+            desc: 'Перед имплантацией, фиксацией брекетов или виниров снимаются зубные отложения, при необходимости пролечиваются каналы и стабилизируется состояние дёсен.',
+            specs: [
+              ['Процедуры этапа', 'Профчистка, аппарат Вектор, терапия'],
+              ['Количество визитов', '1–2 приёма по 45–60 минут'],
+              ['Задача этапа', 'Чистое и здоровое основание для лечения']
+            ],
+            cta: 'Записаться на подготовительный этап'
+          },
+          s3: {
+            code: 'ЭТАП 03',
+            badge: 'Основная работа',
+            title: 'Имплантация, ортодонтия или протезирование',
+            desc: 'Выполнение ключевого клинического этапа по согласованному графику: установка имплантата, фиксация брекет-системы, удаление зуба мудрости или подготовка под виниры.',
+            specs: [
+              ['Комфорт пациента', 'Современная местная анестезия'],
+              ['Оплата этапа', 'Сразу или равными долями 6 / 12 мес.'],
+              ['Контроль качества', 'Промежуточные осмотры без доплат']
+            ],
+            cta: 'Подобрать дату и время визита'
+          },
+          s4: {
+            code: 'ЭТАП 04',
+            badge: 'Гарантия и 13%',
+            title: 'Финальная фиксация, наблюдение и вычет 13%',
+            desc: 'Фиксация коронок или виниров, выдача рекомендаций по уходу, планирование профилактических осмотров раз в 6 месяцев и подготовка справки об оплате медуслуг для ИФНС.',
+            specs: [
+              ['Оформление вычета', 'Справка по запросу на karat_fns@mail.ru'],
+              ['Возврат налога', '13% по коду «01» или «02»'],
+              ['Профилактика', 'Напоминание о плановом контроле']
+            ],
+            cta: 'Записаться в клинику «Карат»'
+          }
+        }
+      };
+
+      var schemeState = {
+        mode: 'clinic',
+        clinicKey: 'parking',
+        stageKey: 's1'
+      };
+
+      function renderSchemeUI() {
+        var isClinic = schemeState.mode === 'clinic';
+        var svgClinic = document.getElementById('svg-clinic-plan');
+        var svgStages = document.getElementById('svg-stages-plan');
+        if (isClinic) {
+          svgClinic.removeAttribute('hidden');
+          svgStages.setAttribute('hidden', '');
+        } else {
+          svgClinic.setAttribute('hidden', '');
+          svgStages.removeAttribute('hidden');
+        }
+
+        document.getElementById('mode-clinic-btn').setAttribute('aria-pressed', isClinic ? 'true' : 'false');
+        document.getElementById('mode-stages-btn').setAttribute('aria-pressed', !isClinic ? 'true' : 'false');
+
+        var activeKey = isClinic ? schemeState.clinicKey : schemeState.stageKey;
+        var dict = SCHEME_DATA[schemeState.mode];
+        var item = dict[activeKey];
+
+        // Sync SVG active classes
+        svgClinic.querySelectorAll('.svg-zone').forEach(function (node) {
+          node.classList.toggle('is-active', node.getAttribute('data-zone') === schemeState.clinicKey);
+        });
+        svgStages.querySelectorAll('.svg-stage-node').forEach(function (node) {
+          node.classList.toggle('is-active', node.getAttribute('data-stage') === schemeState.stageKey);
+        });
+
+        // Render quick selector pills below SVG
+        var pillsWrap = document.getElementById('scheme-quick-pills');
+        pillsWrap.innerHTML = '';
+        Object.keys(dict).forEach(function (key) {
+          var entry = dict[key];
+          var pill = document.createElement('button');
+          pill.type = 'button';
+          pill.className = 'choice-pill';
+          pill.textContent = entry.code + ' · ' + entry.title.split(',')[0];
+          pill.setAttribute('aria-pressed', key === activeKey ? 'true' : 'false');
+          pill.addEventListener('click', function () {
+            if (isClinic) schemeState.clinicKey = key;
+            else schemeState.stageKey = key;
+            renderSchemeUI();
+          });
+          pillsWrap.appendChild(pill);
+        });
+
+        // Populate detail panel
+        document.getElementById('scheme-detail-code').textContent = item.code;
+        document.getElementById('scheme-detail-badge').textContent = item.badge;
+        document.getElementById('scheme-detail-title').textContent = item.title;
+        document.getElementById('scheme-detail-desc').textContent = item.desc;
+        document.getElementById('scheme-cta-btn').textContent = item.cta;
+
+        var specsList = document.getElementById('scheme-detail-specs');
+        specsList.innerHTML = '';
+        item.specs.forEach(function (pair) {
+          var li = document.createElement('li');
+          li.innerHTML = '<span class="detail-spec-key">' + pair[0] + '</span><span class="detail-spec-val">' + pair[1] + '</span>';
+          specsList.appendChild(li);
+        });
+      }
+
+      document.getElementById('mode-clinic-btn').addEventListener('click', function () {
+        schemeState.mode = 'clinic';
+        renderSchemeUI();
+      });
+
+      document.getElementById('mode-stages-btn').addEventListener('click', function () {
+        schemeState.mode = 'stages';
+        renderSchemeUI();
+      });
+
+      document.querySelectorAll('#svg-clinic-plan .svg-zone').forEach(function (node) {
+        var handler = function () {
+          schemeState.clinicKey = node.getAttribute('data-zone');
+          renderSchemeUI();
+        };
+        node.addEventListener('click', handler);
+        node.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handler();
+          }
+        });
+      });
+
+      document.querySelectorAll('#svg-stages-plan .svg-stage-node').forEach(function (node) {
+        var handler = function () {
+          schemeState.stageKey = node.getAttribute('data-stage');
+          renderSchemeUI();
+        };
+        node.addEventListener('click', handler);
+        node.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handler();
+          }
+        });
+      });
+
+      /* -----------------------------------------------------------
+       * 5. Trust Section Tabs (Doctors / Clinical Works / Licenses)
+       * ----------------------------------------------------------- */
+      var TRUST_DATA = {
+        doctors: [
+          {
+            meta: 'ХИРУРГИЯ И ОРТОПЕДИЯ',
+            title: 'Стоматолог-имплантолог и ортопед',
+            text: 'Ведение полного хирургического и ортопедического цикла: от 3D-планирования имплантации и атравматичного удаления зубов мудрости до установки коронок из диоксида циркония.',
+            foot: 'Очный разбор плана с поэтапной сметой'
+          },
+          {
+            meta: 'ОРТОДОНТИЯ И ЭСТЕТИКА',
+            title: 'Врач-ортодонт и эстетический стоматолог',
+            text: 'Коррекция прикуса брекет-системами у взрослых и подростков, а также восстановление формы и цвета зубов керамическими винирами с предварительным цифровым макетом.',
+            foot: 'Рассрочка 6 или 12 месяцев на ортодонтию'
+          },
+          {
+            meta: 'ТЕРАПИЯ, ВЕКТОР И ДЕТИ',
+            title: 'Терапевт, пародонтолог и детский врач',
+            text: 'Эндодонтическое лечение каналов, пародонтологическая терапия аппаратом Вектор, профессиональная гигиена и деликатный приём детей с 3 лет без давления и спешки.',
+            foot: 'Приём Пн–Сб 09:00–20:00, Вс 09:00–15:00'
+          }
+        ],
+        cases: [
+          {
+            meta: 'ПРОТОКОЛ РАБОТЫ 01 · ИМПЛАНТАЦИЯ',
+            title: 'Восстановление жевательного зуба с коронкой',
+            text: 'Диагностика по 3D-снимку, установка имплантата с формирователем десны и последующая фиксация индивидуальной циркониевой коронки в точном прикусе.',
+            foot: 'Возврат 13% по справке с кодом «02»'
+          },
+          {
+            meta: 'ПРОТОКОЛ РАБОТЫ 02 · ВЕКТОР-ТЕРАПИЯ',
+            title: 'Стабилизация дёсен без хирургии',
+            text: 'Профессиональная гигиена и обработка пародонтальных карманов аппаратом Vector гидроксиапатитной суспензией для снятия воспаления и кровоточивости.',
+            foot: 'Контрольный осмотр через 3–6 месяцев'
+          },
+          {
+            meta: 'ПРОТОКОЛ РАБОТЫ 03 · КОМПЛЕКС',
+            title: 'Лечение каналов + ортопедическая защита',
+            text: 'Повторное прохождение корневых каналов под контролем диагностики, герметичное пломбирование и защита зуба прочной керамической накладкой или коронкой.',
+            foot: 'Фиксированная стоимость до начала приёма'
+          }
+        ],
+        licenses: [
+          {
+            meta: 'ЛИЦЕНЗИРОВАНИЕ',
+            title: 'Медицинская лицензия и стандарты РФ',
+            text: 'Клиника «Карат» работает по официальной медицинской лицензии по направлениям терапевтической, хирургической, ортопедической, ортодонтической и детской стоматологии.',
+            foot: 'Оригиналы документов доступны в регистратуре'
+          },
+          {
+            meta: 'НАЛОГОВЫЙ ВЫЧЕТ 13% НДФЛ',
+            title: 'Справка для ИФНС по единому стандарту',
+            text: 'После завершения или оплаты этапа лечения выдаём справку об оплате медицинских услуг (код 01 или 02), договор и копию лицензии для получения возврата 13% через ФНС.',
+            foot: 'Запрос по почте: karat_fns@mail.ru'
+          },
+          {
+            meta: 'АДРЕС И ПАРКОВКА',
+            title: 'Удобный визит на ул. Четаева, 28',
+            text: 'Все медицинские документы, акты и график рассрочки оформляются в одном окне регистратуры. Для пациентов на автомобиле открыта бесплатная парковка перед входом.',
+            foot: 'Казань, ул. Четаева, 28 · 8 (843) 517-82-83'
+          }
+        ]
+      };
+
+      function renderTrustTab(tabKey) {
+        var wrap = document.getElementById('trust-content');
+        if (!wrap || !TRUST_DATA[tabKey]) return;
+
+        document.querySelectorAll('#trust-tabs .choice-pill').forEach(function (btn) {
+          btn.setAttribute('aria-pressed', btn.getAttribute('data-tab') === tabKey ? 'true' : 'false');
+        });
+
+        wrap.innerHTML = '';
+        TRUST_DATA[tabKey].forEach(function (card) {
+          var el = document.createElement('article');
+          el.className = 'trust-card';
+          el.innerHTML =
+            '<div>' +
+              '<div class="trust-card-meta">' + card.meta + '</div>' +
+              '<h3 class="trust-card-title">' + card.title + '</h3>' +
+              '<p class="trust-card-text">' + card.text + '</p>' +
+            '</div>' +
+            '<div class="trust-card-foot">' + card.foot + '</div>';
+          wrap.appendChild(el);
+        });
+      }
+
+      document.querySelectorAll('#trust-tabs .choice-pill').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          renderTrustTab(btn.getAttribute('data-tab'));
+        });
+      });
+
+      /* -----------------------------------------------------------
+       * 6. Online Booking with Real Kazan Schedule (Mon-Sat / Sun)
+       * ----------------------------------------------------------- */
+      var WEEKDAYS_RU = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+      var MONTHS_RU = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+      var ALL_SLOTS = ['09:00', '10:30', '12:00', '13:30', '14:15', '15:30', '17:00', '18:30'];
+      var SUNDAY_CUTOFF_HOUR = 14.5; // Last Sunday start slot 14:15 (clinic open until 15:00)
+
+      function buildUpcomingDays() {
+        var base = getKazanNow();
+        var list = [];
+        for (var i = 0; i < 7; i++) {
+          var d = new Date(base.getTime() + i * 86400000);
+          var dow = d.getDay();
+          var dd = d.getDate();
+          var mm = MONTHS_RU[d.getMonth()];
+          list.push({
+            id: 'day-' + i,
+            dow: dow,
+            isSunday: dow === 0,
+            wkLabel: i === 0 ? 'Сегодня' : WEEKDAYS_RU[dow],
+            dateLabel: dd + ' ' + mm,
+            fullLabel: (i === 0 ? 'Сегодня, ' : WEEKDAYS_RU[dow] + ', ') + dd + ' ' + mm
+          });
+        }
+        return list;
+      }
+
+      var bookingDays = buildUpcomingDays();
+      var bookingState = {
+        selectedDayIdx: 0,
+        selectedSlot: '10:30'
+      };
+
+      function slotToDecimal(slotStr) {
+        var parts = slotStr.split(':');
+        return Number(parts[0]) + Number(parts[1]) / 60;
+      }
+
+      function isSlotAllowed(dayObj, slotStr) {
+        if (!dayObj.isSunday) return true;
+        return slotToDecimal(slotStr) <= SUNDAY_CUTOFF_HOUR;
+      }
+
+      function renderBookingDaysAndSlots() {
+        var daysWrap = document.getElementById('booking-days');
+        var slotsWrap = document.getElementById('booking-slots');
+        var badge = document.getElementById('booking-hours-badge');
+        var note = document.getElementById('booking-slots-note');
+        var selectedLabel = document.getElementById('selected-slot-label');
+
+        var currentDay = bookingDays[bookingState.selectedDayIdx];
+
+        if (badge) {
+          if (currentDay.isSunday) {
+            badge.textContent = 'Воскресенье: 09:00–15:00';
+            badge.classList.add('is-sunday');
+          } else {
+            badge.textContent = 'Пн–Сб: 09:00–20:00';
+            badge.classList.remove('is-sunday');
+          }
+        }
+
+        if (note) {
+          note.textContent = currentDay.isSunday
+            ? 'Выбрано воскресенье: приём ведётся с 09:00 до 15:00, вечерние слоты недоступны.'
+            : 'Выбран день графика Пн–Сб: приём ведётся с 09:00 до 20:00.';
+        }
+
+        // Ensure current selectedSlot is valid for Sunday
+        if (!isSlotAllowed(currentDay, bookingState.selectedSlot)) {
+          bookingState.selectedSlot = '10:30';
+        }
+
+        if (selectedLabel) {
+          selectedLabel.textContent = 'Выбрано: ' + currentDay.dateLabel + ', ' + bookingState.selectedSlot;
+        }
+
+        daysWrap.innerHTML = '';
+        bookingDays.forEach(function (d, idx) {
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'day-btn';
+          btn.setAttribute('aria-pressed', idx === bookingState.selectedDayIdx ? 'true' : 'false');
+          btn.innerHTML =
+            '<span class="day-wk">' + d.wkLabel + '</span>' +
+            '<span class="day-num">' + d.dateLabel + '</span>' +
+            '<span class="day-mode">' + (d.isSunday ? '09–15' : '09–20') + '</span>';
+          btn.addEventListener('click', function () {
+            bookingState.selectedDayIdx = idx;
+            renderBookingDaysAndSlots();
+          });
+          daysWrap.appendChild(btn);
+        });
+
+        slotsWrap.innerHTML = '';
+        ALL_SLOTS.forEach(function (slotStr) {
+          var allowed = isSlotAllowed(currentDay, slotStr);
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'slot-btn';
+          btn.textContent = slotStr;
+          btn.disabled = !allowed;
+          btn.setAttribute('aria-pressed', allowed && bookingState.selectedSlot === slotStr ? 'true' : 'false');
+          if (!allowed) {
+            btn.title = 'В воскресенье клиника работает до 15:00';
+          }
+          btn.addEventListener('click', function () {
+            if (!allowed) return;
+            bookingState.selectedSlot = slotStr;
+            renderBookingDaysAndSlots();
+          });
+          slotsWrap.appendChild(btn);
+        });
+      }
+
+      var bookingForm = document.getElementById('booking-form');
+      var bookingError = document.getElementById('booking-error');
+
+      if (bookingForm) {
+        bookingForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var nameVal = document.getElementById('book-name').value.trim();
+          var phoneVal = document.getElementById('book-phone').value.trim();
+          var serviceVal = document.getElementById('book-service').value;
+          var commentVal = document.getElementById('book-comment').value.trim();
+
+          var digits = phoneVal.replace(/\D/g, '');
+          if (nameVal.length < 2) {
+            bookingError.textContent = 'Пожалуйста, укажите ваше имя для оформления записи.';
+            bookingError.hidden = false;
+            document.getElementById('book-name').focus();
+            return;
+          }
+          if (digits.length < 10) {
+            bookingError.textContent = 'Пожалуйста, введите корректный номер телефона (минимум 10 цифр) для подтверждения времени.';
+            bookingError.hidden = false;
+            document.getElementById('book-phone').focus();
+            return;
+          }
+
+          bookingError.hidden = true;
+          var dayObj = bookingDays[bookingState.selectedDayIdx];
+          var confirmList = document.getElementById('confirm-meta-list');
+          var rows = [
+            ['Пациент', nameVal],
+            ['Телефон', phoneVal],
+            ['Адрес клиники', 'г. Казань, ул. Четаева, 28 (бесплатная парковка)'],
+            ['Дата и время', dayObj.fullLabel + ' в ' + bookingState.selectedSlot],
+            ['Направление', serviceVal]
+          ];
+          if (calcState.attachedToBooking) {
+            rows.push(['Прикреплённая смета', calcState.attachedToBooking]);
+          }
+          if (commentVal) {
+            rows.push(['Комментарий', commentVal]);
+          }
+
+          confirmList.innerHTML = '';
+          rows.forEach(function (pair) {
+            var li = document.createElement('li');
+            li.innerHTML = '<span style="color: var(--ink-muted);">' + pair[0] + '</span><span style="font-weight: 600; text-align: right;">' + pair[1] + '</span>';
+            confirmList.appendChild(li);
+          });
+
+          document.getElementById('booking-form-wrap').hidden = true;
+          document.getElementById('booking-confirm').hidden = false;
+        });
+      }
+
+      document.getElementById('booking-reset-btn').addEventListener('click', function () {
+        document.getElementById('booking-confirm').hidden = true;
+        document.getElementById('booking-form-wrap').hidden = false;
+      });
+
+      /* -----------------------------------------------------------
+       * 7. Initial Hydration
+       * ----------------------------------------------------------- */
+      updateLiveClinicStatus();
+      renderProtocols();
+      updateCalculatorSummary();
+      renderSchemeUI();
+      renderTrustTab('doctors');
+      renderBookingDaysAndSlots();
+    })();
+  </script>
+</body>
+</html>
