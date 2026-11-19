@@ -1,0 +1,2860 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ЮНЛИДЕНТ, Санкт-Петербург - Калькулятор лечения, имплантации и налогового вычета 13%</title>
+  <meta name="description" content="Стоматологическая клиника ЮНЛИДЕНТ в Санкт-Петербурге (Василеостровский район, 12-я линия В.О., д. 31). Интерактивный калькулятор плана лечения, имплантации Alpha Bio, поэтапной оплаты и налогового вычета 13% по НК РФ, онлайн-запись на приём.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23155B54'/%3E%3Cpath d='M22 19c-4 0-7.2 3.4-7.2 7.8 0 4.9 2.2 9 3.6 14.4.9 3.6 2 8 4.6 8 2.2 0 3.3-3.4 4.8-7.2 1.2-3 2.4-4.5 4.2-4.5s3 1.5 4.2 4.5c1.5 3.8 2.6 7.2 4.8 7.2 2.6 0 3.7-4.4 4.6-8 1.4-5.4 3.6-9.5 3.6-14.4 0-4.4-3.2-7.8-7.2-7.8-3.2 0-5.8 1.9-10 1.9S25.2 19 22 19Z' fill='none' stroke='%23FAF9F6' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-cream: #FAF9F6;
+      --bg-stone: #F3F1EC;
+      --bg-surface: #FFFFFF;
+      --ink: #16222B;
+      --ink-muted: #465663;
+      --ink-soft: #60717E;
+      --accent: #155B54;
+      --accent-hover: #0F4640;
+      --accent-tint: #E6F0EE;
+      --accent-border: #BAD3CF;
+      --sand-tint: #F7F2E8;
+      --sand-border: #DECFA8;
+      --sand-ink: #66491C;
+      --border: #DFDAD0;
+      --border-strong: #C8C1B4;
+      --shadow-sm: 0 1px 3px rgba(22, 34, 43, 0.05);
+      --shadow-md: 0 12px 32px rgba(22, 34, 43, 0.07);
+      --font-serif: 'PT Serif', Georgia, serif;
+      --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --container-max: 1240px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink);
+      background-color: var(--bg-cream);
+      overflow-x: hidden;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit;
+    }
+
+    .mono,
+    .num {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -64px;
+      left: 16px;
+      z-index: 999;
+      padding: 10px 16px;
+      background-color: var(--accent);
+      color: #FFFFFF;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      text-decoration: none;
+      transition: top 160ms ease;
+    }
+
+    .skip-link:focus {
+      top: 12px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .utility-bar {
+      background-color: var(--ink);
+      color: #E7ECEF;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .utility-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 20px;
+      padding-top: 9px;
+      padding-bottom: 9px;
+    }
+
+    .utility-item,
+    .utility-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 18px;
+      min-width: 0;
+    }
+
+    .utility-item {
+      flex-wrap: nowrap;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .utility-item span {
+      min-width: 0;
+    }
+
+    .utility-item svg {
+      color: #8FC8C1;
+      margin-top: 2px;
+    }
+
+    .utility-link {
+      text-decoration: none;
+      color: #D2DCE2;
+      transition: color 160ms ease;
+    }
+
+    .utility-link:hover {
+      color: #FFFFFF;
+    }
+
+    .utility-phone {
+      color: #FFFFFF;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(250, 249, 246, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      flex: 0 1 auto;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .brand-name {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-link {
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: background-color 160ms ease, color 160ms ease;
+    }
+
+    .nav-link:hover {
+      background-color: var(--bg-stone);
+      color: var(--ink);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .btn-sm {
+      padding: 9px 14px;
+      font-size: 13px;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    .btn-outline {
+      background-color: var(--bg-surface);
+      color: var(--ink);
+      border-color: var(--border-strong);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--bg-stone);
+      border-color: var(--ink-soft);
+    }
+
+    .btn-subtle {
+      background-color: var(--accent-tint);
+      color: var(--accent);
+      border-color: var(--accent-border);
+    }
+
+    .btn-subtle:hover {
+      background-color: #D9E8E5;
+    }
+
+    .hero {
+      padding-top: 52px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--border);
+      background-image: linear-gradient(180deg, #FAF9F6 0%, #F4F1EA 100%);
+    }
+
+    .hero-grid > *,
+    .calc-layout > *,
+    .booking-grid > * {
+      min-width: 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.92fr);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background-color: var(--accent-tint);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin-top: 0;
+      color: var(--ink);
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 4.1vw, 48px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+      overflow-wrap: break-word;
+    }
+
+    .hero-lead {
+      font-size: 17px;
+      color: var(--ink-muted);
+      margin-top: 0;
+      margin-bottom: 26px;
+      max-width: 62ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 0;
+    }
+
+    .metric-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 14px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .metric-card dt {
+      font-size: 12px;
+      color: var(--ink-soft);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .metric-card dd {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .hero-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-card-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--ink-soft);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      background-color: var(--accent-tint);
+      color: var(--accent);
+      border: 1px solid var(--accent-border);
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+
+    .dossier-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 18px 0;
+      display: grid;
+      gap: 13px;
+    }
+
+    .dossier-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+
+    .dossier-list li svg {
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
+    .dossier-list strong {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .coupon-box {
+      background-color: var(--sand-tint);
+      border: 1px solid var(--sand-border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .coupon-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--sand-ink);
+      margin-bottom: 2px;
+    }
+
+    .coupon-desc {
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    section.band {
+      padding-top: 64px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section.band-stone {
+      background-color: var(--bg-stone);
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 3vw, 34px);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .section-lead {
+      margin: 0;
+      color: var(--ink-muted);
+      max-width: 66ch;
+      font-size: 15px;
+    }
+
+    .preset-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .preset-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-soft);
+      margin-right: 4px;
+    }
+
+    .preset-btn {
+      padding: 8px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+
+    .preset-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .preset-btn.is-active {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .calc-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.38fr) minmax(0, 0.92fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel-head {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .panel-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .tab-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 14px 22px;
+      border-bottom: 1px solid var(--border);
+      background-color: #FBF9F5;
+    }
+
+    .cat-tab {
+      padding: 7px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      background-color: transparent;
+      color: var(--ink-muted);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+    }
+
+    .cat-tab:hover {
+      background-color: var(--bg-stone);
+      color: var(--ink);
+    }
+
+    .cat-tab.is-active {
+      background-color: var(--accent-tint);
+      border-color: var(--accent-border);
+      color: var(--accent);
+    }
+
+    .service-list {
+      display: block;
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px 20px;
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+      transition: background-color 150ms ease;
+    }
+
+    .service-row:last-child {
+      border-bottom: 0;
+    }
+
+    .service-row.is-selected {
+      background-color: #F3FAF8;
+    }
+
+    .service-row.is-hidden {
+      display: none;
+    }
+
+    .service-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 10px;
+      margin-bottom: 4px;
+    }
+
+    .stage-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      background-color: var(--bg-stone);
+      color: var(--ink-muted);
+      border: 1px solid var(--border);
+    }
+
+    .therapy-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      background-color: var(--sand-tint);
+      color: var(--sand-ink);
+      border: 1px solid var(--sand-border);
+    }
+
+    .service-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .service-desc {
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin-bottom: 8px;
+    }
+
+    .variant-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .variant-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-muted);
+    }
+
+    .variant-select {
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 600;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .service-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      min-width: 156px;
+    }
+
+    .service-price {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .stepper {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
+      overflow: hidden;
+    }
+
+    .step-btn {
+      width: 34px;
+      height: 34px;
+      border: 0;
+      background-color: transparent;
+      color: var(--ink);
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 140ms ease;
+    }
+
+    .step-btn:hover {
+      background-color: var(--bg-stone);
+    }
+
+    .step-input {
+      width: 44px;
+      height: 34px;
+      border: 0;
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      text-align: center;
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      background-color: var(--bg-surface);
+    }
+
+    .step-input::-webkit-inner-spin-button,
+    .step-input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .calc-options {
+      padding: 20px 22px;
+      border-top: 1px solid var(--border);
+      background-color: #FBF9F5;
+      border-bottom-left-radius: var(--radius-lg);
+      border-bottom-right-radius: var(--radius-lg);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .field-group-full {
+      grid-column: 1 / -1;
+    }
+
+    .field-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .field-control {
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 500;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    .field-control:focus,
+    .variant-select:focus,
+    .step-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(21, 91, 84, 0.14);
+    }
+
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background-color: var(--bg-surface);
+    }
+
+    .check-row input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--accent);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .check-row label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .summary-card {
+      position: sticky;
+      top: 86px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .summary-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .summary-heading {
+      font-family: var(--font-serif);
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .summary-count {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 12px;
+      color: var(--ink-soft);
+      font-weight: 600;
+    }
+
+    .selected-items {
+      list-style: none;
+      margin: 0 0 16px 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .selected-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 13px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .selected-item-name {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .selected-item-qty {
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+
+    .selected-item-sum {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .empty-state {
+      padding: 18px;
+      text-align: center;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-stone);
+      color: var(--ink-muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .totals-box {
+      display: grid;
+      gap: 10px;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background-color: #F8F7F3;
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .total-line {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+
+    .total-line .mono,
+    .stage-row .mono,
+    .installment-top .mono {
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .total-line.is-discount {
+      color: var(--sand-ink);
+      font-weight: 600;
+    }
+
+    .total-line.is-tax {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .total-line.is-main {
+      padding-top: 10px;
+      border-top: 1px solid var(--border-strong);
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .total-line.is-net {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-tint);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .stages-box {
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background-color: var(--bg-surface);
+      margin-bottom: 16px;
+    }
+
+    .stages-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .stage-bar {
+      display: flex;
+      height: 8px;
+      border-radius: 999px;
+      overflow: hidden;
+      background-color: var(--bg-stone);
+      margin-bottom: 12px;
+      gap: 2px;
+    }
+
+    .stage-seg-1 {
+      background-color: #155B54;
+      transition: width 200ms ease;
+    }
+
+    .stage-seg-2 {
+      background-color: #46837C;
+      transition: width 200ms ease;
+    }
+
+    .stage-seg-3 {
+      background-color: #8EB3AE;
+      transition: width 200ms ease;
+    }
+
+    .stage-rows {
+      display: grid;
+      gap: 7px;
+      font-size: 13px;
+    }
+
+    .stage-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--ink-muted);
+    }
+
+    .stage-dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+
+    .installment-box {
+      padding: 13px 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--sand-tint);
+      border: 1px solid var(--sand-border);
+      margin-bottom: 18px;
+      font-size: 13px;
+    }
+
+    .installment-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      font-weight: 800;
+      color: var(--sand-ink);
+      margin-bottom: 4px;
+    }
+
+    .installment-note {
+      color: var(--ink-muted);
+      font-size: 12px;
+    }
+
+    .summary-actions {
+      display: grid;
+      gap: 10px;
+    }
+
+    .copy-feedback {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      text-align: center;
+      min-height: 18px;
+    }
+
+    .table-wrap {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow-x: auto;
+      box-shadow: var(--shadow-sm);
+    }
+
+    table.price-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px;
+    }
+
+    .price-table th,
+    .price-table td {
+      padding: 13px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .price-table th {
+      background-color: #FBF9F5;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-soft);
+      font-weight: 700;
+    }
+
+    .price-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .price-table tr:hover td {
+      background-color: #FAF8F4;
+    }
+
+    .price-val {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+      white-space: nowrap;
+      color: var(--ink);
+    }
+
+    .cards-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .info-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .info-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: var(--accent-tint);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .info-card h3 {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      margin-bottom: 2px;
+    }
+
+    .info-card p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+
+    .info-list {
+      margin: 4px 0 0 0;
+      padding-left: 18px;
+      font-size: 13px;
+      color: var(--ink-muted);
+      display: grid;
+      gap: 5px;
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .booking-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .plan-preview {
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--accent-tint);
+      border: 1px solid var(--accent-border);
+      margin-bottom: 18px;
+      font-size: 13px;
+    }
+
+    .plan-preview-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .plan-preview-body {
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .booking-success {
+      display: none;
+      margin-top: 16px;
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+      background-color: var(--accent-tint);
+      border: 1px solid var(--accent-border);
+      color: var(--ink);
+    }
+
+    .booking-success.is-visible {
+      display: block;
+    }
+
+    .booking-success-title {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .booking-error {
+      display: none;
+      grid-column: 1 / -1;
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--sand-tint);
+      border: 1px solid var(--sand-border);
+      color: var(--sand-ink);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .booking-error.is-visible {
+      display: block;
+    }
+
+    .map-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .map-svg-wrap {
+      background-color: #EFECE4;
+      border-bottom: 1px solid var(--border);
+      padding: 16px;
+    }
+
+    .contact-details {
+      padding: 22px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .contact-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .contact-key {
+      color: var(--ink-soft);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .contact-val {
+      text-align: right;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .contact-val a {
+      text-decoration: none;
+      color: var(--accent);
+    }
+
+    .contact-val a:hover {
+      text-decoration: underline;
+    }
+
+    .site-footer {
+      background-color: var(--ink);
+      color: #D5DFE5;
+      padding-top: 38px;
+      padding-bottom: 38px;
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px 28px;
+    }
+
+    .footer-concept {
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+
+    .footer-meta {
+      font-size: 13px;
+      color: #A7B8C4;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 13px;
+    }
+
+    .footer-links a {
+      color: #D5DFE5;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 1060px) {
+      .hero-grid,
+      .calc-layout,
+      .booking-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .summary-card {
+        position: static;
+      }
+
+      .cards-grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .main-nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .brand-sub {
+        display: none;
+      }
+
+      .header-actions .btn-sm {
+        padding: 9px 12px;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      .hero {
+        padding-top: 32px;
+        padding-bottom: 36px;
+      }
+
+      .hero-card,
+      .summary-card {
+        padding: 18px;
+      }
+
+      .hero-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .calc-options,
+      .booking-form,
+      .cards-grid-4 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .service-row {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 14px 16px;
+      }
+
+      .service-row > * {
+        min-width: 0;
+      }
+
+      .panel-head,
+      .tab-row,
+      .calc-options {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .service-controls {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .header-actions .btn-outline {
+        display: none;
+      }
+
+      .contact-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+      }
+
+      .contact-val {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#calculator">Перейти к калькулятору лечения</a>
+
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="utility-item">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21s-6-5.4-6-10a6 6 0 1 1 12 0c0 4.6-6 10-6 10Z"/>
+          <circle cx="12" cy="11" r="2.2"/>
+        </svg>
+        <span>199178, Санкт-Петербург, 12-я линия В.О., д. 31 (м. Василеостровская, вход под арку, код 49)</span>
+      </div>
+      <div class="utility-links">
+        <span class="mono">Пн - Пт: 09:00 - 20:00 · Сб: 11:00 - 18:00</span>
+        <a href="mailto:3260909@mail.ru" class="utility-link">3260909@mail.ru</a>
+        <a href="tel:+78123260909" class="utility-phone mono">+7 (812) 326-09-09</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="Стоматологическая клиника ЮНЛИДЕНТ, Санкт-Петербург">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="10" fill="#155B54"/>
+            <path d="M13.5 12.5c-2.6 0-4.5 2.1-4.5 5 0 3.2 1.4 5.8 2.3 9.3.6 2.3 1.3 5.2 3 5.2 1.4 0 2.1-2.3 3.1-4.8.8-1.9 1.5-3 2.6-3s1.8 1.1 2.6 3c1 2.5 1.7 4.8 3.1 4.8 1.7 0 2.4-2.9 3-5.2.9-3.5 2.3-6.1 2.3-9.3 0-2.9-1.9-5-4.5-5-2.1 0-3.8 1.2-6.5 1.2s-4.4-1.2-6.5-1.2Z" stroke="#FAF9F6" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">ЮНЛИДЕНТ</span>
+          <span class="brand-sub">Стоматология на Васильевском острове</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Разделы сайта">
+        <a href="#calculator" class="nav-link">Калькулятор</a>
+        <a href="#pricelist" class="nav-link">Тарифы</a>
+        <a href="#clinic" class="nav-link">Направления</a>
+        <a href="#booking" class="nav-link">Запись и карта В.О.</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:+78123260909" class="btn btn-outline btn-sm mono">+7 (812) 326-09-09</a>
+        <a href="#calculator" class="btn btn-primary btn-sm">Рассчитать план</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            Василеостровский район · 12-я линия В.О., д. 31
+          </div>
+          <h1>План лечения, имплантации и налогового вычета 13% в клинике ЮНЛИДЕНТ</h1>
+          <p class="hero-lead">
+            Официальные тарифы клиники «ЮНЛИДЕНТ» в 10 минутах от метро «Василеостровская»: в стоимость каждой позиции уже включены все вспомогательные и сопутствующие работы. Сформируйте предварительный маршрут лечения, рассчитайте поэтапную оплату и возврат НДФЛ по ст. 219 НК РФ до визита к врачу.
+          </p>
+          <div class="hero-actions">
+            <a href="#calculator" class="btn btn-primary">
+              <span>Собрать план лечения</span>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6"/>
+              </svg>
+            </a>
+            <a href="#booking" class="btn btn-outline">Запись на бесплатную консультацию</a>
+          </div>
+
+          <dl class="hero-metrics" aria-label="Ключевые условия клиники ЮНЛИДЕНТ">
+            <div class="metric-card">
+              <dt>Консультация врача</dt>
+              <dd class="mono">0 ₽</dd>
+            </div>
+            <div class="metric-card">
+              <dt>Имплантат Alpha Bio</dt>
+              <dd class="mono">17 000 ₽</dd>
+            </div>
+            <div class="metric-card">
+              <dt>Налоговый вычет</dt>
+              <dd class="mono">13% НК РФ</dd>
+            </div>
+            <div class="metric-card">
+              <dt>Рассрочка 0%</dt>
+              <dd class="mono">3 - 12 мес.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <aside class="hero-card" aria-label="Клинический паспорт и ориентиры">
+          <div class="hero-card-header">
+            <span class="card-tag mono">ООО «ЮВЕЛИДЕНТ» · ЛИЦЕНЗИЯ № 78-01-001078</span>
+            <span class="status-pill mono">ОГРН 1097847186788</span>
+          </div>
+          <h2 class="card-title">Открытые стандарты приёма</h2>
+          <ul class="dossier-list">
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+              <div>
+                <strong>Окончательная стоимость без скрытых доплат</strong>
+                <span>На официальном прайс-листе клиники в цену уже заложены анестезия, материалы и вспомогательные манипуляции.</span>
+              </div>
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+              <div>
+                <strong>Письменная гарантия и документы на вычет</strong>
+                <span>Выдаётся письменная гарантия на лечение, договор и справка установленной формы для возврата 13% НДФЛ.</span>
+              </div>
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+              <div>
+                <strong>Удобный проход на 12-й линии В.О., д. 31</strong>
+                <span>Вход с линии под арку, код калитки «49». Экстренная линия во внерабочее время: +7 (812) 930-65-55.</span>
+              </div>
+            </li>
+          </ul>
+
+          <div class="coupon-box">
+            <div>
+              <div class="coupon-title">Купон на первичное посещение: скидка 20% на лечение</div>
+              <div class="coupon-desc">Учитывается в калькуляторе и прикрепляется к онлайн-записи вместо бумажного купона.</div>
+            </div>
+            <button type="button" class="btn btn-subtle btn-sm" id="heroCouponBtn">Применить 20%</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="band" id="calculator">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">Интерактивный модуль 01</span>
+            <h2 class="section-title">Калькулятор плана лечения, имплантации и налогового вычета 13%</h2>
+            <p class="section-lead">
+              Выберите процедуры из реального прейскуранта клиники ЮНЛИДЕНТ, укажите сложность при наличии ценового диапазона, а также параметры вычета и графика оплаты.
+            </p>
+          </div>
+        </div>
+
+        <div class="preset-bar" aria-label="Типовые клинические сценарии">
+          <span class="preset-label">Готовые сценарии:</span>
+          <button type="button" class="preset-btn is-active" data-preset="implant">Имплантация Alpha Bio под ключ</button>
+          <button type="button" class="preset-btn" data-preset="caries">Санация: гигиена и кариес (2 зуба)</button>
+          <button type="button" class="preset-btn" data-preset="endo">Пульпит, вкладка и металлокерамика</button>
+          <button type="button" class="preset-btn" data-preset="prosthetic">Удаление и съёмный протез</button>
+          <button type="button" class="preset-btn" data-preset="clear">Очистить смету</button>
+        </div>
+
+        <div class="calc-layout">
+          <div class="panel">
+            <div class="panel-head">
+              <h3 class="panel-title">Услуги по прейскуранту клиники</h3>
+              <span class="mono summary-count" id="catalogFilterHint">Все направления (12 позиций)</span>
+            </div>
+
+            <div class="tab-row" role="tablist" aria-label="Фильтр направлений">
+              <button type="button" class="cat-tab is-active" data-cat="all" role="tab" aria-selected="true">Все услуги</button>
+              <button type="button" class="cat-tab" data-cat="implant" role="tab" aria-selected="false">Имплантация и хирургия</button>
+              <button type="button" class="cat-tab" data-cat="therapy" role="tab" aria-selected="false">Терапия и гигиена</button>
+              <button type="button" class="cat-tab" data-cat="ortho" role="tab" aria-selected="false">Протезирование</button>
+            </div>
+
+            <div class="service-list" id="serviceList"></div>
+
+            <div class="calc-options">
+              <div class="field-group field-group-full">
+                <div class="check-row">
+                  <input type="checkbox" id="calcFirstVisit" autocomplete="off">
+                  <label for="calcFirstVisit">Первичное посещение: применить скидку 20% на терапевтическое лечение (гигиена, кариес, пульпит, периодонтит)</label>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="calcTaxMode">Налоговый вычет 13% (ст. 219 НК РФ)</label>
+                <select class="field-control" id="calcTaxMode" autocomplete="off">
+                  <option value="standard">Стандартное лечение (лимит базы 150 000 ₽/год, возврат до 19 500 ₽)</option>
+                  <option value="expensive">Дорогостоящее лечение (код 2, вычет 13% без лимита базы)</option>
+                  <option value="none">Без расчёта налогового вычета</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="calcNdfl">Удержанный НДФЛ за год (₽)</label>
+                <input class="field-control mono" type="number" id="calcNdfl" min="0" max="5000000" step="1000" value="95000" autocomplete="off">
+              </div>
+
+              <div class="field-group field-group-full">
+                <label class="field-label" for="calcPaymentPlan">Режим оплаты и рассрочка клиники</label>
+                <select class="field-control" id="calcPaymentPlan" autocomplete="off">
+                  <option value="staged">Поэтапная оплата по фактическим визитам (Этап 1 / Этап 2 / Этап 3)</option>
+                  <option value="inst3">Беспроцентная рассрочка 3 месяца (0% переплаты)</option>
+                  <option value="inst6">Беспроцентная рассрочка 6 месяцев (0% переплаты)</option>
+                  <option value="inst12">Беспроцентная рассрочка 12 месяцев (0% переплаты)</option>
+                  <option value="credit24">Лечение в кредит на 24 месяца (ориентировочно, 1 - 3 года)</option>
+                  <option value="credit36">Лечение в кредит на 36 месяцев (ориентировочно, 1 - 3 года)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <aside class="summary-card" aria-label="Итоговая смета и расчёт налогового вычета">
+            <div class="summary-top">
+              <div class="summary-heading">Предварительная смета</div>
+              <div class="summary-count" id="summaryCount">0 позиций</div>
+            </div>
+
+            <div class="empty-state" id="summaryEmpty">
+              Выберите услуги из каталога слева или активируйте готовый клинический сценарий.
+            </div>
+
+            <ul class="selected-items" id="summaryItems"></ul>
+
+            <div class="totals-box">
+              <div class="total-line">
+                <span>Базовая стоимость по прейскуранту</span>
+                <span class="mono" id="sumBase">0 ₽</span>
+              </div>
+              <div class="total-line is-discount" id="discountRow">
+                <span>Скидка 20% (первичное лечение)</span>
+                <span class="mono" id="sumDiscount">0 ₽</span>
+              </div>
+              <div class="total-line is-main">
+                <span>Итого к оплате в клинике</span>
+                <span class="mono" id="sumPayable">0 ₽</span>
+              </div>
+              <div class="total-line is-tax">
+                <span id="taxCaption">Налоговый вычет 13%</span>
+                <span class="mono" id="sumTax">0 ₽</span>
+              </div>
+              <div class="total-line is-net">
+                <span>Фактическая нагрузка после вычета</span>
+                <span class="mono" id="sumNet">0 ₽</span>
+              </div>
+            </div>
+
+            <div class="stages-box">
+              <div class="stages-title">
+                <span>Поэтапный график оплаты</span>
+                <span class="mono" id="stagesNote">3 клинических этапа</span>
+              </div>
+              <div class="stage-bar" aria-hidden="true">
+                <div class="stage-seg-1" id="barStage1" style="width: 0%;"></div>
+                <div class="stage-seg-2" id="barStage2" style="width: 0%;"></div>
+                <div class="stage-seg-3" id="barStage3" style="width: 0%;"></div>
+              </div>
+              <div class="stage-rows">
+                <div class="stage-row">
+                  <span><span class="stage-dot" style="background-color: #155B54;"></span>Этап 1. Гигиена и терапия</span>
+                  <span class="mono" id="sumStage1">0 ₽</span>
+                </div>
+                <div class="stage-row">
+                  <span><span class="stage-dot" style="background-color: #46837C;"></span>Этап 2. Хирургия и Alpha Bio</span>
+                  <span class="mono" id="sumStage2">0 ₽</span>
+                </div>
+                <div class="stage-row">
+                  <span><span class="stage-dot" style="background-color: #8EB3AE;"></span>Этап 3. Протезирование</span>
+                  <span class="mono" id="sumStage3">0 ₽</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="installment-box" id="installmentBox">
+              <div class="installment-top">
+                <span id="instTitle">Поэтапная оплата по визитам</span>
+                <span class="mono" id="instAmount">0 ₽</span>
+              </div>
+              <div class="installment-note" id="instNote">
+                Оплата вносится по завершении каждого клинического этапа. Доступны также отсрочка платежа и 0% рассрочка от 3 до 12 месяцев.
+              </div>
+            </div>
+
+            <div class="summary-actions">
+              <button type="button" class="btn btn-primary" id="transferToBookingBtn">
+                <span>Перенести план в запись на В.О.</span>
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6"/>
+                </svg>
+              </button>
+              <button type="button" class="btn btn-outline" id="copyPlanBtn">Скопировать смету текстом</button>
+              <div class="copy-feedback" id="copyFeedback" role="status" aria-live="polite"></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-stone" id="pricelist">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">Официальный прейскурант</span>
+            <h2 class="section-title">Стоимость основных стоматологических услуг ЮНЛИДЕНТ</h2>
+            <p class="section-lead">
+              Данные актуального прайс-листа клиники (stomatolog-spb.ru/stoimost/). В указанную стоимость уже включены все вспомогательные и сопутствующие работы, то есть сумма является окончательной.
+            </p>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="price-table">
+            <thead>
+              <tr>
+                <th>Наименование услуги</th>
+                <th>Направление</th>
+                <th>Стоимость (официально)</th>
+                <th>Действие</th>
+              </tr>
+            </thead>
+            <tbody id="priceTableBody">
+              <tr>
+                <td>Первичная консультация специалиста</td>
+                <td>Все отделения</td>
+                <td class="price-val">Бесплатно (0 ₽)</td>
+                <td><a href="#booking" class="btn btn-subtle btn-sm">Записаться</a></td>
+              </tr>
+              <tr>
+                <td>Снятие зубных отложений с обеих челюстей</td>
+                <td>Профилактика и гигиена</td>
+                <td class="price-val">2 000 ₽</td>
+                <td><button type="button" class="btn btn-outline btn-sm add-from-table" data-id="hygiene">Добавить в план</button></td>
+              </tr>
+              <tr>
+                <td>Лечение кариеса</td>
+                <td>Терапевтическая стоматология</td>
+                <td class="price-val">2 500 ₽</td>
+                <td><button type="button" class="btn btn-outline btn-sm add-from-table" data-id="caries">Добавить в план</button></td>
+              </tr>
+              <tr>
+                <td>Лечение пульпита</td>
+                <td>Терапевтическая стоматология</td>
+                <td class="price-val">6 000 - 9 000 ₽</td>
+                <td><button type="button" class="btn btn-outline btn-sm add-from-table" data-id="pulpitis">Добавить в план</button></td>
+              </tr>
+              <tr>
+                <td>Лечение периодонтита</td>
+                <td>Терапевтическая стоматология</td>
+                <td class="price-val">6 500 - 10 000 ₽</td>
+                <td><button type="button" class="btn btn-outline btn-sm add-from-table" data-id="periodontitis">Добавить в план</button></td>
+              </tr>
+              <tr>
+                <td>Установка вкладки</td>
+                <td>Ортопедия и подготовка</td>
+                <td class="price-val">4 000 ₽</td>
+                <td><button type="button" class="btn btn-outline btn-sm add-from-table" data-id="inlay">Добавить в план</button></td>
+              </tr>
+              <tr>
+                <td>Установка цельнолитой коронки</td>
+                <td>Ортопедическая стоматология</td>
+                <td class="price-val">6 000 ₽</td>
+                <td><button type="button" class="btn btn-outline btn-sm add-from-table" data-id="cast_crown">Добавить в план</button></td>
+              </tr>
+              <tr>
+                <td>Установка металлокерамической коронки</td>
+                <td>Ортопедическая стоматология</td>
+                <td class="price-val">8 500 ₽</td>
+                <td><button type="button" class="btn btn-outline btn-sm add-from-table" data-id="mk_crown">Добавить в план</button></td>
+              </tr>
+              <tr>
+                <td>Изготовление съёмного пластинчатого протеза</td>
+                <td>Ортопедическая стоматология</td>
+                <td class="price-val">17 000 ₽</td>
+                <td><button type="button" class="btn btn-outline btn-sm add-from-table" data-id="removable">Добавить в план</button></td>
+              </tr>
+              <tr>
+                <td>Установка имплантата Alpha Bio</td>
+                <td>Хирургия и имплантация</td>
+                <td class="price-val">17 000 ₽</td>
+                <td><button type="button" class="btn btn-outline btn-sm add-from-table" data-id="implant_alpha">Добавить в план</button></td>
+              </tr>
+              <tr>
+                <td>Установка металлокерамической коронки на имплантат</td>
+                <td>Имплантационное протезирование</td>
+                <td class="price-val">20 000 ₽</td>
+                <td><button type="button" class="btn btn-outline btn-sm add-from-table" data-id="implant_crown">Добавить в план</button></td>
+              </tr>
+              <tr>
+                <td>Удаление зуба</td>
+                <td>Хирургическая стоматология</td>
+                <td class="price-val">1 000 - 3 000 ₽</td>
+                <td><button type="button" class="btn btn-outline btn-sm add-from-table" data-id="extract">Добавить в план</button></td>
+              </tr>
+              <tr>
+                <td>Удаление зуба мудрости</td>
+                <td>Хирургическая стоматология</td>
+                <td class="price-val">3 000 - 6 000 ₽</td>
+                <td><button type="button" class="btn btn-outline btn-sm add-from-table" data-id="wisdom">Добавить в план</button></td>
+              </tr>
+              <tr>
+                <td>Отбеливание Opalescence Boost</td>
+                <td>Эстетическая профилактика</td>
+                <td class="price-val">По осмотру эмали</td>
+                <td><a href="#booking" class="btn btn-subtle btn-sm">Уточнить на приёме</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="clinic">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">Клинические отделения и технологии</span>
+            <h2 class="section-title">Направления работы стоматологии ЮНЛИДЕНТ</h2>
+            <p class="section-lead">
+              Материалы ведущих производителей 3M, Kerr, Dentsply и Bisco, современная стерилизация, одноразовый инструментарий и местная анестезия нового поколения.
+            </p>
+          </div>
+        </div>
+
+        <div class="cards-grid-4">
+          <article class="info-card">
+            <div class="info-card-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M12 3v18M3 12h18"/>
+              </svg>
+            </div>
+            <h3>Терапевтическая стоматология</h3>
+            <p>Лечение простого и осложнённого кариеса светоотверждаемыми композитами, близкими по прочности к природной эмали.</p>
+            <ul class="info-list">
+              <li>Эндодонтическое лечение и перелечивание каналов</li>
+              <li>Усиление стенок зуба стекловолоконными штифтами</li>
+              <li>Консервативное лечение периодонтита и кист</li>
+            </ul>
+          </article>
+
+          <article class="info-card">
+            <div class="info-card-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24">
+                <rect x="4" y="5" width="16" height="14" rx="3"/>
+                <path d="M8 12h8"/>
+              </svg>
+            </div>
+            <h3>Ортопедия и протезирование</h3>
+            <p>Восстановление зубного ряда, высоты прикуса и естественной эстетики фронтальной и жевательной зон.</p>
+            <ul class="info-list">
+              <li>Металлокерамика, цельнолитые коронки, вкладки</li>
+              <li>Бюгельные конструкции с кламмерами и замками</li>
+              <li>Съёмные пластинчатые и мягкие нейлоновые протезы</li>
+            </ul>
+          </article>
+
+          <article class="info-card">
+            <div class="info-card-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="8"/>
+                <path d="M12 8v8M8 12h8"/>
+              </svg>
+            </div>
+            <h3>Хирургия и имплантация</h3>
+            <p>Амбулаторная хирургия под эффективной местной анестезией без болевого дискомфорта.</p>
+            <ul class="info-list">
+              <li>Установка систем имплантатов Alpha Bio</li>
+              <li>Металлокерамическое протезирование на имплантатах</li>
+              <li>Удаление ретинированных и дистопированных зубов мудрости</li>
+            </ul>
+          </article>
+
+          <article class="info-card">
+            <div class="info-card-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M12 3l7 4v5c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V7l7-4Z"/>
+                <path d="M9.5 12l2 2 3.5-3.5"/>
+              </svg>
+            </div>
+            <h3>Стерильность и финансовые условия</h3>
+            <p>Контроль стерильности на каждом этапе, официальная документация и гибкие формы расчёта.</p>
+            <ul class="info-list">
+              <li>Беспроцентная рассрочка от 3 месяцев до 1 года</li>
+              <li>Кредитная программа от 1 года до 3 лет и отсрочка оплаты</li>
+              <li>Пакет документов для налогового вычета 13%</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-stone" id="booking">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">Интерактивный модуль 02</span>
+            <h2 class="section-title">Запись на приём на Васильевском острове</h2>
+            <p class="section-lead">
+              Прикрепите сформированный расчёт лечения к заявке или запишитесь на бесплатную первичную консультацию по адресу 12-я линия В.О., д. 31.
+            </p>
+          </div>
+        </div>
+
+        <div class="booking-grid">
+          <div class="panel" style="padding: 24px;">
+            <div class="plan-preview" id="bookingPlanPreview">
+              <div class="plan-preview-head">
+                <span>Прикреплённый расчёт из калькулятора</span>
+                <span class="mono" id="bookingPlanSum">0 ₽</span>
+              </div>
+              <div class="plan-preview-body" id="bookingPlanDetails">
+                Позиции в калькуляторе пока не выбраны. Вы можете записаться на бесплатную первичную консультацию и осмотр.
+              </div>
+            </div>
+
+            <form class="booking-form" id="bookingForm" novalidate>
+              <div class="booking-error" id="bookingError" role="alert"></div>
+
+              <div class="field-group">
+                <label class="field-label" for="patientName">Имя и фамилия пациента</label>
+                <input class="field-control" type="text" id="patientName" name="name" placeholder="Например: Анна Смирнова" autocomplete="name" required>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="patientPhone">Контактный телефон</label>
+                <input class="field-control mono" type="tel" id="patientPhone" name="tel" placeholder="+7 (921) 000-00-00" autocomplete="tel" required>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="patientEmail">Электронная почта (для отправки сметы)</label>
+                <input class="field-control" type="email" id="patientEmail" name="email" placeholder="name@example.ru" autocomplete="email">
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="visitProfile">Профиль приёма</label>
+                <select class="field-control" id="visitProfile" name="profile" autocomplete="off">
+                  <option value="Бесплатная первичная консультация (общий осмотр)">Бесплатная первичная консультация (общий осмотр)</option>
+                  <option value="Стоматолог-терапевт (кариес, эндодонтия, гигиена)">Стоматолог-терапевт (кариес, эндодонтия, гигиена)</option>
+                  <option value="Хирург-имплантолог (Alpha Bio, удаление зуба)">Хирург-имплантолог (Alpha Bio, удаление зуба)</option>
+                  <option value="Стоматолог-ортопед (коронки, протезирование)">Стоматолог-ортопед (коронки, протезирование)</option>
+                </select>
+              </div>
+
+              <div class="field-group field-group-full">
+                <label class="field-label" for="preferredDay">Удобное окно визита (12-я линия В.О., 31)</label>
+                <select class="field-control" id="preferredDay" name="slot" autocomplete="off">
+                  <option value="Будние дни, утро (09:00 - 13:30)">Будние дни, утро (09:00 - 13:30)</option>
+                  <option value="Будние дни, день (13:30 - 17:00)">Будние дни, день (13:30 - 17:00)</option>
+                  <option value="Будние дни, вечер (17:00 - 20:00)">Будние дни, вечер (17:00 - 20:00)</option>
+                  <option value="Суббота по предварительной записи (11:00 - 18:00)">Суббота по предварительной записи (11:00 - 18:00)</option>
+                </select>
+              </div>
+
+              <div class="field-group field-group-full">
+                <div class="check-row">
+                  <input type="checkbox" id="bookingTaxDocs" autocomplete="off" checked>
+                  <label for="bookingTaxDocs">Подготовить в клинике памятку по документам для налогового вычета 13% и рассрочке 0%</label>
+                </div>
+              </div>
+
+              <div class="field-group field-group-full">
+                <label class="field-label" for="visitComment">Комментарий или жалобы (при необходимости)</label>
+                <textarea class="field-control" id="visitComment" name="comment" rows="3" placeholder="Укажите удобные дни или уточните интересующие процедуры" autocomplete="off"></textarea>
+              </div>
+
+              <div class="field-group field-group-full">
+                <div class="check-row">
+                  <input type="checkbox" id="consentCheck" autocomplete="off" required>
+                  <label for="consentCheck">Согласен на обработку персональных данных согласно 152-ФЗ (ООО «ЮВЕЛИДЕНТ»)</label>
+                </div>
+              </div>
+
+              <div class="field-group field-group-full">
+                <button type="submit" class="btn btn-primary">Отправить заявку на приём</button>
+              </div>
+            </form>
+
+            <div class="booking-success" id="bookingSuccess" role="status" aria-live="polite">
+              <div class="booking-success-title">Заявка сформирована в демонстрационном режиме</div>
+              <div id="bookingSuccessText"></div>
+            </div>
+          </div>
+
+          <aside class="map-card" aria-label="Схема проезда и контакты клиники ЮНЛИДЕНТ">
+            <div class="map-svg-wrap">
+              <svg viewBox="0 0 560 320" width="100%" role="img" aria-label="Схема квартала Васильевского острова: путь от метро Василеостровская до 12-й линии В.О., д. 31">
+                <rect width="560" height="320" rx="12" fill="#F6F3EB"/>
+                <rect x="0" y="54" width="560" height="22" fill="#E3DDD0"/>
+                <rect x="0" y="236" width="560" height="26" fill="#E3DDD0"/>
+                <rect x="86" y="0" width="22" height="320" fill="#E3DDD0"/>
+                <rect x="228" y="0" width="24" height="320" fill="#E3DDD0"/>
+                <rect x="378" y="0" width="24" height="320" fill="#E3DDD0"/>
+                <rect x="498" y="0" width="18" height="320" fill="#E3DDD0"/>
+
+                <text x="18" y="69" fill="#465663" font-family="Manrope, sans-serif" font-size="11" font-weight="700">Малый проспект В.О.</text>
+                <text x="18" y="253" fill="#465663" font-family="Manrope, sans-serif" font-size="12" font-weight="700">Средний проспект В.О.</text>
+
+                <text transform="translate(244 205) rotate(-90)" fill="#465663" font-family="Manrope, sans-serif" font-size="11" font-weight="700">12-я линия В.О.</text>
+                <text transform="translate(394 205) rotate(-90)" fill="#465663" font-family="Manrope, sans-serif" font-size="11" font-weight="700">8-9-я линии В.О.</text>
+
+                <rect x="260" y="114" width="76" height="58" rx="6" fill="#FFFFFF" stroke="#C8C1B4" stroke-width="1.5"/>
+                <text x="298" y="138" text-anchor="middle" fill="#16222B" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">д. 31</text>
+                <text x="298" y="154" text-anchor="middle" fill="#155B54" font-family="Manrope, sans-serif" font-size="10" font-weight="700">Арка · Код 49</text>
+
+                <path d="M402 248 L240 248 L240 143 L260 143" fill="none" stroke="#155B54" stroke-width="3" stroke-dasharray="6 5" stroke-linecap="round"/>
+
+                <circle cx="402" cy="248" r="14" fill="#16222B"/>
+                <text x="402" y="253" text-anchor="middle" fill="#FAF9F6" font-family="Manrope, sans-serif" font-size="13" font-weight="800">M</text>
+                <rect x="336" y="268" width="166" height="36" rx="8" fill="#16222B"/>
+                <text x="419" y="284" text-anchor="middle" fill="#FAF9F6" font-family="Manrope, sans-serif" font-size="11" font-weight="700">м. Василеостровская</text>
+                <text x="419" y="298" text-anchor="middle" fill="#9FD3CD" font-family="JetBrains Mono, monospace" font-size="10">10 минут пешком</text>
+
+                <circle cx="260" cy="143" r="9" fill="#155B54" stroke="#FAF9F6" stroke-width="2.5"/>
+                <rect x="132" y="92" width="114" height="38" rx="8" fill="#155B54"/>
+                <text x="189" y="109" text-anchor="middle" fill="#FAF9F6" font-family="PT Serif, serif" font-size="12" font-weight="700">ЮНЛИДЕНТ</text>
+                <text x="189" y="123" text-anchor="middle" fill="#CFE7E4" font-family="JetBrains Mono, monospace" font-size="10">12-я линия, 31</text>
+              </svg>
+            </div>
+
+            <div class="contact-details">
+              <div class="contact-row">
+                <span class="contact-key">Клиника</span>
+                <span class="contact-val">ООО «ЮВЕЛИДЕНТ» (ЮНЛИДЕНТ)</span>
+              </div>
+              <div class="contact-row">
+                <span class="contact-key">Адрес</span>
+                <span class="contact-val">199178, Санкт-Петербург, 12-я линия В.О., д. 31</span>
+              </div>
+              <div class="contact-row">
+                <span class="contact-key">Ориентир входа</span>
+                <span class="contact-val">Вход с линии под арку, код калитки «49»</span>
+              </div>
+              <div class="contact-row">
+                <span class="contact-key">Режим работы</span>
+                <span class="contact-val mono">Пн - Пт: 09:00 - 20:00 · Сб: 11:00 - 18:00</span>
+              </div>
+              <div class="contact-row">
+                <span class="contact-key">Запись на приём</span>
+                <span class="contact-val mono"><a href="tel:+78123260909">+7 (812) 326-09-09</a></span>
+              </div>
+              <div class="contact-row">
+                <span class="contact-key">Тел. / Факс</span>
+                <span class="contact-val mono"><a href="tel:+78123215151">+7 (812) 321-51-51</a></span>
+              </div>
+              <div class="contact-row">
+                <span class="contact-key">Экстренная связь</span>
+                <span class="contact-val mono"><a href="tel:+78129306555">+7 (812) 930-65-55</a></span>
+              </div>
+              <div class="contact-row">
+                <span class="contact-key">Электронная почта</span>
+                <span class="contact-val mono"><a href="mailto:3260909@mail.ru">3260909@mail.ru</a></span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-concept">Интерактивный концепт редизайна подготовлен для клиники ЮНЛИДЕНТ.</div>
+        <div class="footer-meta">ООО «ЮВЕЛИДЕНТ» · Лицензия № 78-01-001078 · 199178, Санкт-Петербург, 12-я линия В.О., д. 31 · +7 (812) 326-09-09 · 3260909@mail.ru</div>
+      </div>
+      <div class="footer-links">
+        <a href="#calculator">Калькулятор</a>
+        <a href="#pricelist">Прайс-лист</a>
+        <a href="#clinic">Отделения</a>
+        <a href="#booking">Запись на В.О.</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var SERVICES = [
+        {
+          id: 'implant_alpha',
+          category: 'implant',
+          stage: 2,
+          stageLabel: 'Этап 2: Хирургия',
+          isTherapy: false,
+          title: 'Установка имплантата Alpha Bio',
+          desc: 'Хирургический этап дентальной имплантации, включая сопутствующие работы.',
+          variants: [{ label: 'Стандарт (Alpha Bio, Израиль)', price: 17000 }],
+          defaultVariant: 0
+        },
+        {
+          id: 'implant_crown',
+          category: 'ortho',
+          stage: 3,
+          stageLabel: 'Этап 3: Ортопедия',
+          isTherapy: false,
+          title: 'Установка металлокерамической коронки на имплантат',
+          desc: 'Постоянная коронка на установленный имплантат после этапа приживления.',
+          variants: [{ label: 'Металлокерамика на имплантате', price: 20000 }],
+          defaultVariant: 0
+        },
+        {
+          id: 'extract',
+          category: 'implant',
+          stage: 2,
+          stageLabel: 'Этап 2: Хирургия',
+          isTherapy: false,
+          title: 'Удаление зуба',
+          desc: 'Проводится только при невозможности консервативного сохранения зуба, под местной анестезией.',
+          variants: [
+            { label: 'Простое удаление', price: 1000 },
+            { label: 'Сложное удаление', price: 2000 },
+            { label: 'Атипичное удаление', price: 3000 }
+          ],
+          defaultVariant: 1
+        },
+        {
+          id: 'wisdom',
+          category: 'implant',
+          stage: 2,
+          stageLabel: 'Этап 2: Хирургия',
+          isTherapy: false,
+          title: 'Удаление зуба мудрости',
+          desc: 'Хирургическое извлечение восьмого зуба любой сложности без болевых ощущений.',
+          variants: [
+            { label: 'Прорезавшийся зуб мудрости', price: 3000 },
+            { label: 'Сложное удаление', price: 4500 },
+            { label: 'Дистопированный / ретинированный', price: 6000 }
+          ],
+          defaultVariant: 1
+        },
+        {
+          id: 'hygiene',
+          category: 'therapy',
+          stage: 1,
+          stageLabel: 'Этап 1: Санация',
+          isTherapy: true,
+          title: 'Снятие зубных отложений с обеих челюстей',
+          desc: 'Профессиональная гигиеническая чистка зубов перед лечением, имплантацией или протезированием.',
+          variants: [{ label: 'Обе челюсти полностью', price: 2000 }],
+          defaultVariant: 0
+        },
+        {
+          id: 'caries',
+          category: 'therapy',
+          stage: 1,
+          stageLabel: 'Этап 1: Санация',
+          isTherapy: true,
+          title: 'Лечение кариеса',
+          desc: 'Эстетическая реставрация светоотверждаемыми композитами 3M, Kerr, Dentsply, Bisco.',
+          variants: [{ label: 'Окончательная цена с материалами', price: 2500 }],
+          defaultVariant: 0
+        },
+        {
+          id: 'pulpitis',
+          category: 'therapy',
+          stage: 1,
+          stageLabel: 'Этап 1: Санация',
+          isTherapy: true,
+          title: 'Лечение пульпита',
+          desc: 'Эндодонтическая обработка и пломбирование корневых каналов (диапазон 6 000 - 9 000 ₽).',
+          variants: [
+            { label: 'Базовый (1 канал)', price: 6000 },
+            { label: 'Средний (2 канала)', price: 7500 },
+            { label: 'Сложный (3 и более каналов)', price: 9000 }
+          ],
+          defaultVariant: 1
+        },
+        {
+          id: 'periodontitis',
+          category: 'therapy',
+          stage: 1,
+          stageLabel: 'Этап 1: Санация',
+          isTherapy: true,
+          title: 'Лечение периодонтита',
+          desc: 'Консервативное лечение каналов, в т.ч. при наличии околокорневых кист (6 500 - 10 000 ₽).',
+          variants: [
+            { label: 'Базовый объём', price: 6500 },
+            { label: 'Средний объём', price: 8250 },
+            { label: 'Сложный (многокорневой)', price: 10000 }
+          ],
+          defaultVariant: 1
+        },
+        {
+          id: 'inlay',
+          category: 'ortho',
+          stage: 3,
+          stageLabel: 'Этап 3: Ортопедия',
+          isTherapy: false,
+          title: 'Установка вкладки',
+          desc: 'Восстановление анатомической формы разрушенной коронки зуба при разрушении свыше 30%.',
+          variants: [{ label: 'Культевая / восстановительная вкладка', price: 4000 }],
+          defaultVariant: 0
+        },
+        {
+          id: 'mk_crown',
+          category: 'ortho',
+          stage: 3,
+          stageLabel: 'Этап 3: Ортопедия',
+          isTherapy: false,
+          title: 'Установка металлокерамической коронки',
+          desc: 'Биоинертная несъемная конструкция с подбором оттенка эмали на фронтальные и жевательные зубы.',
+          variants: [{ label: 'Металлокерамика', price: 8500 }],
+          defaultVariant: 0
+        },
+        {
+          id: 'cast_crown',
+          category: 'ortho',
+          stage: 3,
+          stageLabel: 'Этап 3: Ортопедия',
+          isTherapy: false,
+          title: 'Установка цельнолитой коронки',
+          desc: 'Прочная цельнолитая ортопедическая коронка для восстановления жевательной нагрузки.',
+          variants: [{ label: 'Цельнолитая коронка', price: 6000 }],
+          defaultVariant: 0
+        },
+        {
+          id: 'removable',
+          category: 'ortho',
+          stage: 3,
+          stageLabel: 'Этап 3: Ортопедия',
+          isTherapy: false,
+          title: 'Изготовление съёмного пластинчатого протеза',
+          desc: 'Частичный или полный съёмный протез для восполнения нескольких или всех утраченных зубов.',
+          variants: [{ label: 'Съёмный пластинчатый протез', price: 17000 }],
+          defaultVariant: 0
+        }
+      ];
+
+      var state = {
+        activeCat: 'all',
+        activePreset: 'implant',
+        quantities: {},
+        selectedVariant: {},
+        firstVisitCoupon: false,
+        taxMode: 'standard',
+        ndflPaid: 95000,
+        paymentPlan: 'staged'
+      };
+
+      SERVICES.forEach(function (svc) {
+        state.quantities[svc.id] = 0;
+        state.selectedVariant[svc.id] = svc.defaultVariant;
+      });
+
+      var serviceListEl = document.getElementById('serviceList');
+      var catalogFilterHintEl = document.getElementById('catalogFilterHint');
+      var calcFirstVisitEl = document.getElementById('calcFirstVisit');
+      var calcTaxModeEl = document.getElementById('calcTaxMode');
+      var calcNdflEl = document.getElementById('calcNdfl');
+      var calcPaymentPlanEl = document.getElementById('calcPaymentPlan');
+
+      var summaryCountEl = document.getElementById('summaryCount');
+      var summaryEmptyEl = document.getElementById('summaryEmpty');
+      var summaryItemsEl = document.getElementById('summaryItems');
+      var sumBaseEl = document.getElementById('sumBase');
+      var discountRowEl = document.getElementById('discountRow');
+      var sumDiscountEl = document.getElementById('sumDiscount');
+      var sumPayableEl = document.getElementById('sumPayable');
+      var taxCaptionEl = document.getElementById('taxCaption');
+      var sumTaxEl = document.getElementById('sumTax');
+      var sumNetEl = document.getElementById('sumNet');
+
+      var barStage1El = document.getElementById('barStage1');
+      var barStage2El = document.getElementById('barStage2');
+      var barStage3El = document.getElementById('barStage3');
+      var sumStage1El = document.getElementById('sumStage1');
+      var sumStage2El = document.getElementById('sumStage2');
+      var sumStage3El = document.getElementById('sumStage3');
+      var stagesNoteEl = document.getElementById('stagesNote');
+
+      var instTitleEl = document.getElementById('instTitle');
+      var instAmountEl = document.getElementById('instAmount');
+      var instNoteEl = document.getElementById('instNote');
+
+      var bookingPlanSumEl = document.getElementById('bookingPlanSum');
+      var bookingPlanDetailsEl = document.getElementById('bookingPlanDetails');
+      var visitCommentEl = document.getElementById('visitComment');
+      var copyFeedbackEl = document.getElementById('copyFeedback');
+
+      function formatRub(val) {
+        var rounded = Math.round(val);
+        return new Intl.NumberFormat('ru-RU').format(rounded) + ' ₽';
+      }
+
+      function applyPreset(presetKey) {
+        SERVICES.forEach(function (svc) {
+          state.quantities[svc.id] = 0;
+          state.selectedVariant[svc.id] = svc.defaultVariant;
+        });
+
+        state.activePreset = presetKey;
+
+        if (presetKey === 'implant') {
+          state.quantities.hygiene = 1;
+          state.quantities.implant_alpha = 1;
+          state.quantities.implant_crown = 1;
+        } else if (presetKey === 'caries') {
+          state.quantities.hygiene = 1;
+          state.quantities.caries = 2;
+        } else if (presetKey === 'endo') {
+          state.quantities.pulpitis = 1;
+          state.selectedVariant.pulpitis = 1;
+          state.quantities.inlay = 1;
+          state.quantities.mk_crown = 1;
+        } else if (presetKey === 'prosthetic') {
+          state.quantities.extract = 1;
+          state.selectedVariant.extract = 1;
+          state.quantities.removable = 1;
+        }
+
+        document.querySelectorAll('.preset-btn').forEach(function (btn) {
+          btn.classList.toggle('is-active', btn.getAttribute('data-preset') === presetKey);
+        });
+
+        renderServices();
+        recalculate();
+      }
+
+      function renderServices() {
+        var visibleCount = 0;
+        var htmlParts = [];
+
+        SERVICES.forEach(function (svc) {
+          var qty = state.quantities[svc.id] || 0;
+          var varIdx = state.selectedVariant[svc.id] || 0;
+          var activeVariant = svc.variants[varIdx];
+          var isVisible = state.activeCat === 'all' || state.activeCat === svc.category;
+
+          if (isVisible) {
+            visibleCount += 1;
+          }
+
+          var rowClasses = 'service-row';
+          if (qty > 0) {
+            rowClasses += ' is-selected';
+          }
+          if (isVisible === false) {
+            rowClasses += ' is-hidden';
+          }
+
+          var badgeHtml = '<span class="stage-badge">' + svc.stageLabel + '</span>';
+          if (svc.isTherapy) {
+            badgeHtml += '<span class="therapy-badge">Терапия · купон 20% применим</span>';
+          }
+
+          var variantHtml = '';
+          if (svc.variants.length > 1) {
+            var selectId = 'var-' + svc.id;
+            variantHtml += '<div class="variant-wrap">';
+            variantHtml += '<label class="variant-label" for="' + selectId + '">Сложность:</label>';
+            variantHtml += '<select class="variant-select" id="' + selectId + '" data-svc="' + svc.id + '" autocomplete="off">';
+            svc.variants.forEach(function (v, idx) {
+              var selAttr = idx === varIdx ? ' selected' : '';
+              variantHtml += '<option value="' + idx + '"' + selAttr + '>' + v.label + ' (' + formatRub(v.price) + ')</option>';
+            });
+            variantHtml += '</select></div>';
+          }
+
+          var qtyInputId = 'qty-' + svc.id;
+
+          htmlParts.push(
+            '<div class="' + rowClasses + '" data-id="' + svc.id + '">' +
+              '<div>' +
+                '<div class="service-meta">' + badgeHtml + '</div>' +
+                '<div class="service-title">' + svc.title + '</div>' +
+                '<div class="service-desc">' + svc.desc + '</div>' +
+                variantHtml +
+              '</div>' +
+              '<div class="service-controls">' +
+                '<div class="service-price">' + formatRub(activeVariant.price) + '</div>' +
+                '<div class="stepper">' +
+                  '<button type="button" class="step-btn" data-action="dec" data-svc="' + svc.id + '" aria-label="Уменьшить количество: ' + svc.title + '">-</button>' +
+                  '<label class="sr-only" for="' + qtyInputId + '">Количество: ' + svc.title + '</label>' +
+                  '<input class="step-input" type="number" min="0" max="32" id="' + qtyInputId + '" data-svc="' + svc.id + '" value="' + qty + '" autocomplete="off">' +
+                  '<button type="button" class="step-btn" data-action="inc" data-svc="' + svc.id + '" aria-label="Увеличить количество: ' + svc.title + '">+</button>' +
+                '</div>' +
+              '</div>' +
+            '</div>'
+          );
+        });
+
+        serviceListEl.innerHTML = htmlParts.join('');
+
+        var catNames = {
+          all: 'Все направления',
+          implant: 'Имплантация и хирургия',
+          therapy: 'Терапия и гигиена',
+          ortho: 'Протезирование'
+        };
+        catalogFilterHintEl.textContent = (catNames[state.activeCat] || 'Услуги') + ' (' + visibleCount + ' поз.)';
+      }
+
+      function computeTotals() {
+        var baseTotal = 0;
+        var discountTotal = 0;
+        var stageTotals = { 1: 0, 2: 0, 3: 0 };
+        var selectedList = [];
+        var totalUnits = 0;
+
+        SERVICES.forEach(function (svc) {
+          var qty = state.quantities[svc.id] || 0;
+          if (qty <= 0) {
+            return;
+          }
+          var varIdx = state.selectedVariant[svc.id] || 0;
+          var variant = svc.variants[varIdx];
+          var lineBase = variant.price * qty;
+          var lineDiscount = (state.firstVisitCoupon && svc.isTherapy) ? Math.round(lineBase * 0.2) : 0;
+          var linePayable = lineBase - lineDiscount;
+
+          baseTotal += lineBase;
+          discountTotal += lineDiscount;
+          stageTotals[svc.stage] += linePayable;
+          totalUnits += qty;
+
+          selectedList.push({
+            id: svc.id,
+            title: svc.title,
+            variantLabel: svc.variants.length > 1 ? variant.label : '',
+            qty: qty,
+            lineBase: lineBase,
+            linePayable: linePayable,
+            stage: svc.stage
+          });
+        });
+
+        var payableTotal = baseTotal - discountTotal;
+
+        var taxBase = 0;
+        var taxCaption = 'Налоговый вычет 13%';
+        if (state.taxMode === 'standard') {
+          taxBase = Math.min(payableTotal, 150000);
+          taxCaption = 'Вычет 13% (лимит 150 тыс. ₽)';
+        } else if (state.taxMode === 'expensive') {
+          taxBase = payableTotal;
+          taxCaption = 'Вычет 13% (код 2, без лимита)';
+        } else {
+          taxBase = 0;
+          taxCaption = 'Налоговый вычет не выбран';
+        }
+
+        var rawRefund = Math.round(taxBase * 0.13);
+        var ndflLimit = Math.max(0, Number(state.ndflPaid) || 0);
+        var actualRefund = state.taxMode === 'none' ? 0 : Math.min(rawRefund, ndflLimit);
+        var netTotal = Math.max(0, payableTotal - actualRefund);
+
+        return {
+          selectedList: selectedList,
+          totalUnits: totalUnits,
+          baseTotal: baseTotal,
+          discountTotal: discountTotal,
+          payableTotal: payableTotal,
+          stageTotals: stageTotals,
+          taxCaption: taxCaption,
+          rawRefund: rawRefund,
+          actualRefund: actualRefund,
+          netTotal: netTotal
+        };
+      }
+
+      function recalculate() {
+        var data = computeTotals();
+
+        summaryCountEl.textContent = data.totalUnits + ' ед.';
+        if (data.selectedList.length === 0) {
+          summaryEmptyEl.style.display = 'block';
+          summaryItemsEl.style.display = 'none';
+          summaryItemsEl.innerHTML = '';
+        } else {
+          summaryEmptyEl.style.display = 'none';
+          summaryItemsEl.style.display = 'grid';
+          summaryItemsEl.innerHTML = data.selectedList.map(function (item) {
+            var sub = item.variantLabel ? ' (' + item.variantLabel + ')' : '';
+            return '<li class="selected-item">' +
+              '<span><span class="selected-item-name">' + item.title + '</span><span class="selected-item-qty">' + sub + ' x ' + item.qty + '</span></span>' +
+              '<span class="selected-item-sum">' + formatRub(item.linePayable) + '</span>' +
+            '</li>';
+          }).join('');
+        }
+
+        sumBaseEl.textContent = formatRub(data.baseTotal);
+        if (data.discountTotal > 0) {
+          discountRowEl.style.display = 'flex';
+          sumDiscountEl.textContent = '-' + formatRub(data.discountTotal);
+        } else {
+          discountRowEl.style.display = 'none';
+          sumDiscountEl.textContent = '0 ₽';
+        }
+
+        sumPayableEl.textContent = formatRub(data.payableTotal);
+        taxCaptionEl.textContent = data.taxCaption;
+        sumTaxEl.textContent = data.actualRefund > 0 ? '-' + formatRub(data.actualRefund) : '0 ₽';
+        sumNetEl.textContent = formatRub(data.netTotal);
+
+        sumStage1El.textContent = formatRub(data.stageTotals[1]);
+        sumStage2El.textContent = formatRub(data.stageTotals[2]);
+        sumStage3El.textContent = formatRub(data.stageTotals[3]);
+
+        if (data.payableTotal > 0) {
+          barStage1El.style.width = ((data.stageTotals[1] / data.payableTotal) * 100).toFixed(1) + '%';
+          barStage2El.style.width = ((data.stageTotals[2] / data.payableTotal) * 100).toFixed(1) + '%';
+          barStage3El.style.width = ((data.stageTotals[3] / data.payableTotal) * 100).toFixed(1) + '%';
+        } else {
+          barStage1El.style.width = '0%';
+          barStage2El.style.width = '0%';
+          barStage3El.style.width = '0%';
+        }
+
+        var activeStagesCount = 0;
+        if (data.stageTotals[1] > 0) { activeStagesCount += 1; }
+        if (data.stageTotals[2] > 0) { activeStagesCount += 1; }
+        if (data.stageTotals[3] > 0) { activeStagesCount += 1; }
+        stagesNoteEl.textContent = activeStagesCount + ' актив. этап.';
+
+        if (state.paymentPlan === 'staged') {
+          instTitleEl.textContent = 'Поэтапная оплата по визитам';
+          instAmountEl.textContent = formatRub(data.payableTotal);
+          instNoteEl.textContent = 'Этап 1 (' + formatRub(data.stageTotals[1]) + ') и Этап 2 (' + formatRub(data.stageTotals[2]) + ') оплачиваются на старте, Этап 3 (' + formatRub(data.stageTotals[3]) + ') после приживления.';
+        } else if (state.paymentPlan === 'inst3' || state.paymentPlan === 'inst6' || state.paymentPlan === 'inst12') {
+          var months = state.paymentPlan === 'inst3' ? 3 : (state.paymentPlan === 'inst6' ? 6 : 12);
+          var monthly = Math.round(data.payableTotal / months);
+          instTitleEl.textContent = 'Рассрочка 0% на ' + months + ' мес.';
+          instAmountEl.textContent = formatRub(monthly) + ' / мес.';
+          instNoteEl.textContent = 'Беспроцентная рассрочка клиники без переплат (от 3 до 12 месяцев). Общая сумма остаётся ' + formatRub(data.payableTotal) + '.';
+        } else {
+          var crMonths = state.paymentPlan === 'credit24' ? 24 : 36;
+          var monthlyBase = Math.round(data.payableTotal / crMonths);
+          instTitleEl.textContent = 'Кредит на ' + crMonths + ' мес. (тело плана)';
+          instAmountEl.textContent = 'от ' + formatRub(monthlyBase) + ' / мес.';
+          instNoteEl.textContent = 'Ориентировочное распределение основного долга на срок от 1 до 3 лет (процентная ставка зависит от банковской программы).';
+        }
+
+        syncBookingPreview(data);
+      }
+
+      function buildPlanText(data) {
+        if (data.selectedList.length === 0) {
+          return 'Первичная бесплатная консультация специалиста в клинике ЮНЛИДЕНТ (12-я линия В.О., д. 31).';
+        }
+        var lines = data.selectedList.map(function (item, idx) {
+          var extra = item.variantLabel ? ' [' + item.variantLabel + ']' : '';
+          return (idx + 1) + '. ' + item.title + extra + ' x ' + item.qty + ' = ' + formatRub(item.linePayable);
+        });
+        lines.push('Итого к оплате: ' + formatRub(data.payableTotal));
+        if (data.discountTotal > 0) {
+          lines.push('Скидка 20% на первичную терапию: -' + formatRub(data.discountTotal));
+        }
+        lines.push('Налоговый вычет 13% по НК РФ: -' + formatRub(data.actualRefund) + ' (фактически после вычета: ' + formatRub(data.netTotal) + ')');
+        lines.push('По этапам: Этап 1 ' + formatRub(data.stageTotals[1]) + ' / Этап 2 ' + formatRub(data.stageTotals[2]) + ' / Этап 3 ' + formatRub(data.stageTotals[3]));
+        return lines.join('\n');
+      }
+
+      function syncBookingPreview(data) {
+        bookingPlanSumEl.textContent = formatRub(data.payableTotal);
+        if (data.selectedList.length === 0) {
+          bookingPlanDetailsEl.textContent = 'Позиции в калькуляторе не выбраны. Вы можете записаться на бесплатную первичную консультацию и осмотр.';
+          return;
+        }
+        var shortTitles = data.selectedList.map(function (it) {
+          return it.title + ' (' + it.qty + ' шт.)';
+        }).join(', ');
+        bookingPlanDetailsEl.textContent = shortTitles + '. К оплате: ' + formatRub(data.payableTotal) + ', расчётный вычет 13%: ' + formatRub(data.actualRefund) + '.';
+      }
+
+      serviceListEl.addEventListener('click', function (ev) {
+        var btn = ev.target.closest('button[data-action]');
+        if (btn === null) {
+          return;
+        }
+        var svcId = btn.getAttribute('data-svc');
+        var action = btn.getAttribute('data-action');
+        var current = state.quantities[svcId] || 0;
+        if (action === 'inc') {
+          state.quantities[svcId] = Math.min(32, current + 1);
+        } else if (action === 'dec') {
+          state.quantities[svcId] = Math.max(0, current - 1);
+        }
+        state.activePreset = '';
+        document.querySelectorAll('.preset-btn').forEach(function (p) {
+          p.classList.remove('is-active');
+        });
+        renderServices();
+        recalculate();
+      });
+
+      serviceListEl.addEventListener('change', function (ev) {
+        var target = ev.target;
+        if (target.classList.contains('variant-select')) {
+          var svcId = target.getAttribute('data-svc');
+          state.selectedVariant[svcId] = Number(target.value) || 0;
+          renderServices();
+          recalculate();
+        } else if (target.classList.contains('step-input')) {
+          var id = target.getAttribute('data-svc');
+          var val = Math.max(0, Math.min(32, parseInt(target.value, 10) || 0));
+          state.quantities[id] = val;
+          renderServices();
+          recalculate();
+        }
+      });
+
+      document.querySelectorAll('.cat-tab').forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          state.activeCat = tab.getAttribute('data-cat');
+          document.querySelectorAll('.cat-tab').forEach(function (t) {
+            var active = t === tab;
+            t.classList.toggle('is-active', active);
+            t.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          renderServices();
+        });
+      });
+
+      document.querySelectorAll('.preset-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          applyPreset(btn.getAttribute('data-preset'));
+        });
+      });
+
+      document.querySelectorAll('.add-from-table').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var id = btn.getAttribute('data-id');
+          state.quantities[id] = Math.min(32, (state.quantities[id] || 0) + 1);
+          state.activeCat = 'all';
+          document.querySelectorAll('.cat-tab').forEach(function (t) {
+            var isAll = t.getAttribute('data-cat') === 'all';
+            t.classList.toggle('is-active', isAll);
+            t.setAttribute('aria-selected', isAll ? 'true' : 'false');
+          });
+          renderServices();
+          recalculate();
+          document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      calcFirstVisitEl.addEventListener('change', function () {
+        state.firstVisitCoupon = calcFirstVisitEl.checked;
+        recalculate();
+      });
+
+      document.getElementById('heroCouponBtn').addEventListener('click', function () {
+        state.firstVisitCoupon = true;
+        calcFirstVisitEl.checked = true;
+        recalculate();
+        document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      calcTaxModeEl.addEventListener('change', function () {
+        state.taxMode = calcTaxModeEl.value;
+        calcNdflEl.disabled = state.taxMode === 'none';
+        recalculate();
+      });
+
+      calcNdflEl.addEventListener('input', function () {
+        state.ndflPaid = Math.max(0, Number(calcNdflEl.value) || 0);
+        recalculate();
+      });
+
+      calcPaymentPlanEl.addEventListener('change', function () {
+        state.paymentPlan = calcPaymentPlanEl.value;
+        recalculate();
+      });
+
+      document.getElementById('transferToBookingBtn').addEventListener('click', function () {
+        var data = computeTotals();
+        visitCommentEl.value = buildPlanText(data);
+        document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('patientName').focus();
+      });
+
+      document.getElementById('copyPlanBtn').addEventListener('click', function () {
+        var text = buildPlanText(computeTotals());
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            copyFeedbackEl.textContent = 'Смета скопирована в буфер обмена.';
+          }, function () {
+            copyFeedbackEl.textContent = 'Не удалось скопировать автоматически, используйте кнопку переноса в заявку.';
+          });
+        } else {
+          copyFeedbackEl.textContent = 'Используйте кнопку переноса сметы в форму записи ниже.';
+        }
+      });
+
+      var bookingFormEl = document.getElementById('bookingForm');
+      var bookingErrorEl = document.getElementById('bookingError');
+      var bookingSuccessEl = document.getElementById('bookingSuccess');
+      var bookingSuccessTextEl = document.getElementById('bookingSuccessText');
+
+      bookingFormEl.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        bookingErrorEl.classList.remove('is-visible');
+        bookingSuccessEl.classList.remove('is-visible');
+
+        var nameVal = document.getElementById('patientName').value.trim();
+        var phoneVal = document.getElementById('patientPhone').value.trim();
+        var emailVal = document.getElementById('patientEmail').value.trim();
+        var profileVal = document.getElementById('visitProfile').value;
+        var slotVal = document.getElementById('preferredDay').value;
+        var consentVal = document.getElementById('consentCheck').checked;
+        var digitsCount = phoneVal.replace(/\D/g, '').length;
+
+        if (nameVal.length < 2) {
+          bookingErrorEl.textContent = 'Укажите имя и фамилию пациента для оформления предварительной записи.';
+          bookingErrorEl.classList.add('is-visible');
+          document.getElementById('patientName').focus();
+          return;
+        }
+        if (digitsCount < 7) {
+          bookingErrorEl.textContent = 'Укажите корректный номер телефона для подтверждения времени приёма администратором.';
+          bookingErrorEl.classList.add('is-visible');
+          document.getElementById('patientPhone').focus();
+          return;
+        }
+        if (consentVal === false) {
+          bookingErrorEl.textContent = 'Отметьте согласие на обработку персональных данных в соответствии со 152-ФЗ.';
+          bookingErrorEl.classList.add('is-visible');
+          document.getElementById('consentCheck').focus();
+          return;
+        }
+
+        var data = computeTotals();
+        var refNumber = 'UNL-' + String(Math.floor(1000 + Math.random() * 8999));
+        var contactLine = emailVal ? (phoneVal + ', ' + emailVal) : phoneVal;
+
+        bookingSuccessTextEl.innerHTML =
+          '<p style="margin: 6px 0;">Номер обращения: <strong class="mono">' + refNumber + '</strong>. Пациент: <strong>' + nameVal.replace(/</g, '&lt;') + '</strong> (' + contactLine.replace(/</g, '&lt;') + ').</p>' +
+          '<p style="margin: 6px 0;">Отделение: <strong>' + profileVal + '</strong> · Желаемое время: <strong>' + slotVal + '</strong>.</p>' +
+          '<p style="margin: 6px 0;">Предварительная смета: <strong class="mono">' + formatRub(data.payableTotal) + '</strong> (налоговый вычет 13%: <strong class="mono">' + formatRub(data.actualRefund) + '</strong>).</p>' +
+          '<p style="margin: 6px 0 0 0; color: #465663; font-size: 13px;">Это демонстрационная форма. Для реальной записи в клинику ЮНЛИДЕНТ позвоните по телефону +7 (812) 326-09-09 или напишите на 3260909@mail.ru. Адрес: 12-я линия В.О., д. 31 (под арку, код калитки 49).</p>';
+
+        bookingSuccessEl.classList.add('is-visible');
+      });
+
+      applyPreset('implant');
+    }());
+  </script>
+</body>
+</html>
