@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>77Volvo Москва - Калькулятор ТО, подбор запчастей и запись по VIN</title>
+  <meta name="description" content="Интерактивный расчёт стоимости планового ТО Volvo, подбор оригинальных и аналоговых комплектов запчастей, проверка VIN и запись в техцентры 77Volvo в Москве.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23143A66'/%3E%3Ccircle cx='30' cy='34' r='16' fill='none' stroke='%23FFFFFF' stroke-width='4.5'/%3E%3Cpath d='M41 23L51 13M51 13H42M51 13V22' fill='none' stroke='%23FFFFFF' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ctext x='30' y='39' text-anchor='middle' font-family='sans-serif' font-size='13' font-weight='700' fill='%23FFFFFF'%3E77%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="77Volvo Москва">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="7" fill="#143A66"/>
+            <circle cx="14.5" cy="17.5" r="7.5" stroke="#FFFFFF" stroke-width="2.2"/>
+            <path d="M19.8 12.2L25 7M25 7H20.2M25 7V11.8" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">77VOLVO</span>
+          <span class="brand-sub">Москва · Запчасти и сервис</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Навигация по разделам">
+        <a href="#calculator" class="nav-link">Калькулятор ТО</a>
+        <a href="#vin-request" class="nav-link">Подбор по VIN</a>
+        <a href="#centers" class="nav-link">Техцентры (10)</a>
+      </nav>
+
+      <div class="header-contacts">
+        <div class="contact-item">
+          <span class="contact-label">Сервис</span>
+          <a href="tel:+74957786586" class="contact-phone mono">+7 (495) 778-65-86</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Запчасти</span>
+          <a href="tel:+74951266639" class="contact-phone mono">+7 (495) 126-66-39</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            Скандинавский регламент обслуживания Volvo в Москве
+          </div>
+          <h1>Точный расчёт ТО, запчастей и запись по VIN за минуту</h1>
+          <p class="hero-lead">
+            Сравните смету с оригинальными деталями Volvo и проверенными аналогами (GParts, Bosch, Mahle, Brembo). Бесплатная доставка запчастей в пределах МКАД от 2 000 руб. и скидка на установку в 10 техцентрах Москвы.
+          </p>
+          <div class="hero-actions">
+            <a href="#calculator" class="btn btn-primary">
+              <span>Рассчитать стоимость ТО</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="#vin-request" class="btn btn-secondary">Проверить 17-значный VIN</a>
+          </div>
+        </div>
+
+        <div class="hero-metrics" aria-label="Показатели сети 77Volvo">
+          <div class="metric-card">
+            <span class="metric-value mono">10</span>
+            <span class="metric-label">Техцентров и магазинов в Москве и Зеленограде</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value mono">48 564+</span>
+            <span class="metric-label">Обслуженных автомобилей Volvo с гарантией</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value mono">2 000 &#8381;</span>
+            <span class="metric-label">Порог бесплатной доставки по МКАД</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value mono">40+</span>
+            <span class="metric-label">Прямых контрактов с производителями запчастей</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculator" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker mono">01 / КОНФИГУРАТОР РЕГЛАМЕНТА</span>
+            <h2>Калькулятор ТО и комплекта запчастей Volvo</h2>
+          </div>
+          <p class="section-note">
+            Выберите модель, двигатель, пробег и категорию деталей. Смета обновляется мгновенно с учётом оригинальных артикулов и нормо-часов.
+          </p>
+        </div>
+
+        <div class="calc-layout">
+          <div class="calc-controls card">
+            <div class="control-group">
+              <div class="control-header">
+                <label class="control-label">Модель автомобиля</label>
+                <span class="control-hint mono" id="selected-platform-badge">Платформа SPA</span>
+              </div>
+              <div class="pill-grid pill-grid-6" role="radiogroup" aria-label="Выбор модели Volvo" id="model-selector">
+                <button type="button" class="pill-btn is-active" data-model="XC90" aria-checked="true" role="radio">
+                  <span class="pill-title">XC90</span>
+                  <span class="pill-sub">SPA / I</span>
+                </button>
+                <button type="button" class="pill-btn" data-model="XC60" aria-checked="false" role="radio">
+                  <span class="pill-title">XC60</span>
+                  <span class="pill-sub">SPA / P3</span>
+                </button>
+                <button type="button" class="pill-btn" data-model="XC40" aria-checked="false" role="radio">
+                  <span class="pill-title">XC40</span>
+                  <span class="pill-sub">CMA</span>
+                </button>
+                <button type="button" class="pill-btn" data-model="S60" aria-checked="false" role="radio">
+                  <span class="pill-title">S60</span>
+                  <span class="pill-sub">SPA / P3</span>
+                </button>
+                <button type="button" class="pill-btn" data-model="S80" aria-checked="false" role="radio">
+                  <span class="pill-title">S80</span>
+                  <span class="pill-sub">P3</span>
+                </button>
+                <button type="button" class="pill-btn" data-model="V60" aria-checked="false" role="radio">
+                  <span class="pill-title">V60</span>
+                  <span class="pill-sub">SPA / CC</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="control-header">
+                <label class="control-label">Силовой агрегат (двигатель)</label>
+                <span class="control-hint mono" id="engine-oil-spec">2.0L Дизель · 5.2 л масла</span>
+              </div>
+              <div class="pill-grid pill-grid-5" role="radiogroup" aria-label="Выбор двигателя Volvo" id="engine-selector">
+                <button type="button" class="pill-btn" data-engine="D4" aria-checked="false" role="radio">
+                  <span class="pill-title">D4</span>
+                  <span class="pill-sub">190 л.с.</span>
+                </button>
+                <button type="button" class="pill-btn is-active" data-engine="D5" aria-checked="true" role="radio">
+                  <span class="pill-title">D5</span>
+                  <span class="pill-sub">235 л.с.</span>
+                </button>
+                <button type="button" class="pill-btn" data-engine="T5" aria-checked="false" role="radio">
+                  <span class="pill-title">T5</span>
+                  <span class="pill-sub">249 л.с.</span>
+                </button>
+                <button type="button" class="pill-btn" data-engine="T6" aria-checked="false" role="radio">
+                  <span class="pill-title">T6</span>
+                  <span class="pill-sub">320 л.с.</span>
+                </button>
+                <button type="button" class="pill-btn" data-engine="B5" aria-checked="false" role="radio">
+                  <span class="pill-title">B5</span>
+                  <span class="pill-sub">Mild Hybrid</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="control-header">
+                <label for="mileage-select" class="control-label">Пробег / регламент ТО</label>
+                <span class="control-hint mono" id="mileage-badge">ТО-4 · 60 000 км</span>
+              </div>
+              <div class="mileage-presets" role="radiogroup" aria-label="Выбор пробега" id="mileage-selector">
+                <button type="button" class="mileage-btn" data-mileage="15000" aria-checked="false" role="radio">
+                  <span class="mono">15 000 км</span>
+                  <span>Базовое ТО-1</span>
+                </button>
+                <button type="button" class="mileage-btn" data-mileage="30000" aria-checked="false" role="radio">
+                  <span class="mono">30 000 км</span>
+                  <span>Расширенное ТО-2</span>
+                </button>
+                <button type="button" class="mileage-btn is-active" data-mileage="60000" aria-checked="true" role="radio">
+                  <span class="mono">60 000 км</span>
+                  <span>Большое ТО-4</span>
+                </button>
+                <button type="button" class="mileage-btn" data-mileage="90000" aria-checked="false" role="radio">
+                  <span class="mono">90 000 км</span>
+                  <span>Регламент ТО-6</span>
+                </button>
+                <button type="button" class="mileage-btn" data-mileage="120000" aria-checked="false" role="radio">
+                  <span class="mono">120 000 км</span>
+                  <span>ТО-8 с ГРМ</span>
+                </button>
+              </div>
+              <div class="range-wrap">
+                <label for="mileage-select" class="sr-only">Точный пробег</label>
+                <select id="mileage-select" class="field-select" autocomplete="off">
+                  <option value="15000">15 000 км - Регламент ТО-1 (масло, масляный и салонный фильтры)</option>
+                  <option value="30000">30 000 км - Регламент ТО-2 (+ воздушный фильтр, осмотр ходовой)</option>
+                  <option value="60000" selected>60 000 км - Регламент ТО-4 (+ топливный фильтр, тормозная жидкость, свечи для бенз.)</option>
+                  <option value="90000">90 000 км - Регламент ТО-6 (+ полный комплекс фильтров и приводной ремень)</option>
+                  <option value="120000">120 000 км - Регламент ТО-8 (+ комплект ГРМ с роликами и ремень генератора)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="control-header">
+                <span class="control-label">Комплектация запчастей</span>
+                <span class="control-hint mono" id="tier-hint">Заводская гарантия Volvo</span>
+              </div>
+              <div class="segmented-switch" role="radiogroup" aria-label="Тип комплекта запчастей" id="tier-selector">
+                <button type="button" class="seg-btn is-active" data-tier="oem" aria-checked="true" role="radio">
+                  <span class="seg-title">Оригинал Volvo</span>
+                  <span class="seg-sub">Официальный OEM-комплект</span>
+                </button>
+                <button type="button" class="seg-btn" data-tier="analog" aria-checked="false" role="radio">
+                  <span class="seg-title">Аналог (Европа / GParts)</span>
+                  <span class="seg-sub">Bosch, Mahle, Brembo, Gates</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="control-header">
+                <span class="control-label">Дополнительные работы и узлы</span>
+                <span class="control-hint">По состоянию автомобиля</span>
+              </div>
+              <div class="addon-list" id="addons-selector">
+                <label class="addon-item" for="addon-front-pads">
+                  <input id="addon-front-pads" name="addon_front_pads" type="checkbox" value="front_pads" autocomplete="off">
+                  <span class="addon-check" aria-hidden="true"></span>
+                  <span class="addon-info">
+                    <span class="addon-name">Передние тормозные колодки (комплект)</span>
+                    <span class="addon-meta">Артикул базы 31262705 + замена и чистка скоб</span>
+                  </span>
+                  <span class="addon-price mono" data-addon-price="front_pads">+14 390 &#8381;</span>
+                </label>
+
+                <label class="addon-item" for="addon-rear-pads">
+                  <input id="addon-rear-pads" name="addon_rear_pads" type="checkbox" value="rear_pads" autocomplete="off">
+                  <span class="addon-check" aria-hidden="true"></span>
+                  <span class="addon-info">
+                    <span class="addon-name">Задние тормозные колодки (комплект)</span>
+                    <span class="addon-meta">Артикул базы 31445796 + сведение EPB через VIDA</span>
+                  </span>
+                  <span class="addon-price mono" data-addon-price="rear_pads">+9 380 &#8381;</span>
+                </label>
+
+                <label class="addon-item" for="addon-haldex">
+                  <input id="addon-haldex" name="addon_haldex" type="checkbox" value="haldex" autocomplete="off">
+                  <span class="addon-check" aria-hidden="true"></span>
+                  <span class="addon-info">
+                    <span class="addon-name">Обслуживание муфты AWD Haldex</span>
+                    <span class="addon-meta">Оригинальное масло 31367940 (1 л) + промывка сетки насоса</span>
+                  </span>
+                  <span class="addon-price mono" data-addon-price="haldex">+7 830 &#8381;</span>
+                </label>
+
+                <label class="addon-item" for="addon-vida">
+                  <input id="addon-vida" name="addon_vida" type="checkbox" value="vida" checked autocomplete="off">
+                  <span class="addon-check" aria-hidden="true"></span>
+                  <span class="addon-info">
+                    <span class="addon-name">Компьютерная диагностика Volvo VIDA</span>
+                    <span class="addon-meta">Считывание кодов неисправностей, сброс межсервисного интервала</span>
+                  </span>
+                  <span class="addon-price mono" data-addon-price="vida">+1 800 &#8381;</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <aside class="calc-summary card" aria-live="polite">
+            <div class="summary-top">
+              <div>
+                <span class="summary-kicker mono">ОРИЕНТИРОВОЧНАЯ СМЕТА</span>
+                <h3 class="summary-title" id="summary-headline">Volvo XC90 D5 · 60 000 км</h3>
+              </div>
+              <span class="tier-badge" id="summary-tier-badge">Оригинал Volvo</span>
+            </div>
+
+            <div class="summary-meta-bar">
+              <div class="meta-chip">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M8 4.5V8L10.5 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+                <span>Время в ремзоне: <strong class="mono" id="summary-hours">2.5 ч</strong></span>
+              </div>
+              <div class="meta-chip">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M2.5 8.5L6 12L13.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span id="summary-delivery-note">Бесплатная доставка по МКАД (от 2 000 &#8381;)</span>
+              </div>
+            </div>
+
+            <div class="breakdown-block">
+              <div class="breakdown-head">
+                <span>Комплект запчастей и расходников</span>
+                <span class="mono" id="parts-subtotal">0 &#8381;</span>
+              </div>
+              <ul class="line-items" id="parts-list"></ul>
+            </div>
+
+            <div class="breakdown-block">
+              <div class="breakdown-head">
+                <span>Работы в техцентре 77Volvo</span>
+                <span class="mono" id="labor-subtotal">0 &#8381;</span>
+              </div>
+              <ul class="line-items" id="labor-list"></ul>
+            </div>
+
+            <div class="summary-totals">
+              <div class="total-row">
+                <span>Скидка на детали при установке в сервисе (7%)</span>
+                <span class="mono discount-val" id="summary-discount">-0 &#8381;</span>
+              </div>
+              <div class="total-row total-row-main">
+                <span>Итого к оплате (ориентировочно)</span>
+                <span class="total-figure mono" id="summary-total">0 &#8381;</span>
+              </div>
+              <p class="total-footnote">
+                Точные артикулы подтверждаются по 17-значному VIN-номеру. Цены на позиции из каталога 77volvo.ru актуальны при наличии на складе в Москве.
+              </p>
+            </div>
+
+            <div class="summary-actions">
+              <button type="button" class="btn btn-primary btn-full" id="apply-calc-to-vin">
+                <span>Оформить заявку по этой смете</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <button type="button" class="btn btn-ghost btn-full" id="copy-estimate-btn">
+                Скопировать детализацию расчёта
+              </button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="vin-request" class="section section-tinted">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker mono">02 / ТОЧНАЯ ПРОВЕРКА ПО БАЗЕ VOLVO</span>
+            <h2>Быстрый подбор по VIN и запись на сервис</h2>
+          </div>
+          <p class="section-note">
+            Введите 17-значный идентификационный номер (VIN). Система проверит формат ISO 3779, определит регион и завод-изготовитель Volvo, а прикреплённая смета отправится мастеру на <span class="mono">client@77volvo.ru</span>.
+          </p>
+        </div>
+
+        <div class="vin-layout">
+          <form id="vin-form" class="card vin-form" novalidate autocomplete="on">
+            <div class="form-row">
+              <div class="field-group field-vin">
+                <div class="field-top">
+                  <label for="vin-input" class="field-label">VIN-номер автомобиля (17 символов)</label>
+                  <span class="vin-counter mono" id="vin-counter">0 / 17</span>
+                </div>
+                <input
+                  id="vin-input"
+                  name="vin"
+                  type="text"
+                  maxlength="17"
+                  placeholder="Например: YV1LC68ACJ1234567"
+                  class="field-input mono vin-field"
+                  autocomplete="off"
+                  spellcheck="false"
+                  required
+                >
+                <div class="vin-status" id="vin-status" aria-live="polite">
+                  Допустимы латинские буквы и цифры, кроме I, O, Q.
+                </div>
+                <div class="vin-samples">
+                  <span class="sample-label">Примеры для проверки:</span>
+                  <button type="button" class="sample-chip mono" data-sample-vin="YV1LC68ACJ1234567">YV1LC68ACJ1234567</button>
+                  <button type="button" class="sample-chip mono" data-sample-vin="YV1DZ8256F2654321">YV1DZ8256F2654321</button>
+                  <button type="button" class="sample-chip mono" data-sample-vin="YV1XZ15VDL2198432">YV1XZ15VDL2198432</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="client-name" class="field-label">Ваше имя</label>
+                <input
+                  id="client-name"
+                  name="name"
+                  type="text"
+                  placeholder="Алексей Соколов"
+                  class="field-input"
+                  autocomplete="name"
+                  required
+                >
+              </div>
+              <div class="field-group">
+                <label for="client-phone" class="field-label">Контактный телефон</label>
+                <input
+                  id="client-phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="+7 (999) 000-00-00"
+                  class="field-input mono"
+                  autocomplete="tel"
+                  required
+                >
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="client-email" class="field-label">Электронная почта (для ответа со сметой)</label>
+                <input
+                  id="client-email"
+                  name="email"
+                  type="email"
+                  placeholder="name@example.ru"
+                  class="field-input"
+                  autocomplete="email"
+                >
+              </div>
+              <div class="field-group">
+                <label for="service-format" class="field-label">Формат получения</label>
+                <select id="service-format" name="serviceFormat" class="field-select" autocomplete="off">
+                  <option value="Очаково (Большая Очаковская ул., 47Ас1)">Техцентр: Очаково (Большая Очаковская, 47Ас1)</option>
+                  <option value="Ленинградка (Беломорская ул., д. 9)">Техцентр: Ленинградка (Беломорская ул., д. 9)</option>
+                  <option value="Электрозаводская (ул. Гастелло, соор. 1)">Техцентр: Электрозаводская (ул. Гастелло, соор. 1)</option>
+                  <option value="Домодедовская (Каширское ш., д. 61 к. 3А, АТЦ Москва)">Техцентр: Домодедовская (АТЦ «Москва»)</option>
+                  <option value="Тропарево (Востряковское шоссе, 7, стр. 1)">Техцентр: Тропарево (Востряковское ш., 7, стр. 1)</option>
+                  <option value="Волгоградка (ул. Ташкентская, 28, стр. 1)">Техцентр: Волгоградка (ул. Ташкентская, 28, стр. 1)</option>
+                  <option value="Алтуфьево (МКАД, 84-й км, вл. 1, Автомолл Север)">Техцентр: Алтуфьево (Автомолл Север)</option>
+                  <option value="Ленинский (Ленинский проспект, д. 83Б)">Техцентр: Ленинский (Ленинский пр-т, д. 83Б)</option>
+                  <option value="Автохолл ЗИЛ (ул. Автозаводская, д. 23к7)">Техцентр: Автохолл ЗИЛ (ул. Автозаводская, 23к7)</option>
+                  <option value="Зеленоград (ЖК Андреевский Квартал, 1с2)">Техцентр: Зеленоград (ЖК Андреевский Квартал, 1с2)</option>
+                  <option value="Доставка комплекта запчастей по Москве (МКАД бесплатно от 2 000 руб.)">Только доставка запчастей по Москве (бесплатно от 2 000 руб.)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="client-comment" class="field-label">Комментарий или перечень дополнительных деталей</label>
+              <textarea
+                id="client-comment"
+                name="comment"
+                rows="3"
+                class="field-textarea"
+                placeholder="Укажите пожелания по времени визита или интересующие позиции"
+                autocomplete="off"
+              ></textarea>
+            </div>
+
+            <div class="form-footer">
+              <div class="attached-summary mono" id="attached-calc-pill">
+                К заявке прикреплена смета: XC90 D5 · 60 000 км (Оригинал)
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Отправить запрос на client@77volvo.ru
+              </button>
+            </div>
+          </form>
+
+          <div class="card vin-sidebar">
+            <div class="vin-decode-box">
+              <span class="section-kicker mono">РАСШИФРОВКА VIN В РЕАЛЬНОМ ВРЕМЕНИ</span>
+              <h3>Предварительный разбор кода</h3>
+              <dl class="decode-list" id="vin-decode-output">
+                <div class="decode-row">
+                  <dt>Статус проверки</dt>
+                  <dd class="mono" id="dec-valid">Ожидание ввода (17 знаков)</dd>
+                </div>
+                <div class="decode-row">
+                  <dt>Производитель (WMI)</dt>
+                  <dd class="mono" id="dec-wmi">Не определён</dd>
+                </div>
+                <div class="decode-row">
+                  <dt>Модельный год (10-й знак)</dt>
+                  <dd class="mono" id="dec-year">Не определён</dd>
+                </div>
+                <div class="decode-row">
+                  <dt>Сборочный завод (11-й знак)</dt>
+                  <dd class="mono" id="dec-plant">Не определён</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="delivery-box">
+              <div class="delivery-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M3 6H15V17H3V6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M15 9H19L21 12V17H15V9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <circle cx="7" cy="17.5" r="2" fill="#FFFFFF" stroke="currentColor" stroke-width="1.8"/>
+                  <circle cx="17.5" cy="17.5" r="2" fill="#FFFFFF" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+              </div>
+              <div>
+                <h4>Условия доставки и подбора</h4>
+                <p>
+                  Бесплатная доставка запчастей в пределах МКАД при заказе от 2 000 руб. Заявки принимаются круглосуточно, консультации и запись в техцентры с 09:00 до 21:00.
+                </p>
+              </div>
+            </div>
+
+            <div class="confirm-box is-hidden" id="form-confirmation" aria-live="polite">
+              <div class="confirm-head">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <circle cx="10" cy="10" r="9" fill="#143A66"/>
+                  <path d="M6 10.2L8.8 13L14.2 7.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span id="confirm-title">Заявка сформирована</span>
+              </div>
+              <pre class="confirm-payload mono" id="confirm-payload"></pre>
+              <a href="mailto:client@77volvo.ru" id="confirm-mailto" class="btn btn-secondary btn-full">
+                Открыть письмо в client@77volvo.ru
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="centers" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker mono">03 / АДРЕСА В МОСКВЕ</span>
+            <h2>Техцентры и магазины 77Volvo</h2>
+          </div>
+          <div class="filter-bar" role="tablist" aria-label="Фильтр техцентров по округу" id="center-filter">
+            <button type="button" class="filter-btn is-active" data-zone="all" role="tab" aria-selected="true">Все (10)</button>
+            <button type="button" class="filter-btn" data-zone="west" role="tab" aria-selected="false">ЗАО / ЮЗАО</button>
+            <button type="button" class="filter-btn" data-zone="north" role="tab" aria-selected="false">САО / Зеленоград</button>
+            <button type="button" class="filter-btn" data-zone="south" role="tab" aria-selected="false">ЮАО</button>
+            <button type="button" class="filter-btn" data-zone="east" role="tab" aria-selected="false">ВАО / ЮВАО</button>
+          </div>
+        </div>
+
+        <div class="centers-grid" id="centers-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="footer-title">Интерактивный модуль подбора ТО и запчастей для 77volvo.ru</span>
+        <span class="footer-copy">Москва · Запчасти и профильное обслуживание Volvo · Бесплатная доставка по МКАД от 2 000 руб.</span>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:client@77volvo.ru" class="mono">client@77volvo.ru</a>
+        <a href="tel:+74957786586" class="mono">+7 (495) 778-65-86</a>
+        <a href="tel:+74951266639" class="mono">+7 (495) 126-66-39</a>
+        <a href="https://77volvo.ru" target="_blank" rel="noopener noreferrer">77volvo.ru</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
