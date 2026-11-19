@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="London Roofing — Emergency roof repairs, new slate and tile roofs, flat roofing and waterproofing, and chimney maintenance across Greater London. Instant GBP repair cost estimator and survey booking.">
+  <title>London Roofing | Roof Repairs, Slate &amp; Flat Roofing Across London, UK</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2325282c'/%3E%3Cpath d='M4 18L16 7l12 11v8H4v-8z' fill='%23b5492c'/%3E%3Cpath d='M12 26v-7h8v7' fill='%23f7f5f2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f4f0;
+      --surface: #ffffff;
+      --surface-alt: #efece6;
+      --ink: #1e2124;
+      --ink-muted: #555b62;
+      --graphite: #2b3036;
+      --terracotta: #b5492c;
+      --terracotta-dark: #933820;
+      --terracotta-soft: #f9ede9;
+      --border: #ddd7ce;
+      --border-strong: #c7bfb3;
+      --success: #1f6b47;
+      --success-bg: #eaf5ef;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 2px 10px rgba(30, 33, 36, 0.05);
+      --font-sans: 'IBM Plex Sans', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-display: 'Plus Jakarta Sans', 'IBM Plex Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 68px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      border-radius: 7px;
+      background: var(--graphite);
+      display: grid;
+      place-items: center;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.08rem;
+      letter-spacing: -0.02em;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .nav-phone {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--graphite);
+      text-decoration: none;
+      font-variant-numeric: tabular-nums;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-alt);
+      white-space: nowrap;
+    }
+
+    .nav-phone:hover {
+      background: var(--border);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--terracotta);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--terracotta-dark);
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--graphite);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-alt);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 44px 0 36px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--terracotta);
+      background: var(--terracotta-soft);
+      padding: 5px 10px;
+      border-radius: 4px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.85rem, 3.6vw, 2.7rem);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      margin: 0 0 14px;
+      color: var(--ink);
+    }
+
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--ink-muted);
+      margin: 0 0 22px;
+      max-width: 58ch;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .trust-item strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--graphite);
+    }
+
+    .trust-item span {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+    }
+
+    .hero-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.02rem;
+      margin: 0 0 12px;
+      color: var(--graphite);
+    }
+
+    .dispatch-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .dispatch-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+    }
+
+    .dispatch-list li span:last-child {
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--terracotta);
+      white-space: nowrap;
+    }
+
+    /* Sections */
+    .section {
+      padding: 44px 0;
+    }
+
+    .section-head {
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+      letter-spacing: -0.02em;
+      margin: 0 0 6px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--ink-muted);
+      max-width: 62ch;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .service-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 7px;
+      background: var(--terracotta-soft);
+      color: var(--terracotta);
+      display: grid;
+      place-items: center;
+      margin-bottom: 4px;
+    }
+
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.02rem;
+      margin: 0;
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+    }
+
+    /* Calculator */
+    .calc-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .field-group {
+      margin-bottom: 20px;
+    }
+
+    .field-label {
+      display: block;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      color: var(--graphite);
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .option-btn {
+      text-align: left;
+      padding: 11px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .option-btn small {
+      display: block;
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .option-btn.is-active {
+      background: var(--terracotta-soft);
+      border-color: var(--terracotta);
+      color: var(--terracotta-dark);
+    }
+
+    .range-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .range-value {
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--terracotta);
+      font-size: 1rem;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--terracotta);
+      cursor: pointer;
+    }
+
+    .input-control {
+      width: 100%;
+      padding: 10px 12px;
+      font-family: var(--font-sans);
+      font-size: 0.94rem;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+    }
+
+    .input-control:focus {
+      outline: 2px solid var(--terracotta);
+      outline-offset: 1px;
+    }
+
+    /* Estimate Summary */
+    .estimate-box {
+      background: var(--graphite);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+
+    .estimate-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #c9cfd6;
+      margin-bottom: 6px;
+    }
+
+    .estimate-price {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.2rem);
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      margin: 0 0 6px;
+      color: #ffffff;
+    }
+
+    .estimate-meta {
+      font-size: 0.86rem;
+      color: #d6dce2;
+      margin: 0 0 14px;
+    }
+
+    .estimate-breakdown {
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      padding-top: 12px;
+      display: grid;
+      gap: 6px;
+      font-size: 0.84rem;
+    }
+
+    .estimate-breakdown div {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .form-status {
+      display: none;
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      background: var(--success-bg);
+      color: var(--success);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .form-status.is-visible {
+      display: block;
+    }
+
+    /* Contact & Footer */
+    .contact-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .contact-item strong {
+      display: block;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-item span,
+    .contact-item a {
+      color: var(--ink);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      color: var(--terracotta);
+      text-decoration: underline;
+    }
+
+    .contact-item--full {
+      grid-column: 1 / -1;
+    }
+
+    .contact-item--full a[href^="mailto:"],
+    .contact-item--full a[href^="http"] {
+      display: inline-block;
+      font-size: 11.5px;
+      white-space: nowrap;
+      word-break: normal;
+    }
+
+    .site-footer {
+      padding: 20px 0 28px;
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .calc-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .services-grid,
+      .option-grid,
+      .contact-grid,
+      .trust-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-phone {
+        display: none;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .contact-item--full a[href^="mailto:"],
+      .contact-item--full a[href^="http"] {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M3 13L12 4l9 9v7H3v-7z" fill="#b5492c"/>
+            <path d="M9 20v-5h6v5" fill="#ffffff"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">London Roofing</span>
+          <span class="brand-sub">London, UK · Residential &amp; Commercial</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a class="nav-phone" href="tel:02034888919">020 3488 8919</a>
+        <a class="btn btn-primary" href="#calculator">Instant Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Greater London Roofing Specialists</span>
+          <h1>Fast Roof Repairs, Slate &amp; Flat Roofing Built for London Weather</h1>
+          <p class="hero-lead">
+            From urgent storm-leak call-outs to full Welsh slate re-roofs and GRP flat roof waterproofing, our surveyors deliver clear fixed-price quotes in GBP across all London boroughs.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#calculator">Calculate Repair Cost</a>
+            <a class="btn btn-secondary" href="tel:02034888919">Call 020 3488 8919</a>
+          </div>
+          <div class="trust-strip">
+            <div class="trust-item">
+              <strong>2–4 hrs</strong>
+              <span>Emergency leak response</span>
+            </div>
+            <div class="trust-item">
+              <strong>10–20 yrs</strong>
+              <span>Workmanship guarantee</span>
+            </div>
+            <div class="trust-item">
+              <strong>£0</strong>
+              <span>Survey &amp; written quote</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Typical London dispatch times">
+          <h2 class="hero-card-title">Current London Dispatch &amp; Survey Slots</h2>
+          <ul class="dispatch-list">
+            <li><span>Active Leak Make-Safe</span><span>Same Day</span></li>
+            <li><span>Slate &amp; Tile Repair</span><span>24–48 hrs</span></li>
+            <li><span>Flat Roof Inspection</span><span>48 hrs</span></li>
+            <li><span>Chimney &amp; Leadwork</span><span>2–3 days</span></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2>Core Roofing Services</h2>
+          <p>Certified roofing engineers serving Victorian terraces, period townhouses, and modern flat-roof extensions across London.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/>
+              </svg>
+            </div>
+            <h3>Emergency Roof Repairs</h3>
+            <p>Rapid tarping, slipped tile replacement, storm damage make-safe, and leak tracing.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12l9-8 9 8v8H3v-8z"/>
+              </svg>
+            </div>
+            <h3>New Slate &amp; Tile Roofs</h3>
+            <p>Natural Welsh slate, clay plain tiles, breathable membranes, and ridge ventilation.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="7" width="18" height="10" rx="2"/>
+                <path d="M7 12h10"/>
+              </svg>
+            </div>
+            <h3>Flat Roofing &amp; Waterproofing</h3>
+            <p>EPDM rubber, GRP fibreglass, and torch-on felt systems for extensions and dormers.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 20V8h12v12M9 8V4h6v4"/>
+              </svg>
+            </div>
+            <h3>Chimney &amp; Guttering Maintenance</h3>
+            <p>Lead flashing repairs, chimney repointing, cowl fitting, and cast-iron gutter clearing.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="calculator">
+      <div class="container">
+        <div class="section-head">
+          <h2>Instant Roof Repair Cost &amp; Survey Request Calculator</h2>
+          <p>Select your roof type, affected area, leak urgency, and access height to view an instant GBP estimate and book a free engineer survey.</p>
+        </div>
+
+        <div class="calc-layout">
+          <div class="panel">
+            <div class="field-group">
+              <div class="field-label">1. Roof Type / Scope</div>
+              <div class="option-grid" id="roofTypeGroup">
+                <button type="button" class="option-btn is-active" data-value="slate">
+                  Slate Roof
+                  <small>Natural or fibre-cement slate</small>
+                </button>
+                <button type="button" class="option-btn" data-value="tile">
+                  Tile Roof
+                  <small>Clay or concrete interlocking</small>
+                </button>
+                <button type="button" class="option-btn" data-value="flat">
+                  Flat Roof
+                  <small>EPDM, GRP or felt waterproofing</small>
+                </button>
+                <button type="button" class="option-btn" data-value="chimney">
+                  Chimney &amp; Leadwork
+                  <small>Flashing, flaunching &amp; gutters</small>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="range-row">
+                <label class="field-label" for="areaRange" style="margin-bottom:0;">2. Affected Roof Area</label>
+                <span class="range-value" id="areaReadout">18 m²</span>
+              </div>
+              <input id="areaRange" type="range" min="4" max="80" step="2" value="18" autocomplete="off">
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">3. Leak Urgency</div>
+              <div class="option-grid" id="urgencyGroup">
+                <button type="button" class="option-btn is-active" data-value="standard">
+                  Standard Inspection
+                  <small>Preventative or minor wear</small>
+                </button>
+                <button type="button" class="option-btn" data-value="urgent">
+                  Active Leak (24–48h)
+                  <small>Priority water ingress</small>
+                </button>
+                <button type="button" class="option-btn" data-value="emergency">
+                  Emergency Call-Out
+                  <small>Same-day make-safe</small>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group" style="margin-bottom:0;">
+              <label class="field-label" for="accessSelect">4. Building Access Height</label>
+              <select id="accessSelect" class="input-control" autocomplete="off">
+                <option value="1">1–2 Storeys (Ladder / Tower Access)</option>
+                <option value="1.25">3 Storeys (Partial Scaffolding)</option>
+                <option value="1.45">4+ Storeys / Townhouse (Full Scaffold)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="estimate-box" aria-live="polite">
+              <div class="estimate-kicker">Estimated Repair / Works Range</div>
+              <div class="estimate-price" id="estimateRange">£760 – £1,040</div>
+              <p class="estimate-meta" id="estimateDispatch">Engineer attendance: Within 2–3 working days</p>
+              <div class="estimate-breakdown">
+                <div><span>Materials &amp; Labour</span><span id="bdBase">£720</span></div>
+                <div><span>Access &amp; Safety</span><span id="bdAccess">£120</span></div>
+                <div><span>Priority Dispatch</span><span id="bdUrgency">£0</span></div>
+              </div>
+            </div>
+
+            <form id="surveyForm" class="form-grid" novalidate>
+              <div>
+                <label class="field-label" for="custName">Full Name</label>
+                <input id="custName" name="name" type="text" class="input-control" placeholder="e.g. Oliver Bennett" autocomplete="name" required>
+              </div>
+              <div>
+                <label class="field-label" for="custPhone">UK Phone Number</label>
+                <input id="custPhone" name="tel" type="tel" class="input-control" placeholder="e.g. 07700 900123" autocomplete="tel" required>
+              </div>
+              <div>
+                <label class="field-label" for="custPostcode">London Postcode</label>
+                <input id="custPostcode" name="postal-code" type="text" class="input-control" placeholder="e.g. SW1A 1AA" autocomplete="postal-code" required>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:100%;">Request Free Engineer Survey</button>
+              <div id="formStatus" class="form-status" role="status">
+                Survey request logged. Our London desk will call you shortly to confirm your slot.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contact London Roofing</h2>
+          <p>Direct local desk for emergency call-outs, written quotations, and scheduled roof surveys.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <strong>Company</strong>
+            <span>London Roofing</span>
+          </div>
+          <div class="contact-item">
+            <strong>Location</strong>
+            <span>London, UK</span>
+          </div>
+          <div class="contact-item">
+            <strong>Telephone</strong>
+            <a href="tel:02034888919">020 3488 8919</a>
+          </div>
+          <div class="contact-item">
+            <strong>Currency &amp; Hours</strong>
+            <span>GBP (£) · Mon–Sun 07:00–21:00</span>
+          </div>
+          <div class="contact-item contact-item--full">
+            <strong>Email</strong>
+            <a href="mailto:info@londonroofing.co.uk">info@londonroofing.co.uk</a>
+          </div>
+          <div class="contact-item contact-item--full">
+            <strong>Website</strong>
+            <a href="https://www.londonroofing.co.uk/" target="_blank" rel="noopener noreferrer">https://www.londonroofing.co.uk/</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>London Roofing · London, UK</span>
+      <span>Emergency Roof Repairs · Slate &amp; Tile · Flat Roofing · Chimney &amp; Guttering</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        roofType: 'slate',
+        area: 18,
+        urgency: 'standard',
+        accessMultiplier: 1
+      };
+
+      const rates = {
+        slate: 42,
+        tile: 36,
+        flat: 48,
+        chimney: 38
+      };
+
+      const urgencyFees = {
+        standard: { fee: 0, text: 'Engineer attendance: Within 2–3 working days' },
+        urgent: { fee: 110, text: 'Engineer attendance: Priority 24–48 hours' },
+        emergency: { fee: 220, text: 'Engineer attendance: Same-day make-safe (2–4 hrs)' }
+      };
+
+      const areaRange = document.getElementById('areaRange');
+      const areaReadout = document.getElementById('areaReadout');
+      const accessSelect = document.getElementById('accessSelect');
+      const estimateRange = document.getElementById('estimateRange');
+      const estimateDispatch = document.getElementById('estimateDispatch');
+      const bdBase = document.getElementById('bdBase');
+      const bdAccess = document.getElementById('bdAccess');
+      const bdUrgency = document.getElementById('bdUrgency');
+      const surveyForm = document.getElementById('surveyForm');
+      const formStatus = document.getElementById('formStatus');
+
+      function formatGBP(val) {
+        return '£' + Math.round(val).toLocaleString('en-GB');
+      }
+
+      function updateEstimate() {
+        const base = Math.max(240, state.area * rates[state.roofType]);
+        const accessCost = Math.round(base * (state.accessMultiplier - 1) + (state.accessMultiplier > 1 ? 140 : 80));
+        const urgencyInfo = urgencyFees[state.urgency];
+        const mid = base + accessCost + urgencyInfo.fee;
+        const low = Math.round((mid * 0.88) / 10) * 10;
+        const high = Math.round((mid * 1.15) / 10) * 10;
+
+        areaReadout.textContent = state.area + ' m²';
+        estimateRange.textContent = formatGBP(low) + ' – ' + formatGBP(high);
+        estimateDispatch.textContent = urgencyInfo.text;
+        bdBase.textContent = formatGBP(base);
+        bdAccess.textContent = formatGBP(accessCost);
+        bdUrgency.textContent = formatGBP(urgencyInfo.fee);
+      }
+
+      function bindOptionGroup(groupId, key) {
+        const group = document.getElementById(groupId);
+        group.addEventListener('click', function (e) {
+          const btn = e.target.closest('.option-btn');
+          if (!btn) return;
+          group.querySelectorAll('.option-btn').forEach(function (el) {
+            el.classList.remove('is-active');
+          });
+          btn.classList.add('is-active');
+          state[key] = btn.getAttribute('data-value');
+          updateEstimate();
+        });
+      }
+
+      bindOptionGroup('roofTypeGroup', 'roofType');
+      bindOptionGroup('urgencyGroup', 'urgency');
+
+      areaRange.addEventListener('input', function () {
+        state.area = Number(areaRange.value);
+        updateEstimate();
+      });
+
+      accessSelect.addEventListener('change', function () {
+        state.accessMultiplier = Number(accessSelect.value);
+        updateEstimate();
+      });
+
+      surveyForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('custName').value.trim();
+        const phone = document.getElementById('custPhone').value.trim();
+        const postcode = document.getElementById('custPostcode').value.trim();
+        if (!name || !phone || !postcode) {
+          formStatus.textContent = 'Please enter your name, UK phone number, and London postcode.';
+          formStatus.classList.add('is-visible');
+          return;
+        }
+        formStatus.textContent = 'Survey request logged for ' + postcode.toUpperCase() + '. Our London desk will call ' + phone + ' shortly.';
+        formStatus.classList.add('is-visible');
+      });
+
+      updateEstimate();
+    })();
+  </script>
+</body>
+</html>
