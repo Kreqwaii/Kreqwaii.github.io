@@ -1,0 +1,3446 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>СТО-ВРН — Частный пункт техосмотра и автосервис в Воронеже</title>
+  <meta name="description" content="СТО-ВРН в Воронеже: официальный технический осмотр автомобилей с занесением диагностической карты в ЕАИСТО, компьютерная диагностика, ремонт ходовой и тормозов, предтехосмотровая подготовка. Онлайн-калькулятор и запись на пост Пн-Сб.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23151B23'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%231B4965' stroke-width='6'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='%23FFFFFF' stroke-width='2'/%3E%3Cpath d='M22 33l7 7 14-15' fill='none' stroke='%23C2591A' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #F7F8FA;
+      --bg-surface: #FFFFFF;
+      --bg-plate: #EEF1F5;
+      --bg-plate-deep: #E2E7EE;
+      --ink-primary: #151B23;
+      --ink-secondary: #414B57;
+      --ink-muted: #5A6573;
+      --border-hairline: #D7DDE6;
+      --border-strong: #B9C3D1;
+      --accent-blue: #1B4965;
+      --accent-blue-hover: #13354A;
+      --accent-blue-soft: #EAF1F6;
+      --accent-blue-line: #B8CDDC;
+      --accent-orange: #C2591A;
+      --accent-orange-hover: #A54912;
+      --accent-orange-soft: #FDF1E8;
+      --accent-orange-line: #EBC8B0;
+      --accent-orange-ink: #8C3B0B;
+      --status-ok: #175B3A;
+      --status-ok-bg: #EAF4EE;
+      --status-ok-line: #B6D8C4;
+      --font-sans: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --max-w: 1320px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.55;
+      overflow-x: clip;
+      max-width: 100%;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select {
+      font-family: inherit;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline: 2px solid var(--accent-blue);
+      outline-offset: 2px;
+    }
+
+    .mono, .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+    }
+
+    .nowrap {
+      white-space: nowrap;
+      word-break: normal;
+      overflow-wrap: normal;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    /* Top utility strip */
+    .utility-bar {
+      background-color: var(--ink-primary);
+      color: #E7ECF2;
+      font-size: 12.5px;
+      border-bottom: 1px solid #28323F;
+    }
+
+    .utility-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 20px;
+      min-height: 38px;
+      padding-block: 7px;
+      flex-wrap: wrap;
+    }
+
+    .utility-group {
+      display: flex;
+      align-items: center;
+      gap: 8px 18px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .utility-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #E7ECF2;
+      transition: color 0.18s ease;
+    }
+
+    a.utility-item:hover {
+      color: #F4A26E;
+    }
+
+    .utility-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent-orange);
+      flex-shrink: 0;
+    }
+
+    /* Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 68px;
+      padding-block: 10px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background-color: var(--ink-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid #2A3442;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-title {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--ink-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      padding-block: 6px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.18s ease, border-color 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: var(--accent-blue);
+      border-bottom-color: var(--accent-blue);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1.2;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.12s ease;
+      text-align: center;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background-color: var(--accent-blue);
+      color: #FFFFFF;
+      border-color: var(--accent-blue);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-blue-hover);
+      border-color: var(--accent-blue-hover);
+    }
+
+    .btn-signal {
+      background-color: var(--accent-orange);
+      color: #FFFFFF;
+      border-color: var(--accent-orange);
+    }
+
+    .btn-signal:hover {
+      background-color: var(--accent-orange-hover);
+      border-color: var(--accent-orange-hover);
+    }
+
+    .btn-outline {
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      border-color: var(--border-strong);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+      background-color: var(--accent-blue-soft);
+    }
+
+    .btn-sm {
+      padding: 8px 13px;
+      font-size: 13px;
+    }
+
+    .burger-btn {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .burger-btn:hover {
+      border-color: var(--accent-blue);
+      background-color: var(--accent-blue-soft);
+    }
+
+    .mobile-drawer {
+      display: none;
+      border-top: 1px solid var(--border-hairline);
+      background-color: var(--bg-surface);
+      padding: 14px 24px 18px;
+    }
+
+    .mobile-drawer.open {
+      display: block;
+    }
+
+    .mobile-drawer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .mobile-drawer-links a {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      color: var(--ink-primary);
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+    }
+
+    /* Hero section */
+    .hero {
+      position: relative;
+      background-color: var(--bg-surface);
+      background-image:
+        linear-gradient(to right, rgba(27, 73, 101, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(27, 73, 101, 0.045) 1px, transparent 1px);
+      background-size: 32px 32px;
+      border-bottom: 1px solid var(--border-hairline);
+      padding-block: 44px 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 11px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-blue-soft);
+      border: 1px solid var(--accent-blue-line);
+      color: var(--accent-blue);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .kicker-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent-orange);
+      flex-shrink: 0;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(27px, 3.2vw, 42px);
+      line-height: 1.13;
+      letter-spacing: -0.025em;
+      font-weight: 800;
+      color: var(--ink-primary);
+    }
+
+    .hero-lead {
+      margin: 0 0 22px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink-secondary);
+      max-width: 590px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric-card {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+    }
+
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent-blue);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .metric-val.orange {
+      color: var(--accent-orange-ink);
+    }
+
+    .metric-lbl {
+      font-size: 12.5px;
+      color: var(--ink-secondary);
+      line-height: 1.35;
+    }
+
+    /* Hero Diagnostic Stand Card */
+    .stand-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .stand-card-head {
+      background-color: var(--ink-primary);
+      color: #FFFFFF;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .stand-card-title {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #E7ECF2;
+    }
+
+    .stand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      background-color: rgba(194, 89, 26, 0.22);
+      border: 1px solid rgba(235, 200, 176, 0.45);
+      color: #FCD8C1;
+    }
+
+    .stand-diagram-box {
+      padding: 16px 18px 14px;
+      background-color: var(--bg-canvas);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .stand-svg-wrap {
+      width: 100%;
+      max-width: 560px;
+      aspect-ratio: 560 / 230;
+      margin-inline: auto;
+    }
+
+    .stand-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .stand-posts-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      padding: 12px 18px 0;
+    }
+
+    .post-tab {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .post-tab:hover {
+      border-color: var(--accent-blue-line);
+      background-color: var(--accent-blue-soft);
+    }
+
+    .post-tab.active {
+      background-color: var(--accent-blue);
+      border-color: var(--accent-blue);
+      color: #FFFFFF;
+    }
+
+    .post-tab-num {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 2px;
+    }
+
+    .post-tab-name {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .stand-inspector {
+      padding: 14px 18px 16px;
+    }
+
+    .inspector-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 6px;
+    }
+
+    .inspector-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 14px;
+      margin-top: 8px;
+    }
+
+    .inspector-kv {
+      background-color: var(--bg-plate);
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+    }
+
+    .inspector-k {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      margin-bottom: 2px;
+    }
+
+    .inspector-v {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    /* Section scaffold */
+    .section {
+      padding-block: 56px;
+    }
+
+    .section-alt {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border-hairline);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent-orange-ink);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(22px, 2.4vw, 31px);
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      font-weight: 800;
+      color: var(--ink-primary);
+    }
+
+    .section-desc {
+      margin: 8px 0 0;
+      color: var(--ink-secondary);
+      max-width: 660px;
+      font-size: 15px;
+    }
+
+    /* Calculator & Booking Workbench */
+    .calc-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.92fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .calc-panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .calc-step {
+      padding-bottom: 22px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .calc-step:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .step-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-blue);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .step-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--ink-primary);
+      margin: 0;
+    }
+
+    .step-hint {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    /* Category Grid */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .cat-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      padding: 12px 11px;
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-align: left;
+      color: var(--ink-primary);
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .cat-btn:hover {
+      border-color: var(--accent-blue);
+      background-color: var(--accent-blue-soft);
+    }
+
+    .cat-btn.active {
+      background-color: var(--accent-blue);
+      border-color: var(--accent-blue);
+      color: #FFFFFF;
+    }
+
+    .cat-code {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .cat-name {
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.25;
+      opacity: 0.92;
+    }
+
+    .cat-price {
+      margin-top: auto;
+      padding-top: 6px;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--accent-orange-ink);
+    }
+
+    .cat-btn.active .cat-price {
+      color: #FCD8C1;
+    }
+
+    .cat-spec-banner {
+      margin-top: 12px;
+      padding: 11px 14px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-plate);
+      border: 1px solid var(--border-hairline);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+
+    .cat-spec-text {
+      color: var(--ink-secondary);
+      line-height: 1.4;
+    }
+
+    .cat-spec-text strong {
+      color: var(--ink-primary);
+    }
+
+    /* Mode toggle */
+    .mode-switch {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .mode-btn {
+      padding: 11px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-hairline);
+      background-color: var(--bg-canvas);
+      cursor: pointer;
+      text-align: left;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .mode-btn:hover {
+      border-color: var(--accent-blue);
+    }
+
+    .mode-btn.active {
+      background-color: var(--accent-blue-soft);
+      border-color: var(--accent-blue);
+    }
+
+    .mode-btn-title {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 2px;
+    }
+
+    .mode-btn-sub {
+      display: block;
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    /* Options list */
+    .options-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 9px;
+    }
+
+    .opt-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-hairline);
+      background-color: var(--bg-surface);
+      cursor: pointer;
+      text-align: left;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .opt-item:hover {
+      border-color: var(--accent-blue);
+      background-color: var(--bg-canvas);
+    }
+
+    .opt-item.active {
+      border-color: var(--accent-blue);
+      background-color: var(--accent-blue-soft);
+    }
+
+    .opt-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .opt-check {
+      width: 20px;
+      height: 20px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: #FFFFFF;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .opt-item.active .opt-check {
+      background-color: var(--accent-blue);
+      border-color: var(--accent-blue);
+    }
+
+    .opt-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      line-height: 1.3;
+    }
+
+    .opt-desc {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      line-height: 1.35;
+      margin-top: 2px;
+    }
+
+    .opt-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      flex-shrink: 0;
+      gap: 2px;
+    }
+
+    .opt-price {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .opt-time {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--accent-orange-ink);
+      font-weight: 600;
+    }
+
+    /* Schedule Day & Time Slots */
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .day-btn {
+      padding: 9px 6px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-hairline);
+      background-color: var(--bg-canvas);
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .day-btn:hover {
+      border-color: var(--accent-blue);
+    }
+
+    .day-btn.active {
+      background-color: var(--accent-blue);
+      border-color: var(--accent-blue);
+      color: #FFFFFF;
+    }
+
+    .day-wk {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    .day-dt {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .slots-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .slot-btn {
+      padding: 9px 8px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-hairline);
+      background-color: var(--bg-surface);
+      cursor: pointer;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .slot-btn:hover:not(:disabled) {
+      border-color: var(--accent-blue);
+      background-color: var(--accent-blue-soft);
+    }
+
+    .slot-btn.active {
+      background-color: var(--accent-orange);
+      border-color: var(--accent-orange);
+      color: #FFFFFF;
+    }
+
+    .slot-btn:disabled {
+      background-color: var(--bg-plate);
+      color: var(--ink-muted);
+      border-color: var(--border-hairline);
+      cursor: not-allowed;
+      text-decoration: line-through;
+      opacity: 0.65;
+    }
+
+    .slot-status-note {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .legend-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    /* Right Summary & Booking Column */
+    .summary-card {
+      position: sticky;
+      top: 86px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .summary-head {
+      background-color: var(--ink-primary);
+      color: #FFFFFF;
+      padding: 18px 22px;
+    }
+
+    .summary-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #B4C0CE;
+      margin-bottom: 6px;
+    }
+
+    .summary-totals-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .summary-total-price {
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #FFFFFF;
+    }
+
+    .summary-duration-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 11px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-orange);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .summary-body {
+      padding: 20px 22px 22px;
+    }
+
+    .receipt-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px dashed var(--border-strong);
+    }
+
+    .receipt-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13.5px;
+    }
+
+    .receipt-name {
+      color: var(--ink-secondary);
+    }
+
+    .receipt-val {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--ink-primary);
+      flex-shrink: 0;
+    }
+
+    .visit-meta-box {
+      background-color: var(--bg-plate);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      margin-bottom: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 12px;
+    }
+
+    .visit-meta-item {
+      font-size: 12px;
+    }
+
+    .visit-meta-k {
+      color: var(--ink-muted);
+      margin-bottom: 2px;
+    }
+
+    .visit-meta-v {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    /* Form Fields without orphaned labels */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-width: 0;
+    }
+
+    .field-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .field-control {
+      width: 100%;
+      height: 42px;
+      padding: 0 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      font-size: 14px;
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .field-control:hover {
+      border-color: var(--accent-blue);
+    }
+
+    .field-control:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(27, 73, 101, 0.14);
+    }
+
+    .field-control.error {
+      border-color: var(--accent-orange);
+      background-color: var(--accent-orange-soft);
+    }
+
+    .form-error-msg {
+      display: none;
+      margin-bottom: 12px;
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-orange-soft);
+      border: 1px solid var(--accent-orange-line);
+      color: var(--accent-orange-ink);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .form-error-msg.visible {
+      display: block;
+    }
+
+    .submit-full {
+      width: 100%;
+      padding: 13px 18px;
+      font-size: 15px;
+    }
+
+    .booking-footnote {
+      margin-top: 10px;
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    /* Confirmed Ticket Box */
+    .ticket-box {
+      display: none;
+      padding: 20px 22px 22px;
+      background-color: var(--status-ok-bg);
+    }
+
+    .ticket-box.visible {
+      display: block;
+    }
+
+    .ticket-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+      background-color: var(--status-ok);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .ticket-code-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--ink-primary);
+      margin: 0 0 6px;
+    }
+
+    .ticket-sub {
+      font-size: 13px;
+      color: var(--ink-secondary);
+      margin: 0 0 14px;
+    }
+
+    .ticket-sheet {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--status-ok-line);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .ticket-kv {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding-block: 6px;
+      border-bottom: 1px solid var(--border-hairline);
+      font-size: 13px;
+    }
+
+    .ticket-kv:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .ticket-kv span:first-child {
+      color: var(--ink-muted);
+    }
+
+    .ticket-kv span:last-child {
+      font-weight: 700;
+      color: var(--ink-primary);
+      text-align: right;
+    }
+
+    .ticket-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    /* Services 4-card grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      transition: border-color 0.18s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--accent-blue);
+    }
+
+    .service-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .service-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background-color: var(--accent-blue-soft);
+      border: 1px solid var(--accent-blue-line);
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .service-tag {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 4px 9px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-plate);
+      color: var(--ink-secondary);
+    }
+
+    .service-title {
+      margin: 12px 0 8px;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.28;
+      color: var(--ink-primary);
+    }
+
+    .service-desc {
+      margin: 0 0 12px;
+      font-size: 14px;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+    }
+
+    .service-points {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .service-points li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--ink-primary);
+      font-weight: 500;
+    }
+
+    .service-point-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent-orange);
+      flex-shrink: 0;
+    }
+
+    .service-foot {
+      padding-top: 14px;
+      border-top: 1px solid var(--border-hairline);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .service-price-note {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-blue);
+    }
+
+    /* Tariff Table + Self-check */
+    .reglament-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .tariff-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .tariff-head {
+      padding: 16px 20px;
+      background-color: var(--bg-plate);
+      border-bottom: 1px solid var(--border-hairline);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tariff-head-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--ink-primary);
+    }
+
+    .tariff-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .tariff-table th,
+    .tariff-table td {
+      padding: 13px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-hairline);
+      font-size: 13.5px;
+      vertical-align: middle;
+    }
+
+    .tariff-table th {
+      background-color: var(--bg-canvas);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .tariff-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .cat-pill {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-blue-soft);
+      border: 1px solid var(--accent-blue-line);
+      color: var(--accent-blue);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* Self-check widget */
+    .checklist-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+
+    .checklist-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .checklist-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .checklist-score {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-orange-soft);
+      color: var(--accent-orange-ink);
+      border: 1px solid var(--accent-orange-line);
+    }
+
+    .checklist-score.ready {
+      background-color: var(--status-ok-bg);
+      color: var(--status-ok);
+      border-color: var(--status-ok-line);
+    }
+
+    .check-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-hairline);
+      background-color: var(--bg-canvas);
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .check-row:hover {
+      border-color: var(--accent-blue);
+    }
+
+    .check-row.checked {
+      background-color: var(--status-ok-bg);
+      border-color: var(--status-ok-line);
+    }
+
+    .check-box {
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      border: 1.5px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: #FFFFFF;
+    }
+
+    .check-row.checked .check-box {
+      background-color: var(--status-ok);
+      border-color: var(--status-ok);
+    }
+
+    .check-text {
+      font-size: 13px;
+      color: var(--ink-primary);
+      line-height: 1.38;
+    }
+
+    .checklist-advice {
+      padding: 12px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-plate);
+      font-size: 13px;
+      color: var(--ink-secondary);
+      line-height: 1.45;
+    }
+
+    /* Process & FAQ */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .process-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .process-step {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-orange-ink);
+      margin-bottom: 8px;
+    }
+
+    .process-title {
+      font-size: 15px;
+      font-weight: 800;
+      margin: 0 0 6px;
+      color: var(--ink-primary);
+    }
+
+    .process-desc {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+    }
+
+    .faq-docs-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .docs-box {
+      background-color: var(--bg-plate);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+
+    .docs-title {
+      margin: 0 0 12px;
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .docs-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .docs-list li {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      padding: 11px 13px;
+      font-size: 13.5px;
+      line-height: 1.45;
+    }
+
+    .docs-list strong {
+      display: block;
+      color: var(--ink-primary);
+      margin-bottom: 2px;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .faq-item {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .faq-trigger {
+      width: 100%;
+      padding: 15px 18px;
+      background-color: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      cursor: pointer;
+      transition: background-color 0.18s ease;
+    }
+
+    .faq-trigger:hover {
+      background-color: var(--bg-canvas);
+    }
+
+    .faq-icon {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      color: var(--accent-blue);
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 18px 16px;
+      font-size: 14px;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    /* Contacts & Footer */
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .contact-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .contact-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .contact-value {
+      font-size: 15.5px;
+      font-weight: 800;
+      color: var(--ink-primary);
+      line-height: 1.35;
+    }
+
+    .contact-sub {
+      font-size: 13px;
+      color: var(--ink-secondary);
+    }
+
+    .copy-btn {
+      align-self: flex-start;
+      margin-top: auto;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-hairline);
+      background-color: var(--bg-canvas);
+      color: var(--accent-blue);
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .copy-btn:hover {
+      border-color: var(--accent-blue);
+      background-color: var(--accent-blue-soft);
+    }
+
+    .site-footer {
+      background-color: var(--ink-primary);
+      color: #D1DAE5;
+      padding-block: 32px;
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-weight: 800;
+      color: #FFFFFF;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 14px 22px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a:hover {
+      color: #F4A26E;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1120px) {
+      .hero-grid,
+      .calc-shell,
+      .reglament-grid,
+      .faq-docs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-card {
+        position: static;
+      }
+
+      .cat-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .process-grid,
+      .contacts-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .main-nav {
+        display: none;
+      }
+
+      .burger-btn {
+        display: inline-flex;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        padding-inline: 16px;
+      }
+
+      .hero {
+        padding-block: 28px 34px;
+      }
+
+      .section {
+        padding-block: 40px;
+      }
+
+      .header-actions .btn-outline {
+        display: none;
+      }
+
+      .hero-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid,
+      .process-grid,
+      .contacts-grid,
+      .mode-switch,
+      .form-row-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .cat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .days-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .slots-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .calc-panel {
+        padding: 16px;
+      }
+
+      .stand-posts-tabs,
+      .inspector-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Responsive Tariff Cards on narrow viewports */
+      .tariff-table thead {
+        display: none;
+      }
+
+      .tariff-table,
+      .tariff-table tbody,
+      .tariff-table tr,
+      .tariff-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .tariff-table tr {
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border-hairline);
+      }
+
+      .tariff-table td {
+        padding: 4px 0;
+        border-bottom: none;
+      }
+
+      .tariff-table td[data-label]::before {
+        content: attr(data-label) ": ";
+        font-weight: 700;
+        color: var(--ink-muted);
+        font-size: 12px;
+      }
+
+      .ticket-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .header-actions .btn-primary {
+        padding: 9px 11px;
+        font-size: 12.5px;
+      }
+
+      .brand-title {
+        font-size: 15.5px;
+      }
+
+      .brand-sub {
+        font-size: 11px;
+      }
+
+      .slots-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .visit-meta-box {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="utility-group">
+        <span class="utility-item">
+          <span class="utility-dot" aria-hidden="true"></span>
+          <span>СТО-ВРН · г. Воронеж</span>
+        </span>
+        <span class="utility-item tabular">График: Пн-Сб</span>
+      </div>
+      <div class="utility-group">
+        <a class="utility-item nowrap" href="mailto:pik-67@bk.ru">pik-67@bk.ru</a>
+        <a class="utility-item tabular nowrap" href="tel:+74732727843">+7 (473) 272-78-43</a>
+        <a class="utility-item tabular nowrap" href="tel:+79529565215">+7 (952) 956-52-15</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="СТО-ВРН — главная">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="#FFFFFF" stroke-width="1.8"/>
+            <path d="M8 12.5L10.8 15.3L16.5 9.2" stroke="#C2591A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-title">СТО-ВРН</span>
+          <span class="brand-sub">Частный пункт техосмотра и автосервис</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Навигация по разделам">
+        <a class="nav-link" href="#calculator">Калькулятор и запись</a>
+        <a class="nav-link" href="#services">Услуги</a>
+        <a class="nav-link" href="#reglament">Тарифы и регламент</a>
+        <a class="nav-link" href="#contacts">Контакты</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-outline btn-sm tabular nowrap" href="tel:+74732727843">+7 (473) 272-78-43</a>
+        <a class="btn btn-primary btn-sm nowrap" href="#calculator">Записаться на пост</a>
+        <button class="burger-btn" id="burgerBtn" type="button" aria-label="Открыть меню" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="mobile-drawer-links">
+        <a href="#calculator">Калькулятор техосмотра и запись</a>
+        <a href="#services">Услуги СТО-ВРН</a>
+        <a href="#reglament">Тарифы по категориям и регламент</a>
+        <a href="#faq">Документы и вопросы</a>
+        <a href="#contacts">Контакты (г. Воронеж)</a>
+      </div>
+      <a class="btn btn-outline btn-sm tabular nowrap" style="width:100%;" href="tel:+79529565215">Позвонить: +7 (952) 956-52-15</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="kicker">
+            <span class="kicker-dot" aria-hidden="true"></span>
+            <span>г. Воронеж · Пн-Сб · Линия ЕАИСТО</span>
+          </div>
+          <h1>Официальный техосмотр и автосервис СТО-ВРН в Воронеже</h1>
+          <p class="hero-lead">
+            Частный пункт технического осмотра и сервисная зона полного цикла: оформление диагностической карты ЕАИСТО, компьютерная диагностика, ремонт ходовой части и тормозной системы, а также предтехосмотровая подготовка на стендах перед фиксацией.
+          </p>
+          <div class="hero-cta-row">
+            <a class="btn btn-signal" href="#calculator">Рассчитать стоимость и выбрать время</a>
+            <a class="btn btn-outline tabular" href="tel:+74732727843">+7 (473) 272-78-43</a>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric-card">
+              <div class="metric-val tabular">30–90 мин</div>
+              <div class="metric-lbl">Регламентное время прохождения линии и поста</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val orange tabular">M1 · L · N1 · N2 · O</div>
+              <div class="metric-lbl">Прием легковых, мото, коммерческих ТС и прицепов</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val">ЕАИСТО-М</div>
+              <div class="metric-lbl">Мгновенная регистрация диагностической карты</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="stand-card" aria-label="Схема диагностической линии СТО-ВРН">
+          <div class="stand-card-head">
+            <span class="stand-card-title">Схема линии контроля и сервисной зоны</span>
+            <span class="stand-badge">Пн-Сб · Прием по записи</span>
+          </div>
+          <div class="stand-diagram-box">
+            <div class="stand-svg-wrap">
+              <svg class="stand-svg" width="560" height="230" viewBox="0 0 560 230" fill="none" role="img" aria-label="Схема постов диагностики СТО-ВРН">
+              <rect x="8" y="8" width="544" height="214" rx="8" fill="#FFFFFF" stroke="#D7DDE6" stroke-width="1.5"/>
+              <line x1="28" y1="168" x2="532" y2="168" stroke="#B9C3D1" stroke-width="2" stroke-dasharray="6 4"/>
+              <rect x="28" y="28" width="154" height="118" rx="6" fill="#EEF1F5" stroke="#1B4965" stroke-width="1.5"/>
+              <text x="42" y="50" fill="#1B4965" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">ПОСТ 01</text>
+              <text x="42" y="70" fill="#151B23" font-family="Manrope, sans-serif" font-size="13" font-weight="800">Свет и выхлоп</text>
+              <circle cx="62" cy="108" r="16" fill="#FFFFFF" stroke="#1B4965" stroke-width="1.5"/>
+              <path d="M54 108h16M62 100v16" stroke="#C2591A" stroke-width="1.8"/>
+              <rect x="92" y="96" width="74" height="24" rx="4" fill="#FFFFFF" stroke="#B9C3D1"/>
+              <text x="100" y="112" fill="#414B57" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">CO / CH</text>
+
+              <rect x="203" y="28" width="154" height="118" rx="6" fill="#EEF1F5" stroke="#1B4965" stroke-width="1.5"/>
+              <text x="217" y="50" fill="#1B4965" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">ПОСТ 02</text>
+              <text x="217" y="70" fill="#151B23" font-family="Manrope, sans-serif" font-size="13" font-weight="800">Тормоза и ходовая</text>
+              <circle cx="242" cy="112" r="13" fill="#151B23"/>
+              <circle cx="272" cy="112" r="13" fill="#151B23"/>
+              <rect x="294" y="96" width="50" height="24" rx="4" fill="#FDF1E8" stroke="#EBC8B0"/>
+              <text x="301" y="112" fill="#8C3B0B" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">>=50%</text>
+
+              <rect x="378" y="28" width="154" height="118" rx="6" fill="#EEF1F5" stroke="#1B4965" stroke-width="1.5"/>
+              <text x="392" y="50" fill="#1B4965" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">ПОСТ 03</text>
+              <text x="392" y="70" fill="#151B23" font-family="Manrope, sans-serif" font-size="13" font-weight="800">OBD-II и ЕАИСТО</text>
+              <rect x="392" y="92" width="126" height="32" rx="4" fill="#151B23"/>
+              <text x="405" y="112" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">ДК: В РЕЕСТРЕ</text>
+
+              <path d="M182 87h21M357 87h21" stroke="#C2591A" stroke-width="2.2" stroke-linecap="round"/>
+              <circle cx="192" cy="87" r="3" fill="#C2591A"/>
+              <circle cx="367" cy="87" r="3" fill="#C2591A"/>
+
+              <rect x="28" y="182" width="504" height="28" rx="4" fill="#EAF1F6" stroke="#B8CDDC"/>
+              <text x="42" y="200" fill="#1B4965" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700">МАРШРУТ ЛИНИИ: ПРИЕМ СТС/ПТС -> ПРЕДПРОВЕРКА -> ФОТО -> ЕАИСТО</text>
+              </svg>
+            </div>
+          </div>
+          <div class="stand-posts-tabs" role="tablist" aria-label="Посты контроля">
+            <button class="post-tab active" type="button" data-post="0" aria-selected="true">
+              <span class="post-tab-num">Пост 01</span>
+              <span class="post-tab-name">Оптика и выхлоп</span>
+            </button>
+            <button class="post-tab" type="button" data-post="1" aria-selected="false">
+              <span class="post-tab-num">Пост 02</span>
+              <span class="post-tab-name">Тормозной стенд</span>
+            </button>
+            <button class="post-tab" type="button" data-post="2" aria-selected="false">
+              <span class="post-tab-num">Пост 03</span>
+              <span class="post-tab-name">OBD-II и ЕАИСТО</span>
+            </button>
+          </div>
+          <div class="stand-inspector" id="standInspector">
+            <div class="inspector-title">Реглоскоп фар и газоанализ отработавших газов</div>
+            <div class="cat-spec-text">Контроль светотеневой границы ближнего/противотуманного света и содержания CO/CH перед фотофиксацией.</div>
+            <div class="inspector-grid">
+              <div class="inspector-kv">
+                <div class="inspector-k">Прибор контроля</div>
+                <div class="inspector-v">Оптический реглоскоп</div>
+              </div>
+              <div class="inspector-kv">
+                <div class="inspector-k">Допуск угла наклона</div>
+                <div class="inspector-v">1.0% – 1.5% СТГ</div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="calculator">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">Интерактивный расчет и бронь</div>
+            <h2 class="section-title">Калькулятор техосмотра и ТО + онлайн-запись на пост</h2>
+            <p class="section-desc">
+              Выберите категорию транспортного средства, отметьте нужные операции предтехосмотровой подготовки или сервисного обслуживания и забронируйте точное время заезда в Воронеже.
+            </p>
+          </div>
+        </div>
+
+        <div class="calc-shell">
+          <div class="calc-panel">
+            <div class="calc-step">
+              <div class="step-header">
+                <div class="step-title-wrap">
+                  <span class="step-num">01</span>
+                  <h3 class="step-title">Категория транспортного средства</h3>
+                </div>
+                <span class="step-hint">Согласно классификации ТР ТС</span>
+              </div>
+              <div class="cat-grid" id="catGrid">
+                <button class="cat-btn active" type="button" data-cat="M1" aria-pressed="true">
+                  <span class="cat-code">M1</span>
+                  <span class="cat-name">Легковые авто</span>
+                  <span class="cat-price tabular">1 090 ₽</span>
+                </button>
+                <button class="cat-btn" type="button" data-cat="L" aria-pressed="false">
+                  <span class="cat-code">L</span>
+                  <span class="cat-name">Мототехника</span>
+                  <span class="cat-price tabular">450 ₽</span>
+                </button>
+                <button class="cat-btn" type="button" data-cat="N1" aria-pressed="false">
+                  <span class="cat-code">N1</span>
+                  <span class="cat-name">Легкий комм.</span>
+                  <span class="cat-price tabular">1 250 ₽</span>
+                </button>
+                <button class="cat-btn" type="button" data-cat="N2" aria-pressed="false">
+                  <span class="cat-code">N2</span>
+                  <span class="cat-name">Грузовой</span>
+                  <span class="cat-price tabular">2 180 ₽</span>
+                </button>
+                <button class="cat-btn" type="button" data-cat="O1-O2" aria-pressed="false">
+                  <span class="cat-code">O1-O2</span>
+                  <span class="cat-name">Прицепы</span>
+                  <span class="cat-price tabular">920 ₽</span>
+                </button>
+              </div>
+              <div class="cat-spec-banner" id="catSpecBanner">
+                <div class="cat-spec-text">
+                  <strong>M1 — Легковые автомобили (до 8 мест):</strong> удельная тормозная сила не менее 0.50, контроль рулевого люфта, светотехники и шин.
+                </div>
+                <span class="mono" style="font-size:12px; font-weight:700; color:var(--accent-blue);">Линия: 30 мин</span>
+              </div>
+            </div>
+
+            <div class="calc-step">
+              <div class="step-header">
+                <div class="step-title-wrap">
+                  <span class="step-num">02</span>
+                  <h3 class="step-title">Формат визита и опции подготовки / ТО</h3>
+                </div>
+                <span class="step-hint">Мгновенный перерасчет сметы</span>
+              </div>
+
+              <div class="mode-switch" id="modeSwitch">
+                <button class="mode-btn active" type="button" data-mode="pto" aria-pressed="true">
+                  <span class="mode-btn-title">Официальный техосмотр ЕАИСТО + опции</span>
+                  <span class="mode-btn-sub">Оформление диагностической карты с фотофиксацией</span>
+                </button>
+                <button class="mode-btn" type="button" data-mode="service" aria-pressed="false">
+                  <span class="mode-btn-title">Только диагностика и плановое ТО (без ЕАИСТО)</span>
+                  <span class="mode-btn-sub">Заезд на слесарный пост без оформления карты</span>
+                </button>
+              </div>
+
+              <div class="options-list" id="optionsList">
+                <button class="opt-item" type="button" data-opt="lights" aria-pressed="false">
+                  <span class="opt-left">
+                    <span class="opt-check" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                    </span>
+                    <span>
+                      <span class="opt-title" style="display:block;">Регулировка света фар</span>
+                      <span class="opt-desc" style="display:block;" id="opt-desc-lights">Настройка ближнего света и ПТФ на оптическом реглоскопе по СТГ</span>
+                    </span>
+                  </span>
+                  <span class="opt-right">
+                    <span class="opt-price tabular" id="opt-price-lights">+ 600 ₽</span>
+                    <span class="opt-time tabular">+ 10 мин</span>
+                  </span>
+                </button>
+
+                <button class="opt-item" type="button" data-opt="brakes" aria-pressed="false">
+                  <span class="opt-left">
+                    <span class="opt-check" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                    </span>
+                    <span>
+                      <span class="opt-title" style="display:block;">Проверка тормозного стенда</span>
+                      <span class="opt-desc" style="display:block;" id="opt-desc-brakes">Предварительный замер тормозных усилий по осям и стояночного тормоза</span>
+                    </span>
+                  </span>
+                  <span class="opt-right">
+                    <span class="opt-price tabular" id="opt-price-brakes">+ 550 ₽</span>
+                    <span class="opt-time tabular">+ 10 мин</span>
+                  </span>
+                </button>
+
+                <button class="opt-item" type="button" data-opt="obd" aria-pressed="false">
+                  <span class="opt-left">
+                    <span class="opt-check" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                    </span>
+                    <span>
+                      <span class="opt-title" style="display:block;">Компьютерная диагностика OBD-II</span>
+                      <span class="opt-desc" style="display:block;" id="opt-desc-obd">Сканирование ошибок ЭБУ двигателя, ABS/ESP, подушек SRS и датчиков выхлопа</span>
+                    </span>
+                  </span>
+                  <span class="opt-right">
+                    <span class="opt-price tabular" id="opt-price-obd">+ 950 ₽</span>
+                    <span class="opt-time tabular">+ 10 мин</span>
+                  </span>
+                </button>
+
+                <button class="opt-item" type="button" data-opt="oil" aria-pressed="false">
+                  <span class="opt-left">
+                    <span class="opt-check" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                    </span>
+                    <span>
+                      <span class="opt-title" style="display:block;">Замена масла и фильтров</span>
+                      <span class="opt-desc" style="display:block;" id="opt-desc-oil">Замена масла ДВС, масляного и воздушного фильтров, контроль уровней жидкостей</span>
+                    </span>
+                  </span>
+                  <span class="opt-right">
+                    <span class="opt-price tabular" id="opt-price-oil">+ 1 200 ₽</span>
+                    <span class="opt-time tabular">+ 15 мин</span>
+                  </span>
+                </button>
+
+                <button class="opt-item" type="button" data-opt="chassis" aria-pressed="false">
+                  <span class="opt-left">
+                    <span class="opt-check" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                    </span>
+                    <span>
+                      <span class="opt-title" style="display:block;">Проверка ходовой</span>
+                      <span class="opt-desc" style="display:block;" id="opt-desc-chassis">Люфт-детектор и осмотр подвески: шаровые, сайлентблоки, рулевые тяги, шланги</span>
+                    </span>
+                  </span>
+                  <span class="opt-right">
+                    <span class="opt-price tabular" id="opt-price-chassis">+ 700 ₽</span>
+                    <span class="opt-time tabular">+ 10 мин</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div class="calc-step">
+              <div class="step-header">
+                <div class="step-title-wrap">
+                  <span class="step-num">03</span>
+                  <h3 class="step-title">Выбор дня и времени заезда на пост</h3>
+                </div>
+                <span class="step-hint">График работы: Пн-Сб</span>
+              </div>
+              <div class="days-grid" id="daysGrid"></div>
+              <div class="slots-grid" id="slotsGrid"></div>
+              <div class="slot-status-note">
+                <span><span class="legend-dot" style="background-color:var(--accent-orange);"></span>Выбранное время</span>
+                <span><span class="legend-dot" style="background-color:var(--bg-surface); border:1px solid var(--border-hairline);"></span>Свободный пост</span>
+                <span><span class="legend-dot" style="background-color:var(--bg-plate-deep);"></span>Время занято</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="summary-card" id="summaryCard" aria-live="polite">
+            <div class="summary-head">
+              <div class="summary-kicker">Итоговая смета и резерв линии СТО-ВРН</div>
+              <div class="summary-totals-row">
+                <div class="summary-total-price tabular" id="totalPrice">1 090 ₽</div>
+                <div class="summary-duration-pill tabular" id="totalTime">30 мин</div>
+              </div>
+            </div>
+
+            <div class="summary-body" id="bookingFormPanel">
+              <div class="receipt-lines" id="receiptLines"></div>
+
+              <div class="visit-meta-box">
+                <div class="visit-meta-item">
+                  <div class="visit-meta-k">Категория ТС</div>
+                  <div class="visit-meta-v" id="metaCat">M1 (Легковые)</div>
+                </div>
+                <div class="visit-meta-item">
+                  <div class="visit-meta-k">Заезд на пост</div>
+                  <div class="visit-meta-v tabular" id="metaSlot">—</div>
+                </div>
+              </div>
+
+              <form id="bookingForm" novalidate>
+                <div class="form-grid">
+                  <div class="form-row-2">
+                    <div class="field-group">
+                      <div class="field-label" id="lbl-plate">Модель и госномер</div>
+                      <input class="field-control" id="inpPlate" type="text" placeholder="Например: Vesta А123ВС36" autocomplete="off" aria-labelledby="lbl-plate">
+                    </div>
+                    <div class="field-group">
+                      <div class="field-label" id="lbl-fuel">Тип двигателя</div>
+                      <select class="field-control" id="inpFuel" autocomplete="off" aria-labelledby="lbl-fuel">
+                        <option value="Бензин">Бензин</option>
+                        <option value="Дизель">Дизель</option>
+                        <option value="Газ (ГБО)">Газ (ГБО)</option>
+                        <option value="Гибрид / Электро">Гибрид / Электро</option>
+                        <option value="Без двигателя (Прицеп)">Без двигателя (Прицеп)</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row-2">
+                    <div class="field-group">
+                      <div class="field-label" id="lbl-name">Ваше имя</div>
+                      <input class="field-control" id="inpName" type="text" placeholder="Алексей" autocomplete="name" aria-labelledby="lbl-name">
+                    </div>
+                    <div class="field-group">
+                      <div class="field-label" id="lbl-phone">Телефон для связи</div>
+                      <input class="field-control tabular" id="inpPhone" type="tel" placeholder="+7 (9__) ___-__-__" autocomplete="tel" aria-labelledby="lbl-phone">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-error-msg" id="formError"></div>
+
+                <button class="btn btn-signal submit-full" type="submit" id="submitBookingBtn">Подтвердить онлайн-запись на пост</button>
+                <div class="booking-footnote">
+                  Оплата на пункте после выполнения работ. Возьмите с собой СТС или ПТС и паспорт.
+                </div>
+              </form>
+            </div>
+
+            <div class="ticket-box" id="ticketBox">
+              <div class="ticket-status">БРОНЬ ПОДТВЕРЖДЕНА</div>
+              <h3 class="ticket-code-title tabular" id="ticketCode">Запись VRN-36-0000</h3>
+              <p class="ticket-sub">Пост зарезервирован в графике СТО-ВРН (г. Воронеж). Покажите номер брони мастеру-приемщику при заезде.</p>
+              <div class="ticket-sheet" id="ticketSheet"></div>
+              <div class="ticket-actions">
+                <button class="btn btn-primary btn-sm" type="button" id="downloadTicketBtn">Скачать талон (.txt)</button>
+                <button class="btn btn-outline btn-sm" type="button" id="editTicketBtn">Изменить параметры</button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">Профиль СТО-ВРН</div>
+            <h2 class="section-title">Услуги пункта техосмотра и автосервиса</h2>
+            <p class="section-desc">
+              Совмещение аккредитованной линии технического осмотра и слесарных постов позволяет не только зафиксировать состояние автомобиля, но и оперативно устранить неисправности на месте.
+            </p>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon-box" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="3" width="16" height="18" rx="2"/>
+                    <path d="M8 8h8M8 12h8M8 16h5"/>
+                  </svg>
+                </div>
+                <span class="service-tag">ЕАИСТО-М · ФОТОФИКСАЦИЯ</span>
+              </div>
+              <h3 class="service-title">Официальный технический осмотр автомобилей (диагностическая карта ЕАИСТО)</h3>
+              <p class="service-desc">
+                Проведение регламентного инструментального контроля с передачей фотографий автомобиля и координат пункта в единую автоматизированную систему ЕАИСТО-М МВД РФ.
+              </p>
+              <ul class="service-points">
+                <li><span class="service-point-dot" aria-hidden="true"></span>Категории M1, L, N1, N2, O1-O2</li>
+                <li><span class="service-point-dot" aria-hidden="true"></span>Проверка номера кузова/рамы и маркировки шин</li>
+                <li><span class="service-point-dot" aria-hidden="true"></span>Выгрузка диагностической карты за 30–45 минут</li>
+              </ul>
+            </div>
+            <div class="service-foot">
+              <span class="service-price-note tabular">от 450 ₽ (L) / 1 090 ₽ (M1)</span>
+              <button class="btn btn-outline btn-sm" type="button" data-jump-service="pto">Рассчитать в калькуляторе</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon-box" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="13" rx="2"/>
+                    <path d="M7 20h10M12 17v3M7 11l3-2 3 3 4-4"/>
+                  </svg>
+                </div>
+                <span class="service-tag">OBD-II · СЕРВИС ТО</span>
+              </div>
+              <h3 class="service-title">Компьютерная диагностика и плановое ТО</h3>
+              <p class="service-desc">
+                Чтение кодов неисправностей электронных блоков управления, анализ топливных коррекций и параметров ABS/ESP, а также регламентное обслуживание двигателя и трансмиссии.
+              </p>
+              <ul class="service-points">
+                <li><span class="service-point-dot" aria-hidden="true"></span>Диагностика ЭБУ, ABS, SRS и систем экологии</li>
+                <li><span class="service-point-dot" aria-hidden="true"></span>Замена моторного масла, масляного, воздушного и салонного фильтров</li>
+                <li><span class="service-point-dot" aria-hidden="true"></span>Проверка плотности антифриза и состояния тормозной жидкости</li>
+              </ul>
+            </div>
+            <div class="service-foot">
+              <span class="service-price-note tabular">Диагностика от 850 ₽ · ТО от 900 ₽</span>
+              <button class="btn btn-outline btn-sm" type="button" data-jump-service="diag">Добавить к записи</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon-box" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="8"/>
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M12 4v3M20 12h-3M12 20v-3M4 12h3"/>
+                  </svg>
+                </div>
+                <span class="service-tag">СЛЕСАРНЫЙ ПОСТ</span>
+              </div>
+              <h3 class="service-title">Ремонт ходовой части и тормозной системы</h3>
+              <p class="service-desc">
+                Выявление люфтов на подъемнике и люфт-детекторе с последующей заменой изношенных деталей подвески, рулевого управления и тормозного контура.
+              </p>
+              <ul class="service-points">
+                <li><span class="service-point-dot" aria-hidden="true"></span>Замена дисков, колодок, тормозных шлангов и трубок</li>
+                <li><span class="service-point-dot" aria-hidden="true"></span>Обслуживание и разработка закисших суппортов, настройка ручника</li>
+                <li><span class="service-point-dot" aria-hidden="true"></span>Замена шаровых опор, рулевых наконечников, сайлентблоков</li>
+              </ul>
+            </div>
+            <div class="service-foot">
+              <span class="service-price-note tabular">Осмотр ходовой от 550 ₽</span>
+              <button class="btn btn-outline btn-sm" type="button" data-jump-service="chassis">Выбрать в калькуляторе</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon-box" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18h6M10 21h4"/>
+                    <path d="M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.5 1 2.5h6c0-1 .4-1.9 1-2.5A6 6 0 0 0 12 3z"/>
+                  </svg>
+                </div>
+                <span class="service-tag">ПОДГОТОВКА ДО ФИКСАЦИИ</span>
+              </div>
+              <h3 class="service-title">Предтехосмотровая подготовка автомобиля (регулировка фар, тормозной стенд, выхлоп)</h3>
+              <p class="service-desc">
+                Контрольные замеры на оборудовании линии до запуска официальной процедуры ЕАИСТО, чтобы исключить отказ из-за сбитого пучка фар, разницы тормозных сил или превышения CO/CH.
+              </p>
+              <ul class="service-points">
+                <li><span class="service-point-dot" aria-hidden="true"></span>Точная регулировка ближнего света и противотуманных фар</li>
+                <li><span class="service-point-dot" aria-hidden="true"></span>Предварительный прогон на роликовом тормозном стенде</li>
+                <li><span class="service-point-dot" aria-hidden="true"></span>Замер токсичности и дымности выхлопных газов</li>
+              </ul>
+            </div>
+            <div class="service-foot">
+              <span class="service-price-note tabular">Стенд и фары от 400 ₽</span>
+              <button class="btn btn-outline btn-sm" type="button" data-jump-service="prep">Выбрать пакет подготовки</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reglament">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">Справочник нормативов</div>
+            <h2 class="section-title">Тарифы по категориям ТС и чек-лист перед выездом</h2>
+            <p class="section-desc">
+              Прозрачная таблица базового техосмотра для всех принимаемых категорий и быстрая самопроверка основных узлов перед приездом в СТО-ВРН.
+            </p>
+          </div>
+        </div>
+
+        <div class="reglament-grid">
+          <div class="tariff-card">
+            <div class="tariff-head">
+              <span class="tariff-head-title">Базовые тарифы на техосмотр (ЕАИСТО)</span>
+              <span class="mono" style="font-size:12px; color:var(--ink-muted);">Воронеж · Пн-Сб</span>
+            </div>
+            <table class="tariff-table">
+              <thead>
+                <tr>
+                  <th>Категория</th>
+                  <th>Назначение ТС</th>
+                  <th>Время линии</th>
+                  <th>Стоимость</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="Категория"><span class="cat-pill">M1</span></td>
+                  <td data-label="Назначение">Легковые автомобили до 8 пассажирских мест</td>
+                  <td data-label="Время линии" class="mono tabular">30 мин</td>
+                  <td data-label="Стоимость" class="mono tabular" style="font-weight:800;">1 090 ₽</td>
+                  <td><button class="btn btn-outline btn-sm" type="button" data-pick-cat="M1">Выбрать</button></td>
+                </tr>
+                <tr>
+                  <td data-label="Категория"><span class="cat-pill">L</span></td>
+                  <td data-label="Назначение">Мотоциклы, скутеры, квадрициклы (L1–L7)</td>
+                  <td data-label="Время линии" class="mono tabular">30 мин</td>
+                  <td data-label="Стоимость" class="mono tabular" style="font-weight:800;">450 ₽</td>
+                  <td><button class="btn btn-outline btn-sm" type="button" data-pick-cat="L">Выбрать</button></td>
+                </tr>
+                <tr>
+                  <td data-label="Категория"><span class="cat-pill">N1</span></td>
+                  <td data-label="Назначение">Легкий коммерческий транспорт (до 3,5 т)</td>
+                  <td data-label="Время линии" class="mono tabular">35 мин</td>
+                  <td data-label="Стоимость" class="mono tabular" style="font-weight:800;">1 250 ₽</td>
+                  <td><button class="btn btn-outline btn-sm" type="button" data-pick-cat="N1">Выбрать</button></td>
+                </tr>
+                <tr>
+                  <td data-label="Категория"><span class="cat-pill">N2</span></td>
+                  <td data-label="Назначение">Грузовые автомобили массой от 3,5 до 12 т</td>
+                  <td data-label="Время линии" class="mono tabular">45 мин</td>
+                  <td data-label="Стоимость" class="mono tabular" style="font-weight:800;">2 180 ₽</td>
+                  <td><button class="btn btn-outline btn-sm" type="button" data-pick-cat="N2">Выбрать</button></td>
+                </tr>
+                <tr>
+                  <td data-label="Категория"><span class="cat-pill">O1-O2</span></td>
+                  <td data-label="Назначение">Прицепы и полуприцепы массой до 3,5 т</td>
+                  <td data-label="Время линии" class="mono tabular">30 мин</td>
+                  <td data-label="Стоимость" class="mono tabular" style="font-weight:800;">920 ₽</td>
+                  <td><button class="btn btn-outline btn-sm" type="button" data-pick-cat="O1-O2">Выбрать</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="checklist-card">
+            <div class="checklist-head">
+              <h3 class="checklist-title">Экспресс-чек готовности авто</h3>
+              <span class="checklist-score tabular" id="checkScore">0 / 6</span>
+            </div>
+            <div class="check-items" id="checkItems">
+              <button class="check-row" type="button" aria-pressed="false">
+                <span class="check-box" aria-hidden="true">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="check-text">На каждой оси установлены шины одного типа и рисунка, остаток протектора не ниже 1,6 мм</span>
+              </button>
+              <button class="check-row" type="button" aria-pressed="false">
+                <span class="check-box" aria-hidden="true">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="check-text">На лобовом стекле нет трещин в зоне очистки водительским дворником и нет запрещенной тонировки</span>
+              </button>
+              <button class="check-row" type="button" aria-pressed="false">
+                <span class="check-box" aria-hidden="true">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="check-text">Исправны все лампы: ближний, дальний свет, стоп-сигналы, поворотники и подсветка номера</span>
+              </button>
+              <button class="check-row" type="button" aria-pressed="false">
+                <span class="check-box" aria-hidden="true">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="check-text">Номерные знаки чистые, хорошо читаются для фотофиксации, доступ к VIN-номеру свободен</span>
+              </button>
+              <button class="check-row" type="button" aria-pressed="false">
+                <span class="check-box" aria-hidden="true">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="check-text">В багажнике уложен знак аварийной остановки (а для грузовых N1/N2 — противооткатные упоры)</span>
+              </button>
+              <button class="check-row" type="button" aria-pressed="false">
+                <span class="check-box" aria-hidden="true">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="check-text">Отсутствуют видимые течи масла, антифриза, топлива и утечки из выхлопной системы</span>
+              </button>
+            </div>
+            <div class="checklist-advice" id="checkAdvice">
+              Отметьте пункты, в которых уверены. Если есть сомнения по свету фар или тормозам, рекомендуем добавить предтехосмотровую проверку в калькуляторе.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">Порядок визита и ответы</div>
+            <h2 class="section-title">Как проходит осмотр и что взять с собой</h2>
+          </div>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="process-step">ШАГ 01</div>
+            <h3 class="process-title">Приемка по времени</h3>
+            <p class="process-desc">Подъезжаете к выбранному часу, передаете СТС или ПТС и паспорт мастеру для сверки VIN-номера.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-step">ШАГ 02</div>
+            <h3 class="process-title">Предподготовка (по заказу)</h3>
+            <p class="process-desc">При необходимости заранее настраиваем фары, проверяем тормоза на стенде или считываем ошибки OBD-II.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-step">ШАГ 03</div>
+            <h3 class="process-title">Линия контроля</h3>
+            <p class="process-desc">Проходим инструментальные измерения и обязательную фотофиксацию автомобиля в зоне осмотра.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-step">ШАГ 04</div>
+            <h3 class="process-title">Регистрация в ЕАИСТО</h3>
+            <p class="process-desc">Данные отправляются в базу ЕАИСТО-М, вы получаете бумажный экземпляр с печатью эксперта и номер в реестре.</p>
+          </div>
+        </div>
+
+        <div class="faq-docs-grid">
+          <div class="docs-box">
+            <h3 class="docs-title">Необходимые документы</h3>
+            <ul class="docs-list">
+              <li>
+                <strong>Свидетельство о регистрации (СТС) или ПТС</strong>
+                Допускается оригинал СТС, бумажный ПТС или выписка из электронного ПТС при постановке на учет.
+              </li>
+              <li>
+                <strong>Документ, удостоверяющий личность</strong>
+                Паспорт гражданина РФ (для водителя или лица, представившего автомобиль на осмотр).
+              </li>
+              <li>
+                <strong>Доверенность в простой письменной форме</strong>
+                Требуется только в том случае, если автомобиль на пункт техосмотра пригнал не собственник по документам.
+              </li>
+            </ul>
+          </div>
+
+          <div class="faq-list" id="faqList">
+            <div class="faq-item open">
+              <button class="faq-trigger" type="button" aria-expanded="true">
+                <span>Сколько времени занимает прохождение техосмотра и можно ли записаться заранее?</span>
+                <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+              <div class="faq-answer">
+                Базовый технический осмотр легкового автомобиля M1 занимает 30 минут, коммерческого N1 — 35 минут, грузового N2 — 45 минут. Если вы дополнительно выбираете регулировку фар, диагностику ходовой, проверку тормозного стенда или замену масла, общее время визита составит от 40 до 90 минут. Онлайн-запись выше фиксирует пост точно под ваш приезд.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-trigger" type="button" aria-expanded="false">
+                <span>Зачем нужна предтехосмотровая подготовка до запуска линии ЕАИСТО?</span>
+                <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+              <div class="faq-answer">
+                Сотни машин не проходят осмотр с первого раза из-за незначительно сбитого угла правой фары, закисшего заднего суппорта или перегоревшей лампы подсветки. Предтехосмотровая подготовка позволяет проверить все на нашем оборудовании до официальной фотофиксации и устранить замечание за один визит.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-trigger" type="button" aria-expanded="false">
+                <span>Можно ли приехать только на диагностику OBD-II, замену масла или ремонт тормозов?</span>
+                <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+              <div class="faq-answer">
+                Да. В калькуляторе на шаге 02 переключите режим на «Только диагностика и плановое ТО (без ЕАИСТО)», отметьте нужные работы (компьютерную диагностику, замену масла и фильтров, проверку ходовой, тормозной стенд) и выберите удобный час с понедельника по субботу.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-trigger" type="button" aria-expanded="false">
+                <span>Как проверить, что диагностическая карта действительно попала в базу ЕАИСТО?</span>
+                <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+              <div class="faq-answer">
+                Каждой карте присваивается уникальный 15-значный регистрационный номер ЕАИСТО-М в момент завершения осмотра. Вы можете сразу проверить его по VIN или госномеру на официальном сервисе ГИБДД или через базу ЕАИСТО.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-trigger" type="button" aria-expanded="false">
+                <span>Что делать, если на автомобиле установлено газобаллонное оборудование (ГБО) или нештатный свет?</span>
+                <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+              <div class="faq-answer">
+                ГБО должно быть вписано в СТС/ПТС, а баллон — иметь действующий паспорт освидетельствования. В фарах допускаются только те типы ламп, которые предусмотрены конструкцией и маркировкой рассеивателя. Перед заездом вы можете проконсультироваться с нашими мастерами по телефонам в Воронеже.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacts">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">Контакты в Воронеже</div>
+            <h2 class="section-title">СТО-ВРН — Пункт техосмотра и автосервис</h2>
+            <p class="section-desc">
+              Прием транспортных средств ведется с понедельника по субботу. По всем техническим вопросам и для записи можно связаться по телефону или электронной почте.
+            </p>
+          </div>
+        </div>
+
+        <div class="contacts-grid">
+          <div class="contact-card">
+            <span class="contact-label">Город и график работы</span>
+            <div class="contact-value">г. Воронеж</div>
+            <div class="contact-sub">График работы: Пн-Сб</div>
+          </div>
+
+          <div class="contact-card">
+            <span class="contact-label">Городской телефон</span>
+            <a class="contact-value tabular nowrap" href="tel:+74732727843">+7 (473) 272-78-43</a>
+            <div class="contact-sub">Запись на линию техосмотра и сервис</div>
+            <button class="copy-btn" type="button" data-copy="+7 (473) 272-78-43">Скопировать номер</button>
+          </div>
+
+          <div class="contact-card">
+            <span class="contact-label">Мобильный телефон</span>
+            <a class="contact-value tabular nowrap" href="tel:+79529565215">+7 (952) 956-52-15</a>
+            <div class="contact-sub">Мастер-приемщик и консультация по подготовке</div>
+            <button class="copy-btn" type="button" data-copy="+7 (952) 956-52-15">Скопировать номер</button>
+          </div>
+
+          <div class="contact-card">
+            <span class="contact-label">Электронная почта</span>
+            <a class="contact-value nowrap" href="mailto:pik-67@bk.ru">pik-67@bk.ru</a>
+            <div class="contact-sub">Вопросы по корпоративным паркам и документам</div>
+            <button class="copy-btn" type="button" data-copy="pik-67@bk.ru">Скопировать email</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-brand">СТО-ВРН — Частный пункт техосмотра и автосервис в Воронеже</div>
+        <div>г. Воронеж · График работы: Пн-Сб · Диагностические карты ЕАИСТО, ремонт и ТО</div>
+      </div>
+      <div class="footer-links">
+        <a class="tabular nowrap" href="tel:+74732727843">+7 (473) 272-78-43</a>
+        <a class="tabular nowrap" href="tel:+79529565215">+7 (952) 956-52-15</a>
+        <a class="nowrap" href="mailto:pik-67@bk.ru">pik-67@bk.ru</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var CATEGORIES = {
+        'M1': {
+          code: 'M1',
+          short: 'M1 (Легковые)',
+          full: 'M1 — Легковые автомобили (до 8 мест)',
+          spec: 'удельная тормозная сила не менее 0.50, контроль рулевого люфта, светотехники и шин.',
+          basePrice: 1090,
+          baseTime: 30,
+          options: {
+            lights: { price: 600, time: 10, desc: 'Настройка ближнего света и ПТФ на оптическом реглоскопе по СТГ' },
+            brakes: { price: 550, time: 10, desc: 'Предварительный замер тормозных усилий по осям и стояночного тормоза' },
+            obd: { price: 950, time: 10, desc: 'Сканирование ошибок ЭБУ двигателя, ABS/ESP, подушек SRS и датчиков выхлопа' },
+            oil: { price: 1200, time: 15, desc: 'Замена масла ДВС, масляного и воздушного фильтров, контроль уровней жидкостей' },
+            chassis: { price: 700, time: 10, desc: 'Люфт-детектор и осмотр подвески: шаровые, сайлентблоки, рулевые тяги, шланги' }
+          }
+        },
+        'L': {
+          code: 'L',
+          short: 'L (Мототехника)',
+          full: 'L — Мототранспортные средства (L1–L7)',
+          spec: 'раздельная проверка тормозных контуров, рулевой колонки, светотехники и выпуска.',
+          basePrice: 450,
+          baseTime: 30,
+          options: {
+            lights: { price: 450, time: 10, desc: 'Регулировка пучка головной фары мотоцикла или квадрицикла по прибору' },
+            brakes: { price: 400, time: 10, desc: 'Контроль эффективности переднего и заднего тормозных механизмов' },
+            obd: { price: 850, time: 10, desc: 'Чтение параметров блока впрыска и системы ABS мототехники' },
+            oil: { price: 900, time: 15, desc: 'Замена масла ДВС и масляного фильтра, осмотр натяжения приводной цепи' },
+            chassis: { price: 550, time: 10, desc: 'Проверка люфта вилки, маятника, ступичных подшипников и амортизаторов' }
+          }
+        },
+        'N1': {
+          code: 'N1',
+          short: 'N1 (Комм. до 3,5 т)',
+          full: 'N1 — Легкий коммерческий транспорт (до 3,5 т)',
+          spec: 'удельная тормозная сила не менее 0.50, контроль рамы, рессор, карданного вала и оптики.',
+          basePrice: 1250,
+          baseTime: 35,
+          options: {
+            lights: { price: 700, time: 10, desc: 'Регулировка головных фар коммерческого авто с учетом нагрузки на заднюю ось' },
+            brakes: { price: 650, time: 10, desc: 'Проверка на тормозном стенде, тест регулятора тормозных сил (колдуна)' },
+            obd: { price: 1150, time: 10, desc: 'Диагностика дизельных и бензиновых ЭБУ, EGR, сажевого фильтра и ABS' },
+            oil: { price: 1500, time: 15, desc: 'Замена моторного масла и всех фильтров для коммерческих ДВС' },
+            chassis: { price: 850, time: 10, desc: 'Усиленный осмотр рессор, стремянок, крестовин кардана и рулевой трапеции' }
+          }
+        },
+        'N2': {
+          code: 'N2',
+          short: 'N2 (Грузовой 3,5–12 т)',
+          full: 'N2 — Грузовые автомобили (3,5–12 т)',
+          spec: 'проверка пневмоконтура, герметичности ресиверов, тахографа, контурной маркировки.',
+          basePrice: 2180,
+          baseTime: 45,
+          options: {
+            lights: { price: 900, time: 10, desc: 'Регулировка головных фар и проверка контурных габаритных огней грузовика' },
+            brakes: { price: 950, time: 10, desc: 'Испытание пневмотормозов на стенде, проверка падения давления и энергоаккумуляторов' },
+            obd: { price: 1600, time: 10, desc: 'Сканирование грузовых ЭБУ, систем AdBlue/SCR, EBS и тахографа' },
+            oil: { price: 2400, time: 15, desc: 'Сервисная замена масла, масляного и топливного фильтров грузового ДВС' },
+            chassis: { price: 1200, time: 10, desc: 'Контроль шкворней, рулевых тяг, пневмоподушек, рессор и кронштейнов рамы' }
+          }
+        },
+        'O1-O2': {
+          code: 'O1-O2',
+          short: 'O1-O2 (Прицепы)',
+          full: 'O1-O2 — Прицепы и полуприцепы (до 3,5 т)',
+          spec: 'контроль сцепного узла, страховочных цепей, инерционного тормоза наката и розетки.',
+          basePrice: 920,
+          baseTime: 30,
+          options: {
+            lights: { price: 600, time: 10, desc: 'Проверка и настройка светотехники прицепа, распиновки разъема 7/13 pin' },
+            brakes: { price: 550, time: 10, desc: 'Испытание тормоза наката категории O2 и стояночного тормоза на стенде' },
+            obd: { price: 800, time: 10, desc: 'Диагностика электропроводки сцепки и модуля ABS/EBS (при наличии)' },
+            oil: { price: 950, time: 15, desc: 'Обслуживание тягача в сцепке либо замена смазки ступиц и сцепного узла' },
+            chassis: { price: 650, time: 10, desc: 'Проверка оси прицепа, сцепной головки, дышла и подшипников ступиц' }
+          }
+        }
+      };
+
+      var OPTION_LABELS = {
+        lights: 'Регулировка света фар',
+        brakes: 'Проверка тормозного стенда',
+        obd: 'Компьютерная диагностика OBD-II',
+        oil: 'Замена масла и фильтров',
+        chassis: 'Проверка ходовой'
+      };
+
+      var STAND_POSTS = [
+        {
+          title: 'Реглоскоп фар и газоанализ отработавших газов',
+          desc: 'Контроль светотеневой границы ближнего/противотуманного света и содержания CO/CH перед фотофиксацией.',
+          k1: 'Прибор контроля',
+          v1: 'Оптический реглоскоп',
+          k2: 'Допуск угла наклона',
+          v2: '1.0% – 1.5% СТГ'
+        },
+        {
+          title: 'Роликовый тормозной стенд и проверка подвески',
+          desc: 'Замер удельной тормозной силы и разности усилий по левому/правому колесу каждой оси, контроль ручного тормоза.',
+          k1: 'Норма для легковых M1',
+          v1: 'Удельная сила >= 0.50',
+          k2: 'Разность усилий на оси',
+          v2: 'Не более 20% (диск)'
+        },
+        {
+          title: 'Сканер OBD-II и регистрация карты в ЕАИСТО-М',
+          desc: 'Считывание кодов неисправностей электронных систем безопасности, фотофиксация ТС и занесение ДК в федеральный реестр.',
+          k1: 'Идентификатор карты',
+          v1: '15-значный код ЕАИСТО',
+          k2: 'Время на оформление',
+          v2: 'От 30 минут по записи'
+        }
+      ];
+
+      var TIME_SLOTS = [
+        '09:00', '09:45', '10:30', '11:15',
+        '12:00', '13:30', '14:15', '15:00',
+        '15:45', '16:30', '17:15', '18:00'
+      ];
+
+      var WEEK_DAYS_SHORT = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+      var MONTHS_SHORT = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+
+      function buildWorkingDays() {
+        var result = [];
+        var cursor = new Date();
+        while (result.length < 6) {
+          var wd = cursor.getDay();
+          if (wd > 0) {
+            var d = cursor.getDate();
+            var m = cursor.getMonth();
+            var dd = d < 10 ? '0' + d : String(d);
+            var mm = (m + 1) < 10 ? '0' + (m + 1) : String(m + 1);
+            result.push({
+              id: dd + '.' + mm,
+              wk: WEEK_DAYS_SHORT[wd],
+              dateLabel: dd + ' ' + MONTHS_SHORT[m],
+              fullLabel: WEEK_DAYS_SHORT[wd] + ', ' + dd + '.' + mm,
+              busySlots: result.length === 0 ? ['09:45', '12:00'] : (result.length === 1 ? ['11:15'] : [])
+            });
+          }
+          cursor.setDate(cursor.getDate() + 1);
+        }
+        return result;
+      }
+
+      var workingDays = buildWorkingDays();
+
+      var state = {
+        cat: 'M1',
+        mode: 'pto',
+        selectedOpts: {
+          lights: false,
+          brakes: false,
+          obd: false,
+          oil: false,
+          chassis: false
+        },
+        dayIndex: 0,
+        slot: '10:30',
+        lastTicketText: ''
+      };
+
+      function formatRub(num) {
+        return new Intl.NumberFormat('ru-RU').format(num).replace(/\u00a0/g, ' ') + ' ₽';
+      }
+
+      var els = {
+        burgerBtn: document.getElementById('burgerBtn'),
+        mobileDrawer: document.getElementById('mobileDrawer'),
+        standTabs: document.querySelectorAll('.post-tab'),
+        standInspector: document.getElementById('standInspector'),
+        catGrid: document.getElementById('catGrid'),
+        catSpecBanner: document.getElementById('catSpecBanner'),
+        modeSwitch: document.getElementById('modeSwitch'),
+        optionsList: document.getElementById('optionsList'),
+        daysGrid: document.getElementById('daysGrid'),
+        slotsGrid: document.getElementById('slotsGrid'),
+        totalPrice: document.getElementById('totalPrice'),
+        totalTime: document.getElementById('totalTime'),
+        receiptLines: document.getElementById('receiptLines'),
+        metaCat: document.getElementById('metaCat'),
+        metaSlot: document.getElementById('metaSlot'),
+        bookingFormPanel: document.getElementById('bookingFormPanel'),
+        bookingForm: document.getElementById('bookingForm'),
+        inpPlate: document.getElementById('inpPlate'),
+        inpFuel: document.getElementById('inpFuel'),
+        inpName: document.getElementById('inpName'),
+        inpPhone: document.getElementById('inpPhone'),
+        formError: document.getElementById('formError'),
+        ticketBox: document.getElementById('ticketBox'),
+        ticketCode: document.getElementById('ticketCode'),
+        ticketSheet: document.getElementById('ticketSheet'),
+        downloadTicketBtn: document.getElementById('downloadTicketBtn'),
+        editTicketBtn: document.getElementById('editTicketBtn'),
+        checkItems: document.getElementById('checkItems'),
+        checkScore: document.getElementById('checkScore'),
+        checkAdvice: document.getElementById('checkAdvice'),
+        faqList: document.getElementById('faqList')
+      };
+
+      /* Mobile menu toggle */
+      els.burgerBtn.addEventListener('click', function () {
+        var isOpen = els.mobileDrawer.classList.contains('open');
+        if (isOpen) {
+          els.mobileDrawer.classList.remove('open');
+          els.burgerBtn.setAttribute('aria-expanded', 'false');
+        } else {
+          els.mobileDrawer.classList.add('open');
+          els.burgerBtn.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      els.mobileDrawer.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          els.mobileDrawer.classList.remove('open');
+          els.burgerBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      /* Stand posts tabs */
+      els.standTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var idx = parseInt(tab.getAttribute('data-post'), 10);
+          els.standTabs.forEach(function (t) {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+          var data = STAND_POSTS[idx];
+          els.standInspector.innerHTML =
+            '<div class="inspector-title">' + data.title + '</div>' +
+            '<div class="cat-spec-text">' + data.desc + '</div>' +
+            '<div class="inspector-grid">' +
+              '<div class="inspector-kv"><div class="inspector-k">' + data.k1 + '</div><div class="inspector-v">' + data.v1 + '</div></div>' +
+              '<div class="inspector-kv"><div class="inspector-k">' + data.k2 + '</div><div class="inspector-v">' + data.v2 + '</div></div>' +
+            '</div>';
+        });
+      });
+
+      function renderSchedule() {
+        els.daysGrid.innerHTML = '';
+        workingDays.forEach(function (day, idx) {
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'day-btn' + (state.dayIndex === idx ? ' active' : '');
+          btn.setAttribute('aria-pressed', state.dayIndex === idx ? 'true' : 'false');
+          btn.innerHTML = '<span class="day-wk">' + day.wk + '</span><span class="day-dt tabular">' + day.id + '</span>';
+          btn.addEventListener('click', function () {
+            state.dayIndex = idx;
+            var activeDay = workingDays[state.dayIndex];
+            if (activeDay.busySlots.indexOf(state.slot) >= 0) {
+              for (var s = 0; s < TIME_SLOTS.length; s++) {
+                if (activeDay.busySlots.indexOf(TIME_SLOTS[s]) < 0) {
+                  state.slot = TIME_SLOTS[s];
+                  break;
+                }
+              }
+            }
+            renderSchedule();
+            updateSummary();
+          });
+          els.daysGrid.appendChild(btn);
+        });
+
+        var currentDay = workingDays[state.dayIndex];
+        els.slotsGrid.innerHTML = '';
+        TIME_SLOTS.forEach(function (slotStr) {
+          var isBusy = currentDay.busySlots.indexOf(slotStr) >= 0;
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'slot-btn tabular' + (state.slot === slotStr && isBusy === false ? ' active' : '');
+          btn.textContent = slotStr;
+          if (isBusy) {
+            btn.disabled = true;
+            btn.setAttribute('title', 'Время занято');
+          } else {
+            btn.setAttribute('aria-pressed', state.slot === slotStr ? 'true' : 'false');
+            btn.addEventListener('click', function () {
+              state.slot = slotStr;
+              renderSchedule();
+              updateSummary();
+            });
+          }
+          els.slotsGrid.appendChild(btn);
+        });
+      }
+
+      function calculateTotals() {
+        var catObj = CATEGORIES[state.cat];
+        var sum = 0;
+        var mins = 0;
+        var optCount = 0;
+        var lines = [];
+
+        if (state.mode === 'pto') {
+          sum += catObj.basePrice;
+          mins += catObj.baseTime;
+          lines.push({
+            name: 'Техосмотр ' + catObj.code + ' (ДК ЕАИСТО)',
+            val: formatRub(catObj.basePrice)
+          });
+        } else {
+          mins += 20;
+        }
+
+        Object.keys(OPTION_LABELS).forEach(function (key) {
+          if (state.selectedOpts[key] === true) {
+            var opt = catObj.options[key];
+            sum += opt.price;
+            mins += opt.time;
+            optCount += 1;
+            lines.push({
+              name: OPTION_LABELS[key],
+              val: formatRub(opt.price)
+            });
+          }
+        });
+
+        if (state.mode === 'service' && optCount === 0) {
+          lines.push({
+            name: 'Базовая приемка на пост',
+            val: 'Выберите опцию'
+          });
+          mins = 30;
+        } else {
+          if (mins < 30) {
+            mins = 30;
+          }
+          if (mins > 90) {
+            mins = 90;
+          }
+        }
+
+        return {
+          sum: sum,
+          mins: mins,
+          lines: lines,
+          optCount: optCount
+        };
+      }
+
+      function updateOptionsLabels() {
+        var catObj = CATEGORIES[state.cat];
+        Object.keys(OPTION_LABELS).forEach(function (key) {
+          var opt = catObj.options[key];
+          var priceEl = document.getElementById('opt-price-' + key);
+          var descEl = document.getElementById('opt-desc-' + key);
+          if (priceEl) {
+            priceEl.textContent = '+ ' + formatRub(opt.price);
+          }
+          if (descEl) {
+            descEl.textContent = opt.desc;
+          }
+        });
+
+        els.catSpecBanner.innerHTML =
+          '<div class="cat-spec-text"><strong>' + catObj.full + ':</strong> ' + catObj.spec + '</div>' +
+          '<span class="mono" style="font-size:12px; font-weight:700; color:var(--accent-blue);">Линия: ' + catObj.baseTime + ' мин</span>';
+      }
+
+      function updateSummary() {
+        var catObj = CATEGORIES[state.cat];
+        var calc = calculateTotals();
+        var currentDay = workingDays[state.dayIndex];
+
+        els.totalPrice.textContent = formatRub(calc.sum);
+        els.totalTime.textContent = calc.mins + ' мин';
+        els.metaCat.textContent = catObj.short;
+        els.metaSlot.textContent = currentDay.fullLabel + ' · ' + state.slot;
+
+        els.receiptLines.innerHTML = '';
+        calc.lines.forEach(function (line) {
+          var row = document.createElement('div');
+          row.className = 'receipt-row';
+          row.innerHTML = '<span class="receipt-name">' + line.name + '</span><span class="receipt-val tabular">' + line.val + '</span>';
+          els.receiptLines.appendChild(row);
+        });
+      }
+
+      /* Category click */
+      els.catGrid.querySelectorAll('.cat-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.cat = btn.getAttribute('data-cat');
+          els.catGrid.querySelectorAll('.cat-btn').forEach(function (b) {
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-pressed', 'true');
+
+          if (state.cat === 'O1-O2') {
+            els.inpFuel.value = 'Без двигателя (Прицеп)';
+          } else if (els.inpFuel.value === 'Без двигателя (Прицеп)') {
+            els.inpFuel.value = 'Бензин';
+          }
+
+          updateOptionsLabels();
+          updateSummary();
+        });
+      });
+
+      /* Mode toggle */
+      els.modeSwitch.querySelectorAll('.mode-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.mode = btn.getAttribute('data-mode');
+          els.modeSwitch.querySelectorAll('.mode-btn').forEach(function (b) {
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-pressed', 'true');
+
+          if (state.mode === 'service') {
+            var anySelected = false;
+            Object.keys(state.selectedOpts).forEach(function (k) {
+              if (state.selectedOpts[k] === true) {
+                anySelected = true;
+              }
+            });
+            if (anySelected === false) {
+              toggleOption('obd', true);
+            }
+          }
+          updateSummary();
+        });
+      });
+
+      function toggleOption(key, forceVal) {
+        var next = typeof forceVal === 'boolean' ? forceVal : (state.selectedOpts[key] === false);
+        state.selectedOpts[key] = next;
+        var item = els.optionsList.querySelector('[data-opt="' + key + '"]');
+        if (item) {
+          if (next) {
+            item.classList.add('active');
+            item.setAttribute('aria-pressed', 'true');
+          } else {
+            item.classList.remove('active');
+            item.setAttribute('aria-pressed', 'false');
+          }
+        }
+      }
+
+      els.optionsList.querySelectorAll('.opt-item').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var key = btn.getAttribute('data-opt');
+          toggleOption(key);
+          updateSummary();
+        });
+      });
+
+      /* Service cards & Tariff table quick actions */
+      function scrollToCalc() {
+        els.ticketBox.classList.remove('visible');
+        els.bookingFormPanel.style.display = 'block';
+        var el = document.getElementById('calculator');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+
+      document.querySelectorAll('[data-jump-service]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var kind = btn.getAttribute('data-jump-service');
+          if (kind === 'pto') {
+            els.modeSwitch.querySelector('[data-mode="pto"]').click();
+          } else if (kind === 'diag') {
+            toggleOption('obd', true);
+            toggleOption('oil', true);
+          } else if (kind === 'chassis') {
+            toggleOption('chassis', true);
+            toggleOption('brakes', true);
+          } else if (kind === 'prep') {
+            els.modeSwitch.querySelector('[data-mode="pto"]').click();
+            toggleOption('lights', true);
+            toggleOption('brakes', true);
+          }
+          updateSummary();
+          scrollToCalc();
+        });
+      });
+
+      document.querySelectorAll('[data-pick-cat]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var cat = btn.getAttribute('data-pick-cat');
+          var targetBtn = els.catGrid.querySelector('[data-cat="' + cat + '"]');
+          if (targetBtn) {
+            targetBtn.click();
+          }
+          scrollToCalc();
+        });
+      });
+
+      /* Form validation & booking confirmation */
+      els.bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        els.inpName.classList.remove('error');
+        els.inpPhone.classList.remove('error');
+        els.formError.classList.remove('visible');
+
+        var calc = calculateTotals();
+        if (state.mode === 'service' && calc.optCount === 0) {
+          els.formError.textContent = 'Выберите хотя бы одну услугу диагностики или ТО, либо включите официальный техосмотр ЕАИСТО.';
+          els.formError.classList.add('visible');
+          return;
+        }
+
+        var nameVal = els.inpName.value.trim();
+        var phoneVal = els.inpPhone.value.trim();
+        var plateVal = els.inpPlate.value.trim();
+
+        var digits = phoneVal.replace(/\D/g, '');
+        if (nameVal.length < 2) {
+          els.inpName.classList.add('error');
+          els.formError.textContent = 'Укажите ваше имя для оформления брони на пост.';
+          els.formError.classList.add('visible');
+          els.inpName.focus();
+          return;
+        }
+
+        if (digits.length < 10) {
+          els.inpPhone.classList.add('error');
+          els.formError.textContent = 'Введите корректный номер телефона (минимум 10 цифр), чтобы мастер мог подтвердить заезд.';
+          els.formError.classList.add('visible');
+          els.inpPhone.focus();
+          return;
+        }
+
+        var catObj = CATEGORIES[state.cat];
+        var currentDay = workingDays[state.dayIndex];
+        var randNum = Math.floor(1000 + Math.random() * 8999);
+        var bookingId = 'VRN-36-' + randNum;
+        var carLabel = plateVal.length > 0 ? plateVal : 'Авто не указано (' + els.inpFuel.value + ')';
+
+        var serviceSummary = calc.lines.map(function (l) { return l.name; }).join(', ');
+
+        els.ticketCode.textContent = 'Запись ' + bookingId;
+        els.ticketSheet.innerHTML =
+          '<div class="ticket-kv"><span>Пункт</span><span>СТО-ВРН, г. Воронеж</span></div>' +
+          '<div class="ticket-kv"><span>Категория</span><span>' + catObj.short + '</span></div>' +
+          '<div class="ticket-kv"><span>Транспорт</span><span>' + carLabel + ' (' + els.inpFuel.value + ')</span></div>' +
+          '<div class="ticket-kv"><span>Дата и время</span><span class="tabular">' + currentDay.fullLabel + ', ' + state.slot + '</span></div>' +
+          '<div class="ticket-kv"><span>Длительность</span><span class="tabular">' + calc.mins + ' мин</span></div>' +
+          '<div class="ticket-kv"><span>Услуги</span><span>' + serviceSummary + '</span></div>' +
+          '<div class="ticket-kv"><span>Клиент</span><span>' + nameVal + ' (' + phoneVal + ')</span></div>' +
+          '<div class="ticket-kv"><span>Расчетная сумма</span><span class="tabular">' + formatRub(calc.sum) + '</span></div>';
+
+        state.lastTicketText =
+          'ТАЛОН ОНЛАЙН-ЗАПИСИ — СТО-ВРН (г. Воронеж)\n' +
+          'Код брони: ' + bookingId + '\n' +
+          'Дата и время заезда: ' + currentDay.fullLabel + ' в ' + state.slot + '\n' +
+          'Категория ТС: ' + catObj.full + '\n' +
+          'Автомобиль: ' + carLabel + ' (' + els.inpFuel.value + ')\n' +
+          'Состав работ: ' + serviceSummary + '\n' +
+          'Ориентировочное время на посту: ' + calc.mins + ' мин\n' +
+          'Итого к оплате на пункте: ' + formatRub(calc.sum) + '\n' +
+          'Клиент: ' + nameVal + ', ' + phoneVal + '\n' +
+          'Телефоны СТО-ВРН: +7 (473) 272-78-43 / +7 (952) 956-52-15\n' +
+          'Email: pik-67@bk.ru | График: Пн-Сб\n' +
+          'Документы с собой: СТС или ПТС, паспорт.';
+
+        els.bookingFormPanel.style.display = 'none';
+        els.ticketBox.classList.add('visible');
+      });
+
+      els.editTicketBtn.addEventListener('click', function () {
+        els.ticketBox.classList.remove('visible');
+        els.bookingFormPanel.style.display = 'block';
+      });
+
+      els.downloadTicketBtn.addEventListener('click', function () {
+        if (state.lastTicketText.length === 0) {
+          return;
+        }
+        var blob = new Blob([state.lastTicketText], { type: 'text/plain;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'STO-VRN-zapis.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+
+      /* Self-check widget */
+      var checkRows = els.checkItems.querySelectorAll('.check-row');
+      checkRows.forEach(function (row) {
+        row.addEventListener('click', function () {
+          var isChecked = row.classList.contains('checked');
+          if (isChecked) {
+            row.classList.remove('checked');
+            row.setAttribute('aria-pressed', 'false');
+          } else {
+            row.classList.add('checked');
+            row.setAttribute('aria-pressed', 'true');
+          }
+          var totalChecked = els.checkItems.querySelectorAll('.check-row.checked').length;
+          els.checkScore.textContent = totalChecked + ' / 6';
+          if (totalChecked === 6) {
+            els.checkScore.classList.add('ready');
+            els.checkAdvice.textContent = 'Отлично: автомобиль визуально готов к заезду на линию. Выберите удобный день и время для прохождения техосмотра в СТО-ВРН.';
+          } else {
+            els.checkScore.classList.remove('ready');
+            els.checkAdvice.textContent = 'Отмечено ' + totalChecked + ' из 6 пунктов. Если по свету фар, тормозам или выхлопу есть сомнения, добавьте предпроверку в калькуляторе.';
+          }
+        });
+      });
+
+      /* FAQ accordion */
+      els.faqList.querySelectorAll('.faq-trigger').forEach(function (trigger) {
+        trigger.addEventListener('click', function () {
+          var item = trigger.parentElement;
+          var isOpen = item.classList.contains('open');
+          if (isOpen) {
+            item.classList.remove('open');
+            trigger.setAttribute('aria-expanded', 'false');
+          } else {
+            item.classList.add('open');
+            trigger.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+
+      /* Copy buttons */
+      document.querySelectorAll('[data-copy]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var text = btn.getAttribute('data-copy');
+          var orig = btn.textContent;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () {
+              btn.textContent = 'Скопировано';
+              setTimeout(function () {
+                btn.textContent = orig;
+              }, 1800);
+            });
+          } else {
+            btn.textContent = text;
+          }
+        });
+      });
+
+      /* Initial render */
+      renderSchedule();
+      updateOptionsLabels();
+      updateSummary();
+    })();
+  </script>
+</body>
+</html>

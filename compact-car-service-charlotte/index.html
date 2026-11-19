@@ -1,0 +1,2852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Compact Car Service is a private independent auto repair shop in Charlotte, NC. Import and domestic diagnostics, brake and suspension service, transmission care, and factory maintenance. Mon-Fri. Call (704) 567-7797.">
+  <title>Compact Car Service | Private Independent Auto Repair Shop — Charlotte, NC</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231E466E'/%3E%3Cpath d='M16 5l9 5.2v11.6L16 27l-9-5.2V10.2L16 5z' fill='none' stroke='%23FFFFFF' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4.2' fill='%23B45309'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #F8F9FA;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #F1F4F8;
+      --bg-steel-tint: #EAF0F6;
+      --bg-amber-tint: #FDF6EB;
+      --bg-green-tint: #ECFDF3;
+      --ink-primary: #161B22;
+      --ink-secondary: #4B5563;
+      --ink-muted: #64748B;
+      --steel-600: #1E466E;
+      --steel-700: #163656;
+      --steel-200: #CBD8E6;
+      --amber-600: #B45309;
+      --amber-700: #92400E;
+      --amber-200: #F3D9B1;
+      --green-700: #15803D;
+      --green-200: #BBF7D0;
+      --border-hairline: #DCE2E8;
+      --border-strong: #C4CED8;
+      --shadow-card: 0 1px 2px rgba(22, 27, 34, 0.04), 0 6px 18px rgba(30, 70, 110, 0.05);
+      --shadow-active: 0 4px 14px rgba(30, 70, 110, 0.12);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.55;
+      overflow-x: clip;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font-family: inherit;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .email-nowrap {
+      white-space: nowrap;
+      word-break: normal;
+      overflow-wrap: normal;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1220px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    /* Top Utility Strip */
+    .utility-bar {
+      background-color: var(--steel-600);
+      color: #FFFFFF;
+      font-size: 12.5px;
+      border-bottom: 1px solid var(--steel-700);
+    }
+
+    .utility-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    .utility-group {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+    }
+
+    .utility-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #E2ECF5;
+    }
+
+    .utility-item strong {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .utility-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #FFFFFF;
+      font-weight: 500;
+      transition: color 0.16s ease, opacity 0.16s ease;
+    }
+
+    .utility-link:hover {
+      color: #FDE68A;
+    }
+
+    /* Sticky Main Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 68px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background-color: var(--steel-600);
+      flex-shrink: 0;
+    }
+
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-title {
+      font-size: 16.5px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--ink-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--ink-muted);
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      transition: color 0.16s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--steel-600);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 18px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--steel-600);
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background-color: var(--steel-600);
+      color: #FFFFFF;
+      border-color: var(--steel-600);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--steel-700);
+      border-color: var(--steel-700);
+      box-shadow: var(--shadow-active);
+    }
+
+    .btn-amber {
+      background-color: var(--amber-600);
+      color: #FFFFFF;
+      border-color: var(--amber-600);
+    }
+
+    .btn-amber:hover {
+      background-color: var(--amber-700);
+      border-color: var(--amber-700);
+    }
+
+    .btn-outline {
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      border-color: var(--border-strong);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--steel-600);
+      color: var(--steel-600);
+      background-color: var(--bg-steel-tint);
+    }
+
+    .btn-sm {
+      min-height: 36px;
+      padding: 0 14px;
+      font-size: 13px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding-top: 40px;
+      padding-bottom: 44px;
+      border-bottom: 1px solid var(--border-hairline);
+      background-color: var(--bg-surface);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background-color: var(--bg-steel-tint);
+      border: 1px solid var(--steel-200);
+      color: var(--steel-600);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background-color: var(--amber-600);
+      flex-shrink: 0;
+    }
+
+    .hero-title {
+      margin: 0 0 16px 0;
+      font-size: clamp(29px, 3.6vw, 44px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: var(--ink-primary);
+    }
+
+    .hero-desc {
+      margin: 0 0 24px 0;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--ink-secondary);
+      max-width: 600px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .metric-box {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      min-width: 0;
+    }
+
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--steel-600);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.25;
+      margin-bottom: 3px;
+    }
+
+    .metric-lbl {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink-muted);
+    }
+
+    /* Diagnostic Bay Spec Card in Hero */
+    .spec-card {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-strong);
+      border-top: 3px solid var(--steel-600);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .spec-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px 18px;
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .spec-code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      letter-spacing: 0.03em;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: var(--bg-amber-tint);
+      border: 1px solid var(--amber-200);
+      color: var(--amber-700);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .spec-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .spec-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 12px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+    }
+
+    .spec-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-steel-tint);
+      color: var(--steel-600);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .spec-row-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      line-height: 1.3;
+      margin-bottom: 2px;
+    }
+
+    .spec-row-sub {
+      font-size: 12.5px;
+      color: var(--ink-secondary);
+      line-height: 1.4;
+    }
+
+    .spec-foot {
+      padding: 14px 18px;
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border-hairline);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .spec-contact-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      font-size: 13px;
+    }
+
+    .spec-contact-label {
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    .spec-contact-val {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--steel-600);
+    }
+
+    /* Section Headers */
+    .section {
+      padding-top: 56px;
+      padding-bottom: 56px;
+    }
+
+    .section-surface {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border-hairline);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .section-header {
+      max-width: 760px;
+      margin-bottom: 30px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--amber-600);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      margin: 0 0 10px 0;
+      font-size: clamp(24px, 2.8vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.18;
+      color: var(--ink-primary);
+    }
+
+    .section-lead {
+      margin: 0;
+      font-size: 15.5px;
+      color: var(--ink-secondary);
+      line-height: 1.6;
+    }
+
+    /* MAIN WIDGET: Estimator & Scheduler */
+    .estimator-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.95fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .estimator-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      min-width: 0;
+    }
+
+    .step-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-card);
+      padding: 22px;
+      min-width: 0;
+    }
+
+    .step-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .step-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-sm);
+      background-color: var(--steel-600);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .step-title {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .step-hint {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+    }
+
+    /* Make Selector Grid */
+    .make-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .make-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 4px;
+      padding: 12px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      color: var(--ink-primary);
+      text-align: left;
+      cursor: pointer;
+      min-height: 68px;
+      transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .make-btn:hover {
+      border-color: var(--steel-600);
+      background-color: var(--bg-steel-tint);
+    }
+
+    .make-btn.is-active {
+      background-color: var(--steel-600);
+      border-color: var(--steel-600);
+      color: #FFFFFF;
+      box-shadow: var(--shadow-active);
+    }
+
+    .make-code {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+    }
+
+    .make-btn.is-active .make-code {
+      color: #FDE68A;
+    }
+
+    .make-name {
+      font-size: 14.5px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .make-note-bar {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-steel-tint);
+      border: 1px solid var(--steel-200);
+      font-size: 12.5px;
+      color: var(--steel-700);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* Field Labels (Zero orphan labels) */
+    .field-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .sub-controls-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .seg-group {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .seg-btn {
+      min-height: 38px;
+      padding: 6px 8px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-canvas);
+      color: var(--ink-secondary);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.2;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .seg-btn:hover {
+      border-color: var(--steel-600);
+      color: var(--steel-600);
+    }
+
+    .seg-btn.is-active {
+      background-color: var(--bg-steel-tint);
+      border-color: var(--steel-600);
+      color: var(--steel-600);
+    }
+
+    .field-input,
+    .field-select {
+      width: 100%;
+      min-height: 40px;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      font-size: 13.5px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .field-input:focus,
+    .field-select:focus {
+      outline: none;
+      border-color: var(--steel-600);
+      box-shadow: 0 0 0 3px rgba(30, 70, 110, 0.12);
+    }
+
+    /* Services Multi-Select List */
+    .service-select-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .svc-item {
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-canvas);
+      transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .svc-item.is-selected {
+      background-color: var(--bg-surface);
+      border-color: var(--steel-600);
+      box-shadow: 0 0 0 1px var(--steel-600);
+    }
+
+    .svc-toggle {
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      cursor: pointer;
+      text-align: left;
+      color: inherit;
+    }
+
+    .svc-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .svc-checkbox {
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      border-radius: 4px;
+      border: 1.5px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .svc-item.is-selected .svc-checkbox {
+      background-color: var(--steel-600);
+      border-color: var(--steel-600);
+      color: #FFFFFF;
+    }
+
+    .svc-name {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      line-height: 1.25;
+      margin-bottom: 3px;
+    }
+
+    .svc-desc {
+      font-size: 12.5px;
+      color: var(--ink-secondary);
+      line-height: 1.45;
+    }
+
+    .svc-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .svc-price {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--steel-600);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .svc-hours {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .brake-axle-bar {
+      padding: 0 14px 14px 46px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .axle-pill {
+      min-height: 30px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-canvas);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .axle-pill.is-active {
+      background-color: var(--bg-amber-tint);
+      border-color: var(--amber-600);
+      color: var(--amber-700);
+    }
+
+    /* Drop-Off Scheduler */
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .day-btn {
+      padding: 10px 8px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-hairline);
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .day-btn:hover {
+      border-color: var(--steel-600);
+      background-color: var(--bg-steel-tint);
+    }
+
+    .day-btn.is-active {
+      background-color: var(--steel-600);
+      border-color: var(--steel-600);
+      color: #FFFFFF;
+    }
+
+    .day-name {
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .day-date {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .day-btn.is-active .day-date {
+      color: #E2ECF5;
+    }
+
+    .day-open {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--green-700);
+    }
+
+    .day-btn.is-active .day-open {
+      color: #FDE68A;
+    }
+
+    .slots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 8px;
+    }
+
+    .slot-btn {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-hairline);
+      background-color: var(--bg-canvas);
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .slot-btn:hover {
+      border-color: var(--steel-600);
+      background-color: var(--bg-steel-tint);
+    }
+
+    .slot-btn.is-active {
+      background-color: var(--bg-steel-tint);
+      border-color: var(--steel-600);
+      box-shadow: 0 0 0 1px var(--steel-600);
+    }
+
+    .slot-time {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .slot-btn.is-active .slot-time {
+      color: var(--steel-600);
+    }
+
+    .slot-meta {
+      font-size: 11.5px;
+      color: var(--ink-secondary);
+    }
+
+    /* Sticky Right Estimate Summary Panel */
+    .summary-card {
+      position: sticky;
+      top: 86px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-top: 3px solid var(--amber-600);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .summary-header {
+      padding: 16px 20px;
+      background-color: var(--bg-canvas);
+      border-bottom: 1px solid var(--border-hairline);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .summary-title {
+      margin: 0;
+      font-size: 15.5px;
+      font-weight: 800;
+      color: var(--ink-primary);
+    }
+
+    .summary-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background-color: var(--steel-600);
+      color: #FFFFFF;
+      white-space: nowrap;
+    }
+
+    .summary-body {
+      padding: 18px 20px;
+    }
+
+    .summary-vehicle-bar {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .summary-vehicle-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .summary-vehicle-sub {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--ink-muted);
+    }
+
+    .line-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .line-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--border-hairline);
+    }
+
+    .line-item-name {
+      color: var(--ink-primary);
+      font-weight: 600;
+    }
+
+    .line-item-sub {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 400;
+      color: var(--ink-muted);
+    }
+
+    .line-item-price {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .empty-items {
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-amber-tint);
+      border: 1px solid var(--amber-200);
+      color: var(--amber-700);
+      font-size: 13px;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .breakdown-box {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .bk-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 12.5px;
+      color: var(--ink-secondary);
+    }
+
+    .bk-row.is-credit {
+      color: var(--amber-700);
+      font-weight: 600;
+    }
+
+    .bk-val {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--ink-primary);
+    }
+
+    .bk-row.is-credit .bk-val {
+      color: var(--amber-700);
+    }
+
+    .total-panel {
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      background-color: var(--steel-600);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .total-lbl {
+      font-size: 11.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #CBD8E6;
+      margin-bottom: 2px;
+    }
+
+    .total-usd {
+      font-family: var(--font-mono);
+      font-size: 25px;
+      font-weight: 700;
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+      color: #FFFFFF;
+    }
+
+    .total-range {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: #FDE68A;
+      margin-top: 3px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .bay-time-pill {
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      background-color: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .bay-time-val {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      color: #FFFFFF;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.15;
+    }
+
+    .bay-time-lbl {
+      font-size: 10.5px;
+      color: #E2ECF5;
+    }
+
+    .slot-preview {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-green-tint);
+      border: 1px solid var(--green-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-size: 12.5px;
+    }
+
+    .slot-preview-text {
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .slot-preview-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--green-700);
+      white-space: nowrap;
+    }
+
+    .booking-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .form-two {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .confirm-box {
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-steel-tint);
+      border: 1px solid var(--steel-200);
+      margin-top: 12px;
+      font-size: 13px;
+    }
+
+    .confirm-box.is-hidden {
+      display: none;
+    }
+
+    .confirm-title {
+      font-weight: 800;
+      color: var(--steel-700);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .confirm-ref {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--amber-700);
+    }
+
+    .confirm-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    /* Core Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      border-top: 2px solid var(--steel-600);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--steel-600);
+      box-shadow: var(--shadow-card);
+    }
+
+    .service-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .service-icon-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-steel-tint);
+      color: var(--steel-600);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .service-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .service-card-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .service-card-desc {
+      margin: 0;
+      font-size: 14px;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 6px;
+    }
+
+    .service-tag {
+      padding: 4px 9px;
+      border-radius: 4px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+    }
+
+    /* Supported Makes Showcase */
+    .makes-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .make-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .make-card:hover {
+      border-color: var(--steel-600);
+      box-shadow: var(--shadow-card);
+    }
+
+    .make-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .make-card-title {
+      margin: 0;
+      font-size: 16.5px;
+      font-weight: 800;
+      color: var(--ink-primary);
+    }
+
+    .make-tier-badge {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 4px;
+      background-color: var(--bg-steel-tint);
+      color: var(--steel-600);
+    }
+
+    .make-card-text {
+      margin: 0;
+      font-size: 13px;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+
+    .make-card-btn {
+      margin-top: 6px;
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-canvas);
+      color: var(--steel-600);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .make-card-btn:hover {
+      background-color: var(--steel-600);
+      border-color: var(--steel-600);
+      color: #FFFFFF;
+    }
+
+    /* Workflow & Contact Section */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 34px;
+    }
+
+    .process-card {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .process-step {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--amber-600);
+      margin-bottom: 6px;
+    }
+
+    .process-title {
+      margin: 0 0 6px 0;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .process-desc {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+    }
+
+    .contact-panel {
+      background-color: var(--steel-600);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .contact-title {
+      margin: 0 0 8px 0;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-sub {
+      margin: 0;
+      font-size: 14.5px;
+      color: #DCE7F2;
+      line-height: 1.55;
+    }
+
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .contact-item {
+      background-color: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      min-width: 0;
+    }
+
+    .contact-item.is-wide {
+      grid-column: 1 / -1;
+    }
+
+    .contact-item-label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #FDE68A;
+      margin-bottom: 4px;
+    }
+
+    .contact-item-val {
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFFFFF;
+      display: inline-block;
+    }
+
+    .site-footer {
+      background-color: var(--bg-canvas);
+      border-top: 1px solid var(--border-hairline);
+      padding-top: 24px;
+      padding-bottom: 28px;
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1020px) {
+      .hero-grid,
+      .estimator-layout,
+      .contact-panel {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .summary-card {
+        position: static;
+      }
+
+      .makes-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav-links {
+        display: none;
+      }
+
+      .services-grid,
+      .process-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .utility-bar {
+        font-size: 12px;
+      }
+
+      .header-inner {
+        min-height: 62px;
+        gap: 10px;
+      }
+
+      .brand {
+        gap: 9px;
+      }
+
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+      }
+
+      .brand-title {
+        font-size: 15px;
+      }
+
+      .brand-sub {
+        font-size: 11px;
+      }
+
+      .header-actions .btn-sm {
+        padding: 0 12px;
+        font-size: 12.5px;
+      }
+
+      .header-call-btn {
+        display: none;
+      }
+
+      .hero-section {
+        padding-top: 26px;
+        padding-bottom: 30px;
+      }
+
+      .hero-metrics {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .section {
+        padding-top: 38px;
+        padding-bottom: 38px;
+      }
+
+      .step-card {
+        padding: 16px;
+      }
+
+      .make-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .sub-controls-grid,
+      .form-two,
+      .contact-cards {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .days-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .makes-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-panel {
+        padding: 20px 16px;
+      }
+
+      .spec-contact-val,
+      .contact-item-val.email-nowrap {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Utility Bar -->
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="utility-group">
+        <span class="utility-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 21s-7-4.5-7-11a7 7 0 1 1 14 0c0 6.5-7 11-7 11z"/>
+            <circle cx="12" cy="10" r="2.5"/>
+          </svg>
+          <strong>Charlotte, NC</strong>
+        </span>
+        <span class="utility-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 2"/>
+          </svg>
+          Hours: <strong>Mon-Fri</strong>
+        </span>
+      </div>
+      <div class="utility-group">
+        <a href="tel:7045677797" class="utility-link tabular">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          (704) 567-7797
+        </a>
+        <a href="mailto:1compactcarservice@gmail.com" class="utility-link email-nowrap">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="M3 7l9 6 9-6"/>
+          </svg>
+          1compactcarservice@gmail.com
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M16 4l10.4 6v12L16 28 5.6 22V10L16 4z" stroke="#FFFFFF" stroke-width="2.2"/>
+            <circle cx="16" cy="16" r="5" fill="#B45309"/>
+            <circle cx="16" cy="16" r="2" fill="#FFFFFF"/>
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <span class="brand-title">Compact Car Service</span>
+          <span class="brand-sub">Private Independent Auto Repair Shop</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#estimator" class="nav-link">Cost Estimator</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#makes" class="nav-link">Supported Makes</a>
+        <a href="#contact" class="nav-link">Shop Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:7045677797" class="btn btn-outline btn-sm tabular header-call-btn">(704) 567-7797</a>
+        <a href="#estimator" class="btn btn-primary btn-sm">Estimate &amp; Book</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Charlotte, NC • Mon-Fri • Independent Bay Service
+          </div>
+          <h1 class="hero-title">Precision Import &amp; Domestic Auto Repair in Charlotte, NC.</h1>
+          <p class="hero-desc">
+            Compact Car Service is a private independent auto repair shop dedicated to transparent diagnostics, factory-grade maintenance, and dependable workmanship for Honda, Toyota, Subaru, Mazda, Nissan, Hyundai, Kia, and Domestic vehicles.
+          </p>
+          <div class="hero-cta-row">
+            <a href="#estimator" class="btn btn-primary">
+              Launch Cost Estimator
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6"/>
+              </svg>
+            </a>
+            <a href="tel:7045677797" class="btn btn-outline tabular">
+              Call (704) 567-7797
+            </a>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric-box">
+              <div class="metric-val">8 Makes</div>
+              <div class="metric-lbl">Import &amp; Domestic Bay Coverage</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val">Mon-Fri</div>
+              <div class="metric-lbl">Weekday Service &amp; Drop-Off</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val">(704) 567-7797</div>
+              <div class="metric-lbl">Direct Charlotte Shop Desk</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shop Specification Card -->
+        <aside class="spec-card" aria-label="Workshop Capabilities">
+          <div class="spec-head">
+            <span class="spec-code">WORKSHOP SPEC // CLT-INDEPENDENT</span>
+            <span class="status-pill">MON-FRI DROP-OFF</span>
+          </div>
+          <div class="spec-body">
+            <div class="spec-row">
+              <div class="spec-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="spec-row-title">Import &amp; Domestic Auto Repair</div>
+                <div class="spec-row-sub">Honda, Toyota, Subaru, Mazda, Nissan, Hyundai, Kia, Domestic</div>
+              </div>
+            </div>
+            <div class="spec-row">
+              <div class="spec-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="2" y="6" width="20" height="12" rx="2"/>
+                  <path d="M6 12h3l2-3 2 6 2-3h3"/>
+                </svg>
+              </div>
+              <div>
+                <div class="spec-row-title">Engine Diagnostics &amp; Check Engine Light</div>
+                <div class="spec-row-sub">Root-cause fault tracing, live scan telemetry &amp; fuel/ignition testing</div>
+              </div>
+            </div>
+            <div class="spec-row">
+              <div class="spec-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="8"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <div class="spec-row-title">Brake, Suspension &amp; Transmission Service</div>
+                <div class="spec-row-sub">Rotors, pads, struts, steering geometry &amp; OEM fluid service</div>
+              </div>
+            </div>
+            <div class="spec-row">
+              <div class="spec-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="17" rx="2"/>
+                  <path d="M8 2v4M16 2v4M3 10h18"/>
+                </svg>
+              </div>
+              <div>
+                <div class="spec-row-title">Scheduled Factory Maintenance</div>
+                <div class="spec-row-sub">30k / 60k / 90k mileage intervals &amp; preventive fluid inspections</div>
+              </div>
+            </div>
+          </div>
+          <div class="spec-foot">
+            <div class="spec-contact-line">
+              <span class="spec-contact-label">Charlotte Shop Phone</span>
+              <a href="tel:7045677797" class="spec-contact-val tabular">(704) 567-7797</a>
+            </div>
+            <div class="spec-contact-line">
+              <span class="spec-contact-label">Direct Shop Email</span>
+              <a href="mailto:1compactcarservice@gmail.com" class="spec-contact-val email-nowrap">1compactcarservice@gmail.com</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- MAIN INTERACTIVE WIDGET: Estimator & Scheduler -->
+    <section id="estimator" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Interactive Shop Estimator</div>
+          <h2 class="section-title">Auto Repair &amp; Maintenance Cost Estimator + Drop-Off Slot Scheduler</h2>
+          <p class="section-lead">
+            Select your vehicle make, check the repair or factory maintenance jobs you need, see real-time USD parts and labor figures with estimated bay hours, and reserve a weekday drop-off window.
+          </p>
+        </div>
+
+        <div class="estimator-layout">
+          <!-- Left Configurator -->
+          <div class="estimator-steps">
+            <!-- Step 1: Make & Vehicle Configuration -->
+            <div class="step-card">
+              <div class="step-head">
+                <div class="step-title-wrap">
+                  <span class="step-num">01</span>
+                  <h3 class="step-title">Select Vehicle Make &amp; Configuration</h3>
+                </div>
+                <span class="step-hint">8 Platforms</span>
+              </div>
+
+              <div class="make-grid" id="make-grid" role="group" aria-label="Vehicle Make"></div>
+
+              <div class="make-note-bar" id="make-note-bar">
+                <span id="make-specialty-text">Honda: Earth Dreams, i-VTEC, CVT &amp; Scheduled Maintenance Bay</span>
+                <span class="mono" id="make-rate-tag">PLATFORM FACTOR 1.00x</span>
+              </div>
+
+              <div class="sub-controls-grid">
+                <div>
+                  <div class="field-label" id="lbl-powertrain">Engine / Drivetrain Class</div>
+                  <div class="seg-group" id="powertrain-group" role="group" aria-labelledby="lbl-powertrain">
+                    <button type="button" class="seg-btn is-active" data-pt="compact">4-Cyl / Compact</button>
+                    <button type="button" class="seg-btn" data-pt="v6awd">V6 / AWD</button>
+                    <button type="button" class="seg-btn" data-pt="turbo">Turbo / Hybrid</button>
+                  </div>
+                </div>
+                <div>
+                  <div class="field-label" id="lbl-mileage">Current Odometer Bracket</div>
+                  <select id="vehicle-mileage" class="field-select" autocomplete="off" aria-labelledby="lbl-mileage">
+                    <option value="under45">Under 45,000 miles</option>
+                    <option value="45to75" selected>45,000 - 75,000 miles</option>
+                    <option value="75to110">75,000 - 110,000 miles</option>
+                    <option value="over110">110,000+ miles</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="margin-top: 14px;">
+                <div class="field-label" id="lbl-model">Year &amp; Model (Optional)</div>
+                <input type="text" id="vehicle-model" class="field-input" autocomplete="off" aria-labelledby="lbl-model" placeholder="e.g. 2019 Honda Civic EX or 2021 Subaru Outback">
+              </div>
+            </div>
+
+            <!-- Step 2: Repair & Maintenance Jobs -->
+            <div class="step-card">
+              <div class="step-head">
+                <div class="step-title-wrap">
+                  <span class="step-num">02</span>
+                  <h3 class="step-title">Select Repair &amp; Maintenance Work</h3>
+                </div>
+                <span class="step-hint" id="selected-count-hint">1 Selected</span>
+              </div>
+
+              <div class="service-select-list" id="service-select-list"></div>
+            </div>
+
+            <!-- Step 3: Drop-Off Slot Scheduler -->
+            <div class="step-card">
+              <div class="step-head">
+                <div class="step-title-wrap">
+                  <span class="step-num">03</span>
+                  <h3 class="step-title">Drop-Off Slot Scheduler (Mon-Fri)</h3>
+                </div>
+                <span class="step-hint">Charlotte, NC Shop</span>
+              </div>
+
+              <div class="field-label" id="lbl-day-picker">Select Weekday Drop-Off Day (Mon-Fri)</div>
+              <div class="days-grid" id="days-grid" role="group" aria-labelledby="lbl-day-picker"></div>
+
+              <div class="field-label" id="lbl-slot-picker">Select Bay Arrival Window</div>
+              <div class="slots-grid" id="slots-grid" role="group" aria-labelledby="lbl-slot-picker"></div>
+            </div>
+          </div>
+
+          <!-- Right Sticky Estimate Ticket -->
+          <aside class="summary-card" aria-label="Live Repair Estimate Summary">
+            <div class="summary-header">
+              <h3 class="summary-title">Estimate Ticket</h3>
+              <span class="summary-badge" id="ticket-make-badge">HONDA • 4-CYL</span>
+            </div>
+
+            <div class="summary-body">
+              <div class="summary-vehicle-bar">
+                <div>
+                  <div class="summary-vehicle-name" id="ticket-vehicle-title">Honda — 4-Cyl / Compact</div>
+                  <div class="summary-vehicle-sub" id="ticket-vehicle-sub">Odometer: 45,000 - 75,000 miles</div>
+                </div>
+                <span class="mono" style="font-size: 11px; color: var(--steel-600); font-weight: 700;">USD EST</span>
+              </div>
+
+              <div class="line-items" id="ticket-line-items"></div>
+
+              <div class="breakdown-box" id="ticket-breakdown">
+                <div class="bk-row">
+                  <span>Estimated Parts &amp; OEM Fluids</span>
+                  <span class="bk-val" id="bk-parts">$0</span>
+                </div>
+                <div class="bk-row">
+                  <span>Precision Labor &amp; Diagnostics</span>
+                  <span class="bk-val" id="bk-labor">$0</span>
+                </div>
+                <div class="bk-row is-credit" id="bk-credit-row" style="display: none;">
+                  <span>Combined Lift Efficiency Credit</span>
+                  <span class="bk-val" id="bk-credit">-$0</span>
+                </div>
+              </div>
+
+              <div class="total-panel">
+                <div>
+                  <div class="total-lbl">Estimated Total (USD)</div>
+                  <div class="total-usd tabular" id="total-usd">$0</div>
+                  <div class="total-range tabular" id="total-range">Est. Range: $0 - $0</div>
+                </div>
+                <div class="bay-time-pill">
+                  <div class="bay-time-val tabular" id="total-bay-time">0.0 hrs</div>
+                  <div class="bay-time-lbl">Est. Bay Time</div>
+                </div>
+              </div>
+
+              <div class="slot-preview">
+                <div>
+                  <div class="slot-preview-text" id="ticket-slot-text">Mon • 8:30 AM Morning Bay</div>
+                  <div style="font-size: 11.5px; color: var(--ink-secondary);">Charlotte, NC • Mon-Fri Service Hours</div>
+                </div>
+                <span class="slot-preview-tag">BAY OPEN</span>
+              </div>
+
+              <form class="booking-form" id="booking-form">
+                <div class="form-two">
+                  <div>
+                    <div class="field-label" id="lbl-cust-name">Driver Name</div>
+                    <input type="text" id="cust-name" class="field-input" autocomplete="name" aria-labelledby="lbl-cust-name" placeholder="Jordan Miller" required>
+                  </div>
+                  <div>
+                    <div class="field-label" id="lbl-cust-phone">Phone Number</div>
+                    <input type="tel" id="cust-phone" class="field-input tabular" autocomplete="tel" aria-labelledby="lbl-cust-phone" placeholder="(704) 555-0148" required>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="field-label" id="lbl-cust-email">Email Address</div>
+                  <input type="email" id="cust-email" class="field-input" autocomplete="email" aria-labelledby="lbl-cust-email" placeholder="driver@example.com">
+                </div>
+
+                <div>
+                  <div class="field-label" id="lbl-cust-notes">Symptoms or Notes (Optional)</div>
+                  <input type="text" id="cust-notes" class="field-input" autocomplete="off" aria-labelledby="lbl-cust-notes" placeholder="Check engine light came on, front brake squeak">
+                </div>
+
+                <button type="submit" class="btn btn-amber" style="width: 100%; margin-top: 4px;">
+                  Request Drop-Off Slot
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6"/>
+                  </svg>
+                </button>
+              </form>
+
+              <div class="confirm-box is-hidden" id="confirm-box" role="status" aria-live="polite">
+                <div class="confirm-title">
+                  <span>Drop-Off Request Prepared</span>
+                  <span class="confirm-ref" id="confirm-ref">REF CCS-0000</span>
+                </div>
+                <div id="confirm-details" style="color: var(--ink-secondary); line-height: 1.5;"></div>
+                <div class="confirm-actions">
+                  <a id="confirm-mailto" href="mailto:1compactcarservice@gmail.com" class="btn btn-primary btn-sm">Send via Email</a>
+                  <a href="tel:7045677797" class="btn btn-outline btn-sm tabular">Call (704) 567-7797</a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Services Section -->
+    <section id="services" class="section section-surface">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Core Shop Capabilities</div>
+          <h2 class="section-title">Complete Independent Mechanical &amp; Diagnostic Care</h2>
+          <p class="section-lead">
+            Every repair bay is equipped for structured troubleshooting, OEM-spec fluid exchanges, and safety-critical driveline work across both import and domestic platforms.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-card-top">
+              <div class="service-icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 17h14v-5l-2.5-5h-9L5 12v5z"/>
+                  <circle cx="7.5" cy="17" r="2"/>
+                  <circle cx="16.5" cy="17" r="2"/>
+                </svg>
+              </div>
+              <span class="service-code">SVC-01 // PLATFORMS</span>
+            </div>
+            <h3 class="service-card-title">Import &amp; Domestic Auto Repair</h3>
+            <p class="service-card-desc">
+              Dedicated independent repair service tailored to compact sedans, crossovers, and domestic daily drivers. OEM-grade parts sourcing without dealership overhead.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">Honda</span>
+              <span class="service-tag">Toyota</span>
+              <span class="service-tag">Subaru</span>
+              <span class="service-tag">Mazda</span>
+              <span class="service-tag">Nissan</span>
+              <span class="service-tag">Hyundai</span>
+              <span class="service-tag">Kia</span>
+              <span class="service-tag">Domestic</span>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-card-top">
+              <div class="service-icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="2" y="6" width="20" height="12" rx="2"/>
+                  <path d="M6 12h3l2-3 2 6 2-3h3"/>
+                </svg>
+              </div>
+              <span class="service-code">SVC-02 // DIAGNOSTICS</span>
+            </div>
+            <h3 class="service-card-title">Engine Diagnostics &amp; Check Engine Light</h3>
+            <p class="service-card-desc">
+              Fault codes only point to a circuit. We verify sensor readings, fuel trims, EVAP integrity, ignition waveforms, and cooling performance before recommending any part replacement.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">OBD-II Telemetry</span>
+              <span class="service-tag">EVAP Smoke Test</span>
+              <span class="service-tag">Misfire Tracing</span>
+              <span class="service-tag">Charging &amp; Starting</span>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-card-top">
+              <div class="service-icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9"/>
+                  <circle cx="12" cy="12" r="3.5"/>
+                  <path d="M12 3v5M12 16v5M3 12h5M16 12h5"/>
+                </svg>
+              </div>
+              <span class="service-code">SVC-03 // UNDERCAR</span>
+            </div>
+            <h3 class="service-card-title">Brake, Suspension &amp; Transmission Service</h3>
+            <p class="service-card-desc">
+              Confident stopping power, quiet ride control, and smooth shifting. From ceramic brake assemblies and strut replacements to temperature-verified ATF and CVT fluid servicing.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">Pads &amp; Rotors</span>
+              <span class="service-tag">Struts &amp; Control Arms</span>
+              <span class="service-tag">ATF &amp; CVT Service</span>
+              <span class="service-tag">Brake Fluid Flush</span>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-card-top">
+              <div class="service-icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="17" rx="2"/>
+                  <path d="M8 2v4M16 2v4M3 10h18M8 14h4M8 17h7"/>
+                </svg>
+              </div>
+              <span class="service-code">SVC-04 // MILESTONE</span>
+            </div>
+            <h3 class="service-card-title">Scheduled Factory Maintenance</h3>
+            <p class="service-card-desc">
+              Warranty-compliant 30k, 60k, and 90k mile maintenance packages. Full-synthetic oil changes, spark plugs, drive belts, coolant service, and multi-point chassis inspections.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">Synthetic Oil</span>
+              <span class="service-tag">60k / 90k Service</span>
+              <span class="service-tag">Spark Plugs &amp; Filters</span>
+              <span class="service-tag">Belts &amp; Coolant</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Supported Makes Section -->
+    <section id="makes" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Specialized Vehicle Coverage</div>
+          <h2 class="section-title">Select Your Make to Pre-Fill the Estimator</h2>
+          <p class="section-lead">
+            Compact Car Service services Asian imports and Domestic vehicles across Charlotte, NC. Choose any platform below to load its profile directly into the Cost Estimator.
+          </p>
+        </div>
+
+        <div class="makes-grid" id="makes-showcase-grid"></div>
+      </div>
+    </section>
+
+    <!-- Workflow & Direct Contact -->
+    <section id="contact" class="section section-surface">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">How Independent Service Works</div>
+          <h2 class="section-title">Clear Inspection First. Direct Approval Before Work Begins.</h2>
+          <p class="section-lead">
+            No commissioned service writers and no surprise add-ons. You speak directly with a Charlotte independent shop focused on keeping your car reliable long-term.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="process-step">STEP 01 // ESTIMATE &amp; DROP-OFF</div>
+            <h3 class="process-title">Pick Your Services &amp; Weekday Slot</h3>
+            <p class="process-desc">Use the estimator above to preview parts, labor, and bay hours, then call or submit your preferred Mon-Fri arrival window.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-step">STEP 02 // VERIFIED INSPECTION</div>
+            <h3 class="process-title">Root-Cause Diagnostics on the Lift</h3>
+            <p class="process-desc">We inspect the fault or scheduled interval firsthand and confirm exact repair scope and pricing with you before turning a wrench.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-step">STEP 03 // ROAD TEST &amp; PICKUP</div>
+            <h3 class="process-title">Quality Check &amp; Clear Maintenance Log</h3>
+            <p class="process-desc">Every repair finishes with a verification road test, fluid check, and straightforward guidance on what to watch next.</p>
+          </div>
+        </div>
+
+        <div class="contact-panel">
+          <div>
+            <div class="eyebrow" style="background-color: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.24); color: #FDE68A;">
+              Charlotte Independent Garage
+            </div>
+            <h2 class="contact-title">Compact Car Service</h2>
+            <p class="contact-sub">
+              Private Independent Auto Repair Shop serving Charlotte, NC drivers Monday through Friday. Reach us directly by phone or email to confirm a drop-off bay.
+            </p>
+          </div>
+
+          <div class="contact-cards">
+            <div class="contact-item">
+              <div class="contact-item-label">Phone</div>
+              <a href="tel:7045677797" class="contact-item-val mono tabular">(704) 567-7797</a>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-label">Shop Hours</div>
+              <span class="contact-item-val">Mon-Fri</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-label">Location</div>
+              <span class="contact-item-val">Charlotte, NC</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-label">Shop Type</div>
+              <span class="contact-item-val">Private Independent</span>
+            </div>
+            <div class="contact-item is-wide">
+              <div class="contact-item-label">Email</div>
+              <a href="mailto:1compactcarservice@gmail.com" class="contact-item-val mono email-nowrap">1compactcarservice@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>Compact Car Service</strong> • Private Independent Auto Repair Shop • Charlotte, NC
+      </div>
+      <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 10px 18px;">
+        <span>Hours: Mon-Fri</span>
+        <a href="tel:7045677797" class="tabular" style="font-weight: 600; color: var(--steel-600);">(704) 567-7797</a>
+        <a href="mailto:1compactcarservice@gmail.com" class="email-nowrap" style="font-weight: 600; color: var(--steel-600);">1compactcarservice@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var MAKES = [
+        {
+          id: 'Honda',
+          code: 'HND',
+          tier: 'Asian Import',
+          factor: 1.00,
+          specialty: 'Honda: Earth Dreams, i-VTEC, CVT fluid & timing maintenance',
+          summary: 'Civic, Accord, CR-V, HR-V & Odyssey diagnostics, brake service, valve adjustments, and 60k/90k factory intervals.'
+        },
+        {
+          id: 'Toyota',
+          code: 'TYT',
+          tier: 'Asian Import',
+          factor: 1.00,
+          specialty: 'Toyota: Dual VVT-i, Hybrid cooling & high-mileage reliability care',
+          summary: 'Corolla, Camry, RAV4, Prius & Highlander synthetic intervals, brake service, suspension bushings, and coolant exchanges.'
+        },
+        {
+          id: 'Subaru',
+          code: 'SBR',
+          tier: 'AWD Boxer',
+          factor: 1.12,
+          specialty: 'Subaru: Boxer engines, Symmetrical AWD, CVT & strut assemblies',
+          summary: 'Impreza, Crosstrek, Forester, Outback & Legacy AWD driveline fluids, wheel bearings, CEL diagnostics, and suspension checks.'
+        },
+        {
+          id: 'Mazda',
+          code: 'MZD',
+          tier: 'Asian Import',
+          factor: 1.03,
+          specialty: 'Mazda: Skyactiv direct injection, chassis & braking systems',
+          summary: 'Mazda3, Mazda6, CX-30, CX-5 & CX-9 ignition diagnostics, intake/fuel checks, transmission service, and struts.'
+        },
+        {
+          id: 'Nissan',
+          code: 'NSN',
+          tier: 'Asian Import',
+          factor: 1.02,
+          specialty: 'Nissan: QR/VQ engines, CVT fluid calibration & front suspension',
+          summary: 'Sentra, Altima, Rogue, Versa & Maxima CVT drain-and-fill care, brake service, control arms, and check engine diagnostics.'
+        },
+        {
+          id: 'Hyundai',
+          code: 'HYN',
+          tier: 'Korean Import',
+          factor: 0.98,
+          specialty: 'Hyundai: GDI fuel systems, Smartstream & factory maintenance',
+          summary: 'Elantra, Sonata, Tucson, Kona & Santa Fe synthetic oil intervals, misfire diagnostics, brakes, and 60k/90k service.'
+        },
+        {
+          id: 'Kia',
+          code: 'KIA',
+          tier: 'Korean Import',
+          factor: 0.98,
+          specialty: 'Kia: GDI powertrains, emissions diagnostics & ride control',
+          summary: 'Forte, K5, Soul, Seltos & Sportage scheduled maintenance, brake rotors/pads, CEL pinpointing, and suspension checks.'
+        },
+        {
+          id: 'Domestic',
+          code: 'DOM',
+          tier: 'US Platforms',
+          factor: 1.06,
+          specialty: 'Domestic: Ford, GM & Stellantis diagnostics, brakes & driveline',
+          summary: 'Focus, Malibu, Equinox, Escape, Explorer & daily domestic sedans — full diagnostics, transmission, brakes, and suspension.'
+        }
+      ];
+
+      var POWERTRAINS = {
+        compact: { label: '4-Cyl / Compact', badge: '4-CYL', factor: 1.00, timeAdd: 0 },
+        v6awd:   { label: 'V6 / AWD',        badge: 'V6/AWD', factor: 1.18, timeAdd: 0.25 },
+        turbo:   { label: 'Turbo / Hybrid',  badge: 'TURBO/HYB', factor: 1.15, timeAdd: 0.20 }
+      };
+
+      var MILEAGE_LABELS = {
+        under45: 'Under 45,000 miles',
+        '45to75': '45,000 - 75,000 miles',
+        '75to110': '75,000 - 110,000 miles',
+        over110: '110,000+ miles'
+      };
+
+      var SERVICES = [
+        {
+          id: 'oil',
+          code: 'JOB-01',
+          name: 'Synthetic Oil + Inspection',
+          desc: 'Full-synthetic motor oil, OEM-spec filter, tire & brake visual check, fluid top-offs, belts, and undercar leak inspection.',
+          partsBase: 48,
+          laborBase: 42,
+          hours: 0.8
+        },
+        {
+          id: 'cel',
+          code: 'JOB-02',
+          name: 'Check Engine Light Diagnostics',
+          desc: 'OBD-II live telemetry scan, freeze-frame inspection, fuel-trim & ignition verification, plus a clear root-cause repair plan.',
+          partsBase: 0,
+          laborBase: 125,
+          hours: 1.0
+        },
+        {
+          id: 'brakes',
+          code: 'JOB-03',
+          name: 'Front/Rear Brake Service',
+          desc: 'Quiet ceramic brake pads, rotor resurfacing or replacement evaluation, caliper slide lubrication, and brake fluid check.',
+          partsBase: 165,
+          laborBase: 155,
+          hours: 1.5,
+          hasAxleOptions: true
+        },
+        {
+          id: 'trans',
+          code: 'JOB-04',
+          name: 'Transmission Fluid Service',
+          desc: 'Factory-spec ATF or CVT drain-and-fill, temperature-verified level set, crush gasket replacement, and shift evaluation.',
+          partsBase: 95,
+          laborBase: 115,
+          hours: 1.2
+        },
+        {
+          id: 'susp',
+          code: 'JOB-05',
+          name: 'Suspension/Struts Check',
+          desc: 'Thorough lift inspection of struts, shocks, control arm bushings, ball joints, tie rods, and road-test handling evaluation.',
+          partsBase: 0,
+          laborBase: 95,
+          hours: 0.9
+        },
+        {
+          id: 'maint',
+          code: 'JOB-06',
+          name: '60k/90k Factory Maintenance',
+          desc: 'Milestone service: synthetic oil, engine & cabin air filters, coolant/brake fluid tests, spark plug & belt inspection.',
+          partsBase: 190,
+          laborBase: 235,
+          hours: 2.5
+        }
+      ];
+
+      var BRAKE_AXLES = {
+        front: { label: 'Front Axle', mult: 1.00, hourMult: 1.00 },
+        rear:  { label: 'Rear Axle',  mult: 0.95, hourMult: 0.95 },
+        both:  { label: 'Front + Rear', mult: 1.85, hourMult: 1.70 }
+      };
+
+      var TIME_SLOTS = [
+        { id: '0730', time: '7:30 AM',  label: 'Early Key Drop-Off',  cap: 'Available' },
+        { id: '0830', time: '8:30 AM',  label: 'Morning Diagnostic Bay', cap: '2 Bays Open' },
+        { id: '1030', time: '10:30 AM', label: 'Mid-Morning Bay',     cap: 'Available' },
+        { id: '1300', time: '1:00 PM',  label: 'Afternoon Service Bay', cap: '1 Bay Left' },
+        { id: '1500', time: '3:00 PM',  label: 'Late Weekday Drop',   cap: 'Available' }
+      ];
+
+      function buildUpcomingWeekdays() {
+        var dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var result = [];
+        var cursor = new Date();
+        cursor.setHours(12, 0, 0, 0);
+
+        while (result.length < 5) {
+          var dow = cursor.getDay();
+          if (dow >= 1 && dow <= 5) {
+            var iso = cursor.toISOString().slice(0, 10);
+            var slotsLeft = dow === 1 || dow === 4 ? '2 Bays' : '3 Bays';
+            result.push({
+              id: iso,
+              dayShort: dayNames[dow],
+              dateLabel: monthNames[cursor.getMonth()] + ' ' + cursor.getDate(),
+              availability: slotsLeft
+            });
+          }
+          cursor.setDate(cursor.getDate() + 1);
+        }
+        return result;
+      }
+
+      var WEEKDAYS = buildUpcomingWeekdays();
+
+      var state = {
+        makeId: 'Honda',
+        powertrain: 'compact',
+        mileage: '45to75',
+        modelNote: '',
+        selectedServices: { oil: true },
+        brakeAxle: 'front',
+        selectedDayId: WEEKDAYS[0].id,
+        selectedSlotId: '0830'
+      };
+
+      function roundTo5(val) {
+        return Math.round(val / 5) * 5;
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function getActiveMake() {
+        for (var i = 0; i < MAKES.length; i++) {
+          if (MAKES[i].id === state.makeId) {
+            return MAKES[i];
+          }
+        }
+        return MAKES[0];
+      }
+
+      function computeServicePrice(svc) {
+        var make = getActiveMake();
+        var pt = POWERTRAINS[state.powertrain];
+        var mult = make.factor * pt.factor;
+        var axle = svc.hasAxleOptions ? BRAKE_AXLES[state.brakeAxle] : { mult: 1.0, hourMult: 1.0 };
+
+        var parts = roundTo5(svc.partsBase * mult * axle.mult);
+        var labor = roundTo5(svc.laborBase * mult * axle.mult);
+        var hours = Math.round((svc.hours * axle.hourMult + (svc.partsBase > 0 ? pt.timeAdd * 0.5 : 0)) * 10) / 10;
+
+        return {
+          parts: parts,
+          labor: labor,
+          total: parts + labor,
+          hours: hours
+        };
+      }
+
+      function renderMakesSelector() {
+        var grid = document.getElementById('make-grid');
+        var html = '';
+        for (var i = 0; i < MAKES.length; i++) {
+          var m = MAKES[i];
+          var activeClass = m.id === state.makeId ? ' is-active' : '';
+          html += '<button type="button" class="make-btn' + activeClass + '" data-make="' + m.id + '">' +
+            '<span class="make-code">' + m.code + ' • ' + m.tier + '</span>' +
+            '<span class="make-name">' + m.id + '</span>' +
+            '</button>';
+        }
+        grid.innerHTML = html;
+
+        var activeMake = getActiveMake();
+        document.getElementById('make-specialty-text').textContent = activeMake.specialty;
+        document.getElementById('make-rate-tag').textContent = 'PLATFORM FACTOR ' + activeMake.factor.toFixed(2) + 'x';
+      }
+
+      function renderMakesShowcase() {
+        var grid = document.getElementById('makes-showcase-grid');
+        var html = '';
+        for (var i = 0; i < MAKES.length; i++) {
+          var m = MAKES[i];
+          html += '<article class="make-card">' +
+            '<div class="make-card-head">' +
+              '<h3 class="make-card-title">' + m.id + '</h3>' +
+              '<span class="make-tier-badge">' + m.tier + '</span>' +
+            '</div>' +
+            '<p class="make-card-text">' + m.summary + '</p>' +
+            '<button type="button" class="make-card-btn" data-jump-make="' + m.id + '">Estimate ' + m.id + ' Service</button>' +
+          '</article>';
+        }
+        grid.innerHTML = html;
+      }
+
+      function renderServicesList() {
+        var container = document.getElementById('service-select-list');
+        var html = '';
+        var selectedCount = 0;
+
+        for (var i = 0; i < SERVICES.length; i++) {
+          var s = SERVICES[i];
+          var isSelected = state.selectedServices[s.id] === true;
+          if (isSelected) {
+            selectedCount += 1;
+          }
+          var calc = computeServicePrice(s);
+          var checkIcon = isSelected
+            ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>'
+            : '';
+
+          html += '<div class="svc-item' + (isSelected ? ' is-selected' : '') + '">' +
+            '<button type="button" class="svc-toggle" data-svc="' + s.id + '" aria-pressed="' + (isSelected ? 'true' : 'false') + '">' +
+              '<div class="svc-left">' +
+                '<span class="svc-checkbox">' + checkIcon + '</span>' +
+                '<div>' +
+                  '<div class="svc-name">' + s.name + '</div>' +
+                  '<div class="svc-desc">' + s.desc + '</div>' +
+                '</div>' +
+              '</div>' +
+              '<div class="svc-right">' +
+                '<span class="svc-price">$' + calc.total + '</span>' +
+                '<span class="svc-hours">' + calc.hours.toFixed(1) + ' hrs</span>' +
+              '</div>' +
+            '</button>';
+
+          if (s.hasAxleOptions && isSelected) {
+            html += '<div class="brake-axle-bar">';
+            var axleKeys = ['front', 'rear', 'both'];
+            for (var k = 0; k < axleKeys.length; k++) {
+              var key = axleKeys[k];
+              var isAxle = state.brakeAxle === key;
+              html += '<button type="button" class="axle-pill' + (isAxle ? ' is-active' : '') + '" data-axle="' + key + '">' + BRAKE_AXLES[key].label + '</button>';
+            }
+            html += '</div>';
+          }
+
+          html += '</div>';
+        }
+
+        container.innerHTML = html;
+        document.getElementById('selected-count-hint').textContent = selectedCount + ' Selected';
+      }
+
+      function renderScheduler() {
+        var daysEl = document.getElementById('days-grid');
+        var daysHtml = '';
+        for (var i = 0; i < WEEKDAYS.length; i++) {
+          var d = WEEKDAYS[i];
+          var isActive = d.id === state.selectedDayId;
+          daysHtml += '<button type="button" class="day-btn' + (isActive ? ' is-active' : '') + '" data-day="' + d.id + '">' +
+            '<span class="day-name">' + d.dayShort + '</span>' +
+            '<span class="day-date">' + d.dateLabel + '</span>' +
+            '<span class="day-open">' + d.availability + '</span>' +
+          '</button>';
+        }
+        daysEl.innerHTML = daysHtml;
+
+        var slotsEl = document.getElementById('slots-grid');
+        var slotsHtml = '';
+        for (var j = 0; j < TIME_SLOTS.length; j++) {
+          var sl = TIME_SLOTS[j];
+          var isSlot = sl.id === state.selectedSlotId;
+          slotsHtml += '<button type="button" class="slot-btn' + (isSlot ? ' is-active' : '') + '" data-slot="' + sl.id + '">' +
+            '<span class="slot-time">' + sl.time + '</span>' +
+            '<span class="slot-meta">' + sl.label + ' • ' + sl.cap + '</span>' +
+          '</button>';
+        }
+        slotsEl.innerHTML = slotsHtml;
+      }
+
+      function getSelectedDayObj() {
+        for (var i = 0; i < WEEKDAYS.length; i++) {
+          if (WEEKDAYS[i].id === state.selectedDayId) {
+            return WEEKDAYS[i];
+          }
+        }
+        return WEEKDAYS[0];
+      }
+
+      function getSelectedSlotObj() {
+        for (var i = 0; i < TIME_SLOTS.length; i++) {
+          if (TIME_SLOTS[i].id === state.selectedSlotId) {
+            return TIME_SLOTS[i];
+          }
+        }
+        return TIME_SLOTS[0];
+      }
+
+      function computeSummaryTotals() {
+        var chosen = [];
+        var partsTotal = 0;
+        var laborTotal = 0;
+        var hoursTotal = 0;
+
+        for (var i = 0; i < SERVICES.length; i++) {
+          var s = SERVICES[i];
+          if (state.selectedServices[s.id] === true) {
+            var calc = computeServicePrice(s);
+            partsTotal += calc.parts;
+            laborTotal += calc.labor;
+            hoursTotal += calc.hours;
+            var label = s.name;
+            if (s.hasAxleOptions) {
+              label += ' (' + BRAKE_AXLES[state.brakeAxle].label + ')';
+            }
+            chosen.push({
+              name: label,
+              hours: calc.hours,
+              total: calc.total
+            });
+          }
+        }
+
+        var credit = 0;
+        var timeCredit = 0;
+        if (chosen.length === 2) {
+          credit = 20;
+          timeCredit = 0.2;
+        } else if (chosen.length >= 3) {
+          credit = 40;
+          timeCredit = 0.4;
+        }
+
+        var grandTotal = Math.max(0, partsTotal + laborTotal - credit);
+        var finalHours = Math.max(0, Math.round((hoursTotal - timeCredit) * 10) / 10);
+        var lowRange = chosen.length > 0 ? roundTo5(grandTotal * 0.92) : 0;
+        var highRange = chosen.length > 0 ? roundTo5(grandTotal * 1.10) : 0;
+
+        return {
+          chosen: chosen,
+          partsTotal: partsTotal,
+          laborTotal: laborTotal,
+          credit: credit,
+          grandTotal: grandTotal,
+          lowRange: lowRange,
+          highRange: highRange,
+          finalHours: finalHours
+        };
+      }
+
+      function renderSummaryTicket() {
+        var make = getActiveMake();
+        var pt = POWERTRAINS[state.powertrain];
+        var totals = computeSummaryTotals();
+
+        document.getElementById('ticket-make-badge').textContent = make.id.toUpperCase() + ' • ' + pt.badge;
+        var titleStr = make.id + ' — ' + pt.label;
+        if (state.modelNote.trim().length > 0) {
+          titleStr = state.modelNote.trim() + ' (' + make.id + ')';
+        }
+        document.getElementById('ticket-vehicle-title').textContent = titleStr;
+        document.getElementById('ticket-vehicle-sub').textContent = 'Odometer: ' + MILEAGE_LABELS[state.mileage];
+
+        var itemsContainer = document.getElementById('ticket-line-items');
+        if (totals.chosen.length === 0) {
+          itemsContainer.innerHTML = '<div class="empty-items">Select one or more repair or maintenance items on the left to calculate USD pricing and bay hours.</div>';
+        } else {
+          var itemsHtml = '';
+          for (var i = 0; i < totals.chosen.length; i++) {
+            var item = totals.chosen[i];
+            itemsHtml += '<div class="line-item">' +
+              '<span class="line-item-name">' + item.name +
+                '<span class="line-item-sub">Est. bay time: ' + item.hours.toFixed(1) + ' hrs</span>' +
+              '</span>' +
+              '<span class="line-item-price">$' + item.total + '</span>' +
+            '</div>';
+          }
+          itemsContainer.innerHTML = itemsHtml;
+        }
+
+        document.getElementById('bk-parts').textContent = '$' + totals.partsTotal;
+        document.getElementById('bk-labor').textContent = '$' + totals.laborTotal;
+
+        var creditRow = document.getElementById('bk-credit-row');
+        if (totals.credit > 0) {
+          creditRow.style.display = 'flex';
+          document.getElementById('bk-credit').textContent = '-$' + totals.credit;
+        } else {
+          creditRow.style.display = 'none';
+        }
+
+        document.getElementById('total-usd').textContent = '$' + totals.grandTotal;
+        document.getElementById('total-range').textContent = totals.chosen.length > 0
+          ? 'Est. Range: $' + totals.lowRange + ' - $' + totals.highRange
+          : 'Select a service to view USD range';
+        document.getElementById('total-bay-time').textContent = totals.finalHours.toFixed(1) + ' hrs';
+
+        var dayObj = getSelectedDayObj();
+        var slotObj = getSelectedSlotObj();
+        document.getElementById('ticket-slot-text').textContent = dayObj.dayShort + ', ' + dayObj.dateLabel + ' • ' + slotObj.time + ' (' + slotObj.label + ')';
+      }
+
+      function refreshAll() {
+        renderMakesSelector();
+        renderServicesList();
+        renderScheduler();
+        renderSummaryTicket();
+      }
+
+      /* Event Delegation */
+      document.getElementById('make-grid').addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-make]');
+        if (btn === null) {
+          return;
+        }
+        state.makeId = btn.getAttribute('data-make');
+        refreshAll();
+      });
+
+      document.getElementById('powertrain-group').addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-pt]');
+        if (btn === null) {
+          return;
+        }
+        state.powertrain = btn.getAttribute('data-pt');
+        var allPt = document.querySelectorAll('#powertrain-group [data-pt]');
+        for (var i = 0; i < allPt.length; i++) {
+          allPt[i].classList.toggle('is-active', allPt[i].getAttribute('data-pt') === state.powertrain);
+        }
+        renderServicesList();
+        renderSummaryTicket();
+      });
+
+      document.getElementById('vehicle-mileage').addEventListener('change', function (e) {
+        state.mileage = e.target.value;
+        renderSummaryTicket();
+      });
+
+      document.getElementById('vehicle-model').addEventListener('input', function (e) {
+        state.modelNote = e.target.value;
+        renderSummaryTicket();
+      });
+
+      document.getElementById('service-select-list').addEventListener('click', function (e) {
+        var axleBtn = e.target.closest('[data-axle]');
+        if (axleBtn) {
+          state.brakeAxle = axleBtn.getAttribute('data-axle');
+          renderServicesList();
+          renderSummaryTicket();
+          return;
+        }
+
+        var svcBtn = e.target.closest('[data-svc]');
+        if (svcBtn === null) {
+          return;
+        }
+        var svcId = svcBtn.getAttribute('data-svc');
+        state.selectedServices[svcId] = state.selectedServices[svcId] === true ? false : true;
+        renderServicesList();
+        renderSummaryTicket();
+      });
+
+      document.getElementById('days-grid').addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-day]');
+        if (btn === null) {
+          return;
+        }
+        state.selectedDayId = btn.getAttribute('data-day');
+        renderScheduler();
+        renderSummaryTicket();
+      });
+
+      document.getElementById('slots-grid').addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-slot]');
+        if (btn === null) {
+          return;
+        }
+        state.selectedSlotId = btn.getAttribute('data-slot');
+        renderScheduler();
+        renderSummaryTicket();
+      });
+
+      document.getElementById('makes-showcase-grid').addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-jump-make]');
+        if (btn === null) {
+          return;
+        }
+        state.makeId = btn.getAttribute('data-jump-make');
+        refreshAll();
+        document.getElementById('estimator').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      document.getElementById('booking-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var totals = computeSummaryTotals();
+        var dayObj = getSelectedDayObj();
+        var slotObj = getSelectedSlotObj();
+        var custName = document.getElementById('cust-name').value.trim();
+        var custPhone = document.getElementById('cust-phone').value.trim();
+        var custEmail = document.getElementById('cust-email').value.trim();
+        var custNotes = document.getElementById('cust-notes').value.trim();
+
+        var serviceNames = [];
+        for (var i = 0; i < totals.chosen.length; i++) {
+          serviceNames.push(totals.chosen[i].name);
+        }
+        var svcSummary = serviceNames.length > 0 ? serviceNames.join(', ') : 'General Inspection';
+        var refCode = 'CCS-' + String(Math.floor(1000 + Math.random() * 8999));
+
+        var vehicleDesc = state.modelNote.trim().length > 0
+          ? state.modelNote.trim() + ' (' + state.makeId + ', ' + POWERTRAINS[state.powertrain].label + ')'
+          : state.makeId + ' (' + POWERTRAINS[state.powertrain].label + ')';
+
+        document.getElementById('confirm-ref').textContent = 'REF ' + refCode;
+        document.getElementById('confirm-details').innerHTML =
+          '<strong>' + escapeHtml(custName) + '</strong> (' + escapeHtml(custPhone) + ') — Drop-off slot reserved for <strong>' +
+          escapeHtml(dayObj.dayShort + ', ' + dayObj.dateLabel + ' at ' + slotObj.time) + '</strong>.<br>' +
+          'Vehicle: ' + escapeHtml(vehicleDesc) + ' • Est. Total: <strong>$' + totals.grandTotal + ' USD</strong> (' + totals.finalHours.toFixed(1) + ' bay hrs).<br>' +
+          'Jobs: ' + escapeHtml(svcSummary) + '. Click Send via Email or call (704) 567-7797 to confirm keys drop-off.';
+
+        var mailSubject = encodeURIComponent('[' + refCode + '] Drop-Off Request — ' + vehicleDesc);
+        var mailBody = encodeURIComponent(
+          'Compact Car Service — Drop-Off Request\n' +
+          'Reference: ' + refCode + '\n' +
+          'Driver: ' + custName + '\n' +
+          'Phone: ' + custPhone + '\n' +
+          'Email: ' + (custEmail.length > 0 ? custEmail : 'Not provided') + '\n' +
+          'Vehicle: ' + vehicleDesc + '\n' +
+          'Odometer: ' + MILEAGE_LABELS[state.mileage] + '\n' +
+          'Requested Drop-Off: ' + dayObj.dayShort + ', ' + dayObj.dateLabel + ' at ' + slotObj.time + '\n' +
+          'Selected Services: ' + svcSummary + '\n' +
+          'Estimated Total: $' + totals.grandTotal + ' USD ($' + totals.lowRange + ' - $' + totals.highRange + ')\n' +
+          'Estimated Bay Time: ' + totals.finalHours.toFixed(1) + ' hrs\n' +
+          'Notes: ' + (custNotes.length > 0 ? custNotes : 'None')
+        );
+        document.getElementById('confirm-mailto').setAttribute('href', 'mailto:1compactcarservice@gmail.com?subject=' + mailSubject + '&body=' + mailBody);
+        document.getElementById('confirm-box').classList.remove('is-hidden');
+      });
+
+      renderMakesShowcase();
+      refreshAll();
+    })();
+  </script>
+</body>
+</html>

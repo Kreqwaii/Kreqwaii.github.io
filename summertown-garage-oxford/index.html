@@ -1,0 +1,2828 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Summertown Garage — Private Independent Auto Repair & MOT Centre in Oxford (serving Oxford, Kidlington & Woodstock). Instant MOT, Servicing & Air-Con Estimator and Mon-Sat bay booking.">
+  <title>Summertown Garage | Private Independent Auto Repair &amp; MOT Centre — Oxford</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64'%3E%3Crect width='64' height='64' rx='14' fill='%23163A5F'/%3E%3Cpath d='M16 44V26l16-10 16 10v18' fill='none' stroke='%23FFFFFF' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='34' r='8' fill='none' stroke='%23D97706' stroke-width='4.5'/%3E%3Cpath d='M32 22v4M32 42v4M20 34h4M40 34h4' stroke='%23FFFFFF' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #F8F9FA;
+      --bg-card: #FFFFFF;
+      --bg-subtle: #F1F4F8;
+      --bg-muted: #E9EEF4;
+      --text-main: #161D26;
+      --text-secondary: #435061;
+      --text-muted: #5C6B7E;
+      --navy: #163A5F;
+      --navy-hover: #0F2B47;
+      --navy-soft: #EBF1F7;
+      --copper: #B45309;
+      --copper-dark: #92400E;
+      --copper-soft: #FEF3C7;
+      --copper-tint: #FFFBEB;
+      --emerald: #047857;
+      --emerald-soft: #ECFDF5;
+      --border: #D9E1EA;
+      --border-strong: #BCC8D6;
+      --plate-amber: #F5C518;
+      --plate-ink: #161D26;
+      --shadow-sm: 0 1px 2px rgba(22, 29, 38, 0.05);
+      --shadow-md: 0 8px 24px rgba(22, 58, 95, 0.08);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: clip;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--text-main);
+      background-color: var(--bg-page);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select {
+      font-family: inherit;
+    }
+
+    .tnum {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Top Utility Strip */
+    .utility-bar {
+      background-color: var(--navy);
+      color: #E2E8F0;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .utility-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 38px;
+      padding: 6px 0;
+      flex-wrap: wrap;
+    }
+
+    .utility-group {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .utility-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #F1F5F9;
+      white-space: nowrap;
+    }
+
+    .utility-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #F59E0B;
+      flex-shrink: 0;
+    }
+
+    /* Main Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      min-width: 0;
+      flex-shrink: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .brand-text {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      transition: color 0.16s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--navy);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-card);
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .btn-phone:hover {
+      border-color: var(--navy);
+      background-color: var(--navy-soft);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--navy);
+      background-color: var(--navy);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--navy-hover);
+      border-color: var(--navy-hover);
+    }
+
+    .btn-copper {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--copper);
+      background-color: var(--copper);
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .btn-copper:hover {
+      background-color: var(--copper-dark);
+      border-color: var(--copper-dark);
+    }
+
+    /* Hero Strip */
+    .hero-section {
+      padding: 36px 0 28px;
+      background-color: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background-color: var(--navy-soft);
+      color: var(--navy);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow-accent {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--copper);
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 3.6vw, 42px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: var(--text-main);
+    }
+
+    .hero-lead {
+      margin: 0 0 18px;
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 62ch;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .hero-kpis {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .kpi-card {
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      min-width: 0;
+    }
+
+    .kpi-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+
+    .kpi-value {
+      font-family: var(--font-mono);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .kpi-value.copper {
+      color: var(--copper);
+    }
+
+    .kpi-note {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* Main Workbench: Estimator + Instant Bay Booker */
+    .workbench-section {
+      padding: 36px 0 56px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--copper);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(22px, 2.4vw, 30px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .section-sub {
+      margin: 6px 0 0;
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 65ch;
+    }
+
+    .bundle-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background-color: var(--copper-tint);
+      border: 1px solid #F59E0B;
+      color: var(--copper-dark);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .workbench-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .config-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      min-width: 0;
+    }
+
+    .panel-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      min-width: 0;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .step-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background-color: var(--navy);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .step-hint {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* Step 1: VRM & Class */
+    .vrm-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: end;
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .field-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    .vrm-input-group {
+      display: flex;
+      align-items: stretch;
+      border: 2px solid var(--navy);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background-color: var(--plate-amber);
+      max-width: 310px;
+    }
+
+    .vrm-uk-strip {
+      width: 38px;
+      background-color: var(--navy);
+      color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+      padding: 4px 0;
+    }
+
+    .vrm-input {
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      background-color: transparent;
+      color: var(--plate-ink);
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      outline: none;
+    }
+
+    .vrm-input::placeholder {
+      color: rgba(22, 29, 38, 0.45);
+      font-weight: 700;
+    }
+
+    .vrm-samples {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .sample-chip {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background-color: var(--bg-subtle);
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .sample-chip:hover {
+      border-color: var(--navy);
+      background-color: var(--navy-soft);
+      color: var(--navy);
+    }
+
+    .vrm-status {
+      margin-top: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      min-height: 18px;
+    }
+
+    .vrm-status.valid {
+      color: var(--emerald);
+    }
+
+    .class-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .class-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      padding: 13px 12px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      cursor: pointer;
+      min-width: 0;
+      transition: border-color 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .class-btn:hover {
+      border-color: var(--navy);
+      background-color: var(--bg-card);
+    }
+
+    .class-btn[aria-checked="true"] {
+      border-color: var(--navy);
+      background-color: var(--navy-soft);
+      box-shadow: inset 0 0 0 1px var(--navy);
+    }
+
+    .class-icon {
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .class-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+
+    .class-desc {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    /* Step 2: Multi-select Services */
+    .service-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .service-row {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background-color: var(--bg-page);
+      transition: border-color 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .service-row.selected {
+      border-color: var(--navy);
+      background-color: var(--bg-card);
+      box-shadow: inset 0 0 0 1px var(--navy);
+    }
+
+    .service-toggle {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border: 0;
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    .service-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .check-box {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 2px solid var(--border-strong);
+      background-color: var(--bg-card);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .service-row.selected .check-box {
+      background-color: var(--navy);
+      border-color: var(--navy);
+      color: #FFFFFF;
+    }
+
+    .service-info {
+      min-width: 0;
+    }
+
+    .service-name-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .service-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .tag-bundle {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background-color: var(--copper-soft);
+      color: var(--copper-dark);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .service-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .service-price-col {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .service-price {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .service-dur {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      white-space: nowrap;
+    }
+
+    .sub-options {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 0 16px 14px 48px;
+    }
+
+    .sub-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .seg-group {
+      display: inline-flex;
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 3px;
+      gap: 3px;
+      flex-wrap: wrap;
+    }
+
+    .seg-btn {
+      padding: 5px 10px;
+      border-radius: 6px;
+      border: 0;
+      background: transparent;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.14s ease, color 0.14s ease, box-shadow 0.14s ease;
+    }
+
+    .seg-btn[aria-checked="true"] {
+      background-color: var(--bg-card);
+      color: var(--navy);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Step 3: Mon-Sat Slot Booker */
+    .day-strip {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .day-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 6px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background-color: var(--bg-page);
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .day-btn:hover {
+      border-color: var(--navy);
+      background-color: var(--bg-card);
+    }
+
+    .day-btn[aria-checked="true"] {
+      background-color: var(--navy);
+      border-color: var(--navy);
+      color: #FFFFFF;
+    }
+
+    .day-name {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .day-date {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 2px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .slot-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .slot-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background-color: var(--bg-page);
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .slot-btn:hover {
+      border-color: var(--navy);
+      background-color: var(--bg-card);
+    }
+
+    .slot-btn[aria-checked="true"] {
+      border-color: var(--copper);
+      background-color: var(--copper-tint);
+      box-shadow: inset 0 0 0 1px var(--copper);
+    }
+
+    .slot-time {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .slot-bay {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Sticky Estimate & Bay Reservation Card */
+    .summary-card {
+      position: sticky;
+      top: 90px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      min-width: 0;
+    }
+
+    .summary-head {
+      background-color: var(--navy);
+      color: #FFFFFF;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .summary-head-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .summary-head-sub {
+      font-size: 12px;
+      color: #CBD5E1;
+      margin-top: 2px;
+    }
+
+    .plate-preview {
+      background-color: var(--plate-amber);
+      color: var(--plate-ink);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 5px 10px;
+      border-radius: 6px;
+      border: 1.5px solid #161D26;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .summary-body {
+      padding: 20px;
+    }
+
+    .summary-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .meta-k {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+
+    .meta-v {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-top: 2px;
+    }
+
+    .line-items {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .line-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .line-name {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .line-sub {
+      display: block;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .line-amt {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--text-main);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .discount-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--emerald-soft);
+      border: 1px solid #A7F3D0;
+      color: var(--emerald);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .upsell-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--copper-tint);
+      border: 1px solid #FCD34D;
+      color: var(--copper-dark);
+      font-size: 12.5px;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .upsell-btn {
+      padding: 5px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--copper);
+      background-color: var(--bg-card);
+      color: var(--copper-dark);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .upsell-btn:hover {
+      background-color: var(--copper);
+      color: #FFFFFF;
+    }
+
+    .total-block {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .total-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .total-vat {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .total-gbp {
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+    }
+
+    .booking-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .input-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .text-input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      font-size: 14px;
+      font-weight: 500;
+      outline: none;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .text-input:focus {
+      border-color: var(--navy);
+      background-color: var(--bg-card);
+    }
+
+    .form-error {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #B91C1C;
+      min-height: 18px;
+    }
+
+    .confirm-box {
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--emerald-soft);
+      border: 1px solid #6EE7B7;
+      color: var(--text-main);
+    }
+
+    .confirm-ref {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background-color: var(--navy);
+      color: #FFFFFF;
+      margin: 8px 0;
+    }
+
+    .btn-ghost {
+      margin-top: 10px;
+      width: 100%;
+      padding: 9px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-card);
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-ghost:hover {
+      background-color: var(--navy-soft);
+      border-color: var(--navy);
+    }
+
+    /* Core Services Section */
+    .section-band {
+      padding: 56px 0;
+      background-color: var(--bg-card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-band.alt {
+      background-color: var(--bg-page);
+      border-top: 0;
+      border-bottom: 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .pillar-card {
+      padding: 22px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .pillar-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background-color: var(--navy-soft);
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .pillar-title {
+      margin: 0 0 8px;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.25;
+    }
+
+    .pillar-text {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .pillar-list {
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .pillar-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bullet-sq {
+      width: 5px;
+      height: 5px;
+      border-radius: 2px;
+      background-color: var(--copper);
+      flex-shrink: 0;
+    }
+
+    .pillar-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      border: 0;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .pillar-action:hover {
+      color: var(--copper);
+    }
+
+    /* Rate Matrix Table */
+    .table-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 660px;
+    }
+
+    th, td {
+      padding: 14px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    th {
+      background-color: var(--bg-subtle);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-secondary);
+    }
+
+    td.num, th.num {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    tbody tr:hover {
+      background-color: var(--bg-page);
+    }
+
+    .standards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .standard-card {
+      padding: 20px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+    }
+
+    .standard-code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--copper);
+      margin-bottom: 6px;
+    }
+
+    .standard-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 0 0 6px;
+    }
+
+    .standard-desc {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* Location & Contact Band */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .contact-card {
+      padding: 22px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      min-width: 0;
+    }
+
+    .contact-label {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--copper);
+      margin-bottom: 8px;
+    }
+
+    .contact-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 0 0 10px;
+    }
+
+    .contact-line {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      margin: 6px 0;
+    }
+
+    .email-link {
+      display: inline-block;
+      font-weight: 700;
+      color: var(--navy);
+      white-space: nowrap;
+      font-size: 14px;
+    }
+
+    .email-link:hover {
+      color: var(--copper);
+      text-decoration: underline;
+    }
+
+    .area-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .area-tag {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .hours-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .hours-list li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--navy);
+      color: #CBD5E1;
+      padding: 36px 0 28px;
+    }
+
+    .footer-grid {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .footer-brand {
+      color: #FFFFFF;
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .footer-meta {
+      font-size: 13.5px;
+      color: #CBD5E1;
+      line-height: 1.5;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #F8FAFC;
+    }
+
+    .footer-bottom {
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 12.5px;
+      color: #94A3B8;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .workbench-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .summary-card {
+        position: static;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .header-nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .class-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .day-strip {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .slot-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .standards-grid,
+      .contact-grid,
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .vrm-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .vrm-input-group {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .utility-bar {
+        display: none;
+      }
+
+      .header-inner {
+        min-height: 64px;
+        gap: 10px;
+      }
+
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+      }
+
+      .brand-name {
+        font-size: 15.5px;
+      }
+
+      .brand-sub {
+        font-size: 11px;
+      }
+
+      .btn-phone {
+        display: none;
+      }
+
+      .btn-primary {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+
+      .hero-section {
+        padding: 24px 0 20px;
+      }
+
+      .hero-kpis {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .kpi-card {
+        padding: 12px;
+      }
+
+      .kpi-value {
+        font-size: 18px;
+      }
+
+      .panel-card {
+        padding: 16px;
+      }
+
+      .service-toggle {
+        padding: 12px;
+        gap: 10px;
+      }
+
+      .sub-options {
+        padding: 0 12px 12px 12px;
+      }
+
+      .email-link {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="utility-group">
+        <span class="utility-item">
+          <span class="utility-dot" aria-hidden="true"></span>
+          <span>Oxford (serving Oxford, Kidlington &amp; Woodstock)</span>
+        </span>
+        <span class="utility-item">Hours: Mon-Sat</span>
+      </div>
+      <div class="utility-group">
+        <a class="utility-item tnum" href="tel:01865379550">Tel: 01865 379 550</a>
+        <a class="utility-item" href="mailto:info@summertowngarage.co.uk">info@summertowngarage.co.uk</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9z"/>
+            <circle cx="12" cy="14" r="3.5" stroke="#F59E0B"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Summertown Garage</span>
+          <span class="brand-sub">Private Independent Auto Repair &amp; MOT Centre</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="#estimator" class="nav-link">Estimator &amp; Booker</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#pricing" class="nav-link">Rates</a>
+        <a href="#location" class="nav-link">Oxford Desk</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:01865379550" class="btn-phone tnum">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span>01865 379 550</span>
+        </a>
+        <a href="#estimator" class="btn-primary">Book a Bay</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-accent" aria-hidden="true"></span>
+            <span>Oxford Independent MOT &amp; Workshop</span>
+          </div>
+          <h1>Transparent MOT, Servicing &amp; Air-Con Care in Oxford</h1>
+          <p class="hero-lead">
+            Summertown Garage is a Private Independent Auto Repair &amp; MOT Centre serving Oxford, Kidlington &amp; Woodstock. Build an instant GBP estimate for your vehicle class, lock in MOT and Service bundle savings, and reserve a Mon-Sat workshop bay in under 60 seconds.
+          </p>
+          <div class="hero-badges">
+            <span class="hero-badge">MOT Testing &amp; Pre-MOT Checks</span>
+            <span class="hero-badge">Car Servicing &amp; Diagnostics</span>
+            <span class="hero-badge">R134a &amp; R1234yf Air-Con</span>
+            <span class="hero-badge">Brakes, Clutches &amp; Tyres</span>
+          </div>
+        </div>
+
+        <div class="hero-kpis">
+          <div class="kpi-card">
+            <div class="kpi-label">Class 4 MOT</div>
+            <div class="kpi-value tnum">£49.00</div>
+            <div class="kpi-note">£54.85 for Light Vans</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">MOT + Service Bundle</div>
+            <div class="kpi-value copper tnum">Save £25</div>
+            <div class="kpi-note">Auto-applied with Full Service</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Air-Con Stations</div>
+            <div class="kpi-value tnum">2 Gases</div>
+            <div class="kpi-note">R134a &amp; R1234yf dual bays</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Workshop Schedule</div>
+            <div class="kpi-value tnum">Mon-Sat</div>
+            <div class="kpi-note">Direct desk 01865 379 550</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="estimator" class="workbench-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Interactive Workshop Desk</div>
+            <h2>MOT, Servicing &amp; Air-Con Estimator + Instant Bay Booker</h2>
+            <p class="section-sub">Enter your UK VRM, select your vehicle class and required jobs, and book an exact Mon-Sat workshop slot with live GBP pricing.</p>
+          </div>
+          <div class="bundle-pill">
+            <span>Bundle Offer: Save up to £25 on MOT + Service</span>
+          </div>
+        </div>
+
+        <div class="workbench-grid">
+          <div class="config-stack">
+
+            <div class="panel-card">
+              <div class="step-header">
+                <div class="step-title-wrap">
+                  <span class="step-num">01</span>
+                  <span class="step-title">UK Vehicle Registration (VRM) &amp; Class</span>
+                </div>
+                <span class="step-hint">Step 1 of 3</span>
+              </div>
+
+              <div class="vrm-row">
+                <div>
+                  <div class="field-label" id="vrm-label">UK Number Plate (VRM)</div>
+                  <div class="vrm-input-group">
+                    <div class="vrm-uk-strip" aria-hidden="true">UK</div>
+                    <input
+                      id="vrm-input"
+                      type="text"
+                      class="vrm-input"
+                      maxlength="8"
+                      value="OX21 SMG"
+                      placeholder="OX21 SMG"
+                      autocomplete="off"
+                      aria-labelledby="vrm-label"
+                    >
+                  </div>
+                  <div id="vrm-status" class="vrm-status valid">Valid UK plate format ready for workshop sheet</div>
+                </div>
+
+                <div>
+                  <div class="field-label">Quick Sample Plates</div>
+                  <div class="vrm-samples">
+                    <button type="button" class="sample-chip" data-vrm="OX21 SMG" data-class="family">OX21 SMG</button>
+                    <button type="button" class="sample-chip" data-vrm="WK19 OXF" data-class="hatch">WK19 OXF</button>
+                    <button type="button" class="sample-chip" data-vrm="KD23 SUV" data-class="suv">KD23 SUV</button>
+                    <button type="button" class="sample-chip" data-vrm="LT72 VAN" data-class="van">LT72 VAN</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field-label" id="class-group-label">Select Vehicle Class</div>
+              <div class="class-grid" role="radiogroup" aria-labelledby="class-group-label">
+                <button type="button" class="class-btn" role="radio" aria-checked="false" data-class="hatch">
+                  <svg class="class-icon" width="26" height="20" viewBox="0 0 26 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M2 13h22v-3l-4-5H8L4 10H2v3z"/>
+                    <circle cx="7" cy="15" r="2.2"/>
+                    <circle cx="19" cy="15" r="2.2"/>
+                  </svg>
+                  <span class="class-name">Small Hatch</span>
+                  <span class="class-desc">Up to 1.4L · Corsa, Polo, Mini</span>
+                </button>
+
+                <button type="button" class="class-btn" role="radio" aria-checked="true" data-class="family">
+                  <svg class="class-icon" width="28" height="20" viewBox="0 0 28 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M2 13h24v-3l-5-5H9L5 10H2v3z"/>
+                    <circle cx="7.5" cy="15" r="2.2"/>
+                    <circle cx="20.5" cy="15" r="2.2"/>
+                  </svg>
+                  <span class="class-name">Medium Family</span>
+                  <span class="class-desc">1.5L–2.0L · Golf, Focus, Octavia</span>
+                </button>
+
+                <button type="button" class="class-btn" role="radio" aria-checked="false" data-class="suv">
+                  <svg class="class-icon" width="28" height="20" viewBox="0 0 28 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M2 13h24v-4l-4-5H7L4 9H2v4z"/>
+                    <circle cx="7.5" cy="15.5" r="2.4"/>
+                    <circle cx="20.5" cy="15.5" r="2.4"/>
+                  </svg>
+                  <span class="class-name">Executive/SUV</span>
+                  <span class="class-desc">2.0L+ / AWD · XC60, 3 Series, Q5</span>
+                </button>
+
+                <button type="button" class="class-btn" role="radio" aria-checked="false" data-class="van">
+                  <svg class="class-icon" width="28" height="20" viewBox="0 0 28 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M2 13h24V5H10L5 9H2v4z"/>
+                    <circle cx="7.5" cy="15.5" r="2.3"/>
+                    <circle cx="20.5" cy="15.5" r="2.3"/>
+                  </svg>
+                  <span class="class-name">Light Van</span>
+                  <span class="class-desc">Commercial · Transit, Caddy, Vivaro</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <div class="step-header">
+                <div class="step-title-wrap">
+                  <span class="step-num">02</span>
+                  <span class="step-title">Select Services &amp; Specifications</span>
+                </div>
+                <span class="step-hint">Multi-select enabled</span>
+              </div>
+
+              <div class="service-list">
+                <div class="service-row selected" data-service-card="mot">
+                  <button type="button" class="service-toggle" role="checkbox" aria-checked="true" data-service="mot">
+                    <div class="service-left">
+                      <span class="check-box" aria-hidden="true">
+                        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 8.5 6.5 12 13 4.5"/>
+                        </svg>
+                      </span>
+                      <div class="service-info">
+                        <div class="service-name-line">
+                          <span class="service-title">Class 4 MOT Test</span>
+                          <span class="tag-bundle">Bundle Eligible</span>
+                        </div>
+                        <div class="service-desc">Official DVSA inspection, emissions check, pre-MOT lighting check &amp; advisory review.</div>
+                      </div>
+                    </div>
+                    <div class="service-price-col">
+                      <div class="service-price" data-price-for="mot">£49.00</div>
+                      <div class="service-dur">45 mins</div>
+                    </div>
+                  </button>
+                </div>
+
+                <div class="service-row selected" data-service-card="service">
+                  <button type="button" class="service-toggle" role="checkbox" aria-checked="true" data-service="service">
+                    <div class="service-left">
+                      <span class="check-box" aria-hidden="true">
+                        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 8.5 6.5 12 13 4.5"/>
+                        </svg>
+                      </span>
+                      <div class="service-info">
+                        <div class="service-name-line">
+                          <span class="service-title">Interim/Full Service Bundle</span>
+                          <span class="tag-bundle" id="service-bundle-tag">Saves £25 with MOT</span>
+                        </div>
+                        <div class="service-desc">OEM-grade oil &amp; filter, fluid levels, safety road-test &amp; digital or stamped service log.</div>
+                      </div>
+                    </div>
+                    <div class="service-price-col">
+                      <div class="service-price" data-price-for="service">£215.00</div>
+                      <div class="service-dur" id="service-dur-text">90 mins</div>
+                    </div>
+                  </button>
+                  <div class="sub-options">
+                    <span class="sub-label">Service Tier:</span>
+                    <div class="seg-group" role="radiogroup" aria-label="Service Tier">
+                      <button type="button" class="seg-btn" role="radio" aria-checked="false" data-opt-group="serviceTier" data-opt-val="interim">Interim Service</button>
+                      <button type="button" class="seg-btn" role="radio" aria-checked="true" data-opt-group="serviceTier" data-opt-val="full">Full Service</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="service-row" data-service-card="ac">
+                  <button type="button" class="service-toggle" role="checkbox" aria-checked="false" data-service="ac">
+                    <div class="service-left">
+                      <span class="check-box" aria-hidden="true">
+                        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 8.5 6.5 12 13 4.5"/>
+                        </svg>
+                      </span>
+                      <div class="service-info">
+                        <div class="service-name-line">
+                          <span class="service-title">Air Conditioning Regas</span>
+                        </div>
+                        <div class="service-desc">Full refrigerant recovery, vacuum leak test, PAG compressor oil &amp; precision recharge.</div>
+                      </div>
+                    </div>
+                    <div class="service-price-col">
+                      <div class="service-price" data-price-for="ac">£65.00</div>
+                      <div class="service-dur">45 mins</div>
+                    </div>
+                  </button>
+                  <div class="sub-options">
+                    <span class="sub-label">Refrigerant Spec:</span>
+                    <div class="seg-group" role="radiogroup" aria-label="Air Conditioning Refrigerant">
+                      <button type="button" class="seg-btn" role="radio" aria-checked="true" data-opt-group="acGas" data-opt-val="r134a">R134a (Pre-2017)</button>
+                      <button type="button" class="seg-btn" role="radio" aria-checked="false" data-opt-group="acGas" data-opt-val="r1234yf">R1234yf (Post-2017)</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="service-row" data-service-card="brakes">
+                  <button type="button" class="service-toggle" role="checkbox" aria-checked="false" data-service="brakes">
+                    <div class="service-left">
+                      <span class="check-box" aria-hidden="true">
+                        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 8.5 6.5 12 13 4.5"/>
+                        </svg>
+                      </span>
+                      <div class="service-info">
+                        <div class="service-name-line">
+                          <span class="service-title">Front/Rear Brake Replacement</span>
+                        </div>
+                        <div class="service-desc">OEM-spec pads &amp; coated discs, hub face clean, calliper slider lube &amp; bedding check.</div>
+                      </div>
+                    </div>
+                    <div class="service-price-col">
+                      <div class="service-price" data-price-for="brakes">£195.00</div>
+                      <div class="service-dur" id="brakes-dur-text">60 mins</div>
+                    </div>
+                  </button>
+                  <div class="sub-options">
+                    <span class="sub-label">Axle Selection:</span>
+                    <div class="seg-group" role="radiogroup" aria-label="Brake Axle Selection">
+                      <button type="button" class="seg-btn" role="radio" aria-checked="true" data-opt-group="brakeAxle" data-opt-val="front">Front Axle</button>
+                      <button type="button" class="seg-btn" role="radio" aria-checked="false" data-opt-group="brakeAxle" data-opt-val="rear">Rear Axle</button>
+                      <button type="button" class="seg-btn" role="radio" aria-checked="false" data-opt-group="brakeAxle" data-opt-val="both">Front &amp; Rear</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="service-row" data-service-card="ecu">
+                  <button type="button" class="service-toggle" role="checkbox" aria-checked="false" data-service="ecu">
+                    <div class="service-left">
+                      <span class="check-box" aria-hidden="true">
+                        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 8.5 6.5 12 13 4.5"/>
+                        </svg>
+                      </span>
+                      <div class="service-info">
+                        <div class="service-name-line">
+                          <span class="service-title">ECU Fault Scan</span>
+                        </div>
+                        <div class="service-desc">Full OBD-II module interrogation, live sensor telemetry &amp; printed Oxford fault report.</div>
+                      </div>
+                    </div>
+                    <div class="service-price-col">
+                      <div class="service-price" data-price-for="ecu">£45.00</div>
+                      <div class="service-dur">30 mins</div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <div class="step-header">
+                <div class="step-title-wrap">
+                  <span class="step-num">03</span>
+                  <span class="step-title">Instant Bay Booker (Mon-Sat)</span>
+                </div>
+                <span class="step-hint" id="bay-hours-hint">Mon–Fri 08:00–17:30 · Sat 08:30–13:00</span>
+              </div>
+
+              <div class="field-label" id="day-group-label">Select Workshop Day (Mon-Sat)</div>
+              <div class="day-strip" id="day-strip" role="radiogroup" aria-labelledby="day-group-label"></div>
+
+              <div class="field-label" id="slot-group-label">Available Workshop Bays &amp; Drop-Off Times</div>
+              <div class="slot-grid" id="slot-grid" role="radiogroup" aria-labelledby="slot-group-label"></div>
+            </div>
+          </div>
+
+          <aside class="summary-card" aria-label="Live GBP Estimate and Bay Reservation">
+            <div class="summary-head">
+              <div>
+                <div class="summary-head-title">Workshop Quote &amp; Bay Pass</div>
+                <div class="summary-head-sub">Summertown Garage · Oxford</div>
+              </div>
+              <div class="plate-preview" id="summary-plate">OX21 SMG</div>
+            </div>
+
+            <div class="summary-body">
+              <div class="summary-meta">
+                <div>
+                  <div class="meta-k">Vehicle Class</div>
+                  <div class="meta-v" id="summary-class">Medium Family</div>
+                </div>
+                <div>
+                  <div class="meta-k">Bay &amp; Slot</div>
+                  <div class="meta-v tnum" id="summary-slot">Mon · 08:30</div>
+                </div>
+                <div>
+                  <div class="meta-k">Est. Bench Time</div>
+                  <div class="meta-v tnum" id="summary-duration">2h 15m</div>
+                </div>
+                <div>
+                  <div class="meta-k">Selected Jobs</div>
+                  <div class="meta-v tnum" id="summary-count">2 services</div>
+                </div>
+              </div>
+
+              <div class="line-items" id="summary-lines"></div>
+
+              <div id="bundle-feedback"></div>
+
+              <div class="total-block">
+                <div>
+                  <div class="total-label">Estimated Total (GBP)</div>
+                  <div class="total-vat tnum" id="summary-vat">Includes £40.83 VAT</div>
+                </div>
+                <div class="total-gbp tnum" id="summary-total">£239.00</div>
+              </div>
+
+              <form id="booking-form" class="booking-form" novalidate>
+                <div class="input-wrap">
+                  <div class="field-label" id="driver-name-lbl">Driver Name</div>
+                  <input id="driver-name" type="text" class="text-input" placeholder="e.g. Oliver Bennett" autocomplete="name" aria-labelledby="driver-name-lbl" required>
+                </div>
+
+                <div class="input-wrap">
+                  <div class="field-label" id="driver-phone-lbl">UK Phone Number</div>
+                  <input id="driver-phone" type="tel" class="text-input" placeholder="e.g. 07700 900412" autocomplete="tel" aria-labelledby="driver-phone-lbl" required>
+                </div>
+
+                <div class="input-wrap">
+                  <div class="field-label" id="driver-email-lbl">Email for Estimate &amp; Bay Pass</div>
+                  <input id="driver-email" type="email" class="text-input" placeholder="e.g. driver@oxford.uk" autocomplete="email" aria-labelledby="driver-email-lbl" required>
+                </div>
+
+                <div id="form-error" class="form-error" aria-live="polite"></div>
+
+                <button type="submit" class="btn-copper">
+                  <span>Reserve Workshop Bay Now</span>
+                </button>
+              </form>
+
+              <div id="confirm-box" class="confirm-box hidden" aria-live="polite">
+                <div class="meta-k">Bay Reservation Confirmed</div>
+                <div class="confirm-ref" id="confirm-ref">SG-OXF-4821</div>
+                <div id="confirm-details" style="font-size: 13.5px; color: #161D26; line-height: 1.5;"></div>
+                <button type="button" id="reset-booking-btn" class="btn-ghost">Adjust Quote or Change Slot</button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section-band">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Independent Workshop Capabilities</div>
+            <h2>Four Core Disciplines Under One Oxford Roof</h2>
+            <p class="section-sub">Equipment calibrated for modern European, Japanese and light commercial vehicles without main-dealer overheads.</p>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <article class="pillar-card">
+            <div>
+              <div class="pillar-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 11l3 3L22 4"/>
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                </svg>
+              </div>
+              <h3 class="pillar-title">MOT Testing &amp; Pre-MOT Checks</h3>
+              <p class="pillar-text">Dedicated Class 4 testing lane with honest advisory guidance and same-day remedial turnaround.</p>
+              <ul class="pillar-list">
+                <li><span class="bullet-sq" aria-hidden="true"></span><span>Class 4 cars &amp; light commercial vans</span></li>
+                <li><span class="bullet-sq" aria-hidden="true"></span><span>Pre-MOT bulbs, wipers &amp; emissions check</span></li>
+                <li><span class="bullet-sq" aria-hidden="true"></span><span>Free re-test within 10 working days</span></li>
+              </ul>
+            </div>
+            <button type="button" class="pillar-action" data-quick-select="mot">Select Class 4 MOT in Estimator →</button>
+          </article>
+
+          <article class="pillar-card">
+            <div>
+              <div class="pillar-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09c-.66 0-1.25.4-1.51 1z"/>
+                </svg>
+              </div>
+              <h3 class="pillar-title">Car Servicing &amp; Diagnostics</h3>
+              <p class="pillar-text">Manufacturer-grade Interim and Full servicing that preserves factory warranty, paired with deep ECU diagnostics.</p>
+              <ul class="pillar-list">
+                <li><span class="bullet-sq" aria-hidden="true"></span><span>OE-spec synthetic oils &amp; Bosch/Mann filters</span></li>
+                <li><span class="bullet-sq" aria-hidden="true"></span><span>DPF, ABS, airbag &amp; live CAN-bus fault scan</span></li>
+                <li><span class="bullet-sq" aria-hidden="true"></span><span>Digital &amp; stamped service book updates</span></li>
+              </ul>
+            </div>
+            <button type="button" class="pillar-action" data-quick-select="service">Select Servicing in Estimator →</button>
+          </article>
+
+          <article class="pillar-card">
+            <div>
+              <div class="pillar-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="2" x2="12" y2="22"/>
+                  <path d="M17 5l-5 5-5-5"/>
+                  <path d="M17 19l-5-5-5 5"/>
+                  <line x1="2" y1="12" x2="22" y2="12"/>
+                  <path d="M5 7l5 5-5 5"/>
+                  <path d="M19 7l-5 5 5 5"/>
+                </svg>
+              </div>
+              <h3 class="pillar-title">Air Conditioning Regassing (R134a &amp; R1234yf)</h3>
+              <p class="pillar-text">Separate automated recovery rigs for both pre-2017 R134a systems and post-2017 low-GWP R1234yf vehicles.</p>
+              <ul class="pillar-list">
+                <li><span class="bullet-sq" aria-hidden="true"></span><span>20-minute deep vacuum &amp; pressure leak test</span></li>
+                <li><span class="bullet-sq" aria-hidden="true"></span><span>Hybrid-safe POE/PAG compressor oil option</span></li>
+                <li><span class="bullet-sq" aria-hidden="true"></span><span>Cabin vent temperature output verified</span></li>
+              </ul>
+            </div>
+            <button type="button" class="pillar-action" data-quick-select="ac">Select A/C Regas in Estimator →</button>
+          </article>
+
+          <article class="pillar-card">
+            <div>
+              <div class="pillar-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <line x1="12" y1="3" x2="12" y2="8"/>
+                  <line x1="12" y1="16" x2="12" y2="21"/>
+                  <line x1="3" y1="12" x2="8" y2="12"/>
+                  <line x1="16" y1="12" x2="21" y2="12"/>
+                </svg>
+              </div>
+              <h3 class="pillar-title">Brakes, Clutches &amp; Tyres</h3>
+              <p class="pillar-text">Safety-critical chassis work using OEM-equivalent friction parts, hydraulic clutch kits and precision wheel balancing.</p>
+              <ul class="pillar-list">
+                <li><span class="bullet-sq" aria-hidden="true"></span><span>Front &amp; rear disc/pad kits &amp; fluid flushes</span></li>
+                <li><span class="bullet-sq" aria-hidden="true"></span><span>3-piece clutches &amp; dual-mass flywheels</span></li>
+                <li><span class="bullet-sq" aria-hidden="true"></span><span>Mid-range &amp; premium tyres with tracking</span></li>
+              </ul>
+            </div>
+            <button type="button" class="pillar-action" data-quick-select="brakes">Select Brakes in Estimator →</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section-band alt">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Fixed Workshop Matrix</div>
+            <h2>Upfront GBP Rates by Vehicle Class</h2>
+            <p class="section-sub">Every figure below matches the live calculator above and includes 20% UK VAT. MOT + Service bundle discounts apply automatically.</p>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Service Item</th>
+                  <th class="num">Small Hatch</th>
+                  <th class="num">Medium Family</th>
+                  <th class="num">Executive/SUV</th>
+                  <th class="num">Light Van</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Class 4 MOT Test</strong> (DVSA station)</td>
+                  <td class="num">£49.00</td>
+                  <td class="num">£49.00</td>
+                  <td class="num">£49.00</td>
+                  <td class="num">£54.85</td>
+                </tr>
+                <tr>
+                  <td><strong>Interim Service</strong> (oil, filter, safety check)</td>
+                  <td class="num">£115.00</td>
+                  <td class="num">£135.00</td>
+                  <td class="num">£165.00</td>
+                  <td class="num">£155.00</td>
+                </tr>
+                <tr>
+                  <td><strong>Full Service</strong> (filters, spark/fuel check, fluids)</td>
+                  <td class="num">£185.00</td>
+                  <td class="num">£215.00</td>
+                  <td class="num">£265.00</td>
+                  <td class="num">£245.00</td>
+                </tr>
+                <tr>
+                  <td><strong>Air Conditioning Regas</strong> (R134a / R1234yf)</td>
+                  <td class="num">£65 / £115</td>
+                  <td class="num">£65 / £120</td>
+                  <td class="num">£75 / £130</td>
+                  <td class="num">£75 / £130</td>
+                </tr>
+                <tr>
+                  <td><strong>Front Brake Pads &amp; Discs</strong> (axle set)</td>
+                  <td class="num">£165.00</td>
+                  <td class="num">£195.00</td>
+                  <td class="num">£245.00</td>
+                  <td class="num">£235.00</td>
+                </tr>
+                <tr>
+                  <td><strong>ECU Fault Scan</strong> (diagnostics &amp; report)</td>
+                  <td class="num">£45.00</td>
+                  <td class="num">£45.00</td>
+                  <td class="num">£55.00</td>
+                  <td class="num">£55.00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="standards-grid">
+          <div class="standard-card">
+            <div class="standard-code">OXF-01 / HONEST ESTIMATES</div>
+            <h3 class="standard-title">No Work Without Sign-Off</h3>
+            <p class="standard-desc">If an MOT or inspection reveals worn pads, tyres or suspension bushes, we call 01865 customers with an itemised GBP figure before touching a bolt.</p>
+          </div>
+          <div class="standard-card">
+            <div class="standard-code">OXF-02 / WARRANTY SAFE</div>
+            <h3 class="standard-title">OE-Equivalent Parts Only</h3>
+            <p class="standard-desc">Block Exemption compliant servicing using OEM-grade filtration and manufacturer-approved oils, protecting remaining dealer warranties.</p>
+          </div>
+          <div class="standard-card">
+            <div class="standard-code">OXF-03 / SAME-DAY TURNAROUND</div>
+            <h3 class="standard-title">Built for Oxford Commuters</h3>
+            <p class="standard-desc">Morning drop-offs from 08:00 across Summertown, Kidlington and Woodstock are prioritised for same-day afternoon collection.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="location" class="section-band">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">North Oxford Workshop Desk</div>
+            <h2>Oxford Coverage, Hours &amp; Direct Contact</h2>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-label">Service Coverage</div>
+            <h3 class="contact-title">Summertown Garage</h3>
+            <p class="contact-line">Private Independent Auto Repair &amp; MOT Centre</p>
+            <p class="contact-line"><strong>Oxford (serving Oxford, Kidlington &amp; Woodstock)</strong></p>
+            <div class="area-tags">
+              <span class="area-tag">Summertown</span>
+              <span class="area-tag">Oxford</span>
+              <span class="area-tag">Kidlington</span>
+              <span class="area-tag">Woodstock</span>
+              <span class="area-tag">Wolvercote</span>
+              <span class="area-tag">Yarnton</span>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-label">Direct Desk</div>
+            <h3 class="contact-title">Speak to a Technician</h3>
+            <p class="contact-line">
+              Telephone: <a href="tel:01865379550" class="tnum" style="font-weight: 700; color: var(--navy);">01865 379 550</a>
+            </p>
+            <p class="contact-line">
+              Email: <a href="mailto:info@summertowngarage.co.uk" class="email-link">info@summertowngarage.co.uk</a>
+            </p>
+            <p class="contact-line" style="margin-top: 12px; font-size: 13px; color: var(--text-muted);">
+              Have your UK VRM ready when calling for clutch kits, tyre sizing or complex diagnostic slots.
+            </p>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-label">Opening Schedule</div>
+            <h3 class="contact-title">Workshop Hours: Mon-Sat</h3>
+            <ul class="hours-list">
+              <li><span>Monday – Friday</span><span class="mono">08:00 – 17:30</span></li>
+              <li><span>Saturday</span><span class="mono">08:30 – 13:00</span></li>
+              <li><span>Sunday</span><span class="mono">Closed</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Summertown Garage</div>
+          <div class="footer-meta">
+            Private Independent Auto Repair &amp; MOT Centre<br>
+            Oxford (serving Oxford, Kidlington &amp; Woodstock) · Hours: Mon-Sat
+            <div style="display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 4px;">
+              <span style="white-space: nowrap;">Tel: <a href="tel:01865379550" class="tnum" style="color: #FFFFFF;">01865 379 550</a></span>
+              <span style="white-space: nowrap;">Email: <a href="mailto:info@summertowngarage.co.uk" style="color: #FFFFFF; white-space: nowrap;">info@summertowngarage.co.uk</a></span>
+            </div>
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="#estimator">MOT &amp; Service Estimator</a>
+          <a href="#services">Workshop Services</a>
+          <a href="#pricing">GBP Rate Card</a>
+          <a href="#location">Oxford Desk</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Summertown Garage · Oxford, Oxfordshire</span>
+        <span>MOT Testing &amp; Pre-MOT Checks · Car Servicing &amp; Diagnostics · R134a &amp; R1234yf · Brakes, Clutches &amp; Tyres</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var PRICING = {
+        hatch: {
+          label: 'Small Hatch',
+          mot: 49.00,
+          service: { interim: 115.00, full: 185.00 },
+          ac: { r134a: 65.00, r1234yf: 115.00 },
+          brakes: { front: 165.00, rear: 155.00, both: 295.00 },
+          ecu: 45.00
+        },
+        family: {
+          label: 'Medium Family',
+          mot: 49.00,
+          service: { interim: 135.00, full: 215.00 },
+          ac: { r134a: 65.00, r1234yf: 120.00 },
+          brakes: { front: 195.00, rear: 180.00, both: 345.00 },
+          ecu: 45.00
+        },
+        suv: {
+          label: 'Executive/SUV',
+          mot: 49.00,
+          service: { interim: 165.00, full: 265.00 },
+          ac: { r134a: 75.00, r1234yf: 130.00 },
+          brakes: { front: 245.00, rear: 225.00, both: 435.00 },
+          ecu: 55.00
+        },
+        van: {
+          label: 'Light Van',
+          mot: 54.85,
+          service: { interim: 155.00, full: 245.00 },
+          ac: { r134a: 75.00, r1234yf: 130.00 },
+          brakes: { front: 235.00, rear: 215.00, both: 415.00 },
+          ecu: 55.00
+        }
+      };
+
+      var BUNDLE_SAVING = {
+        interim: 15.00,
+        full: 25.00
+      };
+
+      var state = {
+        vrm: 'OX21 SMG',
+        vehicleClass: 'family',
+        selected: {
+          mot: true,
+          service: true,
+          ac: false,
+          brakes: false,
+          ecu: false
+        },
+        serviceTier: 'full',
+        acGas: 'r134a',
+        brakeAxle: 'front',
+        dayIndex: 0,
+        slotIndex: 0
+      };
+
+      function buildScheduleDays() {
+        var dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var result = [];
+        var cursor = new Date();
+        cursor.setDate(cursor.getDate() + 1);
+        while (result.length < 6) {
+          var dow = cursor.getDay();
+          if (dow >= 1 && dow <= 6) {
+            var slots = dow === 6
+              ? [
+                  { time: '08:30', bay: 'Bay 1 · MOT Ramp' },
+                  { time: '09:45', bay: 'Bay 2 · Service' },
+                  { time: '11:00', bay: 'Bay 3 · A/C & Diag' },
+                  { time: '12:00', bay: 'Bay 1 · Express' }
+                ]
+              : [
+                  { time: '08:30', bay: 'Bay 1 · MOT Ramp' },
+                  { time: '10:30', bay: 'Bay 2 · Service' },
+                  { time: '13:00', bay: 'Bay 3 · A/C & Diag' },
+                  { time: '15:00', bay: 'Bay 2 · Late Drop' }
+                ];
+            result.push({
+              dayName: dayNames[dow],
+              dateLabel: cursor.getDate() + ' ' + monthNames[cursor.getMonth()],
+              isSaturday: dow === 6,
+              slots: slots
+            });
+          }
+          cursor.setDate(cursor.getDate() + 1);
+        }
+        return result;
+      }
+
+      var scheduleDays = buildScheduleDays();
+
+      var vrmInput = document.getElementById('vrm-input');
+      var vrmStatus = document.getElementById('vrm-status');
+      var summaryPlate = document.getElementById('summary-plate');
+      var summaryClass = document.getElementById('summary-class');
+      var summarySlot = document.getElementById('summary-slot');
+      var summaryDuration = document.getElementById('summary-duration');
+      var summaryCount = document.getElementById('summary-count');
+      var summaryLines = document.getElementById('summary-lines');
+      var bundleFeedback = document.getElementById('bundle-feedback');
+      var summaryVat = document.getElementById('summary-vat');
+      var summaryTotal = document.getElementById('summary-total');
+      var dayStrip = document.getElementById('day-strip');
+      var slotGrid = document.getElementById('slot-grid');
+      var bookingForm = document.getElementById('booking-form');
+      var confirmBox = document.getElementById('confirm-box');
+      var confirmRef = document.getElementById('confirm-ref');
+      var confirmDetails = document.getElementById('confirm-details');
+      var formError = document.getElementById('form-error');
+
+      function formatGBP(num) {
+        return '£' + num.toFixed(2);
+      }
+
+      function formatDuration(totalMins) {
+        if (totalMins === 0) {
+          return '0 mins';
+        }
+        var hrs = Math.floor(totalMins / 60);
+        var mins = totalMins % 60;
+        if (hrs === 0) {
+          return mins + ' mins';
+        }
+        if (mins === 0) {
+          return hrs + 'h';
+        }
+        return hrs + 'h ' + mins + 'm';
+      }
+
+      function normalizePlate(raw) {
+        return raw.toUpperCase().replace(/[^A-Z0-9 ]/g, '').slice(0, 8);
+      }
+
+      function checkUkPlate(plate) {
+        var compact = plate.replace(/\s+/g, '');
+        var ukPattern = /^[A-Z]{2}[0-9]{2}[A-Z]{3}$|^[A-Z][0-9]{1,3}[A-Z]{3}$|^[A-Z]{3}[0-9]{1,3}[A-Z]$|^[A-Z0-9]{4,7}$/;
+        return compact.length >= 4 && ukPattern.test(compact);
+      }
+
+      function getServicePrices() {
+        var rates = PRICING[state.vehicleClass];
+        return {
+          mot: rates.mot,
+          service: rates.service[state.serviceTier],
+          ac: rates.ac[state.acGas],
+          brakes: rates.brakes[state.brakeAxle],
+          ecu: rates.ecu
+        };
+      }
+
+      function getServiceDurations() {
+        return {
+          mot: 45,
+          service: state.serviceTier === 'full' ? 90 : 60,
+          ac: 45,
+          brakes: state.brakeAxle === 'both' ? 110 : 60,
+          ecu: 30
+        };
+      }
+
+      function renderDaysAndSlots() {
+        dayStrip.innerHTML = '';
+        scheduleDays.forEach(function (day, idx) {
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'day-btn';
+          btn.setAttribute('role', 'radio');
+          btn.setAttribute('aria-checked', state.dayIndex === idx ? 'true' : 'false');
+          btn.innerHTML = '<span class="day-name">' + day.dayName + '</span><span class="day-date">' + day.dateLabel + '</span>';
+          btn.addEventListener('click', function () {
+            state.dayIndex = idx;
+            state.slotIndex = 0;
+            renderDaysAndSlots();
+            renderSummary();
+          });
+          dayStrip.appendChild(btn);
+        });
+
+        var activeDay = scheduleDays[state.dayIndex];
+        slotGrid.innerHTML = '';
+        activeDay.slots.forEach(function (slot, idx) {
+          var sbtn = document.createElement('button');
+          sbtn.type = 'button';
+          sbtn.className = 'slot-btn';
+          sbtn.setAttribute('role', 'radio');
+          sbtn.setAttribute('aria-checked', state.slotIndex === idx ? 'true' : 'false');
+          sbtn.innerHTML = '<span class="slot-time">' + slot.time + '</span><span class="slot-bay">' + slot.bay + '</span>';
+          sbtn.addEventListener('click', function () {
+            state.slotIndex = idx;
+            renderDaysAndSlots();
+            renderSummary();
+          });
+          slotGrid.appendChild(sbtn);
+        });
+      }
+
+      function renderCards() {
+        var prices = getServicePrices();
+        var durs = getServiceDurations();
+
+        document.querySelectorAll('.class-btn').forEach(function (btn) {
+          var isMatch = btn.getAttribute('data-class') === state.vehicleClass;
+          btn.setAttribute('aria-checked', isMatch ? 'true' : 'false');
+        });
+
+        Object.keys(state.selected).forEach(function (key) {
+          var row = document.querySelector('[data-service-card="' + key + '"]');
+          var toggle = document.querySelector('[data-service="' + key + '"]');
+          var priceEl = document.querySelector('[data-price-for="' + key + '"]');
+          if (row && toggle) {
+            var checked = state.selected[key];
+            row.classList.toggle('selected', checked);
+            toggle.setAttribute('aria-checked', checked ? 'true' : 'false');
+          }
+          if (priceEl) {
+            priceEl.textContent = formatGBP(prices[key]);
+          }
+        });
+
+        var svcDurEl = document.getElementById('service-dur-text');
+        if (svcDurEl) {
+          svcDurEl.textContent = durs.service + ' mins';
+        }
+        var brkDurEl = document.getElementById('brakes-dur-text');
+        if (brkDurEl) {
+          brkDurEl.textContent = durs.brakes + ' mins';
+        }
+        var svcTagEl = document.getElementById('service-bundle-tag');
+        if (svcTagEl) {
+          svcTagEl.textContent = 'Saves £' + BUNDLE_SAVING[state.serviceTier].toFixed(0) + ' with MOT';
+        }
+
+        document.querySelectorAll('.seg-btn').forEach(function (btn) {
+          var grp = btn.getAttribute('data-opt-group');
+          var val = btn.getAttribute('data-opt-val');
+          var active = state[grp] === val;
+          btn.setAttribute('aria-checked', active ? 'true' : 'false');
+        });
+      }
+
+      function renderSummary() {
+        var prices = getServicePrices();
+        var durs = getServiceDurations();
+        var activeDay = scheduleDays[state.dayIndex];
+        var activeSlot = activeDay.slots[state.slotIndex];
+
+        var cleanPlate = state.vrm.trim() || 'TBC PLATE';
+        summaryPlate.textContent = cleanPlate;
+        summaryClass.textContent = PRICING[state.vehicleClass].label;
+        summarySlot.textContent = activeDay.dayName + ' ' + activeDay.dateLabel + ' · ' + activeSlot.time;
+
+        var items = [];
+        var subtotal = 0;
+        var totalMins = 0;
+
+        if (state.selected.mot) {
+          items.push({ name: 'Class 4 MOT Test', sub: 'DVSA inspection & certificate', amt: prices.mot });
+          subtotal += prices.mot;
+          totalMins += durs.mot;
+        }
+        if (state.selected.service) {
+          var tierLabel = state.serviceTier === 'full' ? 'Full Service' : 'Interim Service';
+          items.push({ name: 'Interim/Full Service Bundle', sub: tierLabel + ' · OEM oil & filter', amt: prices.service });
+          subtotal += prices.service;
+          totalMins += durs.service;
+        }
+        if (state.selected.ac) {
+          var gasLabel = state.acGas === 'r1234yf' ? 'R1234yf (Post-2017)' : 'R134a (Pre-2017)';
+          items.push({ name: 'Air Conditioning Regas', sub: gasLabel + ' + leak vacuum check', amt: prices.ac });
+          subtotal += prices.ac;
+          totalMins += durs.ac;
+        }
+        if (state.selected.brakes) {
+          var axleMap = { front: 'Front Axle Pads & Discs', rear: 'Rear Axle Pads & Discs', both: 'Front & Rear Pads & Discs' };
+          items.push({ name: 'Front/Rear Brake Replacement', sub: axleMap[state.brakeAxle], amt: prices.brakes });
+          subtotal += prices.brakes;
+          totalMins += durs.brakes;
+        }
+        if (state.selected.ecu) {
+          items.push({ name: 'ECU Fault Scan', sub: 'Full OBD-II module report', amt: prices.ecu });
+          subtotal += prices.ecu;
+          totalMins += durs.ecu;
+        }
+
+        summaryCount.textContent = items.length === 1 ? '1 service' : items.length + ' services';
+        summaryDuration.textContent = formatDuration(totalMins);
+
+        summaryLines.innerHTML = '';
+        if (items.length === 0) {
+          summaryLines.innerHTML = '<div style="font-size: 13.5px; color: #5C6B7E;">Select at least one service on the left to calculate your workshop quote.</div>';
+        } else {
+          items.forEach(function (item) {
+            var row = document.createElement('div');
+            row.className = 'line-item';
+            row.innerHTML = '<div><span class="line-name">' + item.name + '</span><span class="line-sub">' + item.sub + '</span></div><span class="line-amt">' + formatGBP(item.amt) + '</span>';
+            summaryLines.appendChild(row);
+          });
+        }
+
+        var discount = 0;
+        bundleFeedback.innerHTML = '';
+        if (state.selected.mot && state.selected.service) {
+          discount = BUNDLE_SAVING[state.serviceTier];
+          var dRow = document.createElement('div');
+          dRow.className = 'discount-row';
+          dRow.innerHTML = '<span>MOT + ' + (state.serviceTier === 'full' ? 'Full' : 'Interim') + ' Service Bundle Saving</span><span class="mono">-' + formatGBP(discount) + '</span>';
+          bundleFeedback.appendChild(dRow);
+        } else if (state.selected.mot && state.selected.service === false) {
+          var potential = BUNDLE_SAVING[state.serviceTier];
+          var uRow1 = document.createElement('div');
+          uRow1.className = 'upsell-row';
+          uRow1.innerHTML = '<span>Pair with ' + (state.serviceTier === 'full' ? 'Full' : 'Interim') + ' Service to save ' + formatGBP(potential) + '</span><button type="button" class="upsell-btn" id="quick-add-service">+ Add Service</button>';
+          bundleFeedback.appendChild(uRow1);
+          document.getElementById('quick-add-service').addEventListener('click', function () {
+            state.selected.service = true;
+            updateAll();
+          });
+        } else if (state.selected.service && state.selected.mot === false) {
+          var pot2 = BUNDLE_SAVING[state.serviceTier];
+          var uRow2 = document.createElement('div');
+          uRow2.className = 'upsell-row';
+          uRow2.innerHTML = '<span>Add Class 4 MOT Test to save ' + formatGBP(pot2) + '</span><button type="button" class="upsell-btn" id="quick-add-mot">+ Add MOT</button>';
+          bundleFeedback.appendChild(uRow2);
+          document.getElementById('quick-add-mot').addEventListener('click', function () {
+            state.selected.mot = true;
+            updateAll();
+          });
+        }
+
+        var total = Math.max(0, subtotal - discount);
+        var vatPortion = total - (total / 1.2);
+        summaryTotal.textContent = formatGBP(total);
+        summaryVat.textContent = 'Includes ' + formatGBP(vatPortion) + ' VAT (20%)';
+      }
+
+      function updateAll() {
+        renderCards();
+        renderSummary();
+      }
+
+      vrmInput.addEventListener('input', function () {
+        var cleaned = normalizePlate(vrmInput.value);
+        vrmInput.value = cleaned;
+        state.vrm = cleaned;
+        if (cleaned.length === 0) {
+          vrmStatus.textContent = 'Optional during quote — required before bay arrival';
+          vrmStatus.className = 'vrm-status';
+        } else if (checkUkPlate(cleaned)) {
+          vrmStatus.textContent = 'Valid UK plate format ready for workshop sheet';
+          vrmStatus.className = 'vrm-status valid';
+        } else {
+          vrmStatus.textContent = 'Enter standard UK VRM characters (e.g. OX21 SMG)';
+          vrmStatus.className = 'vrm-status';
+        }
+        renderSummary();
+      });
+
+      document.querySelectorAll('.sample-chip').forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          var sampleVrm = chip.getAttribute('data-vrm');
+          var sampleClass = chip.getAttribute('data-class');
+          vrmInput.value = sampleVrm;
+          state.vrm = sampleVrm;
+          state.vehicleClass = sampleClass;
+          vrmStatus.textContent = 'Valid UK plate format ready for workshop sheet';
+          vrmStatus.className = 'vrm-status valid';
+          updateAll();
+        });
+      });
+
+      document.querySelectorAll('.class-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.vehicleClass = btn.getAttribute('data-class');
+          updateAll();
+        });
+      });
+
+      document.querySelectorAll('.service-toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var key = btn.getAttribute('data-service');
+          state.selected[key] = state.selected[key] === false;
+          updateAll();
+        });
+      });
+
+      document.querySelectorAll('.seg-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var grp = btn.getAttribute('data-opt-group');
+          var val = btn.getAttribute('data-opt-val');
+          state[grp] = val;
+          if (grp === 'serviceTier') {
+            state.selected.service = true;
+          } else if (grp === 'acGas') {
+            state.selected.ac = true;
+          } else if (grp === 'brakeAxle') {
+            state.selected.brakes = true;
+          }
+          updateAll();
+        });
+      });
+
+      document.querySelectorAll('[data-quick-select]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var targetSvc = btn.getAttribute('data-quick-select');
+          state.selected[targetSvc] = true;
+          updateAll();
+          document.getElementById('estimator').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        formError.textContent = '';
+
+        var anySelected = Object.keys(state.selected).some(function (k) { return state.selected[k]; });
+        if (anySelected === false) {
+          formError.textContent = 'Please select at least one workshop service above.';
+          return;
+        }
+
+        var driverName = document.getElementById('driver-name').value.trim();
+        var driverPhone = document.getElementById('driver-phone').value.trim();
+        var driverEmail = document.getElementById('driver-email').value.trim();
+
+        if (driverName.length < 2) {
+          formError.textContent = 'Please enter the driver name for the bay sheet.';
+          return;
+        }
+        if (driverPhone.replace(/[^0-9]/g, '').length < 9) {
+          formError.textContent = 'Please enter a valid UK telephone number.';
+          return;
+        }
+        if (driverEmail.indexOf('@') < 1 || driverEmail.indexOf('.', driverEmail.indexOf('@')) < 0) {
+          formError.textContent = 'Please enter a valid email address for your bay pass.';
+          return;
+        }
+
+        var activeDay = scheduleDays[state.dayIndex];
+        var activeSlot = activeDay.slots[state.slotIndex];
+        var randCode = Math.floor(1000 + Math.random() * 9000);
+        var refCode = 'SG-OXF-' + randCode;
+        var plateText = state.vrm.trim() || 'TBC';
+
+        confirmRef.textContent = refCode;
+        confirmDetails.innerHTML =
+          '<strong>' + driverName + '</strong> · VRM <strong>' + plateText + '</strong> (' + PRICING[state.vehicleClass].label + ')<br>' +
+          'Scheduled for <strong>' + activeDay.dayName + ' ' + activeDay.dateLabel + ' at ' + activeSlot.time + '</strong> (' + activeSlot.bay + ')<br>' +
+          'Estimated Total: <strong>' + summaryTotal.textContent + '</strong> · Confirmation logged for ' + driverEmail + '. Need adjustments before arrival? Call <strong>01865 379 550</strong>.';
+
+        bookingForm.classList.add('hidden');
+        confirmBox.classList.remove('hidden');
+      });
+
+      document.getElementById('reset-booking-btn').addEventListener('click', function () {
+        confirmBox.classList.add('hidden');
+        bookingForm.classList.remove('hidden');
+      });
+
+      renderDaysAndSlots();
+      updateAll();
+    })();
+  </script>
+</body>
+</html>
