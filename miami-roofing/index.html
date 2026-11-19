@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Miami Roofing Company — HVHZ-certified residential & commercial roofing in Miami, FL. Instant roof replacement cost & wind-mitigation calculator.">
+  <title>Miami Roofing Company | HVHZ Roof Replacement &amp; Storm Repair</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231E293B'/%3E%3Cpath d='M5 18L16 7l11 11h-3v7H8v-7H5z' fill='%23B84A27'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8F7F4;
+      --surface: #FFFFFF;
+      --surface-alt: #F1EFEA;
+      --ink: #1E293B;
+      --ink-muted: #475569;
+      --accent: #B84A27;
+      --accent-dark: #94391C;
+      --accent-soft: #FBECE6;
+      --border: #E2DFD7;
+      --radius: 12px;
+      --shadow: 0 4px 20px rgba(30, 41, 59, 0.06);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      margin: 0;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(248, 247, 244, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background: var(--ink);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .phone-link {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: 9px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .btn-outline {
+      background: var(--surface);
+      color: var(--ink);
+      border-color: var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--ink);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 56px 0 44px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 4.2vw, 46px);
+      line-height: 1.12;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--ink-muted);
+      margin: 0 0 24px;
+      max-width: 56ch;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .metric-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .metric-val {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .metric-lbl {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .hero-card {
+      background: var(--ink);
+      color: #FFFFFF;
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h2 {
+      color: #FFFFFF;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .hero-card p {
+      color: #CBD5E1;
+      font-size: 14px;
+      margin: 0 0 20px;
+    }
+
+    .spec-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .spec-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 13px;
+    }
+
+    .spec-item span:first-child {
+      color: #CBD5E1;
+    }
+
+    .spec-item strong {
+      color: #FFFFFF;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Sections */
+    .section {
+      padding: 44px 0;
+    }
+
+    .section-head {
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(24px, 3vw, 32px);
+      margin-bottom: 6px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--ink-muted);
+      font-size: 15px;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 9px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+    }
+
+    .service-card h3 {
+      font-size: 17px;
+      line-height: 1.3;
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+
+    /* Calculator */
+    .calc-shell {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .field-group {
+      margin-bottom: 18px;
+    }
+
+    .field-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--ink);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .range-val {
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      font-size: 14px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .pill-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .pill-btn {
+      padding: 12px 14px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .pill-btn small {
+      display: block;
+      font-weight: 400;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .pill-btn.active {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      cursor: pointer;
+    }
+
+    .toggle-row span {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .toggle-row input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    /* Result panel */
+    .result-panel {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+    }
+
+    .result-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+    }
+
+    .result-price {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 3.2vw, 36px);
+      color: var(--ink);
+      margin: 6px 0 14px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .breakdown {
+      display: grid;
+      gap: 8px;
+      padding: 14px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 18px;
+      font-size: 13px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .breakdown-row strong {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .form-full {
+      grid-column: 1 / -1;
+    }
+
+    .input-ctrl {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .input-ctrl:focus {
+      outline: 2px solid var(--accent);
+      border-color: transparent;
+    }
+
+    .form-status {
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-dark);
+      min-height: 20px;
+    }
+
+    /* Footer / Contact */
+    .site-footer {
+      margin-top: 40px;
+      background: var(--ink);
+      color: #E2E8F0;
+      padding: 36px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 24px;
+    }
+
+    .footer-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+    }
+
+    .footer-text {
+      font-size: 13px;
+      color: #CBD5E1;
+      margin: 0;
+    }
+
+    .contact-links {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .contact-links a[href^="mailto:"],
+    .contact-links a[href^="http"] {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 12px;
+      color: #F8FAFC;
+      text-decoration: none;
+    }
+
+    .contact-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero-grid,
+      .calc-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .services-grid,
+      .metrics-row,
+      .form-grid,
+      .pill-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-link {
+        display: none;
+      }
+
+      .calc-shell {
+        padding: 18px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .contact-links a[href^="mailto:"],
+      .contact-links a[href^="http"] {
+        font-size: 11.5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M3 13L12 4l9 9h-3v7H6v-7H3z" fill="#B84A27"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Miami Roofing Company</div>
+          <div class="brand-sub">Miami, FL &bull; HVHZ Certified</div>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="tel:+13053301776" class="phone-link">(305) 330-1776</a>
+        <a href="#calculator" class="btn btn-primary">Instant Estimate</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">Miami-Dade HVHZ Compliant</div>
+          <h1>Hurricane-Grade Roofing Built for South Florida</h1>
+          <p>Licensed residential and commercial roof replacement, storm damage repair, and wind-mitigation upgrades engineered for 175+ mph uplift resistance.</p>
+          <div class="hero-cta">
+            <a href="#calculator" class="btn btn-primary">Calculate Roof Cost</a>
+            <a href="#services" class="btn btn-outline">Explore Services</a>
+          </div>
+          <div class="metrics-row">
+            <div class="metric-box">
+              <div class="metric-val tabular">175+ mph</div>
+              <div class="metric-lbl">HVHZ Wind Rating</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val tabular">25–50 yr</div>
+              <div class="metric-lbl">System Warranties</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val tabular">24/7</div>
+              <div class="metric-lbl">Storm Response</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <h2>Miami-Dade Code Ready</h2>
+          <p>Every installation includes NOA-approved fasteners, secondary water barrier, and wind-mitigation documentation for insurance credits.</p>
+          <div class="spec-list">
+            <div class="spec-item">
+              <span>Service Area</span>
+              <strong>Miami, FL, USA</strong>
+            </div>
+            <div class="spec-item">
+              <span>Direct Line</span>
+              <strong>(305) 330-1776</strong>
+            </div>
+            <div class="spec-item">
+              <span>Inspection Turnaround</span>
+              <strong>24–48 Hours</strong>
+            </div>
+            <div class="spec-item">
+              <span>Financing &amp; Estimates</span>
+              <strong>USD ($) Transparent</strong>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Core Roofing Services</h2>
+          <p>Engineered systems for Miami residences, HOAs, and commercial properties.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12l9-9 9 9M5 10v10h14V10"/>
+              </svg>
+            </div>
+            <h3>Residential Roof Replacement</h3>
+            <p>Full tear-off and HVHZ-compliant installation in barrel tile, standing seam metal, or architectural shingle.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="7" width="18" height="13" rx="2"/>
+                <path d="M3 12h18"/>
+              </svg>
+            </div>
+            <h3>Commercial Roofing Systems</h3>
+            <p>Energy-efficient TPO, modified bitumen, and flat roof assemblies built for Miami-Dade commercial codes.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </div>
+            <h3>Hurricane &amp; Storm Damage Repair</h3>
+            <p>Rapid emergency tarping, leak isolation, structural deck repair, and insurance-ready photo documentation.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="7"/>
+                <path d="M21 21l-4.35-4.35"/>
+              </svg>
+            </div>
+            <h3>Roof Inspection &amp; Maintenance</h3>
+            <p>Annual preventative audits, flashing resealing, and wind-mitigation reports to extend roof lifespan.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculator" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Instant Roof Replacement Cost &amp; Hurricane-Grade Material Calculator</h2>
+          <p>Estimate your Miami-Dade HVHZ project in USD ($) and request an on-site inspection.</p>
+        </div>
+
+        <div class="calc-shell">
+          <div class="calc-grid">
+            <div>
+              <div class="field-group">
+                <div class="field-label">
+                  <span>Roof Area (sq ft)</span>
+                  <span class="range-val" id="areaDisplay">2,200 sq ft</span>
+                </div>
+                <input type="range" id="areaRange" min="1000" max="6000" step="100" value="2200" autocomplete="off">
+              </div>
+
+              <div class="field-group">
+                <div class="field-label">
+                  <span>Hurricane-Grade Material System</span>
+                </div>
+                <div class="pill-grid" id="materialPills">
+                  <button type="button" class="pill-btn active" data-rate="14.5" data-name="Barrel Tile (NOA)">
+                    Barrel Tile
+                    <small>$14.50 / sq ft &bull; Classic Miami</small>
+                  </button>
+                  <button type="button" class="pill-btn" data-rate="16.0" data-name="Standing Seam Metal">
+                    Standing Seam Metal
+                    <small>$16.00 / sq ft &bull; 50-yr Uplift</small>
+                  </button>
+                  <button type="button" class="pill-btn" data-rate="11.2" data-name="TPO Flat Commercial">
+                    TPO Flat System
+                    <small>$11.20 / sq ft &bull; Cool Roof</small>
+                  </button>
+                  <button type="button" class="pill-btn" data-rate="8.8" data-name="HVHZ Architectural Shingle">
+                    HVHZ Shingle
+                    <small>$8.80 / sq ft &bull; Value</small>
+                  </button>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <div class="field-label">
+                  <span>Code &amp; Insurance Options</span>
+                </div>
+                <label class="toggle-row">
+                  <span>Apply Wind-Mitigation &amp; Secondary Barrier Credit (-6%)</span>
+                  <input type="checkbox" id="windCredit" checked autocomplete="off">
+                </label>
+              </div>
+            </div>
+
+            <div class="result-panel">
+              <div class="result-eyebrow">Estimated HVHZ Project Range</div>
+              <div class="result-price tabular" id="priceRange">$29,986 – $33,142</div>
+
+              <div class="breakdown">
+                <div class="breakdown-row">
+                  <span>Selected System</span>
+                  <strong id="sysOut">Barrel Tile (NOA)</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span>Base Material &amp; Labor</span>
+                  <strong id="baseOut">$31,900</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span>Miami-Dade HVHZ Permit &amp; Barrier</span>
+                  <strong>Included</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span>Wind-Mitigation Credit</span>
+                  <strong id="creditOut">-$1,914</strong>
+                </div>
+              </div>
+
+              <form id="inspectionForm" class="form-grid">
+                <div>
+                  <div class="field-label">Full Name</div>
+                  <input type="text" class="input-ctrl" id="leadName" placeholder="Carlos Rivera" required autocomplete="name">
+                </div>
+                <div>
+                  <div class="field-label">Phone Number</div>
+                  <input type="tel" class="input-ctrl" id="leadPhone" placeholder="(305) 555-0199" required autocomplete="tel">
+                </div>
+                <div class="form-full">
+                  <div class="field-label">Email Address</div>
+                  <input type="email" class="input-ctrl" id="leadEmail" placeholder="carlos@example.com" required autocomplete="email">
+                </div>
+                <div class="form-full">
+                  <button type="submit" class="btn btn-primary" style="width: 100%;">Request Free HVHZ Inspection</button>
+                </div>
+              </form>
+              <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-title">Miami Roofing Company</div>
+        <p class="footer-text">Miami, FL, USA &bull; Licensed &amp; Insured HVHZ Roofing Contractor. Residential, Commercial &amp; Storm Restoration.</p>
+      </div>
+      <div>
+        <div class="footer-title">Direct Contact</div>
+        <div class="contact-links">
+          <a href="tel:+13053301776" class="tabular" style="color:#F8FAFC;text-decoration:none;font-size:13px;">(305) 330-1776</a>
+          <a href="mailto:info@miamiroofing.com">info@miamiroofing.com</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">Official Website</div>
+        <div class="contact-links">
+          <a href="https://www.miamiroofing.com/" target="_blank" rel="noopener noreferrer">https://www.miamiroofing.com/</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const areaRange = document.getElementById('areaRange');
+      const areaDisplay = document.getElementById('areaDisplay');
+      const pillBtns = document.querySelectorAll('#materialPills .pill-btn');
+      const windCredit = document.getElementById('windCredit');
+
+      const priceRange = document.getElementById('priceRange');
+      const sysOut = document.getElementById('sysOut');
+      const baseOut = document.getElementById('baseOut');
+      const creditOut = document.getElementById('creditOut');
+
+      let activeRate = 14.5;
+      let activeName = 'Barrel Tile (NOA)';
+
+      function fmtUSD(num) {
+        return '$' + Math.round(num).toLocaleString('en-US');
+      }
+
+      function recalc() {
+        const sqft = Number(areaRange.value);
+        areaDisplay.textContent = sqft.toLocaleString('en-US') + ' sq ft';
+
+        const base = sqft * activeRate;
+        const credit = windCredit.checked ? base * 0.06 : 0;
+        const net = base - credit;
+        const low = net * 0.95;
+        const high = net * 1.05;
+
+        sysOut.textContent = activeName;
+        baseOut.textContent = fmtUSD(base);
+        creditOut.textContent = credit > 0 ? '-' + fmtUSD(credit) : '$0';
+        priceRange.textContent = fmtUSD(low) + ' – ' + fmtUSD(high);
+      }
+
+      areaRange.addEventListener('input', recalc);
+      windCredit.addEventListener('change', recalc);
+
+      pillBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          pillBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          activeRate = Number(btn.getAttribute('data-rate'));
+          activeName = btn.getAttribute('data-name');
+          recalc();
+        });
+      });
+
+      const form = document.getElementById('inspectionForm');
+      const statusEl = document.getElementById('formStatus');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('leadName').value.trim();
+        statusEl.textContent = 'Thank you, ' + name + '. Your HVHZ inspection request for ' + activeName + ' has been logged.';
+        form.reset();
+      });
+
+      recalc();
+    })();
+  </script>
+</body>
+</html>

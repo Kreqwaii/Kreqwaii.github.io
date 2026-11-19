@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Canberra Dental — Private dental practice in Canberra, ACT. General &amp; preventive dentistry, cosmetic whitening, dental implants, and emergency care with instant HICAPS health fund rebate estimation." />
+  <title>Canberra Dental | Private Dental Care &amp; HICAPS Rebate Estimator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231B6B56'/%3E%3Cpath d='M16 6c-3.8 0-6.5 2.4-6.5 5.8 0 2.1.8 4.1 1.4 6.1.6 2.1 1.1 5.1 2.2 6.6.6.8 1.4.7 1.8-.3.5-1.3.8-3.2 1.1-4.3.3 1.1.6 3 1.1 4.3.4 1 1.2 1.1 1.8.3 1.1-1.5 1.6-4.5 2.2-6.6.6-2 1.4-4 1.4-6.1C22.5 8.4 19.8 6 16 6z' fill='%23FAF9F6'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-page: #FAF9F6;
+      --bg-surface: #FFFFFF;
+      --bg-sand: #F4EFE6;
+      --bg-mint-soft: #EBF4F1;
+      --text-primary: #14241F;
+      --text-secondary: #485C55;
+      --text-muted: #6C7E77;
+      --accent-emerald: #1B6B56;
+      --accent-emerald-dark: #134E3F;
+      --accent-sand: #B88443;
+      --border-subtle: #E2DDD3;
+      --border-strong: #C9C1B2;
+      --shadow-sm: 0 2px 8px rgba(20, 36, 31, 0.05);
+      --shadow-md: 0 10px 28px rgba(20, 36, 31, 0.07);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .brand-name {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(250, 249, 246, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      color: var(--text-primary);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background-color: var(--accent-emerald);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .phone-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-surface);
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .phone-link:hover {
+      border-color: var(--accent-emerald);
+      background-color: var(--bg-mint-soft);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--accent-emerald);
+      color: #FFFFFF;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 10px 18px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-emerald-dark);
+    }
+
+    .btn-primary:active {
+      transform: translateY(1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 10px 18px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-emerald);
+      background-color: var(--bg-mint-soft);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 52px 0 44px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background-color: var(--bg-sand);
+      color: #7D5524;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 3.6vw, 2.9rem);
+      line-height: 1.14;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 0 26px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .hero-trust {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .trust-item strong {
+      display: block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.15rem;
+      color: var(--accent-emerald);
+    }
+
+    .trust-item span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .hero-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .hero-card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--accent-emerald-dark);
+      background-color: var(--bg-mint-soft);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent-emerald);
+    }
+
+    .info-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 0.9rem;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--border-subtle);
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .info-row span {
+      color: var(--text-muted);
+    }
+
+    .info-row strong {
+      color: var(--text-primary);
+      text-align: right;
+    }
+
+    /* Services */
+    .section {
+      padding: 48px 0;
+    }
+
+    .section-head {
+      max-width: 640px;
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--accent-emerald);
+      transform: translateY(-2px);
+    }
+
+    .service-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background-color: var(--bg-mint-soft);
+      color: var(--accent-emerald);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      flex-grow: 1;
+    }
+
+    .service-fee {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--accent-emerald-dark);
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    /* Estimator & Booking Tool */
+    .tool-section {
+      background-color: var(--bg-sand);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 54px 0;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .panel-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin: 0 0 20px;
+    }
+
+    .field-group {
+      margin-bottom: 18px;
+    }
+
+    .field-label {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      background-color: var(--bg-page);
+      padding: 4px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .seg-btn {
+      border: none;
+      background-color: transparent;
+      color: var(--text-secondary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.86rem;
+      font-weight: 600;
+      padding: 9px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .seg-btn.active {
+      background-color: var(--accent-emerald);
+      color: #FFFFFF;
+    }
+
+    .treatment-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .treatment-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-page);
+      cursor: pointer;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .treatment-item.selected {
+      border-color: var(--accent-emerald);
+      background-color: var(--bg-mint-soft);
+    }
+
+    .treatment-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .treatment-check {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent-emerald);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .treatment-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .treatment-code {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .treatment-price {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+
+    .input-control, .select-control {
+      width: 100%;
+      padding: 10px 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      color: var(--text-primary);
+      background-color: var(--bg-page);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .input-control:focus, .select-control:focus {
+      border-color: var(--accent-emerald);
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* Summary Box */
+    .summary-box {
+      background-color: var(--bg-mint-soft);
+      border: 1px solid #CBE0D9;
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      color: var(--text-secondary);
+    }
+
+    .summary-row.total {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #CBE0D9;
+      margin-bottom: 0;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .summary-row.total strong {
+      color: var(--accent-emerald-dark);
+      font-size: 1.25rem;
+    }
+
+    .rebate-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .booking-confirmation {
+      display: none;
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-mint-soft);
+      border: 1px solid var(--accent-emerald);
+      font-size: 0.88rem;
+      color: var(--accent-emerald-dark);
+    }
+
+    .booking-confirmation.visible {
+      display: block;
+    }
+
+    /* Contact & Footer */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .contact-cell {
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-page);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .contact-cell.full-row {
+      grid-column: 1 / -1;
+    }
+
+    .contact-label {
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    a[href^="mailto:"],
+    a[href^="http"] {
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 11.5px;
+      color: var(--accent-emerald-dark);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a[href^="mailto:"]:hover,
+    a[href^="http"]:hover {
+      text-decoration: underline;
+    }
+
+    .site-footer {
+      padding: 28px 0 36px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero-grid,
+      .tool-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .services-grid,
+      .form-grid-2,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-trust {
+        grid-template-columns: 1fr;
+      }
+
+      .header-actions .phone-link {
+        display: none;
+      }
+    }
+
+    @media (max-width: 420px) {
+      a[href^="mailto:"],
+      a[href^="http"] {
+        font-size: 10.5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3C8.5 3 6 5.2 6 8.3c0 1.9.7 3.7 1.3 5.5.5 1.9 1 4.6 2 5.9.5.7 1.2.6 1.6-.3.4-1.2.7-2.9 1.1-3.9.4 1 .7 2.7 1.1 3.9.4.9 1.1 1 1.6.3 1-1.3 1.5-4 2-5.9.6-1.8 1.3-3.6 1.3-5.5C18 5.2 15.5 3 12 3z" fill="#FAF9F6" />
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Canberra Dental</span>
+          <span class="brand-sub">Canberra, ACT, Australia</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a href="tel:0262480161" class="phone-link tabular">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          (02) 6248 0161
+        </a>
+        <a href="#estimator" class="btn-primary">Estimate &amp; Book</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Private Practice &bull; Canberra, ACT</div>
+          <h1>Calm, evidence-based dental care in the heart of Canberra.</h1>
+          <p class="hero-lead">
+            From routine preventive check-ups to dental implants and same-day emergency care, Canberra Dental delivers transparent Australian pricing in A$ with on-the-spot HICAPS health fund claiming.
+          </p>
+          <div class="hero-cta-row">
+            <a href="#estimator" class="btn-primary">Open Rebate Estimator</a>
+            <a href="#services" class="btn-secondary">Explore Treatments</a>
+          </div>
+          <div class="hero-trust">
+            <div class="trust-item">
+              <strong class="tabular">HICAPS</strong>
+              <span>Instant Extras Claiming</span>
+            </div>
+            <div class="trust-item">
+              <strong class="tabular">ADA</strong>
+              <span>Accredited Standards</span>
+            </div>
+            <div class="trust-item">
+              <strong class="tabular">Same-Day</strong>
+              <span>Emergency Slots</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Practice Overview">
+          <div class="hero-card-head">
+            <span class="hero-card-title">Practice Snapshot</span>
+            <span class="status-pill"><span class="status-dot"></span>Accepting New Patients</span>
+          </div>
+          <div class="info-list">
+            <div class="info-row">
+              <span>Location</span>
+              <strong>Canberra, ACT, Australia</strong>
+            </div>
+            <div class="info-row">
+              <span>Direct Phone</span>
+              <strong class="tabular">(02) 6248 0161</strong>
+            </div>
+            <div class="info-row">
+              <span>Currency</span>
+              <strong>Australian Dollar (A$)</strong>
+            </div>
+            <div class="info-row">
+              <span>Health Funds</span>
+              <strong>Bupa, Medibank, HCF, NIB</strong>
+            </div>
+            <div class="info-row">
+              <span>Hours</span>
+              <strong class="tabular">Mon–Fri 8:00 am – 5:30 pm</strong>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Clinical Services</h2>
+          <p>Comprehensive care tailored to individual oral health goals, with clear itemised treatment plans prior to any procedure.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <h3>General &amp; Preventive Dentistry</h3>
+            <p>Comprehensive oral examinations, digital low-dose X-rays, gentle scale and polish, and tailored gum health maintenance.</p>
+            <div class="service-fee tabular">From A$245 (Exam &amp; Clean)</div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+              </svg>
+            </div>
+            <h3>Cosmetic Dentistry &amp; Whitening</h3>
+            <p>In-chair and take-home teeth whitening, composite bonding, and conservative porcelain veneers designed for natural aesthetics.</p>
+            <div class="service-fee tabular">From A$490 (Take-Home Kit)</div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="4" width="16" height="16" rx="3" />
+                <path d="M9 12h6M12 9v6" />
+              </svg>
+            </div>
+            <h3>Dental Implants &amp; Crowns</h3>
+            <p>3D-planned titanium implants and Australian-crafted ceramic crowns to restore full chewing function and long-term stability.</p>
+            <div class="service-fee tabular">From A$1,850 (Ceramic Crown)</div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+            </div>
+            <h3>Emergency Dental Care</h3>
+            <p>Prompt assessment and relief for acute toothache, chipped teeth, lost fillings, and dental trauma with reserved daily slots.</p>
+            <div class="service-fee tabular">From A$140 (Emergency Consult)</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="estimator" class="tool-section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Canberra Dental Appointment &amp; Health Fund Rebate Estimator</h2>
+          <p>Select your treatments and payment preference to view an indicative A$ fee breakdown and submit an appointment request.</p>
+        </div>
+
+        <div class="tool-grid">
+          <div class="panel">
+            <h3 class="panel-title">1. Select Treatments &amp; Cover</h3>
+            <p class="panel-sub">Indicative Australian Dental Association (ADA) item fees in A$.</p>
+
+            <div class="field-group">
+              <div class="field-label">Payment &amp; Rebate Mode</div>
+              <div class="segmented" role="group" aria-label="Payment Mode">
+                <button type="button" class="seg-btn active" id="mode-hicaps" data-mode="hicaps">HICAPS Private Health Fund Extras</button>
+                <button type="button" class="seg-btn" id="mode-self" data-mode="self">Self-Pay (No Fund)</button>
+              </div>
+            </div>
+
+            <div class="field-group" id="fund-tier-group">
+              <div class="field-label">Health Fund Extras Level</div>
+              <select id="fund-tier" class="select-control" autocomplete="off" aria-label="Health Fund Extras Level">
+                <option value="0.60">Standard Extras (approx. 60% rebate)</option>
+                <option value="0.75" selected>Comprehensive Extras (approx. 75% rebate)</option>
+                <option value="0.50">Basic Extras (approx. 50% rebate)</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">Choose Procedures</div>
+              <div class="treatment-list" id="treatment-list">
+                <label class="treatment-item selected">
+                  <span class="treatment-left">
+                    <input type="checkbox" class="treatment-check" value="245" data-name="Check-up, Scale &amp; Clean" checked />
+                    <span>
+                      <span class="treatment-name">Check-up, Scale &amp; Clean</span><br />
+                      <span class="treatment-code">ADA Items 011, 114, 121</span>
+                    </span>
+                  </span>
+                  <span class="treatment-price tabular">A$245</span>
+                </label>
+
+                <label class="treatment-item">
+                  <span class="treatment-left">
+                    <input type="checkbox" class="treatment-check" value="140" data-name="Emergency Dental Consultation" />
+                    <span>
+                      <span class="treatment-name">Emergency Dental Consultation</span><br />
+                      <span class="treatment-code">ADA Item 013</span>
+                    </span>
+                  </span>
+                  <span class="treatment-price tabular">A$140</span>
+                </label>
+
+                <label class="treatment-item">
+                  <span class="treatment-left">
+                    <input type="checkbox" class="treatment-check" value="680" data-name="In-Chair Teeth Whitening" />
+                    <span>
+                      <span class="treatment-name">In-Chair Teeth Whitening</span><br />
+                      <span class="treatment-code">ADA Item 118</span>
+                    </span>
+                  </span>
+                  <span class="treatment-price tabular">A$680</span>
+                </label>
+
+                <label class="treatment-item">
+                  <span class="treatment-left">
+                    <input type="checkbox" class="treatment-check" value="1850" data-name="Porcelain / Ceramic Crown" />
+                    <span>
+                      <span class="treatment-name">Porcelain / Ceramic Crown</span><br />
+                      <span class="treatment-code">ADA Item 613</span>
+                    </span>
+                  </span>
+                  <span class="treatment-price tabular">A$1,850</span>
+                </label>
+
+                <label class="treatment-item">
+                  <span class="treatment-left">
+                    <input type="checkbox" class="treatment-check" value="2950" data-name="Dental Implant Fixture" />
+                    <span>
+                      <span class="treatment-name">Dental Implant Fixture</span><br />
+                      <span class="treatment-code">ADA Item 688</span>
+                    </span>
+                  </span>
+                  <span class="treatment-price tabular">A$2,950</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3 class="panel-title">2. Estimate &amp; Request Appointment</h3>
+            <p class="panel-sub">Real-time out-of-pocket calculation in A$.</p>
+
+            <div class="summary-box">
+              <div class="summary-row">
+                <span>Total Treatment Fee</span>
+                <strong class="tabular" id="total-fee">A$245.00</strong>
+              </div>
+              <div class="summary-row">
+                <span>Estimated HICAPS Rebate</span>
+                <strong class="tabular" id="est-rebate">-A$183.75</strong>
+              </div>
+              <div class="summary-row total">
+                <span>Estimated Out-of-Pocket</span>
+                <strong class="tabular" id="out-of-pocket">A$61.25</strong>
+              </div>
+              <div class="rebate-note" id="rebate-note">
+                Based on Comprehensive Extras (75% indicative rebate). Exact benefit depends on your annual fund limits.
+              </div>
+            </div>
+
+            <form id="booking-form">
+              <div class="form-grid-2">
+                <div class="field-group">
+                  <div class="field-label">Full Name</div>
+                  <input type="text" id="patient-name" class="input-control" placeholder="e.g. Oliver Bennett" autocomplete="name" required />
+                </div>
+                <div class="field-group">
+                  <div class="field-label">Phone Number</div>
+                  <input type="tel" id="patient-phone" class="input-control" placeholder="(02) 6200 0000" autocomplete="tel" required />
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="field-group">
+                  <div class="field-label">Email Address</div>
+                  <input type="email" id="patient-email" class="input-control" placeholder="name@example.com.au" autocomplete="email" required />
+                </div>
+                <div class="field-group">
+                  <div class="field-label">Preferred Time</div>
+                  <select id="preferred-time" class="select-control" autocomplete="off">
+                    <option value="Morning (8:00 am – 12:00 pm)">Morning (8:00 am – 12:00 pm)</option>
+                    <option value="Afternoon (12:00 pm – 5:30 pm)">Afternoon (12:00 pm – 5:30 pm)</option>
+                    <option value="Urgent Same-Day Emergency">Urgent Same-Day Emergency</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="btn-primary" style="width: 100%;">Request Appointment with Estimate</button>
+              <div id="booking-confirmation" class="booking-confirmation" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contact &amp; Clinic Details</h2>
+          <p>Reach our Canberra reception team directly by phone, email, or online.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-cell">
+            <div class="contact-label">Clinic Name</div>
+            <div class="contact-value">Canberra Dental</div>
+          </div>
+          <div class="contact-cell">
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Canberra, ACT, Australia</div>
+          </div>
+          <div class="contact-cell">
+            <div class="contact-label">Telephone</div>
+            <div class="contact-value tabular">(02) 6248 0161</div>
+          </div>
+          <div class="contact-cell">
+            <div class="contact-label">Health Fund Claiming</div>
+            <div class="contact-value">HICAPS On-Site</div>
+          </div>
+          <div class="contact-cell full-row">
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:contact@canberradental.com.au">contact@canberradental.com.au</a></div>
+          </div>
+          <div class="contact-cell full-row">
+            <div class="contact-label">Official Website</div>
+            <div class="contact-value"><a href="https://www.canberradental.com.au/" target="_blank" rel="noopener noreferrer">https://www.canberradental.com.au/</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>&copy; 2026 Canberra Dental. Canberra, ACT, Australia.</span>
+      <span class="tabular">Tel: (02) 6248 0161 &bull; All fees shown in A$.</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const modeHicapsBtn = document.getElementById('mode-hicaps');
+      const modeSelfBtn = document.getElementById('mode-self');
+      const fundTierGroup = document.getElementById('fund-tier-group');
+      const fundTierSelect = document.getElementById('fund-tier');
+      const checkboxes = Array.from(document.querySelectorAll('.treatment-check'));
+      const totalFeeEl = document.getElementById('total-fee');
+      const estRebateEl = document.getElementById('est-rebate');
+      const outOfPocketEl = document.getElementById('out-of-pocket');
+      const rebateNoteEl = document.getElementById('rebate-note');
+      const bookingForm = document.getElementById('booking-form');
+      const confirmationEl = document.getElementById('booking-confirmation');
+
+      let currentMode = 'hicaps';
+
+      function formatAUD(amount) {
+        return 'A$' + amount.toLocaleString('en-AU', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+      }
+
+      function updateEstimate() {
+        let total = 0;
+        checkboxes.forEach((cb) => {
+          const itemLabel = cb.closest('.treatment-item');
+          if (cb.checked) {
+            total += parseFloat(cb.value);
+            itemLabel.classList.add('selected');
+          } else {
+            itemLabel.classList.remove('selected');
+          }
+        });
+
+        const rate = currentMode === 'hicaps' ? parseFloat(fundTierSelect.value) : 0;
+        const rebate = total * rate;
+        const gap = total - rebate;
+
+        totalFeeEl.textContent = formatAUD(total);
+        estRebateEl.textContent = rebate > 0 ? '-' + formatAUD(rebate) : 'A$0.00';
+        outOfPocketEl.textContent = formatAUD(gap);
+
+        if (currentMode === 'hicaps') {
+          const pct = Math.round(rate * 100);
+          rebateNoteEl.textContent = `Based on ${pct}% indicative Extras rebate. Exact benefit depends on your annual fund limits.`;
+        } else {
+          rebateNoteEl.textContent = 'Self-Pay selected. Full fee payable on the day of your appointment.';
+        }
+      }
+
+      modeHicapsBtn.addEventListener('click', () => {
+        currentMode = 'hicaps';
+        modeHicapsBtn.classList.add('active');
+        modeSelfBtn.classList.remove('active');
+        fundTierGroup.style.display = 'block';
+        updateEstimate();
+      });
+
+      modeSelfBtn.addEventListener('click', () => {
+        currentMode = 'self';
+        modeSelfBtn.classList.add('active');
+        modeHicapsBtn.classList.remove('active');
+        fundTierGroup.style.display = 'none';
+        updateEstimate();
+      });
+
+      fundTierSelect.addEventListener('change', updateEstimate);
+      checkboxes.forEach((cb) => cb.addEventListener('change', updateEstimate));
+
+      bookingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('patient-name').value.trim();
+        const time = document.getElementById('preferred-time').value;
+        const selectedNames = checkboxes
+          .filter((cb) => cb.checked)
+          .map((cb) => cb.getAttribute('data-name'));
+
+        const summaryText = selectedNames.length > 0 ? selectedNames.join(', ') : 'General Consultation';
+        confirmationEl.textContent = `Thank you, ${name}. Your request for ${summaryText} (${time}) with an estimated out-of-pocket of ${outOfPocketEl.textContent} has been recorded. Our Canberra reception will confirm shortly on (02) 6248 0161.`;
+        confirmationEl.classList.add('visible');
+      });
+
+      updateEstimate();
+    })();
+  </script>
+</body>
+</html>
