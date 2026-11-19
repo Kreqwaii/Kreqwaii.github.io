@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bass Hill Veterinary Hospital in Sydney NSW. Private veterinary care, pet vaccinations, dentistry, surgery, radiography, ultrasonography, and interactive AUD schedule estimator.">
+  <title>Bass Hill Veterinary Hospital | Private Vet Care in Sydney NSW</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E6350'/%3E%3Cpath d='M16 7v18M7 16h18' stroke='%23F6F7F4' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..600&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-parchment: #F6F7F4;
+      --bg-surface: #FFFFFF;
+      --bg-muted: #EEF1EB;
+      --bg-accent-soft: #E7F0EC;
+      --ink-primary: #17221E;
+      --ink-secondary: #43524C;
+      --ink-muted: #62706A;
+      --accent: #1E6350;
+      --accent-hover: #174D3E;
+      --border-subtle: #DCE2D8;
+      --border-strong: #C5CEC0;
+      --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+      --font-serif: 'Fraunces', Georgia, serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-card: 0 1px 2px rgba(23, 34, 30, 0.04), 0 8px 24px rgba(23, 34, 30, 0.04);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-parchment);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-weight: 600;
+      color: var(--ink-primary);
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(246, 247, 244, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--ink-primary);
+    }
+
+    .brand:hover {
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background-color: var(--accent);
+      color: #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--ink-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      transition: color 0.16s ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background-color 0.16s ease;
+    }
+
+    .header-cta:hover {
+      background-color: var(--accent-hover);
+      text-decoration: none;
+      color: #FFFFFF;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 56px 0 48px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background-color: var(--bg-accent-soft);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 4.2vw, 48px);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .hero-lead {
+      font-size: 17px;
+      color: var(--ink-secondary);
+      max-width: 58ch;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 22px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent);
+      color: #FFFFFF;
+      border: 1px solid var(--accent);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+      text-decoration: none;
+      color: #FFFFFF;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 20px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      border: 1px solid var(--border-strong);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-muted);
+      text-decoration: none;
+      color: var(--ink-primary);
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .metric-label {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+    }
+
+    /* Clinic Card */
+    .clinic-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .clinic-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .clinic-card-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: var(--bg-accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .contact-box {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-parchment);
+      border: 1px solid var(--border-subtle);
+      min-width: 0;
+    }
+
+    .contact-box.full-span {
+      grid-column: 1 / -1;
+    }
+
+    .contact-box-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-box-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .contact-box a[href^="mailto:"],
+    .contact-box a[href^="http"] {
+      display: inline-block;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 12.5px;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    /* Sections */
+    .section {
+      padding: 64px 0;
+    }
+
+    .section-alt {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .section-header {
+      max-width: 680px;
+      margin-bottom: 36px;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(26px, 3vw, 34px);
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: var(--ink-secondary);
+      font-size: 16px;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color 0.16s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--border-strong);
+    }
+
+    .service-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .service-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background-color: var(--bg-accent-soft);
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .service-fee-pill {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--accent);
+      background-color: var(--bg-accent-soft);
+      padding: 5px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .service-card h3 {
+      font-size: 20px;
+    }
+
+    .service-card p {
+      color: var(--ink-secondary);
+      font-size: 14.5px;
+    }
+
+    .service-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--ink-secondary);
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* Interactive Calculator */
+    .calc-shell {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .calc-panel {
+      background-color: var(--bg-parchment);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+
+    .calc-output-panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .field-group {
+      margin-bottom: 22px;
+    }
+
+    .field-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-label,
+    label.input-label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      margin-bottom: 8px;
+    }
+
+    .segmented-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .segmented-row.three-col {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .seg-btn {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink-secondary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .seg-btn:hover {
+      border-color: var(--accent);
+      color: var(--ink-primary);
+    }
+
+    .seg-btn[aria-pressed="true"] {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    select.field-control,
+    input.field-control {
+      width: 100%;
+      padding: 11px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 14.5px;
+      line-height: 1.4;
+      transition: border-color 0.15s ease;
+    }
+
+    select.field-control:focus,
+    input.field-control:focus {
+      outline: 2px solid rgba(30, 99, 80, 0.25);
+      border-color: var(--accent);
+    }
+
+    .checklist-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 11px 13px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .check-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin: 2px 0 0;
+      accent-color: var(--accent);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .check-item label {
+      font-size: 13.5px;
+      color: var(--ink-primary);
+      cursor: pointer;
+      line-height: 1.45;
+    }
+
+    .check-sub {
+      display: block;
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    /* Output Card */
+    .output-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .output-title {
+      font-family: var(--font-serif);
+      font-size: 21px;
+      font-weight: 600;
+    }
+
+    .output-tag {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: var(--bg-accent-soft);
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .schedule-box {
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-parchment);
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 18px;
+    }
+
+    .schedule-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 6px 0;
+      font-size: 13.5px;
+      border-bottom: 1px dashed var(--border-subtle);
+    }
+
+    .schedule-row:last-child {
+      border-bottom: none;
+    }
+
+    .schedule-row-key {
+      color: var(--ink-muted);
+    }
+
+    .schedule-row-val {
+      font-weight: 600;
+      color: var(--ink-primary);
+      text-align: right;
+    }
+
+    .fee-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 18px;
+    }
+
+    .fee-table th,
+    .fee-table td {
+      padding: 9px 0;
+      font-size: 13.5px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .fee-table th {
+      text-align: left;
+      font-weight: 600;
+      color: var(--ink-muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .fee-table th:last-child,
+    .fee-table td:last-child {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .fee-total-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-accent-soft);
+      margin-bottom: 20px;
+    }
+
+    .fee-total-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .fee-total-amount {
+      font-family: var(--font-mono);
+      font-size: 22px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--accent);
+    }
+
+    .booking-divider {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 20px;
+      margin-top: 20px;
+    }
+
+    .booking-heading {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      margin-bottom: 14px;
+    }
+
+    .booking-result {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-parchment);
+      border: 1px solid var(--accent);
+      display: none;
+    }
+
+    .booking-result.visible {
+      display: block;
+    }
+
+    .booking-result-title {
+      font-weight: 600;
+      font-size: 14.5px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .booking-result pre {
+      margin: 0 0 12px;
+      white-space: pre-wrap;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--ink-primary);
+    }
+
+    .copy-status {
+      font-size: 12.5px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-left: 10px;
+    }
+
+    /* Contact & Hours */
+    .contact-section-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .info-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+
+    .info-card h3 {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .hours-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 14.5px;
+    }
+
+    .hours-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .hours-time {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 13.5px;
+      color: var(--ink-primary);
+      font-weight: 500;
+    }
+
+    /* Footer */
+    .site-footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--border-subtle);
+      background-color: var(--bg-parchment);
+      font-size: 13.5px;
+      color: var(--ink-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .calc-shell,
+      .contact-section-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero {
+        padding: 36px 0 32px;
+      }
+
+      .section {
+        padding: 44px 0;
+      }
+
+      .services-grid,
+      .form-grid-2,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .segmented-row.three-col {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-metrics {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .calc-panel,
+      .calc-output-panel,
+      .clinic-card,
+      .service-card,
+      .info-card {
+        padding: 18px;
+      }
+
+      .contact-box a[href^="mailto:"],
+      .contact-box a[href^="http"] {
+        font-size: 11.5px;
+      }
+
+      .header-cta {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Bass Hill Veterinary Hospital</span>
+          <span class="brand-sub">731 Hume Highway, Bass Hill NSW 2197</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#services">Clinical Services</a>
+        <a href="#calculator">Schedule Calculator</a>
+        <a href="#contact">Hours &amp; Contact</a>
+      </nav>
+
+      <a href="tel:+61297241927" class="header-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span class="mono">02 9724 1927</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Private Veterinary Hospital &bull; Sydney NSW</div>
+          <h1>Evidence-based veterinary care for Bass Hill and Western Sydney pets.</h1>
+          <p class="hero-lead">
+            Bass Hill Veterinary Hospital provides thorough health checks, C5 and F3 vaccinations, dental scale and polish, soft-tissue surgery, digital radiography, and ultrasonography at 731 Hume Highway.
+          </p>
+          <div class="hero-actions">
+            <a href="#calculator" class="btn-primary">
+              Open Schedule &amp; AUD Calculator
+            </a>
+            <a href="tel:+61297241927" class="btn-secondary">
+              Call 02 9724 1927
+            </a>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric-item">
+              <span class="metric-val">AUD $85</span>
+              <span class="metric-label">Standard consultation guide</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val">On-Site</span>
+              <span class="metric-label">Digital X-ray &amp; ultrasound</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val">NSW 2197</span>
+              <span class="metric-label">731 Hume Highway access</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="clinic-card" aria-label="Hospital Contact Summary">
+          <div class="clinic-card-header">
+            <h2 class="clinic-card-title">Clinic Reception</h2>
+            <span class="status-badge">
+              <span class="status-dot" aria-hidden="true"></span>
+              Appointments Open
+            </span>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-box">
+              <div class="contact-box-label">Telephone</div>
+              <div class="contact-box-value">
+                <a href="tel:+61297241927" class="mono">02 9724 1927</a>
+              </div>
+            </div>
+            <div class="contact-box">
+              <div class="contact-box-label">Location</div>
+              <div class="contact-box-value">731 Hume Hwy, Bass Hill</div>
+            </div>
+            <div class="contact-box full-span">
+              <div class="contact-box-label">Email Reception</div>
+              <div class="contact-box-value">
+                <a href="mailto:basshillvet@basshillvet.com.au">basshillvet@basshillvet.com.au</a>
+              </div>
+            </div>
+            <div class="contact-box full-span">
+              <div class="contact-box-label">Official Website</div>
+              <div class="contact-box-value">
+                <a href="https://www.basshillvet.com.au" target="_blank" rel="noopener noreferrer">https://www.basshillvet.com.au</a>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Clinical Capabilities</div>
+          <h2>Comprehensive medical, surgical, and diagnostic care</h2>
+          <p>Every consultation includes a nose-to-tail physical examination, weight and body condition scoring, and clear written fee estimates prior to treatment.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-top">
+              <span class="service-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+              </span>
+              <span class="service-fee-pill">From AUD $125</span>
+            </div>
+            <h3>Pet Health Checks &amp; Vaccinations</h3>
+            <p>Tailored immunisation protocols for Sydney dogs and cats, alongside senior wellness screening and puppy or kitten developmental checks.</p>
+            <ul class="service-list">
+              <li>Canine C3, C5, and Canine Cough boosters</li>
+              <li>Feline F3 core vaccination and FeLV assessment</li>
+              <li>Cardiorespiratory, lymph node, and joint checks</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div class="service-top">
+              <span class="service-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a5 5 0 0 1 5 5v2a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5Z"/>
+                  <path d="M8 14v5a2 2 0 0 0 4 0v-2a2 2 0 0 0 4 0v-3"/>
+                </svg>
+              </span>
+              <span class="service-fee-pill">From AUD $390</span>
+            </div>
+            <h3>Veterinary Dentistry &amp; Surgery</h3>
+            <p>Ultrasonic dental scaling, polishing, and surgical extractions performed under monitored gaseous anaesthesia with intravenous fluid support.</p>
+            <ul class="service-list">
+              <li>Ultrasonic scale, polish, and periodontal charting</li>
+              <li>Desexing (spey and castration) with pain relief</li>
+              <li>Soft-tissue lump removals and wound repair</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div class="service-top">
+              <span class="service-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="16" rx="2"/>
+                  <path d="M7 12h2l2-4 2 8 2-4h2"/>
+                </svg>
+              </span>
+              <span class="service-fee-pill">From AUD $260</span>
+            </div>
+            <h3>Radiography &amp; Ultrasonography</h3>
+            <p>In-house diagnostic imaging for rapid assessment of orthopaedic injuries, thoracic conditions, abdominal organs, and pregnancy confirmation.</p>
+            <ul class="service-list">
+              <li>Low-dose digital radiography with rapid review</li>
+              <li>Abdominal ultrasound and bladder screening</li>
+              <li>Pre-surgical and geriatric diagnostic workups</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div class="service-top">
+              <span class="service-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="m9 12 2 2 4-4"/>
+                </svg>
+              </span>
+              <span class="service-fee-pill">From AUD $65</span>
+            </div>
+            <h3>Microchipping &amp; Parasite Control</h3>
+            <p>NSW Companion Animals Register microchipping and year-round protection calibrated for Sydney paralysis ticks, heartworm, and fleas.</p>
+            <ul class="service-list">
+              <li>ISO-compliant microchipping and NSW registration</li>
+              <li>Annual ProHeart SR-12 heartworm injections</li>
+              <li>Paralysis tick and intestinal worming plans</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculator" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Interactive Clinical Planner</div>
+          <h2>Sydney Pet Vaccination &amp; Dental Checkup Schedule Calculator</h2>
+          <p>Select your pet's species, life stage, care bundle, and NSW parasite prevention items to view the recommended clinical schedule, live AUD fee guide, and local booking summary.</p>
+        </div>
+
+        <div class="calc-shell">
+          <div class="calc-panel">
+            <div class="field-group">
+              <div class="field-label">Species</div>
+              <div class="segmented-row" role="group" aria-label="Species">
+                <button type="button" class="seg-btn" data-species="dog" aria-pressed="true">Dog</button>
+                <button type="button" class="seg-btn" data-species="cat" aria-pressed="false">Cat</button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">Life Stage</div>
+              <div class="segmented-row three-col" role="group" aria-label="Life Stage">
+                <button type="button" class="seg-btn" data-age="young" aria-pressed="false">Puppy / Kitten</button>
+                <button type="button" class="seg-btn" data-age="adult" aria-pressed="true">Adult</button>
+                <button type="button" class="seg-btn" data-age="senior" aria-pressed="false">Senior (7+ yrs)</button>
+              </div>
+            </div>
+
+            <div class="field-group form-grid-2">
+              <div>
+                <label for="care-bundle" class="input-label">Care Bundle</label>
+                <select id="care-bundle" class="field-control" autocomplete="off">
+                  <option value="vax">Annual C5 / F3 Vaccination</option>
+                  <option value="dental">Scale &amp; Polish Dental</option>
+                  <option value="imaging">Ultrasound &amp; X-Ray Workup</option>
+                  <option value="desex">Desexing &amp; Microchip</option>
+                </select>
+              </div>
+              <div>
+                <label for="pet-size" class="input-label">Weight Bracket</label>
+                <select id="pet-size" class="field-control" autocomplete="off">
+                  <option value="small">Small (under 10 kg)</option>
+                  <option value="medium" selected>Medium (10 to 25 kg)</option>
+                  <option value="large">Large (over 25 kg)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">NSW Tick &amp; Heartworm Seasonal Prevention Checklist</div>
+              <div class="checklist-stack">
+                <div class="check-item">
+                  <input type="checkbox" id="prev-tick" autocomplete="off" checked>
+                  <label for="prev-tick">
+                    Paralysis Tick Prevention (Ixodes holocyclus)
+                    <span class="check-sub">Essential year-round in Greater Sydney; peak spring to autumn.</span>
+                  </label>
+                </div>
+                <div class="check-item">
+                  <input type="checkbox" id="prev-heartworm" autocomplete="off" checked>
+                  <label for="prev-heartworm">
+                    Heartworm Prophylaxis
+                    <span class="check-sub">Annual SR-12 injection (dogs) or monthly oral/topical cover.</span>
+                  </label>
+                </div>
+                <div class="check-item">
+                  <input type="checkbox" id="prev-worms" autocomplete="off">
+                  <label for="prev-worms">
+                    Intestinal All-Wormer (Every 3 Months)
+                    <span class="check-sub">Covers roundworm, hookworm, whipworm, and tapeworm.</span>
+                  </label>
+                </div>
+                <div class="check-item">
+                  <input type="checkbox" id="prev-flea" autocomplete="off">
+                  <label for="prev-flea">
+                    Flea &amp; Mite Control
+                    <span class="check-sub">Recommended for humid Sydney coastal and suburban gardens.</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-output-panel">
+            <div class="output-header">
+              <div>
+                <div class="field-label" style="margin-bottom: 2px; color: var(--ink-muted);">Recommended Plan</div>
+                <h3 class="output-title" id="out-title">Adult Dog &mdash; Annual C5 Vaccination</h3>
+              </div>
+              <span class="output-tag" id="out-tag">SYDNEY GUIDE</span>
+            </div>
+
+            <div class="schedule-box">
+              <div class="schedule-row">
+                <span class="schedule-row-key">Clinical Protocol</span>
+                <span class="schedule-row-val" id="sched-protocol">Full Physical + C5 Booster</span>
+              </div>
+              <div class="schedule-row">
+                <span class="schedule-row-key">Recommended Interval</span>
+                <span class="schedule-row-val" id="sched-interval">Every 12 months</span>
+              </div>
+              <div class="schedule-row">
+                <span class="schedule-row-key">Dental &amp; Senior Note</span>
+                <span class="schedule-row-val" id="sched-note">Annual periodontal grade check</span>
+              </div>
+              <div class="schedule-row">
+                <span class="schedule-row-key">NSW Prevention Status</span>
+                <span class="schedule-row-val" id="sched-prevention">2 items selected</span>
+              </div>
+            </div>
+
+            <table class="fee-table" aria-label="Live AUD Fee Guide">
+              <thead>
+                <tr>
+                  <th>Fee Component</th>
+                  <th>Guide (AUD)</th>
+                </tr>
+              </thead>
+              <tbody id="fee-rows"></tbody>
+            </table>
+
+            <div class="fee-total-row">
+              <span class="fee-total-label">Estimated Total (AUD, incl. GST)</span>
+              <span class="fee-total-amount" id="fee-total">$185</span>
+            </div>
+
+            <form id="booking-form" class="booking-divider">
+              <h4 class="booking-heading">Prepare Local Booking Summary</h4>
+              <div class="form-grid-2" style="margin-bottom: 12px;">
+                <div>
+                  <label for="pet-name" class="input-label">Pet Name</label>
+                  <input type="text" id="pet-name" name="petName" class="field-control" autocomplete="off" placeholder="e.g. Milo" required>
+                </div>
+                <div>
+                  <label for="owner-name" class="input-label">Owner Name</label>
+                  <input type="text" id="owner-name" name="ownerName" class="field-control" autocomplete="name" placeholder="e.g. Sarah Mitchell" required>
+                </div>
+              </div>
+              <div class="form-grid-2" style="margin-bottom: 14px;">
+                <div>
+                  <label for="owner-phone" class="input-label">Phone Number</label>
+                  <input type="tel" id="owner-phone" name="ownerPhone" class="field-control" autocomplete="tel" placeholder="0412 345 678" required>
+                </div>
+                <div>
+                  <label for="pref-window" class="input-label">Preferred Window</label>
+                  <select id="pref-window" name="prefWindow" class="field-control" autocomplete="off">
+                    <option value="Weekday Morning (8:30 AM - 12:00 PM)">Weekday Morning (8:30 AM - 12:00 PM)</option>
+                    <option value="Weekday Afternoon (12:00 PM - 5:30 PM)">Weekday Afternoon (12:00 PM - 5:30 PM)</option>
+                    <option value="Saturday Morning (8:30 AM - 12:30 PM)">Saturday Morning (8:30 AM - 12:30 PM)</option>
+                  </select>
+                </div>
+              </div>
+              <button type="submit" class="btn-primary" style="width: 100%;">
+                Generate Booking Summary
+              </button>
+            </form>
+
+            <div id="booking-result" class="booking-result" aria-live="polite">
+              <div class="booking-result-title">Booking Summary Ready for Reception</div>
+              <pre id="booking-summary-text"></pre>
+              <div>
+                <button type="button" id="copy-summary-btn" class="btn-secondary" style="padding: 8px 14px; font-size: 13.5px;">
+                  Copy Summary
+                </button>
+                <span id="copy-status" class="copy-status"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Visit Bass Hill Vet</div>
+          <h2>Hospital Hours &amp; Direct Contact</h2>
+          <p>Conveniently located on the Hume Highway with easy on-site parking for Bass Hill, Georges Hall, Yagoona, and Bankstown families.</p>
+        </div>
+
+        <div class="contact-section-grid">
+          <div class="info-card">
+            <h3>Consulting &amp; Surgical Hours</h3>
+            <div class="hours-list">
+              <div class="hours-row">
+                <span>Monday to Friday</span>
+                <span class="hours-time">08:30 AM &ndash; 06:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span>Saturday</span>
+                <span class="hours-time">08:30 AM &ndash; 01:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span>Sunday &amp; Public Holidays</span>
+                <span class="hours-time">Closed (Emergency referral)</span>
+              </div>
+              <div class="hours-row">
+                <span>Surgical Admissions</span>
+                <span class="hours-time">08:30 AM &ndash; 09:15 AM</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h3>Direct Hospital Details</h3>
+            <div class="contact-grid">
+              <div class="contact-box">
+                <div class="contact-box-label">Phone</div>
+                <div class="contact-box-value">
+                  <a href="tel:+61297241927" class="mono">02 9724 1927</a>
+                </div>
+              </div>
+              <div class="contact-box">
+                <div class="contact-box-label">Street Address</div>
+                <div class="contact-box-value">731 Hume Highway, Bass Hill NSW 2197</div>
+              </div>
+              <div class="contact-box full-span">
+                <div class="contact-box-label">Email</div>
+                <div class="contact-box-value">
+                  <a href="mailto:basshillvet@basshillvet.com.au">basshillvet@basshillvet.com.au</a>
+                </div>
+              </div>
+              <div class="contact-box full-span">
+                <div class="contact-box-label">Website</div>
+                <div class="contact-box-value">
+                  <a href="https://www.basshillvet.com.au" target="_blank" rel="noopener noreferrer">https://www.basshillvet.com.au</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Bass Hill Veterinary Hospital &bull; 731 Hume Highway, Bass Hill, NSW 2197</span>
+      <span>Private Veterinary Practice &bull; All fees listed in AUD (incl. GST) as clinical guides.</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        species: 'dog',
+        age: 'adult',
+        bundle: 'vax',
+        size: 'medium',
+        prevTick: true,
+        prevHeartworm: true,
+        prevWorms: false,
+        prevFlea: false
+      };
+
+      const speciesBtns = document.querySelectorAll('[data-species]');
+      const ageBtns = document.querySelectorAll('[data-age]');
+      const bundleSelect = document.getElementById('care-bundle');
+      const sizeSelect = document.getElementById('pet-size');
+      const prevTickEl = document.getElementById('prev-tick');
+      const prevHeartwormEl = document.getElementById('prev-heartworm');
+      const prevWormsEl = document.getElementById('prev-worms');
+      const prevFleaEl = document.getElementById('prev-flea');
+
+      const outTitle = document.getElementById('out-title');
+      const outTag = document.getElementById('out-tag');
+      const schedProtocol = document.getElementById('sched-protocol');
+      const schedInterval = document.getElementById('sched-interval');
+      const schedNote = document.getElementById('sched-note');
+      const schedPrevention = document.getElementById('sched-prevention');
+      const feeRows = document.getElementById('fee-rows');
+      const feeTotal = document.getElementById('fee-total');
+
+      const bookingForm = document.getElementById('booking-form');
+      const bookingResult = document.getElementById('booking-result');
+      const bookingSummaryText = document.getElementById('booking-summary-text');
+      const copyBtn = document.getElementById('copy-summary-btn');
+      const copyStatus = document.getElementById('copy-status');
+
+      let latestEstimate = { total: 0, title: '', protocol: '', preventionNames: [] };
+
+      function formatAUD(amount) {
+        return '$' + amount.toLocaleString('en-AU');
+      }
+
+      function calculatePlan() {
+        const isDog = state.species === 'dog';
+        const speciesLabel = isDog ? 'Dog' : 'Cat';
+        const ageLabel = state.age === 'young'
+          ? (isDog ? 'Puppy' : 'Kitten')
+          : (state.age === 'adult' ? 'Adult' : 'Senior');
+
+        const sizeAdj = state.size === 'small' ? 0 : (state.size === 'medium' ? 45 : 95);
+        const rows = [];
+        let title = '';
+        let protocol = '';
+        let interval = '';
+        let note = '';
+
+        if (state.bundle === 'vax') {
+          const code = isDog ? 'C5' : 'F3';
+          title = ageLabel + ' ' + speciesLabel + ' \u2014 Annual ' + code + ' Vaccination';
+          const baseVax = isDog ? 135 : 125;
+          rows.push({ name: code + ' Vaccination & Full Health Check', price: baseVax });
+
+          if (state.age === 'young') {
+            protocol = isDog ? 'Puppy C3/C5 Series (6, 10, 16 wks)' : 'Kitten F3 Series (8, 12, 16 wks)';
+            interval = 'Booster in 4 weeks, then annual';
+            note = 'Includes developmental & dental check';
+          } else if (state.age === 'senior') {
+            protocol = 'Annual ' + code + ' + Senior Wellness Check';
+            interval = 'Every 12 months (6-monthly check)';
+            note = 'Pre-anaesthetic & kidney blood screen advised';
+            rows.push({ name: 'Senior Wellness Blood Profile (Optional)', price: 95 });
+          } else {
+            protocol = 'Full Physical + ' + code + ' Booster';
+            interval = 'Every 12 months';
+            note = 'Annual periodontal grade check';
+          }
+        } else if (state.bundle === 'dental') {
+          title = ageLabel + ' ' + speciesLabel + ' \u2014 Scale & Polish Dental';
+          const baseDental = isDog ? 420 : 390;
+          rows.push({ name: 'Ultrasonic Scale, Polish & Charting', price: baseDental });
+          if (isDog && sizeAdj > 0) {
+            rows.push({ name: 'Weight-Based Anaesthesia & IV Fluids', price: sizeAdj });
+          }
+          if (state.age === 'senior') {
+            rows.push({ name: 'Pre-Anaesthetic Senior Blood Panel', price: 110 });
+            note = 'Senior cardiac & renal safety check included';
+          } else {
+            note = 'Day-stay surgical admission (8:30 AM)';
+          }
+          protocol = 'General Anaesthetic Dental Prophylaxis';
+          interval = 'Every 12 to 18 months';
+        } else if (state.bundle === 'imaging') {
+          title = ageLabel + ' ' + speciesLabel + ' \u2014 Ultrasound & X-Ray Workup';
+          rows.push({ name: 'Diagnostic Consultation & Triage', price: 85 });
+          rows.push({ name: 'Digital Radiography (2-View Series)', price: 240 });
+          rows.push({ name: 'Focused Abdominal Ultrasonography', price: 220 });
+          protocol = 'Combined Digital X-Ray & Ultrasound';
+          interval = 'As clinically indicated';
+          note = state.age === 'senior' ? 'Ideal for senior organ screening' : 'Sedation quoted separately if required';
+        } else {
+          title = ageLabel + ' ' + speciesLabel + ' \u2014 Desexing & Microchip';
+          const baseDesex = isDog ? 360 : 280;
+          rows.push({ name: speciesLabel + ' Desexing & Pain Relief', price: baseDesex });
+          if (isDog && sizeAdj > 0) {
+            rows.push({ name: 'Weight-Based Surgical Anaesthesia', price: sizeAdj });
+          }
+          rows.push({ name: 'ISO Microchip & NSW Registry Form', price: 65 });
+          protocol = 'Day Surgery + NSW Companion Registry';
+          interval = 'Single procedure (fast from midnight)';
+          note = state.age === 'young' ? 'Recommended from 5 to 6 months' : 'Includes post-op suture check';
+        }
+
+        const preventionNames = [];
+        if (state.prevTick) {
+          const p = isDog ? 48 : 42;
+          rows.push({ name: 'NSW Paralysis Tick Prevention (Single Dose)', price: p });
+          preventionNames.push('Paralysis Tick');
+        }
+        if (state.prevHeartworm) {
+          const p = isDog ? (state.size === 'large' ? 145 : 115) : 34;
+          rows.push({ name: isDog ? 'Heartworm ProHeart SR-12 / Prevention' : 'Feline Heartworm Monthly Cover', price: p });
+          preventionNames.push('Heartworm');
+        }
+        if (state.prevWorms) {
+          rows.push({ name: 'Intestinal All-Wormer Dose', price: 22 });
+          preventionNames.push('Intestinal Worms');
+        }
+        if (state.prevFlea) {
+          rows.push({ name: 'Flea & Mite Protection', price: 28 });
+          preventionNames.push('Flea & Mite');
+        }
+
+        let total = 0;
+        feeRows.innerHTML = '';
+        rows.forEach(function (item) {
+          total += item.price;
+          const tr = document.createElement('tr');
+          const tdName = document.createElement('td');
+          tdName.textContent = item.name;
+          const tdPrice = document.createElement('td');
+          tdPrice.textContent = formatAUD(item.price);
+          tr.appendChild(tdName);
+          tr.appendChild(tdPrice);
+          feeRows.appendChild(tr);
+        });
+
+        outTitle.textContent = title;
+        outTag.textContent = speciesLabel.toUpperCase() + ' \u2022 ' + ageLabel.toUpperCase();
+        schedProtocol.textContent = protocol;
+        schedInterval.textContent = interval;
+        schedNote.textContent = note;
+        schedPrevention.textContent = preventionNames.length > 0
+          ? preventionNames.join(', ')
+          : 'None selected';
+        feeTotal.textContent = formatAUD(total);
+
+        latestEstimate = {
+          total: total,
+          title: title,
+          protocol: protocol,
+          preventionNames: preventionNames
+        };
+      }
+
+      speciesBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.species = btn.getAttribute('data-species');
+          speciesBtns.forEach(function (b) {
+            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+          });
+          calculatePlan();
+        });
+      });
+
+      ageBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.age = btn.getAttribute('data-age');
+          ageBtns.forEach(function (b) {
+            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+          });
+          calculatePlan();
+        });
+      });
+
+      bundleSelect.addEventListener('change', function () {
+        state.bundle = bundleSelect.value;
+        calculatePlan();
+      });
+
+      sizeSelect.addEventListener('change', function () {
+        state.size = sizeSelect.value;
+        calculatePlan();
+      });
+
+      prevTickEl.addEventListener('change', function () {
+        state.prevTick = prevTickEl.checked;
+        calculatePlan();
+      });
+
+      prevHeartwormEl.addEventListener('change', function () {
+        state.prevHeartworm = prevHeartwormEl.checked;
+        calculatePlan();
+      });
+
+      prevWormsEl.addEventListener('change', function () {
+        state.prevWorms = prevWormsEl.checked;
+        calculatePlan();
+      });
+
+      prevFleaEl.addEventListener('change', function () {
+        state.prevFlea = prevFleaEl.checked;
+        calculatePlan();
+      });
+
+      bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const petName = document.getElementById('pet-name').value.trim();
+        const ownerName = document.getElementById('owner-name').value.trim();
+        const ownerPhone = document.getElementById('owner-phone').value.trim();
+        const prefWindow = document.getElementById('pref-window').value;
+
+        const prevSummary = latestEstimate.preventionNames.length > 0
+          ? latestEstimate.preventionNames.join(', ')
+          : 'None selected';
+
+        const summary = [
+          'BASS HILL VETERINARY HOSPITAL - APPOINTMENT REQUEST',
+          'Address: 731 Hume Highway, Bass Hill, NSW 2197',
+          'Phone: 02 9724 1927 | Email: basshillvet@basshillvet.com.au',
+          '--------------------------------------------------',
+          'Pet Name: ' + petName,
+          'Owner Name: ' + ownerName,
+          'Contact Phone: ' + ownerPhone,
+          'Preferred Window: ' + prefWindow,
+          'Selected Plan: ' + latestEstimate.title,
+          'Clinical Protocol: ' + latestEstimate.protocol,
+          'NSW Prevention Checklist: ' + prevSummary,
+          'Estimated Guide (AUD): ' + formatAUD(latestEstimate.total) + ' (incl. GST)'
+        ].join('\n');
+
+        bookingSummaryText.textContent = summary;
+        bookingResult.classList.add('visible');
+        copyStatus.textContent = '';
+      });
+
+      copyBtn.addEventListener('click', function () {
+        const text = bookingSummaryText.textContent;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            copyStatus.textContent = 'Copied to clipboard.';
+          }).catch(function () {
+            copyStatus.textContent = 'Ready to select and copy.';
+          });
+        } else {
+          copyStatus.textContent = 'Ready to select and copy.';
+        }
+      });
+
+      calculatePlan();
+    })();
+  </script>
+</body>
+</html>
