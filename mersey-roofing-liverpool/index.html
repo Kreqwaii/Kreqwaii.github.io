@@ -1,0 +1,3333 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mersey Roofing Ltd interactive specification and GBP roof repair and replacement estimator for Liverpool, Merseyside and the North West. Based in Liverpool L27.">
+  <title>Mersey Roofing Ltd | Liverpool & Merseyside Roof Estimator & Specification</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23191D23'/%3E%3Cpath d='M10 36 L32 16 L54 36' fill='none' stroke='%239A3D22' stroke-width='6' stroke-linecap='square'/%3E%3Cpath d='M18 36 L18 50 L46 50 L46 36' fill='none' stroke='%23F6F5F1' stroke-width='4'/%3E%3Crect x='39' y='18' width='6' height='11' fill='%23F6F5F1'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #F6F5F1;
+      --bg-surface: #FFFFFF;
+      --bg-warm: #ECE9E0;
+      --bg-warm-deep: #E2DED2;
+      --ink-primary: #191D23;
+      --ink-secondary: #3E4550;
+      --ink-muted: #5F6672;
+      --accent-brick: #9A3D22;
+      --accent-brick-hover: #7D3019;
+      --accent-brick-soft: #F3E8E4;
+      --accent-maritime: #1E3F52;
+      --accent-maritime-soft: #E6EDF1;
+      --accent-moss: #245940;
+      --accent-moss-soft: #E5EFEA;
+      --border-hairline: #DCD8CC;
+      --border-strong: #C2BDB0;
+      --shadow-card: 0 2px 10px rgba(25, 29, 35, 0.05);
+      --shadow-elevated: 0 10px 30px rgba(25, 29, 35, 0.08);
+      --font-display: 'Bricolage Grotesque', Georgia, serif;
+      --font-body: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', monospace;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --max-w: 1240px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: clip;
+    }
+
+    img, svg {
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background-color: var(--ink-primary);
+      color: var(--bg-surface);
+      padding: 10px 16px;
+      z-index: 999;
+      font-weight: 600;
+    }
+
+    .skip-link:focus {
+      left: 12px;
+      top: 12px;
+    }
+
+    /* Top Dispatch Bar */
+    .utility-bar {
+      background-color: var(--ink-primary);
+      color: #E7E4DC;
+      font-size: 13px;
+      border-bottom: 1px solid #2C323B;
+    }
+
+    .utility-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-block: 8px;
+      flex-wrap: wrap;
+    }
+
+    .utility-items {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .utility-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #D7D3C8;
+    }
+
+    .utility-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent-brick);
+      flex-shrink: 0;
+    }
+
+    .utility-phone {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      color: #FFFFFF;
+      letter-spacing: 0.02em;
+    }
+
+    .utility-phone:hover {
+      color: #E6A896;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      background-color: rgba(246, 245, 241, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: auto;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 19px;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+    }
+
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-link {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      padding-block: 6px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      color: var(--accent-brick);
+      border-bottom-color: var(--accent-brick);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .phone-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 13px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .phone-chip:hover {
+      border-color: var(--ink-primary);
+      background-color: var(--bg-warm);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 1.2;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background-color: var(--accent-brick);
+      color: #FFFFFF;
+      border-color: var(--accent-brick);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background-color: var(--accent-brick-hover);
+      border-color: var(--accent-brick-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:focus-visible {
+      background-color: var(--bg-warm);
+      border-color: var(--ink-primary);
+    }
+
+    .btn-dark {
+      background-color: var(--ink-primary);
+      color: #FFFFFF;
+      border-color: var(--ink-primary);
+    }
+
+    .btn-dark:hover,
+    .btn-dark:focus-visible {
+      background-color: #2B313B;
+      border-color: #2B313B;
+    }
+
+    .mobile-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      cursor: pointer;
+    }
+
+    .mobile-drawer {
+      display: none;
+      border-top: 1px solid var(--border-hairline);
+      background-color: var(--bg-surface);
+      padding: 16px 24px 20px;
+    }
+
+    .mobile-drawer.open {
+      display: block;
+    }
+
+    .mobile-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .mobile-nav-link {
+      display: block;
+      padding: 8px 4px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    /* Section Commons */
+    .section {
+      padding-block: 72px;
+    }
+
+    .section-tight {
+      padding-block: 56px;
+    }
+
+    .section-warm {
+      background-color: var(--bg-warm);
+      border-top: 1px solid var(--border-hairline);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-brick);
+      margin-bottom: 12px;
+    }
+
+    .eyebrow-rule {
+      width: 22px;
+      height: 2px;
+      background-color: var(--accent-brick);
+      display: inline-block;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      color: var(--ink-primary);
+      margin: 0;
+      letter-spacing: -0.025em;
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 4.1vw, 3.35rem);
+      line-height: 1.06;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: clamp(1.65rem, 3vw, 2.35rem);
+      line-height: 1.14;
+      font-weight: 700;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      line-height: 1.25;
+      font-weight: 600;
+    }
+
+    .section-lead {
+      font-size: 1.07rem;
+      color: var(--ink-secondary);
+      max-width: 66ch;
+      margin: 12px 0 0;
+    }
+
+    /* Hero */
+    .hero {
+      padding-block: 54px 64px;
+      border-bottom: 1px solid var(--border-hairline);
+      background-image: linear-gradient(180deg, #F6F5F1 0%, #F1EFE8 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-copy-p {
+      margin: 18px 0 26px;
+      font-size: 1.12rem;
+      color: var(--ink-secondary);
+      max-width: 58ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .hero-trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .trust-stat {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+    }
+
+    .trust-stat-val {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      display: block;
+    }
+
+    .trust-stat-lbl {
+      font-size: 13px;
+      color: var(--ink-muted);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* Hero Field Dossier Card */
+    .dossier-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-elevated);
+      overflow: hidden;
+    }
+
+    .dossier-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background-color: var(--ink-primary);
+      color: #F6F5F1;
+      padding: 13px 18px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .dossier-badge {
+      background-color: var(--accent-brick);
+      color: #FFFFFF;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 11px;
+    }
+
+    .dossier-diagram {
+      padding: 18px 18px 10px;
+      background-color: #FAF9F6;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .dossier-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      background-color: var(--border-hairline);
+    }
+
+    .dossier-cell {
+      background-color: var(--bg-surface);
+      padding: 14px 18px;
+    }
+
+    .dossier-cell-k {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      display: block;
+    }
+
+    .dossier-cell-v {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.12rem;
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+      margin-top: 3px;
+      display: block;
+    }
+
+    .dossier-cell-sub {
+      font-size: 13px;
+      color: var(--ink-secondary);
+      display: block;
+    }
+
+    /* Estimator Workbench */
+    .estimator-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .estimator-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-secondary);
+    }
+
+    .estimator-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.03fr) minmax(0, 0.97fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 24px;
+    }
+
+    .control-group {
+      margin-bottom: 22px;
+    }
+
+    .control-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .control-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--ink-primary);
+      margin-bottom: 10px;
+    }
+
+    .control-step {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent-brick);
+      background-color: var(--accent-brick-soft);
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* Property Type Cards */
+    .house-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .house-option {
+      position: relative;
+    }
+
+    .house-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+    }
+
+    .house-label {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      padding: 11px 10px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: #FAF9F6;
+      cursor: pointer;
+      height: 100%;
+      transition: border-color 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .house-label:hover {
+      border-color: var(--ink-primary);
+      background-color: var(--bg-surface);
+    }
+
+    .house-option input[type="radio"]:checked + .house-label {
+      border-color: var(--accent-brick);
+      background-color: var(--accent-brick-soft);
+      box-shadow: inset 0 0 0 1px var(--accent-brick);
+    }
+
+    .house-option input[type="radio"]:focus-visible + .house-label {
+      outline: 2px solid var(--accent-maritime);
+      outline-offset: 2px;
+    }
+
+    .house-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--ink-primary);
+      line-height: 1.2;
+    }
+
+    .house-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Work Scope Select & Pills */
+    .field-label {
+      display: block;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--ink-primary);
+      margin-bottom: 6px;
+    }
+
+    .select-control,
+    .input-control,
+    .textarea-control {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: #FAF9F6;
+      color: var(--ink-primary);
+      font-size: 15px;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .select-control:focus,
+    .input-control:focus,
+    .textarea-control:focus {
+      outline: none;
+      border-color: var(--accent-brick);
+      background-color: var(--bg-surface);
+      box-shadow: 0 0 0 3px rgba(154, 61, 34, 0.14);
+    }
+
+    .scope-pills {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .scope-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      text-align: left;
+      padding: 9px 11px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-hairline);
+      background-color: var(--bg-surface);
+      color: var(--ink-secondary);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .scope-btn:hover {
+      border-color: var(--ink-primary);
+      color: var(--ink-primary);
+    }
+
+    .scope-btn.active {
+      border-color: var(--accent-brick);
+      background-color: var(--accent-brick-soft);
+      color: var(--accent-brick);
+    }
+
+    .scope-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      opacity: 0.78;
+      flex-shrink: 0;
+    }
+
+    /* Area Slider + Number + Presets */
+    .area-top-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 128px;
+      gap: 14px;
+      align-items: end;
+    }
+
+    .range-wrap {
+      padding-bottom: 4px;
+    }
+
+    .range-control {
+      width: 100%;
+      accent-color: var(--accent-brick);
+      cursor: pointer;
+      height: 8px;
+      margin-top: 10px;
+    }
+
+    .range-scale {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      margin-top: 4px;
+    }
+
+    .number-box-wrap {
+      position: relative;
+    }
+
+    .number-input {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      padding-right: 36px;
+      text-align: right;
+    }
+
+    .unit-suffix {
+      position: absolute;
+      right: 11px;
+      bottom: 10px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--ink-muted);
+      pointer-events: none;
+    }
+
+    .preset-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .preset-chip {
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-canvas);
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 12px;
+      color: var(--ink-secondary);
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .preset-chip:hover {
+      border-color: var(--ink-primary);
+      color: var(--ink-primary);
+    }
+
+    .preset-chip.active {
+      background-color: var(--ink-primary);
+      border-color: var(--ink-primary);
+      color: #FFFFFF;
+    }
+
+    /* Checkboxes / Add-on Specs */
+    .addons-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .addon-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 11px 12px;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      background-color: #FAF9F6;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .addon-item.checked {
+      border-color: var(--accent-maritime);
+      background-color: var(--accent-maritime-soft);
+    }
+
+    .addon-checkbox {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--accent-maritime);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .addon-label {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .addon-label-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--ink-primary);
+    }
+
+    .addon-price-hint {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 12px;
+      color: var(--accent-maritime);
+      font-weight: 600;
+    }
+
+    .addon-desc {
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+
+    /* Estimator Result Panel */
+    .result-panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-elevated);
+      overflow: hidden;
+    }
+
+    .result-banner {
+      background-color: var(--ink-primary);
+      color: #F6F5F1;
+      padding: 22px 24px;
+    }
+
+    .result-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #C7C3B8;
+      margin-bottom: 6px;
+    }
+
+    .result-price-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .result-gbp {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.95rem, 3.2vw, 2.55rem);
+      line-height: 1.05;
+      color: #FFFFFF;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .result-duration-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 4px;
+      background-color: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 12px;
+      color: #F6F5F1;
+    }
+
+    .result-meta-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: 13px;
+      color: #D7D3C8;
+    }
+
+    .schematic-box {
+      padding: 16px 20px;
+      background-color: #FAF9F6;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .schematic-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .schematic-caption {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+    }
+
+    .schematic-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .layer-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 3px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink-secondary);
+    }
+
+    .layer-tag.on {
+      border-color: var(--accent-brick);
+      background-color: var(--accent-brick-soft);
+      color: var(--accent-brick);
+      font-weight: 600;
+    }
+
+    .breakdown-body {
+      padding: 20px 24px 24px;
+    }
+
+    .breakdown-list {
+      list-style: none;
+      margin: 0 0 18px;
+      padding: 0;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .breakdown-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-block: 10px;
+      border-bottom: 1px solid var(--border-hairline);
+      font-size: 14px;
+    }
+
+    .breakdown-label {
+      color: var(--ink-secondary);
+    }
+
+    .breakdown-val {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .result-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .result-note {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      margin: 12px 0 0;
+      line-height: 1.45;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .service-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      box-shadow: var(--shadow-card);
+      transition: border-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--accent-brick);
+      transform: translateY(-2px);
+    }
+
+    .service-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .service-icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background-color: var(--accent-brick-soft);
+      color: var(--accent-brick);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .service-spec-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      background-color: var(--bg-warm);
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .service-card p {
+      margin: 10px 0 16px;
+      font-size: 14.5px;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+    }
+
+    .service-points {
+      list-style: none;
+      margin: 0 0 18px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13.5px;
+      color: var(--ink-primary);
+    }
+
+    .service-points li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .point-mark {
+      width: 6px;
+      height: 6px;
+      border-radius: 1px;
+      background-color: var(--accent-brick);
+      flex-shrink: 0;
+    }
+
+    .service-trigger {
+      width: 100%;
+      justify-content: space-between;
+      font-size: 14px;
+      padding: 9px 12px;
+    }
+
+    /* Standards & 8-Step Protocol */
+    .standards-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      gap: 32px;
+      align-items: start;
+      margin-top: 28px;
+    }
+
+    .credential-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .cred-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .cred-code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-brick);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .cred-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .cred-card p {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+    }
+
+    .protocol-box {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .protocol-steps {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .step-item {
+      padding: 12px;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      background-color: #FAF9F6;
+    }
+
+    .step-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent-maritime);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .step-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 14.5px;
+      color: var(--ink-primary);
+      display: block;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: var(--ink-muted);
+      display: block;
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    /* Reviews & Coverage */
+    .reviews-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .rating-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+    }
+
+    .rating-score {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--accent-brick);
+    }
+
+    .rating-text {
+      font-size: 13px;
+      line-height: 1.3;
+      color: var(--ink-secondary);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .review-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .review-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--ink-primary);
+      margin-bottom: 6px;
+    }
+
+    .review-quote {
+      font-size: 14px;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .review-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-hairline);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--ink-muted);
+    }
+
+    .coverage-panel {
+      margin-top: 28px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .area-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .area-chip {
+      padding: 6px 11px;
+      border-radius: 4px;
+      border: 1px solid var(--border-hairline);
+      background-color: var(--bg-canvas);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-primary);
+    }
+
+    /* Survey & Contact Form */
+    .survey-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+      gap: 28px;
+      align-items: start;
+      margin-top: 28px;
+    }
+
+    .dispatch-card {
+      background-color: var(--ink-primary);
+      color: #F6F5F1;
+      border-radius: var(--radius-lg);
+      padding: 26px;
+    }
+
+    .dispatch-card h3 {
+      color: #FFFFFF;
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+    }
+
+    .dispatch-copy {
+      color: #D2CEC2;
+      font-size: 14.5px;
+      margin: 0 0 22px;
+    }
+
+    .contact-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-block: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      margin-bottom: 20px;
+    }
+
+    .contact-row-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #ABA79B;
+      display: block;
+    }
+
+    .contact-row-val {
+      font-size: 15.5px;
+      font-weight: 600;
+      color: #FFFFFF;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .warranty-box {
+      background-color: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      font-size: 13.5px;
+      color: #E3DFD5;
+      line-height: 1.5;
+    }
+
+    .form-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-elevated);
+    }
+
+    .transferred-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-warm);
+      margin-bottom: 18px;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .transferred-banner.synced {
+      background-color: var(--accent-moss-soft);
+      border-color: var(--accent-moss);
+    }
+
+    .transferred-banner-label {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: block;
+    }
+
+    .transferred-banner.synced .transferred-banner-label {
+      color: var(--accent-moss);
+    }
+
+    .transferred-banner-val {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--ink-primary);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-submit-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .form-status {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--accent-moss);
+      background-color: var(--accent-moss-soft);
+      color: var(--ink-primary);
+      display: none;
+    }
+
+    .form-status.visible {
+      display: block;
+    }
+
+    .form-status.error {
+      border-color: var(--accent-brick);
+      background-color: var(--accent-brick-soft);
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--ink-primary);
+      color: #D7D3C8;
+      padding-block: 44px 30px;
+      border-top: 4px solid var(--accent-brick);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) repeat(2, minmax(0, 0.85fr));
+      gap: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .footer-heading {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+    }
+
+    .footer-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      font-size: 14px;
+    }
+
+    .footer-list a:hover {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding-top: 20px;
+      font-size: 13px;
+      color: #B6B1A4;
+    }
+
+    .concept-note {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #E7E4DC;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .estimator-shell,
+      .standards-grid,
+      .survey-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid,
+      .reviews-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav-links,
+      .header-actions .phone-chip {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: inline-flex;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        padding-inline: 16px;
+      }
+
+      .section {
+        padding-block: 48px;
+      }
+
+      .hero {
+        padding-block: 34px 44px;
+      }
+
+      .hero-trust-grid,
+      .services-grid,
+      .reviews-grid,
+      .credential-cards,
+      .protocol-steps,
+      .form-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .house-grid,
+      .scope-pills {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .area-top-row {
+        grid-template-columns: 1fr;
+      }
+
+      .header-actions .btn {
+        padding: 8px 11px;
+        font-size: 13.5px;
+        white-space: nowrap;
+      }
+
+      .panel,
+      .result-banner,
+      .breakdown-body,
+      .form-card,
+      .dispatch-card {
+        padding: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-inner {
+        gap: 8px;
+        min-height: 62px;
+      }
+
+      .brand {
+        gap: 9px;
+      }
+
+      .brand-mark {
+        width: 34px;
+      }
+
+      .brand-name {
+        font-size: 16.5px;
+      }
+
+      .brand-sub {
+        font-size: 9.5px;
+      }
+
+      .header-actions {
+        gap: 8px;
+      }
+
+      .header-actions .btn {
+        padding: 8px 10px;
+        font-size: 12.5px;
+      }
+
+      .mobile-toggle {
+        width: 38px;
+        height: 38px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .house-grid,
+      .scope-pills {
+        grid-template-columns: 1fr;
+      }
+
+      .utility-bar-inner {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#estimator">Skip to Liverpool Roof Estimator</a>
+
+  <div class="utility-bar">
+    <div class="container utility-bar-inner">
+      <div class="utility-items">
+        <span class="utility-item">
+          <span class="utility-dot" aria-hidden="true"></span>
+          <span>Unit 29, Wheathill Industrial Estate, Holt Lane, Liverpool, L27 0YA</span>
+        </span>
+        <span class="utility-item">
+          <span class="utility-dot" aria-hidden="true"></span>
+          <span>LABC Affiliated · £2m Public / £5m Employer Liability</span>
+        </span>
+      </div>
+      <a class="utility-phone" href="tel:01514873914">24/7 Roof Line: 0151 487 3914</a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Mersey Roofing Ltd Home">
+        <svg class="brand-mark" viewBox="0 0 44 44" style="height:auto" aria-hidden="true">
+          <rect x="2" y="2" width="40" height="40" rx="6" fill="#191D23"/>
+          <path d="M8 25 L22 11 L36 25" fill="none" stroke="#9A3D22" stroke-width="4" stroke-linecap="square"/>
+          <path d="M13 24 L13 34 L31 34 L31 24" fill="none" stroke="#F6F5F1" stroke-width="2.6"/>
+          <rect x="26" y="13" width="4" height="7" fill="#F6F5F1"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">Mersey Roofing Ltd</span>
+          <span class="brand-sub">Est. 2012 · Liverpool L27</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a class="nav-link" href="#estimator">GBP Estimator</a>
+        <a class="nav-link" href="#services">Roofing Services</a>
+        <a class="nav-link" href="#standards">LABC & Protocol</a>
+        <a class="nav-link" href="#reviews">Reviews</a>
+        <a class="nav-link" href="#survey">Book Survey</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="phone-chip" href="tel:01514873914">0151 487 3914</a>
+        <a class="btn btn-primary" href="#survey">Book Survey</a>
+        <button type="button" class="mobile-toggle" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle navigation menu">
+          <svg width="20" viewBox="0 0 24 24" style="height:auto" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <line x1="4" y1="7" x2="20" y2="7"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <line x1="4" y1="17" x2="20" y2="17"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobile-drawer">
+      <div class="mobile-nav-list">
+        <a class="mobile-nav-link" href="#estimator">Liverpool GBP Estimator</a>
+        <a class="mobile-nav-link" href="#services">Roofing Services</a>
+        <a class="mobile-nav-link" href="#standards">LABC & 8-Step Protocol</a>
+        <a class="mobile-nav-link" href="#reviews">Verified Reviews</a>
+        <a class="mobile-nav-link" href="#survey">Request Inspection</a>
+      </div>
+      <a class="btn btn-secondary" style="width:100%" href="tel:01514873914">Call 0151 487 3914</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-rule" aria-hidden="true"></span>
+            <span>Liverpool, Merseyside &amp; North West Roofers</span>
+          </div>
+          <h1>Specialist Roofing Solutions Built to Weather Merseyside.</h1>
+          <p class="hero-copy-p">
+            Established in 2012 with over 30 years of combined director experience, Mersey Roofing Ltd delivers natural slate and clay tile replacements, EPDM and GRP flat systems, leadwork, and 24/7 storm repairs from our Holt Lane yard in Liverpool L27.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#estimator">Calculate GBP Roof Estimate</a>
+            <a class="btn btn-secondary" href="tel:01514873914">Call 0151 487 3914</a>
+          </div>
+          <div class="hero-trust-grid">
+            <div class="trust-stat">
+              <span class="trust-stat-val">10 / 10</span>
+              <span class="trust-stat-lbl">Checkatrade Rated (100+ Reviews)</span>
+            </div>
+            <div class="trust-stat">
+              <span class="trust-stat-val">10 Years</span>
+              <span class="trust-stat-lbl">Written Replacement Warranty</span>
+            </div>
+            <div class="trust-stat">
+              <span class="trust-stat-val">£2m / £5m</span>
+              <span class="trust-stat-lbl">Public &amp; Employer Liability</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="dossier-card" aria-label="Mersey Roofing Technical Specification">
+          <div class="dossier-head">
+            <span>Mersey Roofing Dispatch // L27 0YA</span>
+            <span class="dossier-badge">LABC Affiliated</span>
+          </div>
+          <div class="dossier-diagram">
+            <svg viewBox="0 0 520 230" style="width:100%;height:auto;display:block;" role="img" aria-label="Architectural cross-section of a pitched Liverpool roof with chimney lead flashing, breathable membrane, battens and guttering">
+              <rect x="0" y="0" width="520" height="230" fill="#FAF9F6"/>
+              <line x1="28" y1="196" x2="492" y2="196" stroke="#C2BDB0" stroke-width="1.5"/>
+              <rect x="110" y="138" width="300" height="58" fill="#EAE6DC" stroke="#191D23" stroke-width="1.8"/>
+              <rect x="148" y="152" width="46" height="32" fill="#FFFFFF" stroke="#5F6672" stroke-width="1.4"/>
+              <line x1="171" y1="152" x2="171" y2="184" stroke="#5F6672" stroke-width="1.2"/>
+              <rect x="326" y="152" width="46" height="32" fill="#FFFFFF" stroke="#5F6672" stroke-width="1.4"/>
+              <line x1="349" y1="152" x2="349" y2="184" stroke="#5F6672" stroke-width="1.2"/>
+              <rect x="242" y="154" width="36" height="42" fill="#9A3D22" stroke="#191D23" stroke-width="1.5"/>
+              <rect x="330" y="42" width="34" height="58" fill="#9A3D22" stroke="#191D23" stroke-width="1.6"/>
+              <rect x="326" y="38" width="42" height="6" fill="#191D23"/>
+              <path d="M326 88 L368 88 L368 96 L326 96 Z" fill="#1E3F52"/>
+              <polygon points="88,138 260,46 432,138" fill="#2A303A" stroke="#191D23" stroke-width="2"/>
+              <line x1="124" y1="119" x2="396" y2="119" stroke="#4D5563" stroke-width="1.4"/>
+              <line x1="158" y1="101" x2="362" y2="101" stroke="#4D5563" stroke-width="1.4"/>
+              <line x1="192" y1="82" x2="328" y2="82" stroke="#4D5563" stroke-width="1.4"/>
+              <line x1="226" y1="64" x2="294" y2="64" stroke="#4D5563" stroke-width="1.4"/>
+              <polygon points="168,128 214,88 260,88 232,128" fill="#E6EDF1" stroke="#1E3F52" stroke-width="1.4"/>
+              <line x1="180" y1="118" x2="239" y2="118" stroke="#9A3D22" stroke-width="2"/>
+              <line x1="192" y1="108" x2="246" y2="108" stroke="#9A3D22" stroke-width="2"/>
+              <line x1="204" y1="98" x2="253" y2="98" stroke="#9A3D22" stroke-width="2"/>
+              <path d="M249 52 L260 44 L271 52" fill="none" stroke="#9A3D22" stroke-width="4" stroke-linecap="round"/>
+              <rect x="84" y="136" width="352" height="6" fill="#FFFFFF" stroke="#191D23" stroke-width="1.2"/>
+              <line x1="98" y1="142" x2="98" y2="196" stroke="#1E3F52" stroke-width="3.5"/>
+              <line x1="260" y1="45" x2="260" y2="23" stroke="#9A3D22" stroke-width="1.2"/>
+              <text x="260" y="17" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#191D23" font-weight="600">BS 8612 DRY RIDGE</text>
+              <line x1="364" y1="92" x2="418" y2="68" stroke="#1E3F52" stroke-width="1.2"/>
+              <text x="422" y="71" font-family="JetBrains Mono, monospace" font-size="10" fill="#1E3F52" font-weight="600">CODE 4 LEADWORK</text>
+              <line x1="194" y1="112" x2="105" y2="86" stroke="#191D23" stroke-width="1.1"/>
+              <text x="22" y="83" font-family="JetBrains Mono, monospace" font-size="10" fill="#191D23" font-weight="600">MEMBRANE</text>
+              <text x="22" y="95" font-family="JetBrains Mono, monospace" font-size="10" fill="#5F6672">&amp; BATTENS</text>
+              <text x="90" y="216" font-family="JetBrains Mono, monospace" font-size="10" fill="#5F6672">UPVC ROOFLINE &amp; EAVES VENTILATION</text>
+            </svg>
+          </div>
+          <div class="dossier-metrics">
+            <div class="dossier-cell">
+              <span class="dossier-cell-k">Combined Experience</span>
+              <span class="dossier-cell-v">30+ Years</span>
+              <span class="dossier-cell-sub">Director-led surveys</span>
+            </div>
+            <div class="dossier-cell">
+              <span class="dossier-cell-k">Avg. Re-Roof Window</span>
+              <span class="dossier-cell-v">2 - 4 Days</span>
+              <span class="dossier-cell-sub">Weather-tight overnight</span>
+            </div>
+            <div class="dossier-cell">
+              <span class="dossier-cell-k">Storm Response</span>
+              <span class="dossier-cell-v">2 - 4 Hours</span>
+              <span class="dossier-cell-sub">24/7 emergency dispatch</span>
+            </div>
+            <div class="dossier-cell">
+              <span class="dossier-cell-k">Safety &amp; Site Certs</span>
+              <span class="dossier-cell-v">SSSTS / SMSTS</span>
+              <span class="dossier-cell-sub">Height &amp; wheel certified</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-warm" id="estimator">
+      <div class="container">
+        <div class="estimator-header">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-rule" aria-hidden="true"></span>
+              <span>Interactive Planning Tool</span>
+            </div>
+            <h2>Liverpool &amp; Merseyside Roof Repair &amp; Replacement GBP Estimator</h2>
+            <p class="section-lead">
+              Configure your Merseyside property profile, work specification, and roof area to model a realistic GBP guide range, working timeline, and live roof elevation schematic before booking a free on-site survey.
+            </p>
+          </div>
+          <div class="estimator-tag">
+            <span>2026 Merseyside Guide Rates</span>
+            <span>·</span>
+            <span class="tabular">Zero Hidden Extras</span>
+          </div>
+        </div>
+
+        <div class="estimator-shell">
+          <div class="panel" aria-label="Roof Specification Controls">
+            <div class="control-group">
+              <div class="control-title">
+                <span>Property Type</span>
+                <span class="control-step">01 / HOUSE CLASS</span>
+              </div>
+              <div class="house-grid" role="radiogroup" aria-label="Property Type">
+                <div class="house-option">
+                  <input type="radio" name="house-type" id="house-terraced" value="terraced" autocomplete="off">
+                  <label class="house-label" for="house-terraced">
+                    <span class="house-name">Terraced</span>
+                    <span class="house-meta">~48 m² typ.</span>
+                  </label>
+                </div>
+                <div class="house-option">
+                  <input type="radio" name="house-type" id="house-semi" value="semi" checked autocomplete="off">
+                  <label class="house-label" for="house-semi">
+                    <span class="house-name">Semi-Detached</span>
+                    <span class="house-meta">~72 m² typ.</span>
+                  </label>
+                </div>
+                <div class="house-option">
+                  <input type="radio" name="house-type" id="house-detached" value="detached" autocomplete="off">
+                  <label class="house-label" for="house-detached">
+                    <span class="house-name">Detached</span>
+                    <span class="house-meta">~112 m² typ.</span>
+                  </label>
+                </div>
+                <div class="house-option">
+                  <input type="radio" name="house-type" id="house-bungalow" value="bungalow" autocomplete="off">
+                  <label class="house-label" for="house-bungalow">
+                    <span class="house-name">Bungalow</span>
+                    <span class="house-meta">~86 m² typ.</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="control-title">
+                <span>Scope of Roofing Works</span>
+                <span class="control-step">02 / SYSTEM</span>
+              </div>
+              <label class="field-label" for="scope-select">Select Primary Work Specification</label>
+              <select class="select-control" id="scope-select" name="scope" autocomplete="off">
+                <option value="slate">Natural Slate Re-Roof (100+ Yr Lifespan)</option>
+                <option value="tile" selected>Concrete/Clay Tile Replacement (40 - 70 Yr)</option>
+                <option value="flat">Flat Roof EPDM/GRP (Extensions &amp; Garages)</option>
+                <option value="repair">Storm Leak &amp; Tile Repair (Emergency / Targeted)</option>
+                <option value="chimney">Chimney &amp; Leadwork (Code 4/5 Lead &amp; Repoint)</option>
+                <option value="roofline">Fascias/Soffits/Guttering (UPVC Roofline)</option>
+              </select>
+
+              <div class="scope-pills" id="scope-pills" aria-label="Quick work type selector">
+                <button type="button" class="scope-btn" data-scope="slate">
+                  <span>Natural Slate Re-Roof</span>
+                  <span class="scope-code">SLATE</span>
+                </button>
+                <button type="button" class="scope-btn active" data-scope="tile">
+                  <span>Concrete/Clay Tile</span>
+                  <span class="scope-code">TILE</span>
+                </button>
+                <button type="button" class="scope-btn" data-scope="flat">
+                  <span>Flat Roof EPDM/GRP</span>
+                  <span class="scope-code">FLAT</span>
+                </button>
+                <button type="button" class="scope-btn" data-scope="repair">
+                  <span>Storm Leak &amp; Repair</span>
+                  <span class="scope-code">REPAIR</span>
+                </button>
+                <button type="button" class="scope-btn" data-scope="chimney">
+                  <span>Chimney &amp; Leadwork</span>
+                  <span class="scope-code">LEAD</span>
+                </button>
+                <button type="button" class="scope-btn" data-scope="roofline">
+                  <span>Fascias/Soffits/Guttering</span>
+                  <span class="scope-code">UPVC</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="control-title">
+                <span>Roof Plan / Repair Area</span>
+                <span class="control-step">03 / AREA M²</span>
+              </div>
+              <div class="area-top-row">
+                <div class="range-wrap">
+                  <label class="field-label" for="area-range">Adjust Roof Area (m²)</label>
+                  <input class="range-control" id="area-range" type="range" min="12" max="220" step="1" value="72" autocomplete="off">
+                  <div class="range-scale">
+                    <span>12 m² Bay / Patch</span>
+                    <span>72 m² Semi</span>
+                    <span>140 m² Large</span>
+                    <span>220 m²</span>
+                  </div>
+                </div>
+                <div class="number-box-wrap">
+                  <label class="field-label" for="area-number">Exact Area</label>
+                  <input class="input-control number-input" id="area-number" type="number" min="12" max="220" step="1" value="72" autocomplete="off">
+                  <span class="unit-suffix" aria-hidden="true">m²</span>
+                </div>
+              </div>
+              <div class="preset-row" aria-label="Area Presets">
+                <button type="button" class="preset-chip" data-area="24">24 m² Garage / Bay</button>
+                <button type="button" class="preset-chip" data-area="48">48 m² L-Pool Terrace</button>
+                <button type="button" class="preset-chip active" data-area="72">72 m² 3-Bed Semi</button>
+                <button type="button" class="preset-chip" data-area="115">115 m² Detached</button>
+                <button type="button" class="preset-chip" data-area="160">160 m² Extended</button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="control-title">
+                <span>Site Access &amp; Specification Upgrades</span>
+                <span class="control-step">04 / OPTIONS</span>
+              </div>
+              <div class="addons-list">
+                <div class="addon-item checked" id="wrap-scaffolding">
+                  <input class="addon-checkbox" type="checkbox" id="opt-scaffolding" checked autocomplete="off">
+                  <label class="addon-label" for="opt-scaffolding">
+                    <span class="addon-label-top">
+                      <span>Scaffolding (Independent Edge Protection)</span>
+                      <span class="addon-price-hint" id="hint-scaffolding">+£890</span>
+                    </span>
+                    <span class="addon-desc">BS EN 12811 compliant scaffold access erected and struck around active elevations.</span>
+                  </label>
+                </div>
+
+                <div class="addon-item checked" id="wrap-membrane">
+                  <input class="addon-checkbox" type="checkbox" id="opt-membrane" checked autocomplete="off">
+                  <label class="addon-label" for="opt-membrane">
+                    <span class="addon-label-top">
+                      <span>Breathable Membrane &amp; Battens</span>
+                      <span class="addon-price-hint" id="hint-membrane">+£1,436</span>
+                    </span>
+                    <span class="addon-desc">Vapour-permeable pitched roof underlay and BS 5534 graded treated softwood battens.</span>
+                  </label>
+                </div>
+
+                <div class="addon-item checked" id="wrap-dryridge">
+                  <input class="addon-checkbox" type="checkbox" id="opt-dryridge" checked autocomplete="off">
+                  <label class="addon-label" for="opt-dryridge">
+                    <span class="addon-label-top">
+                      <span>Dry Ridge/Verge System</span>
+                      <span class="addon-price-hint" id="hint-dryridge">+£848</span>
+                    </span>
+                    <span class="addon-desc">BS 8612 mechanically fixed ventilated ridge and verge caps eliminating mortar failure.</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-panel" aria-live="polite">
+            <div class="result-banner">
+              <div class="result-kicker">Estimated Liverpool &amp; Merseyside Guide Cost</div>
+              <div class="result-price-row">
+                <div class="result-gbp" id="res-gbp-range">£9,800 - £11,950</div>
+                <div class="result-duration-pill" id="res-duration">3 - 4 Working Days</div>
+              </div>
+              <div class="result-meta-strip">
+                <span id="res-summary-meta">Semi-Detached · Concrete/Clay Tile Replacement · 72 m²</span>
+                <span id="res-warranty-meta">10-Yr Workmanship + 30-Yr Tile Cover</span>
+              </div>
+            </div>
+
+            <div class="schematic-box">
+              <div class="schematic-bar">
+                <span class="schematic-caption" id="svg-caption">Live Roof Elevation Schematic // Semi-Detached</span>
+                <div class="schematic-badges">
+                  <span class="layer-tag on" id="tag-scaff">Scaffold</span>
+                  <span class="layer-tag on" id="tag-membrane">Membrane</span>
+                  <span class="layer-tag on" id="tag-ridge">Dry Ridge</span>
+                </div>
+              </div>
+
+              <svg id="roof-schematic" viewBox="0 0 600 280" style="width:100%;height:auto;display:block;" role="img" aria-label="Dynamic roof specification schematic">
+                <rect x="0" y="0" width="600" height="280" fill="#FAF9F6" stroke="#DCD8CC" stroke-width="1"/>
+                <g stroke="#EDEAE2" stroke-width="1">
+                  <line x1="0" y1="70" x2="600" y2="70"/>
+                  <line x1="0" y1="140" x2="600" y2="140"/>
+                  <line x1="0" y1="210" x2="600" y2="210"/>
+                  <line x1="150" y1="0" x2="150" y2="280"/>
+                  <line x1="300" y1="0" x2="300" y2="280"/>
+                  <line x1="450" y1="0" x2="450" y2="280"/>
+                </g>
+
+                <line x1="36" y1="238" x2="564" y2="238" stroke="#5F6672" stroke-width="1.6"/>
+
+                <g id="svg-house-group">
+                  <rect id="svg-wall" x="150" y="138" width="300" height="100" fill="#EDEAE2" stroke="#191D23" stroke-width="2"/>
+                  <g id="svg-openings" fill="#FFFFFF" stroke="#5F6672" stroke-width="1.4">
+                    <rect x="182" y="156" width="44" height="34"/>
+                    <rect x="374" y="156" width="44" height="34"/>
+                    <rect x="282" y="176" width="36" height="62" fill="#9A3D22" stroke="#191D23"/>
+                  </g>
+                  <g id="svg-chimney">
+                    <rect id="svg-chimney-brick" x="358" y="42" width="32" height="54" fill="#9A3D22" stroke="#191D23" stroke-width="1.6"/>
+                    <rect id="svg-chimney-cap" x="354" y="37" width="40" height="6" fill="#191D23"/>
+                    <rect id="svg-lead-flash" x="353" y="83" width="42" height="9" fill="#1E3F52"/>
+                  </g>
+                  <polygon id="svg-roof-poly" points="128,138 300,52 472,138" fill="#8C3E26" stroke="#191D23" stroke-width="2.2"/>
+                  <g id="svg-roof-courses" stroke="rgba(255,255,255,0.28)" stroke-width="1.3">
+                    <line x1="164" y1="120" x2="436" y2="120"/>
+                    <line x1="196" y1="104" x2="404" y2="104"/>
+                    <line x1="228" y1="88" x2="372" y2="88"/>
+                    <line x1="260" y1="72" x2="340" y2="72"/>
+                  </g>
+                  <g id="svg-scope-overlay"></g>
+                  <g id="svg-layer-membrane">
+                    <polygon points="210,126 248,92 292,92 268,126" fill="#E6EDF1" stroke="#1E3F52" stroke-width="1.5"/>
+                    <line x1="220" y1="118" x2="274" y2="118" stroke="#9A3D22" stroke-width="2"/>
+                    <line x1="230" y1="109" x2="280" y2="109" stroke="#9A3D22" stroke-width="2"/>
+                    <line x1="240" y1="100" x2="286" y2="100" stroke="#9A3D22" stroke-width="2"/>
+                  </g>
+                  <g id="svg-layer-ridge">
+                    <path id="svg-ridge-path" d="M286 58 L300 49 L314 58" fill="none" stroke="#F6F5F1" stroke-width="4.5" stroke-linecap="round"/>
+                    <path id="svg-verge-left" d="M128 138 L300 52" fill="none" stroke="#9A3D22" stroke-width="3.5" stroke-dasharray="6 4"/>
+                    <path id="svg-verge-right" d="M472 138 L300 52" fill="none" stroke="#9A3D22" stroke-width="3.5" stroke-dasharray="6 4"/>
+                  </g>
+                  <rect id="svg-fascia" x="122" y="136" width="356" height="6" fill="#FFFFFF" stroke="#191D23" stroke-width="1.4"/>
+                  <line id="svg-downpipe" x1="138" y1="142" x2="138" y2="238" stroke="#1E3F52" stroke-width="3.5"/>
+                </g>
+
+                <g id="svg-layer-scaffold" stroke="#1E3F52" stroke-width="1.8" fill="none">
+                  <line x1="116" y1="110" x2="116" y2="238"/>
+                  <line x1="196" y1="110" x2="196" y2="238"/>
+                  <line x1="404" y1="110" x2="404" y2="238"/>
+                  <line x1="484" y1="110" x2="484" y2="238"/>
+                  <line x1="112" y1="148" x2="488" y2="148" stroke-width="2.2"/>
+                  <line x1="112" y1="192" x2="488" y2="192" stroke-width="2.2"/>
+                  <line x1="116" y1="148" x2="196" y2="192" stroke-width="1.1" stroke-dasharray="4 3"/>
+                  <line x1="404" y1="148" x2="484" y2="192" stroke-width="1.1" stroke-dasharray="4 3"/>
+                  <rect x="114" y="143" width="372" height="5" fill="#C97C36" stroke="#191D23" stroke-width="1"/>
+                </g>
+
+                <g font-family="JetBrains Mono, monospace" font-size="10.5" fill="#191D23">
+                  <rect id="svg-badge-left-bg" x="14" y="10" width="256" height="22" rx="4" fill="#FFFFFF" stroke="#DCD8CC"/>
+                  <text id="svg-badge-left" x="23" y="25" font-weight="600">AREA: 72 m² // PITCHED</text>
+                  <rect x="400" y="10" width="186" height="22" rx="4" fill="#191D23"/>
+                  <text id="svg-badge-right" x="493" y="25" text-anchor="middle" fill="#F6F5F1" font-weight="600">LIVERPOOL L27 DISPATCH</text>
+                  <text id="svg-bottom-note" x="300" y="264" text-anchor="middle" fill="#5F6672">ACTIVE SPEC: TILE REPLACEMENT + SCAFFOLD + MEMBRANE + DRY RIDGE</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="breakdown-body">
+              <ul class="breakdown-list">
+                <li class="breakdown-row">
+                  <span class="breakdown-label">Materials &amp; Roofing Profile Allocation</span>
+                  <span class="breakdown-val" id="bd-materials">£3,920</span>
+                </li>
+                <li class="breakdown-row">
+                  <span class="breakdown-label">Certified Crew Labour, Stripping &amp; Weatherproofing</span>
+                  <span class="breakdown-val" id="bd-labour">£3,800</span>
+                </li>
+                <li class="breakdown-row">
+                  <span class="breakdown-label" id="bd-options-label">Scaffolding, Membrane &amp; Dry-Fix Options</span>
+                  <span class="breakdown-val" id="bd-options">£3,174</span>
+                </li>
+                <li class="breakdown-row">
+                  <span class="breakdown-label">Waste Skip Disposal, Photo Inspection &amp; LABC Check</span>
+                  <span class="breakdown-val">Included</span>
+                </li>
+              </ul>
+
+              <div class="result-actions">
+                <button type="button" class="btn btn-primary" id="btn-transfer-spec">
+                  Transfer Estimate to Liverpool Survey Form
+                </button>
+                <a class="btn btn-secondary" href="tel:01514873914">
+                  Speak With Jake &amp; Crew: 0151 487 3914
+                </a>
+              </div>
+              <p class="result-note">
+                Guide figures cover typical Merseyside roof access and waste removal. Exact written fixed-price quotations are issued free of charge following physical roof and deck inspection.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="eyebrow">
+          <span class="eyebrow-rule" aria-hidden="true"></span>
+          <span>Core Capabilities</span>
+        </div>
+        <h2>Complete Domestic &amp; Commercial Roofing Services</h2>
+        <p class="section-lead">
+          From emergency 24/7 leak response in bad weather to full architectural re-roofs across Liverpool, Merseyside, and the wider North West. Select any trade line to load it directly into the GBP Estimator above.
+        </p>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon-box" aria-hidden="true">
+                  <svg width="22" viewBox="0 0 24 24" style="height:auto" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 11L12 3l9 8"/>
+                    <path d="M6 10v10h12V10"/>
+                  </svg>
+                </div>
+                <span class="service-spec-badge">2 - 4 DAYS TYPICAL</span>
+              </div>
+              <h3>Full Roof Replacements</h3>
+              <p>
+                Complete strip-down to structural deck, timber inspection, weather-tight overnight tarping, and certified replacement in slate, clay, concrete, or flat systems.
+              </p>
+              <ul class="service-points">
+                <li><span class="point-mark" aria-hidden="true"></span>10-year transferable workmanship warranty</li>
+                <li><span class="point-mark" aria-hidden="true"></span>25 - 50 year manufacturer material guarantees</li>
+                <li><span class="point-mark" aria-hidden="true"></span>Never left exposed to Merseyside rain overnight</li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-secondary service-trigger" data-load-scope="tile">
+              <span>Estimate Replacement</span>
+              <span class="mono">-&gt; GBP</span>
+            </button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon-box" aria-hidden="true">
+                  <svg width="22" viewBox="0 0 24 24" style="height:auto" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L4 7v6c0 5 3.4 9.2 8 10 4.6-.8 8-5 8-10V7l-8-5z"/>
+                    <path d="M9 12l2 2 4-4"/>
+                  </svg>
+                </div>
+                <span class="service-spec-badge">24/7 STORM CALLOUT</span>
+              </div>
+              <h3>Roof Repairs &amp; Leak Detection</h3>
+              <p>
+                Rapid 2 - 4 hour emergency arrival for severe storm leaks and slipped slates. We diagnose moisture paths accurately and supply before/after photographs.
+              </p>
+              <ul class="service-points">
+                <li><span class="point-mark" aria-hidden="true"></span>Moisture tracking &amp; matched slate/tile patching</li>
+                <li><span class="point-mark" aria-hidden="true"></span>Insurance claim documentation &amp; breakdowns</li>
+                <li><span class="point-mark" aria-hidden="true"></span>Most repairs completed in 1 - 2 working days</li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-secondary service-trigger" data-load-scope="repair">
+              <span>Estimate Repair</span>
+              <span class="mono">-&gt; GBP</span>
+            </button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon-box" aria-hidden="true">
+                  <svg width="22" viewBox="0 0 24 24" style="height:auto" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="16" rx="2"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                    <line x1="9" y1="4" x2="9" y2="20"/>
+                  </svg>
+                </div>
+                <span class="service-spec-badge">100+ YR SLATE</span>
+              </div>
+              <h3>New Roofs, Slate &amp; Tile</h3>
+              <p>
+                Specialist new installations for extensions, new builds, and Victorian terraces using natural Welsh and Spanish slate, clay tiles, concrete profiles, or standing seam metal.
+              </p>
+              <ul class="service-points">
+                <li><span class="point-mark" aria-hidden="true"></span>Natural slate options with 100+ yr lifespan</li>
+                <li><span class="point-mark" aria-hidden="true"></span>LABC building regulation compliance</li>
+                <li><span class="point-mark" aria-hidden="true"></span>BS 5534 battens &amp; breathable ventilation</li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-secondary service-trigger" data-load-scope="slate">
+              <span>Estimate Slate / New Roof</span>
+              <span class="mono">-&gt; GBP</span>
+            </button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon-box" aria-hidden="true">
+                  <svg width="22" viewBox="0 0 24 24" style="height:auto" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="10" width="20" height="5"/>
+                    <line x1="6" y1="15" x2="6" y2="20"/>
+                    <line x1="18" y1="15" x2="18" y2="20"/>
+                  </svg>
+                </div>
+                <span class="service-spec-badge">EPDM &amp; GRP</span>
+              </div>
+              <h3>Modern Flat Roofs</h3>
+              <p>
+                High-performance EPDM rubber membranes and Cure-It GRP fibreglass roofing engineered for domestic extensions, dormers, bays, garages, and tenanted properties.
+              </p>
+              <ul class="service-points">
+                <li><span class="point-mark" aria-hidden="true"></span>18mm structural deck inspection &amp; replacement</li>
+                <li><span class="point-mark" aria-hidden="true"></span>Seamless UV-resistant waterproofing</li>
+                <li><span class="point-mark" aria-hidden="true"></span>Low-maintenance perimeter drip trims</li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-secondary service-trigger" data-load-scope="flat">
+              <span>Estimate Flat Roof</span>
+              <span class="mono">-&gt; GBP</span>
+            </button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon-box" aria-hidden="true">
+                  <svg width="22" viewBox="0 0 24 24" style="height:auto" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="7" y="3" width="10" height="8"/>
+                    <path d="M4 15l8-4 8 4"/>
+                    <line x1="4" y1="19" x2="20" y2="19"/>
+                  </svg>
+                </div>
+                <span class="service-spec-badge">CODE 4 / 5 LEAD</span>
+              </div>
+              <h3>Chimney &amp; Lead Work</h3>
+              <p>
+                Precision dressed Code 4 and Code 5 milled lead step flashings, back gutters, lead valleys, chimney stack rebuilding, repointing, and cowl weatherproofing.
+              </p>
+              <ul class="service-points">
+                <li><span class="point-mark" aria-hidden="true"></span>Stops persistent chimney breast damp ingress</li>
+                <li><span class="point-mark" aria-hidden="true"></span>Expansion-jointed valley &amp; abutment flashings</li>
+                <li><span class="point-mark" aria-hidden="true"></span>Frost-resistant mortar flaunching &amp; pots</li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-secondary service-trigger" data-load-scope="chimney">
+              <span>Estimate Leadwork</span>
+              <span class="mono">-&gt; GBP</span>
+            </button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon-box" aria-hidden="true">
+                  <svg width="22" viewBox="0 0 24 24" style="height:auto" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 6h18v4H3z"/>
+                    <path d="M7 10v9a2 2 0 0 0 2 2h3"/>
+                  </svg>
+                </div>
+                <span class="service-spec-badge">UPVC ROOFLINE</span>
+              </div>
+              <h3>Guttering, Fascias &amp; Soffits</h3>
+              <p>
+                Maintenance-free UPVC fascias, vented soffit boards, dry verge and dry ridge conversions, eaves protection trays, and high-capacity rainwater downpipes.
+              </p>
+              <ul class="service-points">
+                <li><span class="point-mark" aria-hidden="true"></span>Prevents timber rafter rot at the eaves</li>
+                <li><span class="point-mark" aria-hidden="true"></span>Bird combs &amp; ventilated soffit airflow</li>
+                <li><span class="point-mark" aria-hidden="true"></span>Daily clean-down and waste clearance</li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-secondary service-trigger" data-load-scope="roofline">
+              <span>Estimate Roofline</span>
+              <span class="mono">-&gt; GBP</span>
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-warm" id="standards">
+      <div class="container">
+        <div class="eyebrow">
+          <span class="eyebrow-rule" aria-hidden="true"></span>
+          <span>Accountability &amp; Craft</span>
+        </div>
+        <h2>Certified Standards &amp; Our 8-Step Installation Protocol</h2>
+        <p class="section-lead">
+          Based permanently at Wheathill Industrial Estate in Liverpool L27 since 2012, we never sub out accountability. Every installation follows a documented site protocol with full building control compliance.
+        </p>
+
+        <div class="standards-grid">
+          <div class="credential-cards">
+            <div class="cred-card">
+              <span class="cred-code">REGULATORY</span>
+              <h3>LABC Affiliated Contractor</h3>
+              <p>Every new roof and major replacement meets current UK Building Regulations and thermal ventilation rules.</p>
+            </div>
+            <div class="cred-card">
+              <span class="cred-code">INSURANCE</span>
+              <h3>£2m Public &amp; £5m Employer</h3>
+              <p>Full commercial and domestic liability protection covering your home, adjoining terraces, and site crew.</p>
+            </div>
+            <div class="cred-card">
+              <span class="cred-code">QUALIFICATIONS</span>
+              <h3>SSSTS &amp; SMSTS Certified</h3>
+              <p>Trained supervisors certified in working at heights, abrasive wheel operation, and strict site safety.</p>
+            </div>
+            <div class="cred-card">
+              <span class="cred-code">WARRANTIES</span>
+              <h3>10-Year Workmanship</h3>
+              <p>Fully documented, transferable 10-year workmanship cover paired with 25 to 50 year material warranties.</p>
+            </div>
+          </div>
+
+          <div class="protocol-box">
+            <h3>Mersey Roofing 8-Stage Site Protocol</h3>
+            <div class="protocol-steps">
+              <div class="step-item">
+                <span class="step-num">STEP 01</span>
+                <span class="step-name">Detailed Survey</span>
+                <span class="step-desc">Structural assessment, moisture inspection, and photo review.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-num">STEP 02</span>
+                <span class="step-name">Material Selection</span>
+                <span class="step-desc">Slate, clay, concrete, or EPDM matched to property style and budget.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-num">STEP 03</span>
+                <span class="step-name">Property Protection</span>
+                <span class="step-desc">Independent scaffolding and protection of gardens and bays.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-num">STEP 04</span>
+                <span class="step-name">Old Roof Removal</span>
+                <span class="step-desc">Controlled strip-down to deck level with skip waste clearance.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-num">STEP 05</span>
+                <span class="step-name">Deck &amp; Rafter Check</span>
+                <span class="step-desc">Inspection of underlying timber structure and transparent reporting.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-num">STEP 06</span>
+                <span class="step-name">Systematic Fitting</span>
+                <span class="step-desc">Breathable underlay, graded battens, ventilation, and leadwork.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-num">STEP 07</span>
+                <span class="step-name">Quality Inspection</span>
+                <span class="step-desc">Sign-off checks across ridge lines, valleys, flashings, and gutters.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-num">STEP 08</span>
+                <span class="step-name">Final Site Cleanup</span>
+                <span class="step-desc">Daily tidy standards and complete debris removal on handover.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="reviews-head">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-rule" aria-hidden="true"></span>
+              <span>Client Feedback</span>
+            </div>
+            <h2>Trusted Across Liverpool &amp; Merseyside</h2>
+          </div>
+          <div class="rating-pill">
+            <span class="rating-score">5.0 / 5.0</span>
+            <span class="rating-text">
+              <strong>10/10 on Checkatrade</strong><br>
+              Over 100 verified client reviews
+            </span>
+          </div>
+        </div>
+
+        <div class="reviews-grid">
+          <article class="review-card">
+            <div>
+              <h3 class="review-title">I am made up with my new roof</h3>
+              <p class="review-quote">
+                "Jake replied promptly to my request for a quote, visited and offered advice on the works required, timescales and materials required. The full roof replacement, for main roof, side extension and bay..."
+              </p>
+            </div>
+            <div class="review-foot">
+              <span>CHECKATRADE VERIFIED</span>
+              <span>TIME · TIDINESS · VALUE: 10/10</span>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <div>
+              <h3 class="review-title">The whole process was seamless</h3>
+              <p class="review-quote">
+                "From initial visit to investigate the issue of water ingress, to follow-up meets to further investigate and cost the works, the whole process was seamless. I was visited by the owner of the company and he was thoroughly professional."
+              </p>
+            </div>
+            <div class="review-foot">
+              <span>CHECKATRADE VERIFIED</span>
+              <span>TIME · TIDINESS · VALUE: 10/10</span>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <div>
+              <h3 class="review-title">Quality of work was excellent</h3>
+              <p class="review-quote">
+                "Mersey Roofing stripped a flat ground floor roof on one of our tenanted properties and recovered it. The quality of the work was excellent and the area was left very tidy. Jake from Mersey Roofing is always reliable, punctual and professional."
+              </p>
+            </div>
+            <div class="review-foot">
+              <span>CHECKATRADE VERIFIED</span>
+              <span>FLAT ROOF RECOVERY</span>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <div>
+              <h3 class="review-title">Brilliant work and knowledgeable roofers</h3>
+              <p class="review-quote">
+                "Great service from start to finish, told us exactly what was wrong with our roof, took pictures to show us before and after. The lads were very friendly, cleaned up after themselves and the price was really good."
+              </p>
+            </div>
+            <div class="review-foot">
+              <span>VERIFIED CLIENT</span>
+              <span>PHOTO DOCUMENTATION</span>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <div>
+              <h3 class="review-title">Kept me informed at every stage</h3>
+              <p class="review-quote">
+                "I would highly recommend Mersey Roofing for their quality of work which was carried out to a high standard. Minimum disruption for me, kept me informed at every stage, cleaned up each day. I am delighted with my new roof."
+              </p>
+            </div>
+            <div class="review-foot">
+              <span>CHECKATRADE VERIFIED</span>
+              <span>FULL RE-ROOF</span>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <div>
+              <h3 class="review-title">Attention to detail was fantastic</h3>
+              <p class="review-quote">
+                "Mersey Roofing had already fitted new roofs for some of my neighbours and they came highly recommended. They exceeded my own expectations by demonstrating a professional, courteous and focused approach towards the work on my home."
+              </p>
+            </div>
+            <div class="review-foot">
+              <span>CHECKATRADE VERIFIED</span>
+              <span>NEIGHBOUR REFERRAL</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="coverage-panel">
+          <div>
+            <h3>Rapid Dispatch Coverage from Liverpool L27</h3>
+            <p style="margin:4px 0 0;font-size:14px;color:var(--ink-secondary)">Direct yard service across Liverpool postcodes, Merseyside boroughs, and neighbouring North West towns.</p>
+          </div>
+          <div class="area-chips">
+            <span class="area-chip">Allerton &amp; Woolton L18 / L25</span>
+            <span class="area-chip">Childwall &amp; Wavertree L15 / L16</span>
+            <span class="area-chip">Netherley &amp; Halewood L27 / L26</span>
+            <span class="area-chip">Garston &amp; Aigburth L17 / L19</span>
+            <span class="area-chip">Huyton &amp; Prescot L34 / L36</span>
+            <span class="area-chip">Crosby &amp; Formby L23 / L37</span>
+            <span class="area-chip">Wirral &amp; St Helens</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-warm" id="survey">
+      <div class="container">
+        <div class="eyebrow">
+          <span class="eyebrow-rule" aria-hidden="true"></span>
+          <span>Free No-Obligation Quote</span>
+        </div>
+        <h2>Book Your Liverpool / Merseyside Roof Survey</h2>
+        <p class="section-lead">
+          Send your property details and estimator specification below. We never pressurise homeowners or proceed with unexpected works without full client sign-off and photo evidence.
+        </p>
+
+        <div class="survey-grid">
+          <aside class="dispatch-card">
+            <h3>Mersey Roofing Ltd Yard &amp; Direct Line</h3>
+            <p class="dispatch-copy">
+              Speak directly with our local Liverpool roofing team for free roof inspections, written replacement quotes, or urgent storm response.
+            </p>
+            <div class="contact-rows">
+              <div>
+                <span class="contact-row-label">Direct Telephone (24/7 Emergency)</span>
+                <a class="contact-row-val mono" href="tel:01514873914">0151 487 3914</a>
+              </div>
+              <div>
+                <span class="contact-row-label">Email Address</span>
+                <a class="contact-row-val mono" href="mailto:info@merseyroofing.com">info@merseyroofing.com</a>
+              </div>
+              <div>
+                <span class="contact-row-label">Liverpool Yard Address</span>
+                <span class="contact-row-val">Unit 29, Wheathill Industrial Estate, Holt Lane, Liverpool, L27 0YA</span>
+              </div>
+              <div>
+                <span class="contact-row-label">Coverage &amp; Response</span>
+                <span class="contact-row-val">Liverpool, Merseyside &amp; North West (2 - 4 hr storm callout)</span>
+              </div>
+            </div>
+            <div class="warranty-box">
+              <strong>Insurance Claims &amp; Photographic Proof:</strong> We capture high-resolution before and after roof photos and itemised written breakdowns accepted by UK home insurers.
+            </div>
+          </aside>
+
+          <form class="form-card" id="survey-form" novalidate>
+            <div class="transferred-banner" id="transferred-banner">
+              <div>
+                <span class="transferred-banner-label" id="transferred-status-label">Active Estimator Spec Attached</span>
+                <span class="transferred-banner-val" id="transferred-spec-summary">Semi-Detached · Concrete/Clay Tile (72 m²) · £9,800 - £11,950</span>
+              </div>
+              <a class="btn btn-secondary" style="padding:7px 11px;font-size:13px;" href="#estimator">Edit in Estimator</a>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label class="field-label" for="client-name">Your Full Name</label>
+                <input class="input-control" id="client-name" name="name" type="text" autocomplete="name" placeholder="e.g. Sarah Gallagher" required>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label" for="client-phone">Telephone Number</label>
+                <input class="input-control" id="client-phone" name="phone" type="tel" autocomplete="tel" placeholder="e.g. 0151 487 3914" required>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label" for="client-email">Email Address</label>
+                <input class="input-control" id="client-email" name="email" type="email" autocomplete="email" placeholder="name@example.co.uk" required>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label" for="client-postcode">Merseyside Postcode</label>
+                <input class="input-control mono" id="client-postcode" name="postcode" type="text" autocomplete="postal-code" placeholder="e.g. L18 4PQ" required>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label" for="survey-area">Liverpool / Merseyside District</label>
+                <select class="select-control" id="survey-area" name="area" autocomplete="address-level2">
+                  <option value="South Liverpool (Allerton, Woolton, Childwall, Garston)">South Liverpool (Allerton, Woolton, Childwall, Garston)</option>
+                  <option value="Liverpool L25 - L27 (Gateacre, Netherley, Hunts Cross, Halewood)">Liverpool L25 - L27 (Gateacre, Netherley, Halewood)</option>
+                  <option value="Central &amp; East Liverpool (Wavertree, Aigburth, Old Swan)">Central &amp; East Liverpool (Wavertree, Aigburth, Old Swan)</option>
+                  <option value="North Liverpool &amp; Sefton (Crosby, Bootle, Waterloo, Formby)">North Liverpool &amp; Sefton (Crosby, Bootle, Formby)</option>
+                  <option value="Knowsley (Huyton, Prescot, Kirkby, Whiston)">Knowsley (Huyton, Prescot, Kirkby, Whiston)</option>
+                  <option value="Wirral, St Helens &amp; North West">Wirral, St Helens &amp; Wider North West</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label" for="survey-timing">Preferred Inspection Window</label>
+                <select class="select-control" id="survey-timing" name="timing" autocomplete="off">
+                  <option value="Within 3 - 5 Days (Standard Free Survey)">Within 3 - 5 Days (Standard Free Survey)</option>
+                  <option value="Urgent 24/7 Storm / Leak Callout (2 - 4 Hrs)">Urgent 24/7 Storm / Leak Callout (2 - 4 Hrs)</option>
+                  <option value="This Month (Planned Replacement Quote)">This Month (Planned Replacement Quote)</option>
+                  <option value="Flexible / Weekend Morning Visit">Flexible / Weekend Morning Visit</option>
+                </select>
+              </div>
+
+              <div class="form-field full">
+                <label class="field-label" for="survey-notes">Roof Specification &amp; Access Notes</label>
+                <textarea class="textarea-control" id="survey-notes" name="notes" rows="4" autocomplete="off">Property: Semi-Detached | Scope: Concrete/Clay Tile Replacement | Area: 72 m² | Options: Scaffolding, Breathable Membrane &amp; Battens, Dry Ridge/Verge | Estimated Guide: £9,800 - £11,950 (3 - 4 Working Days)</textarea>
+              </div>
+            </div>
+
+            <div class="form-submit-row">
+              <span style="font-size:13px;color:var(--ink-muted)">Free site survey · No callout fee on planned quotes</span>
+              <button type="submit" class="btn btn-primary">Request Liverpool Roof Survey</button>
+            </div>
+
+            <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-heading">Mersey Roofing Ltd</div>
+          <p style="margin:0 0 12px;font-size:14px;max-width:44ch;line-height:1.55;">
+            Established in 2012 with 30+ years of combined industry experience. LABC affiliated domestic and commercial roofing specialists serving Liverpool, Merseyside and the North West.
+          </p>
+          <p style="margin:0;font-family:var(--font-mono);font-size:12.5px;color:#E7E4DC;">
+            Unit 29, Wheathill Industrial Estate, Holt Lane, Liverpool, L27 0YA
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-heading">Roofing Disciplines</div>
+          <ul class="footer-list">
+            <li><a href="#estimator">Liverpool GBP Estimator</a></li>
+            <li><a href="#services">Full Roof Replacements</a></li>
+            <li><a href="#services">24/7 Roof Repairs &amp; Leaks</a></li>
+            <li><a href="#services">Natural Slate &amp; Clay Tile</a></li>
+            <li><a href="#services">EPDM / GRP Flat Roofing</a></li>
+            <li><a href="#services">Chimney Leadwork &amp; UPVC</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Direct Contact</div>
+          <ul class="footer-list">
+            <li><a class="mono" href="tel:01514873914">0151 487 3914</a></li>
+            <li><a class="mono" href="mailto:info@merseyroofing.com">info@merseyroofing.com</a></li>
+            <li><span>Public Liability: £2,000,000</span></li>
+            <li><span>Employer Liability: £5,000,000</span></li>
+            <li><span>10-Year Replacement Warranty</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Mersey Roofing Ltd · Liverpool &amp; Merseyside</span>
+        <span class="concept-note">Interactive redesign concept prepared for Mersey Roofing Ltd.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var HOUSE_DATA = {
+        terraced: {
+          label: 'Terraced',
+          defaultArea: 48,
+          accessFactor: 1.00,
+          scaffoldBase: 680,
+          pitchText: '38 DEG PITCHED',
+          wall: { x: 185, y: 132, w: 230, h: 106 },
+          roof: '176,132 300,50 424,132',
+          ridgePath: 'M288 56 L300 48 L312 56',
+          vergeLeft: 'M176 132 L300 50',
+          vergeRight: 'M424 132 L300 50',
+          fascia: { x: 172, y: 130, w: 256 },
+          chimney: { x: 204, y: 42 }
+        },
+        semi: {
+          label: 'Semi-Detached',
+          defaultArea: 72,
+          accessFactor: 1.04,
+          scaffoldBase: 890,
+          pitchText: '35 DEG PITCHED',
+          wall: { x: 150, y: 138, w: 300, h: 100 },
+          roof: '128,138 300,52 472,138',
+          ridgePath: 'M286 58 L300 49 L314 58',
+          vergeLeft: 'M128 138 L300 52',
+          vergeRight: 'M472 138 L300 52',
+          fascia: { x: 122, y: 136, w: 356 },
+          chimney: { x: 358, y: 42 }
+        },
+        detached: {
+          label: 'Detached',
+          defaultArea: 112,
+          accessFactor: 1.08,
+          scaffoldBase: 1240,
+          pitchText: '35 DEG HIP/GABLE',
+          wall: { x: 118, y: 138, w: 364, h: 100 },
+          roof: '96,138 220,48 380,48 504,138',
+          ridgePath: 'M216 48 L384 48',
+          vergeLeft: 'M96 138 L220 48',
+          vergeRight: 'M504 138 L380 48',
+          fascia: { x: 90, y: 136, w: 420 },
+          chimney: { x: 334, y: 40 }
+        },
+        bungalow: {
+          label: 'Bungalow',
+          defaultArea: 86,
+          accessFactor: 0.94,
+          scaffoldBase: 540,
+          pitchText: '26 DEG LOW-PITCH',
+          wall: { x: 112, y: 164, w: 376, h: 74 },
+          roof: '90,164 300,98 510,164',
+          ridgePath: 'M286 102 L300 96 L314 102',
+          vergeLeft: 'M90 164 L300 98',
+          vergeRight: 'M510 164 L300 98',
+          fascia: { x: 84, y: 162, w: 432 },
+          chimney: { x: 376, y: 84 }
+        }
+      };
+
+      var SCOPE_DATA = {
+        slate: {
+          label: 'Natural Slate Re-Roof',
+          shortLabel: 'Natural Slate Re-Roof',
+          roofFill: '#2C3440',
+          materialRate: 78,
+          labourRate: 52,
+          baseSetup: 950,
+          warranty: '10-Yr Workmanship + 100-Yr Slate Life',
+          membraneLabel: 'Breathable Membrane & Treated Battens',
+          ridgeLabel: 'BS 8612 Dry Ridge & Verge System',
+          isFlat: false
+        },
+        tile: {
+          label: 'Concrete/Clay Tile Replacement',
+          shortLabel: 'Concrete/Clay Tile',
+          roofFill: '#8C3E26',
+          materialRate: 52,
+          labourRate: 44,
+          baseSetup: 780,
+          warranty: '10-Yr Workmanship + 30-Yr Tile Cover',
+          membraneLabel: 'Breathable Membrane & BS 5534 Battens',
+          ridgeLabel: 'Dry Ridge & Ventilated Verge',
+          isFlat: false
+        },
+        flat: {
+          label: 'Flat Roof EPDM/GRP',
+          shortLabel: 'Flat Roof EPDM/GRP',
+          roofFill: '#383E46',
+          materialRate: 58,
+          labourRate: 48,
+          baseSetup: 580,
+          warranty: '10-Yr Workmanship + 25-Yr Membrane',
+          membraneLabel: 'Vapour Barrier & Warm Deck Insulation',
+          ridgeLabel: 'GRP / EPDM Perimeter Drip Trim',
+          isFlat: true
+        },
+        repair: {
+          label: 'Storm Leak & Tile Repair',
+          shortLabel: 'Storm Leak & Repair',
+          roofFill: '#5E4B3E',
+          materialRate: 8,
+          labourRate: 11,
+          baseSetup: 260,
+          warranty: 'Guaranteed Storm Leak Repair',
+          membraneLabel: 'Felt Eaves & Underlay Section Patch',
+          ridgeLabel: 'Ridge Repoint / Dry-Fix Re-Securing',
+          isFlat: false
+        },
+        chimney: {
+          label: 'Chimney & Leadwork',
+          shortLabel: 'Chimney & Leadwork',
+          roofFill: '#454C56',
+          materialRate: 10,
+          labourRate: 13,
+          baseSetup: 480,
+          warranty: 'BS 6915 Code 4/5 Lead Standard',
+          membraneLabel: 'Lead Saddle & Cavity Tray Weathering',
+          ridgeLabel: 'Capping, Flaunching & Repoint Seal',
+          isFlat: false
+        },
+        roofline: {
+          label: 'Fascias/Soffits/Guttering',
+          shortLabel: 'Fascias/Soffits/Guttering',
+          roofFill: '#4B525C',
+          materialRate: 11,
+          labourRate: 11,
+          baseSetup: 520,
+          warranty: '10-Yr Maintenance-Free UPVC',
+          membraneLabel: 'Eaves Felt Support Trays & Bird Comb',
+          ridgeLabel: 'Dry Verge Trim & Deep-Flow Gutter',
+          isFlat: false
+        }
+      };
+
+      var state = {
+        house: 'semi',
+        scope: 'tile',
+        area: 72,
+        scaffolding: true,
+        membrane: true,
+        dryridge: true
+      };
+
+      var els = {
+        mobileBtn: document.getElementById('mobile-menu-btn'),
+        mobileDrawer: document.getElementById('mobile-drawer'),
+        houseRadios: document.querySelectorAll('input[name="house-type"]'),
+        scopeSelect: document.getElementById('scope-select'),
+        scopeBtns: document.querySelectorAll('.scope-btn'),
+        areaRange: document.getElementById('area-range'),
+        areaNumber: document.getElementById('area-number'),
+        presetChips: document.querySelectorAll('.preset-chip'),
+        optScaffolding: document.getElementById('opt-scaffolding'),
+        optMembrane: document.getElementById('opt-membrane'),
+        optDryridge: document.getElementById('opt-dryridge'),
+        wrapScaffolding: document.getElementById('wrap-scaffolding'),
+        wrapMembrane: document.getElementById('wrap-membrane'),
+        wrapDryridge: document.getElementById('wrap-dryridge'),
+        hintScaffolding: document.getElementById('hint-scaffolding'),
+        hintMembrane: document.getElementById('hint-membrane'),
+        hintDryridge: document.getElementById('hint-dryridge'),
+        resGbpRange: document.getElementById('res-gbp-range'),
+        resDuration: document.getElementById('res-duration'),
+        resSummaryMeta: document.getElementById('res-summary-meta'),
+        resWarrantyMeta: document.getElementById('res-warranty-meta'),
+        bdMaterials: document.getElementById('bd-materials'),
+        bdLabour: document.getElementById('bd-labour'),
+        bdOptions: document.getElementById('bd-options'),
+        bdOptionsLabel: document.getElementById('bd-options-label'),
+        svgCaption: document.getElementById('svg-caption'),
+        tagScaff: document.getElementById('tag-scaff'),
+        tagMembrane: document.getElementById('tag-membrane'),
+        tagRidge: document.getElementById('tag-ridge'),
+        svgWall: document.getElementById('svg-wall'),
+        svgOpenings: document.getElementById('svg-openings'),
+        svgChimney: document.getElementById('svg-chimney'),
+        svgChimneyBrick: document.getElementById('svg-chimney-brick'),
+        svgChimneyCap: document.getElementById('svg-chimney-cap'),
+        svgLeadFlash: document.getElementById('svg-lead-flash'),
+        svgRoofPoly: document.getElementById('svg-roof-poly'),
+        svgRoofCourses: document.getElementById('svg-roof-courses'),
+        svgScopeOverlay: document.getElementById('svg-scope-overlay'),
+        svgLayerMembrane: document.getElementById('svg-layer-membrane'),
+        svgLayerRidge: document.getElementById('svg-layer-ridge'),
+        svgRidgePath: document.getElementById('svg-ridge-path'),
+        svgVergeLeft: document.getElementById('svg-verge-left'),
+        svgVergeRight: document.getElementById('svg-verge-right'),
+        svgFascia: document.getElementById('svg-fascia'),
+        svgDownpipe: document.getElementById('svg-downpipe'),
+        svgLayerScaffold: document.getElementById('svg-layer-scaffold'),
+        svgBadgeLeft: document.getElementById('svg-badge-left'),
+        svgBottomNote: document.getElementById('svg-bottom-note'),
+        btnTransfer: document.getElementById('btn-transfer-spec'),
+        serviceTriggers: document.querySelectorAll('.service-trigger'),
+        transferredBanner: document.getElementById('transferred-banner'),
+        transferredStatusLabel: document.getElementById('transferred-status-label'),
+        transferredSummary: document.getElementById('transferred-spec-summary'),
+        surveyNotes: document.getElementById('survey-notes'),
+        surveyForm: document.getElementById('survey-form'),
+        formStatus: document.getElementById('form-status'),
+        clientName: document.getElementById('client-name'),
+        clientPhone: document.getElementById('client-phone'),
+        clientEmail: document.getElementById('client-email'),
+        clientPostcode: document.getElementById('client-postcode'),
+        surveyArea: document.getElementById('survey-area'),
+        surveyTiming: document.getElementById('survey-timing')
+      };
+
+      function formatGBP(amount) {
+        return '£' + Math.round(amount).toLocaleString('en-GB');
+      }
+
+      function roundTo50(num) {
+        return Math.round(num / 50) * 50;
+      }
+
+      function clampArea(val) {
+        var parsed = parseInt(val, 10);
+        if (isNaN(parsed)) {
+          return 72;
+        }
+        if (parsed < 12) {
+          return 12;
+        }
+        if (parsed > 220) {
+          return 220;
+        }
+        return parsed;
+      }
+
+      function computeEstimate() {
+        var h = HOUSE_DATA[state.house];
+        var s = SCOPE_DATA[state.scope];
+        var area = state.area;
+
+        var materialBase = (area * s.materialRate * h.accessFactor) + (s.baseSetup * 0.45);
+        var labourBase = (area * s.labourRate * h.accessFactor) + (s.baseSetup * 0.55);
+
+        var scaffCost = Math.round(h.scaffoldBase * (0.68 + (area / 230)));
+        if (state.scope === 'repair' || state.scope === 'chimney') {
+          scaffCost = Math.round(scaffCost * 0.55);
+        }
+
+        var membraneCost = 0;
+        if (state.scope === 'repair') {
+          membraneCost = 180 + Math.round(area * 3.5);
+        } else if (state.scope === 'chimney') {
+          membraneCost = 220 + Math.round(area * 2.5);
+        } else if (state.scope === 'roofline') {
+          membraneCost = 190 + Math.round(area * 3.2);
+        } else if (state.scope === 'flat') {
+          membraneCost = 210 + Math.round(area * 22);
+        } else {
+          membraneCost = 140 + Math.round(area * 18);
+        }
+
+        var dryridgeCost = 0;
+        if (state.scope === 'repair' || state.scope === 'chimney') {
+          dryridgeCost = 240 + Math.round(area * 2.4);
+        } else {
+          dryridgeCost = 360 + Math.round(area * 6.5);
+        }
+
+        var activeOptions = 0;
+        var selectedNames = [];
+        var shortTags = [];
+        if (state.scaffolding) {
+          activeOptions += scaffCost;
+          selectedNames.push('Scaffolding');
+          shortTags.push('SCAFFOLD');
+        }
+        if (state.membrane) {
+          activeOptions += membraneCost;
+          selectedNames.push(s.membraneLabel);
+          shortTags.push(s.isFlat ? 'WARM DECK' : 'MEMBRANE');
+        }
+        if (state.dryridge) {
+          activeOptions += dryridgeCost;
+          selectedNames.push(s.ridgeLabel);
+          shortTags.push(s.isFlat ? 'DRIP TRIM' : 'DRY RIDGE');
+        }
+
+        var midTotal = materialBase + labourBase + activeOptions;
+        var low = roundTo50(midTotal * 0.91);
+        var high = roundTo50(midTotal * 1.11);
+        if (high <= low) {
+          high = low + 150;
+        }
+
+        var duration = '2 - 4 Working Days';
+        if (state.scope === 'repair') {
+          duration = area <= 45 ? '1 Working Day (24/7 Priority)' : '1 - 2 Working Days';
+        } else if (state.scope === 'chimney' || state.scope === 'roofline') {
+          duration = area <= 80 ? '1 - 2 Working Days' : '2 - 3 Working Days';
+        } else if (state.scope === 'flat') {
+          duration = area <= 35 ? '1 - 2 Working Days' : (area <= 75 ? '2 - 3 Working Days' : '3 - 4 Working Days');
+        } else if (state.scope === 'tile') {
+          duration = area <= 60 ? '2 - 3 Working Days' : (area <= 105 ? '3 - 4 Working Days' : '4 - 6 Working Days');
+        } else if (state.scope === 'slate') {
+          duration = area <= 55 ? '3 - 4 Working Days' : (area <= 100 ? '4 - 5 Working Days' : '5 - 7 Working Days');
+        }
+
+        return {
+          house: h,
+          scope: s,
+          area: area,
+          materials: Math.round(materialBase),
+          labour: Math.round(labourBase),
+          scaffCost: scaffCost,
+          membraneCost: membraneCost,
+          dryridgeCost: dryridgeCost,
+          activeOptions: Math.round(activeOptions),
+          selectedNames: selectedNames,
+          shortTags: shortTags,
+          low: low,
+          high: high,
+          duration: duration
+        };
+      }
+
+      function renderSchematic(calc) {
+        var h = calc.house;
+        var s = calc.scope;
+        var wall = h.wall;
+
+        els.svgWall.setAttribute('x', String(wall.x));
+        els.svgWall.setAttribute('y', String(wall.y));
+        els.svgWall.setAttribute('width', String(wall.w));
+        els.svgWall.setAttribute('height', String(wall.h));
+
+        // Rebuild openings proportionally
+        var wx1 = wall.x + 28;
+        var wx2 = wall.x + wall.w - 72;
+        var wy = wall.y + 18;
+        var wh = state.house === 'bungalow' ? 28 : 34;
+        var dx = wall.x + Math.round(wall.w / 2) - 18;
+        var dy = wall.y + wall.h - (state.house === 'bungalow' ? 48 : 60);
+        var dh = state.house === 'bungalow' ? 48 : 60;
+
+        els.svgOpenings.innerHTML =
+          '<rect x="' + wx1 + '" y="' + wy + '" width="44" height="' + wh + '"/>' +
+          '<rect x="' + wx2 + '" y="' + wy + '" width="44" height="' + wh + '"/>' +
+          '<rect x="' + dx + '" y="' + dy + '" width="36" height="' + dh + '" fill="#9A3D22" stroke="#191D23"/>';
+
+        // Roof polygon & flat roof adaptation
+        if (s.isFlat) {
+          var fy = wall.y - 26;
+          var fx = wall.x - 14;
+          var fw = wall.w + 28;
+          els.svgRoofPoly.setAttribute('points', fx + ',' + wall.y + ' ' + fx + ',' + fy + ' ' + (fx + fw) + ',' + fy + ' ' + (fx + fw) + ',' + wall.y);
+          els.svgRoofPoly.setAttribute('fill', s.roofFill);
+          els.svgRoofCourses.innerHTML =
+            '<line x1="' + (fx + 10) + '" y1="' + (fy + 10) + '" x2="' + (fx + fw - 10) + '" y2="' + (fy + 10) + '"/>' +
+            '<line x1="' + (fx + 10) + '" y1="' + (fy + 18) + '" x2="' + (fx + fw - 10) + '" y2="' + (fy + 18) + '"/>';
+          els.svgRidgePath.setAttribute('d', 'M' + fx + ' ' + fy + ' L' + (fx + fw) + ' ' + fy);
+          els.svgVergeLeft.setAttribute('d', 'M' + fx + ' ' + wall.y + ' L' + fx + ' ' + fy);
+          els.svgVergeRight.setAttribute('d', 'M' + (fx + fw) + ' ' + wall.y + ' L' + (fx + fw) + ' ' + fy);
+          els.svgChimney.style.display = 'none';
+        } else {
+          els.svgRoofPoly.setAttribute('points', h.roof);
+          els.svgRoofPoly.setAttribute('fill', s.roofFill);
+          els.svgRidgePath.setAttribute('d', h.ridgePath);
+          els.svgVergeLeft.setAttribute('d', h.vergeLeft);
+          els.svgVergeRight.setAttribute('d', h.vergeRight);
+          els.svgChimney.style.display = 'block';
+          els.svgChimneyBrick.setAttribute('x', String(h.chimney.x));
+          els.svgChimneyBrick.setAttribute('y', String(h.chimney.y));
+          els.svgChimneyCap.setAttribute('x', String(h.chimney.x - 4));
+          els.svgChimneyCap.setAttribute('y', String(h.chimney.y - 5));
+          els.svgLeadFlash.setAttribute('x', String(h.chimney.x - 5));
+          els.svgLeadFlash.setAttribute('y', String(h.chimney.y + 41));
+
+          // Course lines for pitched roofs
+          var coursesHtml = '';
+          var topY = state.house === 'bungalow' ? 114 : 68;
+          var baseY = wall.y - 12;
+          for (var y = topY; y <= baseY; y += 16) {
+            var factor = (y - (topY - 18)) / (wall.y - (topY - 18));
+            var span = Math.round((wall.w * 0.85) * factor);
+            var cx = 300;
+            coursesHtml += '<line x1="' + (cx - span / 2) + '" y1="' + y + '" x2="' + (cx + span / 2) + '" y2="' + y + '"/>';
+          }
+          els.svgRoofCourses.innerHTML = coursesHtml;
+        }
+
+        // Fascia & Gutter position
+        els.svgFascia.setAttribute('x', String(h.fascia.x));
+        els.svgFascia.setAttribute('y', String(wall.y - 2));
+        els.svgFascia.setAttribute('width', String(h.fascia.w));
+        els.svgDownpipe.setAttribute('x1', String(wall.x - 10));
+        els.svgDownpipe.setAttribute('x2', String(wall.x - 10));
+        els.svgDownpipe.setAttribute('y1', String(wall.y + 4));
+
+        // Scope-specific highlight overlays
+        var overlay = '';
+        if (state.scope === 'repair') {
+          var rx = 250;
+          var ry = state.house === 'bungalow' ? 124 : 92;
+          overlay =
+            '<rect x="' + rx + '" y="' + ry + '" width="48" height="28" fill="rgba(154,61,34,0.45)" stroke="#F6F5F1" stroke-width="2" stroke-dasharray="4 3"/>' +
+            '<circle cx="' + (rx + 24) + '" cy="' + (ry + 14) + '" r="18" fill="none" stroke="#9A3D22" stroke-width="2"/>';
+        } else if (state.scope === 'chimney') {
+          overlay =
+            '<rect x="' + (h.chimney.x - 8) + '" y="' + (h.chimney.y - 8) + '" width="48" height="68" fill="none" stroke="#E6A896" stroke-width="2.5" stroke-dasharray="5 3"/>' +
+            '<rect x="' + (h.chimney.x - 7) + '" y="' + (h.chimney.y + 40) + '" width="46" height="12" fill="#2A6585" stroke="#FFFFFF" stroke-width="1.2"/>';
+        } else if (state.scope === 'roofline') {
+          overlay =
+            '<rect x="' + h.fascia.x + '" y="' + (wall.y - 4) + '" width="' + h.fascia.w + '" height="10" fill="#9A3D22" stroke="#FFFFFF" stroke-width="1.4"/>' +
+            '<line x1="' + (wall.x - 10) + '" y1="' + (wall.y + 4) + '" x2="' + (wall.x - 10) + '" y2="238" stroke="#9A3D22" stroke-width="5"/>';
+        }
+        els.svgScopeOverlay.innerHTML = overlay;
+
+        // Layer toggles
+        els.svgLayerScaffold.style.display = state.scaffolding ? 'block' : 'none';
+        els.svgLayerMembrane.style.display = state.membrane && (s.isFlat === false) ? 'block' : 'none';
+        els.svgLayerRidge.style.display = state.dryridge ? 'block' : 'none';
+
+        els.tagScaff.className = 'layer-tag' + (state.scaffolding ? ' on' : '');
+        els.tagMembrane.className = 'layer-tag' + (state.membrane ? ' on' : '');
+        els.tagRidge.className = 'layer-tag' + (state.dryridge ? ' on' : '');
+
+        els.svgCaption.textContent = 'Live Roof Elevation Schematic // ' + h.label;
+        var leftBadgeStr = 'AREA: ' + calc.area + ' m² // ' + (s.isFlat ? 'FLAT DECK' : h.pitchText);
+        els.svgBadgeLeft.textContent = leftBadgeStr;
+        var leftBg = document.getElementById('svg-badge-left-bg');
+        if (leftBg) {
+          leftBg.setAttribute('width', String(Math.max(190, (leftBadgeStr.length * 6.5) + 22)));
+        }
+
+        var tagText = calc.shortTags.length > 0 ? ' + ' + calc.shortTags.join(' + ') : '';
+        els.svgBottomNote.textContent = ('SPEC: ' + s.shortLabel + tagText).toUpperCase();
+      }
+
+      function updateUI(shouldSyncFormBanner) {
+        var calc = computeEstimate();
+
+        // Sync inputs & active pills
+        els.areaRange.value = String(state.area);
+        els.areaNumber.value = String(state.area);
+        els.scopeSelect.value = state.scope;
+
+        for (var i = 0; i < els.scopeBtns.length; i += 1) {
+          var btn = els.scopeBtns[i];
+          if (btn.getAttribute('data-scope') === state.scope) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        }
+
+        for (var j = 0; j < els.presetChips.length; j += 1) {
+          var chip = els.presetChips[j];
+          if (parseInt(chip.getAttribute('data-area'), 10) === state.area) {
+            chip.classList.add('active');
+          } else {
+            chip.classList.remove('active');
+          }
+        }
+
+        // Update option price hints & active card styling
+        els.hintScaffolding.textContent = '+' + formatGBP(calc.scaffCost);
+        els.hintMembrane.textContent = '+' + formatGBP(calc.membraneCost);
+        els.hintDryridge.textContent = '+' + formatGBP(calc.dryridgeCost);
+
+        els.wrapScaffolding.className = 'addon-item' + (state.scaffolding ? ' checked' : '');
+        els.wrapMembrane.className = 'addon-item' + (state.membrane ? ' checked' : '');
+        els.wrapDryridge.className = 'addon-item' + (state.dryridge ? ' checked' : '');
+
+        // Update Result Banner & Breakdown
+        els.resGbpRange.textContent = formatGBP(calc.low) + ' - ' + formatGBP(calc.high);
+        els.resDuration.textContent = calc.duration;
+        els.resSummaryMeta.textContent = calc.house.label + ' · ' + calc.scope.label + ' · ' + calc.area + ' m²';
+        els.resWarrantyMeta.textContent = calc.scope.warranty;
+
+        els.bdMaterials.textContent = formatGBP(calc.materials);
+        els.bdLabour.textContent = formatGBP(calc.labour);
+        els.bdOptions.textContent = formatGBP(calc.activeOptions);
+        els.bdOptionsLabel.textContent = calc.selectedNames.length > 0
+          ? calc.selectedNames.join(' + ')
+          : 'No Optional Upgrades Selected';
+
+        renderSchematic(calc);
+
+        if (shouldSyncFormBanner) {
+          syncFormSpecification(calc, false);
+        }
+      }
+
+      function syncFormSpecification(calc, highlightTransferred) {
+        var optsText = calc.selectedNames.length > 0 ? calc.selectedNames.join(', ') : 'Standard Spec Only';
+        var bannerText = calc.house.label + ' · ' + calc.scope.shortLabel + ' (' + calc.area + ' m²) · ' + formatGBP(calc.low) + ' - ' + formatGBP(calc.high);
+        els.transferredSummary.textContent = bannerText;
+
+        els.surveyNotes.value =
+          'Property: ' + calc.house.label +
+          ' | Scope: ' + calc.scope.label +
+          ' | Area: ' + calc.area + ' m²' +
+          ' | Options: ' + optsText +
+          ' | Guide Estimate: ' + formatGBP(calc.low) + ' - ' + formatGBP(calc.high) +
+          ' (' + calc.duration + ')';
+
+        if (highlightTransferred) {
+          els.transferredBanner.classList.add('synced');
+          els.transferredStatusLabel.textContent = 'Transferred From Estimator Ready for Survey';
+        }
+      }
+
+      // Event Listeners
+      els.mobileBtn.addEventListener('click', function () {
+        var open = els.mobileDrawer.classList.toggle('open');
+        els.mobileBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      var mobileLinks = els.mobileDrawer.querySelectorAll('a');
+      for (var m = 0; m < mobileLinks.length; m += 1) {
+        mobileLinks[m].addEventListener('click', function () {
+          els.mobileDrawer.classList.remove('open');
+          els.mobileBtn.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      for (var hIdx = 0; hIdx < els.houseRadios.length; hIdx += 1) {
+        els.houseRadios[hIdx].addEventListener('change', function (e) {
+          state.house = e.target.value;
+          state.area = HOUSE_DATA[state.house].defaultArea;
+          updateUI(true);
+        });
+      }
+
+      els.scopeSelect.addEventListener('change', function (e) {
+        state.scope = e.target.value;
+        updateUI(true);
+      });
+
+      for (var sIdx = 0; sIdx < els.scopeBtns.length; sIdx += 1) {
+        els.scopeBtns[sIdx].addEventListener('click', function () {
+          state.scope = this.getAttribute('data-scope');
+          updateUI(true);
+        });
+      }
+
+      els.areaRange.addEventListener('input', function (e) {
+        state.area = clampArea(e.target.value);
+        updateUI(true);
+      });
+
+      els.areaNumber.addEventListener('input', function (e) {
+        var raw = e.target.value;
+        if (raw === '') {
+          return;
+        }
+        state.area = clampArea(raw);
+        updateUI(true);
+      });
+
+      els.areaNumber.addEventListener('blur', function (e) {
+        state.area = clampArea(e.target.value);
+        updateUI(true);
+      });
+
+      for (var pIdx = 0; pIdx < els.presetChips.length; pIdx += 1) {
+        els.presetChips[pIdx].addEventListener('click', function () {
+          state.area = clampArea(this.getAttribute('data-area'));
+          updateUI(true);
+        });
+      }
+
+      els.optScaffolding.addEventListener('change', function (e) {
+        state.scaffolding = e.target.checked;
+        updateUI(true);
+      });
+
+      els.optMembrane.addEventListener('change', function (e) {
+        state.membrane = e.target.checked;
+        updateUI(true);
+      });
+
+      els.optDryridge.addEventListener('change', function (e) {
+        state.dryridge = e.target.checked;
+        updateUI(true);
+      });
+
+      for (var tIdx = 0; tIdx < els.serviceTriggers.length; tIdx += 1) {
+        els.serviceTriggers[tIdx].addEventListener('click', function () {
+          state.scope = this.getAttribute('data-load-scope');
+          updateUI(true);
+          document.getElementById('estimator').scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+
+      els.btnTransfer.addEventListener('click', function () {
+        var calc = computeEstimate();
+        syncFormSpecification(calc, true);
+        document.getElementById('survey').scrollIntoView({ behavior: 'smooth' });
+        setTimeout(function () {
+          els.clientPostcode.focus();
+        }, 420);
+      });
+
+      els.surveyForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var nameVal = els.clientName.value.trim();
+        var phoneVal = els.clientPhone.value.trim();
+        var emailVal = els.clientEmail.value.trim();
+        var postcodeVal = els.clientPostcode.value.trim().toUpperCase();
+
+        if (nameVal === '' || phoneVal === '' || emailVal === '' || postcodeVal === '') {
+          els.formStatus.className = 'form-status visible error';
+          els.formStatus.innerHTML =
+            '<strong>Please complete required fields.</strong> Enter your name, telephone number, email address, and Merseyside postcode so our Liverpool L27 team can schedule your inspection.';
+          return;
+        }
+
+        var calc = computeEstimate();
+        var refCode = 'MR-L27-' + String(Math.floor(1000 + Math.random() * 8999));
+
+        els.formStatus.className = 'form-status visible';
+        els.formStatus.innerHTML =
+          '<strong>Survey Specification Logged (' + refCode + ').</strong> ' +
+          'Thank you, ' + nameVal + '. Your ' + calc.house.label + ' ' + calc.scope.shortLabel + ' estimate (' + formatGBP(calc.low) + ' - ' + formatGBP(calc.high) + ') for postcode <strong>' + postcodeVal + '</strong> is prepared for Mersey Roofing Ltd (' + els.surveyTiming.value + '). For immediate urgent attendance, please call <strong>0151 487 3914</strong> or email <strong>info@merseyroofing.com</strong>.';
+      });
+
+      // Initial render
+      updateUI(true);
+    })();
+  </script>
+</body>
+</html>

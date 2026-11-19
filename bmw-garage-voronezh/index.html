@@ -1,0 +1,3373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Garage - Профильный автосервис BMW в Воронеже | Диагностика ISTA и ремонт</title>
+  <meta name="description" content="Профильный автосервис The Garage для автомобилей BMW, Mini и Rolls-Royce в Воронеже (Ленинский проспект, 174). Оригинальная диагностика ISTA / ICOM Next, ТО, ремонт двигателей N/B-серии и АКПП ZF, калькулятор стоимости в рублях.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23151921'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23F7F7F4' stroke-width='2.5'/%3E%3Cpath d='M32 12v40M12 32h40' stroke='%23F7F7F4' stroke-width='2'/%3E%3Cpath d='M32 14a18 18 0 0 1 18 18H32V14zM32 50a18 18 0 0 1-18-18h18v18z' fill='%23174978'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%23F7F7F4'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #F7F7F4;
+      --bg-surface: #FFFFFF;
+      --bg-plate: #EFEFE9;
+      --bg-plate-deep: #E5E6DF;
+      --ink-primary: #151921;
+      --ink-secondary: #464E5B;
+      --ink-muted: #666E7A;
+      --border-hairline: #DCDED6;
+      --border-strong: #C2C6BC;
+      --accent: #174978;
+      --accent-hover: #0F3559;
+      --accent-soft: #EAF1F7;
+      --accent-line: #BFD1E3;
+      --status-ok: #1B5E3C;
+      --status-ok-bg: #EBF4EE;
+      --status-warn: #8F4E0E;
+      --status-warn-bg: #FBF3E8;
+      --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --max-w: 1320px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.55;
+      overflow-x: clip;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    .mono, .num {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    /* Top utility strip */
+    .utility-bar {
+      background-color: var(--ink-primary);
+      color: #E7E9ED;
+      font-size: 12px;
+      border-bottom: 1px solid #262C37;
+    }
+
+    .utility-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 36px;
+      padding-block: 6px;
+      flex-wrap: wrap;
+    }
+
+    .utility-group {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .utility-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #D2D7E0;
+    }
+
+    .utility-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #4BB57D;
+      flex-shrink: 0;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(247, 247, 244, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 1;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand-title {
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+    }
+
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-link {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      padding-block: 6px;
+      border-bottom: 1px solid transparent;
+      transition: color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      outline: none;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .header-phone {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      padding: 8px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
+      transition: border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .header-phone:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+      text-align: center;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+      outline: none;
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+      outline: none;
+    }
+
+    .btn-ghost {
+      background-color: transparent;
+      color: var(--accent);
+      border-color: var(--accent-line);
+    }
+
+    .btn-ghost:hover {
+      background-color: var(--accent-soft);
+      border-color: var(--accent);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      cursor: pointer;
+    }
+
+    .mobile-drawer {
+      display: none;
+      border-top: 1px solid var(--border-hairline);
+      background-color: var(--bg-surface);
+      padding: 16px 24px 20px;
+    }
+
+    .mobile-drawer.open {
+      display: block;
+    }
+
+    .mobile-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .mobile-nav-link {
+      font-weight: 600;
+      font-size: 15px;
+      padding: 6px 0;
+      color: var(--ink-primary);
+      border-bottom: 1px solid var(--bg-plate);
+    }
+
+    /* Section framing */
+    .section {
+      padding-block: 68px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 34px;
+      flex-wrap: wrap;
+    }
+
+    .section-index {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .section-index::before {
+      content: "";
+      display: inline-block;
+      width: 18px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0;
+      color: var(--ink-primary);
+      letter-spacing: -0.025em;
+    }
+
+    .section-title {
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 800;
+      line-height: 1.15;
+      max-width: 780px;
+    }
+
+    .section-lead {
+      margin: 10px 0 0;
+      color: var(--ink-secondary);
+      font-size: 15.5px;
+      max-width: 680px;
+    }
+
+    /* Hero */
+    .hero {
+      padding-block: 52px 60px;
+      border-bottom: 1px solid var(--border-hairline);
+      background-image:
+        linear-gradient(to right, rgba(21, 25, 33, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(21, 25, 33, 0.03) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 26px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px 10px;
+      padding: 6px 12px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      width: fit-content;
+      max-width: 100%;
+    }
+
+    .hero-eyebrow-code {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 4.1vw, 52px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-top: 14px;
+    }
+
+    .hero-title-accent {
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      margin: 16px 0 0;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink-secondary);
+      max-width: 620px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-cta-row .btn {
+      padding: 12px 18px;
+      font-size: 13.5px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      background-color: var(--bg-surface);
+      overflow: hidden;
+    }
+
+    .metric-cell {
+      padding: 16px 18px;
+      border-right: 1px solid var(--border-hairline);
+    }
+
+    .metric-cell:last-child {
+      border-right: none;
+    }
+
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      line-height: 1.1;
+    }
+
+    .metric-label {
+      margin-top: 4px;
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      line-height: 1.35;
+    }
+
+    /* Hero right spec card */
+    .hero-spec-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .spec-header {
+      padding: 14px 20px;
+      background-color: var(--ink-primary);
+      color: #F7F7F4;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .spec-badge {
+      padding: 3px 8px;
+      border-radius: 3px;
+      background-color: rgba(255, 255, 255, 0.12);
+      color: #DCE7F3;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+    }
+
+    .spec-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .spec-svg-box {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+    }
+
+    .spec-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .spec-list-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--border-hairline);
+      font-size: 13px;
+    }
+
+    .spec-list-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .spec-k {
+      color: var(--ink-muted);
+    }
+
+    .spec-v {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--ink-primary);
+      text-align: right;
+    }
+
+    .spec-footer {
+      padding: 14px 20px;
+      background-color: var(--bg-plate);
+      border-top: 1px solid var(--border-hairline);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 12.5px;
+      color: var(--ink-secondary);
+      flex-wrap: wrap;
+    }
+
+    /* Calculator Workbench */
+    .calc-presets {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .preset-label {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: 4px;
+    }
+
+    .preset-btn {
+      padding: 7px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink-secondary);
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .preset-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .preset-btn.active {
+      background-color: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .calc-panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+
+    .calc-step {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .calc-step-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .calc-step-title {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-primary);
+    }
+
+    .calc-step-hint {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--ink-muted);
+    }
+
+    .calc-selects-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .field-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-secondary);
+    }
+
+    .field-control {
+      width: 100%;
+      padding: 11px 13px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-size: 14px;
+      font-weight: 600;
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .field-control:focus {
+      outline: 2px solid var(--accent-line);
+      border-color: var(--accent);
+      background-color: var(--bg-surface);
+    }
+
+    .series-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .radio-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .choice-wrap {
+      position: relative;
+      min-width: 0;
+    }
+
+    .choice-input {
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+      margin: 0;
+    }
+
+    .choice-label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 13px 14px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-canvas);
+      cursor: pointer;
+      height: 100%;
+      transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .choice-label:hover {
+      border-color: var(--accent);
+    }
+
+    .choice-input:checked + .choice-label {
+      background-color: var(--accent-soft);
+      border-color: var(--accent);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+
+    .choice-input:focus-visible + .choice-label {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .choice-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .choice-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .choice-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      background-color: rgba(23, 73, 120, 0.08);
+      padding: 2px 6px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .choice-desc {
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .work-label {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 13px 14px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-canvas);
+      cursor: pointer;
+      height: 100%;
+      transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .work-label:hover {
+      border-color: var(--accent);
+    }
+
+    .choice-input:checked + .work-label {
+      background-color: var(--accent-soft);
+      border-color: var(--accent);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+
+    .choice-input:focus-visible + .work-label {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .work-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .work-check {
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--border-strong);
+      border-radius: 3px;
+      background-color: var(--bg-surface);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .choice-input:checked + .work-label .work-check {
+      background-color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .work-check svg {
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .choice-input:checked + .work-label .work-check svg {
+      opacity: 1;
+    }
+
+    .work-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border-hairline);
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .work-price {
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .work-hours {
+      color: var(--ink-muted);
+    }
+
+    /* Sticky Result + SVG Blueprint */
+    .calc-summary {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: sticky;
+      top: 88px;
+    }
+
+    .summary-top {
+      padding: 16px 20px;
+      background-color: var(--ink-primary);
+      color: #F7F7F4;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .summary-top-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .summary-top-code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #C9D9E8;
+    }
+
+    .blueprint-box {
+      padding: 16px 18px 12px;
+      background-color: var(--bg-canvas);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .blueprint-caption {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    .svg-node {
+      cursor: pointer;
+      transition: opacity 0.18s ease;
+    }
+
+    .svg-node:hover .node-ring {
+      stroke-width: 2.5;
+    }
+
+    .svg-node .node-fill {
+      fill: #FFFFFF;
+      stroke: #8A93A2;
+      transition: fill 0.18s ease, stroke 0.18s ease;
+    }
+
+    .svg-node .node-dot {
+      fill: #666E7A;
+      transition: fill 0.18s ease;
+    }
+
+    .svg-node .node-text {
+      fill: #464E5B;
+      transition: fill 0.18s ease;
+    }
+
+    .svg-node.active .node-fill {
+      fill: #EAF1F7;
+      stroke: #174978;
+    }
+
+    .svg-node.active .node-dot {
+      fill: #174978;
+    }
+
+    .svg-node.active .node-text {
+      fill: #174978;
+      font-weight: 700;
+    }
+
+    .blueprint-legend {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      flex-wrap: wrap;
+    }
+
+    .summary-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .selected-spec-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .spec-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 3px;
+      background-color: var(--bg-plate);
+      color: var(--ink-secondary);
+      border: 1px solid var(--border-hairline);
+    }
+
+    .ledger-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .ledger-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 7px;
+      border-bottom: 1px dashed var(--border-hairline);
+      font-size: 13px;
+    }
+
+    .ledger-name {
+      color: var(--ink-primary);
+      font-weight: 600;
+    }
+
+    .ledger-sub {
+      display: block;
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      font-weight: 400;
+    }
+
+    .ledger-cost {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--ink-primary);
+      white-space: nowrap;
+    }
+
+    .ledger-empty {
+      padding: 14px;
+      background-color: var(--bg-canvas);
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: var(--ink-muted);
+      text-align: center;
+    }
+
+    .totals-box {
+      background-color: var(--bg-plate);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .totals-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--ink-secondary);
+    }
+
+    .totals-row.grand {
+      padding-top: 8px;
+      border-top: 1px solid var(--border-strong);
+      color: var(--ink-primary);
+      align-items: baseline;
+    }
+
+    .grand-label {
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .grand-price {
+      font-family: var(--font-mono);
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+
+    .lift-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--status-ok-bg);
+      color: var(--status-ok);
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .summary-note {
+      margin: 0;
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      line-height: 1.45;
+    }
+
+    /* Fault / Node Explorer */
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .tab-btn {
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink-secondary);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .tab-btn.active {
+      background-color: var(--ink-primary);
+      border-color: var(--ink-primary);
+      color: #FFFFFF;
+    }
+
+    .cards-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .issue-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      transition: border-color 0.18s ease;
+    }
+
+    .issue-card:hover {
+      border-color: var(--accent);
+    }
+
+    .issue-card.hidden-card {
+      display: none;
+    }
+
+    .issue-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      background-color: var(--accent-soft);
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-bottom: 10px;
+    }
+
+    .issue-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .issue-text {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+    }
+
+    .issue-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-hairline);
+      font-size: 12.5px;
+    }
+
+    .issue-price {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .issue-action {
+      font-weight: 700;
+      color: var(--accent);
+      background: transparent;
+      border: none;
+      padding: 4px 0;
+      cursor: pointer;
+      font-size: 12.5px;
+    }
+
+    .issue-action:hover {
+      text-decoration: underline;
+    }
+
+    /* Services & Price Table */
+    .split-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .price-table-wrap {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .price-row:last-child {
+      border-bottom: none;
+    }
+
+    .price-row:hover {
+      background-color: var(--bg-canvas);
+    }
+
+    .price-service {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--ink-primary);
+    }
+
+    .price-note {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .price-val {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .standards-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .standards-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .standards-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+    }
+
+    .standards-bullet {
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      background-color: var(--accent-soft);
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .honesty-box {
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      background-color: var(--status-warn-bg);
+      border: 1px solid #E5CFAF;
+      color: var(--status-warn);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* Models & Process */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .process-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .process-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .process-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .process-desc {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+    }
+
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .model-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .model-series {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--ink-primary);
+    }
+
+    .model-codes {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.45;
+    }
+
+    .model-btn {
+      align-self: flex-start;
+      padding: 6px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--accent-line);
+      background-color: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .model-btn:hover {
+      background-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    /* Reviews & FAQ */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 42px;
+    }
+
+    .review-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .stars-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      color: var(--accent);
+    }
+
+    .review-text {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+    }
+
+    .review-author {
+      padding-top: 10px;
+      border-top: 1px solid var(--border-hairline);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 12.5px;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .faq-item {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      padding: 16px 20px;
+      border: none;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-align: left;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      cursor: pointer;
+    }
+
+    .faq-q:hover {
+      color: var(--accent);
+    }
+
+    .faq-icon {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      display: none;
+      padding: 0 20px 18px;
+      font-size: 14px;
+      color: var(--ink-secondary);
+      line-height: 1.6;
+      border-top: 1px solid var(--bg-plate);
+    }
+
+    .faq-item.open .faq-a {
+      display: block;
+      padding-top: 14px;
+    }
+
+    .faq-item.hidden-faq {
+      display: none;
+    }
+
+    /* Booking & Location */
+    .booking-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .booking-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .transfer-banner {
+      padding: 13px 15px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-soft);
+      border: 1px solid var(--accent-line);
+      font-size: 13px;
+      color: var(--ink-primary);
+      display: none;
+    }
+
+    .transfer-banner.visible {
+      display: block;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .booking-success {
+      display: none;
+      padding: 20px;
+      border-radius: var(--radius-sm);
+      background-color: var(--status-ok-bg);
+      border: 1px solid #B6D7C3;
+      color: var(--status-ok);
+    }
+
+    .booking-success.visible {
+      display: block;
+    }
+
+    .location-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .location-map {
+      padding: 16px;
+      background-color: var(--bg-canvas);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .location-details {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--border-hairline);
+      font-size: 14px;
+    }
+
+    .contact-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .contact-k {
+      color: var(--ink-muted);
+      font-size: 13px;
+    }
+
+    .contact-v {
+      font-weight: 700;
+      color: var(--ink-primary);
+      text-align: right;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--ink-primary);
+      color: #DCE0E6;
+      padding-block: 44px 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid #2A313E;
+    }
+
+    .footer-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+    }
+
+    .footer-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13.5px;
+      color: #B4BCC8;
+    }
+
+    .footer-links a:hover {
+      color: #FFFFFF;
+    }
+
+    .footer-bottom {
+      padding-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 12.5px;
+      color: #9FA8B6;
+    }
+
+    .footer-concept-line {
+      color: #DCE3ED;
+      font-weight: 600;
+    }
+
+    /* Responsive breakpoints */
+    @media (max-width: 1080px) {
+      .nav-links {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+      .hero-grid,
+      .calc-grid,
+      .split-2,
+      .booking-grid {
+        grid-template-columns: 1fr;
+      }
+      .calc-summary {
+        position: static;
+      }
+      .cards-grid-3,
+      .reviews-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .process-grid,
+      .models-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        padding-inline: 16px;
+      }
+      .utility-inner {
+        gap: 4px 12px;
+        font-size: 11px;
+        min-height: auto;
+        padding-block: 6px;
+      }
+      .utility-group {
+        gap: 4px 12px;
+      }
+      .utility-hide-mob {
+        display: none;
+      }
+      .header-inner {
+        min-height: 62px;
+        gap: 10px;
+      }
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+      }
+      .brand-title {
+        font-size: 15px;
+      }
+      .brand-sub {
+        font-size: 10px;
+      }
+      .header-phone,
+      .header-cta-desktop {
+        display: none;
+      }
+      .hero {
+        padding-block: 28px 36px;
+      }
+      .hero-cta-row .btn {
+        width: 100%;
+      }
+      .section {
+        padding-block: 44px;
+      }
+      .hero-metrics {
+        grid-template-columns: 1fr;
+      }
+      .metric-cell {
+        border-right: none;
+        border-bottom: 1px solid var(--border-hairline);
+      }
+      .metric-cell:last-child {
+        border-bottom: none;
+      }
+      .calc-panel {
+        padding: 16px;
+      }
+      .calc-selects-row,
+      .radio-card-grid,
+      .work-grid,
+      .cards-grid-3,
+      .reviews-grid,
+      .process-grid,
+      .models-grid,
+      .form-grid-2,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+      }
+      .contact-v {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="utility-group">
+        <span class="utility-item">
+          <span class="utility-dot" aria-hidden="true"></span>
+          <span>Воронеж, Ленинский проспект, 174</span>
+        </span>
+        <span class="utility-item mono">Пн-Пт: 08:00 - 17:00 · Сб-Вс: выходной</span>
+      </div>
+      <div class="utility-group">
+        <a class="utility-item mono utility-hide-mob" href="mailto:the_garage@bk.ru">the_garage@bk.ru</a>
+        <a class="utility-item mono" href="tel:+79529553494">+7 (952) 955-34-94</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="The Garage - Профильный автосервис BMW в Воронеже">
+        <svg class="brand-mark" viewBox="0 0 48 48" width="40" height="40" style="height:auto" aria-hidden="true">
+          <rect x="1" y="1" width="46" height="46" rx="7" fill="#151921" stroke="#151921" stroke-width="1.5"/>
+          <circle cx="24" cy="24" r="15.5" fill="none" stroke="#F7F7F4" stroke-width="1.8"/>
+          <path d="M24 8.5v31M8.5 24h31" stroke="#F7F7F4" stroke-width="1.4"/>
+          <path d="M24 11a13 13 0 0 1 13 13H24V11zM24 37a13 13 0 0 1-13-13h13v13z" fill="#174978"/>
+          <circle cx="24" cy="24" r="4" fill="#F7F7F4"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-title">THE GARAGE</span>
+          <span class="brand-sub">BMW Service · Воронеж</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Основная навигация">
+        <a class="nav-link" href="#calculator">Калькулятор ТО</a>
+        <a class="nav-link" href="#issues">Узлы BMW</a>
+        <a class="nav-link" href="#prices">Цены</a>
+        <a class="nav-link" href="#models">Модели</a>
+        <a class="nav-link" href="#faq">FAQ</a>
+        <a class="nav-link" href="#booking">Контакты</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="header-phone" href="tel:+79529553494">+7 (952) 955-34-94</a>
+        <a class="btn btn-primary header-cta-desktop" href="#calculator">Рассчитать ТО</a>
+        <button type="button" class="mobile-menu-btn" id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Открыть меню">
+          <svg width="20" height="20" viewBox="0 0 20 20" style="height:auto" aria-hidden="true">
+            <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-drawer" id="mobile-drawer">
+      <div class="mobile-nav-list">
+        <a class="mobile-nav-link" href="#calculator">Калькулятор ТО и диагностики</a>
+        <a class="mobile-nav-link" href="#issues">Типовые узлы BMW</a>
+        <a class="mobile-nav-link" href="#prices">Цены на услуги</a>
+        <a class="mobile-nav-link" href="#models">Модельный ряд</a>
+        <a class="mobile-nav-link" href="#faq">Частые вопросы</a>
+        <a class="mobile-nav-link" href="#booking">Запись на Ленинский пр., 174</a>
+      </div>
+      <a class="btn btn-secondary" style="width:100%" href="tel:+79529553494">Позвонить +7 (952) 955-34-94</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <div>
+            <div class="hero-eyebrow">
+              <span class="hero-eyebrow-code">BMW GROUP SPECIALIST</span>
+              <span>ISTA-D / ISTA-P · ICOM NEXT</span>
+            </div>
+            <h1 class="hero-title">
+              Профильный автосервис <span class="hero-title-accent">BMW</span> в Воронеже с дилерской диагностикой
+            </h1>
+            <p class="hero-desc">
+              С 2015 года обслуживаем и ремонтируем исключительно автомобили концерна BMW Group (BMW, Mini, Rolls-Royce) на Ленинском проспекте, 174. Оригинальное ПО ISTA, специнструмент для двигателей N/B-серии, трансмиссий ZF и кодирования NCD 2.0 / 3.0.
+            </p>
+          </div>
+
+          <div class="hero-cta-row">
+            <a class="btn btn-primary" href="#calculator">Калькулятор ТО (руб.)</a>
+            <a class="btn btn-secondary" href="#booking">Запись на Ленинский пр., 174</a>
+            <a class="btn btn-ghost" href="https://max.ru/u/f9LHodD0cOLfsyjBlMeKwID1FpqTewrmmf1F1bCaxclZP6oHjEQR-Y_OinA" target="_blank" rel="noopener noreferrer">Написать в MAX</a>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric-cell">
+              <div class="metric-val">15+ лет</div>
+              <div class="metric-label">Опыт механиков по BMW и обучение BMW Group</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val">2 000+</div>
+              <div class="metric-label">Постоянных владельцев BMW в Воронеже</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val">12 мес.</div>
+              <div class="metric-label">Гарантия на выполненные работы и запчасти</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-spec-card" aria-label="Технический паспорт сервиса The Garage">
+          <div class="spec-header">
+            <span>ТЕХПАСПОРТ ПОСТА №1 · THE GARAGE</span>
+            <span class="spec-badge">ВОРОНЕЖ</span>
+          </div>
+          <div class="spec-body">
+            <div class="spec-svg-box">
+              <svg viewBox="0 0 460 156" style="height:auto;width:100%" role="img" aria-label="Диагностическая схема подключения ICOM Next к шасси BMW">
+                <rect x="6" y="6" width="448" height="144" rx="6" fill="#FFFFFF" stroke="#DCDED6" stroke-width="1"/>
+                <path d="M24 30h412M24 126h412" stroke="#EFEFE9" stroke-width="1"/>
+                <path d="M96 92c8-24 34-42 74-46l76-4c32 0 64 12 86 28l48 8c12 3 20 12 20 22v10H88v-8c0-4 3-7 8-10z" fill="#EAF1F7" stroke="#174978" stroke-width="1.8"/>
+                <path d="M162 48l34-16h74l40 20" fill="none" stroke="#174978" stroke-width="1.5"/>
+                <circle cx="144" cy="110" r="18" fill="#FFFFFF" stroke="#151921" stroke-width="2.5"/>
+                <circle cx="144" cy="110" r="7" fill="#174978"/>
+                <circle cx="336" cy="110" r="18" fill="#FFFFFF" stroke="#151921" stroke-width="2.5"/>
+                <circle cx="336" cy="110" r="7" fill="#174978"/>
+                <path d="M196 76h64v18h-64z" fill="#FFFFFF" stroke="#174978" stroke-width="1.2" stroke-dasharray="3 2"/>
+                <text x="228" y="88" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#174978" font-weight="700">ISTA / ZF8</text>
+                <text x="24" y="24" font-family="JetBrains Mono, monospace" font-size="9" fill="#666E7A">ICOM NEXT · ENET / OBD-II · СТАБИЛИЗАЦИЯ 14.2V</text>
+                <text x="24" y="142" font-family="JetBrains Mono, monospace" font-size="9" fill="#151921">ПОДДЕРЖКА: E / F / G / U КУЗОВА · M-SERIES · I-SERIES</text>
+              </svg>
+            </div>
+            <ul class="spec-list">
+              <li class="spec-list-item">
+                <span class="spec-k">Специализация</span>
+                <span class="spec-v">BMW, Mini, Rolls-Royce</span>
+              </li>
+              <li class="spec-list-item">
+                <span class="spec-k">Диагностика</span>
+                <span class="spec-v">ISTA-D, ISTA-P, ICOM Next</span>
+              </li>
+              <li class="spec-list-item">
+                <span class="spec-k">Линейки ДВС</span>
+                <span class="spec-v">N13/N20/N47/N55/N57/N63 · B47/B48/B57/B58</span>
+              </li>
+              <li class="spec-list-item">
+                <span class="spec-k">Городской и моб.</span>
+                <span class="spec-v">+7 (952) 955-34-94 · +7 (473) 294-34-94</span>
+              </li>
+            </ul>
+          </div>
+          <div class="spec-footer">
+            <span>Адрес: г. Воронеж, Ленинский проспект, 174</span>
+            <span class="mono" style="color:#1B5E3C;font-weight:700">Пн-Пт 08:00-17:00</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="calculator">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-index">01 / Интерактивный расчет</div>
+            <h2 class="section-title">Калькулятор ТО и диагностики BMW в Воронеже (руб.)</h2>
+            <p class="section-lead">
+              Выберите серию кузова, тип двигателя, необходимые регламентные или ремонтные работы и уровень запчастей. Смета и время на подъемнике пересчитываются мгновенно с переносом в заявку на Ленинский проспект, 174.
+            </p>
+          </div>
+        </div>
+
+        <div class="calc-presets" role="group" aria-label="Быстрые сценарии расчета">
+          <span class="preset-label">Типовые сценарии:</span>
+          <button type="button" class="preset-btn active" data-preset="to">Плановое ТО + ISTA+</button>
+          <button type="button" class="preset-btn" data-preset="zf8">Большое ТО + АКПП ZF8</button>
+          <button type="button" class="preset-btn" data-preset="timing">Цепь ГРМ / теплообменник</button>
+          <button type="button" class="preset-btn" data-preset="buy">Комплекс перед покупкой</button>
+        </div>
+
+        <div class="calc-grid">
+          <div class="calc-panel">
+            <div class="calc-step">
+              <div class="calc-step-head">
+                <span class="calc-step-title">1. Серия / кузов и двигатель BMW</span>
+                <span class="calc-step-hint">Влияет на объем масла и трудоемкость</span>
+              </div>
+              <div class="calc-selects-row">
+                <div class="field-group">
+                  <label class="field-label" for="calc-series">Серия и поколение кузова</label>
+                  <select class="field-control" id="calc-series" autocomplete="off">
+                    <option value="f30g20">3 / 4 Series (F30 / G20)</option>
+                    <option value="f10g30">5 Series (F10 / G30)</option>
+                    <option value="f25g01">X3 / X4 (F25 / G01)</option>
+                    <option value="f15g05">X5 / X6 (F15 / G05)</option>
+                    <option value="7m">7 Series / M-серия</option>
+                  </select>
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="calc-engine">Модификация двигателя</label>
+                  <select class="field-control" id="calc-engine" autocomplete="off">
+                    <option value="b48n20">Бензин 2.0 (B48 / N20)</option>
+                    <option value="b58n55">Бензин 3.0 (B58 / N55)</option>
+                    <option value="diesel">Дизель 2.0 / 3.0 (B47 / B57 / N47 / N57)</option>
+                    <option value="n63">V8 (N63)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="calc-step">
+              <div class="calc-step-head">
+                <span class="calc-step-title">2. Виды работ и регламентные операции</span>
+                <span class="calc-step-hint">Отметьте позиции или выберите узел на схеме</span>
+              </div>
+              <div class="work-grid">
+                <div class="choice-wrap">
+                  <input class="choice-input" type="checkbox" id="work-ista" value="ista" autocomplete="off" checked>
+                  <label class="work-label" for="work-ista">
+                    <div>
+                      <div class="work-head">
+                        <span class="choice-title">Компьютерная диагностика ISTA+</span>
+                        <span class="work-check" aria-hidden="true">
+                          <svg width="11" height="9" viewBox="0 0 11 9" style="height:auto"><path d="M1 4.5L4 7.5L10 1.5" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                      </div>
+                      <div class="choice-desc">Полный опрос всех ЭБУ через ICOM Next, чтение коррекций</div>
+                    </div>
+                    <div class="work-meta">
+                      <span class="work-price" data-work-price="ista">2 500 ₽</span>
+                      <span class="work-hours" data-work-hours="ista">0.5 ч</span>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="choice-wrap">
+                  <input class="choice-input" type="checkbox" id="work-to" value="to" autocomplete="off" checked>
+                  <label class="work-label" for="work-to">
+                    <div>
+                      <div class="work-head">
+                        <span class="choice-title">Плановое ТО: масло и фильтры</span>
+                        <span class="work-check" aria-hidden="true">
+                          <svg width="11" height="9" viewBox="0 0 11 9" style="height:auto"><path d="M1 4.5L4 7.5L10 1.5" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                      </div>
+                      <div class="choice-desc">Масло LL-01 / LL-04, масляный, воздушный, салонный фильтры</div>
+                    </div>
+                    <div class="work-meta">
+                      <span class="work-price" data-work-price="to">11 900 ₽</span>
+                      <span class="work-hours" data-work-hours="to">1.2 ч</span>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="choice-wrap">
+                  <input class="choice-input" type="checkbox" id="work-zf8" value="zf8" autocomplete="off">
+                  <label class="work-label" for="work-zf8">
+                    <div>
+                      <div class="work-head">
+                        <span class="choice-title">Замена масла в АКПП ZF8 с поддоном</span>
+                        <span class="work-check" aria-hidden="true">
+                          <svg width="11" height="9" viewBox="0 0 11 9" style="height:auto"><path d="M1 4.5L4 7.5L10 1.5" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                      </div>
+                      <div class="choice-desc">Поддон-фильтр, трансмиссионное масло, болты, сброс адаптаций</div>
+                    </div>
+                    <div class="work-meta">
+                      <span class="work-price" data-work-price="zf8">29 500 ₽</span>
+                      <span class="work-hours" data-work-hours="zf8">2.5 ч</span>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="choice-wrap">
+                  <input class="choice-input" type="checkbox" id="work-brakes" value="brakes" autocomplete="off">
+                  <label class="work-label" for="work-brakes">
+                    <div>
+                      <div class="work-head">
+                        <span class="choice-title">Замена тормозных дисков и колодок</span>
+                        <span class="work-check" aria-hidden="true">
+                          <svg width="11" height="9" viewBox="0 0 11 9" style="height:auto"><path d="M1 4.5L4 7.5L10 1.5" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                      </div>
+                      <div class="choice-desc">Комплект на ось с датчиком износа, чисткой скоб и смазкой</div>
+                    </div>
+                    <div class="work-meta">
+                      <span class="work-price" data-work-price="brakes">21 800 ₽</span>
+                      <span class="work-hours" data-work-hours="brakes">1.5 ч</span>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="choice-wrap">
+                  <input class="choice-input" type="checkbox" id="work-suspension" value="suspension" autocomplete="off">
+                  <label class="work-label" for="work-suspension">
+                    <div>
+                      <div class="work-head">
+                        <span class="choice-title">Диагностика и ремонт подвески</span>
+                        <span class="work-check" aria-hidden="true">
+                          <svg width="11" height="9" viewBox="0 0 11 9" style="height:auto"><path d="M1 4.5L4 7.5L10 1.5" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                      </div>
+                      <div class="choice-desc">Проверка люфтов на подъемнике, замена рычагов / сайлентблоков</div>
+                    </div>
+                    <div class="work-meta">
+                      <span class="work-price" data-work-price="suspension">9 400 ₽</span>
+                      <span class="work-hours" data-work-hours="suspension">2.0 ч</span>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="choice-wrap">
+                  <input class="choice-input" type="checkbox" id="work-timing" value="timing" autocomplete="off">
+                  <label class="work-label" for="work-timing">
+                    <div>
+                      <div class="work-head">
+                        <span class="choice-title">Замена цепи ГРМ / теплообменника</span>
+                        <span class="work-check" aria-hidden="true">
+                          <svg width="11" height="9" viewBox="0 0 11 9" style="height:auto"><path d="M1 4.5L4 7.5L10 1.5" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                      </div>
+                      <div class="choice-desc">Комплект цепей и планок ГРМ, прокладки, спецфиксатор валов</div>
+                    </div>
+                    <div class="work-meta">
+                      <span class="work-price" data-work-price="timing">54 000 ₽</span>
+                      <span class="work-hours" data-work-hours="timing">7.5 ч</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="calc-step">
+              <div class="calc-step-head">
+                <span class="calc-step-title">3. Выбор запчастей и расходников</span>
+                <span class="calc-step-hint">Возможен приезд со своими деталями</span>
+              </div>
+              <div class="radio-card-grid">
+                <div class="choice-wrap">
+                  <input class="choice-input" type="radio" name="partsTier" id="parts-original" value="original" autocomplete="off" checked>
+                  <label class="choice-label" for="parts-original">
+                    <span class="choice-top">
+                      <span class="choice-title">Оригинал BMW</span>
+                      <span class="choice-code">BMW OEM</span>
+                    </span>
+                    <span class="choice-desc">Заводские детали BMW Group и оригинальные технические жидкости с полной гарантией 12 месяцев.</span>
+                  </label>
+                </div>
+                <div class="choice-wrap">
+                  <input class="choice-input" type="radio" name="partsTier" id="parts-analog" value="analog" autocomplete="off">
+                  <label class="choice-label" for="parts-analog">
+                    <span class="choice-top">
+                      <span class="choice-title">Премиум аналоги</span>
+                      <span class="choice-code">Lemforder / ATE / Mann</span>
+                    </span>
+                    <span class="choice-desc">Поставщики конвейера BMW (ZF, Lemforder, ATE, Mann, Mahle) с сохранением штатного ресурса.</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="calc-summary" aria-label="Смета и интерактивная схема узлов BMW">
+            <div class="summary-top">
+              <span class="summary-top-title">Предварительная смета</span>
+              <span class="summary-top-code" id="summary-chassis-badge">3 / 4 Series · B48/N20</span>
+            </div>
+
+            <div class="blueprint-box">
+              <div class="blueprint-caption">
+                <span>СХЕМА УЗЛОВ BMW (НАЖМИТЕ ДЛЯ ВЫБОРА)</span>
+                <span id="svg-active-count">Активно узлов: 2</span>
+              </div>
+              <svg viewBox="0 0 520 236" style="height:auto;width:100%" role="img" aria-label="Интерактивная техническая схема узлов BMW">
+                <rect x="2" y="2" width="516" height="232" rx="6" fill="#FFFFFF" stroke="#DCDED6" stroke-width="1"/>
+                <line x1="20" y1="118" x2="500" y2="118" stroke="#E5E6DF" stroke-width="1" stroke-dasharray="4 3"/>
+                <line x1="138" y1="18" x2="138" y2="218" stroke="#EFEFE9" stroke-width="1"/>
+                <line x1="382" y1="18" x2="382" y2="218" stroke="#EFEFE9" stroke-width="1"/>
+
+                <path d="M74 68c16-14 48-20 96-20h176c44 0 80 8 98 22 8 6 12 18 12 48s-4 42-12 48c-18 14-54 22-98 22H170c-48 0-80-6-96-20-8-7-12-20-12-50s4-43 12-50z" fill="#F7F7F4" stroke="#B5BAC4" stroke-width="1.5"/>
+                <path d="M180 60h136c18 0 32 10 38 26v64c-6 16-20 26-38 26H180c-12 0-22-8-26-22v-72c4-14 14-22 26-22z" fill="none" stroke="#D1D5DD" stroke-width="1.2"/>
+
+                <line x1="138" y1="42" x2="138" y2="194" stroke="#8C95A4" stroke-width="2"/>
+                <line x1="382" y1="42" x2="382" y2="194" stroke="#8C95A4" stroke-width="2"/>
+                <line x1="158" y1="118" x2="382" y2="118" stroke="#A4ADBA" stroke-width="3"/>
+
+                <rect x="116" y="34" width="44" height="14" rx="3" fill="#151921"/>
+                <rect x="116" y="188" width="44" height="14" rx="3" fill="#151921"/>
+                <rect x="360" y="34" width="44" height="14" rx="3" fill="#151921"/>
+                <rect x="360" y="188" width="44" height="14" rx="3" fill="#151921"/>
+
+                <g class="svg-node" id="svg-node-timing" data-work="timing" tabindex="0" role="button" aria-label="Переключить узел Цепь ГРМ и теплообменник">
+                  <rect class="node-fill node-ring" x="80" y="88" width="88" height="60" rx="5" stroke-width="1.5"/>
+                  <circle class="node-dot" cx="93" cy="101" r="3.5"/>
+                  <text class="node-text" x="124" y="120" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5">ДВС / ГРМ</text>
+                  <text class="node-text" x="124" y="135" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" id="svg-engine-label">B48 / N20</text>
+                </g>
+
+                <g class="svg-node active" id="svg-node-to" data-work="to" tabindex="0" role="button" aria-label="Переключить узел Плановое ТО масло и фильтры">
+                  <rect class="node-fill node-ring" x="12" y="12" width="146" height="26" rx="4" stroke-width="1.4"/>
+                  <line x1="85" y1="38" x2="108" y2="88" stroke="#174978" stroke-width="1" stroke-dasharray="2 2"/>
+                  <circle class="node-dot" cx="24" cy="25" r="3.5"/>
+                  <text class="node-text" x="92" y="28.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5">ТО: МАСЛО И ФИЛЬТР</text>
+                </g>
+
+                <g class="svg-node" id="svg-node-zf8" data-work="zf8" tabindex="0" role="button" aria-label="Переключить узел АКПП ZF8">
+                  <rect class="node-fill node-ring" x="178" y="95" width="102" height="46" rx="5" stroke-width="1.5"/>
+                  <circle class="node-dot" cx="190" cy="107" r="3.5"/>
+                  <text class="node-text" x="229" y="118" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5">АКПП ZF8</text>
+                  <text class="node-text" x="229" y="131" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8">ПОДДОН / XDRIVE</text>
+                </g>
+
+                <g class="svg-node active" id="svg-node-ista" data-work="ista" tabindex="0" role="button" aria-label="Переключить узел Компьютерная диагностика ISTA+">
+                  <rect class="node-fill node-ring" x="290" y="88" width="90" height="60" rx="5" stroke-width="1.5"/>
+                  <circle class="node-dot" cx="302" cy="101" r="3.5"/>
+                  <text class="node-text" x="335" y="118" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5">ISTA+ ЭБУ</text>
+                  <text class="node-text" x="335" y="132" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8">ICOM NEXT</text>
+                </g>
+
+                <g class="svg-node" id="svg-node-brakes" data-work="brakes" tabindex="0" role="button" aria-label="Переключить узел Тормозная система">
+                  <rect class="node-fill node-ring" x="172" y="12" width="142" height="26" rx="4" stroke-width="1.4"/>
+                  <line x1="172" y1="25" x2="152" y2="38" stroke="#8A93A2" stroke-width="1" stroke-dasharray="2 2"/>
+                  <circle class="node-dot" cx="184" cy="25" r="3.5"/>
+                  <text class="node-text" x="250" y="28.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5">ДИСКИ И КОЛОДКИ</text>
+                </g>
+
+                <g class="svg-node" id="svg-node-suspension" data-work="suspension" tabindex="0" role="button" aria-label="Переключить узел Подвеска и рулевое">
+                  <rect class="node-fill node-ring" x="314" y="198" width="166" height="26" rx="4" stroke-width="1.4"/>
+                  <line x1="382" y1="198" x2="382" y2="190" stroke="#8A93A2" stroke-width="1" stroke-dasharray="2 2"/>
+                  <circle class="node-dot" cx="326" cy="211" r="3.5"/>
+                  <text class="node-text" x="403" y="214.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5">ПОДВЕСКА И РУЛЕВОЕ</text>
+                </g>
+              </svg>
+              <div class="blueprint-legend">
+                <span>Синий контур - узел включен в расчет</span>
+                <span class="mono" id="svg-oil-spec">Объем масла: ~5.2 л</span>
+              </div>
+            </div>
+
+            <div class="summary-body">
+              <div class="selected-spec-tags" id="summary-tags">
+                <span class="spec-pill">F30 / G20</span>
+                <span class="spec-pill">B48 / N20</span>
+                <span class="spec-pill">Оригинал BMW</span>
+              </div>
+
+              <ul class="ledger-list" id="ledger-list"></ul>
+
+              <div class="totals-box">
+                <div class="totals-row">
+                  <span>Стоимость работ сервиса</span>
+                  <span class="mono" id="total-labor">4 200 ₽</span>
+                </div>
+                <div class="totals-row">
+                  <span>Запчасти и расходники (<span id="total-tier-label">Оригинал BMW</span>)</span>
+                  <span class="mono" id="total-parts">10 200 ₽</span>
+                </div>
+                <div class="totals-row grand">
+                  <span class="grand-label">Итого ориентировочно</span>
+                  <span class="grand-price" id="total-grand">14 400 ₽</span>
+                </div>
+              </div>
+
+              <div class="lift-row">
+                <span>Оценка времени на подъемнике</span>
+                <span class="mono" id="total-hours">1.7 ч</span>
+              </div>
+
+              <button type="button" class="btn btn-primary" id="transfer-to-booking" style="width:100%">
+                Перенести расчет в заявку на Ленинский пр., 174
+              </button>
+
+              <p class="summary-note">
+                Предварительный расчет по прайсу The Garage в Воронеже. Точная спецификация расходников и допусков подтверждается мастером-приемщиком по VIN вашего BMW.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="issues">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-index">02 / Профильная диагностика</div>
+            <h2 class="section-title">Типовые узлы и характерные неисправности BMW</h2>
+            <p class="section-lead">
+              Знаем слабые места каждой генерации двигателей N/B-серии, трансмиссий xDrive и бортовой электроники. Выбирайте профиль проблемы и добавляйте в смету в один клик.
+            </p>
+          </div>
+        </div>
+
+        <div class="filter-tabs" role="tablist" aria-label="Фильтр по системам BMW">
+          <button type="button" class="tab-btn active" data-issue-filter="all">Все узлы</button>
+          <button type="button" class="tab-btn" data-issue-filter="engine">Двигатель и ГРМ</button>
+          <button type="button" class="tab-btn" data-issue-filter="drivetrain">АКПП ZF и xDrive</button>
+          <button type="button" class="tab-btn" data-issue-filter="electric">Электрика FRM и ISTA</button>
+          <button type="button" class="tab-btn" data-issue-filter="chassis">Ходовая и тормоза</button>
+        </div>
+
+        <div class="cards-grid-3" id="issues-grid">
+          <article class="issue-card" data-issue-cat="engine">
+            <div>
+              <span class="issue-tag">N13 / N20 / N47 / N57</span>
+              <h3 class="issue-title">Цепь ГРМ и цепь маслонасоса</h3>
+              <p class="issue-text">
+                Шуршание и звон на холодном запуске, разрушение пластиковых планок успокоителя. Комплексная замена цепи ГРМ, натяжителей и прокладок выполняется за 1 рабочий день.
+              </p>
+            </div>
+            <div class="issue-foot">
+              <span class="issue-price">от 45 000 ₽</span>
+              <button type="button" class="issue-action" data-add-work="timing">Добавить в расчет</button>
+            </div>
+          </article>
+
+          <article class="issue-card" data-issue-cat="engine">
+            <div>
+              <span class="issue-tag">VANOS · Valvetronic</span>
+              <h3 class="issue-title">Плавающие обороты и фазы ГРМ</h3>
+              <p class="issue-text">
+                Ошибки по смесеобразованию, потеря тяги на низах, стук исполнительных узлов. Проверка углов и работа приводов по ISTA+, чистка или замена клапанов и сервопривода.
+              </p>
+            </div>
+            <div class="issue-foot">
+              <span class="issue-price">диагностика от 2 500 ₽</span>
+              <button type="button" class="issue-action" data-add-work="ista">Добавить диагностику</button>
+            </div>
+          </article>
+
+          <article class="issue-card" data-issue-cat="engine">
+            <div>
+              <span class="issue-tag">N63 / B48 / N47</span>
+              <h3 class="issue-title">Теплообменник, МСК и течи масла</h3>
+              <p class="issue-text">
+                Устранение течи из-под клапанной крышки (от 5 500 ₽ за работу), замена маслосъемных колпачков, переуплотнение корпуса масляного фильтра и профилактика охлаждения.
+              </p>
+            </div>
+            <div class="issue-foot">
+              <span class="issue-price">переуплотнение от 5 500 ₽</span>
+              <button type="button" class="issue-action" data-add-work="timing">В калькулятор</button>
+            </div>
+          </article>
+
+          <article class="issue-card" data-issue-cat="drivetrain">
+            <div>
+              <span class="issue-tag">ZF 8HP · xDrive</span>
+              <h3 class="issue-title">Толчки АКПП и вибрация раздатки</h3>
+              <p class="issue-text">
+                Замена масла в АКПП ZF с оригинальным поддоном-фильтром, диагностика гидроблока, ремонт раздаточной коробки xDrive и калибровка муфты через ISTA.
+              </p>
+            </div>
+            <div class="issue-foot">
+              <span class="issue-price">работа от 5 000 ₽</span>
+              <button type="button" class="issue-action" data-add-work="zf8">Добавить в расчет</button>
+            </div>
+          </article>
+
+          <article class="issue-card" data-issue-cat="electric">
+            <div>
+              <span class="issue-tag">E90 / F30 / F10 · FRM3</span>
+              <h3 class="issue-title">Восстановление блока света FRM</h3>
+              <p class="issue-text">
+                Пропал ближний свет, стеклоподъемники и поворотники после просадки АКБ. Восстанавливаем EEPROM блока FRM до заводского состояния, включая снятые блоки.
+              </p>
+            </div>
+            <div class="issue-foot">
+              <span class="issue-price">от 5 000 ₽</span>
+              <button type="button" class="issue-action" data-add-work="ista">Проверить по ISTA</button>
+            </div>
+          </article>
+
+          <article class="issue-card" data-issue-cat="electric">
+            <div>
+              <span class="issue-tag">Stage 1/2 · NCD 2.0/3.0</span>
+              <h3 class="issue-title">Кодирование, обновление ПО и чип-тюнинг</h3>
+              <p class="issue-text">
+                Активация скрытых функций даже на блоках с защитой NCD 2.0/3.0, обновление прошивок ЭБУ, чип-тюнинг Stage 1/2, корректная работа с EGR, DPF и AdBlue.
+              </p>
+            </div>
+            <div class="issue-foot">
+              <span class="issue-price">Stage 1 от 20 000 ₽</span>
+              <button type="button" class="issue-action" data-add-work="ista">Записаться на ПО</button>
+            </div>
+          </article>
+
+          <article class="issue-card" data-issue-cat="chassis">
+            <div>
+              <span class="issue-tag">Передняя и задняя ось</span>
+              <h3 class="issue-title">Стук подвески и рулевая рейка</h3>
+              <p class="issue-text">
+                Диагностика ходовой на подъемнике за 30 минут, замена шаровых, сайлентблоков, рычагов, амортизаторов и ступичных подшипников. Замена рулевой рейки от 3 часов.
+              </p>
+            </div>
+            <div class="issue-foot">
+              <span class="issue-price">осмотр от 1 000 ₽</span>
+              <button type="button" class="issue-action" data-add-work="suspension">Добавить в расчет</button>
+            </div>
+          </article>
+
+          <article class="issue-card" data-issue-cat="chassis">
+            <div>
+              <span class="issue-tag">ABS / DSC · M-Sport</span>
+              <h3 class="issue-title">Тормозная система и прокачка</h3>
+              <p class="issue-text">
+                Замена колодок и дисков с очисткой направляющих суппортов, замена датчиков износа, аппаратная замена тормозной жидкости по регламенту каждые 2 года.
+              </p>
+            </div>
+            <div class="issue-foot">
+              <span class="issue-price">колодки от 2 500 ₽</span>
+              <button type="button" class="issue-action" data-add-work="brakes">Добавить в расчет</button>
+            </div>
+          </article>
+
+          <article class="issue-card" data-issue-cat="engine">
+            <div>
+              <span class="issue-tag">Турбонаддув · DPF</span>
+              <h3 class="issue-title">Свист турбины и принудительный прожиг</h3>
+              <p class="issue-text">
+                Проверка герметичности впуска дымогенератором, оценка люфта крыльчатки, диагностика передува/недодува, принудительная регенерация DPF через ISTA.
+              </p>
+            </div>
+            <div class="issue-foot">
+              <span class="issue-price">от 2 500 ₽</span>
+              <button type="button" class="issue-action" data-add-work="ista">Добавить диагностику</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="prices">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-index">03 / Прозрачный прайс-лист</div>
+            <h2 class="section-title">Базовые цены на ключевые работы по BMW</h2>
+            <p class="section-lead">
+              Фиксированные стартовые расценки по регламенту bmw-vrn.ru. Точную смету с учетом комплектации и VIN согласовываем до постановки автомобиля на подъемник.
+            </p>
+          </div>
+        </div>
+
+        <div class="split-2">
+          <div class="price-table-wrap" aria-label="Прайс-лист автосервиса The Garage">
+            <div class="price-row">
+              <div>
+                <div class="price-service">Компьютерная диагностика BMW (ISTA-D / ISTA-P / ICOM Next)</div>
+                <div class="price-note">Полный опрос электронных блоков управления, 15-30 минут</div>
+              </div>
+              <div class="price-val">от 2 500 ₽</div>
+            </div>
+            <div class="price-row">
+              <div>
+                <div class="price-service">Комплексная диагностика BMW перед покупкой</div>
+                <div class="price-note">Подъемник, подвеска, проверка течей и электронная карта блоков</div>
+              </div>
+              <div class="price-val">от 3 500 ₽</div>
+            </div>
+            <div class="price-row">
+              <div>
+                <div class="price-service">Плановое ТО: замена масла и фильтров</div>
+                <div class="price-note">Стоимость работы (масляный, воздушный, салонный фильтры)</div>
+              </div>
+              <div class="price-val">от 2 500 ₽</div>
+            </div>
+            <div class="price-row">
+              <div>
+                <div class="price-service">Замена тормозных колодок (1 ось)</div>
+                <div class="price-note">До 30 минут; диски вместе с колодками до 1 часа</div>
+              </div>
+              <div class="price-val">от 2 500 ₽</div>
+            </div>
+            <div class="price-row">
+              <div>
+                <div class="price-service">Диагностика подвески и ходовой части</div>
+                <div class="price-note">Визуальный и инструментальный осмотр на подъемнике</div>
+              </div>
+              <div class="price-val">от 1 000 ₽</div>
+            </div>
+            <div class="price-row">
+              <div>
+                <div class="price-service">Замена масла АКПП ZF / трансмиссии</div>
+                <div class="price-note">Работа по замене с контролем температуры и адаптацией</div>
+              </div>
+              <div class="price-val">от 5 000 ₽</div>
+            </div>
+            <div class="price-row">
+              <div>
+                <div class="price-service">Восстановление блока FRM3</div>
+                <div class="price-note">Программный ремонт EEPROM, в том числе на снятом ЭБУ</div>
+              </div>
+              <div class="price-val">от 5 000 ₽</div>
+            </div>
+            <div class="price-row">
+              <div>
+                <div class="price-service">Переуплотнение клапанной крышки</div>
+                <div class="price-note">Работа по замене прокладки (плюс стоимость прокладки)</div>
+              </div>
+              <div class="price-val">от 5 500 ₽</div>
+            </div>
+            <div class="price-row">
+              <div>
+                <div class="price-service">Замена цепи ГРМ (N47 / N57 / N20)</div>
+                <div class="price-note">Комплексная замена цепей, планок и натяжителей за 1 день</div>
+              </div>
+              <div class="price-val">от 45 000 ₽</div>
+            </div>
+            <div class="price-row">
+              <div>
+                <div class="price-service">Чип-тюнинг Stage 1</div>
+                <div class="price-note">Безопасная калибровка мощности и крутящего момента</div>
+              </div>
+              <div class="price-val">от 20 000 ₽</div>
+            </div>
+          </div>
+
+          <aside class="standards-card">
+            <h3 style="font-size:20px;font-weight:800">Инженерный стандарт The Garage</h3>
+            <ul class="standards-list">
+              <li class="standards-item">
+                <span class="standards-bullet" aria-hidden="true">
+                  <svg width="11" height="9" viewBox="0 0 11 9" style="height:auto"><path d="M1 4.5L4 7.5L10 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </span>
+                <span><strong>Только концерн BMW Group:</strong> работаем с марками BMW, Mini и Rolls-Royce без распыления на другие бренды.</span>
+              </li>
+              <li class="standards-item">
+                <span class="standards-bullet" aria-hidden="true">
+                  <svg width="11" height="9" viewBox="0 0 11 9" style="height:auto"><path d="M1 4.5L4 7.5L10 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </span>
+                <span><strong>Сертифицированное обучение:</strong> механики со стажем более 15 лет регулярно проходят тренинги в центре квалификации BMW Group.</span>
+              </li>
+              <li class="standards-item">
+                <span class="standards-bullet" aria-hidden="true">
+                  <svg width="11" height="9" viewBox="0 0 11 9" style="height:auto"><path d="M1 4.5L4 7.5L10 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </span>
+                <span><strong>Можно со своими запчастями:</strong> сохраняем гарантию 12 месяцев на точность сборки и соблюдение заводских моментов затяжки.</span>
+              </li>
+              <li class="standards-item">
+                <span class="standards-bullet" aria-hidden="true">
+                  <svg width="11" height="9" viewBox="0 0 11 9" style="height:auto"><path d="M1 4.5L4 7.5L10 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </span>
+                <span><strong>Корпоративные клиенты и автопарки:</strong> обслуживаем юрлица по УСН (без НДС) с полным пакетом заказ-нарядов.</span>
+              </li>
+            </ul>
+
+            <div class="honesty-box">
+              <strong>Честное ограничение профиля:</strong> на Ленинском проспекте, 174 мы выполняем все слесарные, агрегатные и электронные работы по BMW, кроме кузовного ремонта, малярных работ и регулировки развала-схождения.
+            </div>
+
+            <a class="btn btn-primary" href="#calculator">Перейти в калькулятор ТО</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="models">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-index">04 / Регламент и модельный ряд</div>
+            <h2 class="section-title">Прозрачный процесс работы и все серии BMW</h2>
+            <p class="section-lead">
+              Четыре понятных этапа от звонка до выдачи автомобиля. Нажмите на нужную серию, чтобы сразу переключить кузов в калькуляторе.
+            </p>
+          </div>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="process-num">ЭТАП 01</div>
+            <h3 class="process-title">Заявка и подбор времени</h3>
+            <p class="process-desc">По телефону +7 (952) 955-34-94, через мессенджер MAX или через форму расчета на сайте.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-num">ЭТАП 02</div>
+            <h3 class="process-title">Диагностика ISTA+</h3>
+            <p class="process-desc">Компьютерный опрос блоков на ICOM Next и инструментальный осмотр на подъемнике.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-num">ЭТАП 03</div>
+            <h3 class="process-title">Согласование сметы</h3>
+            <p class="process-desc">Фиксируем перечень работ, сроки и выбор между оригиналом BMW и премиум-аналогами.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-num">ЭТАП 04</div>
+            <h3 class="process-title">Ремонт и гарантия 12 мес.</h3>
+            <p class="process-desc">Выполнение по заводским моментам затяжки, контрольный сброс ошибок и выдача авто.</p>
+          </div>
+        </div>
+
+        <div class="models-grid">
+          <div class="model-card">
+            <div>
+              <div class="model-series">1 / 2 Series</div>
+              <div class="model-codes">E87, F20, F40, F70 · F22, F44, G42, F74</div>
+            </div>
+            <button type="button" class="model-btn" data-select-series="f30g20">Рассчитать ТО</button>
+          </div>
+          <div class="model-card">
+            <div>
+              <div class="model-series">3 / 4 Series</div>
+              <div class="model-codes">E36, E46, E90, F30, G20 · F32, G22, G26</div>
+            </div>
+            <button type="button" class="model-btn" data-select-series="f30g20">Выбрать F30 / G20</button>
+          </div>
+          <div class="model-card">
+            <div>
+              <div class="model-series">5 / 6 Series</div>
+              <div class="model-codes">E39, E60, F10, G30, G60 · F06, F12, G32</div>
+            </div>
+            <button type="button" class="model-btn" data-select-series="f10g30">Выбрать F10 / G30</button>
+          </div>
+          <div class="model-card">
+            <div>
+              <div class="model-series">7 / 8 Series</div>
+              <div class="model-codes">E38, E65, F01, G11, G70 · G14, G15, G16</div>
+            </div>
+            <button type="button" class="model-btn" data-select-series="7m">Выбрать 7 Series</button>
+          </div>
+          <div class="model-card">
+            <div>
+              <div class="model-series">X1 / X2</div>
+              <div class="model-codes">E84, F48, U11 · F39, U10</div>
+            </div>
+            <button type="button" class="model-btn" data-select-series="f25g01">Рассчитать X-класс</button>
+          </div>
+          <div class="model-card">
+            <div>
+              <div class="model-series">X3 / X4</div>
+              <div class="model-codes">E83, F25, G01, G45 · F26, G02</div>
+            </div>
+            <button type="button" class="model-btn" data-select-series="f25g01">Выбрать F25 / G01</button>
+          </div>
+          <div class="model-card">
+            <div>
+              <div class="model-series">X5 / X6 / X7</div>
+              <div class="model-codes">E53, E70, F15, G05, G65 · F16, G06, G07</div>
+            </div>
+            <button type="button" class="model-btn" data-select-series="f15g05">Выбрать F15 / G05</button>
+          </div>
+          <div class="model-card">
+            <div>
+              <div class="model-series">M-Series / Z4 / i-Series</div>
+              <div class="model-codes">M2, M3, M4, M5, M8, XM · S58, S63, S68</div>
+            </div>
+            <button type="button" class="model-btn" data-select-series="7m">Выбрать M-серию</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-index">05 / Отзывы и ответы экспертов</div>
+            <h2 class="section-title">Опыт владельцев BMW в Воронеже и частые вопросы</h2>
+          </div>
+          <a class="btn btn-secondary" href="https://yandex.ru/maps/-/CTvSjI-5" target="_blank" rel="noopener noreferrer">Отзывы на Яндекс.Картах</a>
+        </div>
+
+        <div class="reviews-grid">
+          <article class="review-card">
+            <div>
+              <div class="stars-row" aria-label="Оценка 5 из 5">
+                <svg width="14" height="14" viewBox="0 0 14 14" style="height:auto" aria-hidden="true"><path d="M7 1l1.8 3.7 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="currentColor"/></svg>
+                <svg width="14" height="14" viewBox="0 0 14 14" style="height:auto" aria-hidden="true"><path d="M7 1l1.8 3.7 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="currentColor"/></svg>
+                <svg width="14" height="14" viewBox="0 0 14 14" style="height:auto" aria-hidden="true"><path d="M7 1l1.8 3.7 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="currentColor"/></svg>
+                <svg width="14" height="14" viewBox="0 0 14 14" style="height:auto" aria-hidden="true"><path d="M7 1l1.8 3.7 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="currentColor"/></svg>
+                <svg width="14" height="14" viewBox="0 0 14 14" style="height:auto" aria-hidden="true"><path d="M7 1l1.8 3.7 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="currentColor"/></svg>
+              </div>
+              <p class="review-text" style="margin-top:10px">
+                «Обратился с проблемой вибрации xDrive на X5. Диагностика заняла 20 минут, ремонт раздатки за день. Цена адекватная, все объяснили. Теперь только сюда.»
+              </p>
+            </div>
+            <div class="review-author">
+              <strong>Александр М.</strong>
+              <span class="mono" style="color:var(--ink-muted)">BMW X5 (F15) · Яндекс</span>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <div>
+              <div class="stars-row" aria-label="Оценка 5 из 5">
+                <svg width="14" height="14" viewBox="0 0 14 14" style="height:auto" aria-hidden="true"><path d="M7 1l1.8 3.7 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="currentColor"/></svg>
+                <svg width="14" height="14" viewBox="0 0 14 14" style="height:auto" aria-hidden="true"><path d="M7 1l1.8 3.7 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="currentColor"/></svg>
+                <svg width="14" height="14" viewBox="0 0 14 14" style="height:auto" aria-hidden="true"><path d="M7 1l1.8 3.7 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="currentColor"/></svg>
+                <svg width="14" height="14" viewBox="0 0 14 14" style="height:auto" aria-hidden="true"><path d="M7 1l1.8 3.7 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="currentColor"/></svg>
+                <svg width="14" height="14" viewBox="0 0 14 14" style="height:auto" aria-hidden="true"><path d="M7 1l1.8 3.7 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="currentColor"/></svg>
+              </div>
+              <p class="review-text" style="margin-top:10px">
+                «Гремела цепь на N47, в других сервисах пугали ценой и сроками. Здесь заменили за день, дали гарантию. Профессионалы своего дела.»
+              </p>
+            </div>
+            <div class="review-author">
+              <strong>Дмитрий К.</strong>
+              <span class="mono" style="color:var(--ink-muted)">BMW 320d (F30) · 2ГИС</span>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <div>
+              <div class="stars-row" aria-label="Оценка 5 из 5">
+                <svg width="14" height="14" viewBox="0 0 14 14" style="height:auto" aria-hidden="true"><path d="M7 1l1.8 3.7 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="currentColor"/></svg>
+                <svg width="14" height="14" viewBox="0 0 14 14" style="height:auto" aria-hidden="true"><path d="M7 1l1.8 3.7 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="currentColor"/></svg>
+                <svg width="14" height="14" viewBox="0 0 14 14" style="height:auto" aria-hidden="true"><path d="M7 1l1.8 3.7 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="currentColor"/></svg>
+                <svg width="14" height="14" viewBox="0 0 14 14" style="height:auto" aria-hidden="true"><path d="M7 1l1.8 3.7 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="currentColor"/></svg>
+                <svg width="14" height="14" viewBox="0 0 14 14" style="height:auto" aria-hidden="true"><path d="M7 1l1.8 3.7 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="currentColor"/></svg>
+              </div>
+              <p class="review-text" style="margin-top:10px">
+                «Обратился с проблемой АКПП на X3, были толчки при переключении. Здесь провели диагностику, заменили масло и адаптировали. Коробка работает идеально.»
+              </p>
+            </div>
+            <div class="review-author">
+              <strong>Максим Л.</strong>
+              <span class="mono" style="color:var(--ink-muted)">BMW X3 (G01) · Яндекс</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="filter-tabs" role="tablist" aria-label="Категории частых вопросов">
+          <button type="button" class="tab-btn active" data-faq-filter="all">Все вопросы</button>
+          <button type="button" class="tab-btn" data-faq-filter="to">ТО и масло</button>
+          <button type="button" class="tab-btn" data-faq-filter="engine">Двигатель и ГРМ</button>
+          <button type="button" class="tab-btn" data-faq-filter="diag">Диагностика и FRM</button>
+        </div>
+
+        <div class="faq-list" id="faq-list">
+          <div class="faq-item open" data-faq-cat="to">
+            <button type="button" class="faq-q" aria-expanded="true">
+              <span>Как часто нужно делать ТО на BMW в Воронеже и какое масло заливать?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a">
+              Для условий эксплуатации в РФ наши эксперты рекомендуют делать ТО каждые 10-12 тыс. км или не реже одного раза в год. В стандартное ТО входит замена моторного масла по заводскому допуску (определяется точно по VIN), масляного, воздушного и салонного фильтров; топливный фильтр рекомендуется менять не реже раза в 30 тыс. км, тормозную жидкость каждые 2 года.
+            </div>
+          </div>
+
+          <div class="faq-item" data-faq-cat="engine">
+            <button type="button" class="faq-q" aria-expanded="false">
+              <span>Сколько времени занимает замена цепи ГРМ и что входит в комплект?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a">
+              На двигателях N13, N20, N47, N57 в большинстве случаев замена цепи ГРМ выполняется в течение 1 рабочего дня. При замене меняются планки успокоителей и натяжители, цепь привода масляного насоса, а также одноразовые элементы (прокладка клапанной крышки, болты крепления VANOS).
+            </div>
+          </div>
+
+          <div class="faq-item" data-faq-cat="diag">
+            <button type="button" class="faq-q" aria-expanded="false">
+              <span>Каким оборудованием выполняется диагностика и сколько она длится?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a">
+              Мы используем исключительно оригинальный интерфейс BMW ICOM Next и аппаратно-программный комплекс ISTA-D / ISTA-P с обеспечением стабилизации бортового питания. Компьютерный опрос всех ЭБУ занимает 15-30 минут, общая диагностика с подъемником и проверкой подвески не более получаса.
+            </div>
+          </div>
+
+          <div class="faq-item" data-faq-cat="diag">
+            <button type="button" class="faq-q" aria-expanded="false">
+              <span>Можно ли восстановить блок FRM3 без покупки нового блока?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a">
+              Да. На BMW E90, F30, F10 блок FRM3 чувствителен к просадкам напряжения (повреждается EEPROM). Наши специалисты восстанавливают блок FRM до первоначального состояния от 5 000 ₽, в том числе если блок привезли снятым с автомобиля.
+            </div>
+          </div>
+
+          <div class="faq-item" data-faq-cat="to">
+            <button type="button" class="faq-q" aria-expanded="false">
+              <span>Можно ли приехать на ТО со своими запчастями или работаете с аналогами?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a">
+              Да, возможны оба варианта. Мы держим оригинальные детали BMW Group и качественные OEM-аналоги (Lemforder, ATE, Mann, ZF). При предоставлении собственных запчастей гарантия 12 месяцев распространяется на правильность выполнения работ и соблюдение технических регламентов.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="booking" style="border-bottom:none">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-index">06 / Запись и расположение</div>
+            <h2 class="section-title">Запись на сервис на Ленинский проспект, 174</h2>
+            <p class="section-lead">
+              Оставьте заявку на удобное время в рабочие часы (Пн-Пт 08:00-17:00) или позвоните напрямую мастеру-приемщику.
+            </p>
+          </div>
+        </div>
+
+        <div class="booking-grid">
+          <form class="booking-card" id="booking-form" novalidate>
+            <h3 style="font-size:20px;font-weight:800">Оформление визита в The Garage</h3>
+
+            <div class="transfer-banner" id="transfer-banner">
+              <strong>Расчет перенесен из калькулятора:</strong>
+              <div id="transfer-summary-text" class="mono" style="margin-top:4px;font-size:12px"></div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label class="field-label" for="booking-name">Ваше имя</label>
+                <input class="field-control" type="text" id="booking-name" name="name" autocomplete="name" placeholder="Например, Сергей" required>
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="booking-phone">Телефон для связи</label>
+                <input class="field-control" type="tel" id="booking-phone" name="phone" autocomplete="tel" placeholder="+7 (9__) ___-__-__" required>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label class="field-label" for="booking-car">Модель BMW / кузов и VIN (при наличии)</label>
+                <input class="field-control" type="text" id="booking-car" name="car" autocomplete="off" placeholder="BMW 320d F30, 2016">
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="booking-slot">Предпочтительный интервал</label>
+                <select class="field-control" id="booking-slot" name="slot" autocomplete="off">
+                  <option value="Пн-Пт, утро 08:00 - 12:00">Пн-Пт, утро 08:00 - 12:00</option>
+                  <option value="Пн-Пт, день 12:00 - 17:00">Пн-Пт, день 12:00 - 17:00</option>
+                  <option value="Ближайшее свободное окно">Ближайшее свободное окно</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="booking-notes">Выбранные работы / комментарий по симптому</label>
+              <textarea class="field-control" id="booking-notes" name="notes" autocomplete="off" rows="4" placeholder="Укажите работы, пробег или перенесите расчет из калькулятора выше"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;padding:13px 20px">Отправить заявку в сервис (демо-подтверждение)</button>
+
+            <div class="booking-success" id="booking-success" role="status">
+              <strong id="booking-success-title">Заявка сформирована в демонстрационном стенде</strong>
+              <p id="booking-success-body" style="margin:6px 0 10px;font-size:13px"></p>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <a class="btn btn-primary" href="tel:+79529553494">Позвонить +7 (952) 955-34-94</a>
+                <a class="btn btn-secondary" href="https://max.ru/u/f9LHodD0cOLfsyjBlMeKwID1FpqTewrmmf1F1bCaxclZP6oHjEQR-Y_OinA" target="_blank" rel="noopener noreferrer">Подтвердить в MAX</a>
+              </div>
+            </div>
+          </form>
+
+          <aside class="location-card" aria-label="Схема проезда и контакты в Воронеже">
+            <div class="location-map">
+              <svg viewBox="0 0 480 210" style="height:auto;width:100%" role="img" aria-label="Схема расположения автосервиса The Garage на Ленинском проспекте, 174 в Воронеже">
+                <rect x="2" y="2" width="476" height="206" rx="6" fill="#FFFFFF" stroke="#DCDED6" stroke-width="1"/>
+                <path d="M0 154l480-78" stroke="#E5E6DF" stroke-width="16"/>
+                <path d="M0 154l480-78" stroke="#C7CCD4" stroke-width="1.5" stroke-dasharray="6 5"/>
+                <path d="M164 0l42 210" stroke="#EFEFE9" stroke-width="10"/>
+                <path d="M332 0l30 210" stroke="#EFEFE9" stroke-width="8"/>
+                <rect x="228" y="84" width="60" height="36" rx="4" fill="#EAF1F7" stroke="#174978" stroke-width="1.5"/>
+                <circle cx="258" cy="102" r="7" fill="#174978"/>
+                <circle cx="258" cy="102" r="14" fill="none" stroke="#174978" stroke-width="1.2" stroke-dasharray="3 2"/>
+                <rect x="190" y="34" width="212" height="34" rx="4" fill="#151921"/>
+                <text x="296" y="49" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">THE GARAGE BMW</text>
+                <text x="296" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#BFD1E3">Ленинский проспект, 174</text>
+                <text x="86" y="130" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#666E7A" transform="rotate(-9 86 130)">Ленинский проспект</text>
+                <text x="24" y="26" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#666E7A">ЛЕВЫЙ БЕРЕГ · ВОРОНЕЖ</text>
+              </svg>
+            </div>
+            <div class="location-details">
+              <div class="contact-row">
+                <span class="contact-k">Адрес сервиса</span>
+                <span class="contact-v">г. Воронеж, Ленинский проспект, 174</span>
+              </div>
+              <div class="contact-row">
+                <span class="contact-k">Мобильный телефон</span>
+                <a class="contact-v mono" href="tel:+79529553494">+7 (952) 955-34-94</a>
+              </div>
+              <div class="contact-row">
+                <span class="contact-k">Городской телефон</span>
+                <a class="contact-v mono" href="tel:+74732943494">+7 (473) 294-34-94</a>
+              </div>
+              <div class="contact-row">
+                <span class="contact-k">Электронная почта</span>
+                <a class="contact-v mono" href="mailto:the_garage@bk.ru">the_garage@bk.ru</a>
+              </div>
+              <div class="contact-row">
+                <span class="contact-k">График работы</span>
+                <span class="contact-v mono">Пн-Пт: 08:00 - 17:00 · Сб-Вс: выходной</span>
+              </div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;padding-top:6px">
+                <a class="btn btn-secondary" style="flex:1" href="https://yandex.ru/maps/-/CTvSjI-5" target="_blank" rel="noopener noreferrer">Открыть на Яндекс.Картах</a>
+                <a class="btn btn-ghost" style="flex:1" href="https://max.ru/u/f9LHodD0cOLfsyjBlMeKwID1FpqTewrmmf1F1bCaxclZP6oHjEQR-Y_OinA" target="_blank" rel="noopener noreferrer">Чат в MAX</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title">THE GARAGE · BMW SERVICE</div>
+          <p style="margin:0;font-size:13.5px;color:#B4BCC8;max-width:360px;line-height:1.55">
+            Профильный автосервис BMW Group (BMW, Mini, Rolls-Royce) в Воронеже с 2015 года. Оригинальное диагностическое оборудование ISTA / ICOM Next и гарантия 12 месяцев.
+          </p>
+        </div>
+        <div>
+          <div class="footer-title">Разделы</div>
+          <ul class="footer-links">
+            <li><a href="#calculator">Калькулятор ТО BMW (руб.)</a></li>
+            <li><a href="#issues">Типовые узлы и проблемы</a></li>
+            <li><a href="#prices">Прайс-лист на работы</a></li>
+            <li><a href="#models">Обслуживаемые серии</a></li>
+            <li><a href="#faq">Частые вопросы владельцев</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Контакты в Воронеже</div>
+          <ul class="footer-links">
+            <li>г. Воронеж, Ленинский проспект, 174</li>
+            <li><a class="mono" href="tel:+79529553494">+7 (952) 955-34-94</a></li>
+            <li><a class="mono" href="tel:+74732943494">+7 (473) 294-34-94</a></li>
+            <li><a class="mono" href="mailto:the_garage@bk.ru">the_garage@bk.ru</a></li>
+            <li class="mono">Пн-Пт: 08:00 - 17:00</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-concept-line">Интерактивный концепт редизайна подготовлен для автосервиса The Garage BMW.</span>
+        <span class="mono">bmw-vrn.ru · Воронеж</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const SERIES_DATA = {
+        f30g20: { label: '3 / 4 Series (F30 / G20)', short: 'F30 / G20', factor: 1.0 },
+        f10g30: { label: '5 Series (F10 / G30)', short: 'F10 / G30', factor: 1.08 },
+        f25g01: { label: 'X3 / X4 (F25 / G01)', short: 'F25 / G01', factor: 1.12 },
+        f15g05: { label: 'X5 / X6 (F15 / G05)', short: 'F15 / G05', factor: 1.24 },
+        '7m': { label: '7 Series / M-серия', short: '7 / M-Series', factor: 1.38 }
+      };
+
+      const ENGINE_DATA = {
+        b48n20: {
+          label: 'Бензин 2.0 (B48 / N20)',
+          short: 'B48 / N20',
+          oilLiters: 5.2,
+          oilSpec: '5.2 л · LL-01 / LL-04',
+          timingBaseLabor: 31000,
+          timingPartsOrig: 32000,
+          timingPartsAnalog: 21500,
+          timingHours: 7.5
+        },
+        b58n55: {
+          label: 'Бензин 3.0 (B58 / N55)',
+          short: 'B58 / N55',
+          oilLiters: 6.5,
+          oilSpec: '6.5 л · LL-01 / LL-04',
+          timingBaseLabor: 36000,
+          timingPartsOrig: 38000,
+          timingPartsAnalog: 26000,
+          timingHours: 8.5
+        },
+        diesel: {
+          label: 'Дизель 2.0/3.0 (B47/B57/N47/N57)',
+          short: 'B47/B57/N47/N57',
+          oilLiters: 6.0,
+          oilSpec: '5.2-6.5 л · LL-04',
+          timingBaseLabor: 29000,
+          timingPartsOrig: 28000,
+          timingPartsAnalog: 18500,
+          timingHours: 7.0
+        },
+        n63: {
+          label: 'V8 (N63)',
+          short: 'V8 N63',
+          oilLiters: 9.5,
+          oilSpec: '9.5 л · LL-01',
+          timingBaseLabor: 48000,
+          timingPartsOrig: 49000,
+          timingPartsAnalog: 34000,
+          timingHours: 11.0
+        }
+      };
+
+      const WORKS_CATALOG = {
+        ista: {
+          name: 'Компьютерная диагностика ISTA+',
+          compute: function (s, e, tier) {
+            const labor = Math.round((2500 * (s.factor > 1.3 ? 1.2 : 1.0)) / 100) * 100;
+            return { labor: labor, parts: 0, hours: 0.5 };
+          }
+        },
+        to: {
+          name: 'Плановое ТО: масло и фильтры',
+          compute: function (s, e, tier) {
+            const labor = Math.round((2500 + (s.factor - 1) * 1400) / 100) * 100;
+            const oilRate = tier === 'original' ? 1450 : 1050;
+            const filtersCost = tier === 'original' ? 6800 : 4200;
+            const parts = Math.round((e.oilLiters * oilRate + filtersCost * (0.9 + s.factor * 0.1)) / 100) * 100;
+            return { labor: labor, parts: parts, hours: e.short === 'V8 N63' ? 1.5 : 1.2 };
+          }
+        },
+        zf8: {
+          name: 'Замена масла в АКПП ZF8 с поддоном',
+          compute: function (s, e, tier) {
+            const labor = Math.round((5000 + (s.factor - 1) * 3500) / 100) * 100;
+            const partsBase = tier === 'original' ? 28500 : 21500;
+            const parts = Math.round((partsBase * (0.92 + s.factor * 0.1)) / 100) * 100;
+            return { labor: labor, parts: parts, hours: 2.5 };
+          }
+        },
+        brakes: {
+          name: 'Замена тормозных дисков и колодок',
+          compute: function (s, e, tier) {
+            const labor = Math.round((4500 * s.factor) / 100) * 100;
+            const partsBase = tier === 'original' ? 24000 : 15800;
+            const parts = Math.round((partsBase * s.factor) / 100) * 100;
+            return { labor: labor, parts: parts, hours: 1.5 };
+          }
+        },
+        suspension: {
+          name: 'Диагностика и ремонт подвески',
+          compute: function (s, e, tier) {
+            const labor = Math.round((4200 * s.factor) / 100) * 100;
+            const partsBase = tier === 'original' ? 11500 : 6800;
+            const parts = Math.round((partsBase * s.factor) / 100) * 100;
+            return { labor: labor, parts: parts, hours: 2.0 };
+          }
+        },
+        timing: {
+          name: 'Замена цепи ГРМ / теплообменника',
+          compute: function (s, e, tier) {
+            const labor = Math.round((e.timingBaseLabor * (0.95 + (s.factor - 1) * 0.45)) / 500) * 500;
+            const pBase = tier === 'original' ? e.timingPartsOrig : e.timingPartsAnalog;
+            const parts = Math.round((pBase * (0.96 + (s.factor - 1) * 0.25)) / 500) * 500;
+            return { labor: labor, parts: parts, hours: e.timingHours };
+          }
+        }
+      };
+
+      const PRESETS = {
+        to: ['ista', 'to'],
+        zf8: ['ista', 'to', 'zf8'],
+        timing: ['ista', 'timing'],
+        buy: ['ista', 'suspension']
+      };
+
+      const seriesEl = document.getElementById('calc-series');
+      const engineEl = document.getElementById('calc-engine');
+      const workInputs = Array.prototype.slice.call(document.querySelectorAll('input[id^="work-"]'));
+      const partsInputs = Array.prototype.slice.call(document.querySelectorAll('input[name="partsTier"]'));
+      const presetBtns = Array.prototype.slice.call(document.querySelectorAll('.preset-btn'));
+      const svgNodes = Array.prototype.slice.call(document.querySelectorAll('.svg-node'));
+
+      const summaryChassisBadge = document.getElementById('summary-chassis-badge');
+      const svgEngineLabel = document.getElementById('svg-engine-label');
+      const svgOilSpec = document.getElementById('svg-oil-spec');
+      const svgActiveCount = document.getElementById('svg-active-count');
+      const summaryTags = document.getElementById('summary-tags');
+      const ledgerList = document.getElementById('ledger-list');
+      const totalLaborEl = document.getElementById('total-labor');
+      const totalPartsEl = document.getElementById('total-parts');
+      const totalTierLabelEl = document.getElementById('total-tier-label');
+      const totalGrandEl = document.getElementById('total-grand');
+      const totalHoursEl = document.getElementById('total-hours');
+
+      function formatRub(val) {
+        return val.toLocaleString('ru-RU') + ' ₽';
+      }
+
+      function getSelectedTier() {
+        for (let i = 0; i < partsInputs.length; i += 1) {
+          if (partsInputs[i].checked) {
+            return partsInputs[i].value;
+          }
+        }
+        return 'original';
+      }
+
+      let lastSnapshot = null;
+
+      function recalculate() {
+        const sKey = seriesEl.value;
+        const eKey = engineEl.value;
+        const sData = SERIES_DATA[sKey];
+        const eData = ENGINE_DATA[eKey];
+        const tier = getSelectedTier();
+        const tierLabel = tier === 'original' ? 'Оригинал BMW' : 'Аналоги Lemforder / ATE / Mann';
+
+        summaryChassisBadge.textContent = sData.short + ' · ' + eData.short;
+        svgEngineLabel.textContent = eData.short;
+        svgOilSpec.textContent = 'Объем масла: ' + eData.oilSpec;
+        totalTierLabelEl.textContent = tierLabel;
+
+        summaryTags.innerHTML =
+          '<span class="spec-pill">' + sData.short + '</span>' +
+          '<span class="spec-pill">' + eData.short + '</span>' +
+          '<span class="spec-pill">' + tierLabel + '</span>';
+
+        let totalLabor = 0;
+        let totalParts = 0;
+        let totalHours = 0;
+        let activeWorks = [];
+        let ledgerHtml = '';
+
+        workInputs.forEach(function (inp) {
+          const wKey = inp.value;
+          const catalogItem = WORKS_CATALOG[wKey];
+          const res = catalogItem.compute(sData, eData, tier);
+          const itemSum = res.labor + res.parts;
+
+          const cardPriceEl = document.querySelector('[data-work-price="' + wKey + '"]');
+          const cardHoursEl = document.querySelector('[data-work-hours="' + wKey + '"]');
+          if (cardPriceEl) {
+            cardPriceEl.textContent = formatRub(itemSum);
+          }
+          if (cardHoursEl) {
+            cardHoursEl.textContent = res.hours.toFixed(1) + ' ч';
+          }
+
+          const svgNode = document.getElementById('svg-node-' + wKey);
+          if (svgNode) {
+            if (inp.checked) {
+              svgNode.classList.add('active');
+            } else {
+              svgNode.classList.remove('active');
+            }
+          }
+
+          if (inp.checked) {
+            totalLabor += res.labor;
+            totalParts += res.parts;
+            totalHours += res.hours;
+            activeWorks.push(catalogItem.name);
+            ledgerHtml +=
+              '<li class="ledger-item">' +
+                '<div>' +
+                  '<span class="ledger-name">' + catalogItem.name + '</span>' +
+                  '<span class="ledger-sub">Работа: ' + formatRub(res.labor) +
+                    (res.parts > 0 ? ' · Запчасти: ' + formatRub(res.parts) : '') +
+                    ' · ' + res.hours.toFixed(1) + ' ч</span>' +
+                '</div>' +
+                '<span class="ledger-cost">' + formatRub(itemSum) + '</span>' +
+              '</li>';
+          }
+        });
+
+        if (activeWorks.length === 0) {
+          ledgerList.innerHTML = '<li class="ledger-empty">Выберите хотя бы один вид работ слева или на схеме узлов BMW</li>';
+        } else {
+          ledgerList.innerHTML = ledgerHtml;
+        }
+
+        const grandTotal = totalLabor + totalParts;
+        svgActiveCount.textContent = 'Активно узлов: ' + activeWorks.length;
+        totalLaborEl.textContent = formatRub(totalLabor);
+        totalPartsEl.textContent = formatRub(totalParts);
+        totalGrandEl.textContent = formatRub(grandTotal);
+        totalHoursEl.textContent = totalHours.toFixed(1) + ' ч' + (totalHours >= 6 ? ' (1 рабочий день)' : '');
+
+        lastSnapshot = {
+          series: sData.label,
+          engine: eData.label,
+          tierLabel: tierLabel,
+          works: activeWorks,
+          labor: totalLabor,
+          parts: totalParts,
+          grand: grandTotal,
+          hours: totalHours.toFixed(1)
+        };
+      }
+
+      function syncPresetHighlight() {
+        const current = workInputs.filter(function (w) { return w.checked; }).map(function (w) { return w.value; }).sort().join(',');
+        presetBtns.forEach(function (btn) {
+          const pKey = btn.getAttribute('data-preset');
+          const pList = PRESETS[pKey].slice().sort().join(',');
+          if (current === pList) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+      }
+
+      seriesEl.addEventListener('change', recalculate);
+      engineEl.addEventListener('change', recalculate);
+      workInputs.forEach(function (inp) {
+        inp.addEventListener('change', function () {
+          recalculate();
+          syncPresetHighlight();
+        });
+      });
+      partsInputs.forEach(function (inp) {
+        inp.addEventListener('change', recalculate);
+      });
+
+      presetBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const pKey = btn.getAttribute('data-preset');
+          const targetList = PRESETS[pKey] || [];
+          workInputs.forEach(function (inp) {
+            inp.checked = targetList.indexOf(inp.value) >= 0;
+          });
+          recalculate();
+          syncPresetHighlight();
+        });
+      });
+
+      svgNodes.forEach(function (node) {
+        function toggleNode() {
+          const wKey = node.getAttribute('data-work');
+          const targetInput = document.getElementById('work-' + wKey);
+          if (targetInput) {
+            targetInput.checked = targetInput.checked === false;
+            recalculate();
+            syncPresetHighlight();
+          }
+        }
+        node.addEventListener('click', toggleNode);
+        node.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleNode();
+          }
+        });
+      });
+
+      /* Jump buttons from model cards & issue cards */
+      const modelBtns = Array.prototype.slice.call(document.querySelectorAll('[data-select-series]'));
+      modelBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const val = btn.getAttribute('data-select-series');
+          seriesEl.value = val;
+          recalculate();
+          document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      const addWorkBtns = Array.prototype.slice.call(document.querySelectorAll('[data-add-work]'));
+      addWorkBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const wKey = btn.getAttribute('data-add-work');
+          const targetInput = document.getElementById('work-' + wKey);
+          if (targetInput) {
+            targetInput.checked = true;
+            recalculate();
+            syncPresetHighlight();
+          }
+          document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      /* Transfer to booking form */
+      const transferBtn = document.getElementById('transfer-to-booking');
+      const transferBanner = document.getElementById('transfer-banner');
+      const transferSummaryText = document.getElementById('transfer-summary-text');
+      const bookingCarInput = document.getElementById('booking-car');
+      const bookingNotesInput = document.getElementById('booking-notes');
+      const bookingNameInput = document.getElementById('booking-name');
+
+      transferBtn.addEventListener('click', function () {
+        if (lastSnapshot === null) {
+          return;
+        }
+        const worksStr = lastSnapshot.works.length > 0 ? lastSnapshot.works.join(', ') : 'Первичный осмотр';
+        const lineSummary =
+          lastSnapshot.series + ' · ' + lastSnapshot.engine + ' · ' +
+          lastSnapshot.tierLabel + ' · ' + formatRub(lastSnapshot.grand) +
+          ' (' + lastSnapshot.hours + ' ч)';
+
+        transferSummaryText.textContent = lineSummary + ' | Работы: ' + worksStr;
+        transferBanner.classList.add('visible');
+
+        if (bookingCarInput.value.trim() === '') {
+          bookingCarInput.value = 'BMW ' + lastSnapshot.series + ', ' + lastSnapshot.engine;
+        }
+        bookingNotesInput.value =
+          'Расчет из калькулятора:\n' +
+          '- Автомобиль: ' + lastSnapshot.series + ', ' + lastSnapshot.engine + '\n' +
+          '- Запчасти: ' + lastSnapshot.tierLabel + '\n' +
+          '- Работы: ' + worksStr + '\n' +
+          '- Ориентир сметы: ' + formatRub(lastSnapshot.grand) + ' (подъемник ~' + lastSnapshot.hours + ' ч)';
+
+        document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        setTimeout(function () {
+          bookingNameInput.focus({ preventScroll: true });
+        }, 400);
+      });
+
+      /* Issues filter tabs */
+      const issueTabs = Array.prototype.slice.call(document.querySelectorAll('[data-issue-filter]'));
+      const issueCards = Array.prototype.slice.call(document.querySelectorAll('[data-issue-cat]'));
+      issueTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          const cat = tab.getAttribute('data-issue-filter');
+          issueTabs.forEach(function (t) { t.classList.remove('active'); });
+          tab.classList.add('active');
+          issueCards.forEach(function (card) {
+            if (cat === 'all' || card.getAttribute('data-issue-cat') === cat) {
+              card.classList.remove('hidden-card');
+            } else {
+              card.classList.add('hidden-card');
+            }
+          });
+        });
+      });
+
+      /* FAQ filter & accordion */
+      const faqTabs = Array.prototype.slice.call(document.querySelectorAll('[data-faq-filter]'));
+      const faqItems = Array.prototype.slice.call(document.querySelectorAll('.faq-item'));
+
+      faqTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          const cat = tab.getAttribute('data-faq-filter');
+          faqTabs.forEach(function (t) { t.classList.remove('active'); });
+          tab.classList.add('active');
+          faqItems.forEach(function (item) {
+            if (cat === 'all' || item.getAttribute('data-faq-cat') === cat) {
+              item.classList.remove('hidden-faq');
+            } else {
+              item.classList.add('hidden-faq');
+            }
+          });
+        });
+      });
+
+      faqItems.forEach(function (item) {
+        const btn = item.querySelector('.faq-q');
+        btn.addEventListener('click', function () {
+          const isOpen = item.classList.contains('open');
+          item.classList.toggle('open', isOpen === false);
+          btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+        });
+      });
+
+      /* Booking form demo submission */
+      const bookingForm = document.getElementById('booking-form');
+      const bookingSuccess = document.getElementById('booking-success');
+      const bookingSuccessBody = document.getElementById('booking-success-body');
+      const bookingPhoneInput = document.getElementById('booking-phone');
+      const bookingSlotInput = document.getElementById('booking-slot');
+
+      bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = bookingNameInput.value.trim();
+        const phone = bookingPhoneInput.value.trim();
+        if (name === '' || phone === '') {
+          if (name === '') {
+            bookingNameInput.focus();
+          } else {
+            bookingPhoneInput.focus();
+          }
+          bookingSuccess.classList.remove('visible');
+          return;
+        }
+        const orderCode = 'VRN-' + String(Math.floor(1000 + Math.random() * 9000));
+        const carText = bookingCarInput.value.trim() || 'BMW (уточняется по VIN)';
+        bookingSuccessBody.textContent =
+          'Номер предзаказа ' + orderCode + '. Клиент: ' + name + ', телефон: ' + phone +
+          ', автомобиль: ' + carText + ', окно: ' + bookingSlotInput.value +
+          '. Для мгновенного бронирования подъемника на Ленинском пр., 174 позвоните мастеру или напишите в MAX.';
+        bookingSuccess.classList.add('visible');
+      });
+
+      /* Mobile menu toggle */
+      const menuBtn = document.getElementById('mobile-menu-toggle');
+      const mobileDrawer = document.getElementById('mobile-drawer');
+      const mobileLinks = Array.prototype.slice.call(document.querySelectorAll('.mobile-nav-link'));
+
+      menuBtn.addEventListener('click', function () {
+        const isOpen = mobileDrawer.classList.contains('open');
+        mobileDrawer.classList.toggle('open', isOpen === false);
+        menuBtn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      });
+
+      mobileLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+          mobileDrawer.classList.remove('open');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      recalculate();
+      syncPresetHighlight();
+    })();
+  </script>
+</body>
+</html>
