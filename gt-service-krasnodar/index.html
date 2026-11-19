@@ -1,0 +1,3450 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GT Service Краснодар - Калькулятор ТО, диагностики и ремонта авто</title>
+  <meta name="description" content="Автосервис GT Service в Краснодаре (ул. Алма-Атинская, 2/15): калькулятор стоимости ТО, ремонта тормозной и ходовой систем, сход-развала, заправки кондиционера и компьютерной диагностики в рублях. Запись в бокс по телефону +7 (938) 424-42-24.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231B4D7A'/%3E%3Cpath d='M16 24H48M16 40H38' stroke='%23F7F8FA' stroke-width='4.5' stroke-linecap='round'/%3E%3Ccircle cx='44' cy='40' r='7' fill='none' stroke='%23F7F8FA' stroke-width='4'/%3E%3Cpath d='M20 14L28 14M36 14L44 14' stroke='%23A8C5E2' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F7F8FA;
+      --surface: #FFFFFF;
+      --surface-alt: #EFF2F6;
+      --surface-cobalt: #E8F0F8;
+      --ink: #16202A;
+      --ink-secondary: #3A4958;
+      --ink-muted: #5C6D7E;
+      --cobalt: #1B4D7A;
+      --cobalt-dark: #13395C;
+      --cobalt-light: #2B659B;
+      --cobalt-alpha: rgba(27, 77, 122, 0.08);
+      --cobalt-border: rgba(27, 77, 122, 0.28);
+      --ok: #0F6E58;
+      --ok-soft: rgba(15, 110, 88, 0.09);
+      --warn: #9A5B13;
+      --warn-soft: rgba(154, 91, 19, 0.09);
+      --err: #B42318;
+      --err-soft: rgba(180, 35, 24, 0.08);
+      --border: #D6DEE6;
+      --border-strong: #BAC6D3;
+      --shadow-xs: 0 1px 3px rgba(22, 32, 42, 0.04);
+      --shadow-sm: 0 4px 14px rgba(22, 32, 42, 0.05);
+      --shadow-md: 0 12px 30px rgba(22, 32, 42, 0.08);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --font-display: 'Space Grotesk', 'Manrope', sans-serif;
+      --font-sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+      --container: 1260px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      overflow-x: clip;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.58;
+      color: var(--ink);
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(to right, rgba(27, 77, 122, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(27, 77, 122, 0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      overflow-x: clip;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    .mono,
+    .tabular,
+    .price-val,
+    .stat-num,
+    .step-code {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tabular-sans {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    /* Top utility strip */
+    .top-strip {
+      background: var(--ink);
+      color: #D7E1EC;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .top-strip-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-block: 8px;
+      flex-wrap: wrap;
+    }
+
+    .strip-group {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .strip-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #D7E1EC;
+    }
+
+    .strip-item svg {
+      color: #7FAAD2;
+      flex-shrink: 0;
+    }
+
+    .strip-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 9px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    /* Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: rgba(247, 248, 250, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 72px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--cobalt);
+      display: grid;
+      place-items: center;
+      color: #FFFFFF;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-link {
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      transition: background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      background: var(--surface-alt);
+      color: var(--cobalt);
+      outline: none;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .header-phone {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      line-height: 1.2;
+    }
+
+    .header-phone-num {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      transition: color 0.18s ease;
+    }
+
+    .header-phone-num:hover {
+      color: var(--cobalt);
+    }
+
+    .header-phone-hint {
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.16s ease, box-shadow 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--cobalt);
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background: var(--cobalt);
+      color: #FFFFFF;
+      border-color: var(--cobalt);
+      box-shadow: 0 4px 12px rgba(27, 77, 122, 0.22);
+    }
+
+    .btn-primary:hover {
+      background: var(--cobalt-dark);
+      border-color: var(--cobalt-dark);
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--ink);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-alt);
+      border-color: var(--cobalt);
+      color: var(--cobalt);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--cobalt);
+      border-color: var(--cobalt-border);
+      padding: 8px 13px;
+      font-size: 13px;
+    }
+
+    .btn-ghost:hover {
+      background: var(--cobalt-alpha);
+      border-color: var(--cobalt);
+    }
+
+    .btn-lg {
+      padding: 14px 24px;
+      font-size: 15px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 44px 0 36px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(247, 248, 250, 0.92) 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.92fr);
+      gap: 32px;
+      align-items: start;
+    }
+
+    .hero-grid > *,
+    .calc-layout > *,
+    .contacts-grid > * {
+      min-width: 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--surface-cobalt);
+      border: 1px solid var(--cobalt-border);
+      color: var(--cobalt-dark);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cobalt);
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.12;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .hero-lead {
+      font-size: 17px;
+      line-height: 1.62;
+      color: var(--ink-secondary);
+      max-width: 640px;
+      margin-bottom: 24px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+
+    .hero-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .pillar-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+    }
+
+    .pillar-k {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--cobalt);
+      margin-bottom: 4px;
+    }
+
+    .pillar-t {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    /* Telemetry Panel on Hero Right */
+    .telemetry-card {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+
+    .telemetry-head {
+      background: var(--ink);
+      color: #FFFFFF;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .telemetry-title {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #C7D7E8;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(15, 110, 88, 0.25);
+      color: #8DE4CC;
+      border: 1px solid rgba(141, 228, 204, 0.35);
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4ADE80;
+    }
+
+    .telemetry-body {
+      padding: 18px 20px 20px;
+    }
+
+    .rating-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .rating-tile {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+    }
+
+    .rating-source {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .rating-score {
+      font-family: var(--font-mono);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .rating-sub {
+      font-size: 12px;
+      color: var(--ink-secondary);
+      margin-top: 4px;
+    }
+
+    .spec-list {
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      display: grid;
+      gap: 9px;
+    }
+
+    .spec-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .spec-label {
+      color: var(--ink-muted);
+    }
+
+    .spec-val {
+      font-weight: 700;
+      color: var(--ink);
+      text-align: right;
+    }
+
+    /* Section chrome */
+    .section {
+      padding: 56px 0;
+    }
+
+    .section-alt {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--cobalt);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: clamp(24px, 3vw, 32px);
+      line-height: 1.18;
+      font-weight: 700;
+    }
+
+    .section-desc {
+      max-width: 600px;
+      color: var(--ink-secondary);
+      font-size: 15px;
+      margin-top: 8px;
+    }
+
+    /* Preset bar */
+    .preset-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      padding: 12px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    .preset-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-secondary);
+      margin-right: 4px;
+    }
+
+    .preset-btn {
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background: var(--bg);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .preset-btn:hover {
+      border-color: var(--cobalt);
+      color: var(--cobalt);
+      background: var(--surface-cobalt);
+    }
+
+    .preset-btn.is-active {
+      background: var(--cobalt);
+      border-color: var(--cobalt);
+      color: #FFFFFF;
+    }
+
+    /* Calculator Layout */
+    .calc-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.42fr) minmax(0, 0.98fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .calc-panel {
+      display: grid;
+      gap: 20px;
+    }
+
+    .panel-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .panel-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .panel-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-badge {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--surface-cobalt);
+      color: var(--cobalt);
+      border: 1px solid var(--cobalt-border);
+    }
+
+    .panel-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .panel-note {
+      font-size: 12px;
+      color: var(--ink-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* Form Controls */
+    .field-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .field-hint {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink-muted);
+    }
+
+    .input,
+    .select,
+    .textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 14px;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .input:focus,
+    .select:focus,
+    .textarea:focus {
+      outline: none;
+      border-color: var(--cobalt);
+      box-shadow: 0 0 0 3px rgba(27, 77, 122, 0.14);
+    }
+
+    .textarea {
+      min-height: 78px;
+      resize: vertical;
+    }
+
+    /* Vehicle Class Selector */
+    .class-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .class-option {
+      position: relative;
+    }
+
+    .class-radio {
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+      pointer-events: none;
+    }
+
+    .class-card {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 11px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      cursor: pointer;
+      height: 100%;
+      transition: background-color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .class-card:hover {
+      border-color: var(--cobalt);
+      background: var(--surface);
+    }
+
+    .class-radio:focus-visible + .class-card {
+      outline: 2px solid var(--cobalt);
+      outline-offset: 2px;
+    }
+
+    .class-radio:checked + .class-card {
+      background: var(--surface-cobalt);
+      border-color: var(--cobalt);
+      box-shadow: inset 0 0 0 1px var(--cobalt);
+    }
+
+    .class-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+
+    .class-meta {
+      font-size: 11px;
+      color: var(--ink-muted);
+      line-height: 1.3;
+    }
+
+    .class-coef {
+      margin-top: auto;
+      padding-top: 4px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--cobalt);
+    }
+
+    /* Mileage Slider Block */
+    .mileage-block {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      margin-bottom: 18px;
+    }
+
+    .mileage-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .mileage-input-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mileage-num {
+      width: 118px;
+      padding: 6px 10px;
+      text-align: right;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .range-slider {
+      width: 100%;
+      accent-color: var(--cobalt);
+      cursor: pointer;
+      height: 6px;
+    }
+
+    .mileage-ticks {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      margin-top: 6px;
+    }
+
+    .mileage-advice {
+      margin-top: 10px;
+      padding: 8px 11px;
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--ink-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .advice-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: var(--warn-soft);
+      color: var(--warn);
+    }
+
+    /* Parts Tier Switcher (Original vs Analogs vs Client parts) */
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .tier-option {
+      position: relative;
+    }
+
+    .tier-radio {
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+      pointer-events: none;
+    }
+
+    .tier-card {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 12px 13px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      cursor: pointer;
+      height: 100%;
+      transition: background-color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .tier-card:hover {
+      border-color: var(--cobalt);
+    }
+
+    .tier-radio:focus-visible + .tier-card {
+      outline: 2px solid var(--cobalt);
+      outline-offset: 2px;
+    }
+
+    .tier-radio:checked + .tier-card {
+      background: var(--surface-cobalt);
+      border-color: var(--cobalt);
+      box-shadow: inset 0 0 0 1px var(--cobalt);
+    }
+
+    .tier-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .tier-pill {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--ok-soft);
+      color: var(--ok);
+    }
+
+    .tier-desc {
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.35;
+    }
+
+    /* Service Packages Grid */
+    .pkg-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .pkg-group {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--bg);
+      overflow: hidden;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .pkg-group.is-selected {
+      background: var(--surface);
+      border-color: var(--cobalt);
+      box-shadow: 0 2px 10px rgba(27, 77, 122, 0.08);
+    }
+
+    .pkg-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 16px;
+      cursor: pointer;
+    }
+
+    .pkg-head-left {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .pkg-check {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--cobalt);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .pkg-title-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pkg-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .pkg-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .pkg-price-badge {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cobalt);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .pkg-options {
+      padding: 0 16px 14px 45px;
+      display: grid;
+      gap: 8px;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      background: var(--surface);
+    }
+
+    .subop-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg);
+      font-size: 13px;
+    }
+
+    .subop-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      flex: 1;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .subop-input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--cobalt);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .subop-price {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Sticky Estimate Worksheet + Booking */
+    .estimate-sticky {
+      position: sticky;
+      top: 90px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .estimate-card {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+
+    .estimate-header {
+      background: var(--cobalt);
+      color: #FFFFFF;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .estimate-header h3 {
+      color: #FFFFFF;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .estimate-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.16);
+      color: #FFFFFF;
+    }
+
+    .estimate-body {
+      padding: 18px 20px;
+    }
+
+    .vehicle-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .v-chip {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 4px;
+      background: var(--surface-alt);
+      color: var(--ink-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .v-chip-cobalt {
+      background: var(--surface-cobalt);
+      color: var(--cobalt-dark);
+      border-color: var(--cobalt-border);
+    }
+
+    .line-items {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 14px;
+      max-height: 250px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .line-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+      padding-bottom: 7px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .line-item-name {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .line-item-meta {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink-muted);
+    }
+
+    .line-item-cost {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .empty-estimate {
+      padding: 16px;
+      text-align: center;
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      border: 1px dashed var(--border-strong);
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    .totals-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      display: grid;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .total-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--ink-secondary);
+    }
+
+    .total-row strong {
+      font-family: var(--font-mono);
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .total-grand {
+      margin-top: 4px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-strong);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .total-grand-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .total-grand-val {
+      font-family: var(--font-mono);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--cobalt);
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .savings-note {
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      background: var(--ok-soft);
+      color: var(--ok);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .savings-note.is-neutral {
+      background: var(--surface-alt);
+      color: var(--ink-secondary);
+    }
+
+    /* Booking Form */
+    .booking-divider {
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    .booking-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .booking-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-bottom: 14px;
+    }
+
+    .booking-form {
+      display: grid;
+      gap: 11px;
+    }
+
+    .consent-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 12px;
+      color: var(--ink-secondary);
+    }
+
+    .consent-check {
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      accent-color: var(--cobalt);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .form-feedback {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      line-height: 1.45;
+      display: none;
+    }
+
+    .form-feedback.is-success {
+      display: block;
+      background: var(--ok-soft);
+      border: 1px solid rgba(15, 110, 88, 0.3);
+      color: var(--ok);
+    }
+
+    .form-feedback.is-error {
+      display: block;
+      background: var(--err-soft);
+      border: 1px solid rgba(180, 35, 24, 0.3);
+      color: var(--err);
+    }
+
+    .estimate-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .estimate-actions .btn {
+      flex: 1;
+    }
+
+    /* Catalog & Brands */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .service-tile {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+    }
+
+    .service-tile:hover {
+      border-color: var(--cobalt);
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-2px);
+    }
+
+    .service-tile-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .service-count {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: var(--surface-alt);
+      color: var(--ink-secondary);
+    }
+
+    .service-tile h3 {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .service-tile p {
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.45;
+      flex: 1;
+    }
+
+    .service-tile-foot {
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .service-from {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--cobalt);
+    }
+
+    /* Brand Filter Tabs */
+    .brands-box {
+      margin-top: 32px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+
+    .brand-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .brand-tab {
+      padding: 7px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background: var(--bg);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-secondary);
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .brand-tab.is-active {
+      background: var(--cobalt);
+      border-color: var(--cobalt);
+      color: #FFFFFF;
+    }
+
+    .brand-cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .brand-card {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .brand-card:hover {
+      border-color: var(--cobalt);
+      background: var(--surface-cobalt);
+    }
+
+    .brand-card-name {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .brand-card-models {
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    /* Workflow Steps */
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .wf-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .wf-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cobalt);
+    }
+
+    .wf-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+
+    .wf-desc {
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.45;
+    }
+
+    /* FAQ Accordion */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .faq-btn {
+      width: 100%;
+      text-align: left;
+      padding: 14px 16px;
+      background: transparent;
+      border: 0;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .faq-btn:hover {
+      color: var(--cobalt);
+    }
+
+    .faq-answer {
+      padding: 0 16px 14px;
+      font-size: 13px;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+      display: none;
+    }
+
+    .faq-item.is-open .faq-answer {
+      display: block;
+    }
+
+    .faq-icon {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      color: var(--cobalt);
+      flex-shrink: 0;
+    }
+
+    /* Contacts & Requisites */
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .contact-rows {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .contact-cell {
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .contact-k {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      margin-bottom: 5px;
+    }
+
+    .contact-v {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      word-break: break-word;
+    }
+
+    .contact-v a:hover {
+      color: var(--cobalt);
+      text-decoration: underline;
+    }
+
+    .req-card {
+      background: var(--ink);
+      color: #F1F5F9;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .req-card h3 {
+      color: #FFFFFF;
+      font-size: 20px;
+    }
+
+    .req-table {
+      display: grid;
+      gap: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      padding-top: 14px;
+    }
+
+    .req-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+      padding-bottom: 8px;
+    }
+
+    .req-row span:first-child {
+      color: #9FB3C8;
+    }
+
+    .req-row span:last-child {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: #FFFFFF;
+      text-align: right;
+    }
+
+    .req-copy-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    .req-copy-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a:hover {
+      color: var(--cobalt);
+    }
+
+    /* Responsive */
+    @media (max-width: 1120px) {
+      .hero-grid,
+      .calc-layout,
+      .contacts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .estimate-sticky {
+        position: static;
+      }
+
+      .workflow-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .catalog-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 780px) {
+      .container {
+        padding-inline: 16px;
+      }
+
+      .main-nav {
+        display: none;
+      }
+
+      .header-inner {
+        min-height: 62px;
+        gap: 10px;
+      }
+
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+      }
+
+      .brand-name {
+        font-size: 16px;
+      }
+
+      .brand-sub {
+        font-size: 11px;
+      }
+
+      .header-actions .btn {
+        padding: 9px 12px;
+        font-size: 13px;
+      }
+
+      .btn {
+        white-space: normal;
+        text-align: center;
+      }
+
+      .hero {
+        padding: 28px 0;
+      }
+
+      .hero h1 {
+        font-size: 27px;
+      }
+
+      .hero-lead {
+        font-size: 15px;
+      }
+
+      .hero-pillars,
+      .class-grid,
+      .tier-grid,
+      .field-grid-2,
+      .brand-cards,
+      .faq-grid,
+      .contact-rows,
+      .workflow-grid,
+      .rating-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .catalog-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .panel-card,
+      .estimate-body,
+      .contact-card,
+      .req-card,
+      .brands-box {
+        padding: 16px;
+      }
+
+      .panel-card-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+
+      .pkg-head {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        padding: 12px;
+      }
+
+      .pkg-options {
+        padding: 10px 12px 12px;
+      }
+
+      .subop-row,
+      .spec-row,
+      .req-row,
+      .total-grand,
+      .savings-note {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+
+      .spec-val,
+      .req-row span:last-child {
+        text-align: left;
+      }
+
+      .estimate-actions {
+        flex-direction: column;
+      }
+
+      .header-phone {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-strip">
+    <div class="container top-strip-inner">
+      <div class="strip-group">
+        <span class="strip-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 21s-7-4.5-7-11a7 7 0 1 1 14 0c0 6.5-7 11-7 11z"/>
+            <circle cx="12" cy="10" r="2.5"/>
+          </svg>
+          Краснодар, ул. Алма-Атинская, 2/15
+        </span>
+        <span class="strip-item tabular-sans">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 2"/>
+          </svg>
+          Пн-Пт 09:00-20:00, Сб-Вс 09:00-18:00
+        </span>
+      </div>
+      <div class="strip-group">
+        <span class="strip-badge tabular-sans">Яндекс Карты 5,0 (386 отзывов)</span>
+        <span class="strip-badge tabular-sans">2ГИС 4,8 (168 отзывов)</span>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="GT Service Краснодар">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M4 8H20M4 16H14" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round"/>
+            <circle cx="17.5" cy="16" r="3.2" stroke="#FFFFFF" stroke-width="2"/>
+            <path d="M6 4H10M14 4H18" stroke="#A8C5E2" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <span class="brand-name">GT SERVICE</span>
+          <span class="brand-sub">Автосервис в Краснодаре</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Навигация по разделам">
+        <a href="#calculator" class="nav-link">Калькулятор ТО</a>
+        <a href="#services" class="nav-link">Услуги и марки</a>
+        <a href="#workflow" class="nav-link">Порядок работ</a>
+        <a href="#contacts" class="nav-link">Контакты</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="header-phone">
+          <a href="tel:+79384244224" class="header-phone-num mono">+7 (938) 424-42-24</a>
+          <span class="header-phone-hint">formula-mag3@yandex.ru</span>
+        </div>
+        <a href="#booking-anchor" class="btn btn-primary">Записаться в бокс</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            СТО полного цикла на Алма-Атинской, 2/15
+          </div>
+          <h1>Калькулятор ТО, диагностики и ремонта авто в Краснодаре</h1>
+          <p class="hero-lead">
+            Рассчитайте предварительную смету по реальному прайсу GT Service с учётом класса автомобиля, пробега и варианта комплектующих. Подтверждаем причину неисправности, фиксируем стоимость и сроки до начала работ и проводим итоговый контроль перед выдачей.
+          </p>
+          <div class="hero-cta-row">
+            <a href="#calculator" class="btn btn-primary btn-lg">
+              <span>Рассчитать смету в рублях</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="tel:+79384244224" class="btn btn-secondary btn-lg mono">+7 (938) 424-42-24</a>
+          </div>
+
+          <div class="hero-pillars">
+            <div class="pillar-box">
+              <div class="pillar-k">01 / ПРОЗРАЧНАЯ СМЕТА</div>
+              <div class="pillar-t">Дополнительные работы не добавляются без согласования</div>
+            </div>
+            <div class="pillar-box">
+              <div class="pillar-k">02 / ВЫБОР ДЕТАЛЕЙ</div>
+              <div class="pillar-t">Оригинал OEM, проверенные аналоги или запчасти клиента</div>
+            </div>
+            <div class="pillar-box">
+              <div class="pillar-k">03 / КОНТРОЛЬ КАЧЕСТВА</div>
+              <div class="pillar-t">Гарантия в заказ-наряде и проверка систем перед выдачей</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="telemetry-card" aria-label="Показатели автосервиса GT Service">
+          <div class="telemetry-head">
+            <span class="telemetry-title">GT-KRD / ДАННЫЕ СТАНЦИИ</span>
+            <span class="status-pill">
+              <span class="status-dot" aria-hidden="true"></span>
+              Приём авто ежедневно
+            </span>
+          </div>
+          <div class="telemetry-body">
+            <div class="rating-grid">
+              <div class="rating-tile">
+                <div class="rating-source">
+                  <span>Яндекс Карты</span>
+                  <span class="mono">2026</span>
+                </div>
+                <div class="rating-score">5,0</div>
+                <div class="rating-sub tabular-sans">386 отзывов, «Хорошее место»</div>
+              </div>
+              <div class="rating-tile">
+                <div class="rating-source">
+                  <span>2ГИС Краснодар</span>
+                  <span class="mono">СТО</span>
+                </div>
+                <div class="rating-score">4,8</div>
+                <div class="rating-sub tabular-sans">168 проверенных оценок</div>
+              </div>
+            </div>
+
+            <div class="spec-list">
+              <div class="spec-row">
+                <span class="spec-label">Адрес ремзоны</span>
+                <span class="spec-val">Краснодар, ул. Алма-Атинская, 2/15</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Профиль авто</span>
+                <span class="spec-val">54+ марок: Корея, Япония, VAG, Китай</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Направления услуг</span>
+                <span class="spec-val tabular-sans">16 направлений, 750+ операций</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Малое ТО / Плановое ТО</span>
+                <span class="spec-val mono">от 2 500 / 3 500 руб.</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Сход-развал / Заправка АС</span>
+                <span class="spec-val mono">от 3 000 / 2 500 руб.</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="calculator" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Интерактивный расчёт стоимости</div>
+            <h2 class="section-title">Калькулятор ТО и ремонта GT Service (руб.)</h2>
+            <p class="section-desc">
+              Выберите класс и марку автомобиля, укажите пробег, отметьте нужные узлы и сравните смету с оригинальными деталями или качественными аналогами.
+            </p>
+          </div>
+          <button type="button" id="calc-reset-btn" class="btn btn-secondary">Сбросить выбор</button>
+        </div>
+
+        <div class="preset-bar" role="group" aria-label="Готовые сценарии расчёта">
+          <span class="preset-label">Быстрые пресеты:</span>
+          <button type="button" class="preset-btn is-active" data-preset="to-60">Плановое ТО + фильтры</button>
+          <button type="button" class="preset-btn" data-preset="season-ac">Кондиционер + ходовая + развал</button>
+          <button type="button" class="preset-btn" data-preset="brakes-major">Тормоза + большое ТО (90 000 км)</button>
+          <button type="button" class="preset-btn" data-preset="prebuy">Диагностика перед покупкой</button>
+        </div>
+
+        <div class="calc-layout">
+          <div class="calc-panel">
+            <div class="panel-card">
+              <div class="panel-card-head">
+                <div class="panel-step">
+                  <span class="step-badge">ШАГ 01</span>
+                  <h3 class="panel-title">Автомобиль, пробег и тип запчастей</h3>
+                </div>
+                <span class="panel-note">База прайса: Краснодар</span>
+              </div>
+
+              <div class="field-grid-2">
+                <div class="field">
+                  <label class="field-label" for="calc-brand">
+                    <span>Марка автомобиля</span>
+                    <span class="field-hint">Каталог GT Service</span>
+                  </label>
+                  <select id="calc-brand" class="select" autocomplete="off">
+                    <optgroup label="Корейские и городские">
+                      <option value="Hyundai" data-class="compact">Hyundai (Solaris, Creta, Santa Fe, Accent)</option>
+                      <option value="Kia" data-class="compact">Kia (Rio, Ceed, Sportage, K5)</option>
+                    </optgroup>
+                    <optgroup label="Японские">
+                      <option value="Toyota" data-class="crossover">Toyota (Camry, Corolla, RAV4)</option>
+                      <option value="Nissan" data-class="crossover">Nissan (Qashqai, X-Trail, Note)</option>
+                      <option value="Mitsubishi" data-class="crossover">Mitsubishi (Outlander, Lancer, Pajero)</option>
+                      <option value="Mazda" data-class="crossover">Mazda (CX-5, Axela, 6)</option>
+                      <option value="Honda" data-class="crossover">Honda (CR-V, Accord, Fit)</option>
+                      <option value="Lexus" data-class="business">Lexus (RX300, RX350, LX570)</option>
+                    </optgroup>
+                    <optgroup label="Немецкие и VAG">
+                      <option value="Volkswagen" data-class="compact">Volkswagen (Polo, Tiguan, Passat)</option>
+                      <option value="Skoda" data-class="compact">Skoda (Octavia, Rapid, Fabia)</option>
+                      <option value="Audi" data-class="business">Audi (A4, A6, Q5)</option>
+                      <option value="BMW" data-class="business">BMW (3-Series, 5-Series, X5)</option>
+                      <option value="Mercedes-Benz" data-class="business">Mercedes-Benz (C-Class, E-Class, S-Class)</option>
+                      <option value="Opel" data-class="compact">Opel (Astra, Corsa, Mokka)</option>
+                    </optgroup>
+                    <optgroup label="Китайские кроссоверы и седаны">
+                      <option value="Haval" data-class="crossover">Haval (Jolion, F7, M6)</option>
+                      <option value="Geely" data-class="crossover">Geely (Monjaro, Atlas, Cityray)</option>
+                      <option value="Chery" data-class="crossover">Chery (Tiggo 4 Pro, Tiggo 7 Pro Max)</option>
+                      <option value="Exeed" data-class="business">Exeed (TXL, RX, VX)</option>
+                      <option value="Changan" data-class="crossover">Changan (UNI-S, CS35 Plus, CS75 Plus)</option>
+                      <option value="Omoda" data-class="compact">Omoda (C5, C7, S5)</option>
+                      <option value="Jetour" data-class="crossover">Jetour (Dashing, T1, T2)</option>
+                    </optgroup>
+                    <optgroup label="Европейские, США и отечественные">
+                      <option value="Renault" data-class="compact">Renault (Logan, Duster, Megane)</option>
+                      <option value="Ford" data-class="compact">Ford (Focus, Kuga, Mondeo)</option>
+                      <option value="Chevrolet" data-class="compact">Chevrolet (Lacetti, Cruze, Aveo)</option>
+                      <option value="Lada" data-class="compact">Lada (Vesta, Granta, Largus)</option>
+                    </optgroup>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label class="field-label" for="calc-model">
+                    <span>Модель и объём двигателя</span>
+                    <span class="field-hint">Опционально</span>
+                  </label>
+                  <input id="calc-model" type="text" class="input" autocomplete="off" placeholder="Например: Solaris 1.6 AT или Tiggo 7 Pro" value="Hyundai Solaris / 1.6">
+                </div>
+              </div>
+
+              <div class="field" style="margin-bottom: 8px;">
+                <span class="field-label">
+                  <span>Класс автомобиля (влияет на нормо-час и объём расходников)</span>
+                </span>
+              </div>
+              <div class="class-grid" role="radiogroup" aria-label="Класс автомобиля">
+                <div class="class-option">
+                  <input class="class-radio" type="radio" name="car-class" id="cls-compact" value="compact" checked autocomplete="off">
+                  <label class="class-card" for="cls-compact">
+                    <span class="class-name">Седан / Хэтчбек</span>
+                    <span class="class-meta">B-C класс, масло ~4.0 л</span>
+                    <span class="class-coef">База x1.00</span>
+                  </label>
+                </div>
+                <div class="class-option">
+                  <input class="class-radio" type="radio" name="car-class" id="cls-crossover" value="crossover" autocomplete="off">
+                  <label class="class-card" for="cls-crossover">
+                    <span class="class-name">Кроссовер / Класс D</span>
+                    <span class="class-meta">SUV, масло ~4.8 л</span>
+                    <span class="class-coef">Коэфф. x1.18</span>
+                  </label>
+                </div>
+                <div class="class-option">
+                  <input class="class-radio" type="radio" name="car-class" id="cls-business" value="business" autocomplete="off">
+                  <label class="class-card" for="cls-business">
+                    <span class="class-name">Бизнес / Премиум</span>
+                    <span class="class-meta">E-S класс, масло ~5.8 л</span>
+                    <span class="class-coef">Коэфф. x1.35</span>
+                  </label>
+                </div>
+                <div class="class-option">
+                  <input class="class-radio" type="radio" name="car-class" id="cls-suv" value="suv" autocomplete="off">
+                  <label class="class-card" for="cls-suv">
+                    <span class="class-name">Рамный SUV / 4WD</span>
+                    <span class="class-meta">Полный привод, ~6.8 л</span>
+                    <span class="class-coef">Коэфф. x1.45</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="mileage-block">
+                <div class="mileage-top">
+                  <label class="field-label" for="calc-mileage-input">
+                    <span>Текущий пробег автомобиля, км</span>
+                  </label>
+                  <div class="mileage-input-wrap">
+                    <input id="calc-mileage-input" type="number" class="input mileage-num" min="5000" max="350000" step="5000" value="60000" autocomplete="off">
+                    <span class="mono" style="font-size: 13px; color: var(--ink-muted);">км</span>
+                  </div>
+                </div>
+                <label class="field-hint" for="calc-mileage-range" style="display: block; margin-bottom: 6px;">Ползунок регламента пробега</label>
+                <input id="calc-mileage-range" type="range" class="range-slider" min="5000" max="250000" step="5000" value="60000" autocomplete="off">
+                <div class="mileage-ticks">
+                  <span>10 000</span>
+                  <span>60 000</span>
+                  <span>120 000</span>
+                  <span>180 000</span>
+                  <span>250 000 км</span>
+                </div>
+                <div class="mileage-advice">
+                  <span id="mileage-advice-text">На отметке 60 000 км рекомендуется плановое ТО, проверка тормозной жидкости и осмотр ходовой.</span>
+                  <span id="mileage-advice-badge" class="advice-tag">ТО-60</span>
+                </div>
+              </div>
+
+              <div class="field" style="margin-bottom: 8px;">
+                <span class="field-label">
+                  <span>Комплектующие и расходные материалы</span>
+                  <span class="field-hint">Согласуем с мастером до ремонта</span>
+                </span>
+              </div>
+              <div class="tier-grid" role="radiogroup" aria-label="Вариант запчастей">
+                <div class="tier-option">
+                  <input class="tier-radio" type="radio" name="parts-tier" id="tier-oem" value="oem" autocomplete="off">
+                  <label class="tier-card" for="tier-oem">
+                    <span class="tier-title">
+                      <span>Оригинал OEM</span>
+                      <span class="tier-pill">VIN</span>
+                    </span>
+                    <span class="tier-desc">Оригинальные фильтры, жидкости и узлы по каталогу производителя.</span>
+                  </label>
+                </div>
+                <div class="tier-option">
+                  <input class="tier-radio" type="radio" name="parts-tier" id="tier-analog" value="analog" checked autocomplete="off">
+                  <label class="tier-card" for="tier-analog">
+                    <span class="tier-title">
+                      <span>Аналоги Pro</span>
+                      <span class="tier-pill">Экономия 30%</span>
+                    </span>
+                    <span class="tier-desc">Mahle, Mann, Bosch, Brembo, TRW, Lemforder с гарантией совместимости.</span>
+                  </label>
+                </div>
+                <div class="tier-option">
+                  <input class="tier-radio" type="radio" name="parts-tier" id="tier-client" value="client" autocomplete="off">
+                  <label class="tier-card" for="tier-client">
+                    <span class="tier-title">
+                      <span>Свои детали</span>
+                      <span class="tier-pill">Только работа</span>
+                    </span>
+                    <span class="tier-desc">Установим запчасти клиента после проверки параметров мастером.</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-card-head">
+                <div class="panel-step">
+                  <span class="step-badge">ШАГ 02</span>
+                  <h3 class="panel-title">Пакеты работ и узлы обслуживания</h3>
+                </div>
+                <span class="panel-note" id="selected-count-note">Выбрано пакетов: 1</span>
+              </div>
+
+              <div class="pkg-list" id="pkg-container">
+                <div class="pkg-group is-selected" data-pkg="to">
+                  <div class="pkg-head">
+                    <div class="pkg-head-left">
+                      <input type="checkbox" class="pkg-check" id="pkg-check-to" checked autocomplete="off">
+                      <div class="pkg-title-wrap">
+                        <label class="pkg-name" for="pkg-check-to">Техническое обслуживание (масло и фильтры)</label>
+                        <span class="pkg-sub">Моторное масло, масляный, воздушный и салонный фильтры, осмотр уровней</span>
+                      </div>
+                    </div>
+                    <span class="pkg-price-badge" id="pkg-sum-to">0 руб.</span>
+                  </div>
+                  <div class="pkg-options">
+                    <div class="subop-row">
+                      <label class="subop-label" for="to-level-small">
+                        <input class="subop-input" type="radio" name="to-level" id="to-level-small" value="small" autocomplete="off">
+                        <span>Малое ТО (замена масла ДВС, масляного фильтра, проверка уровней)</span>
+                      </label>
+                      <span class="subop-price">работа от 2 500 руб.</span>
+                    </div>
+                    <div class="subop-row">
+                      <label class="subop-label" for="to-level-plan">
+                        <input class="subop-input" type="radio" name="to-level" id="to-level-plan" value="plan" checked autocomplete="off">
+                        <span>Плановое ТО (масло, 3 фильтра, диагностика ходовой части)</span>
+                      </label>
+                      <span class="subop-price">работа от 3 500 руб.</span>
+                    </div>
+                    <div class="subop-row">
+                      <label class="subop-label" for="to-level-big">
+                        <input class="subop-input" type="radio" name="to-level" id="to-level-big" value="big" autocomplete="off">
+                        <span>Большое ТО (масло, все фильтры, проверка тормозов, подвески и ремней)</span>
+                      </label>
+                      <span class="subop-price">работа от 6 500 руб.</span>
+                    </div>
+                    <div class="subop-row">
+                      <label class="subop-label" for="to-opt-guard">
+                        <input class="subop-input" type="checkbox" id="to-opt-guard" checked autocomplete="off">
+                        <span>Снятие и установка защиты картера + сброс интервала ТО</span>
+                      </label>
+                      <span class="subop-price">+700 руб.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pkg-group" data-pkg="brakes">
+                  <div class="pkg-head">
+                    <div class="pkg-head-left">
+                      <input type="checkbox" class="pkg-check" id="pkg-check-brakes" autocomplete="off">
+                      <div class="pkg-title-wrap">
+                        <label class="pkg-name" for="pkg-check-brakes">Тормозная система</label>
+                        <span class="pkg-sub">Колодки, тормозные диски, обслуживание суппортов, замена DOT-4</span>
+                      </div>
+                    </div>
+                    <span class="pkg-price-badge" id="pkg-sum-brakes">0 руб.</span>
+                  </div>
+                  <div class="pkg-options">
+                    <div class="subop-row">
+                      <label class="subop-label" for="brk-pads">
+                        <input class="subop-input" type="checkbox" id="brk-pads" checked autocomplete="off">
+                        <span>Замена тормозных колодок (1 ось) с очисткой и смазкой направляющих</span>
+                      </label>
+                      <span class="subop-price">работа от 2 000 руб.</span>
+                    </div>
+                    <div class="subop-row">
+                      <label class="subop-label" for="brk-discs">
+                        <input class="subop-input" type="checkbox" id="brk-discs" autocomplete="off">
+                        <span>Замена тормозных дисков (1 ось) и очистка посадочной ступицы</span>
+                      </label>
+                      <span class="subop-price">работа от 3 500 руб.</span>
+                    </div>
+                    <div class="subop-row">
+                      <label class="subop-label" for="brk-fluid">
+                        <input class="subop-input" type="checkbox" id="brk-fluid" autocomplete="off">
+                        <span>Замена тормозной жидкости с прокачкой и тестом влаги</span>
+                      </label>
+                      <span class="subop-price">работа от 2 500 руб.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pkg-group" data-pkg="chassis">
+                  <div class="pkg-head">
+                    <div class="pkg-head-left">
+                      <input type="checkbox" class="pkg-check" id="pkg-check-chassis" autocomplete="off">
+                      <div class="pkg-title-wrap">
+                        <label class="pkg-name" for="pkg-check-chassis">Ходовая часть и подвеска</label>
+                        <span class="pkg-sub">Диагностика на подъёмнике, стойки стабилизатора, амортизаторы, ступицы</span>
+                      </div>
+                    </div>
+                    <span class="pkg-price-badge" id="pkg-sum-chassis">0 руб.</span>
+                  </div>
+                  <div class="pkg-options">
+                    <div class="subop-row">
+                      <label class="subop-label" for="chs-diag">
+                        <input class="subop-input" type="checkbox" id="chs-diag" checked autocomplete="off">
+                        <span>Инструментальная диагностика подвески, шаровых и сайлентблоков</span>
+                      </label>
+                      <span class="subop-price">работа от 1 500 руб.</span>
+                    </div>
+                    <div class="subop-row">
+                      <label class="subop-label" for="chs-stab">
+                        <input class="subop-input" type="checkbox" id="chs-stab" autocomplete="off">
+                        <span>Замена стоек и втулок стабилизатора (комплект на ось)</span>
+                      </label>
+                      <span class="subop-price">работа от 2 400 руб.</span>
+                    </div>
+                    <div class="subop-row">
+                      <label class="subop-label" for="chs-shocks">
+                        <input class="subop-input" type="checkbox" id="chs-shocks" autocomplete="off">
+                        <span>Замена передних или задних амортизаторов (пара, 1 ось)</span>
+                      </label>
+                      <span class="subop-price">работа от 5 500 руб.</span>
+                    </div>
+                    <div class="subop-row">
+                      <label class="subop-label" for="chs-hub">
+                        <input class="subop-input" type="checkbox" id="chs-hub" autocomplete="off">
+                        <span>Замена ступичного подшипника / ступицы в сборе (1 шт)</span>
+                      </label>
+                      <span class="subop-price">работа от 3 500 руб.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pkg-group" data-pkg="align">
+                  <div class="pkg-head">
+                    <div class="pkg-head-left">
+                      <input type="checkbox" class="pkg-check" id="pkg-check-align" autocomplete="off">
+                      <div class="pkg-title-wrap">
+                        <label class="pkg-name" for="pkg-check-align">Развал-схождение</label>
+                        <span class="pkg-sub">Проверка углов установки колёс и регулировка 1 или 2 осей</span>
+                      </div>
+                    </div>
+                    <span class="pkg-price-badge" id="pkg-sum-align">0 руб.</span>
+                  </div>
+                  <div class="pkg-options">
+                    <div class="subop-row">
+                      <label class="subop-label" for="aln-check">
+                        <input class="subop-input" type="radio" name="align-mode" id="aln-check" value="check" autocomplete="off">
+                        <span>Проверка углов установки колёс на стенде (без регулировки)</span>
+                      </label>
+                      <span class="subop-price">от 1 500 руб.</span>
+                    </div>
+                    <div class="subop-row">
+                      <label class="subop-label" for="aln-1axis">
+                        <input class="subop-input" type="radio" name="align-mode" id="aln-1axis" value="axis1" autocomplete="off">
+                        <span>Регулировка сход-развала передней оси (1 ось)</span>
+                      </label>
+                      <span class="subop-price">от 3 000 руб.</span>
+                    </div>
+                    <div class="subop-row">
+                      <label class="subop-label" for="aln-2axis">
+                        <input class="subop-input" type="radio" name="align-mode" id="aln-2axis" value="axis2" checked autocomplete="off">
+                        <span>Регулировка развала-схождения двух осей (полная, 2 оси)</span>
+                      </label>
+                      <span class="subop-price">от 4 500 руб.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pkg-group" data-pkg="ac">
+                  <div class="pkg-head">
+                    <div class="pkg-head-left">
+                      <input type="checkbox" class="pkg-check" id="pkg-check-ac" autocomplete="off">
+                      <div class="pkg-title-wrap">
+                        <label class="pkg-name" for="pkg-check-ac">Автокондиционер и климат-система</label>
+                        <span class="pkg-sub">Вакуумирование, заправка фреоном по норме, поиск утечек, антибактериальная очистка</span>
+                      </div>
+                    </div>
+                    <span class="pkg-price-badge" id="pkg-sum-ac">0 руб.</span>
+                  </div>
+                  <div class="pkg-options">
+                    <div class="subop-row">
+                      <label class="subop-label" for="ac-refill">
+                        <input class="subop-input" type="checkbox" id="ac-refill" checked autocomplete="off">
+                        <span>Вакуумирование и заправка кондиционера фреоном и маслом</span>
+                      </label>
+                      <span class="subop-price">от 2 500 руб.</span>
+                    </div>
+                    <div class="subop-row">
+                      <label class="subop-label" for="ac-diag">
+                        <input class="subop-input" type="checkbox" id="ac-diag" autocomplete="off">
+                        <span>Диагностика системы кондиционирования (давление, компрессор, ремень)</span>
+                      </label>
+                      <span class="subop-price">от 2 000 руб.</span>
+                    </div>
+                    <div class="subop-row">
+                      <label class="subop-label" for="ac-antibac">
+                        <input class="subop-input" type="checkbox" id="ac-antibac" autocomplete="off">
+                        <span>Антибактериальная обработка испарителя и воздуховодов</span>
+                      </label>
+                      <span class="subop-price">от 2 000 руб.</span>
+                    </div>
+                    <div class="subop-row">
+                      <label class="subop-label" for="ac-leak">
+                        <input class="subop-input" type="checkbox" id="ac-leak" autocomplete="off">
+                        <span>Поиск утечек фреона (УФ-краситель / течеискатель / опрессовка)</span>
+                      </label>
+                      <span class="subop-price">от 3 000 руб.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pkg-group" data-pkg="diag">
+                  <div class="pkg-head">
+                    <div class="pkg-head-left">
+                      <input type="checkbox" class="pkg-check" id="pkg-check-diag" autocomplete="off">
+                      <div class="pkg-title-wrap">
+                        <label class="pkg-name" for="pkg-check-diag">Компьютерная диагностика и проверка систем</label>
+                        <span class="pkg-sub">Чтение кодов ошибок, анализ параметров ЭБУ, эндоскопия, предпродажный осмотр</span>
+                      </div>
+                    </div>
+                    <span class="pkg-price-badge" id="pkg-sum-diag">0 руб.</span>
+                  </div>
+                  <div class="pkg-options">
+                    <div class="subop-row">
+                      <label class="subop-label" for="diag-scan">
+                        <input class="subop-input" type="radio" name="diag-mode" id="diag-scan" value="scan" checked autocomplete="off">
+                        <span>Компьютерная диагностика (чтение, расшифровка и сброс ошибок)</span>
+                      </label>
+                      <span class="subop-price">от 1 500 руб.</span>
+                    </div>
+                    <div class="subop-row">
+                      <label class="subop-label" for="diag-deep">
+                        <input class="subop-input" type="radio" name="diag-mode" id="diag-deep" value="deep" autocomplete="off">
+                        <span>Расширенная диагностика с анализом параметров ДВС и датчиков</span>
+                      </label>
+                      <span class="subop-price">от 2 500 руб.</span>
+                    </div>
+                    <div class="subop-row">
+                      <label class="subop-label" for="diag-complex">
+                        <input class="subop-input" type="radio" name="diag-mode" id="diag-complex" value="complex" autocomplete="off">
+                        <span>Комплексная проверка перед покупкой (ДВС, сканер, подвеска, тормоза, ЛКП)</span>
+                      </label>
+                      <span class="subop-price">от 4 500 руб.</span>
+                    </div>
+                    <div class="subop-row">
+                      <label class="subop-label" for="diag-endo">
+                        <input class="subop-input" type="checkbox" id="diag-endo" autocomplete="off">
+                        <span>Дополнительно: эндоскопия цилиндров двигателя</span>
+                      </label>
+                      <span class="subop-price">+2 500 руб.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="estimate-sticky" id="booking-anchor" aria-label="Предварительная смета и запись в бокс">
+            <div class="estimate-card">
+              <div class="estimate-header">
+                <h3>Смета обслуживания</h3>
+                <span class="estimate-code" id="est-doc-id">SMETA-KRD-01</span>
+              </div>
+
+              <div class="estimate-body">
+                <div class="vehicle-summary" id="est-chips">
+                  <span class="v-chip v-chip-cobalt" id="chip-brand">Hyundai</span>
+                  <span class="v-chip" id="chip-class">Седан / Хэтчбек</span>
+                  <span class="v-chip mono" id="chip-mileage">60 000 км</span>
+                  <span class="v-chip" id="chip-tier">Аналоги Pro</span>
+                </div>
+
+                <div class="line-items" id="est-line-items"></div>
+
+                <div class="totals-box">
+                  <div class="total-row">
+                    <span>Работы мастеров СТО</span>
+                    <strong id="est-work-total">0 руб.</strong>
+                  </div>
+                  <div class="total-row">
+                    <span>Запчасти и жидкости</span>
+                    <strong id="est-parts-total">0 руб.</strong>
+                  </div>
+                  <div class="total-row">
+                    <span>Ориентировочное время в боксе</span>
+                    <strong id="est-hours-total">0 ч</strong>
+                  </div>
+                  <div class="total-grand">
+                    <span class="total-grand-label">Итоговая смета</span>
+                    <span class="total-grand-val" id="est-grand-total">0 руб.</span>
+                  </div>
+                </div>
+
+                <div class="savings-note" id="est-savings-box">
+                  <span id="est-savings-label">Выгода относительно OEM-комплекта:</span>
+                  <strong class="mono" id="est-savings-val">0 руб.</strong>
+                </div>
+
+                <div class="booking-divider">
+                  <h4 class="booking-title">Запись в бокс (ул. Алма-Атинская, 2/15)</h4>
+                  <p class="booking-sub">Прикрепим расчёт к заявке. Мастер уточнит детали и подтвердит время по телефону.</p>
+
+                  <form id="box-booking-form" class="booking-form" novalidate>
+                    <div class="field">
+                      <label class="field-label" for="booking-name">Ваше имя</label>
+                      <input id="booking-name" name="name" type="text" class="input" autocomplete="name" placeholder="Алексей" required>
+                    </div>
+
+                    <div class="field">
+                      <label class="field-label" for="booking-phone">Телефон для связи</label>
+                      <input id="booking-phone" name="tel" type="tel" class="input mono" autocomplete="tel" placeholder="+7 (918) 000-00-00" required>
+                    </div>
+
+                    <div class="field-grid-2" style="margin-bottom: 0; gap: 10px;">
+                      <div class="field">
+                        <label class="field-label" for="booking-date">Желаемая дата</label>
+                        <input id="booking-date" name="date" type="date" class="input mono" autocomplete="off">
+                      </div>
+                      <div class="field">
+                        <label class="field-label" for="booking-slot">Время заезда</label>
+                        <select id="booking-slot" name="slot" class="select" autocomplete="off">
+                          <option value="09:00 - 11:00">09:00 - 11:00 (утро)</option>
+                          <option value="11:30 - 14:00" selected>11:30 - 14:00 (день)</option>
+                          <option value="14:30 - 17:00">14:30 - 17:00 (день)</option>
+                          <option value="17:30 - 19:30">17:30 - 19:30 (вечер, Пн-Пт)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label class="field-label" for="booking-comment">VIN-номер или симптомы (по желанию)</label>
+                      <textarea id="booking-comment" name="comment" class="textarea" autocomplete="off" placeholder="Укажите VIN для точного подбора деталей или опишите жалобу"></textarea>
+                    </div>
+
+                    <label class="consent-row" for="booking-consent">
+                      <input id="booking-consent" type="checkbox" class="consent-check" checked autocomplete="off">
+                      <span>Согласен на обработку персональных данных для расчёта сметы и согласования визита в GT Service.</span>
+                    </label>
+
+                    <div id="booking-feedback" class="form-feedback" role="status" aria-live="polite"></div>
+
+                    <button type="submit" class="btn btn-primary btn-lg">Зафиксировать смету и записаться</button>
+                  </form>
+
+                  <div class="estimate-actions">
+                    <button type="button" id="copy-estimate-btn" class="btn btn-ghost">Скопировать смету</button>
+                    <a href="tel:+79384244224" class="btn btn-ghost">Позвонить мастеру</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Каталог СТО Краснодар</div>
+            <h2 class="section-title">Профильные направления и марки автомобилей</h2>
+            <p class="section-desc">
+              Более 750 операций по 16 техническим направлениям. Нажмите на направление, чтобы сразу подключить его в калькулятор.
+            </p>
+          </div>
+          <a href="#calculator" class="btn btn-secondary">К расчёту стоимости</a>
+        </div>
+
+        <div class="catalog-grid">
+          <article class="service-tile">
+            <div class="service-tile-top">
+              <h3>Техническое обслуживание</h3>
+              <span class="service-count">15 услуг</span>
+            </div>
+            <p>Малое, плановое и большое ТО. Замена масла ДВС, всех фильтров, проверка уровней жидкостей и ремней.</p>
+            <div class="service-tile-foot">
+              <span class="service-from">от 2 500 руб.</span>
+              <button type="button" class="btn btn-ghost" data-add-pkg="to">В смету</button>
+            </div>
+          </article>
+
+          <article class="service-tile">
+            <div class="service-tile-top">
+              <h3>Тормозная система</h3>
+              <span class="service-count">73 услуги</span>
+            </div>
+            <p>Колодки, тормозные диски, ремкомплекты суппортов, замена шлангов, трубок и прокачка системы ABS.</p>
+            <div class="service-tile-foot">
+              <span class="service-from">от 2 000 руб.</span>
+              <button type="button" class="btn btn-ghost" data-add-pkg="brakes">В смету</button>
+            </div>
+          </article>
+
+          <article class="service-tile">
+            <div class="service-tile-top">
+              <h3>Ходовая часть</h3>
+              <span class="service-count">81 услуга</span>
+            </div>
+            <p>Диагностика подвески, амортизаторы, пружины, рычаги, шаровые опоры, перепрессовка сайлентблоков и ступиц.</p>
+            <div class="service-tile-foot">
+              <span class="service-from">от 1 500 руб.</span>
+              <button type="button" class="btn btn-ghost" data-add-pkg="chassis">В смету</button>
+            </div>
+          </article>
+
+          <article class="service-tile">
+            <div class="service-tile-top">
+              <h3>Сход-развал</h3>
+              <span class="service-count">18 услуг</span>
+            </div>
+            <p>Проверка углов установки колёс, регулировка 1 или 2 осей, настройка кастера, разработка регулировочных болтов.</p>
+            <div class="service-tile-foot">
+              <span class="service-from">от 1 500 руб.</span>
+              <button type="button" class="btn btn-ghost" data-add-pkg="align">В смету</button>
+            </div>
+          </article>
+
+          <article class="service-tile">
+            <div class="service-tile-top">
+              <h3>Кондиционер</h3>
+              <span class="service-count">51 услуга</span>
+            </div>
+            <p>Вакуумирование и заправка фреоном, опрессовка азотом, УФ-поиск утечек, замена компрессора и радиатора.</p>
+            <div class="service-tile-foot">
+              <span class="service-from">от 2 000 руб.</span>
+              <button type="button" class="btn btn-ghost" data-add-pkg="ac">В смету</button>
+            </div>
+          </article>
+
+          <article class="service-tile">
+            <div class="service-tile-top">
+              <h3>Диагностика и электрика</h3>
+              <span class="service-count">121 услуга</span>
+            </div>
+            <p>Компьютерный сканер, эндоскопия цилиндров, поиск утечек тока, проверка проводки и предпродажный осмотр.</p>
+            <div class="service-tile-foot">
+              <span class="service-from">от 1 500 руб.</span>
+              <button type="button" class="btn btn-ghost" data-add-pkg="diag">В смету</button>
+            </div>
+          </article>
+
+          <article class="service-tile">
+            <div class="service-tile-top">
+              <h3>Двигатель и ГРМ</h3>
+              <span class="service-count">106 услуг</span>
+            </div>
+            <p>Замена ремня и цепи ГРМ, прокладки ГБЦ, опор двигателя, ремонт бензиновых и дизельных ДВС.</p>
+            <div class="service-tile-foot">
+              <span class="service-from">от 2 000 руб.</span>
+              <button type="button" class="btn btn-ghost" data-add-pkg="diag">Диагностика</button>
+            </div>
+          </article>
+
+          <article class="service-tile">
+            <div class="service-tile-top">
+              <h3>Жидкости и трансмиссия</h3>
+              <span class="service-count">103 услуги</span>
+            </div>
+            <p>Частичная и аппаратная замена масла АКПП, замена масла МКПП, раздатки, редукторов и антифриза.</p>
+            <div class="service-tile-foot">
+              <span class="service-from">от 2 500 руб.</span>
+              <button type="button" class="btn btn-ghost" data-add-pkg="to">К ТО</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="brands-box">
+          <div class="section-head" style="margin-bottom: 14px;">
+            <div>
+              <h3 style="font-size: 20px;">Обслуживаемые марки автомобилей</h3>
+              <p style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">Нажмите на карточку марки, чтобы выбрать её в калькуляторе ТО.</p>
+            </div>
+          </div>
+
+          <div class="brand-tabs" role="tablist" aria-label="Группы марок авто">
+            <button type="button" class="brand-tab is-active" data-brand-group="asia">Корея и Япония</button>
+            <button type="button" class="brand-tab" data-brand-group="euro">Европа и VAG</button>
+            <button type="button" class="brand-tab" data-brand-group="china">Китайские марки</button>
+            <button type="button" class="brand-tab" data-brand-group="other">США, Франция, РФ</button>
+          </div>
+
+          <div class="brand-cards" id="brand-cards-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="workflow" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Регламент GT Service</div>
+            <h2 class="section-title">Путь автомобиля от приёмки до выдачи</h2>
+            <p class="section-desc">
+              Семь последовательных шагов исключают лишние операции и неожиданные доплаты при закрытии заказ-наряда.
+            </p>
+          </div>
+        </div>
+
+        <div class="workflow-grid">
+          <div class="wf-card">
+            <span class="wf-num">01</span>
+            <h3 class="wf-title">Уточняем задачу</h3>
+            <p class="wf-desc">Фиксируем симптомы, пробег и историю обслуживания при обращении.</p>
+          </div>
+          <div class="wf-card">
+            <span class="wf-num">02</span>
+            <h3 class="wf-title">Принимаем авто</h3>
+            <p class="wf-desc">Оформляем обращение и передаём автомобиль профильному мастеру.</p>
+          </div>
+          <div class="wf-card">
+            <span class="wf-num">03</span>
+            <h3 class="wf-title">Проверяем узлы</h3>
+            <p class="wf-desc">Диагностируем смежные системы и подтверждаем точную причину.</p>
+          </div>
+          <div class="wf-card">
+            <span class="wf-num">04</span>
+            <h3 class="wf-title">Согласуем смету</h3>
+            <p class="wf-desc">Фиксируем состав работ, детали (OEM или аналог), цену и срок.</p>
+          </div>
+          <div class="wf-card">
+            <span class="wf-num">05</span>
+            <h3 class="wf-title">Выполняем ремонт</h3>
+            <p class="wf-desc">Проводим только согласованные операции без молчаливых допов.</p>
+          </div>
+          <div class="wf-card">
+            <span class="wf-num">06</span>
+            <h3 class="wf-title">Контроль качества</h3>
+            <p class="wf-desc">Проверяем штатную работу узлов и герметичность после сборки.</p>
+          </div>
+          <div class="wf-card">
+            <span class="wf-num">07</span>
+            <h3 class="wf-title">Выдаём заказ</h3>
+            <p class="wf-desc">Передаём автомобиль, заказ-наряд и гарантийные документы.</p>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top: 24px; margin-bottom: 18px;">
+          <div>
+            <h3 style="font-size: 22px;">Частые вопросы перед визитом на сервис</h3>
+          </div>
+        </div>
+
+        <div class="faq-grid" id="faq-list">
+          <div class="faq-item is-open">
+            <button type="button" class="faq-btn" aria-expanded="true">
+              <span>Можно ли узнать точную цену до начала ремонта?</span>
+              <span class="faq-icon">-</span>
+            </button>
+            <div class="faq-answer">
+              По телефону и в калькуляторе вы получаете расчёт по типовым операциям. Окончательную смету мастер согласует с вами после осмотра автомобиля в боксе и до старта ремонта, чтобы итог не менялся на выдаче.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-btn" aria-expanded="false">
+              <span>Принимает ли GT Service собственные запчасти клиента?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Да, вы можете привезти свои детали (в калькуляторе выберите режим «Свои детали»). Мастер заранее проверит совместимость по параметрам и предупредит, если комплект не подходит.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-btn" aria-expanded="false">
+              <span>Меняется ли список работ после углублённой диагностики?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Если в процессе разборки обнаружится скрытый износ смежного узла, мастер свяжется с вами, объяснит причину и запустит дополнительные работы только после вашего подтверждения.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-btn" aria-expanded="false">
+              <span>Как фиксируется гарантия и какие способы оплаты доступны?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Условия гарантии указываются в заказ-наряде и гарантийном талоне. Способ расчёта (наличные, карта или безналичный перевод) согласуется до начала обслуживания.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Филиал и юридическая информация</div>
+            <h2 class="section-title">Контакты автосервиса GT Service в Краснодаре</h2>
+          </div>
+        </div>
+
+        <div class="contacts-grid">
+          <div class="contact-card">
+            <div class="contact-rows">
+              <div class="contact-cell">
+                <div class="contact-k">Адрес автосервиса</div>
+                <div class="contact-v">г. Краснодар, ул. Алма-Атинская, 2/15</div>
+              </div>
+              <div class="contact-cell">
+                <div class="contact-k">Телефон приёмки</div>
+                <div class="contact-v mono"><a href="tel:+79384244224">+7 (938) 424-42-24</a></div>
+              </div>
+              <div class="contact-cell">
+                <div class="contact-k">Электронная почта</div>
+                <div class="contact-v mono"><a href="mailto:formula-mag3@yandex.ru">formula-mag3@yandex.ru</a></div>
+              </div>
+              <div class="contact-cell">
+                <div class="contact-k">График работы</div>
+                <div class="contact-v tabular-sans">Пн-Пт 09:00-20:00<br>Сб-Вс 09:00-18:00</div>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <a href="https://yandex.ru/maps/?text=Краснодар,+ул.+Алма-Атинская,+2/15" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Построить маршрут в Яндекс Картах</a>
+              <a href="#calculator" class="btn btn-secondary">Рассчитать стоимость визита</a>
+            </div>
+          </div>
+
+          <div class="req-card">
+            <div>
+              <span class="panel-note" style="color: #8DB5DB;">Официальные реквизиты</span>
+              <h3 style="margin-top: 6px;">Карточка организации</h3>
+            </div>
+
+            <div class="req-table" id="requisites-data">
+              <div class="req-row">
+                <span>Полное наименование</span>
+                <span>ИП Кулаков Илья Владиславович</span>
+              </div>
+              <div class="req-row">
+                <span>ИНН</span>
+                <span>235208677437</span>
+              </div>
+              <div class="req-row">
+                <span>ОГРНИП</span>
+                <span>315235200009971</span>
+              </div>
+              <div class="req-row">
+                <span>Фактический адрес</span>
+                <span>г. Краснодар, ул. Алма-Атинская, д. 2/15</span>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+              <button type="button" id="copy-req-btn" class="btn req-copy-btn">Скопировать реквизиты</button>
+              <span id="req-copy-status" style="font-size: 12px; color: #8DE4CC;"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <span class="footer-brand">GT Service Краснодар</span>
+        <span> · ул. Алма-Атинская, 2/15 · +7 (938) 424-42-24 · formula-mag3@yandex.ru</span>
+      </div>
+      <div class="footer-links">
+        <a href="#calculator">Калькулятор</a>
+        <a href="#services">Услуги</a>
+        <a href="#workflow">Порядок работ</a>
+        <a href="#contacts">Контакты</a>
+      </div>
+      <div style="width: 100%; border-top: 1px solid var(--border); padding-top: 14px; color: var(--ink-secondary);">
+        Интерактивный концепт редизайна подготовлен для GT Service Краснодар.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      const CLASS_META = {
+        compact: { label: 'Седан / Хэтчбек', workMult: 1.0, partsMult: 1.0, oilCostOem: 5400, oilCostAnalog: 3800 },
+        crossover: { label: 'Кроссовер / Класс D', workMult: 1.18, partsMult: 1.22, oilCostOem: 6600, oilCostAnalog: 4600 },
+        business: { label: 'Бизнес / Премиум', workMult: 1.35, partsMult: 1.52, oilCostOem: 8900, oilCostAnalog: 6100 },
+        suv: { label: 'Рамный SUV / 4WD', workMult: 1.45, partsMult: 1.65, oilCostOem: 10400, oilCostAnalog: 7200 }
+      };
+
+      const TIER_META = {
+        oem: { label: 'Оригинал OEM', partsFactor: 1.0 },
+        analog: { label: 'Аналоги Pro', partsFactor: 0.7 },
+        client: { label: 'Свои детали', partsFactor: 0.0 }
+      };
+
+      const BRAND_GROUPS = {
+        asia: [
+          { name: 'Hyundai', models: 'Solaris, Santa Fe, Accent', cls: 'compact' },
+          { name: 'Kia', models: 'Rio, Sportage, Ceed', cls: 'compact' },
+          { name: 'Toyota', models: 'Camry, Corolla, RAV4', cls: 'crossover' },
+          { name: 'Nissan', models: 'X-Trail, Qashqai, Note', cls: 'crossover' },
+          { name: 'Mitsubishi', models: 'Outlander, Lancer, Pajero', cls: 'crossover' },
+          { name: 'Honda', models: 'CR-V, Accord, Fit', cls: 'crossover' },
+          { name: 'Mazda', models: 'CX-5, Axela, 6', cls: 'crossover' },
+          { name: 'Lexus', models: 'RX300, RX350, LX570', cls: 'business' }
+        ],
+        euro: [
+          { name: 'Volkswagen', models: 'Polo, Passat, Tiguan', cls: 'compact' },
+          { name: 'Skoda', models: 'Octavia, Rapid, Fabia', cls: 'compact' },
+          { name: 'Audi', models: 'A4, A6, Q5', cls: 'business' },
+          { name: 'BMW', models: '3-Series, 5-Series, X5', cls: 'business' },
+          { name: 'Mercedes-Benz', models: 'C-Class, E-Class, S-Class', cls: 'business' },
+          { name: 'Opel', models: 'Astra, Corsa, Astra GTC', cls: 'compact' },
+          { name: 'Volvo', models: 'XC60, XC90, S60', cls: 'business' },
+          { name: 'Land Rover', models: 'Freelander, Discovery, Evoque', cls: 'suv' }
+        ],
+        china: [
+          { name: 'Haval', models: 'Jolion, F7, M6', cls: 'crossover' },
+          { name: 'Geely', models: 'Monjaro, Atlas, Cityray', cls: 'crossover' },
+          { name: 'Chery', models: 'Tiggo 4 Pro, Tiggo 7 Pro Max', cls: 'crossover' },
+          { name: 'Exeed', models: 'TXL, RX, VX', cls: 'business' },
+          { name: 'Changan', models: 'UNI-S, CS35 Plus, CS75 Plus', cls: 'crossover' },
+          { name: 'Omoda', models: 'C5, C7, S5', cls: 'compact' },
+          { name: 'Jetour', models: 'Dashing, T1, T2', cls: 'crossover' },
+          { name: 'Tank', models: '300, 500', cls: 'suv' }
+        ],
+        other: [
+          { name: 'Renault', models: 'Logan, Duster, Megane', cls: 'compact' },
+          { name: 'Ford', models: 'Focus, Kuga, Mondeo', cls: 'compact' },
+          { name: 'Chevrolet', models: 'Lacetti, Cruze, Aveo', cls: 'compact' },
+          { name: 'Lada', models: 'Vesta, Granta, Largus', cls: 'compact' },
+          { name: 'Citroen', models: 'C4, Berlingo, C5', cls: 'compact' },
+          { name: 'Peugeot', models: '308, 408, 3008', cls: 'compact' },
+          { name: 'Jeep', models: 'Grand Cherokee, Compass', cls: 'suv' },
+          { name: 'Moskvitch', models: '3, 6', cls: 'compact' }
+        ]
+      };
+
+      const brandSelect = document.getElementById('calc-brand');
+      const modelInput = document.getElementById('calc-model');
+      const mileageInput = document.getElementById('calc-mileage-input');
+      const mileageRange = document.getElementById('calc-mileage-range');
+      const mileageAdviceText = document.getElementById('mileage-advice-text');
+      const mileageAdviceBadge = document.getElementById('mileage-advice-badge');
+
+      const estLineItems = document.getElementById('est-line-items');
+      const estWorkTotal = document.getElementById('est-work-total');
+      const estPartsTotal = document.getElementById('est-parts-total');
+      const estHoursTotal = document.getElementById('est-hours-total');
+      const estGrandTotal = document.getElementById('est-grand-total');
+      const estSavingsBox = document.getElementById('est-savings-box');
+      const estSavingsLabel = document.getElementById('est-savings-label');
+      const estSavingsVal = document.getElementById('est-savings-val');
+      const selectedCountNote = document.getElementById('selected-count-note');
+
+      const chipBrand = document.getElementById('chip-brand');
+      const chipClass = document.getElementById('chip-class');
+      const chipMileage = document.getElementById('chip-mileage');
+      const chipTier = document.getElementById('chip-tier');
+
+      const bookingDate = document.getElementById('booking-date');
+      const bookingForm = document.getElementById('box-booking-form');
+      const bookingFeedback = document.getElementById('booking-feedback');
+
+      let lastSummaryText = '';
+
+      function formatRub(val) {
+        return Math.round(val).toLocaleString('ru-RU') + ' руб.';
+      }
+
+      function roundTo50(val) {
+        return Math.round(val / 50) * 50;
+      }
+
+      function getCheckedValue(name) {
+        const el = document.querySelector('input[name="' + name + '"]:checked');
+        return el ? el.value : '';
+      }
+
+      function setCheckedValue(name, val) {
+        const el = document.querySelector('input[name="' + name + '"][value="' + val + '"]');
+        if (el) {
+          el.checked = true;
+        }
+      }
+
+      function setDefaultDate() {
+        const d = new Date();
+        d.setDate(d.getDate() + 1);
+        const yyyy = d.getFullYear();
+        const mm = String(d.getMonth() + 1).padStart(2, '0');
+        const dd = String(d.getDate()).padStart(2, '0');
+        bookingDate.value = yyyy + '-' + mm + '-' + dd;
+      }
+
+      function updateMileageAdvice(km) {
+        if (km < 30000) {
+          mileageAdviceText.textContent = 'Регламент начального пробега: базовое малое ТО, проверка уровней жидкостей и давления шин.';
+          mileageAdviceBadge.textContent = 'ТО-15 / ТО-30';
+        } else if (km < 75000) {
+          mileageAdviceText.textContent = 'На отметке 45 000 - 70 000 км рекомендуется плановое ТО, тест влаги тормозной жидкости и осмотр ходовой.';
+          mileageAdviceBadge.textContent = 'ТО-60';
+        } else if (km < 120000) {
+          mileageAdviceText.textContent = 'Пробег 75 000 - 115 000 км: важно проверить тормозные диски, подвеску, состояние приводных ремней и масло АКПП.';
+          mileageAdviceBadge.textContent = 'ТО-90 / КРУПНОЕ';
+        } else {
+          mileageAdviceText.textContent = 'Пробег свыше 120 000 км: рекомендуем большое ТО, эндоскопию ДВС при жалобах, ревизию ходовой и сход-развал.';
+          mileageAdviceBadge.textContent = 'ПРОБЕГ 120K+';
+        }
+      }
+
+      function computeEstimate() {
+        const clsKey = getCheckedValue('car-class') || 'compact';
+        const tierKey = getCheckedValue('parts-tier') || 'analog';
+        const cls = CLASS_META[clsKey];
+        const tier = TIER_META[tierKey];
+        const brand = brandSelect.value;
+        const km = Math.max(5000, Math.min(350000, Number(mileageInput.value) || 60000));
+
+        updateMileageAdvice(km);
+
+        const lines = [];
+        let workTotal = 0;
+        let partsTotal = 0;
+        let partsOemEquivalent = 0;
+        let hoursTotal = 0;
+        let activePkgs = 0;
+
+        function addLine(pkgKey, name, workBase, partsOemBase, hours, fixedWork) {
+          const work = fixedWork ? workBase : roundTo50(workBase * cls.workMult);
+          const oemParts = roundTo50(partsOemBase * cls.partsMult);
+          const actualParts = tierKey === 'client' ? 0 : roundTo50(oemParts * tier.partsFactor);
+          workTotal += work;
+          partsTotal += actualParts;
+          partsOemEquivalent += oemParts;
+          hoursTotal += hours;
+          lines.push({
+            pkgKey: pkgKey,
+            name: name,
+            work: work,
+            parts: actualParts,
+            oemParts: oemParts,
+            total: work + actualParts
+          });
+        }
+
+        function sumPkg(pkgKey) {
+          return lines
+            .filter(function (item) { return item.pkgKey === pkgKey; })
+            .reduce(function (acc, item) { return acc + item.total; }, 0);
+        }
+
+        // 1. TO
+        const toOn = document.getElementById('pkg-check-to').checked;
+        document.querySelector('[data-pkg="to"]').classList.toggle('is-selected', toOn);
+        if (toOn) {
+          activePkgs += 1;
+          const level = getCheckedValue('to-level');
+          if (level === 'small') {
+            addLine('to', 'Малое ТО (масло ДВС + масляный фильтр)', 2500, cls.oilCostOem + 900, 1.0, false);
+          } else if (level === 'plan') {
+            addLine('to', 'Плановое ТО (масло, 3 фильтра, диагностика ходовой)', 3500, cls.oilCostOem + 2800, 1.5, false);
+          } else {
+            addLine('to', 'Большое ТО (масло, все фильтры, тормоза и подвеска)', 6500, cls.oilCostOem + 4400, 2.5, false);
+          }
+          if (document.getElementById('to-opt-guard').checked) {
+            addLine('to', 'Снятие/установка защиты + сброс сервиса', 700, 0, 0.3, true);
+          }
+        }
+        document.getElementById('pkg-sum-to').textContent = formatRub(sumPkg('to'));
+
+        // 2. Brakes
+        const brkOn = document.getElementById('pkg-check-brakes').checked;
+        document.querySelector('[data-pkg="brakes"]').classList.toggle('is-selected', brkOn);
+        if (brkOn) {
+          activePkgs += 1;
+          if (document.getElementById('brk-pads').checked) {
+            addLine('brakes', 'Замена тормозных колодок (1 ось) и смазка суппортов', 2000, 4200, 1.0, false);
+          }
+          if (document.getElementById('brk-discs').checked) {
+            addLine('brakes', 'Замена тормозных дисков (1 ось) и очистка ступиц', 3500, 9200, 1.5, false);
+          }
+          if (document.getElementById('brk-fluid').checked) {
+            addLine('brakes', 'Замена тормозной жидкости с прокачкой', 2500, 1300, 0.8, false);
+          }
+        }
+        document.getElementById('pkg-sum-brakes').textContent = formatRub(sumPkg('brakes'));
+
+        // 3. Chassis
+        const chsOn = document.getElementById('pkg-check-chassis').checked;
+        document.querySelector('[data-pkg="chassis"]').classList.toggle('is-selected', chsOn);
+        if (chsOn) {
+          activePkgs += 1;
+          if (document.getElementById('chs-diag').checked) {
+            addLine('chassis', 'Диагностика ходовой части на подъёмнике', 1500, 0, 0.5, true);
+          }
+          if (document.getElementById('chs-stab').checked) {
+            addLine('chassis', 'Замена стоек и втулок стабилизатора (1 ось)', 2400, 3200, 1.0, false);
+          }
+          if (document.getElementById('chs-shocks').checked) {
+            addLine('chassis', 'Замена амортизаторов (пара, 1 ось)', 5500, 14500, 2.5, false);
+          }
+          if (document.getElementById('chs-hub').checked) {
+            addLine('chassis', 'Замена ступичного подшипника / ступицы (1 шт)', 3500, 6800, 1.5, false);
+          }
+        }
+        document.getElementById('pkg-sum-chassis').textContent = formatRub(sumPkg('chassis'));
+
+        // 4. Alignment
+        const alnOn = document.getElementById('pkg-check-align').checked;
+        document.querySelector('[data-pkg="align"]').classList.toggle('is-selected', alnOn);
+        if (alnOn) {
+          activePkgs += 1;
+          const alnMode = getCheckedValue('align-mode');
+          if (alnMode === 'check') {
+            addLine('align', 'Проверка углов установки колёс на стенде', 1500, 0, 0.5, true);
+          } else if (alnMode === 'axis1') {
+            addLine('align', 'Регулировка сход-развала передней оси (1 ось)', 3000, 0, 0.8, false);
+          } else {
+            addLine('align', 'Регулировка сход-развала (2 оси)', 4500, 0, 1.2, false);
+          }
+        }
+        document.getElementById('pkg-sum-align').textContent = formatRub(sumPkg('align'));
+
+        // 5. AC
+        const acOn = document.getElementById('pkg-check-ac').checked;
+        document.querySelector('[data-pkg="ac"]').classList.toggle('is-selected', acOn);
+        if (acOn) {
+          activePkgs += 1;
+          if (document.getElementById('ac-refill').checked) {
+            addLine('ac', 'Вакуумирование и заправка кондиционера фреоном', 2500, 1600, 0.8, true);
+          }
+          if (document.getElementById('ac-diag').checked) {
+            addLine('ac', 'Диагностика давления и компрессора АС', 2000, 0, 0.5, true);
+          }
+          if (document.getElementById('ac-antibac').checked) {
+            addLine('ac', 'Антибактериальная обработка испарителя', 2000, 800, 0.6, true);
+          }
+          if (document.getElementById('ac-leak').checked) {
+            addLine('ac', 'Поиск утечки фреона (УФ / течеискатель)', 3000, 400, 1.0, true);
+          }
+        }
+        document.getElementById('pkg-sum-ac').textContent = formatRub(sumPkg('ac'));
+
+        // 6. Diagnostics
+        const diagOn = document.getElementById('pkg-check-diag').checked;
+        document.querySelector('[data-pkg="diag"]').classList.toggle('is-selected', diagOn);
+        if (diagOn) {
+          activePkgs += 1;
+          const dMode = getCheckedValue('diag-mode');
+          if (dMode === 'scan') {
+            addLine('diag', 'Компьютерная диагностика (чтение и сброс ошибок)', 1500, 0, 0.5, true);
+          } else if (dMode === 'deep') {
+            addLine('diag', 'Расширенная диагностика ДВС и датчиков', 2500, 0, 1.0, true);
+          } else {
+            addLine('diag', 'Комплексная диагностика перед покупкой авто', 4500, 0, 2.0, true);
+          }
+          if (document.getElementById('diag-endo').checked) {
+            addLine('diag', 'Эндоскопия цилиндров двигателя', 2500, 0, 1.0, true);
+          }
+        }
+        document.getElementById('pkg-sum-diag').textContent = formatRub(sumPkg('diag'));
+
+        // Render line items
+        selectedCountNote.textContent = 'Выбрано пакетов: ' + activePkgs;
+        chipBrand.textContent = brand;
+        chipClass.textContent = cls.label;
+        chipMileage.textContent = km.toLocaleString('ru-RU') + ' км';
+        chipTier.textContent = tier.label;
+
+        if (lines.length === 0) {
+          estLineItems.innerHTML = '<div class="empty-estimate">Отметьте хотя бы один пакет работ слева, чтобы рассчитать смету в рублях.</div>';
+        } else {
+          estLineItems.innerHTML = lines.map(function (item) {
+            const partsStr = item.parts > 0 ? (' + детали ' + formatRub(item.parts)) : ' (без деталей)';
+            return '<div class="line-item">' +
+              '<div><span class="line-item-name">' + item.name + '</span>' +
+              '<span class="line-item-meta">Работа ' + formatRub(item.work) + partsStr + '</span></div>' +
+              '<span class="line-item-cost">' + formatRub(item.total) + '</span>' +
+            '</div>';
+          }).join('');
+        }
+
+        const grand = workTotal + partsTotal;
+        estWorkTotal.textContent = formatRub(workTotal);
+        estPartsTotal.textContent = formatRub(partsTotal);
+        estHoursTotal.textContent = (Math.round(hoursTotal * 10) / 10).toString().replace('.', ',') + ' ч';
+        estGrandTotal.textContent = formatRub(grand);
+
+        if (tierKey === 'analog' && partsOemEquivalent > partsTotal) {
+          estSavingsBox.classList.remove('is-neutral');
+          estSavingsLabel.textContent = 'Экономия при выборе аналогов Pro vs OEM:';
+          estSavingsVal.textContent = formatRub(partsOemEquivalent - partsTotal);
+        } else if (tierKey === 'oem') {
+          estSavingsBox.classList.add('is-neutral');
+          estSavingsLabel.textContent = 'Выбраны оригинальные детали OEM по VIN:';
+          estSavingsVal.textContent = 'Макс. ресурс';
+        } else {
+          estSavingsBox.classList.add('is-neutral');
+          estSavingsLabel.textContent = 'Расчёт только за работы мастеров СТО:';
+          estSavingsVal.textContent = 'Детали клиента';
+        }
+
+        lastSummaryText = [
+          'GT Service Краснодар (ул. Алма-Атинская, 2/15)',
+          'Авто: ' + (modelInput.value.trim() || brand) + ' (' + cls.label + '), пробег ' + km.toLocaleString('ru-RU') + ' км',
+          'Комплектующие: ' + tier.label,
+          'Операции:',
+          lines.map(function (l) { return '- ' + l.name + ': ' + formatRub(l.total); }).join('\n'),
+          'Работы: ' + formatRub(workTotal) + ' | Детали: ' + formatRub(partsTotal),
+          'ИТОГО: ' + formatRub(grand)
+        ].join('\n');
+      }
+
+      function applyPreset(presetKey) {
+        document.querySelectorAll('.preset-btn').forEach(function (b) {
+          b.classList.toggle('is-active', b.getAttribute('data-preset') === presetKey);
+        });
+
+        const allPkgs = ['to', 'brakes', 'chassis', 'align', 'ac', 'diag'];
+        allPkgs.forEach(function (k) {
+          document.getElementById('pkg-check-' + k).checked = false;
+        });
+
+        if (presetKey === 'to-60') {
+          mileageInput.value = 60000;
+          mileageRange.value = 60000;
+          setCheckedValue('parts-tier', 'analog');
+          document.getElementById('pkg-check-to').checked = true;
+          setCheckedValue('to-level', 'plan');
+          document.getElementById('to-opt-guard').checked = true;
+        } else if (presetKey === 'season-ac') {
+          setCheckedValue('parts-tier', 'analog');
+          document.getElementById('pkg-check-ac').checked = true;
+          document.getElementById('ac-refill').checked = true;
+          document.getElementById('ac-diag').checked = true;
+          document.getElementById('ac-antibac').checked = true;
+          document.getElementById('ac-leak').checked = false;
+
+          document.getElementById('pkg-check-chassis').checked = true;
+          document.getElementById('chs-diag').checked = true;
+          document.getElementById('chs-stab').checked = false;
+          document.getElementById('chs-shocks').checked = false;
+          document.getElementById('chs-hub').checked = false;
+
+          document.getElementById('pkg-check-align').checked = true;
+          setCheckedValue('align-mode', 'axis2');
+        } else if (presetKey === 'brakes-major') {
+          mileageInput.value = 90000;
+          mileageRange.value = 90000;
+          setCheckedValue('parts-tier', 'oem');
+          document.getElementById('pkg-check-to').checked = true;
+          setCheckedValue('to-level', 'big');
+          document.getElementById('to-opt-guard').checked = true;
+
+          document.getElementById('pkg-check-brakes').checked = true;
+          document.getElementById('brk-pads').checked = true;
+          document.getElementById('brk-discs').checked = true;
+          document.getElementById('brk-fluid').checked = true;
+        } else if (presetKey === 'prebuy') {
+          setCheckedValue('parts-tier', 'client');
+          document.getElementById('pkg-check-diag').checked = true;
+          setCheckedValue('diag-mode', 'complex');
+          document.getElementById('diag-endo').checked = true;
+          document.getElementById('pkg-check-align').checked = true;
+          setCheckedValue('align-mode', 'check');
+        }
+
+        computeEstimate();
+      }
+
+      function renderBrandCards(groupKey) {
+        const list = BRAND_GROUPS[groupKey] || BRAND_GROUPS.asia;
+        const container = document.getElementById('brand-cards-grid');
+        container.innerHTML = list.map(function (b) {
+          return '<button type="button" class="brand-card" data-pick-brand="' + b.name + '" data-pick-class="' + b.cls + '" data-pick-models="' + b.models + '">' +
+            '<span class="brand-card-name">' + b.name + '</span>' +
+            '<span class="brand-card-models">' + b.models + '</span>' +
+          '</button>';
+        }).join('');
+      }
+
+      // Event listeners
+      brandSelect.addEventListener('change', function () {
+        const opt = brandSelect.options[brandSelect.selectedIndex];
+        const suggestedCls = opt.getAttribute('data-class');
+        if (suggestedCls) {
+          setCheckedValue('car-class', suggestedCls);
+        }
+        modelInput.value = brandSelect.value;
+        computeEstimate();
+      });
+
+      mileageRange.addEventListener('input', function () {
+        mileageInput.value = mileageRange.value;
+        computeEstimate();
+      });
+
+      mileageInput.addEventListener('input', function () {
+        const v = Number(mileageInput.value) || 10000;
+        mileageRange.value = Math.min(250000, Math.max(5000, v));
+        computeEstimate();
+      });
+
+      document.getElementById('calculator').addEventListener('change', function (e) {
+        if (e.target.matches('input, select')) {
+          // If user checks a sub-option inside a disabled package, auto-enable that package
+          if (e.target.classList.contains('subop-input')) {
+            const grp = e.target.closest('.pkg-group');
+            if (grp) {
+              const master = grp.querySelector('.pkg-check');
+              if (master && master.checked === false) {
+                master.checked = true;
+              }
+            }
+          }
+          computeEstimate();
+        }
+      });
+
+      document.querySelectorAll('.preset-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          applyPreset(btn.getAttribute('data-preset'));
+        });
+      });
+
+      document.getElementById('calc-reset-btn').addEventListener('click', function () {
+        brandSelect.value = 'Hyundai';
+        modelInput.value = 'Hyundai Solaris / 1.6';
+        setCheckedValue('car-class', 'compact');
+        applyPreset('to-60');
+      });
+
+      document.querySelectorAll('[data-add-pkg]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const pkgKey = btn.getAttribute('data-add-pkg');
+          const chk = document.getElementById('pkg-check-' + pkgKey);
+          if (chk) {
+            chk.checked = true;
+            computeEstimate();
+          }
+          document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      document.querySelectorAll('.brand-tab').forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          document.querySelectorAll('.brand-tab').forEach(function (t) {
+            t.classList.remove('is-active');
+          });
+          tab.classList.add('is-active');
+          renderBrandCards(tab.getAttribute('data-brand-group'));
+        });
+      });
+
+      document.getElementById('brand-cards-grid').addEventListener('click', function (e) {
+        const card = e.target.closest('.brand-card');
+        if (card === null) return;
+        const bName = card.getAttribute('data-pick-brand');
+        const bCls = card.getAttribute('data-pick-class');
+        const bModels = card.getAttribute('data-pick-models');
+        for (let i = 0; i < brandSelect.options.length; i += 1) {
+          if (brandSelect.options[i].value === bName) {
+            brandSelect.selectedIndex = i;
+            break;
+          }
+        }
+        if (bCls) {
+          setCheckedValue('car-class', bCls);
+        }
+        modelInput.value = bName + ' (' + bModels.split(',')[0] + ')';
+        computeEstimate();
+        document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      document.querySelectorAll('.faq-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const item = btn.closest('.faq-item');
+          const isOpen = item.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          const icon = btn.querySelector('.faq-icon');
+          if (icon) {
+            icon.textContent = isOpen ? '-' : '+';
+          }
+        });
+      });
+
+      document.getElementById('copy-estimate-btn').addEventListener('click', function () {
+        const btn = document.getElementById('copy-estimate-btn');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(lastSummaryText).then(function () {
+            btn.textContent = 'Смета скопирована';
+            setTimeout(function () {
+              btn.textContent = 'Скопировать смету';
+            }, 2200);
+          });
+        }
+      });
+
+      document.getElementById('copy-req-btn').addEventListener('click', function () {
+        const reqText = [
+          'ИП Кулаков Илья Владиславович',
+          'ИНН: 235208677437',
+          'ОГРНИП: 315235200009971',
+          'Адрес: Краснодарский край, г. Краснодар, ул. Алма-Атинская, д. 2/15',
+          'Тел.: +7 (938) 424-42-24, E-mail: formula-mag3@yandex.ru'
+        ].join('\n');
+        const statusEl = document.getElementById('req-copy-status');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(reqText).then(function () {
+            statusEl.textContent = 'Скопировано в буфер обмена';
+            setTimeout(function () {
+              statusEl.textContent = '';
+            }, 2400);
+          });
+        }
+      });
+
+      bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const nameVal = document.getElementById('booking-name').value.trim();
+        const phoneVal = document.getElementById('booking-phone').value.trim();
+        const consentChecked = document.getElementById('booking-consent').checked;
+
+        bookingFeedback.className = 'form-feedback';
+
+        if (nameVal.length < 2) {
+          bookingFeedback.classList.add('is-error');
+          bookingFeedback.textContent = 'Укажите ваше имя для оформления предварительной записи.';
+          return;
+        }
+        if (phoneVal.replace(/\D/g, '').length < 10) {
+          bookingFeedback.classList.add('is-error');
+          bookingFeedback.textContent = 'Проверьте номер телефона (не менее 10 цифр).';
+          return;
+        }
+        if (consentChecked === false) {
+          bookingFeedback.classList.add('is-error');
+          bookingFeedback.textContent = 'Необходимо отметить согласие на обработку данных.';
+          return;
+        }
+
+        const orderCode = 'GT-KRD-' + String(Math.floor(1000 + Math.random() * 9000));
+        const selectedDate = bookingDate.value || 'ближайший день';
+        const selectedSlot = document.getElementById('booking-slot').value;
+        const totalText = estGrandTotal.textContent;
+
+        bookingFeedback.classList.add('is-success');
+        bookingFeedback.innerHTML =
+          '<strong>Предварительная бронь ' + orderCode + ' сформирована.</strong><br>' +
+          'Автомобиль: ' + (modelInput.value.trim() || brandSelect.value) + ' (' + chipTier.textContent + ').<br>' +
+          'Расчётная смета: ' + totalText + ' Слот: ' + selectedDate + ', ' + selectedSlot + '.<br>' +
+          'Адрес приёмки: г. Краснодар, ул. Алма-Атинская, 2/15. Мастер свяжется по номеру ' + phoneVal + '.';
+      });
+
+      // Init
+      setDefaultDate();
+      renderBrandCards('asia');
+      computeEstimate();
+    })();
+  </script>
+</body>
+</html>

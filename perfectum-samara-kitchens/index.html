@@ -1,0 +1,3350 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Фабрика кухонь Perfectum в Самаре: кухни на заказ от производителя с гарантией 36 месяцев, онлайн-конструктор с живым SVG-планом и расчетом сметы, бесплатный замер на ул. Партизанская 17Ф, рассрочка 0%.">
+  <title>Perfectum Самара | Фабрика кухонь и онлайн-конструктор сметы</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23275442'/%3E%3Crect x='10' y='10' width='44' height='44' fill='none' stroke='%23F9F7F3' stroke-width='2.5'/%3E%3Cpath d='M18 44V20h15c6.2 0 10.5 3.6 10.5 9.2S39.2 38.4 33 38.4H24.5V44H18zm6.5-11.2h8c3.1 0 5-1.5 5-3.6s-1.9-3.6-5-3.6h-8v7.2z' fill='%23F9F7F3'/%3E%3Crect x='40' y='40' width='8' height='8' fill='%23B58E5A'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-paper: #F9F7F3;
+      --bg-warm: #F1EDE4;
+      --bg-card: #FFFFFF;
+      --bg-blueprint: #FCFBF8;
+      --ink-main: #1B1F23;
+      --ink-muted: #555D65;
+      --ink-subtle: #788087;
+      --accent: #275442;
+      --accent-dark: #1C3E31;
+      --accent-soft: rgba(39, 84, 66, 0.08);
+      --accent-border: rgba(39, 84, 66, 0.28);
+      --brass: #9C7847;
+      --brass-soft: rgba(156, 120, 71, 0.12);
+      --border: rgba(27, 31, 35, 0.12);
+      --border-strong: rgba(27, 31, 35, 0.24);
+      --shadow-sm: 0 2px 10px rgba(27, 31, 35, 0.04);
+      --shadow-md: 0 12px 32px rgba(27, 31, 35, 0.06);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Manrope', 'Segoe UI', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --container: 1280px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-paper);
+      color: var(--ink-main);
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink-main);
+      background-color: var(--bg-paper);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(249, 247, 243, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 74px;
+    }
+
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink-main);
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-main);
+    }
+
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--ink-muted);
+      transition: color 0.2s ease;
+    }
+
+    .main-nav a:hover {
+      color: var(--accent);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .header-phone {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-decoration: none;
+      color: var(--ink-main);
+      line-height: 1.2;
+    }
+
+    .header-phone-num {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--ink-main);
+    }
+
+    .header-phone-note {
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-dark);
+      border-color: var(--accent-dark);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--ink-main);
+      border-color: var(--border-strong);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background-color: var(--accent-soft);
+    }
+
+    .btn-sm {
+      padding: 9px 16px;
+      font-size: 13px;
+    }
+
+    .btn-block {
+      width: 100%;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 56px 0 44px;
+      border-bottom: 1px solid var(--border);
+      background-image:
+        linear-gradient(to right, rgba(27, 31, 35, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(27, 31, 35, 0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 40px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background-color: var(--accent);
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.08;
+      color: var(--ink-main);
+    }
+
+    .hero-title {
+      font-size: clamp(38px, 5vw, 62px);
+      letter-spacing: -0.015em;
+      margin-bottom: 20px;
+    }
+
+    .hero-lead {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--ink-muted);
+      max-width: 620px;
+      margin: 0 0 28px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .hero-panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-panel-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+    }
+
+    .hero-panel-loc {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .hero-facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .fact-item {
+      padding: 12px;
+      background-color: var(--bg-paper);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    .fact-value {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--ink-main);
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 4px;
+    }
+
+    .fact-desc {
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--ink-muted);
+    }
+
+    /* Section scaffold */
+    .section {
+      padding: 68px 0;
+    }
+
+    .section-warm {
+      background-color: var(--bg-warm);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 3.6vw, 44px);
+    }
+
+    .section-subtitle {
+      max-width: 520px;
+      font-size: 14px;
+      color: var(--ink-muted);
+      margin: 0;
+    }
+
+    /* Configurator Studio */
+    .studio-sheet {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .blueprint-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 22px;
+      background-color: var(--bg-warm);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .blueprint-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .blueprint-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 10px;
+      background-color: var(--accent);
+      color: #FFFFFF;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .blueprint-telemetry {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .blueprint-telemetry strong {
+      color: var(--ink-main);
+      font-weight: 600;
+    }
+
+    .preset-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .preset-btn {
+      padding: 6px 11px;
+      font-size: 12px;
+      font-weight: 600;
+      background-color: var(--bg-card);
+      color: var(--ink-muted);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .preset-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .preset-btn.is-active {
+      background-color: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent-dark);
+    }
+
+    .blueprint-canvas-wrap {
+      position: relative;
+      background-color: var(--bg-blueprint);
+      padding: 12px;
+    }
+
+    .blueprint-svg {
+      width: 100%;
+      height: auto;
+      max-height: 460px;
+      display: block;
+    }
+
+    .blueprint-legend {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 22px;
+      background-color: var(--bg-paper);
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .legend-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .legend-swatch {
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--ink-main);
+      border-radius: 2px;
+    }
+
+    .legend-swatch-upper {
+      border: 1.5px dashed var(--accent);
+      background: transparent;
+    }
+
+    .legend-swatch-tri {
+      border: 1.5px dashed var(--brass);
+      background: transparent;
+    }
+
+    /* Configurator Controls + Estimate Split */
+    .config-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 0.95fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .controls-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .control-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .control-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .control-step {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .control-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--ink-main);
+    }
+
+    .control-hint {
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    /* Layout tile buttons */
+    .layout-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .choice-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 14px;
+      text-align: left;
+      background-color: var(--bg-paper);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .choice-tile:hover {
+      border-color: var(--accent-border);
+      background-color: #FFFFFF;
+    }
+
+    .choice-tile[aria-checked="true"] {
+      border-color: var(--accent);
+      background-color: var(--accent-soft);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+
+    .tile-icon {
+      width: 36px;
+      height: 28px;
+      color: var(--ink-main);
+    }
+
+    .choice-tile[aria-checked="true"] .tile-icon {
+      color: var(--accent);
+    }
+
+    .tile-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-main);
+      line-height: 1.25;
+    }
+
+    .tile-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Range sliders */
+    .sliders-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 24px;
+    }
+
+    .slider-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px 14px;
+      background-color: var(--bg-paper);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    .slider-field.is-hidden {
+      display: none;
+    }
+
+    .slider-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .slider-label-row label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-main);
+    }
+
+    .slider-readout {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 5px;
+      background: rgba(27, 31, 35, 0.14);
+      border-radius: 3px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 1px 4px rgba(27, 31, 35, 0.25);
+      cursor: pointer;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 1px 4px rgba(27, 31, 35, 0.25);
+      cursor: pointer;
+    }
+
+    .slider-bounds {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--ink-subtle);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Materials grid */
+    .materials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .material-tile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      text-align: left;
+      background-color: var(--bg-paper);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .material-tile:hover {
+      border-color: var(--accent-border);
+      background-color: #FFFFFF;
+    }
+
+    .material-tile[aria-checked="true"] {
+      border-color: var(--accent);
+      background-color: var(--accent-soft);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+
+    .swatch-chip {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      border: 1px solid rgba(27, 31, 35, 0.22);
+      flex-shrink: 0;
+    }
+
+    .material-info {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .material-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-main);
+      line-height: 1.25;
+    }
+
+    .material-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Hardware 3-col */
+    .hardware-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    /* Upper height + options */
+    .select-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-main);
+    }
+
+    .field-control {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: #FFFFFF;
+      font-size: 14px;
+      color: var(--ink-main);
+      transition: border-color 0.2s ease;
+    }
+
+    .field-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .checks-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .check-box-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background-color: var(--bg-paper);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    .check-box-row input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .check-box-row label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-main);
+      cursor: pointer;
+      line-height: 1.3;
+    }
+
+    /* Sticky Estimate Card */
+    .estimate-panel {
+      position: sticky;
+      top: 92px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 26px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .estimate-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .estimate-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+
+    .estimate-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      background-color: var(--brass-soft);
+      color: var(--brass);
+      font-weight: 600;
+    }
+
+    .price-hero {
+      margin-bottom: 18px;
+    }
+
+    .price-retail-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .price-strike {
+      font-family: var(--font-mono);
+      text-decoration: line-through;
+      color: var(--ink-subtle);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .price-saving-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 3px;
+      background-color: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .price-total {
+      font-family: var(--font-display);
+      font-size: 46px;
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--ink-main);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .price-unit-note {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    /* Installment selector */
+    .installment-box {
+      padding: 14px;
+      background-color: var(--bg-paper);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 18px;
+    }
+
+    .installment-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-main);
+      margin-bottom: 10px;
+    }
+
+    .installment-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .inst-tab {
+      padding: 7px 4px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      background-color: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      cursor: pointer;
+      color: var(--ink-muted);
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .inst-tab[aria-checked="true"] {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .inst-monthly {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .inst-monthly strong {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Breakdown lines */
+    .breakdown-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .breakdown-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--border);
+      font-size: 13px;
+    }
+
+    .breakdown-name {
+      color: var(--ink-muted);
+    }
+
+    .breakdown-val {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--ink-main);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .estimate-guarantees {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    .guarantee-chip {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .guarantee-chip strong {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-main);
+    }
+
+    /* Collections Showcase */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-pill {
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      background-color: var(--bg-card);
+      color: var(--ink-muted);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .filter-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .filter-pill.is-active {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent-border);
+      transform: translateY(-2px);
+    }
+
+    .project-card.is-hidden {
+      display: none;
+    }
+
+    .project-visual {
+      position: relative;
+      height: 176px;
+      padding: 18px;
+      background-color: var(--bg-warm);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-code-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    .project-style-tag {
+      padding: 3px 8px;
+      border-radius: 3px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      font-weight: 600;
+      color: var(--ink-main);
+    }
+
+    .project-facade-preview {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      height: 82px;
+      margin-top: auto;
+    }
+
+    .facade-door {
+      border-radius: 3px;
+      border: 1px solid rgba(27, 31, 35, 0.18);
+      position: relative;
+    }
+
+    .project-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 10px;
+    }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 25px;
+      font-weight: 600;
+    }
+
+    .project-desc {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-muted);
+      flex-grow: 1;
+    }
+
+    .project-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding-top: 6px;
+    }
+
+    .spec-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      background-color: var(--bg-paper);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      color: var(--ink-muted);
+    }
+
+    .project-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-top: 14px;
+      margin-top: 6px;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-price {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink-main);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Materials & Factory Specs */
+    .specs-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .spec-panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 26px;
+    }
+
+    .spec-panel h3 {
+      font-size: 26px;
+      margin-bottom: 14px;
+    }
+
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .spec-table th, .spec-table td {
+      text-align: left;
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .spec-table th {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      font-weight: 600;
+    }
+
+    /* 4 Stages */
+    .stages-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .stage-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .stage-num {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .stage-card h3 {
+      font-size: 24px;
+    }
+
+    .stage-card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.55;
+    }
+
+    /* Measurement Booking & Contacts */
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.15fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .samara-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-row {
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-val {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink-main);
+    }
+
+    .contact-val a {
+      color: var(--ink-main);
+      text-decoration: none;
+    }
+
+    .contact-val a:hover {
+      color: var(--accent);
+    }
+
+    .designer-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .designer-chip {
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-paper);
+      border: 1px solid var(--border);
+      color: var(--ink-muted);
+    }
+
+    .booking-form-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .attached-spec-banner {
+      padding: 14px 16px;
+      background-color: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 20px;
+    }
+
+    .attached-spec-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .attached-spec-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-main);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-row-single {
+      margin-bottom: 16px;
+    }
+
+    .form-notice {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin: 12px 0 0;
+      line-height: 1.45;
+    }
+
+    .form-result {
+      margin-top: 18px;
+      padding: 18px;
+      background-color: var(--accent-soft);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius-sm);
+      display: none;
+    }
+
+    .form-result.is-visible {
+      display: block;
+    }
+
+    .form-result h4 {
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: var(--accent-dark);
+    }
+
+    .form-result p {
+      margin: 0 0 8px;
+      font-size: 13px;
+      color: var(--ink-main);
+    }
+
+    .form-error {
+      margin-top: 10px;
+      padding: 10px 14px;
+      border: 1px solid #9A3B26;
+      background-color: rgba(154, 59, 38, 0.08);
+      color: #782A18;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      display: none;
+    }
+
+    .form-error.is-visible {
+      display: block;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: #1B1F23;
+      color: #E5E1D8;
+      padding: 36px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-note {
+      font-size: 14px;
+      font-weight: 600;
+      color: #F9F7F3;
+      margin: 0 0 4px;
+    }
+
+    .footer-meta {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #A8B0B8;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 13px;
+    }
+
+    .footer-links a {
+      color: #D5D0C5;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #FFFFFF;
+    }
+
+    /* Responsive */
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .config-grid,
+      .booking-grid,
+      .specs-two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .estimate-panel {
+        position: static;
+      }
+
+      .collections-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stages-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .main-nav {
+        display: none;
+      }
+
+      .header-phone {
+        display: none;
+      }
+
+      .layout-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sliders-grid,
+      .materials-grid,
+      .hardware-grid,
+      .select-row,
+      .checks-grid,
+      .form-grid-2,
+      .collections-grid,
+      .stages-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-facts {
+        grid-template-columns: 1fr;
+      }
+
+      .installment-tabs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand-link" aria-label="Perfectum Самара на главную">
+        <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect width="40" height="40" rx="6" fill="#275442"></rect>
+          <rect x="6" y="6" width="28" height="28" fill="none" stroke="#F9F7F3" stroke-width="1.5"></rect>
+          <path d="M12 28V12h9.5c3.8 0 6.5 2.2 6.5 5.6 0 3.3-2.7 5.6-6.5 5.6H16V28h-4zm4-8h5c1.8 0 3-.9 3-2.4s-1.2-2.4-3-2.4h-5V20z" fill="#F9F7F3"></path>
+          <rect x="24" y="24" width="5" height="5" fill="#9C7847"></rect>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-title">Perfectum</span>
+          <span class="brand-sub">Фабрика кухонь / Самара</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Разделы сайта">
+        <a href="#constructor">Конструктор</a>
+        <a href="#collections">Коллекции</a>
+        <a href="#materials">Материалы</a>
+        <a href="#stages">Этапы</a>
+        <a href="#measurement">Салон в Самаре</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:88003023915" class="header-phone">
+          <span class="header-phone-num tabular">8 800 302 3915</span>
+          <span class="header-phone-note">Бесплатный звонок</span>
+        </a>
+        <a href="#measurement" class="btn btn-primary btn-sm">Бесплатный замер</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Собственное производство с 2012 года / ул. Партизанская 17Ф, Самара</div>
+          <h1 class="hero-title">Дизайнерские кухни от производителя с точностью до миллиметра</h1>
+          <p class="hero-lead">
+            Проектируем и изготавливаем кухни на высокоточных станках с ЧПУ (парк обновлен в 2021 году).
+            Заказ напрямую на фабрике экономит до 30% бюджета, а контрольная техническая сборка перед отгрузкой гарантирует идеальные зазоры и плавный ход каждого ящика.
+          </p>
+          <div class="hero-cta-row">
+            <a href="#constructor" class="btn btn-primary">Открыть конструктор и смету</a>
+            <a href="#measurement" class="btn btn-outline">Вызвать замерщика в Самаре</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Ключевые показатели фабрики Perfectum">
+          <div class="hero-panel-head">
+            <span class="hero-panel-label">Спецификация фабрики</span>
+            <span class="hero-panel-loc">Самара и область</span>
+          </div>
+          <div class="hero-facts">
+            <div class="fact-item">
+              <div class="fact-value tabular">14-15 дней</div>
+              <div class="fact-desc">Средний срок изготовления с момента согласования проекта</div>
+            </div>
+            <div class="fact-item">
+              <div class="fact-value tabular">36 месяцев</div>
+              <div class="fact-desc">Официальная гарантия и доводчики даже в базовом варианте</div>
+            </div>
+            <div class="fact-item">
+              <div class="fact-value tabular">0% рассрочка</div>
+              <div class="fact-desc">Честная рассрочка без переплат на 3, 6 и 12 месяцев</div>
+            </div>
+            <div class="fact-item">
+              <div class="fact-value tabular">86% заказов</div>
+              <div class="fact-desc">Клиенты приходят к нам по рекомендации (более 1000 семей)</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="constructor" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Живой чертеж и расчет стоимости</div>
+            <h2 class="section-title">Онлайн-конструктор кухни и сметы</h2>
+          </div>
+          <p class="section-subtitle">
+            Меняйте планировку, размеры в сантиметрах, материалы фасадов и фурнитуру Blum, Hettich или Boyard. Чертеж сверху перестраивается автоматически вместе с детальной сметой в рублях.
+          </p>
+        </div>
+
+        <div class="studio-sheet">
+          <div class="blueprint-toolbar">
+            <div class="blueprint-meta">
+              <span class="blueprint-badge" id="plan-badge">Планировка: Г-образная</span>
+              <div class="blueprint-telemetry">
+                <span>Погонаж: <strong id="tel-length">4.40 м</strong></span>
+                <span>Площадь фасадов: <strong id="tel-area">7.6 м2</strong></span>
+                <span>Рабочий треугольник: <strong id="tel-triangle">4.6 м</strong></span>
+              </div>
+            </div>
+            <div class="preset-strip" aria-label="Быстрые типовые планировки">
+              <button type="button" class="preset-btn" data-preset="compact">Студия 240 см</button>
+              <button type="button" class="preset-btn is-active" data-preset="lshape">Самарская Г-образная 300x180</button>
+              <button type="button" class="preset-btn" data-preset="ushape">П-образная 300x200x180</button>
+              <button type="button" class="preset-btn" data-preset="island">Кухня-гостиная с островом</button>
+            </div>
+          </div>
+
+          <div class="blueprint-canvas-wrap">
+            <svg id="kitchen-blueprint" class="blueprint-svg" viewBox="0 0 960 440" role="img" aria-label="Архитектурный план кухни вид сверху"></svg>
+          </div>
+
+          <div class="blueprint-legend">
+            <div class="legend-items">
+              <span class="legend-item">
+                <span class="legend-swatch" id="legend-countertop-swatch" style="background-color: #E8E3D8;"></span>
+                <span>Нижний ярус и столешница</span>
+              </span>
+              <span class="legend-item">
+                <span class="legend-swatch legend-swatch-upper"></span>
+                <span>Проекция верхних шкафов</span>
+              </span>
+              <span class="legend-item">
+                <span class="legend-swatch legend-swatch-tri"></span>
+                <span>Эргономика рабочего треугольника</span>
+              </span>
+              <span class="legend-item">
+                <span class="legend-swatch" id="legend-facade-swatch" style="background-color: #275442;"></span>
+                <span>Тон фасада</span>
+              </span>
+            </div>
+            <span class="mono" id="blueprint-scale-note">Масштаб адаптивный / Глубина нижних модулей 600 мм</span>
+          </div>
+        </div>
+
+        <div class="config-grid">
+          <div class="controls-stack">
+            <div class="control-card">
+              <div class="control-head">
+                <div>
+                  <div class="control-step">Шаг 01 / Архитектура</div>
+                  <h3 class="control-title">Планировка будущей кухни</h3>
+                </div>
+                <span class="control-hint">Выберите конфигурацию стен</span>
+              </div>
+              <div class="layout-grid" role="radiogroup" aria-label="Планировка кухни" id="layout-selector">
+                <button type="button" class="choice-tile" role="radio" aria-checked="false" data-layout="straight">
+                  <svg class="tile-icon" viewBox="0 0 36 28" aria-hidden="true">
+                    <path d="M4 6h28" stroke="currentColor" stroke-width="2"></path>
+                    <rect x="4" y="6" width="28" height="9" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="1.5"></rect>
+                  </svg>
+                  <span class="tile-name">Прямая</span>
+                  <span class="tile-sub">180 - 480 см</span>
+                </button>
+                <button type="button" class="choice-tile" role="radio" aria-checked="true" data-layout="lshape">
+                  <svg class="tile-icon" viewBox="0 0 36 28" aria-hidden="true">
+                    <path d="M4 6h28M4 6v18" stroke="currentColor" stroke-width="2"></path>
+                    <path d="M4 6h28v8H12v10H4V6z" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="1.5"></path>
+                  </svg>
+                  <span class="tile-name">Г-образная</span>
+                  <span class="tile-sub">Угловой модуль</span>
+                </button>
+                <button type="button" class="choice-tile" role="radio" aria-checked="false" data-layout="ushape">
+                  <svg class="tile-icon" viewBox="0 0 36 28" aria-hidden="true">
+                    <path d="M4 6h28M4 6v18M32 6v18" stroke="currentColor" stroke-width="2"></path>
+                    <path d="M4 6h28v18h-7V13H11v11H4V6z" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="1.5"></path>
+                  </svg>
+                  <span class="tile-name">П-образная</span>
+                  <span class="tile-sub">3 рабочие стены</span>
+                </button>
+                <button type="button" class="choice-tile" role="radio" aria-checked="false" data-layout="island">
+                  <svg class="tile-icon" viewBox="0 0 36 28" aria-hidden="true">
+                    <path d="M4 5h28" stroke="currentColor" stroke-width="2"></path>
+                    <rect x="4" y="5" width="28" height="7" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="1.5"></rect>
+                    <rect x="9" y="17" width="18" height="7" fill="currentColor" fill-opacity="0.28" stroke="currentColor" stroke-width="1.5"></rect>
+                  </svg>
+                  <span class="tile-name">С островом</span>
+                  <span class="tile-sub">Линия + остров</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="control-card">
+              <div class="control-head">
+                <div>
+                  <div class="control-step">Шаг 02 / Геометрия в см</div>
+                  <h3 class="control-title">Размеры стен и верхнего яруса</h3>
+                </div>
+                <span class="control-hint">Точная корректировка на замере</span>
+              </div>
+
+              <div class="sliders-grid">
+                <div class="slider-field" id="wrap-dim-a">
+                  <div class="slider-label-row">
+                    <label for="dim-a">Основная стена (A)</label>
+                    <span class="slider-readout" id="val-dim-a">300 см</span>
+                  </div>
+                  <input type="range" id="dim-a" min="180" max="480" step="10" value="300" autocomplete="off">
+                  <div class="slider-bounds"><span>180 см</span><span>480 см</span></div>
+                </div>
+
+                <div class="slider-field" id="wrap-dim-b">
+                  <div class="slider-label-row">
+                    <label for="dim-b">Боковое крыло (B)</label>
+                    <span class="slider-readout" id="val-dim-b">180 см</span>
+                  </div>
+                  <input type="range" id="dim-b" min="140" max="340" step="10" value="180" autocomplete="off">
+                  <div class="slider-bounds"><span>140 см</span><span>340 см</span></div>
+                </div>
+
+                <div class="slider-field is-hidden" id="wrap-dim-c">
+                  <div class="slider-label-row">
+                    <label for="dim-c">Правое крыло (C)</label>
+                    <span class="slider-readout" id="val-dim-c">180 см</span>
+                  </div>
+                  <input type="range" id="dim-c" min="140" max="300" step="10" value="180" autocomplete="off">
+                  <div class="slider-bounds"><span>140 см</span><span>300 см</span></div>
+                </div>
+
+                <div class="slider-field is-hidden" id="wrap-dim-island">
+                  <div class="slider-label-row">
+                    <label for="dim-island">Длина острова (D)</label>
+                    <span class="slider-readout" id="val-dim-island">200 см</span>
+                  </div>
+                  <input type="range" id="dim-island" min="140" max="280" step="10" value="200" autocomplete="off">
+                  <div class="slider-bounds"><span>140 см</span><span>280 см</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="control-card">
+              <div class="control-head">
+                <div>
+                  <div class="control-step">Шаг 03 / Фасады и столешница</div>
+                  <h3 class="control-title">Материалы коллекции Perfectum</h3>
+                </div>
+                <span class="control-hint">Образцы дизайнер привезет на замер</span>
+              </div>
+
+              <div class="materials-grid" role="radiogroup" aria-label="Материал фасадов" id="facade-selector">
+                <button type="button" class="material-tile" role="radio" aria-checked="false" data-facade="pvc">
+                  <span class="swatch-chip" style="background-color: #EDEAE2;"></span>
+                  <span class="material-info">
+                    <span class="material-name">МДФ в пленке ПВХ</span>
+                    <span class="material-meta">Софт-тач / кухня от 25 900 руб./п.м.</span>
+                  </span>
+                </button>
+                <button type="button" class="material-tile" role="radio" aria-checked="false" data-facade="pvc3d">
+                  <span class="swatch-chip" style="background-color: #DDD7CB;"></span>
+                  <span class="material-info">
+                    <span class="material-name">МДФ ПВХ 3D-фрезеровка</span>
+                    <span class="material-meta">Сканди и Прованс / от 28 900 руб./п.м.</span>
+                  </span>
+                </button>
+                <button type="button" class="material-tile" role="radio" aria-checked="true" data-facade="agt">
+                  <span class="swatch-chip" style="background-color: #275442;"></span>
+                  <span class="material-info">
+                    <span class="material-name">Плита AGT / Пластик</span>
+                    <span class="material-meta">Супермат или глянец / от 31 500 руб./п.м.</span>
+                  </span>
+                </button>
+                <button type="button" class="material-tile" role="radio" aria-checked="false" data-facade="acrylic">
+                  <span class="swatch-chip" style="background-color: #F4F1EA;"></span>
+                  <span class="material-info">
+                    <span class="material-name">Акрилат</span>
+                    <span class="material-meta">Зеркальный или мат / от 34 000 руб./п.м.</span>
+                  </span>
+                </button>
+                <button type="button" class="material-tile" role="radio" aria-checked="false" data-facade="aluvitrine">
+                  <span class="swatch-chip" style="background-color: #9C7847;"></span>
+                  <span class="material-info">
+                    <span class="material-name">МДФ + алюминиевый профиль</span>
+                    <span class="material-meta">Витражи со стеклом / от 35 000 руб./п.м.</span>
+                  </span>
+                </button>
+                <button type="button" class="material-tile" role="radio" aria-checked="false" data-facade="patina">
+                  <span class="swatch-chip" style="background-color: #D2C4A9;"></span>
+                  <span class="material-info">
+                    <span class="material-name">ПВХ + патина (Классика)</span>
+                    <span class="material-meta">Термопластик / от 35 500 руб./п.м.</span>
+                  </span>
+                </button>
+                <button type="button" class="material-tile" role="radio" aria-checked="false" data-facade="enamel">
+                  <span class="swatch-chip" style="background-color: #3C4844;"></span>
+                  <span class="material-info">
+                    <span class="material-name">Эмаль (интегрированная ручка)</span>
+                    <span class="material-meta">Любой оттенок RAL / от 38 500 руб./п.м.</span>
+                  </span>
+                </button>
+                <button type="button" class="material-tile" role="radio" aria-checked="false" data-facade="veneer">
+                  <span class="swatch-chip" style="background-color: #8C6843;"></span>
+                  <span class="material-info">
+                    <span class="material-name">Натуральный шпон</span>
+                    <span class="material-meta">Дуб, орех, ясень / от 42 500 руб./п.м.</span>
+                  </span>
+                </button>
+              </div>
+
+              <div class="control-head" style="margin-top: 22px; margin-bottom: 12px;">
+                <div>
+                  <h4 style="font-size: 20px;">Столешница и рабочая поверхность</h4>
+                </div>
+              </div>
+
+              <div class="materials-grid" role="radiogroup" aria-label="Материал столешницы" id="countertop-selector">
+                <button type="button" class="material-tile" role="radio" aria-checked="true" data-countertop="slotex">
+                  <span class="swatch-chip" style="background-color: #E7E0D3;"></span>
+                  <span class="material-info">
+                    <span class="material-name">Влагостойкий пластик Slotex 38 мм</span>
+                    <span class="material-meta">Защита стыков у мойки / 6 200 руб./п.м.</span>
+                  </span>
+                </button>
+                <button type="button" class="material-tile" role="radio" aria-checked="false" data-countertop="compact">
+                  <span class="swatch-chip" style="background-color: #3F4447;"></span>
+                  <span class="material-info">
+                    <span class="material-name">Компакт-плита HPL 12 мм</span>
+                    <span class="material-meta">Подклеенная мойка / 14 800 руб./п.м.</span>
+                  </span>
+                </button>
+                <button type="button" class="material-tile" role="radio" aria-checked="false" data-countertop="acrylicstone">
+                  <span class="swatch-chip" style="background-color: #EFECE4;"></span>
+                  <span class="material-info">
+                    <span class="material-name">Акриловый камень</span>
+                    <span class="material-meta">Бесшовный переход в подоконник / 18 500 руб./п.м.</span>
+                  </span>
+                </button>
+                <button type="button" class="material-tile" role="radio" aria-checked="false" data-countertop="quartz">
+                  <span class="swatch-chip" style="background-color: #D5D2CA;"></span>
+                  <span class="material-info">
+                    <span class="material-name">Кварцевый агломерат</span>
+                    <span class="material-meta">Максимальная твердость / 24 000 руб./п.м.</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div class="control-card">
+              <div class="control-head">
+                <div>
+                  <div class="control-step">Шаг 04 / Фурнитура и опции</div>
+                  <h3 class="control-title">Системы выдвижения и доводчики</h3>
+                </div>
+                <span class="control-hint">Доводчики входят в любой сегмент</span>
+              </div>
+
+              <div class="hardware-grid" role="radiogroup" aria-label="Фурнитура" id="hardware-selector" style="margin-bottom: 18px;">
+                <button type="button" class="choice-tile" role="radio" aria-checked="false" data-hardware="boyard">
+                  <span class="tile-name">Boyard (База)</span>
+                  <span class="tile-sub">Петли и ящики с доводчиками</span>
+                </button>
+                <button type="button" class="choice-tile" role="radio" aria-checked="true" data-hardware="hettich">
+                  <span class="tile-name">Hettich (Германия)</span>
+                  <span class="tile-sub">Нагрузка до 40 кг, InnoTech</span>
+                </button>
+                <button type="button" class="choice-tile" role="radio" aria-checked="false" data-hardware="blum">
+                  <span class="tile-name">Blum (Австрия)</span>
+                  <span class="tile-sub">Legrabox и подъемники Aventos</span>
+                </button>
+              </div>
+
+              <div class="select-row">
+                <div class="field-group">
+                  <label for="upper-height">Высота верхних шкафов</label>
+                  <select id="upper-height" class="field-control" autocomplete="off">
+                    <option value="standard">Стандарт 720 мм (один ярус)</option>
+                    <option value="tall" selected>Увеличенные 920 мм</option>
+                    <option value="ceiling">До потолка с антресолью (2600 мм)</option>
+                  </select>
+                </div>
+                <div class="field-group">
+                  <label for="gift-choice">Подарок фабрики к заказу</label>
+                  <select id="gift-choice" class="field-control" autocomplete="off">
+                    <option value="discount10">Скидка 10% при заказе за 14 дней</option>
+                    <option value="led">LED-подсветка рабочей зоны в подарок</option>
+                    <option value="sink">Кухонная мойка в подарок</option>
+                    <option value="dryer">Встроенная сушилка для посуды в подарок</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="checks-grid">
+                <div class="check-box-row">
+                  <input type="checkbox" id="opt-tall-oven" autocomplete="off" checked>
+                  <label for="opt-tall-oven">Пенал под духовой шкаф и СВЧ (+60 см колонна)</label>
+                </div>
+                <div class="check-box-row">
+                  <input type="checkbox" id="opt-gola" autocomplete="off">
+                  <label for="opt-gola">Профиль Gola вместо классических ручек</label>
+                </div>
+                <div class="check-box-row">
+                  <input type="checkbox" id="opt-led" autocomplete="off" checked>
+                  <label for="opt-led">Контурная LED-подсветка фартука и витрин</label>
+                </div>
+                <div class="check-box-row">
+                  <input type="checkbox" id="opt-pipes" autocomplete="off">
+                  <label for="opt-pipes">Скрытие котла, труб и счетчиков в корпусе</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="estimate-panel" aria-label="Онлайн-смета кухни">
+            <div class="estimate-header">
+              <span class="estimate-kicker">Предварительная смета</span>
+              <span class="estimate-tag">Напрямую с фабрики</span>
+            </div>
+
+            <div class="price-hero">
+              <div class="price-retail-row">
+                <span>В розничных салонах: <span class="price-strike" id="est-retail">218 000 руб.</span></span>
+                <span class="price-saving-pill" id="est-saving">Экономия 28%</span>
+              </div>
+              <div class="price-total tabular" id="est-total">156 960 руб.</div>
+              <div class="price-unit-note" id="est-summary-line">Г-образная 300 x 180 см / Плита AGT / Hettich</div>
+            </div>
+
+            <div class="installment-box">
+              <div class="installment-label">
+                <span>Честная рассрочка без процентов</span>
+                <span class="mono" style="color: var(--accent);">0% переплат</span>
+              </div>
+              <div class="installment-tabs" role="radiogroup" aria-label="Срок рассрочки" id="installment-selector">
+                <button type="button" class="inst-tab" role="radio" aria-checked="false" data-months="1">100%</button>
+                <button type="button" class="inst-tab" role="radio" aria-checked="false" data-months="3">3 мес</button>
+                <button type="button" class="inst-tab" role="radio" aria-checked="false" data-months="6">6 мес</button>
+                <button type="button" class="inst-tab" role="radio" aria-checked="true" data-months="12">12 мес</button>
+              </div>
+              <div class="inst-monthly">
+                <span id="inst-desc">Платеж на 12 мес. (первый взнос 0 руб.):</span>
+                <strong id="inst-amount">13 080 руб./мес</strong>
+              </div>
+            </div>
+
+            <ul class="breakdown-list" id="estimate-breakdown"></ul>
+
+            <button type="button" class="btn btn-primary btn-block" id="btn-transfer-spec">
+              Зафиксировать смету и вызвать замерщика
+            </button>
+
+            <div class="estimate-guarantees">
+              <div class="guarantee-chip">
+                <strong>14-15 дней</strong>
+                <span>Срок производства на ЧПУ</span>
+              </div>
+              <div class="guarantee-chip">
+                <strong>0 руб. в Самаре</strong>
+                <span>Выезд дизайнера и 3D-проект</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="collections" class="section section-warm">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Реализованные проекты и стили</div>
+            <h2 class="section-title">Коллекции кухонь Perfectum</h2>
+          </div>
+          <div class="filter-bar" role="tablist" aria-label="Фильтр коллекций кухонь">
+            <button type="button" class="filter-pill is-active" data-filter="all">Все проекты</button>
+            <button type="button" class="filter-pill" data-filter="modern">Современный и Минимализм</button>
+            <button type="button" class="filter-pill" data-filter="neoclassic">Неоклассика и Классика</button>
+            <button type="button" class="filter-pill" data-filter="scandi">Сканди и Прованс</button>
+          </div>
+        </div>
+
+        <div class="collections-grid" id="collections-grid">
+          <article class="project-card" data-category="modern">
+            <div class="project-visual">
+              <div class="project-code-row">
+                <span>ПРОЕКТ №159</span>
+                <span class="project-style-tag">Современный</span>
+              </div>
+              <div class="project-facade-preview" aria-hidden="true">
+                <div class="facade-door" style="background-color: #275442;"></div>
+                <div class="facade-door" style="background-color: #275442;"></div>
+                <div class="facade-door" style="background-color: #F4F1EA;"></div>
+                <div class="facade-door" style="background-color: #E7E0D3;"></div>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Хвойный баланс (№159)</h3>
+              <p class="project-desc">
+                Матовые темно-зеленые нижние фасады в сочетании с белым верхним ярусом и светлой столешницей под мрамор. Встроенная LED-подсветка рабочей зоны.
+              </p>
+              <div class="project-specs">
+                <span class="spec-pill">Г-образная</span>
+                <span class="spec-pill">Плита AGT</span>
+                <span class="spec-pill">Hettich</span>
+              </div>
+              <div class="project-foot">
+                <span class="project-price">от 82 000 руб.</span>
+                <button type="button" class="btn btn-outline btn-sm load-collection-btn" data-preset-load="forest159">В конструктор</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="modern">
+            <div class="project-visual">
+              <div class="project-code-row">
+                <span>ПРОЕКТ №160</span>
+                <span class="project-style-tag">Минимализм</span>
+              </div>
+              <div class="project-facade-preview" aria-hidden="true">
+                <div class="facade-door" style="background-color: #F2EFE9;"></div>
+                <div class="facade-door" style="background-color: #D8D4CC;"></div>
+                <div class="facade-door" style="background-color: #494E52;"></div>
+                <div class="facade-door" style="background-color: #32363A;"></div>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Монохром Gola (№160)</h3>
+              <p class="project-desc">
+                Минималистичная линейка без ручек с профилем Gola, антресольными шкафами под потолок и износостойкой столешницей Slotex.
+              </p>
+              <div class="project-specs">
+                <span class="spec-pill">Прямая</span>
+                <span class="spec-pill">Эмаль + Gola</span>
+                <span class="spec-pill">Blum</span>
+              </div>
+              <div class="project-foot">
+                <span class="project-price">от 79 000 руб.</span>
+                <button type="button" class="btn btn-outline btn-sm load-collection-btn" data-preset-load="mono160">В конструктор</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="modern">
+            <div class="project-visual">
+              <div class="project-code-row">
+                <span>ПРОЕКТ №151</span>
+                <span class="project-style-tag">Островная</span>
+              </div>
+              <div class="project-facade-preview" aria-hidden="true">
+                <div class="facade-door" style="background-color: #F6F4EF;"></div>
+                <div class="facade-door" style="background-color: #DDD9D0;"></div>
+                <div class="facade-door" style="background-color: #2B3034;"></div>
+                <div class="facade-door" style="background-color: #9C7847;"></div>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Остров с мойкой (№151)</h3>
+              <p class="project-desc">
+                Просторная кухня-гостиная с центральным островом под мойку, длинной рабочей поверхностью из компакт-плиты и скрытой встроенной техникой.
+              </p>
+              <div class="project-specs">
+                <span class="spec-pill">С островом</span>
+                <span class="spec-pill">Акрилат</span>
+                <span class="spec-pill">Blum</span>
+              </div>
+              <div class="project-foot">
+                <span class="project-price">от 81 000 руб.</span>
+                <button type="button" class="btn btn-outline btn-sm load-collection-btn" data-preset-load="island151">В конструктор</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="neoclassic">
+            <div class="project-visual">
+              <div class="project-code-row">
+                <span>ПРОЕКТ НЕОКЛАССИКА</span>
+                <span class="project-style-tag">Неоклассика</span>
+              </div>
+              <div class="project-facade-preview" aria-hidden="true">
+                <div class="facade-door" style="background-color: #EAE4D8;"></div>
+                <div class="facade-door" style="background-color: #C7B99D;"></div>
+                <div class="facade-door" style="background-color: #9C7847;"></div>
+                <div class="facade-door" style="background-color: #F7F4EE;"></div>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Свежая неоклассика</h3>
+              <p class="project-desc">
+                Витражные витрины из узкого алюминиевого профиля в теплом золотом оттенке, спокойная фрезеровка и встроенный пенал с подсветкой.
+              </p>
+              <div class="project-specs">
+                <span class="spec-pill">П-образная</span>
+                <span class="spec-pill">Алюм. профиль</span>
+                <span class="spec-pill">Hettich</span>
+              </div>
+              <div class="project-foot">
+                <span class="project-price">от 72 000 руб.</span>
+                <button type="button" class="btn btn-outline btn-sm load-collection-btn" data-preset-load="neoclassic">В конструктор</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="scandi">
+            <div class="project-visual">
+              <div class="project-code-row">
+                <span>ПРОЕКТ ПРОВАНС</span>
+                <span class="project-style-tag">Сканди / Прованс</span>
+              </div>
+              <div class="project-facade-preview" aria-hidden="true">
+                <div class="facade-door" style="background-color: #E3E7DF;"></div>
+                <div class="facade-door" style="background-color: #F5F2EB;"></div>
+                <div class="facade-door" style="background-color: #B4946C;"></div>
+                <div class="facade-door" style="background-color: #D7CEBD;"></div>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Нежный сканди и прованс</h3>
+              <p class="project-desc">
+                МДФ в пленке ПВХ с 3D-фрезеровкой рамки, столешница с выразительной текстурой натурального дерева и надежные доводчики на всех дверцах.
+              </p>
+              <div class="project-specs">
+                <span class="spec-pill">Г-образная</span>
+                <span class="spec-pill">ПВХ 3D</span>
+                <span class="spec-pill">Boyard</span>
+              </div>
+              <div class="project-foot">
+                <span class="project-price">от 71 990 руб.</span>
+                <button type="button" class="btn btn-outline btn-sm load-collection-btn" data-preset-load="scandi">В конструктор</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="neoclassic">
+            <div class="project-visual">
+              <div class="project-code-row">
+                <span>ПРОЕКТ КЛАССИКА</span>
+                <span class="project-style-tag">Классика</span>
+              </div>
+              <div class="project-facade-preview" aria-hidden="true">
+                <div class="facade-door" style="background-color: #DFD5C3;"></div>
+                <div class="facade-door" style="background-color: #C2B092;"></div>
+                <div class="facade-door" style="background-color: #7D6447;"></div>
+                <div class="facade-door" style="background-color: #F1ECE1;"></div>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Классика с патиной</h3>
+              <p class="project-desc">
+                Фасады из термопластика с патиной, аккуратное скрытие газовых труб и котла, возможность плавного перехода каменной столешницы в подоконник.
+              </p>
+              <div class="project-specs">
+                <span class="spec-pill">П-образная</span>
+                <span class="spec-pill">ПВХ + патина</span>
+                <span class="spec-pill">Blum</span>
+              </div>
+              <div class="project-foot">
+                <span class="project-price">от 85 000 руб.</span>
+                <button type="button" class="btn btn-outline btn-sm load-collection-btn" data-preset-load="classic">В конструктор</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="materials" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Технологии и комплектующие</div>
+            <h2 class="section-title">Материалы и контроль качества</h2>
+          </div>
+          <p class="section-subtitle">
+            Работаем без посредников и проверяем каждую кухню: до отправки в Самару изделие проходит полную контрольную техническую сборку в цеху.
+          </p>
+        </div>
+
+        <div class="specs-two-col">
+          <div class="spec-panel">
+            <h3>Линейка фасадов и столешниц</h3>
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th>Материал</th>
+                  <th>Назначение</th>
+                  <th>Ключевое свойство</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>МДФ ПВХ и 3D-фрезеровка</strong></td>
+                  <td>Сканди, Прованс, Неоклассика</td>
+                  <td>Доступная цена, устойчивость к влаге и бытовой химии</td>
+                </tr>
+                <tr>
+                  <td><strong>Плита AGT и Акрилат</strong></td>
+                  <td>Модерн и Минимализм</td>
+                  <td>Идеально ровная глянцевая или суперматовая поверхность</td>
+                </tr>
+                <tr>
+                  <td><strong>Эмаль и Натуральный шпон</strong></td>
+                  <td>Архитектурные проекты</td>
+                  <td>Интегрированные ручки, колеровка RAL и текстура дерева</td>
+                </tr>
+                <tr>
+                  <td><strong>Slotex / Компакт-плита / Камень</strong></td>
+                  <td>Рабочие поверхности</td>
+                  <td>Защита стыка у мойки и плиты от разбухания, бесшовный камень</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="spec-panel">
+            <h3>Фурнитура во всех ценовых сегментах</h3>
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th>Бренд</th>
+                  <th>Сегмент</th>
+                  <th>Комплектация Perfectum</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Boyard</strong></td>
+                  <td>Базовый</td>
+                  <td>Даже в самом экономичном проекте все дверцы оснащены доводчиками</td>
+                </tr>
+                <tr>
+                  <td><strong>Hettich (Германия)</strong></td>
+                  <td>Оптимальный</td>
+                  <td>Системы выдвижения InnoTech с нагрузкой до 40 кг на ящик</td>
+                </tr>
+                <tr>
+                  <td><strong>Blum (Австрия)</strong></td>
+                  <td>Премиум</td>
+                  <td>Ящики Legrabox, подъемники Aventos HF/HK и ресурс 200 000 циклов</td>
+                </tr>
+                <tr>
+                  <td><strong>Стандарты цеха 2021</strong></td>
+                  <td>Сборка на ЧПУ</td>
+                  <td>Присадка отверстий с точностью 0.1 мм и защита кромки от пара</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stages" class="section section-warm">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">От идеи до монтажа за 15 дней</div>
+            <h2 class="section-title">Четыре этапа работы с Perfectum</h2>
+          </div>
+          <p class="section-subtitle">
+            Единая цепочка специалистов: дизайнер, замерщик, конструктор ЧПУ, служба доставки и монтажная бригада.
+          </p>
+        </div>
+
+        <div class="stages-grid">
+          <article class="stage-card">
+            <span class="stage-num">ЭТАП 01</span>
+            <h3>Переговоры и смета</h3>
+            <p>
+              Фиксируем ваши пожелания в конструкторе, по телефону или в салоне. Готовим ориентировочную смету в нескольких вариантах материалов под ваш бюджет.
+            </p>
+          </article>
+          <article class="stage-card">
+            <span class="stage-num">ЭТАП 02</span>
+            <h3>Бесплатный замер</h3>
+            <p>
+              Дизайнер-замерщик приезжает в Самаре с образцами фасадов и столешниц, измеряет углы, трубы и ниши, составляет план розеток и бесплатный 3D-проект.
+            </p>
+          </article>
+          <article class="stage-card">
+            <span class="stage-num">ЭТАП 03</span>
+            <h3>Производство на ЧПУ</h3>
+            <p>
+              Конструктор переносит чертеж в ПО фабрики. Мебель изготавливается на станках 2021 года, после чего проходит контрольную сборку на производстве.
+            </p>
+          </article>
+          <article class="stage-card">
+            <span class="stage-num">ЭТАП 04</span>
+            <h3>Доставка и установка</h3>
+            <p>
+              Бережно упаковываем и доставляем модули на адрес, собираем кухню с подгонкой под коммуникации и передаем гарантийный талон на 36 месяцев.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="measurement" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Салон в Самаре и выезд с образцами</div>
+            <h2 class="section-title">Заявка на бесплатный замер</h2>
+          </div>
+          <p class="section-subtitle">
+            При желании договор и честную рассрочку без процентов на 3, 6 или 12 месяцев можно оформить прямо на замере или в нашем салоне.
+          </p>
+        </div>
+
+        <div class="booking-grid">
+          <div class="samara-card">
+            <h3 style="font-size: 28px;">Контакты и салон в Самаре</h3>
+            <div class="contact-list">
+              <div class="contact-row">
+                <div class="contact-label">Адрес салона и приема клиентов</div>
+                <div class="contact-val">г. Самара, ул. Партизанская, 17Ф</div>
+              </div>
+              <div class="contact-row">
+                <div class="contact-label">Бесплатная горячая линия</div>
+                <div class="contact-val tabular"><a href="tel:88003023915">8 800 302 3915</a></div>
+              </div>
+              <div class="contact-row">
+                <div class="contact-label">Электронная почта</div>
+                <div class="contact-val"><a href="mailto:info@perfectum.su">info@perfectum.su</a></div>
+              </div>
+              <div class="contact-row" style="border-bottom: none; padding-bottom: 0;">
+                <div class="contact-label">Условия замера и оплаты</div>
+                <div class="contact-val" style="font-size: 14px; font-weight: 500; color: var(--ink-muted);">
+                  Бесплатный выезд с образцами по Самаре, план розеток и рекомендации по ремонту, рассрочка 0% на 3, 6 или 12 месяцев.
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="contact-label" style="margin-bottom: 8px;">Ведущие дизайнеры Perfectum</div>
+              <div class="designer-chips">
+                <span class="designer-chip">Светлана Киселева</span>
+                <span class="designer-chip">Татьяна Зайцева</span>
+                <span class="designer-chip">Наталья Буланова</span>
+                <span class="designer-chip">Татьяна Жовтянская</span>
+                <span class="designer-chip">Наталья Воронина</span>
+              </div>
+            </div>
+          </div>
+
+          <form class="booking-form-card" id="measurement-form" novalidate>
+            <div class="attached-spec-banner">
+              <div class="attached-spec-title">Спецификация из онлайн-конструктора</div>
+              <div class="attached-spec-text" id="attached-spec-text">
+                Г-образная (300 x 180 см) / Плита AGT / Slotex 38 мм / Hettich / 156 960 руб. (13 080 руб./мес на 12 мес.)
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="client-name">Ваше имя</label>
+                <input type="text" id="client-name" name="name" class="field-control" placeholder="Например, Ольга Соколова" autocomplete="name" required>
+              </div>
+              <div class="field-group">
+                <label for="client-phone">Телефон для связи</label>
+                <input type="tel" id="client-phone" name="tel" class="field-control" placeholder="+7 (927) 000-00-00" autocomplete="tel" required>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="client-email">Email для отправки чертежа и сметы</label>
+                <input type="email" id="client-email" name="email" class="field-control" placeholder="name@example.ru" autocomplete="email">
+              </div>
+              <div class="field-group">
+                <label for="client-channel">Предпочтительный способ связи</label>
+                <select id="client-channel" name="channel" class="field-control" autocomplete="off">
+                  <option value="Звонок специалиста">Звонок специалиста</option>
+                  <option value="WhatsApp">WhatsApp</option>
+                  <option value="Telegram">Telegram</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row-single">
+              <div class="field-group">
+                <label for="client-address">Адрес замера в Самаре (улица, дом)</label>
+                <input type="text" id="client-address" name="street-address" class="field-control" placeholder="г. Самара, ул. Ново-Садовая, д. 24" autocomplete="street-address" required>
+              </div>
+            </div>
+
+            <div class="form-row-single">
+              <div class="field-group">
+                <label for="client-comment">Комментарий по помещению, срокам или технике</label>
+                <textarea id="client-comment" name="comment" rows="3" class="field-control" placeholder="Укажите удобное время визита замерщика, наличие газового котла или пожелания по цвету" autocomplete="off"></textarea>
+              </div>
+            </div>
+
+            <div class="form-error" id="form-error" role="alert">
+              Пожалуйста, заполните имя, корректный телефон и адрес замера в Самаре.
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Заказать бесплатный замер и 3D-проект</button>
+            <p class="form-notice">
+              Заявка фиксирует выбранную комплектацию и закрепляет подарок фабрики на 14 дней. Поля проверены локально без передачи сторонним сервисам.
+            </p>
+
+            <div class="form-result" id="form-result" aria-live="polite">
+              <h4 id="result-title">Заявка на замер в Самаре сформирована</h4>
+              <p id="result-body"></p>
+              <p id="result-checklist" class="mono" style="font-size: 12px; color: var(--ink-muted); margin-bottom: 0;"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <p class="footer-note">Интерактивный концепт редизайна подготовлен для фабрики кухонь Perfectum.</p>
+        <div class="footer-meta">г. Самара, ул. Партизанская, 17Ф / 8 800 302 3915 / info@perfectum.su</div>
+      </div>
+      <div class="footer-links">
+        <a href="#constructor">Конструктор и смета</a>
+        <a href="#collections">Коллекции</a>
+        <a href="#materials">Материалы</a>
+        <a href="#measurement">Бесплатный замер</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var FACADES = {
+        pvc: { name: "МДФ в пленке ПВХ", rate: 8800, color: "#EAE5DA", stroke: "#68635A" },
+        pvc3d: { name: "МДФ ПВХ 3D-фрезеровка", rate: 11200, color: "#DDD5C6", stroke: "#5F584D" },
+        agt: { name: "Плита AGT / Пластик", rate: 14200, color: "#275442", stroke: "#18362A" },
+        acrylic: { name: "Акрилат", rate: 16400, color: "#F4F1EA", stroke: "#555D65" },
+        aluvitrine: { name: "МДФ + алюминиевый профиль", rate: 17200, color: "#B8996A", stroke: "#6B522D" },
+        patina: { name: "ПВХ + патина", rate: 17800, color: "#D4C5A8", stroke: "#6F5D40" },
+        enamel: { name: "Эмаль (интегр. ручка)", rate: 20500, color: "#394440", stroke: "#1B1F23" },
+        veneer: { name: "Натуральный шпон", rate: 24200, color: "#916B45", stroke: "#523B24" }
+      };
+
+      var COUNTERTOPS = {
+        slotex: { name: "Slotex 38 мм", rate: 4800, color: "#E7E0D3" },
+        compact: { name: "Компакт-плита 12 мм", rate: 11800, color: "#43494E" },
+        acrylicstone: { name: "Акриловый камень", rate: 14600, color: "#EFECE4" },
+        quartz: { name: "Кварцевый агломерат", rate: 18900, color: "#D6D2C8" }
+      };
+
+      var HARDWARE = {
+        boyard: { name: "Boyard (с доводчиками)", baseCost: 6500, perMeter: 1800 },
+        hettich: { name: "Hettich (Германия)", baseCost: 12500, perMeter: 3200 },
+        blum: { name: "Blum (Австрия)", baseCost: 19500, perMeter: 4900 }
+      };
+
+      var UPPER_HEIGHTS = {
+        standard: { name: "720 мм", factor: 1.0, extraCostPerMeter: 0 },
+        tall: { name: "920 мм", factor: 1.15, extraCostPerMeter: 2400 },
+        ceiling: { name: "2600 мм (до потолка)", factor: 1.38, extraCostPerMeter: 5800 }
+      };
+
+      var GIFTS = {
+        discount10: "Скидка 10% при заказе за 14 дней",
+        led: "LED-подсветка в подарок",
+        sink: "Мойка в подарок",
+        dryer: "Сушилка для посуды в подарок"
+      };
+
+      var LAYOUT_NAMES = {
+        straight: "Прямая",
+        lshape: "Г-образная",
+        ushape: "П-образная",
+        island: "С островом"
+      };
+
+      var PRESETS = {
+        compact: {
+          layout: "straight", dimA: 240, dimB: 160, dimC: 160, dimIsland: 160,
+          facade: "pvc", countertop: "slotex", hardware: "boyard",
+          upperHeight: "standard", gift: "sink", tallOven: false, gola: false, led: true, pipes: false
+        },
+        lshape: {
+          layout: "lshape", dimA: 300, dimB: 180, dimC: 180, dimIsland: 200,
+          facade: "agt", countertop: "slotex", hardware: "hettich",
+          upperHeight: "tall", gift: "discount10", tallOven: true, gola: false, led: true, pipes: false
+        },
+        ushape: {
+          layout: "ushape", dimA: 300, dimB: 200, dimC: 180, dimIsland: 200,
+          facade: "aluvitrine", countertop: "acrylicstone", hardware: "hettich",
+          upperHeight: "tall", gift: "led", tallOven: true, gola: false, led: true, pipes: true
+        },
+        island: {
+          layout: "island", dimA: 360, dimB: 180, dimC: 180, dimIsland: 220,
+          facade: "acrylic", countertop: "compact", hardware: "blum",
+          upperHeight: "ceiling", gift: "discount10", tallOven: true, gola: true, led: true, pipes: false
+        },
+        forest159: {
+          layout: "lshape", dimA: 320, dimB: 190, dimC: 180, dimIsland: 200,
+          facade: "agt", countertop: "slotex", hardware: "hettich",
+          upperHeight: "tall", gift: "led", tallOven: true, gola: false, led: true, pipes: false
+        },
+        mono160: {
+          layout: "straight", dimA: 340, dimB: 160, dimC: 160, dimIsland: 200,
+          facade: "enamel", countertop: "slotex", hardware: "blum",
+          upperHeight: "ceiling", gift: "discount10", tallOven: true, gola: true, led: true, pipes: false
+        },
+        island151: {
+          layout: "island", dimA: 380, dimB: 180, dimC: 180, dimIsland: 230,
+          facade: "acrylic", countertop: "compact", hardware: "blum",
+          upperHeight: "ceiling", gift: "discount10", tallOven: true, gola: true, led: true, pipes: false
+        },
+        neoclassic: {
+          layout: "ushape", dimA: 300, dimB: 190, dimC: 190, dimIsland: 200,
+          facade: "aluvitrine", countertop: "acrylicstone", hardware: "hettich",
+          upperHeight: "tall", gift: "dryer", tallOven: true, gola: false, led: true, pipes: false
+        },
+        scandi: {
+          layout: "lshape", dimA: 260, dimB: 170, dimC: 170, dimIsland: 180,
+          facade: "pvc3d", countertop: "slotex", hardware: "boyard",
+          upperHeight: "standard", gift: "sink", tallOven: false, gola: false, led: true, pipes: false
+        },
+        classic: {
+          layout: "ushape", dimA: 320, dimB: 200, dimC: 180, dimIsland: 200,
+          facade: "patina", countertop: "quartz", hardware: "blum",
+          upperHeight: "tall", gift: "discount10", tallOven: true, gola: false, led: true, pipes: true
+        }
+      };
+
+      var state = {
+        layout: "lshape",
+        dimA: 300,
+        dimB: 180,
+        dimC: 180,
+        dimIsland: 200,
+        facade: "agt",
+        countertop: "slotex",
+        hardware: "hettich",
+        upperHeight: "tall",
+        gift: "discount10",
+        installmentMonths: 12,
+        tallOven: true,
+        gola: false,
+        led: true,
+        pipes: false
+      };
+
+      function fmtRub(val) {
+        return new Intl.NumberFormat("ru-RU").format(Math.round(val)) + " руб.";
+      }
+
+      function el(id) {
+        return document.getElementById(id);
+      }
+
+      function computeMetrics() {
+        var linearCm = state.dimA;
+        if (state.layout === "lshape") {
+          linearCm = state.dimA + Math.max(0, state.dimB - 60);
+        } else if (state.layout === "ushape") {
+          linearCm = state.dimA + Math.max(0, state.dimB - 60) + Math.max(0, state.dimC - 60);
+        } else if (state.layout === "island") {
+          linearCm = state.dimA + state.dimIsland;
+        }
+        var linearMeters = linearCm / 100;
+
+        var facadeInfo = FACADES[state.facade];
+        var counterInfo = COUNTERTOPS[state.countertop];
+        var hwInfo = HARDWARE[state.hardware];
+        var upperInfo = UPPER_HEIGHTS[state.upperHeight];
+
+        var upperAreaFactor = upperInfo.factor;
+        var facadeArea = +(linearMeters * 1.45 * upperAreaFactor + (state.tallOven ? 0.9 : 0)).toFixed(1);
+
+        var bodyCost = Math.round(linearMeters * 10800);
+        var facadeCost = Math.round(linearMeters * facadeInfo.rate + linearMeters * upperInfo.extraCostPerMeter);
+        var counterLenM = state.layout === "island" ? (state.dimA / 100 + (state.dimIsland / 100) * 1.35) : linearMeters;
+        var countertopCost = Math.round(counterLenM * counterInfo.rate);
+        var hardwareCost = Math.round(hwInfo.baseCost + linearMeters * hwInfo.perMeter);
+
+        var optionsCost = 0;
+        if (state.tallOven) optionsCost += 12000;
+        if (state.gola) optionsCost += Math.round(linearMeters * 2200);
+        if (state.led && (state.gift === "led") === false) optionsCost += 4800;
+        if (state.pipes) optionsCost += 4200;
+
+        var subtotal = bodyCost + facadeCost + countertopCost + hardwareCost + optionsCost;
+        var discountAmt = state.gift === "discount10" ? Math.round(subtotal * 0.10) : 0;
+        var total = subtotal - discountAmt;
+        var retailEstimate = Math.round(subtotal * 1.32);
+        var savingPct = Math.round(((retailEstimate - total) / retailEstimate) * 100);
+
+        var triPerimeter = 4.2;
+        if (state.layout === "straight") {
+          triPerimeter = +((state.dimA * 0.72) / 100 * 2).toFixed(1);
+        } else if (state.layout === "lshape") {
+          triPerimeter = +(((state.dimA * 0.65 + state.dimB * 0.75 + Math.hypot(state.dimA * 0.4, state.dimB * 0.45)) / 100)).toFixed(1);
+        } else if (state.layout === "ushape") {
+          triPerimeter = +(((state.dimA * 0.65 + state.dimB * 0.6 + state.dimC * 0.6) / 100)).toFixed(1);
+        } else {
+          triPerimeter = +(((state.dimA * 0.5 + 1.5 * 100 + 1.6 * 100) / 100)).toFixed(1);
+        }
+        if (triPerimeter < 3.4) triPerimeter = 3.4;
+        if (triPerimeter > 7.8) triPerimeter = 7.8;
+
+        return {
+          linearMeters: linearMeters,
+          facadeArea: facadeArea,
+          triPerimeter: triPerimeter,
+          bodyCost: bodyCost,
+          facadeCost: facadeCost,
+          countertopCost: countertopCost,
+          hardwareCost: hardwareCost,
+          optionsCost: optionsCost,
+          discountAmt: discountAmt,
+          total: total,
+          retailEstimate: retailEstimate,
+          savingPct: savingPct
+        };
+      }
+
+      function svgEl(tag, attrs, textContent) {
+        var node = document.createElementNS("http://www.w3.org/2000/svg", tag);
+        if (attrs) {
+          Object.keys(attrs).forEach(function (k) {
+            node.setAttribute(k, attrs[k]);
+          });
+        }
+        if (typeof textContent === "string") {
+          node.textContent = textContent;
+        }
+        return node;
+      }
+
+      function drawDimLine(parent, x1, y1, x2, y2, labelText, vertical) {
+        var g = svgEl("g", { "class": "dim-line" });
+        g.appendChild(svgEl("line", {
+          x1: x1, y1: y1, x2: x2, y2: y2,
+          stroke: "#9C7847", "stroke-width": "1.2"
+        }));
+
+        if (vertical) {
+          g.appendChild(svgEl("line", { x1: x1 - 5, y1: y1, x2: x1 + 5, y2: y1, stroke: "#9C7847", "stroke-width": "1.2" }));
+          g.appendChild(svgEl("line", { x1: x2 - 5, y1: y2, x2: x2 + 5, y2: y2, stroke: "#9C7847", "stroke-width": "1.2" }));
+          var mx = x1 - 8;
+          var my = (y1 + y2) / 2;
+          var txtV = svgEl("text", {
+            x: mx, y: my,
+            fill: "#6F522B",
+            "font-family": "JetBrains Mono, monospace",
+            "font-size": "11",
+            "font-weight": "600",
+            "text-anchor": "middle",
+            transform: "rotate(-90 " + mx + " " + my + ")"
+          }, labelText);
+          g.appendChild(txtV);
+        } else {
+          g.appendChild(svgEl("line", { x1: x1, y1: y1 - 5, x2: x1, y2: y1 + 5, stroke: "#9C7847", "stroke-width": "1.2" }));
+          g.appendChild(svgEl("line", { x1: x2, y1: y2 - 5, x2: x2, y2: y2 + 5, stroke: "#9C7847", "stroke-width": "1.2" }));
+          var tx = (x1 + x2) / 2;
+          var ty = y1 - 7;
+          g.appendChild(svgEl("rect", {
+            x: tx - 38, y: ty - 11, width: 76, height: 14, rx: 2,
+            fill: "#FCFBF8"
+          }));
+          g.appendChild(svgEl("text", {
+            x: tx, y: ty,
+            fill: "#6F522B",
+            "font-family": "JetBrains Mono, monospace",
+            "font-size": "11",
+            "font-weight": "600",
+            "text-anchor": "middle"
+          }, labelText));
+        }
+        parent.appendChild(g);
+      }
+
+      function drawSink(parent, cx, cy, rotated) {
+        var g = svgEl("g", rotated ? { transform: "translate(" + cx + "," + cy + ") rotate(90)" } : { transform: "translate(" + cx + "," + cy + ")" });
+        g.appendChild(svgEl("rect", { x: -24, y: -18, width: 48, height: 36, rx: 3, fill: "#FFFFFF", stroke: "#1B1F23", "stroke-width": "1.3" }));
+        g.appendChild(svgEl("rect", { x: -19, y: -13, width: 32, height: 26, rx: 2, fill: "#F1EDE4", stroke: "#1B1F23", "stroke-width": "1" }));
+        g.appendChild(svgEl("circle", { cx: -3, cy: 0, r: 2.5, fill: "#275442" }));
+        g.appendChild(svgEl("line", { x1: 16, y1: -11, x2: 16, y2: 11, stroke: "#788087", "stroke-width": "1" }));
+        g.appendChild(svgEl("line", { x1: 20, y1: -11, x2: 20, y2: 11, stroke: "#788087", "stroke-width": "1" }));
+        g.appendChild(svgEl("circle", { cx: -3, cy: -16, r: 2, fill: "#1B1F23" }));
+        parent.appendChild(g);
+      }
+
+      function drawCooktop(parent, cx, cy, rotated) {
+        var g = svgEl("g", rotated ? { transform: "translate(" + cx + "," + cy + ") rotate(90)" } : { transform: "translate(" + cx + "," + cy + ")" });
+        g.appendChild(svgEl("rect", { x: -24, y: -18, width: 48, height: 36, rx: 2, fill: "#1B1F23", stroke: "#1B1F23", "stroke-width": "1.2" }));
+        g.appendChild(svgEl("circle", { cx: -11, cy: -8, r: 5.5, fill: "none", stroke: "#F9F7F3", "stroke-width": "1.1" }));
+        g.appendChild(svgEl("circle", { cx: 11, cy: -8, r: 6.5, fill: "none", stroke: "#F9F7F3", "stroke-width": "1.1" }));
+        g.appendChild(svgEl("circle", { cx: -11, cy: 8, r: 6.5, fill: "none", stroke: "#F9F7F3", "stroke-width": "1.1" }));
+        g.appendChild(svgEl("circle", { cx: 11, cy: 8, r: 5, fill: "none", stroke: "#F9F7F3", "stroke-width": "1.1" }));
+        parent.appendChild(g);
+      }
+
+      function drawFridge(parent, x, y, w, h) {
+        var g = svgEl("g");
+        g.appendChild(svgEl("rect", { x: x, y: y, width: w, height: h, fill: "#E5E0D5", stroke: "#1B1F23", "stroke-width": "1.6" }));
+        g.appendChild(svgEl("line", { x1: x + 4, y1: y + 4, x2: x + w - 4, y2: y + h - 4, stroke: "#788087", "stroke-width": "0.8" }));
+        g.appendChild(svgEl("line", { x1: x + w - 4, y1: y + 4, x2: x + 4, y2: y + h - 4, stroke: "#788087", "stroke-width": "0.8" }));
+        g.appendChild(svgEl("text", {
+          x: x + w / 2, y: y + h / 2 + 3,
+          fill: "#1B1F23", "font-family": "JetBrains Mono, monospace", "font-size": "9", "font-weight": "600", "text-anchor": "middle"
+        }, "ХОЛ."));
+        parent.appendChild(g);
+      }
+
+      function drawOvenTower(parent, x, y, w, h) {
+        var g = svgEl("g");
+        g.appendChild(svgEl("rect", { x: x, y: y, width: w, height: h, fill: "#DCD7CA", stroke: "#1B1F23", "stroke-width": "1.6" }));
+        g.appendChild(svgEl("rect", { x: x + 8, y: y + 10, width: w - 16, height: h - 20, fill: "none", stroke: "#275442", "stroke-width": "1.2" }));
+        g.appendChild(svgEl("text", {
+          x: x + w / 2, y: y + h / 2 + 3,
+          fill: "#1B1F23", "font-family": "JetBrains Mono, monospace", "font-size": "9", "font-weight": "600", "text-anchor": "middle"
+        }, "ПЕНАЛ"));
+        parent.appendChild(g);
+      }
+
+      function renderBlueprint() {
+        var svg = el("kitchen-blueprint");
+        while (svg.firstChild) {
+          svg.removeChild(svg.firstChild);
+        }
+
+        var defs = svgEl("defs");
+        var pat = svgEl("pattern", { id: "archGrid", width: "24", height: "24", patternUnits: "userSpaceOnUse" });
+        pat.appendChild(svgEl("path", { d: "M 24 0 L 0 0 0 24", fill: "none", stroke: "rgba(27,31,35,0.06)", "stroke-width": "0.8" }));
+        defs.appendChild(pat);
+
+        var patMajor = svgEl("pattern", { id: "archGridMajor", width: "120", height: "120", patternUnits: "userSpaceOnUse" });
+        patMajor.appendChild(svgEl("rect", { width: "120", height: "120", fill: "url(#archGrid)" }));
+        patMajor.appendChild(svgEl("path", { d: "M 120 0 L 0 0 0 120", fill: "none", stroke: "rgba(39,84,66,0.11)", "stroke-width": "1" }));
+        defs.appendChild(patMajor);
+        svg.appendChild(defs);
+
+        svg.appendChild(svgEl("rect", { x: 0, y: 0, width: 960, height: 440, fill: "url(#archGridMajor)" }));
+        svg.appendChild(svgEl("rect", { x: 10, y: 10, width: 940, height: 420, fill: "none", stroke: "rgba(27,31,35,0.22)", "stroke-width": "1" }));
+
+        var counterInfo = COUNTERTOPS[state.countertop];
+        var facadeInfo = FACADES[state.facade];
+        var upperInfo = UPPER_HEIGHTS[state.upperHeight];
+
+        // Scale: cm to px (keep kitchen comfortably framed inside left 720px x 360px)
+        var maxSpanCm = Math.max(state.dimA, 480);
+        var scale = Math.min(1.45, 580 / maxSpanCm);
+        var depthPx = Math.round(60 * scale);
+        var upperDepthPx = Math.round(32 * scale);
+
+        var wA = Math.round(state.dimA * scale);
+        var wB = Math.round(state.dimB * scale);
+        var wC = Math.round(state.dimC * scale);
+        var wIs = Math.round(state.dimIsland * scale);
+        var dIs = Math.round(90 * scale);
+
+        var totalHeightCm = 60;
+        if (state.layout === "lshape") totalHeightCm = state.dimB;
+        if (state.layout === "ushape") totalHeightCm = Math.max(state.dimB, state.dimC);
+        if (state.layout === "island") totalHeightCm = 60 + 110 + 90 + 42;
+
+        var totalHeightPx = Math.round(totalHeightCm * scale);
+        if (totalHeightPx > 270) {
+          scale = scale * (270 / totalHeightPx);
+          depthPx = Math.round(60 * scale);
+          upperDepthPx = Math.round(32 * scale);
+          wA = Math.round(state.dimA * scale);
+          wB = Math.round(state.dimB * scale);
+          wC = Math.round(state.dimC * scale);
+          wIs = Math.round(state.dimIsland * scale);
+          dIs = Math.round(90 * scale);
+          totalHeightPx = Math.round(totalHeightCm * scale);
+        }
+
+        var originX = Math.round((710 - wA) / 2) + 45;
+        var originY = Math.round((365 - totalHeightPx) / 2) + 48;
+        if (state.layout === "straight") {
+          originY = 175;
+        }
+
+        var roomLayer = svgEl("g");
+        var cabinetLayer = svgEl("g");
+        var facadeStripeLayer = svgEl("g");
+        var upperLayer = svgEl("g");
+        var applianceLayer = svgEl("g");
+        var triLayer = svgEl("g");
+        var dimLayer = svgEl("g");
+
+        // Wall thickness
+        var wallT = 14;
+
+        // Top structural wall A
+        roomLayer.appendChild(svgEl("rect", {
+          x: originX - wallT, y: originY - wallT,
+          width: wA + wallT * 2, height: wallT,
+          fill: "#1B1F23"
+        }));
+
+        if (state.layout === "lshape" || state.layout === "ushape") {
+          roomLayer.appendChild(svgEl("rect", {
+            x: originX - wallT, y: originY - wallT,
+            width: wallT, height: wB + wallT,
+            fill: "#1B1F23"
+          }));
+        }
+
+        if (state.layout === "ushape") {
+          roomLayer.appendChild(svgEl("rect", {
+            x: originX + wA, y: originY - wallT,
+            width: wallT, height: wC + wallT,
+            fill: "#1B1F23"
+          }));
+        }
+
+        // Window symbol on Wall A
+        var winW = Math.min(110, Math.round(wA * 0.28));
+        var winX = originX + Math.round((wA - winW) * 0.45);
+        roomLayer.appendChild(svgEl("rect", {
+          x: winX, y: originY - wallT + 2, width: winW, height: wallT - 4,
+          fill: "#F9F7F3", stroke: "#275442", "stroke-width": "1"
+        }));
+
+        // Main counter top run A
+        cabinetLayer.appendChild(svgEl("rect", {
+          x: originX, y: originY, width: wA, height: depthPx,
+          fill: counterInfo.color, stroke: "#1B1F23", "stroke-width": "1.6"
+        }));
+        facadeStripeLayer.appendChild(svgEl("rect", {
+          x: originX + 1, y: originY + depthPx - 5, width: wA - 2, height: 4,
+          fill: facadeInfo.color
+        }));
+
+        // Left wing B
+        if (state.layout === "lshape" || state.layout === "ushape") {
+          cabinetLayer.appendChild(svgEl("rect", {
+            x: originX, y: originY + depthPx, width: depthPx, height: Math.max(20, wB - depthPx),
+            fill: counterInfo.color, stroke: "#1B1F23", "stroke-width": "1.6"
+          }));
+          facadeStripeLayer.appendChild(svgEl("rect", {
+            x: originX + depthPx - 5, y: originY + depthPx, width: 4, height: Math.max(20, wB - depthPx - 1),
+            fill: facadeInfo.color
+          }));
+        }
+
+        // Right wing C
+        if (state.layout === "ushape") {
+          cabinetLayer.appendChild(svgEl("rect", {
+            x: originX + wA - depthPx, y: originY + depthPx, width: depthPx, height: Math.max(20, wC - depthPx),
+            fill: counterInfo.color, stroke: "#1B1F23", "stroke-width": "1.6"
+          }));
+          facadeStripeLayer.appendChild(svgEl("rect", {
+            x: originX + wA - depthPx + 1, y: originY + depthPx, width: 4, height: Math.max(20, wC - depthPx - 1),
+            fill: facadeInfo.color
+          }));
+        }
+
+        // Island
+        var isX = originX + Math.round((wA - wIs) / 2);
+        var isY = originY + depthPx + Math.round(110 * scale);
+        if (state.layout === "island") {
+          cabinetLayer.appendChild(svgEl("rect", {
+            x: isX, y: isY, width: wIs, height: dIs,
+            fill: counterInfo.color, stroke: "#1B1F23", "stroke-width": "1.6"
+          }));
+          facadeStripeLayer.appendChild(svgEl("rect", {
+            x: isX + 1, y: isY + 1, width: wIs - 2, height: 5,
+            fill: facadeInfo.color
+          }));
+          // Bar overhang stools
+          var stoolCount = Math.max(2, Math.floor(state.dimIsland / 65));
+          var stepStool = wIs / (stoolCount + 1);
+          for (var si = 1; si <= stoolCount; si++) {
+            var scx = isX + Math.round(stepStool * si);
+            var scy = isY + dIs + 14;
+            cabinetLayer.appendChild(svgEl("circle", {
+              cx: scx, cy: scy, r: 10,
+              fill: "#FFFFFF", stroke: "#275442", "stroke-width": "1.3"
+            }));
+          }
+          // Walkway dimension line
+          drawDimLine(dimLayer, originX + 16, originY + depthPx, originX + 16, isY, "110 см", true);
+          drawDimLine(dimLayer, isX, isY + dIs + 36, isX + wIs, isY + dIs + 36, "D = " + state.dimIsland + " см", false);
+        }
+
+        // Module grid lines along Wall A
+        var fridgeW = Math.round(60 * scale);
+        var towerW = state.tallOven ? Math.round(60 * scale) : 0;
+        var startModulesX = originX;
+        var endModulesX = originX + wA;
+
+        // Fridge on left of Wall A (for straight/island) or end of wing
+        var fridgeCenter = { x: originX + fridgeW / 2, y: originY + depthPx / 2 };
+        var sinkCenter = { x: originX + wA * 0.45, y: originY + depthPx / 2 };
+        var cookCenter = { x: originX + wA * 0.72, y: originY + depthPx / 2 };
+
+        if (state.layout === "straight") {
+          drawFridge(applianceLayer, originX, originY, fridgeW, depthPx);
+          if (state.tallOven && wA >= 240 * scale) {
+            drawOvenTower(applianceLayer, originX + wA - towerW, originY, towerW, depthPx);
+          }
+          var midSpan = wA - fridgeW - towerW;
+          sinkCenter = { x: originX + fridgeW + midSpan * 0.34, y: originY + depthPx / 2 };
+          cookCenter = { x: originX + fridgeW + midSpan * 0.72, y: originY + depthPx / 2 };
+          drawSink(applianceLayer, sinkCenter.x, sinkCenter.y, false);
+          drawCooktop(applianceLayer, cookCenter.x, cookCenter.y, false);
+        } else if (state.layout === "lshape") {
+          drawFridge(applianceLayer, originX, originY + wB - fridgeW, depthPx, fridgeW);
+          fridgeCenter = { x: originX + depthPx / 2, y: originY + wB - fridgeW / 2 };
+          if (state.tallOven) {
+            drawOvenTower(applianceLayer, originX + wA - towerW, originY, towerW, depthPx);
+          }
+          var wingBFree = wB - depthPx - fridgeW;
+          if (wingBFree >= 56) {
+            sinkCenter = { x: originX + Math.max(depthPx + 32, (wA - towerW) * 0.48), y: originY + depthPx / 2 };
+            cookCenter = { x: originX + depthPx / 2, y: originY + depthPx + wingBFree * 0.5 };
+            drawSink(applianceLayer, sinkCenter.x, sinkCenter.y, false);
+            drawCooktop(applianceLayer, cookCenter.x, cookCenter.y, true);
+          } else {
+            var spanA = wA - depthPx - towerW;
+            sinkCenter = { x: originX + depthPx + spanA * 0.34, y: originY + depthPx / 2 };
+            cookCenter = { x: originX + depthPx + spanA * 0.72, y: originY + depthPx / 2 };
+            drawSink(applianceLayer, sinkCenter.x, sinkCenter.y, false);
+            drawCooktop(applianceLayer, cookCenter.x, cookCenter.y, false);
+          }
+        } else if (state.layout === "ushape") {
+          drawFridge(applianceLayer, originX, originY + wB - fridgeW, depthPx, fridgeW);
+          fridgeCenter = { x: originX + depthPx / 2, y: originY + wB - fridgeW / 2 };
+          if (state.tallOven) {
+            drawOvenTower(applianceLayer, originX + wA - depthPx, originY + wC - fridgeW, depthPx, fridgeW);
+          }
+          var wingCFree = wC - depthPx - towerW;
+          if (wingCFree >= 54) {
+            sinkCenter = { x: originX + wA * 0.5, y: originY + depthPx / 2 };
+            cookCenter = { x: originX + wA - depthPx / 2, y: originY + depthPx + wingCFree * 0.5 };
+            drawSink(applianceLayer, sinkCenter.x, sinkCenter.y, false);
+            drawCooktop(applianceLayer, cookCenter.x, cookCenter.y, true);
+          } else {
+            var innerSpan = wA - depthPx * 2;
+            sinkCenter = { x: originX + depthPx + innerSpan * 0.32, y: originY + depthPx / 2 };
+            cookCenter = { x: originX + depthPx + innerSpan * 0.70, y: originY + depthPx / 2 };
+            drawSink(applianceLayer, sinkCenter.x, sinkCenter.y, false);
+            drawCooktop(applianceLayer, cookCenter.x, cookCenter.y, false);
+          }
+        } else if (state.layout === "island") {
+          drawFridge(applianceLayer, originX, originY, fridgeW, depthPx);
+          fridgeCenter = { x: originX + fridgeW / 2, y: originY + depthPx / 2 };
+          if (state.tallOven) {
+            drawOvenTower(applianceLayer, originX + wA - towerW, originY, towerW, depthPx);
+          }
+          cookCenter = { x: originX + fridgeW + (wA - fridgeW - towerW) * 0.5, y: originY + depthPx / 2 };
+          sinkCenter = { x: isX + wIs * 0.45, y: isY + dIs * 0.45 };
+          drawCooktop(applianceLayer, cookCenter.x, cookCenter.y, false);
+          drawSink(applianceLayer, sinkCenter.x, sinkCenter.y, false);
+        }
+
+        // Module divider ticks along Wall A
+        var stepMod = Math.round(60 * scale);
+        for (var mx = originX + stepMod; mx < originX + wA - 12; mx += stepMod) {
+          cabinetLayer.appendChild(svgEl("line", {
+            x1: mx, y1: originY, x2: mx, y2: originY + depthPx,
+            stroke: "rgba(27,31,35,0.16)", "stroke-width": "0.9"
+          }));
+        }
+
+        // Upper cabinets dashed projection
+        var upperStartX = (state.layout === "straight" || state.layout === "island") ? originX + fridgeW : originX;
+        var upperEndX = ((state.layout === "ushape") === false && state.tallOven) ? originX + wA - towerW : originX + wA;
+        if (upperEndX - upperStartX > 30) {
+          upperLayer.appendChild(svgEl("rect", {
+            x: upperStartX, y: originY,
+            width: upperEndX - upperStartX, height: upperDepthPx,
+            fill: "rgba(39, 84, 66, 0.06)",
+            stroke: "#275442", "stroke-width": "1.3", "stroke-dasharray": "5 4"
+          }));
+        }
+        if (state.layout === "lshape" && wB > depthPx + fridgeW + 25) {
+          upperLayer.appendChild(svgEl("rect", {
+            x: originX, y: originY + upperDepthPx,
+            width: upperDepthPx, height: wB - upperDepthPx - fridgeW,
+            fill: "rgba(39, 84, 66, 0.06)",
+            stroke: "#275442", "stroke-width": "1.3", "stroke-dasharray": "5 4"
+          }));
+        }
+
+        // LED glow indicator line along front edge of upper cabinets
+        if (state.led && upperEndX - upperStartX > 30) {
+          upperLayer.appendChild(svgEl("line", {
+            x1: upperStartX + 4, y1: originY + upperDepthPx + 3,
+            x2: upperEndX - 4, y2: originY + upperDepthPx + 3,
+            stroke: "#D4A34C", "stroke-width": "2.4", "stroke-linecap": "round"
+          }));
+        }
+
+        // Work triangle dotted lines
+        triLayer.appendChild(svgEl("polygon", {
+          points: fridgeCenter.x + "," + fridgeCenter.y + " " + sinkCenter.x + "," + sinkCenter.y + " " + cookCenter.x + "," + cookCenter.y,
+          fill: "rgba(156, 120, 71, 0.06)",
+          stroke: "#9C7847", "stroke-width": "1.4", "stroke-dasharray": "4 4"
+        }));
+
+        // Dimension lines
+        drawDimLine(dimLayer, originX, originY - wallT - 18, originX + wA, originY - wallT - 18, "A = " + state.dimA + " см", false);
+        if (state.layout === "lshape" || state.layout === "ushape") {
+          drawDimLine(dimLayer, originX - wallT - 18, originY, originX - wallT - 18, originY + wB, "B = " + state.dimB + " см", true);
+        }
+        if (state.layout === "ushape") {
+          drawDimLine(dimLayer, originX + wA + wallT + 26, originY, originX + wA + wallT + 26, originY + wC, "C = " + state.dimC + " см", true);
+        }
+
+        // Architectural GOST-style stamp in bottom-right corner
+        var stamp = svgEl("g", { transform: "translate(728, 304)" });
+        stamp.appendChild(svgEl("rect", { x: 0, y: 0, width: 214, height: 118, fill: "#FFFFFF", stroke: "#1B1F23", "stroke-width": "1.2" }));
+        stamp.appendChild(svgEl("line", { x1: 0, y1: 24, x2: 214, y2: 24, stroke: "#1B1F23", "stroke-width": "1" }));
+        stamp.appendChild(svgEl("line", { x1: 0, y1: 48, x2: 214, y2: 48, stroke: "#1B1F23", "stroke-width": "0.8" }));
+        stamp.appendChild(svgEl("line", { x1: 0, y1: 72, x2: 214, y2: 72, stroke: "#1B1F23", "stroke-width": "0.8" }));
+        stamp.appendChild(svgEl("line", { x1: 0, y1: 96, x2: 214, y2: 96, stroke: "#1B1F23", "stroke-width": "0.8" }));
+        stamp.appendChild(svgEl("text", { x: 10, y: 16, fill: "#275442", "font-family": "JetBrains Mono, monospace", "font-size": "10", "font-weight": "700" }, "PERFECTUM САМАРА / ПЛАН 1:25"));
+        stamp.appendChild(svgEl("text", { x: 10, y: 40, fill: "#1B1F23", "font-family": "Manrope, sans-serif", "font-size": "10", "font-weight": "600" }, "Тип: " + LAYOUT_NAMES[state.layout]));
+        stamp.appendChild(svgEl("text", { x: 10, y: 64, fill: "#1B1F23", "font-family": "Manrope, sans-serif", "font-size": "10" }, "Фасад: " + facadeInfo.name.slice(0, 25)));
+        stamp.appendChild(svgEl("text", { x: 10, y: 88, fill: "#1B1F23", "font-family": "Manrope, sans-serif", "font-size": "10" }, "Верх: " + upperInfo.name));
+        stamp.appendChild(svgEl("text", { x: 10, y: 111, fill: "#555D65", "font-family": "JetBrains Mono, monospace", "font-size": "9.5" }, "ул. Партизанская, 17Ф"));
+
+        // Communications markers
+        var commBadge = svgEl("g", { transform: "translate(24, 24)" });
+        commBadge.appendChild(svgEl("rect", { x: 0, y: 0, width: 170, height: 42, rx: 3, fill: "#FFFFFF", stroke: "rgba(27,31,35,0.2)", "stroke-width": "1" }));
+        commBadge.appendChild(svgEl("text", { x: 10, y: 16, fill: "#275442", "font-family": "JetBrains Mono, monospace", "font-size": "9.5", "font-weight": "600" }, "ПЛАН КОММУНИКАЦИЙ"));
+        commBadge.appendChild(svgEl("text", { x: 10, y: 32, fill: "#555D65", "font-family": "Manrope, sans-serif", "font-size": "10" }, state.pipes ? "Короб под трубы/котел учтен" : "Разводка розеток в 3D-проекте"));
+
+        svg.appendChild(roomLayer);
+        svg.appendChild(cabinetLayer);
+        svg.appendChild(facadeStripeLayer);
+        svg.appendChild(upperLayer);
+        svg.appendChild(applianceLayer);
+        svg.appendChild(triLayer);
+        svg.appendChild(dimLayer);
+        svg.appendChild(stamp);
+        svg.appendChild(commBadge);
+      }
+
+      function syncUI() {
+        var m = computeMetrics();
+        var facadeInfo = FACADES[state.facade];
+        var counterInfo = COUNTERTOPS[state.countertop];
+        var hwInfo = HARDWARE[state.hardware];
+
+        // Visibility of sliders by layout
+        el("wrap-dim-b").classList.toggle("is-hidden", (state.layout === "lshape" || state.layout === "ushape") === false);
+        el("wrap-dim-c").classList.toggle("is-hidden", (state.layout === "ushape") === false);
+        el("wrap-dim-island").classList.toggle("is-hidden", (state.layout === "island") === false);
+
+        // Sync slider readouts & values
+        el("dim-a").value = state.dimA;
+        el("val-dim-a").textContent = state.dimA + " см";
+        el("dim-b").value = state.dimB;
+        el("val-dim-b").textContent = state.dimB + " см";
+        el("dim-c").value = state.dimC;
+        el("val-dim-c").textContent = state.dimC + " см";
+        el("dim-island").value = state.dimIsland;
+        el("val-dim-island").textContent = state.dimIsland + " см";
+
+        el("upper-height").value = state.upperHeight;
+        el("gift-choice").value = state.gift;
+        el("opt-tall-oven").checked = state.tallOven;
+        el("opt-gola").checked = state.gola;
+        el("opt-led").checked = state.led;
+        el("opt-pipes").checked = state.pipes;
+
+        // Radio groups sync
+        document.querySelectorAll("#layout-selector .choice-tile").forEach(function (btn) {
+          btn.setAttribute("aria-checked", btn.getAttribute("data-layout") === state.layout ? "true" : "false");
+        });
+        document.querySelectorAll("#facade-selector .material-tile").forEach(function (btn) {
+          btn.setAttribute("aria-checked", btn.getAttribute("data-facade") === state.facade ? "true" : "false");
+        });
+        document.querySelectorAll("#countertop-selector .material-tile").forEach(function (btn) {
+          btn.setAttribute("aria-checked", btn.getAttribute("data-countertop") === state.countertop ? "true" : "false");
+        });
+        document.querySelectorAll("#hardware-selector .choice-tile").forEach(function (btn) {
+          btn.setAttribute("aria-checked", btn.getAttribute("data-hardware") === state.hardware ? "true" : "false");
+        });
+        document.querySelectorAll("#installment-selector .inst-tab").forEach(function (btn) {
+          btn.setAttribute("aria-checked", Number(btn.getAttribute("data-months")) === state.installmentMonths ? "true" : "false");
+        });
+
+        // Blueprint top telemetry & swatches
+        el("plan-badge").textContent = "Планировка: " + LAYOUT_NAMES[state.layout];
+        el("tel-length").textContent = m.linearMeters.toFixed(2) + " м";
+        el("tel-area").textContent = m.facadeArea + " м2";
+        el("tel-triangle").textContent = m.triPerimeter + " м";
+        el("legend-countertop-swatch").style.backgroundColor = counterInfo.color;
+        el("legend-facade-swatch").style.backgroundColor = facadeInfo.color;
+
+        // Estimate readout
+        el("est-retail").textContent = fmtRub(m.retailEstimate);
+        el("est-saving").textContent = "Экономия " + m.savingPct + "%";
+        el("est-total").textContent = fmtRub(m.total);
+
+        var dimSummary = state.dimA + " см";
+        if (state.layout === "lshape") dimSummary = state.dimA + " x " + state.dimB + " см";
+        if (state.layout === "ushape") dimSummary = state.dimA + " x " + state.dimB + " x " + state.dimC + " см";
+        if (state.layout === "island") dimSummary = state.dimA + " см + остров " + state.dimIsland + " см";
+
+        el("est-summary-line").textContent = LAYOUT_NAMES[state.layout] + " " + dimSummary + " / " + facadeInfo.name + " / " + hwInfo.name;
+
+        var monthly = Math.round(m.total / state.installmentMonths);
+        if (state.installmentMonths === 1) {
+          el("inst-desc").textContent = "Единоразовая оплата по договору:";
+          el("inst-amount").textContent = fmtRub(m.total);
+        } else {
+          el("inst-desc").textContent = "Платеж на " + state.installmentMonths + " мес. (первый взнос 0 руб.):";
+          el("inst-amount").textContent = fmtRub(monthly) + "/мес";
+        }
+
+        // Breakdown list
+        var list = el("estimate-breakdown");
+        list.innerHTML = "";
+        var items = [
+          { name: "Корпус ЛДСП и ПУР-кромление (" + m.linearMeters.toFixed(1) + " п.м.)", val: fmtRub(m.bodyCost) },
+          { name: "Фасады: " + facadeInfo.name, val: fmtRub(m.facadeCost) },
+          { name: "Столешница: " + counterInfo.name, val: fmtRub(m.countertopCost) },
+          { name: "Фурнитура: " + hwInfo.name, val: fmtRub(m.hardwareCost) },
+          { name: "Доп. опции (пенал, Gola, подсветка)", val: m.optionsCost > 0 ? fmtRub(m.optionsCost) : "Не выбраны" }
+        ];
+        if (m.discountAmt > 0) {
+          items.push({ name: "Бонус: " + GIFTS[state.gift], val: "-" + fmtRub(m.discountAmt) });
+        } else {
+          items.push({ name: "Подарок: " + GIFTS[state.gift], val: "0 руб." });
+        }
+
+        items.forEach(function (it) {
+          var li = document.createElement("li");
+          var spanL = document.createElement("span");
+          spanL.className = "breakdown-name";
+          spanL.textContent = it.name;
+          var spanR = document.createElement("span");
+          spanR.className = "breakdown-val";
+          spanR.textContent = it.val;
+          li.appendChild(spanL);
+          li.appendChild(spanR);
+          list.appendChild(li);
+        });
+
+        // Attached banner in Samara measurement form
+        var instNote = state.installmentMonths === 1 ? "оплата 100%" : (fmtRub(monthly) + "/мес на " + state.installmentMonths + " мес.");
+        el("attached-spec-text").textContent =
+          LAYOUT_NAMES[state.layout] + " (" + dimSummary + ") / " +
+          facadeInfo.name + " / " + counterInfo.name + " / " +
+          hwInfo.name + " / " + fmtRub(m.total) + " (" + instNote + ")";
+
+        renderBlueprint();
+      }
+
+      function applyPreset(key) {
+        var p = PRESETS[key];
+        if (p === undefined) return;
+        state.layout = p.layout;
+        state.dimA = p.dimA;
+        state.dimB = p.dimB;
+        state.dimC = p.dimC;
+        state.dimIsland = p.dimIsland;
+        state.facade = p.facade;
+        state.countertop = p.countertop;
+        state.hardware = p.hardware;
+        state.upperHeight = p.upperHeight;
+        state.gift = p.gift;
+        state.tallOven = p.tallOven;
+        state.gola = p.gola;
+        state.led = p.led;
+        state.pipes = p.pipes;
+
+        document.querySelectorAll(".preset-btn").forEach(function (b) {
+          b.classList.toggle("is-active", b.getAttribute("data-preset") === key);
+        });
+        syncUI();
+      }
+
+      // Event listeners
+      document.querySelectorAll(".preset-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          applyPreset(btn.getAttribute("data-preset"));
+        });
+      });
+
+      document.querySelectorAll("#layout-selector .choice-tile").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          state.layout = btn.getAttribute("data-layout");
+          syncUI();
+        });
+      });
+
+      document.querySelectorAll("#facade-selector .material-tile").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          state.facade = btn.getAttribute("data-facade");
+          syncUI();
+        });
+      });
+
+      document.querySelectorAll("#countertop-selector .material-tile").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          state.countertop = btn.getAttribute("data-countertop");
+          syncUI();
+        });
+      });
+
+      document.querySelectorAll("#hardware-selector .choice-tile").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          state.hardware = btn.getAttribute("data-hardware");
+          syncUI();
+        });
+      });
+
+      document.querySelectorAll("#installment-selector .inst-tab").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          state.installmentMonths = Number(btn.getAttribute("data-months"));
+          syncUI();
+        });
+      });
+
+      el("dim-a").addEventListener("input", function (e) { state.dimA = Number(e.target.value); syncUI(); });
+      el("dim-b").addEventListener("input", function (e) { state.dimB = Number(e.target.value); syncUI(); });
+      el("dim-c").addEventListener("input", function (e) { state.dimC = Number(e.target.value); syncUI(); });
+      el("dim-island").addEventListener("input", function (e) { state.dimIsland = Number(e.target.value); syncUI(); });
+
+      el("upper-height").addEventListener("change", function (e) { state.upperHeight = e.target.value; syncUI(); });
+      el("gift-choice").addEventListener("change", function (e) { state.gift = e.target.value; syncUI(); });
+
+      el("opt-tall-oven").addEventListener("change", function (e) { state.tallOven = e.target.checked; syncUI(); });
+      el("opt-gola").addEventListener("change", function (e) { state.gola = e.target.checked; syncUI(); });
+      el("opt-led").addEventListener("change", function (e) { state.led = e.target.checked; syncUI(); });
+      el("opt-pipes").addEventListener("change", function (e) { state.pipes = e.target.checked; syncUI(); });
+
+      el("btn-transfer-spec").addEventListener("click", function () {
+        el("measurement").scrollIntoView({ behavior: "smooth" });
+        setTimeout(function () {
+          el("client-name").focus();
+        }, 400);
+      });
+
+      // Collections filter
+      document.querySelectorAll(".filter-pill").forEach(function (pill) {
+        pill.addEventListener("click", function () {
+          var filter = pill.getAttribute("data-filter");
+          document.querySelectorAll(".filter-pill").forEach(function (p) {
+            p.classList.toggle("is-active", p === pill);
+          });
+          document.querySelectorAll(".project-card").forEach(function (card) {
+            var cat = card.getAttribute("data-category");
+            var show = filter === "all" || cat === filter;
+            card.classList.toggle("is-hidden", show === false);
+          });
+        });
+      });
+
+      // Load collection into configurator
+      document.querySelectorAll(".load-collection-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var key = btn.getAttribute("data-preset-load");
+          applyPreset(key);
+          el("constructor").scrollIntoView({ behavior: "smooth" });
+        });
+      });
+
+      // Measurement booking form
+      el("measurement-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var name = el("client-name").value.trim();
+        var phone = el("client-phone").value.trim();
+        var email = el("client-email").value.trim();
+        var address = el("client-address").value.trim();
+        var channel = el("client-channel").value;
+        var errorEl = el("form-error");
+        var resultEl = el("form-result");
+
+        var digits = phone.replace(/\D/g, "");
+        if (name.length < 2 || digits.length < 10 || address.length < 4) {
+          errorEl.classList.add("is-visible");
+          resultEl.classList.remove("is-visible");
+          return;
+        }
+
+        errorEl.classList.remove("is-visible");
+        var orderNum = "PF-SMR-" + String(Math.floor(1000 + Math.random() * 8999));
+        var spec = el("attached-spec-text").textContent;
+        var emailNote = email.length > 0 ? " Копия сметы подготовлена для " + email + "." : "";
+
+        el("result-title").textContent = "Заявка " + orderNum + " оформлена";
+        el("result-body").textContent =
+          name + ", дизайнер-замерщик салона Perfectum (г. Самара, ул. Партизанская 17Ф) свяжется с вами через " +
+          channel + " по номеру " + phone + " для согласования времени выезда на адрес: " + address + "." + emailNote;
+        el("result-checklist").textContent =
+          "Прикрепленная смета: " + spec + " / Подарок: " + GIFTS[state.gift];
+
+        resultEl.classList.add("is-visible");
+      });
+
+      // Initial render
+      syncUI();
+    })();
+  </script>
+</body>
+</html>

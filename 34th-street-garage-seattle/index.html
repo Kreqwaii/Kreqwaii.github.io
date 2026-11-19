@@ -1,0 +1,2971 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>34th Street Garage | Magnolia &amp; Seattle Auto Repair, Diagnostics &amp; USD Estimator</title>
+  <meta name="description" content="34th Street Garage at 2410 34th Ave W, Seattle, WA 98199 (Magnolia). Independent Asian, European, Domestic, and Hybrid-EV auto repair since 1990. AAA-approved, ASE-certified, 2-year / 24,000-mile warranty. Estimate maintenance and book a Magnolia bay online or call (206) 283-3448.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' fill='none'%3E%3Crect width='36' height='36' rx='8' fill='%2316202A'/%3E%3Ccircle cx='18' cy='18' r='11' stroke='%23F7F8FA' stroke-width='2.4'/%3E%3Ccircle cx='18' cy='18' r='5' fill='%231B4B72' stroke='%23F7F8FA' stroke-width='2'/%3E%3Cpath d='M18 4V9M18 27V32M4 18H9M27 18H32' stroke='%23F7F8FA' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F7F8FA;
+      --surface: #FFFFFF;
+      --surface-subtle: #EDF1F6;
+      --surface-tint: #E4ECF4;
+      --ink: #16202A;
+      --ink-body: #324150;
+      --ink-muted: #586A7D;
+      --marine: #1B4B72;
+      --marine-dark: #133653;
+      --marine-soft: rgba(27, 75, 114, 0.08);
+      --marine-border: rgba(27, 75, 114, 0.28);
+      --teal: #1E6B7B;
+      --teal-soft: rgba(30, 107, 123, 0.09);
+      --ok: #136D4E;
+      --ok-soft: rgba(19, 109, 78, 0.10);
+      --warn: #9A5B13;
+      --warn-soft: rgba(154, 91, 19, 0.10);
+      --border: #D6DEE7;
+      --border-strong: #BAC6D4;
+      --shadow-sm: 0 2px 8px rgba(22, 32, 42, 0.04);
+      --shadow-md: 0 12px 28px rgba(22, 32, 42, 0.07);
+      --shadow-lg: 0 20px 44px rgba(22, 32, 42, 0.10);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --font-display: 'Bricolage Grotesque', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+      --container: 1240px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink);
+      background-color: var(--bg);
+      overflow-x: clip;
+    }
+
+    section[id],
+    div[id="booking-panel"] {
+      scroll-margin-top: 88px;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    .tabular,
+    .mono,
+    .stat-num,
+    .price-cell,
+    .odometer-value {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 8px;
+      z-index: 900;
+      background: var(--marine);
+      color: #FFFFFF;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+    }
+
+    .skip-link:focus {
+      left: 16px;
+    }
+
+    /* Top utility strip */
+    .utility-bar {
+      background: var(--ink);
+      color: #DCE5EE;
+      font-size: 0.8125rem;
+      border-bottom: 1px solid #263544;
+    }
+
+    .utility-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 20px;
+      padding-block: 8px;
+    }
+
+    .utility-items {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 20px;
+    }
+
+    .utility-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #DCE5EE;
+    }
+
+    .utility-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4CB992;
+      flex-shrink: 0;
+    }
+
+    .utility-link {
+      color: #FFFFFF;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      transition: color 0.16s ease;
+    }
+
+    .utility-link:hover {
+      color: #93C5EC;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 248, 250, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 74px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--marine);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      font-size: 0.9125rem;
+      font-weight: 500;
+      color: var(--ink-body);
+      padding-block: 6px;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--marine);
+      border-bottom-color: var(--marine);
+      outline: none;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      line-height: 1.2;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--marine);
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background: var(--marine);
+      color: #FFFFFF;
+      border-color: var(--marine);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-primary:hover {
+      background: var(--marine-dark);
+      border-color: var(--marine-dark);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--ink);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-subtle);
+      border-color: var(--marine);
+      color: var(--marine);
+    }
+
+    .btn-sm {
+      padding: 8px 13px;
+      font-size: 0.85rem;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+
+    /* Hero section */
+    .hero {
+      padding-block: 56px 68px;
+      background-image:
+        linear-gradient(to right, rgba(27, 75, 114, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(27, 75, 114, 0.045) 1px, transparent 1px);
+      background-size: 40px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-grid > *,
+    .estimator-shell > *,
+    .workflow-grid > *,
+    .location-grid > * {
+      min-width: 0;
+    }
+
+    .eyebrow-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+      border: 1px solid transparent;
+    }
+
+    .badge-marine {
+      background: var(--marine-soft);
+      color: var(--marine);
+      border-color: var(--marine-border);
+    }
+
+    .badge-ok {
+      background: var(--ok-soft);
+      color: var(--ok);
+      border-color: rgba(19, 109, 78, 0.25);
+    }
+
+    .badge-warn {
+      background: var(--warn-soft);
+      color: var(--warn);
+      border-color: rgba(154, 91, 19, 0.25);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin-top: 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.15rem, 3.8vw, 3.35rem);
+      line-height: 1.08;
+      margin-bottom: 18px;
+    }
+
+    .hero-lead {
+      font-size: 1.08rem;
+      color: var(--ink-body);
+      max-width: 60ch;
+      margin: 0 0 26px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+    }
+
+    .metric-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .metric-val {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--marine);
+      line-height: 1.15;
+      margin-bottom: 4px;
+    }
+
+    .metric-label {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      line-height: 1.35;
+    }
+
+    /* Hero right panel - Technical Shop Bay Card */
+    .bay-panel {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .bay-panel-head {
+      background: var(--ink);
+      color: #F7F8FA;
+      padding: 15px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 12px;
+    }
+
+    .bay-panel-title {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .bay-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      background: rgba(76, 185, 146, 0.16);
+      color: #9EE6CB;
+      border: 1px solid rgba(76, 185, 146, 0.35);
+    }
+
+    .bay-panel-body {
+      padding: 20px;
+    }
+
+    .bay-diagram-wrap {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .bay-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .bay-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    .bay-row-title {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--ink);
+    }
+
+    .bay-row-sub {
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+    }
+
+    .bay-tag {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 6px;
+      background: var(--marine-soft);
+      color: var(--marine);
+      white-space: nowrap;
+    }
+
+    /* Section scaffold */
+    .section {
+      padding-block: 72px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-alt {
+      background: var(--surface);
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--marine);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: clamp(1.65rem, 2.7vw, 2.35rem);
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .section-desc {
+      max-width: 64ch;
+      color: var(--ink-body);
+      margin: 0;
+    }
+
+    /* Interactive Estimator Workbench */
+    .estimator-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .panel-card {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 26px;
+    }
+
+    .panel-step-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 1.18rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .step-code {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--marine);
+      background: var(--marine-soft);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .preset-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .preset-label {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      margin-right: 4px;
+    }
+
+    .preset-btn {
+      background: var(--bg);
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--ink-body);
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .preset-btn:hover {
+      background: var(--surface-tint);
+      border-color: var(--marine);
+      color: var(--marine);
+    }
+
+    .preset-btn.is-active {
+      background: var(--marine);
+      border-color: var(--marine);
+      color: #FFFFFF;
+    }
+
+    fieldset.form-fieldset {
+      border: 0;
+      padding: 0;
+      margin: 0 0 24px;
+    }
+
+    fieldset.form-fieldset legend {
+      font-weight: 600;
+      font-size: 0.94rem;
+      color: var(--ink);
+      margin-bottom: 10px;
+      padding: 0;
+    }
+
+    /* Vehicle platform radio tiles */
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .platform-option {
+      position: relative;
+    }
+
+    .platform-radio {
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+      pointer-events: none;
+    }
+
+    .platform-label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 13px 15px;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .platform-label:hover {
+      border-color: var(--marine-border);
+      background: var(--surface);
+    }
+
+    .platform-radio:checked + .platform-label {
+      border-color: var(--marine);
+      background: var(--surface-tint);
+      box-shadow: 0 0 0 1px var(--marine);
+    }
+
+    .platform-radio:focus-visible + .platform-label {
+      outline: 2px solid var(--marine);
+      outline-offset: 2px;
+    }
+
+    .platform-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .platform-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .platform-rate {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--marine);
+    }
+
+    .platform-makes {
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      line-height: 1.35;
+    }
+
+    /* Mileage box */
+    .mileage-panel {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+
+    .mileage-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 150px;
+      gap: 14px;
+      align-items: end;
+      margin-bottom: 12px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .field-hint {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+    }
+
+    .input-control,
+    .select-control,
+    .textarea-control {
+      width: 100%;
+      padding: 10px 13px;
+      background: var(--surface);
+      border: 1.5px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      color: var(--ink);
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .input-control:focus,
+    .select-control:focus,
+    .textarea-control:focus {
+      outline: none;
+      border-color: var(--marine);
+      box-shadow: 0 0 0 3px rgba(27, 75, 114, 0.14);
+    }
+
+    .range-control {
+      width: 100%;
+      accent-color: var(--marine);
+      cursor: pointer;
+    }
+
+    .mileage-ticks {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      margin-top: 6px;
+    }
+
+    .interval-banner {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.84rem;
+    }
+
+    /* Services checkboxes */
+    .service-checks {
+      display: grid;
+      gap: 10px;
+    }
+
+    .service-check-item {
+      position: relative;
+    }
+
+    .service-checkbox {
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+      pointer-events: none;
+    }
+
+    .service-check-label {
+      display: grid;
+      grid-template-columns: 22px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: start;
+      padding: 13px 15px;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .service-check-label:hover {
+      border-color: var(--marine-border);
+      background: var(--surface);
+    }
+
+    .service-checkbox:checked + .service-check-label {
+      border-color: var(--marine);
+      background: var(--surface-tint);
+    }
+
+    .service-checkbox:focus-visible + .service-check-label {
+      outline: 2px solid var(--marine);
+      outline-offset: 2px;
+    }
+
+    .check-box-ui {
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border-strong);
+      background: var(--surface);
+      display: grid;
+      place-items: center;
+      color: #FFFFFF;
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .service-checkbox:checked + .service-check-label .check-box-ui {
+      background: var(--marine);
+      border-color: var(--marine);
+    }
+
+    .service-check-title {
+      font-weight: 600;
+      font-size: 0.94rem;
+      color: var(--ink);
+      display: block;
+    }
+
+    .service-check-sub {
+      font-size: 0.81rem;
+      color: var(--ink-muted);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .service-check-price {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--marine);
+      white-space: nowrap;
+      padding-top: 1px;
+    }
+
+    /* Right column: USD Ledger + Magnolia Bay Booking */
+    .estimate-ledger {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .ledger-head {
+      background: var(--ink);
+      color: #FFFFFF;
+      padding: 18px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .ledger-head-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0;
+      color: #FFFFFF;
+    }
+
+    .ledger-spec-pill {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #E7EFF7;
+    }
+
+    .ledger-body {
+      padding: 22px 24px;
+    }
+
+    .ledger-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 18px;
+    }
+
+    .ledger-table th {
+      text-align: left;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      padding: 0 12px 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ledger-table th:not(:first-child),
+    .ledger-table td:not(:first-child) {
+      text-align: right;
+      white-space: nowrap;
+      padding-left: 14px;
+      padding-right: 0;
+    }
+
+    .ledger-table td {
+      padding: 10px 12px 10px 0;
+      border-bottom: 1px solid var(--surface-subtle);
+      font-size: 0.9rem;
+      vertical-align: top;
+    }
+
+    .ledger-item-note {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+    }
+
+    .ledger-empty {
+      padding: 18px;
+      text-align: center;
+      background: var(--bg);
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius-sm);
+      color: var(--ink-muted);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+
+    .totals-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      display: grid;
+      gap: 9px;
+    }
+
+    .total-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.92rem;
+      color: var(--ink-body);
+    }
+
+    .total-row.grand-total {
+      padding-top: 10px;
+      margin-top: 4px;
+      border-top: 1.5px solid var(--border-strong);
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .grand-usd {
+      color: var(--marine);
+      font-family: var(--font-mono);
+    }
+
+    .ledger-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .meta-chip {
+      padding: 10px 12px;
+      background: var(--surface-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+    }
+
+    .meta-chip strong {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      color: var(--ink);
+    }
+
+    /* Booking form */
+    .booking-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .booking-grid .full-span {
+      grid-column: 1 / -1;
+    }
+
+    .booking-confirmation {
+      margin-top: 18px;
+      padding: 18px;
+      background: var(--ok-soft);
+      border: 1.5px solid rgba(19, 109, 78, 0.35);
+      border-radius: var(--radius-md);
+      color: var(--ink);
+      display: none;
+    }
+
+    .booking-confirmation.is-visible {
+      display: block;
+    }
+
+    .confirm-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .confirm-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--ok);
+      margin: 0;
+    }
+
+    .confirm-ref {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: #FFFFFF;
+      color: var(--ink);
+      border: 1px solid rgba(19, 109, 78, 0.3);
+    }
+
+    /* Capabilities Matrix */
+    .cards-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .cap-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+    }
+
+    .cap-card:hover {
+      border-color: var(--marine);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .cap-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--marine-soft);
+      color: var(--marine);
+      display: grid;
+      place-items: center;
+    }
+
+    .cap-title {
+      font-size: 1.15rem;
+      margin-bottom: 2px;
+    }
+
+    .cap-makes {
+      font-size: 0.87rem;
+      color: var(--ink-body);
+      margin: 0;
+    }
+
+    .cap-specs {
+      margin: auto 0 0;
+      padding: 12px 0 0;
+      border-top: 1px solid var(--border);
+      list-style: none;
+      display: grid;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+    }
+
+    .cap-specs li {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .spec-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--marine);
+      flex-shrink: 0;
+    }
+
+    /* Full service tag strip */
+    .services-directory {
+      margin-top: 28px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px 22px;
+    }
+
+    .directory-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .service-pill {
+      padding: 6px 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink-body);
+    }
+
+    /* DVI Workflow & Warranty Section */
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .steps-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .step-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .step-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--marine);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      display: grid;
+      place-items: center;
+    }
+
+    .dvi-console {
+      background: var(--ink);
+      color: #F7F8FA;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .dvi-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .dvi-tab-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: #D2DFEC;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-sm);
+      padding: 7px 12px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .dvi-tab-btn.is-active {
+      background: #FFFFFF;
+      color: var(--ink);
+      border-color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .dvi-screen {
+      background: #1D2A37;
+      border: 1px solid #304254;
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .dvi-kv {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .dvi-cell {
+      background: #141E28;
+      border: 1px solid #2A3B4C;
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+    }
+
+    .dvi-cell-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: #93A7BA;
+      text-transform: uppercase;
+    }
+
+    .dvi-cell-val {
+      font-family: var(--font-mono);
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      margin-top: 4px;
+    }
+
+    /* Field Logs & Reviews */
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .case-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .case-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--marine);
+    }
+
+    .case-card h3 {
+      font-size: 1.06rem;
+      margin: 0;
+    }
+
+    .case-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--ink-body);
+    }
+
+    .review-band {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .review-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .review-quote {
+      font-size: 0.91rem;
+      color: var(--ink-body);
+      margin: 0;
+    }
+
+    .review-author {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* Location & Hours */
+    .location-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+    }
+
+    .hours-table td {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    .hours-table td:last-child {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      color: var(--ink);
+    }
+
+    .map-schematic {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--ink);
+      color: #CBD7E3;
+      padding-block: 44px 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr));
+      gap: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid #2A3A4B;
+    }
+
+    .footer-heading {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #8CA1B6;
+      margin: 0 0 12px;
+    }
+
+    .footer-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover {
+      color: #FFFFFF;
+    }
+
+    .footer-bottom {
+      padding-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #9EB0C3;
+    }
+
+    .footer-concept-line {
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .estimator-shell,
+      .workflow-grid,
+      .location-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .cards-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 74px;
+        left: 0;
+        right: 0;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border-strong);
+        padding: 16px 24px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        box-shadow: var(--shadow-md);
+      }
+
+      .nav-links.is-open {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cards-3,
+      .review-band,
+      .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding-inline: 16px;
+      }
+
+      .platform-grid,
+      .booking-grid,
+      .hero-metrics,
+      .cards-4,
+      .mileage-top,
+      .ledger-meta-grid,
+      .dvi-kv {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .header-actions {
+        display: none;
+      }
+
+      .brand-name {
+        font-size: 1.02rem;
+      }
+
+      .brand-sub {
+        font-size: 0.64rem;
+      }
+
+      .badge {
+        font-size: 0.68rem;
+        padding: 4px 9px;
+        white-space: normal;
+      }
+
+      .panel-card,
+      .ledger-body {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#estimator">Skip to USD Repair Estimator</a>
+
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="utility-items">
+        <span class="utility-item">
+          <span class="utility-dot" aria-hidden="true"></span>
+          <span>Magnolia Shop: 2410 34th Ave W, Seattle, WA 98199</span>
+        </span>
+        <span class="utility-item tabular">Mon - Fri: 8:00 AM - 5:00 PM</span>
+        <span class="utility-item">2-Year / 24,000-Mile Parts &amp; Labor Warranty</span>
+      </div>
+      <div class="utility-items">
+        <a class="utility-link" href="tel:+12062833448">(206) 283-3448</a>
+        <a class="utility-link" href="mailto:info@34thstreetgarage.com">info@34thstreetgarage.com</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="34th Street Garage Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 2V5.5M12 18.5V22M2 12H5.5M18.5 12H22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">34th Street Garage</span>
+          <span class="brand-sub">Magnolia, Seattle Since 1990</span>
+        </span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <button class="menu-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+          Menu
+        </button>
+        <ul class="nav-links" id="primary-nav">
+          <li><a href="#estimator">Estimator</a></li>
+          <li><a href="#capabilities">Platforms</a></li>
+          <li><a href="#workflow">DVI &amp; Warranty</a></li>
+          <li><a href="#field-logs">Case Logs</a></li>
+          <li><a href="#location">Location</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-secondary btn-sm" href="tel:+12062833448">Call (206) 283-3448</a>
+        <a class="btn btn-primary btn-sm" href="#estimator">Estimate &amp; Book</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow-row">
+            <span class="badge badge-marine">AAA-Approved &amp; ASE-Certified</span>
+            <span class="badge badge-ok">2-Year / 24,000-Mile Warranty</span>
+          </div>
+          <h1>Transparent diagnostics and honest repair on 34th Ave W.</h1>
+          <p class="hero-lead">
+            Independent automotive service for Magnolia, Queen Anne, Ballard, Interbay, and Fremont drivers since 1990. Factory-grade testing for Asian, European, Domestic, and Hybrid-EV vehicles with photo-backed Digital Vehicle Inspections approved before any work starts.
+          </p>
+          <div class="hero-cta-group">
+            <a class="btn btn-primary" href="#estimator">Launch USD Repair Estimator</a>
+            <a class="btn btn-secondary" href="#workflow">Inspect Sample DVI Report</a>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric-box">
+              <div class="metric-val stat-num">1990</div>
+              <div class="metric-label">Serving Magnolia &amp; Seattle motorists</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val stat-num">2YR / 24K</div>
+              <div class="metric-label">Nationwide parts &amp; labor warranty</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val stat-num">100%</div>
+              <div class="metric-label">Photo-documented upfront quote approval</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="bay-panel" aria-label="Magnolia Shop Technical Dispatch">
+          <div class="bay-panel-head">
+            <span class="bay-panel-title">Magnolia Desk | 2410 34th Ave W</span>
+            <span class="bay-status-pill">3 Active Bays</span>
+          </div>
+          <div class="bay-panel-body">
+            <div class="bay-diagram-wrap">
+              <svg viewBox="0 0 460 155" width="100%" style="height:auto" role="img" aria-label="Technical vehicle chassis inspection schematic">
+                <rect x="4" y="4" width="452" height="147" rx="10" fill="#FFFFFF" stroke="#D6DEE7" stroke-width="1.5"/>
+                <line x1="20" y1="126" x2="440" y2="126" stroke="#BAC6D4" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <!-- Precision vehicle profile silhouette -->
+                <path d="M68 106 L82 78 L142 68 L205 44 L318 44 L368 70 L398 80 L402 106 Z" fill="#EDF1F6" stroke="#1B4B72" stroke-width="2.2" stroke-linejoin="round"/>
+                <path d="M154 68 L206 48 L260 48 L260 68 Z" fill="#FFFFFF" stroke="#1B4B72" stroke-width="1.5"/>
+                <path d="M270 48 L314 48 L352 68 L270 68 Z" fill="#FFFFFF" stroke="#1B4B72" stroke-width="1.5"/>
+                <!-- Wheels & Brake rotors -->
+                <circle cx="136" cy="108" r="21" fill="#16202A" stroke="#1B4B72" stroke-width="2"/>
+                <circle cx="136" cy="108" r="10" fill="#EDF1F6" stroke="#1B4B72" stroke-width="1.5"/>
+                <circle cx="338" cy="108" r="21" fill="#16202A" stroke="#1B4B72" stroke-width="2"/>
+                <circle cx="338" cy="108" r="10" fill="#EDF1F6" stroke="#1B4B72" stroke-width="1.5"/>
+                <!-- Diagnostic callout points -->
+                <circle cx="105" cy="84" r="5" fill="#1E6B7B"/>
+                <line x1="105" y1="84" x2="54" y2="34" stroke="#1E6B7B" stroke-width="1.4"/>
+                <text x="20" y="28" fill="#16202A" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600">OBD-II / COOLING</text>
+                <circle cx="242" cy="106" r="5" fill="#1B4B72"/>
+                <line x1="242" y1="106" x2="242" y2="142" stroke="#1B4B72" stroke-width="1.4"/>
+                <text x="180" y="143" fill="#1B4B72" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600">SUSPENSION &amp; CHASSIS</text>
+                <circle cx="338" cy="108" r="4.5" fill="#136D4E"/>
+                <line x1="338" y1="108" x2="386" y2="34" stroke="#136D4E" stroke-width="1.4"/>
+                <text x="342" y="28" fill="#136D4E" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600">ROTOR / PAD MM</text>
+              </svg>
+            </div>
+            <div class="bay-list">
+              <div class="bay-row">
+                <div>
+                  <div class="bay-row-title">Bay 1: Asian &amp; Hybrid-EV Line</div>
+                  <div class="bay-row-sub">Toyota, Lexus, Subaru, Honda, Acura, Mazda, Tesla</div>
+                </div>
+                <span class="bay-tag tabular">30K / 60K / 90K</span>
+              </div>
+              <div class="bay-row">
+                <div>
+                  <div class="bay-row-title">Bay 2: European Diagnostics</div>
+                  <div class="bay-row-sub">BMW, Mercedes-Benz, Audi, VW, Volvo, Land Rover</div>
+                </div>
+                <span class="bay-tag tabular">OEM SCAN &amp; EVAP</span>
+              </div>
+              <div class="bay-row">
+                <div>
+                  <div class="bay-row-title">Bay 3: Domestic, Brakes &amp; Chassis</div>
+                  <div class="bay-row-sub">Ford, Chevrolet, Dodge/Ram, Jeep, Suspension &amp; PPI</div>
+                </div>
+                <span class="bay-tag tabular">ASE MASTER</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE ESTIMATOR SECTION -->
+    <section class="section" id="estimator">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Interactive Shop Tool</div>
+            <h2 class="section-title">Seattle Auto Maintenance, Diagnostics &amp; Repair Estimator (USD)</h2>
+            <p class="section-desc">
+              Configure your vehicle platform, current mileage, and required maintenance or diagnostic checks to preview transparent USD parts and labor estimates with Seattle WA sales tax (10.35%) and reserve a Magnolia service bay.
+            </p>
+          </div>
+          <span class="badge badge-marine">Live USD + WA Tax Calculation</span>
+        </div>
+
+        <div class="estimator-shell">
+          <!-- Left Configuration Workbench -->
+          <div class="panel-card">
+            <div class="panel-step-head">
+              <h3 class="step-title">1. Vehicle Profile &amp; Service Scope</h3>
+              <span class="step-code tabular">MAGNOLIA-EST-2026</span>
+            </div>
+
+            <div class="preset-bar" aria-label="Quick Seattle Driver Scenarios">
+              <span class="preset-label">Presets:</span>
+              <button class="preset-btn is-active" type="button" data-preset="subaru60k">60K Subaru Service</button>
+              <button class="preset-btn" type="button" data-preset="bmw95k">95K BMW Check Engine</button>
+              <button class="preset-btn" type="button" data-preset="ppi120k">Pre-Purchase Inspection</button>
+              <button class="preset-btn" type="button" data-preset="hybrid45k">Hybrid-EV Brakes &amp; Chassis</button>
+            </div>
+
+            <fieldset class="form-fieldset">
+              <legend>Select Vehicle Platform Specialization</legend>
+              <div class="platform-grid">
+                <div class="platform-option">
+                  <input class="platform-radio" type="radio" name="vehiclePlatform" id="platform-asian" value="asian" autocomplete="off" checked>
+                  <label class="platform-label" for="platform-asian">
+                    <span class="platform-head">
+                      <span class="platform-name">Asian</span>
+                      <span class="platform-rate tabular">1.00x Spec</span>
+                    </span>
+                    <span class="platform-makes">Toyota, Lexus, Honda, Acura, Subaru, Nissan, Mazda, Hyundai, Kia</span>
+                  </label>
+                </div>
+
+                <div class="platform-option">
+                  <input class="platform-radio" type="radio" name="vehiclePlatform" id="platform-european" value="european" autocomplete="off">
+                  <label class="platform-label" for="platform-european">
+                    <span class="platform-head">
+                      <span class="platform-name">European</span>
+                      <span class="platform-rate tabular">1.28x Spec</span>
+                    </span>
+                    <span class="platform-makes">BMW, Mercedes-Benz, Audi, VW, Volvo, Mini Cooper, Land Rover</span>
+                  </label>
+                </div>
+
+                <div class="platform-option">
+                  <input class="platform-radio" type="radio" name="vehiclePlatform" id="platform-domestic" value="domestic" autocomplete="off">
+                  <label class="platform-label" for="platform-domestic">
+                    <span class="platform-head">
+                      <span class="platform-name">Domestic</span>
+                      <span class="platform-rate tabular">1.05x Spec</span>
+                    </span>
+                    <span class="platform-makes">Ford, Chevrolet, Dodge, Ram Trucks, Jeep SUV &amp; 4x4</span>
+                  </label>
+                </div>
+
+                <div class="platform-option">
+                  <input class="platform-radio" type="radio" name="vehiclePlatform" id="platform-hybridev" value="hybridev" autocomplete="off">
+                  <label class="platform-label" for="platform-hybridev">
+                    <span class="platform-head">
+                      <span class="platform-name">Hybrid-EV</span>
+                      <span class="platform-rate tabular">1.18x Spec</span>
+                    </span>
+                    <span class="platform-makes">Tesla, Toyota/Lexus Hybrid, Plug-In Hybrid Thermal &amp; Regen</span>
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="mileage-panel">
+              <div class="mileage-top">
+                <div class="field-group">
+                  <label class="field-label" for="mileage-range">Odometer Mileage Scale (Miles)</label>
+                  <input class="range-control" id="mileage-range" type="range" min="5000" max="260000" step="1000" value="60000" autocomplete="off">
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="mileage-miles">Exact Mileage</label>
+                  <input class="input-control odometer-value" id="mileage-miles" type="number" min="1000" max="450000" step="500" value="60000" autocomplete="off">
+                </div>
+              </div>
+              <div class="mileage-ticks" aria-hidden="true">
+                <span>10,000 mi</span>
+                <span>60,000 mi</span>
+                <span>120,000 mi</span>
+                <span>200,000+ mi</span>
+              </div>
+              <div class="interval-banner" id="interval-banner">
+                <div>
+                  <strong id="interval-title">60,000-Mile Factory Maintenance Window</strong>
+                  <div class="field-hint" id="interval-note">Recommended checks: brake fluid moisture, differential/AWD fluid, filters, and suspension bushings.</div>
+                </div>
+                <span class="badge badge-warn tabular" id="interval-badge">60K Tier</span>
+              </div>
+            </div>
+
+            <fieldset class="form-fieldset" style="margin-bottom: 0;">
+              <legend>Select Maintenance, Diagnostics &amp; Repair Services</legend>
+              <div class="service-checks">
+                <div class="service-check-item">
+                  <input class="service-checkbox" type="checkbox" id="svc-synthetic-oil" value="synthetic_oil" autocomplete="off" checked>
+                  <label class="service-check-label" for="svc-synthetic-oil">
+                    <span class="check-box-ui" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                        <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span>
+                      <span class="service-check-title">Synthetic Oil &amp; OEM Filter Service</span>
+                      <span class="service-check-sub">Full synthetic motor oil, OEM filter, fluid top-off, tire pressure set, and 32-point photo DVI</span>
+                    </span>
+                    <span class="service-check-price tabular" data-price-el="synthetic_oil">$118</span>
+                  </label>
+                </div>
+
+                <div class="service-check-item">
+                  <input class="service-checkbox" type="checkbox" id="svc-brakes" value="brakes" autocomplete="off">
+                  <label class="service-check-label" for="svc-brakes">
+                    <span class="check-box-ui" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                        <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span>
+                      <span class="service-check-title">Brakes (Single-Axle Pads, Rotors &amp; Service)</span>
+                      <span class="service-check-sub">Ceramic/OEM pads, coated rotors, caliper slide lubrication, wear sensor &amp; brake fluid check</span>
+                    </span>
+                    <span class="service-check-price tabular" data-price-el="brakes">$485</span>
+                  </label>
+                </div>
+
+                <div class="service-check-item">
+                  <input class="service-checkbox" type="checkbox" id="svc-cel-scan" value="check_engine" autocomplete="off">
+                  <label class="service-check-label" for="svc-cel-scan">
+                    <span class="check-box-ui" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                        <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span>
+                      <span class="service-check-title">Check Engine Scan &amp; Pinpoint Diagnostics</span>
+                      <span class="service-check-sub">Beyond basic code reads: OBD-II live fuel trims, EVAP smoke test, ignition &amp; electrical trace</span>
+                    </span>
+                    <span class="service-check-price tabular" data-price-el="check_engine">$175</span>
+                  </label>
+                </div>
+
+                <div class="service-check-item">
+                  <input class="service-checkbox" type="checkbox" id="svc-ppi" value="ppi" autocomplete="off">
+                  <label class="service-check-label" for="svc-ppi">
+                    <span class="check-box-ui" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                        <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span>
+                      <span class="service-check-title">Pre-Purchase / Road Trip Inspection</span>
+                      <span class="service-check-sub">120-point lift inspection, cooling pressure check, road test, battery health &amp; annotated photos</span>
+                    </span>
+                    <span class="service-check-price tabular" data-price-el="ppi">$195</span>
+                  </label>
+                </div>
+
+                <div class="service-check-item">
+                  <input class="service-checkbox" type="checkbox" id="svc-suspension" value="suspension" autocomplete="off">
+                  <label class="service-check-label" for="svc-suspension">
+                    <span class="check-box-ui" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                        <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span>
+                      <span class="service-check-title">Suspension, Steering &amp; Chassis Service</span>
+                      <span class="service-check-sub">Shocks, struts, control arm bushings, ball joints, tie-rod inspection &amp; steering geometry</span>
+                    </span>
+                    <span class="service-check-price tabular" data-price-el="suspension">$540</span>
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <!-- Right Column: USD Ledger + Magnolia Bay Booking -->
+          <div>
+            <div class="estimate-ledger" aria-live="polite">
+              <div class="ledger-head">
+                <h3 class="ledger-head-title">2. Itemized Estimate Summary (USD)</h3>
+                <span class="ledger-spec-pill tabular" id="ledger-spec-pill">Asian Spec | 60,000 mi</span>
+              </div>
+              <div class="ledger-body">
+                <div id="ledger-table-wrap">
+                  <table class="ledger-table">
+                    <thead>
+                      <tr>
+                        <th>Service Item &amp; Scope</th>
+                        <th>Parts</th>
+                        <th>Labor</th>
+                        <th>USD</th>
+                      </tr>
+                    </thead>
+                    <tbody id="ledger-tbody">
+                      <!-- Populated dynamically by script -->
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="ledger-empty" id="ledger-empty" style="display: none;">
+                  Select at least one service on the left to calculate parts, labor, and WA State sales tax.
+                </div>
+
+                <div class="totals-box">
+                  <div class="total-row">
+                    <span>Parts &amp; OEM Fluids Subtotal</span>
+                    <span class="mono tabular" id="parts-subtotal">$62.00</span>
+                  </div>
+                  <div class="total-row">
+                    <span>ASE Certified Labor Subtotal</span>
+                    <span class="mono tabular" id="labor-subtotal">$56.00</span>
+                  </div>
+                  <div class="total-row">
+                    <span>Photo Digital Vehicle Inspection (DVI)</span>
+                    <span class="mono tabular" style="color: var(--ok); font-weight: 600;">$0.00 Included</span>
+                  </div>
+                  <div class="total-row">
+                    <span>Pre-Tax Estimate Subtotal</span>
+                    <span class="mono tabular" id="pretax-subtotal">$118.00</span>
+                  </div>
+                  <div class="total-row">
+                    <span>WA State &amp; Seattle Tax (10.35%)</span>
+                    <span class="mono tabular" id="tax-amount">$12.21</span>
+                  </div>
+                  <div class="total-row grand-total">
+                    <span>Estimated Total (USD)</span>
+                    <span class="grand-usd tabular" id="grand-total">$130.21</span>
+                  </div>
+                </div>
+
+                <div class="ledger-meta-grid">
+                  <div class="meta-chip">
+                    <span>Estimated Shop Bay Time</span>
+                    <strong class="tabular" id="bay-hours">1.2 Hours</strong>
+                  </div>
+                  <div class="meta-chip">
+                    <span>Warranty Protection</span>
+                    <strong>2-Year / 24,000 Miles</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Magnolia Bay Booking Form -->
+            <div class="panel-card" id="booking-panel">
+              <div class="panel-step-head">
+                <h3 class="step-title">3. Reserve Magnolia Service Bay</h3>
+                <span class="step-code">2410 34TH AVE W</span>
+              </div>
+
+              <form id="magnolia-booking-form" novalidate>
+                <div class="booking-grid">
+                  <div class="field-group">
+                    <label class="field-label" for="driver-name">Full Name</label>
+                    <input class="input-control" id="driver-name" name="name" type="text" placeholder="Jordan Miller" autocomplete="name" required>
+                  </div>
+
+                  <div class="field-group">
+                    <label class="field-label" for="driver-phone">Phone Number</label>
+                    <input class="input-control" id="driver-phone" name="tel" type="tel" placeholder="(206) 555-0148" autocomplete="tel" required>
+                  </div>
+
+                  <div class="field-group">
+                    <label class="field-label" for="driver-email">Email Address (for Photo DVI)</label>
+                    <input class="input-control" id="driver-email" name="email" type="email" placeholder="jordan@example.com" autocomplete="email" required>
+                  </div>
+
+                  <div class="field-group">
+                    <label class="field-label" for="vehicle-model">Year, Make &amp; Model</label>
+                    <input class="input-control" id="vehicle-model" name="vehicleModel" type="text" placeholder="2019 Subaru Outback 2.5i" autocomplete="off" required>
+                  </div>
+
+                  <div class="field-group">
+                    <label class="field-label" for="dropoff-slot">Preferred Magnolia Drop-Off</label>
+                    <select class="select-control" id="dropoff-slot" name="dropoffSlot" autocomplete="off">
+                      <option value="Mon 8:00 AM Drop-Off">Mon 8:00 AM Early Drop-Off</option>
+                      <option value="Tue 8:00 AM Drop-Off">Tue 8:00 AM Early Drop-Off</option>
+                      <option value="Wed 9:30 AM Bay Check-In">Wed 9:30 AM Bay Check-In</option>
+                      <option value="Thu 8:00 AM Drop-Off">Thu 8:00 AM Early Drop-Off</option>
+                      <option value="Fri 8:00 AM Drop-Off">Fri 8:00 AM Early Drop-Off</option>
+                      <option value="After-Hours Secure Key Drop">After-Hours Secure Key Drop Box</option>
+                    </select>
+                  </div>
+
+                  <div class="field-group">
+                    <label class="field-label" for="bay-assignment">Magnolia Bay Routing</label>
+                    <select class="select-control" id="bay-assignment" name="bayAssignment" autocomplete="off">
+                      <option value="Bay 1 - Asian &amp; Hybrid Maintenance">Bay 1: Asian &amp; Hybrid Maintenance</option>
+                      <option value="Bay 2 - European Diagnostics &amp; EVAP">Bay 2: European Diagnostics &amp; EVAP</option>
+                      <option value="Bay 3 - Domestic, Brakes &amp; Chassis">Bay 3: Domestic, Brakes &amp; Chassis</option>
+                    </select>
+                  </div>
+
+                  <div class="field-group full-span">
+                    <label class="field-label" for="driver-notes">Symptoms or Maintenance Notes</label>
+                    <textarea class="textarea-control" id="driver-notes" name="driverNotes" rows="2" placeholder="Optional: steering vibration above 55 mph, brake squeal, or dashboard warning code..." autocomplete="off"></textarea>
+                  </div>
+
+                  <div class="full-span">
+                    <button class="btn btn-primary" style="width: 100%;" type="submit">
+                      Confirm Magnolia Bay Reservation &amp; Attach Estimate
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+              <div class="booking-confirmation" id="booking-confirmation" role="status" aria-live="polite">
+                <div class="confirm-head">
+                  <h4 class="confirm-title">Magnolia Service Bay Request Logged</h4>
+                  <span class="confirm-ref" id="confirm-ref-id">34ST-8421</span>
+                </div>
+                <p id="confirm-summary" style="margin: 0 0 8px; font-size: 0.9rem;"></p>
+                <p style="margin: 0; font-size: 0.82rem; color: var(--ink-body);">
+                  Drop-off at 2410 34th Ave W, Seattle, WA 98199 (Mon - Fri, 8:00 AM - 5:00 PM). Need immediate dispatch or tow coordination? Call <a href="tel:+12062833448" style="color: var(--marine); font-weight: 600;">(206) 283-3448</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VEHICLE PLATFORMS & SERVICES -->
+    <section class="section section-alt" id="capabilities">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Specialized Coverage</div>
+            <h2 class="section-title">Asian, European, Domestic &amp; Hybrid-EV Capabilities</h2>
+            <p class="section-desc">
+              Equipping Magnolia and Queen Anne drivers with dealership-level diagnostic platforms and OEM-grade parts without dealership turnaround friction.
+            </p>
+          </div>
+        </div>
+
+        <div class="cards-4">
+          <article class="cap-card">
+            <div class="cap-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M4 16L6 9H18L20 16M6 16H18M7 19V16M17 19V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="8" cy="12.5" r="1" fill="currentColor"/>
+                <circle cx="16" cy="12.5" r="1" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="cap-title">Asian Specialists</h3>
+              <p class="cap-makes">Toyota, Lexus, Honda, Acura, Subaru, Nissan, Mazda, Hyundai, Kia</p>
+            </div>
+            <ul class="cap-specs">
+              <li><span class="spec-dot" aria-hidden="true"></span>AWD differential &amp; CVT fluids</li>
+              <li><span class="spec-dot" aria-hidden="true"></span>Timing belts, water pumps &amp; head gaskets</li>
+              <li><span class="spec-dot" aria-hidden="true"></span>30K / 60K / 90K factory schedules</li>
+            </ul>
+          </article>
+
+          <article class="cap-card">
+            <div class="cap-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 4V12L17 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="cap-title">European Engineering</h3>
+              <p class="cap-makes">BMW, Mercedes-Benz, Audi, Volkswagen, Volvo, Mini Cooper, Land Rover</p>
+            </div>
+            <ul class="cap-specs">
+              <li><span class="spec-dot" aria-hidden="true"></span>Cooling system pressure &amp; brittle housing checks</li>
+              <li><span class="spec-dot" aria-hidden="true"></span>Intermittent stall &amp; module testing</li>
+              <li><span class="spec-dot" aria-hidden="true"></span>Factory-spec synthetic oils &amp; seals</li>
+            </ul>
+          </article>
+
+          <article class="cap-card">
+            <div class="cap-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M14.7 6.3A1 1 0 0 0 13.3 4.9L10.6 7.6C8.8 7.1 6.7 7.6 5.3 9C3.9 10.4 3.4 12.5 3.9 14.3L7.2 11L9.5 13.3L6.2 16.6C8 17.1 10.1 16.6 11.5 15.2C12.9 13.8 13.4 11.7 12.9 9.9L15.6 7.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="cap-title">Domestic Cars &amp; 4x4</h3>
+              <p class="cap-makes">Ford, Chevrolet, Dodge, Ram Trucks, Jeep SUV &amp; work fleet vehicles</p>
+            </div>
+            <ul class="cap-specs">
+              <li><span class="spec-dot" aria-hidden="true"></span>CV axles, front drivelines &amp; wheel bearings</li>
+              <li><span class="spec-dot" aria-hidden="true"></span>Heavy-duty braking, calipers &amp; starters</li>
+              <li><span class="spec-dot" aria-hidden="true"></span>Steering linkages, tie rods &amp; ball joints</li>
+            </ul>
+          </article>
+
+          <article class="cap-card">
+            <div class="cap-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M13 2L4 14H11L10 22L20 10H13L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="cap-title">Hybrid &amp; EV Care</h3>
+              <p class="cap-makes">Tesla, Toyota/Lexus Hybrid, Plug-In Hybrid commuters across Seattle</p>
+            </div>
+            <ul class="cap-specs">
+              <li><span class="spec-dot" aria-hidden="true"></span>Regenerative brake corrosion &amp; caliper slide prep</li>
+              <li><span class="spec-dot" aria-hidden="true"></span>12V auxiliary battery &amp; thermal coolant checks</li>
+              <li><span class="spec-dot" aria-hidden="true"></span>Suspension load &amp; tire wear inspections</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="services-directory">
+          <div class="directory-head">
+            <strong style="font-family: var(--font-display); font-size: 1.05rem;">Complete Seattle Repair &amp; Maintenance Menu</strong>
+            <span class="mono" style="font-size: 0.78rem; color: var(--marine);">25 Core Shop Services Covered Under 2YR / 24K Warranty</span>
+          </div>
+          <div class="tag-cloud">
+            <span class="service-pill">30K / 60K / 90K Service</span>
+            <span class="service-pill">Oil Change</span>
+            <span class="service-pill">Brakes &amp; Rotors</span>
+            <span class="service-pill">Check Engine Light</span>
+            <span class="service-pill">Steering &amp; Suspension</span>
+            <span class="service-pill">Shocks &amp; Struts</span>
+            <span class="service-pill">Road Trip Inspection</span>
+            <span class="service-pill">Air Conditioning</span>
+            <span class="service-pill">All-Wheel Drive (AWD)</span>
+            <span class="service-pill">Alternator &amp; Starter</span>
+            <span class="service-pill">Battery &amp; Charging</span>
+            <span class="service-pill">Belts &amp; Hoses</span>
+            <span class="service-pill">Clutch &amp; Transmission</span>
+            <span class="service-pill">CV Axle &amp; Differential</span>
+            <span class="service-pill">Electrical Diagnostics</span>
+            <span class="service-pill">Head Gasket</span>
+            <span class="service-pill">Radiator &amp; Cooling</span>
+            <span class="service-pill">Timing Belt</span>
+            <span class="service-pill">Tire Service</span>
+            <span class="service-pill">Water Pump</span>
+            <span class="service-pill">Wheel Bearings</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIGITAL VEHICLE INSPECTION & WARRANTY -->
+    <section class="section" id="workflow">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">No Guesswork Protocol</div>
+            <h2 class="section-title">Digital Vehicle Inspection &amp; 2-Year / 24,000-Mile Warranty</h2>
+            <p class="section-desc">
+              Seattle drivers stay in control from drop-off to pickup. Every diagnosis is backed by component photography, measurement logs, and itemized pricing sent to your phone or inbox before any repair begins.
+            </p>
+          </div>
+        </div>
+
+        <div class="workflow-grid">
+          <div class="steps-stack">
+            <article class="step-card">
+              <div class="step-num tabular">01</div>
+              <div>
+                <h3>Pinpoint Testing Beyond Basic Code Reads</h3>
+                <p style="margin: 6px 0 0; color: var(--ink-body); font-size: 0.93rem;">
+                  Free auto-parts store scanners only read generic fault numbers. Our ASE Master technicians probe fuel trims, EVAP smoke seals, voltage drops, and cooling system pressure to verify the root failure first.
+                </p>
+              </div>
+            </article>
+
+            <article class="step-card">
+              <div class="step-num tabular">02</div>
+              <div>
+                <h3>Annotated Photo Report Sent by Email or Text</h3>
+                <p style="margin: 6px 0 0; color: var(--ink-body); font-size: 0.93rem;">
+                  Service advisors Kai and Dillon deliver a clear digital report showing brake pad millimeters, fluid condition, cracked hoses, and itemized USD options separated into safety priorities vs future watch items.
+                </p>
+              </div>
+            </article>
+
+            <article class="step-card">
+              <div class="step-num tabular">03</div>
+              <div>
+                <h3>2-Year / 24,000-Mile Parts &amp; Labor Coverage</h3>
+                <p style="margin: 6px 0 0; color: var(--ink-body); font-size: 0.93rem;">
+                  Approved repairs use OEM-quality components backed by our AAA-approved 2-Year / 24,000-Mile warranty so your daily commute across Magnolia hills and Highway 99 stays predictable.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="dvi-console" aria-label="Interactive Digital Vehicle Inspection Preview">
+            <div>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px;">
+                <span class="mono" style="font-size: 0.78rem; color: #93C5EC;">SAMPLE DIGITAL VEHICLE INSPECTION</span>
+                <span class="mono" style="font-size: 0.74rem; color: #9EE6CB;">PHOTO-VERIFIED LOG</span>
+              </div>
+              <div class="dvi-tabs" role="tablist" aria-label="Inspection Sample Views">
+                <button class="dvi-tab-btn is-active" type="button" data-dvi="brakes">Brake &amp; Rotor Report</button>
+                <button class="dvi-tab-btn" type="button" data-dvi="cooling">Cooling Pressure Test</button>
+                <button class="dvi-tab-btn" type="button" data-dvi="evap">OBD-II / EVAP Trace</button>
+              </div>
+            </div>
+
+            <div class="dvi-screen" id="dvi-screen">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px;">
+                <strong id="dvi-heading" style="font-family: var(--font-display); font-size: 1.05rem; color: #FFFFFF;">2014 Lexus IS250 (95,400 mi)</strong>
+                <span class="mono" id="dvi-status" style="font-size: 0.75rem; color: #F5B971;">PRIORITY ATTENTION</span>
+              </div>
+              <p id="dvi-finding" style="margin: 0; font-size: 0.88rem; color: #D4E0EC;">
+                Front inner pads measured at 2.5 mm with rotor heat spots causing pedal pulsation; rear pads at 6.0 mm remain serviceable. Inner front tire edge wear traced to worn lower control arm bushings.
+              </p>
+              <div class="dvi-kv">
+                <div class="dvi-cell">
+                  <div class="dvi-cell-label" id="dvi-k1-label">Front Pad Thickness</div>
+                  <div class="dvi-cell-val tabular" id="dvi-k1-val">2.5 mm (Replace)</div>
+                </div>
+                <div class="dvi-cell">
+                  <div class="dvi-cell-label" id="dvi-k2-label">Rear Pad Thickness</div>
+                  <div class="dvi-cell-val tabular" id="dvi-k2-val">6.0 mm (Pass)</div>
+                </div>
+                <div class="dvi-cell">
+                  <div class="dvi-cell-label" id="dvi-k3-label">Brake Fluid Moisture</div>
+                  <div class="dvi-cell-val tabular" id="dvi-k3-val">3.2% H2O (Flush Advisory)</div>
+                </div>
+                <div class="dvi-cell">
+                  <div class="dvi-cell-label" id="dvi-k4-label">Authorization Mode</div>
+                  <div class="dvi-cell-val tabular" id="dvi-k4-val">Customer E-Sign + Photos</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; font-size: 0.82rem; color: #B8C8D8;">
+              <span>Zero repair work proceeds without explicit driver approval.</span>
+              <a href="#estimator" style="color: #93C5EC; font-weight: 600;">Price this service in Estimator</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REAL CASE LOGS & NEIGHBOR REVIEWS -->
+    <section class="section section-alt" id="field-logs">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Magnolia Bay Case Notes</div>
+            <h2 class="section-title">Recent Seattle Diagnostic Logs &amp; Neighbor Feedback</h2>
+            <p class="section-desc">
+              Real-world diagnostic baselines from our Magnolia service bays alongside feedback from long-term Seattle customers.
+            </p>
+          </div>
+        </div>
+
+        <div class="cards-3">
+          <article class="case-card">
+            <div class="case-meta">
+              <span>2006 LAND ROVER LR3 HSE</span>
+              <span class="tabular">128,700 MI</span>
+            </div>
+            <h3>Brittle Cooling System Tee &amp; Radiator Leak</h3>
+            <p>
+              Pressure testing isolated micro-fractures in age-hardened plastic coolant junctions and radiator end tanks before Seattle traffic overheating could risk head gasket integrity.
+            </p>
+          </article>
+
+          <article class="case-card">
+            <div class="case-meta">
+              <span>BMW X1 TURBO</span>
+              <span class="tabular">NO MIL CODE</span>
+            </div>
+            <h3>Intermittent Red-Light Stall Trace</h3>
+            <p>
+              Live sensor telemetry identified three contributing air/fuel and idle stability faults even without an illuminated Check Engine indicator, restoring crisp cold-start idle.
+            </p>
+          </article>
+
+          <article class="case-card">
+            <div class="case-meta">
+              <span>2014 SCION FR-S &amp; TOYOTA 4RUNNER</span>
+              <span class="tabular">BASELINE PPI</span>
+            </div>
+            <h3>Nine-Month Parked Recommissioning &amp; 262K Baseline</h3>
+            <p>
+              Built priority maintenance baselines for stored sports coupes and high-mileage SUVs: separating immediate safety fixes from staged long-term preservation items.
+            </p>
+          </article>
+        </div>
+
+        <div class="review-band">
+          <article class="review-card">
+            <p class="review-quote">
+              "Their computer system sent me by email and text an easy-to-read diagnostic report with photos of the affected areas and an estimated cost for each repair. Kai is great and the staff are professional and helpful."
+            </p>
+            <div class="review-author">Kay Thoreson | Hyundai Elantra GT</div>
+          </article>
+
+          <article class="review-card">
+            <p class="review-quote">
+              "Used to take my BMW to another shop, but they missed basic repairs. 34th Street Garage made my 17-year-old car run like new again."
+            </p>
+            <div class="review-author">Ann Senechal | Seattle BMW Driver</div>
+          </article>
+
+          <article class="review-card">
+            <p class="review-quote">
+              "Very upfront and transparent with pricing and get your consent before performing any charged service. Consistent high quality for both oil changes and specific repairs."
+            </p>
+            <div class="review-author">Suzie Alan | Multi-Vehicle Seattle Customer</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION & HOURS -->
+    <section class="section" id="location">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Neighborhood Service Station</div>
+            <h2 class="section-title">Visit 34th Street Garage in Magnolia, Seattle</h2>
+            <p class="section-desc">
+              Conveniently located on 34th Ave W in Magnolia Village, minutes from Interbay, Queen Anne, Lower Queen Anne, Ballard, and Fremont.
+            </p>
+          </div>
+        </div>
+
+        <div class="location-grid">
+          <div class="panel-card">
+            <h3 style="margin-bottom: 12px;">Contact &amp; Operating Hours</h3>
+            <div style="display: grid; gap: 10px; font-size: 0.95rem; color: var(--ink-body); margin-bottom: 18px;">
+              <div><strong>Address:</strong> 2410 34th Ave W, Seattle, WA 98199</div>
+              <div><strong>Phone:</strong> <a href="tel:+12062833448" style="color: var(--marine); font-weight: 600;">(206) 283-3448</a></div>
+              <div><strong>Email:</strong> <a href="mailto:info@34thstreetgarage.com" style="color: var(--marine); font-weight: 600;">info@34thstreetgarage.com</a></div>
+              <div><strong>Service Area:</strong> Magnolia, Queen Anne, Lower Queen Anne, Ballard, Interbay, Fremont</div>
+            </div>
+
+            <table class="hours-table" aria-label="34th Street Garage Operating Hours">
+              <tbody>
+                <tr><td>Monday</td><td>8:00 AM - 5:00 PM</td></tr>
+                <tr><td>Tuesday</td><td>8:00 AM - 5:00 PM</td></tr>
+                <tr><td>Wednesday</td><td>8:00 AM - 5:00 PM</td></tr>
+                <tr><td>Thursday</td><td>8:00 AM - 5:00 PM</td></tr>
+                <tr><td>Friday</td><td>8:00 AM - 5:00 PM</td></tr>
+                <tr><td>Saturday &amp; Sunday</td><td>Closed (Key Drop Available)</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="map-schematic">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+              <strong style="font-family: var(--font-display); font-size: 1.05rem;">Magnolia Corridor Schematic</strong>
+              <span class="mono" style="font-size: 0.76rem; color: var(--marine);">47.6400 N, 122.4006 W</span>
+            </div>
+            <svg viewBox="0 0 500 220" width="100%" style="height:auto" role="img" aria-label="Magnolia Seattle street corridor map to 2410 34th Ave W">
+              <rect x="2" y="2" width="496" height="216" rx="10" fill="#F7F8FA" stroke="#D6DEE7" stroke-width="1.5"/>
+              <!-- Grid streets -->
+              <line x1="150" y1="16" x2="150" y2="204" stroke="#BAC6D4" stroke-width="6"/>
+              <line x1="300" y1="16" x2="300" y2="204" stroke="#D6DEE7" stroke-width="3"/>
+              <line x1="415" y1="16" x2="415" y2="204" stroke="#BAC6D4" stroke-width="5"/>
+              <line x1="20" y1="68" x2="480" y2="68" stroke="#D6DEE7" stroke-width="3"/>
+              <line x1="20" y1="126" x2="480" y2="126" stroke="#BAC6D4" stroke-width="5"/>
+              <line x1="20" y1="176" x2="480" y2="176" stroke="#D6DEE7" stroke-width="3"/>
+              <!-- Labels -->
+              <text x="160" y="34" fill="#16202A" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600">34TH AVE W</text>
+              <text x="28" y="118" fill="#586A7D" font-family="JetBrains Mono, monospace" font-size="10">W McGRAW ST (MAGNOLIA VILLAGE)</text>
+              <text x="360" y="34" fill="#586A7D" font-family="JetBrains Mono, monospace" font-size="10">15TH AVE W / INTERBAY</text>
+              <text x="34" y="196" fill="#586A7D" font-family="JetBrains Mono, monospace" font-size="10">DISCOVERY PARK CORRIDOR</text>
+              <text x="372" y="196" fill="#586A7D" font-family="JetBrains Mono, monospace" font-size="10">TO QUEEN ANNE</text>
+              <!-- Shop marker -->
+              <circle cx="150" cy="126" r="14" fill="#1B4B72"/>
+              <circle cx="150" cy="126" r="5" fill="#FFFFFF"/>
+              <rect x="172" y="102" width="168" height="44" rx="6" fill="#16202A"/>
+              <text x="182" y="121" fill="#FFFFFF" font-family="DM Sans, sans-serif" font-size="11" font-weight="700">34th Street Garage</text>
+              <text x="182" y="137" fill="#93C5EC" font-family="JetBrains Mono, monospace" font-size="10">2410 34th Ave W, 98199</text>
+            </svg>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;">
+              <span style="font-size: 0.85rem; color: var(--ink-muted);">After-hours secure drop box located next to main bay entrance.</span>
+              <a class="btn btn-secondary btn-sm" href="https://www.google.com/maps/search/?api=1&query=2410+34th+Ave+W+Seattle+WA+98199" target="_blank" rel="noopener noreferrer">Open Google Maps</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: #FFFFFF; margin-bottom: 8px;">
+            34th Street Garage
+          </div>
+          <p style="margin: 0 0 12px; font-size: 0.9rem; max-width: 44ch;">
+            Independent AAA-Approved and ASE-Certified auto repair in Magnolia, Seattle since 1990. Backed by our 2-Year / 24,000-Mile parts and labor warranty.
+          </p>
+          <div class="mono" style="font-size: 0.8rem; color: #93C5EC;">
+            2410 34th Ave W, Seattle, WA 98199 | (206) 283-3448
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Seattle Neighborhoods</h4>
+          <ul class="footer-links">
+            <li><a href="#location">Magnolia Village</a></li>
+            <li><a href="#location">Queen Anne &amp; Lower Queen Anne</a></li>
+            <li><a href="#location">Ballard &amp; Interbay</a></li>
+            <li><a href="#location">Fremont</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Service Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#estimator">USD Maintenance &amp; Repair Estimator</a></li>
+            <li><a href="#capabilities">Asian / European / Domestic / Hybrid-EV</a></li>
+            <li><a href="#workflow">Digital Vehicle Inspections (DVI)</a></li>
+            <li><a href="#booking-panel">Reserve Magnolia Service Bay</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-concept-line">Interactive redesign concept prepared for 34th Street Garage.</span>
+        <span>Mon - Fri: 8:00 AM - 5:00 PM | info@34thstreetgarage.com</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var WA_SEATTLE_TAX_RATE = 0.1035;
+
+      var PLATFORM_CONFIG = {
+        asian: {
+          label: 'Asian OEM Spec',
+          multiplier: 1.0,
+          defaultBay: 'Bay 1 - Asian & Hybrid Maintenance',
+          exampleModel: '2019 Subaru Outback 2.5i'
+        },
+        european: {
+          label: 'European OEM Spec',
+          multiplier: 1.28,
+          defaultBay: 'Bay 2 - European Diagnostics & EVAP',
+          exampleModel: '2017 BMW X1 xDrive28i'
+        },
+        domestic: {
+          label: 'Domestic Spec',
+          multiplier: 1.05,
+          defaultBay: 'Bay 3 - Domestic, Brakes & Chassis',
+          exampleModel: '2018 Ford F-150 / Jeep Grand Cherokee'
+        },
+        hybridev: {
+          label: 'Hybrid-EV Certified',
+          multiplier: 1.18,
+          defaultBay: 'Bay 1 - Asian & Hybrid Maintenance',
+          exampleModel: '2021 Toyota RAV4 Hybrid / Tesla Model 3'
+        }
+      };
+
+      var SERVICE_CATALOG = {
+        synthetic_oil: {
+          id: 'svc-synthetic-oil',
+          title: 'Synthetic Oil & OEM Filter Service',
+          note: 'Full synthetic oil, OEM filter, fluid checks & 32-point photo DVI',
+          parts: 62,
+          labor: 56,
+          hours: 0.8
+        },
+        brakes: {
+          id: 'svc-brakes',
+          title: 'Brakes (Pads, Coated Rotors & Slide Service)',
+          note: 'Single-axle OEM-grade pads, rotors, hardware & brake fluid test',
+          parts: 265,
+          labor: 220,
+          hours: 2.0
+        },
+        check_engine: {
+          id: 'svc-cel-scan',
+          title: 'Check Engine Scan & Pinpoint Diagnostics',
+          note: 'ASE Master OBD-II telemetry, fuel trims, EVAP smoke & circuit testing',
+          parts: 0,
+          labor: 175,
+          hours: 1.2
+        },
+        ppi: {
+          id: 'svc-ppi',
+          title: 'Pre-Purchase / Road Trip Inspection',
+          note: '120-point lift, cooling pressure, alignment & photo baseline report',
+          parts: 0,
+          labor: 195,
+          hours: 1.5
+        },
+        suspension: {
+          id: 'svc-suspension',
+          title: 'Suspension, Steering & Chassis Service',
+          note: 'Struts/control arm bushings, ball joints, tie-rod & chassis geometry',
+          parts: 290,
+          labor: 250,
+          hours: 2.4
+        }
+      };
+
+      var PRESETS = {
+        subaru60k: {
+          platform: 'asian',
+          mileage: 60000,
+          services: ['synthetic_oil', 'brakes'],
+          vehiclePlaceholder: '2019 Subaru Outback 2.5i'
+        },
+        bmw95k: {
+          platform: 'european',
+          mileage: 95000,
+          services: ['check_engine', 'synthetic_oil'],
+          vehiclePlaceholder: '2016 BMW X1 xDrive28i'
+        },
+        ppi120k: {
+          platform: 'domestic',
+          mileage: 120000,
+          services: ['ppi', 'suspension'],
+          vehiclePlaceholder: '2015 Jeep Grand Cherokee Limited'
+        },
+        hybrid45k: {
+          platform: 'hybridev',
+          mileage: 45000,
+          services: ['brakes', 'suspension'],
+          vehiclePlaceholder: '2021 Toyota RAV4 Hybrid / Tesla Model Y'
+        }
+      };
+
+      var DVI_SAMPLES = {
+        brakes: {
+          heading: '2014 Lexus IS250 (95,400 mi)',
+          status: 'PRIORITY ATTENTION',
+          statusColor: '#F5B971',
+          finding: 'Front inner pads measured at 2.5 mm with rotor heat spots causing pedal pulsation; rear pads at 6.0 mm remain serviceable. Inner front tire edge wear traced to worn lower control arm bushings.',
+          k1Label: 'Front Pad Thickness',
+          k1Val: '2.5 mm (Replace)',
+          k2Label: 'Rear Pad Thickness',
+          k2Val: '6.0 mm (Pass)',
+          k3Label: 'Brake Fluid Moisture',
+          k3Val: '3.2% H2O (Flush Advisory)',
+          k4Label: 'Authorization Mode',
+          k4Val: 'Customer E-Sign + Photos'
+        },
+        cooling: {
+          heading: '2006 Land Rover LR3 HSE (128,700 mi)',
+          status: 'PRESSURE TEST FAIL',
+          statusColor: '#F29B9B',
+          finding: '15 PSI static cooling pressure test revealed weeping from brittle upper bleeder tee and plastic radiator side seam. Replaced assemblies and vacuum-filled European coolant.',
+          k1Label: 'Pressure Hold (15 PSI)',
+          k1Val: 'Dropped to 9.5 PSI / 8 min',
+          k2Label: 'Failure Location',
+          k2Val: 'Bleeder Tee & Upper Seam',
+          k3Label: 'Post-Repair Hold',
+          k3Val: '16.0 PSI Steady (Pass)',
+          k4Label: 'Warranty Coverage',
+          k4Val: '2-Year / 24,000 Miles'
+        },
+        evap: {
+          heading: '2017 Subaru Forester XT (78,200 mi)',
+          status: 'ROOT CAUSE VERIFIED',
+          statusColor: '#9EE6CB',
+          finding: 'Stored P0442 small EVAP leak code. Ultrasonic smoke machine pinpointed hairline crack at purge solenoid hose rather than unnecessary charcoal canister replacement.',
+          k1Label: 'Primary DTC Code',
+          k1Val: 'P0442 EVAP Small Leak',
+          k2Label: 'Smoke Leak Pinpoint',
+          k2Val: 'Purge Valve Hose Split',
+          k3Label: 'Fuel Trim (LTFT)',
+          k3Val: '+1.6% Within OEM Spec',
+          k4Label: 'Parts Swapped Unneeded',
+          k4Val: '0 (Targeted Fix)'
+        }
+      };
+
+      var mileageRange = document.getElementById('mileage-range');
+      var mileageInput = document.getElementById('mileage-miles');
+      var intervalTitle = document.getElementById('interval-title');
+      var intervalNote = document.getElementById('interval-note');
+      var intervalBadge = document.getElementById('interval-badge');
+      var ledgerSpecPill = document.getElementById('ledger-spec-pill');
+      var ledgerTableWrap = document.getElementById('ledger-table-wrap');
+      var ledgerTbody = document.getElementById('ledger-tbody');
+      var ledgerEmpty = document.getElementById('ledger-empty');
+      var partsSubtotalEl = document.getElementById('parts-subtotal');
+      var laborSubtotalEl = document.getElementById('labor-subtotal');
+      var pretaxSubtotalEl = document.getElementById('pretax-subtotal');
+      var taxAmountEl = document.getElementById('tax-amount');
+      var grandTotalEl = document.getElementById('grand-total');
+      var bayHoursEl = document.getElementById('bay-hours');
+      var vehicleModelInput = document.getElementById('vehicle-model');
+      var baySelect = document.getElementById('bay-assignment');
+      var bookingForm = document.getElementById('magnolia-booking-form');
+      var bookingConfirmation = document.getElementById('booking-confirmation');
+      var confirmRefId = document.getElementById('confirm-ref-id');
+      var confirmSummary = document.getElementById('confirm-summary');
+
+      function formatUsd(num) {
+        return '$' + num.toFixed(2);
+      }
+
+      function formatShortUsd(num) {
+        return '$' + Math.round(num);
+      }
+
+      function getSelectedPlatform() {
+        var checked = document.querySelector('input[name="vehiclePlatform"]:checked');
+        if (checked && PLATFORM_CONFIG[checked.value]) {
+          return checked.value;
+        }
+        return 'asian';
+      }
+
+      function getClampedMileage() {
+        var parsed = parseInt(mileageInput.value, 10);
+        if (Number.isNaN(parsed) || parsed < 1000) {
+          parsed = 1000;
+        }
+        if (parsed > 450000) {
+          parsed = 450000;
+        }
+        return parsed;
+      }
+
+      function getMileageFactor(miles, serviceKey) {
+        if (miles >= 120000 && (serviceKey === 'suspension' || serviceKey === 'brakes')) {
+          return 1.08;
+        }
+        if (miles >= 90000 && serviceKey === 'synthetic_oil') {
+          return 1.05;
+        }
+        return 1.0;
+      }
+
+      function updateIntervalAdvisory(miles, platformKey) {
+        if (miles < 30000) {
+          intervalTitle.textContent = 'Under 30,000-Mile Baseline Maintenance Window';
+          intervalNote.textContent = 'Focus on synthetic oil intervals, cabin/engine filters, tire rotation, and Seattle wet-weather brake checks.';
+          intervalBadge.textContent = 'Baseline';
+        } else if (miles < 60000) {
+          intervalTitle.textContent = '30,000 - 59,000-Mile Factory Maintenance Window';
+          intervalNote.textContent = 'Recommended checks: brake fluid moisture, transmission/AWD fluid schedule, battery load test, and wiper blades.';
+          intervalBadge.textContent = '30K Tier';
+        } else if (miles < 90000) {
+          intervalTitle.textContent = '60,000 - 89,000-Mile Major Interval Window';
+          intervalNote.textContent = 'Recommended checks: spark plugs, differential fluid, brake rotors/pads, and lower control arm bushings.';
+          intervalBadge.textContent = '60K Tier';
+        } else if (miles < 120000) {
+          intervalTitle.textContent = '90,000 - 119,000-Mile Timing & Cooling Window';
+          intervalNote.textContent = 'Inspect timing belt/chain tensioners, water pump, coolant hoses, radiator plastic tees, and suspension struts.';
+          intervalBadge.textContent = '90K Tier';
+        } else {
+          intervalTitle.textContent = '120,000+ Mile High-Mileage Preservation Window';
+          intervalNote.textContent = 'Priority checks for CV boots, oil/coolant gaskets, shock absorbers, wheel bearings, and full cooling system pressure.';
+          intervalBadge.textContent = '120K+ Tier';
+        }
+
+        if (platformKey === 'hybridev') {
+          intervalNote.textContent = intervalNote.textContent + ' Hybrid-EV note: includes caliper slide lubrication against Pacific Northwest moisture buildup.';
+        }
+      }
+
+      function calculateAndRender() {
+        var platformKey = getSelectedPlatform();
+        var platform = PLATFORM_CONFIG[platformKey];
+        var miles = getClampedMileage();
+        var formattedMiles = miles.toLocaleString('en-US') + ' mi';
+
+        ledgerSpecPill.textContent = platform.label + ' | ' + formattedMiles;
+        updateIntervalAdvisory(miles, platformKey);
+
+        var totalParts = 0;
+        var totalLabor = 0;
+        var totalHours = 0;
+        var selectedItems = [];
+
+        Object.keys(SERVICE_CATALOG).forEach(function (key) {
+          var svc = SERVICE_CATALOG[key];
+          var checkbox = document.getElementById(svc.id);
+          var mFactor = getMileageFactor(miles, key);
+          var lineParts = Math.round(svc.parts * platform.multiplier * mFactor);
+          var lineLabor = Math.round(svc.labor * platform.multiplier * mFactor);
+          var lineTotal = lineParts + lineLabor;
+
+          var priceTag = document.querySelector('[data-price-el="' + key + '"]');
+          if (priceTag) {
+            priceTag.textContent = formatShortUsd(lineTotal);
+          }
+
+          if (checkbox && checkbox.checked) {
+            totalParts += lineParts;
+            totalLabor += lineLabor;
+            totalHours += svc.hours;
+            selectedItems.push({
+              title: svc.title,
+              note: svc.note,
+              parts: lineParts,
+              labor: lineLabor,
+              total: lineTotal
+            });
+          }
+        });
+
+        ledgerTbody.innerHTML = '';
+
+        if (selectedItems.length === 0) {
+          ledgerTableWrap.style.display = 'none';
+          ledgerEmpty.style.display = 'block';
+        } else {
+          ledgerTableWrap.style.display = 'block';
+          ledgerEmpty.style.display = 'none';
+
+          selectedItems.forEach(function (item) {
+            var tr = document.createElement('tr');
+
+            var tdTitle = document.createElement('td');
+            var strong = document.createElement('strong');
+            strong.textContent = item.title;
+            var note = document.createElement('span');
+            note.className = 'ledger-item-note';
+            note.textContent = item.note;
+            tdTitle.appendChild(strong);
+            tdTitle.appendChild(note);
+
+            var tdParts = document.createElement('td');
+            tdParts.className = 'mono tabular';
+            tdParts.textContent = formatShortUsd(item.parts);
+
+            var tdLabor = document.createElement('td');
+            tdLabor.className = 'mono tabular';
+            tdLabor.textContent = formatShortUsd(item.labor);
+
+            var tdTotal = document.createElement('td');
+            tdTotal.className = 'mono tabular';
+            tdTotal.style.fontWeight = '600';
+            tdTotal.textContent = formatUsd(item.total);
+
+            tr.appendChild(tdTitle);
+            tr.appendChild(tdParts);
+            tr.appendChild(tdLabor);
+            tr.appendChild(tdTotal);
+            ledgerTbody.appendChild(tr);
+          });
+        }
+
+        var pretax = totalParts + totalLabor;
+        var tax = pretax * WA_SEATTLE_TAX_RATE;
+        var grand = pretax + tax;
+
+        partsSubtotalEl.textContent = formatUsd(totalParts);
+        laborSubtotalEl.textContent = formatUsd(totalLabor);
+        pretaxSubtotalEl.textContent = formatUsd(pretax);
+        taxAmountEl.textContent = formatUsd(tax);
+        grandTotalEl.textContent = formatUsd(grand);
+        bayHoursEl.textContent = totalHours.toFixed(1) + ' Hours';
+
+        return {
+          platformLabel: platform.label,
+          miles: formattedMiles,
+          selectedTitles: selectedItems.map(function (i) { return i.title; }),
+          grandTotal: formatUsd(grand)
+        };
+      }
+
+      function syncPlatformDefaults(platformKey) {
+        var cfg = PLATFORM_CONFIG[platformKey];
+        if (cfg) {
+          baySelect.value = cfg.defaultBay;
+          vehicleModelInput.placeholder = cfg.exampleModel;
+        }
+      }
+
+      document.querySelectorAll('input[name="vehiclePlatform"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+          syncPlatformDefaults(radio.value);
+          clearActivePreset();
+          calculateAndRender();
+        });
+      });
+
+      mileageRange.addEventListener('input', function () {
+        mileageInput.value = mileageRange.value;
+        clearActivePreset();
+        calculateAndRender();
+      });
+
+      mileageInput.addEventListener('input', function () {
+        var v = parseInt(mileageInput.value, 10);
+        if (Number.isNaN(v) === false) {
+          mileageRange.value = Math.min(260000, Math.max(5000, v));
+        }
+        clearActivePreset();
+        calculateAndRender();
+      });
+
+      Object.keys(SERVICE_CATALOG).forEach(function (key) {
+        var cb = document.getElementById(SERVICE_CATALOG[key].id);
+        if (cb) {
+          cb.addEventListener('change', function () {
+            clearActivePreset();
+            calculateAndRender();
+          });
+        }
+      });
+
+      function clearActivePreset() {
+        document.querySelectorAll('.preset-btn').forEach(function (b) {
+          b.classList.remove('is-active');
+        });
+      }
+
+      document.querySelectorAll('.preset-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var preset = PRESETS[btn.getAttribute('data-preset')];
+          if (preset) {
+            clearActivePreset();
+            btn.classList.add('is-active');
+
+            var targetRadio = document.getElementById('platform-' + preset.platform);
+            if (targetRadio) {
+              targetRadio.checked = true;
+              syncPlatformDefaults(preset.platform);
+            }
+            mileageInput.value = preset.mileage;
+            mileageRange.value = preset.mileage;
+
+            Object.keys(SERVICE_CATALOG).forEach(function (key) {
+              var cb = document.getElementById(SERVICE_CATALOG[key].id);
+              if (cb) {
+                cb.checked = preset.services.indexOf(key) >= 0;
+              }
+            });
+
+            if (vehicleModelInput.value.trim() === '') {
+              vehicleModelInput.value = preset.vehiclePlaceholder;
+            }
+            calculateAndRender();
+          }
+        });
+      });
+
+      // DVI Tabs interaction
+      var dviHeading = document.getElementById('dvi-heading');
+      var dviStatus = document.getElementById('dvi-status');
+      var dviFinding = document.getElementById('dvi-finding');
+      var dviK1Label = document.getElementById('dvi-k1-label');
+      var dviK1Val = document.getElementById('dvi-k1-val');
+      var dviK2Label = document.getElementById('dvi-k2-label');
+      var dviK2Val = document.getElementById('dvi-k2-val');
+      var dviK3Label = document.getElementById('dvi-k3-label');
+      var dviK3Val = document.getElementById('dvi-k3-val');
+      var dviK4Label = document.getElementById('dvi-k4-label');
+      var dviK4Val = document.getElementById('dvi-k4-val');
+
+      document.querySelectorAll('.dvi-tab-btn').forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var sample = DVI_SAMPLES[tab.getAttribute('data-dvi')];
+          if (sample) {
+            document.querySelectorAll('.dvi-tab-btn').forEach(function (t) {
+              t.classList.remove('is-active');
+            });
+            tab.classList.add('is-active');
+            dviHeading.textContent = sample.heading;
+            dviStatus.textContent = sample.status;
+            dviStatus.style.color = sample.statusColor;
+            dviFinding.textContent = sample.finding;
+            dviK1Label.textContent = sample.k1Label;
+            dviK1Val.textContent = sample.k1Val;
+            dviK2Label.textContent = sample.k2Label;
+            dviK2Val.textContent = sample.k2Val;
+            dviK3Label.textContent = sample.k3Label;
+            dviK3Val.textContent = sample.k3Val;
+            dviK4Label.textContent = sample.k4Label;
+            dviK4Val.textContent = sample.k4Val;
+          }
+        });
+      });
+
+      // Magnolia Bay Booking submission
+      bookingForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var name = document.getElementById('driver-name').value.trim();
+        var phone = document.getElementById('driver-phone').value.trim();
+        var email = document.getElementById('driver-email').value.trim();
+        var vehicle = vehicleModelInput.value.trim();
+        var dropoff = document.getElementById('dropoff-slot').value;
+        var bay = baySelect.value;
+
+        if (name === '' || phone === '' || email === '' || vehicle === '') {
+          bookingConfirmation.classList.add('is-visible');
+          bookingConfirmation.style.background = 'var(--warn-soft)';
+          bookingConfirmation.style.borderColor = 'rgba(154, 91, 19, 0.35)';
+          confirmRefId.textContent = 'INPUT NEEDED';
+          confirmSummary.textContent = 'Please complete your Name, Phone, Email, and Vehicle Make/Model so our Magnolia service advisors can attach your USD estimate.';
+          return;
+        }
+
+        var snapshot = calculateAndRender();
+        var serviceSummaryText = snapshot.selectedTitles.length > 0
+          ? snapshot.selectedTitles.join(', ')
+          : 'General Diagnostic Consultation';
+
+        var refCode = '34ST-' + String(Math.floor(1000 + Math.random() * 8999));
+        bookingConfirmation.style.background = 'var(--ok-soft)';
+        bookingConfirmation.style.borderColor = 'rgba(19, 109, 78, 0.35)';
+        confirmRefId.textContent = refCode;
+        confirmSummary.textContent =
+          'Thank you, ' + name + '. Bay request logged for ' + vehicle + ' (' + snapshot.platformLabel + ', ' + snapshot.miles + ') under ' + bay +
+          ' for ' + dropoff + '. Services: ' + serviceSummaryText + '. Estimated Total with WA Tax: ' + snapshot.grandTotal +
+          '. Photo DVI instructions will be sent to ' + email + '.';
+        bookingConfirmation.classList.add('is-visible');
+      });
+
+      // Mobile navigation toggle
+      var navToggle = document.getElementById('nav-toggle');
+      var primaryNav = document.getElementById('primary-nav');
+      if (navToggle && primaryNav) {
+        navToggle.addEventListener('click', function () {
+          var isOpen = primaryNav.classList.toggle('is-open');
+          navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+        primaryNav.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            primaryNav.classList.remove('is-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      // Initialize UI calculation
+      calculateAndRender();
+    })();
+  </script>
+</body>
+</html>
