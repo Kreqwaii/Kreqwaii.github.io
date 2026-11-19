@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ветеринарный центр ЗООВЕТ в Москве — круглосуточный стационар, хирургия, лабораторная диагностика, стоматология и онлайн-калькулятор стоимости приёма.">
+  <title>ВЦ ЗООВЕТ — Ветеринарный центр в Москве | Калькулятор приёма</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23154D3B'/%3E%3Cpath d='M28 16h8v12h12v8H36v12h-8V36H16v-8h12V16z' fill='%23FAF8F4'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-ivory: #FAF8F4;
+      --bg-surface: #FFFFFF;
+      --bg-warm: #F2EDE3;
+      --bg-emerald: #154D3B;
+      --bg-emerald-dark: #0E382B;
+      --bg-emerald-soft: #E8F1ED;
+      --accent-amber: #C87A19;
+      --accent-amber-soft: #F9EEDB;
+      --text-main: #18231E;
+      --text-muted: #52615B;
+      --border-soft: #E0D9CC;
+      --border-strong: #C9C0B0;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-card: 0 10px 30px rgba(21, 77, 59, 0.06);
+      --font-display: 'Manrope', sans-serif;
+      --font-body: 'Golos Text', sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-ivory);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(250, 248, 244, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background-color: var(--bg-emerald);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      color: var(--bg-emerald-dark);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .header-phone {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--bg-emerald);
+      text-decoration: none;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .header-phone:hover {
+      color: var(--accent-amber);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background-color: var(--bg-emerald);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--bg-emerald-dark);
+    }
+
+    .btn-amber {
+      background-color: var(--accent-amber);
+      color: #FFFFFF;
+    }
+
+    .btn-amber:hover {
+      background-color: #B06912;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border-color: var(--border-strong);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--bg-warm);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 46px 0 36px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 34px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      background-color: var(--bg-emerald-soft);
+      color: var(--bg-emerald-dark);
+    }
+
+    .badge-amber {
+      background-color: var(--accent-amber-soft);
+      color: #8C510A;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(26px, 3.4vw, 38px);
+      line-height: 1.16;
+      letter-spacing: -0.025em;
+      margin: 0 0 14px;
+      color: var(--bg-emerald-dark);
+    }
+
+    .hero-lead {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin: 0 0 24px;
+      max-width: 58ch;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .hero-panel {
+      background-color: var(--bg-emerald);
+      color: #FAF8F4;
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .panel-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 18px;
+      margin: 0 0 6px;
+    }
+
+    .panel-sub {
+      font-size: 14px;
+      color: rgba(250, 248, 244, 0.82);
+      margin: 0;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric-box {
+      background-color: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius-md);
+      padding: 14px;
+    }
+
+    .metric-val {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 22px;
+      font-variant-numeric: tabular-nums;
+      color: #FFFFFF;
+      margin-bottom: 2px;
+    }
+
+    .metric-label {
+      font-size: 12.5px;
+      color: rgba(250, 248, 244, 0.8);
+    }
+
+    /* Services */
+    .section {
+      padding: 28px 0 42px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(21px, 2.5vw, 28px);
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: var(--bg-emerald-dark);
+    }
+
+    .section-note {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--bg-emerald);
+      transform: translateY(-2px);
+    }
+
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: var(--bg-emerald-soft);
+      color: var(--bg-emerald);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 16px;
+      margin: 0;
+      color: var(--text-main);
+    }
+
+    .service-card p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* Calculator & Booking */
+    .calc-wrapper {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+
+    .calc-controls {
+      padding: 30px;
+      border-right: 1px solid var(--border-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .field-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text-main);
+    }
+
+    .segmented-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .segmented-row.two-col {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .seg-btn {
+      padding: 11px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-soft);
+      background-color: var(--bg-ivory);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 13.5px;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+      text-align: center;
+    }
+
+    .seg-btn:hover {
+      border-color: var(--bg-emerald);
+    }
+
+    .seg-btn.active {
+      background-color: var(--bg-emerald);
+      border-color: var(--bg-emerald);
+      color: #FFFFFF;
+    }
+
+    .range-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .range-input {
+      flex: 1;
+      accent-color: var(--bg-emerald);
+      cursor: pointer;
+    }
+
+    .weight-badge {
+      min-width: 74px;
+      text-align: center;
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-warm);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      font-variant-numeric: tabular-nums;
+      color: var(--bg-emerald-dark);
+    }
+
+    .select-input, .text-input {
+      width: 100%;
+      padding: 11px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: #FFFFFF;
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      color: var(--text-main);
+      transition: border-color 0.18s ease;
+    }
+
+    .select-input:focus, .text-input:focus {
+      outline: none;
+      border-color: var(--bg-emerald);
+    }
+
+    .calc-summary {
+      padding: 30px;
+      background-color: var(--bg-warm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .price-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .price-caption {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .price-value {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 32px;
+      color: var(--bg-emerald-dark);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.15;
+    }
+
+    .price-breakdown {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13.5px;
+    }
+
+    .breakdown-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--text-muted);
+    }
+
+    .breakdown-line span:last-child {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .checklist-box {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .checklist-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14.5px;
+      margin: 0 0 10px;
+      color: var(--bg-emerald-dark);
+    }
+
+    .checklist-items {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13.5px;
+      color: var(--text-main);
+    }
+
+    .checklist-items li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .check-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent-amber);
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .booking-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .memo-card {
+      display: none;
+      background-color: var(--bg-emerald-soft);
+      border: 1px solid var(--bg-emerald);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      font-size: 13.5px;
+      color: var(--bg-emerald-dark);
+    }
+
+    .memo-card.visible {
+      display: block;
+    }
+
+    .memo-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15px;
+      margin: 0 0 6px;
+    }
+
+    /* Footer & Contact */
+    .site-footer {
+      border-top: 1px solid var(--border-soft);
+      background-color: var(--bg-surface);
+      padding: 32px 0 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    .footer-block h4 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15px;
+      margin: 0 0 8px;
+      color: var(--bg-emerald-dark);
+    }
+
+    .footer-block p {
+      margin: 0 0 6px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+
+    .full-row-link {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .full-row-link a[href^="mailto:"],
+    .full-row-link a[href^="http"] {
+      display: inline-block;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 13px;
+      color: var(--bg-emerald);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .full-row-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero-grid,
+      .calc-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .calc-controls {
+        border-right: none;
+        border-bottom: 1px solid var(--border-soft);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-phone {
+        display: none;
+      }
+
+      .hero-copy,
+      .hero-panel,
+      .calc-controls,
+      .calc-summary {
+        padding: 20px;
+      }
+
+      .services-grid,
+      .form-row,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .segmented-row {
+        grid-template-columns: 1fr;
+      }
+
+      .full-row-link a[href^="mailto:"],
+      .full-row-link a[href^="http"] {
+        font-size: 12.5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 4H14V10H20V14H14V20H10V14H4V10H10V4Z" fill="#FAF8F4"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">ВЦ ЗООВЕТ</span>
+          <span class="brand-sub">Ветеринарный центр · Москва</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a href="tel:+74957759424" class="header-phone">+7 (495) 775-94-24</a>
+        <a href="#calculator" class="btn btn-primary">Рассчитать приём</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div>
+            <div class="badge-row">
+              <span class="badge">Круглосуточно 24/7</span>
+              <span class="badge badge-amber">Стационар и хирургия</span>
+            </div>
+            <h1>Доказательная ветеринария в Москве без лишнего стресса для питомца</h1>
+            <p class="hero-lead">
+              Ветеринарный центр ЗООВЕТ объединяет круглосуточный стационар, собственную лабораторию, операционный блок и профильных специалистов для собак, кошек и экзотических животных.
+            </p>
+          </div>
+          <div class="hero-cta">
+            <a href="#calculator" class="btn btn-amber">Открыть калькулятор приёма</a>
+            <a href="#services" class="btn btn-outline">Направления центра</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Ключевые показатели клиники">
+          <div>
+            <h2 class="panel-title">Оперативная помощь в любое время</h2>
+            <p class="panel-sub">Приём по предварительной записи и экстренная сортировка пациентов без ожидания в очереди.</p>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric-box">
+              <div class="metric-val">24/7</div>
+              <div class="metric-label">Работа стационара</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val">20 мин</div>
+              <div class="metric-label">Готовность экспресс-анализов</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val">4 блока</div>
+              <div class="metric-label">Терапия, УЗИ, хирургия, ОРИТ</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val">₽</div>
+              <div class="metric-label">Прозрачный предварительный расчёт</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Ключевые направления ВЦ ЗООВЕТ</h2>
+          <p class="section-note">Комплексная диагностика и лечение в одном здании</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 3v18M3 12h18"/>
+              </svg>
+            </div>
+            <h3>Круглосуточный стационар</h3>
+            <p>Интенсивная терапия, кислородные боксы, мониторинг жизненных показателей и индивидуальный уход.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <h3>Ветеринарная хирургия</h3>
+            <p>Плановые и экстренные операции, газовая анестезия и контроль состояния пациента после пробуждения.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 3h6v4l4 9a3 3 0 0 1-2.7 4.3H7.7A3 3 0 0 1 5 16l4-9V3z"/>
+              </svg>
+            </div>
+            <h3>Лабораторная диагностика</h3>
+            <p>Общий и биохимический анализ крови, ПЦР-исследования, цитология и экспресс-тесты на месте.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 4c2-1 4 0 5 2 1-2 3-3 5-2 2 1 3 4 2 8-1 3-2 7-4 7-1 0-2-2-3-2s-2 2-3 2c-2 0-3-4-4-7-1-4 0-7 2-8z"/>
+              </svg>
+            </div>
+            <h3>Стоматология для животных</h3>
+            <p>Ультразвуковая чистка, санация ротовой полости, дентальный рентген и бережное удаление зубов.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculator" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Калькулятор приёма и экспресс-запись</h2>
+          <p class="section-note">Выберите параметры питомца для расчёта ориентировочной стоимости и памятки</p>
+        </div>
+
+        <div class="calc-wrapper">
+          <div class="calc-grid">
+            <div class="calc-controls">
+              <div class="field-group">
+                <div class="field-label">1. Вид питомца</div>
+                <div class="segmented-row" role="group" aria-label="Вид питомца">
+                  <button type="button" class="seg-btn active" data-pet="dog">Собака</button>
+                  <button type="button" class="seg-btn" data-pet="cat">Кошка</button>
+                  <button type="button" class="seg-btn" data-pet="exotic">Экзотические</button>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <div class="field-label">2. Примерный вес питомца</div>
+                <div class="range-row">
+                  <input id="weightRange" class="range-input" type="range" min="1" max="60" value="12" autocomplete="off" aria-label="Вес питомца в килограммах">
+                  <div class="weight-badge" id="weightDisplay">12 кг</div>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <div class="field-label">3. Цель визита</div>
+                <select id="visitGoal" class="select-input" autocomplete="off" aria-label="Цель визита">
+                  <option value="therapy">Первичный терапевт</option>
+                  <option value="vaccine">Вакцинация</option>
+                  <option value="ultrasound">УЗИ и анализы</option>
+                  <option value="dental">Стоматология</option>
+                  <option value="hospital">Стационар (сутки наблюдения)</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <div class="field-label">4. Срочность обращения</div>
+                <div class="segmented-row two-col" role="group" aria-label="Срочность обращения">
+                  <button type="button" class="seg-btn active" data-urgency="planned">Плановый визит</button>
+                  <button type="button" class="seg-btn" data-urgency="urgent">Срочный круглосуточный</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="calc-summary">
+              <div class="price-card">
+                <div class="price-caption">Ориентировочная стоимость визита</div>
+                <div class="price-value" id="totalPrice">2 900 ₽</div>
+                <div class="price-breakdown">
+                  <div class="breakdown-line">
+                    <span>Базовый приём и профиль</span>
+                    <span id="baseCost">2 900 ₽</span>
+                  </div>
+                  <div class="breakdown-line">
+                    <span>Коэффициент веса и расходники</span>
+                    <span id="weightCost">0 ₽</span>
+                  </div>
+                  <div class="breakdown-line">
+                    <span>Срочность</span>
+                    <span id="urgencyCost">Планово</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="checklist-box">
+                <h3 class="checklist-title">Чек-лист подготовки к визиту</h3>
+                <ul class="checklist-items" id="checklistItems">
+                  <li><span class="check-dot"></span><span>Возьмите ветеринарный паспорт и результаты прошлых обследований.</span></li>
+                  <li><span class="check-dot"></span><span>Для собак рекомендуется поводок и намордник при волнении.</span></li>
+                  <li><span class="check-dot"></span><span>Запишите время последнего кормления и приёма препаратов.</span></li>
+                </ul>
+              </div>
+
+              <form class="booking-form" id="bookingForm">
+                <div class="form-row">
+                  <input type="text" id="ownerName" class="text-input" placeholder="Ваше имя" required autocomplete="name">
+                  <input type="tel" id="ownerPhone" class="text-input" placeholder="+7 (___) ___-__-__" required autocomplete="tel">
+                </div>
+                <button type="submit" class="btn btn-primary">Заказать обратный звонок</button>
+              </form>
+
+              <div class="memo-card" id="memoCard" role="status" aria-live="polite">
+                <div class="memo-title">Заявка принята — памятка пациента</div>
+                <div id="memoBody"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-block">
+        <h4>ВЦ ЗООВЕТ (Москва)</h4>
+        <p>Частная ветеринарная клиника полного цикла.</p>
+        <p>Телефон: +7 (495) 775-94-24 · Круглосуточно</p>
+      </div>
+      <div class="footer-block">
+        <h4>Запись и консультации</h4>
+        <p>Ежедневный приём терапевтов, хирургов, стоматологов и врачей УЗИ.</p>
+        <p>Расчёт в калькуляторе носит ориентировочный характер.</p>
+      </div>
+      <div class="full-row-link">
+        <a href="https://www.zoovet.ru" target="_blank" rel="noopener noreferrer">Официальный сайт: https://www.zoovet.ru</a>
+        <a href="mailto:admin@zoovet.ru">Электронная почта: admin@zoovet.ru</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        pet: 'dog',
+        weight: 12,
+        goal: 'therapy',
+        urgency: 'planned'
+      };
+
+      const basePrices = {
+        therapy: 2900,
+        vaccine: 2600,
+        ultrasound: 4800,
+        dental: 6900,
+        hospital: 8500
+      };
+
+      const petLabels = {
+        dog: 'Собака',
+        cat: 'Кошка',
+        exotic: 'Экзотический питомец'
+      };
+
+      const goalLabels = {
+        therapy: 'Первичный терапевт',
+        vaccine: 'Вакцинация',
+        ultrasound: 'УЗИ и анализы',
+        dental: 'Стоматология',
+        hospital: 'Стационар'
+      };
+
+      const checklists = {
+        therapy: [
+          'Возьмите ветеринарный паспорт и результаты прошлых обследований.',
+          'Запишите время последнего кормления и приёма препаратов.',
+          'При наличии симптомов ЖКТ можно принести свежий образец кала.'
+        ],
+        vaccine: [
+          'Питомец должен быть клинически здоров и обработан от гельминтов за 10–14 дней.',
+          'Обязательно возьмите ветеринарный паспорт для отметки о прививке.',
+          'После вакцинации планируйте 15–20 минут спокойного наблюдения в клинике.'
+        ],
+        ultrasound: [
+          'Голодная диета 8–10 часов (вода в свободном доступе).',
+          'Постарайтесь не выгуливать собаку непосредственно перед УЗИ мочевого пузыря.',
+          'Возьмите направление или список интересующих показателей крови.'
+        ],
+        dental: [
+          'Голодная диета 8 часов перед седацией, воду убрать за 2 часа.',
+          'Желателен свежий клинический и биохимический анализ крови.',
+          'Предупредите врача о перенесённых реакциях на анестезию.'
+        ],
+        hospital: [
+          'Возьмите привычный корм питомца на 1–2 дня и любимую подстилку.',
+          'Передайте врачу список всех принимаемых лекарств с дозировками.',
+          'Уточните удобное время для ежедневного звонка лечащего врача.'
+        ]
+      };
+
+      const weightRange = document.getElementById('weightRange');
+      const weightDisplay = document.getElementById('weightDisplay');
+      const visitGoal = document.getElementById('visitGoal');
+      const totalPriceEl = document.getElementById('totalPrice');
+      const baseCostEl = document.getElementById('baseCost');
+      const weightCostEl = document.getElementById('weightCost');
+      const urgencyCostEl = document.getElementById('urgencyCost');
+      const checklistItemsEl = document.getElementById('checklistItems');
+      const bookingForm = document.getElementById('bookingForm');
+      const memoCard = document.getElementById('memoCard');
+      const memoBody = document.getElementById('memoBody');
+
+      function formatRub(num) {
+        return num.toLocaleString('ru-RU') + ' ₽';
+      }
+
+      function render() {
+        const base = basePrices[state.goal] || 2900;
+        const petExtra = state.pet === 'exotic' ? 700 : 0;
+        const weightExtra = state.weight > 15 ? Math.round((state.weight - 15) * 45) : 0;
+        const urgencyExtra = state.urgency === 'urgent' ? 1400 : 0;
+        const total = base + petExtra + weightExtra + urgencyExtra;
+
+        weightDisplay.textContent = state.weight + ' кг';
+        baseCostEl.textContent = formatRub(base + petExtra);
+        weightCostEl.textContent = formatRub(weightExtra);
+        urgencyCostEl.textContent = state.urgency === 'urgent' ? '+1 400 ₽ (срочно)' : 'Планово';
+        totalPriceEl.textContent = formatRub(total);
+
+        const items = checklists[state.goal] || checklists.therapy;
+        checklistItemsEl.innerHTML = items
+          .map(function (text) {
+            return '<li><span class="check-dot"></span><span>' + text + '</span></li>';
+          })
+          .join('');
+      }
+
+      document.querySelectorAll('[data-pet]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('[data-pet]').forEach(function (b) {
+            b.classList.remove('active');
+          });
+          btn.classList.add('active');
+          state.pet = btn.getAttribute('data-pet');
+          render();
+        });
+      });
+
+      document.querySelectorAll('[data-urgency]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('[data-urgency]').forEach(function (b) {
+            b.classList.remove('active');
+          });
+          btn.classList.add('active');
+          state.urgency = btn.getAttribute('data-urgency');
+          render();
+        });
+      });
+
+      weightRange.addEventListener('input', function () {
+        state.weight = Number(weightRange.value);
+        render();
+      });
+
+      visitGoal.addEventListener('change', function () {
+        state.goal = visitGoal.value;
+        render();
+      });
+
+      bookingForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const name = document.getElementById('ownerName').value.trim();
+        const phone = document.getElementById('ownerPhone').value.trim();
+        if (!name || !phone) return;
+
+        const urgencyText = state.urgency === 'urgent' ? 'Срочный круглосуточный' : 'Плановый визит';
+        memoBody.textContent =
+          name + ', администратор ВЦ ЗООВЕТ перезвонит на номер ' + phone +
+          '. Параметры расчёта: ' + petLabels[state.pet] + ', ' + state.weight + ' кг, ' +
+          goalLabels[state.goal] + ' (' + urgencyText + '), ориентировочно ' + totalPriceEl.textContent + '.';
+        memoCard.classList.add('visible');
+        bookingForm.reset();
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>

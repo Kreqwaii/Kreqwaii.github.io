@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Austin Vet — Compassionate veterinary care in Austin, TX. Wellness exams, pet surgery, dental care, vaccinations, and interactive wellness schedule planner.">
+  <title>Austin Vet — Veterinary Clinic in Austin, TX</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231F5E5B'/%3E%3Cpath d='M16 7v18M7 16h18' stroke='%23F9F6F1' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-linen: #F9F6F1;
+      --bg-card: #FFFFFF;
+      --bg-warm: #F2EDE4;
+      --bg-teal-soft: #EBF3F2;
+      --ink-primary: #1C2424;
+      --ink-secondary: #4F5B5B;
+      --ink-muted: #707C7C;
+      --teal: #1F5E5B;
+      --teal-hover: #174946;
+      --cedar: #9B5B3A;
+      --cedar-soft: #F7EFEA;
+      --border-soft: #E3DDD3;
+      --border-strong: #CFC6B8;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-card: 0 8px 28px rgba(28, 36, 36, 0.05);
+      --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background-color: var(--bg-linen);
+      color: var(--ink-primary);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(249, 246, 241, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink-primary);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background-color: var(--teal);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-nav {
+      display: none;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .header-nav a {
+      text-decoration: none;
+      color: var(--ink-secondary);
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.18s ease;
+    }
+
+    .header-nav a:hover {
+      color: var(--teal);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .phone-pill {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background-color: var(--bg-warm);
+      color: var(--ink-primary);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: 999px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background-color: var(--teal);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--teal-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-card);
+      color: var(--ink-primary);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-warm);
+    }
+
+    @media (min-width: 860px) {
+      .header-nav {
+        display: flex;
+      }
+      .phone-pill {
+        display: inline-flex;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      padding: 48px 0 36px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    @media (min-width: 920px) {
+      .hero {
+        padding: 64px 0 48px;
+      }
+      .hero-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 44px;
+      }
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background-color: var(--bg-teal-soft);
+      color: var(--teal);
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4.4vw, 48px);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin: 0 0 16px;
+      color: var(--ink-primary);
+    }
+
+    .hero-lead {
+      font-size: 16.5px;
+      color: var(--ink-secondary);
+      margin: 0 0 24px;
+      max-width: 58ch;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .trust-item strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .trust-item span {
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    .hero-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero-card-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 6px;
+    }
+
+    .hero-card-sub {
+      font-size: 14px;
+      color: var(--ink-secondary);
+      margin: 0 0 18px;
+    }
+
+    .clinic-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .meta-box {
+      background-color: var(--bg-linen);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      min-width: 0;
+    }
+
+    .meta-box-full {
+      grid-column: 1 / -1;
+    }
+
+    .meta-label {
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .meta-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .safe-link {
+      display: inline-block;
+      color: var(--teal);
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 13px;
+    }
+
+    .safe-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .safe-link {
+        font-size: 12.5px;
+      }
+      .safe-link.long-link {
+        font-size: 11.5px;
+      }
+    }
+
+    /* Section Headings */
+    .section {
+      padding: 44px 0;
+    }
+
+    .section-head {
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 3vw, 34px);
+      font-weight: 700;
+      margin: 0 0 8px;
+      letter-spacing: -0.015em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--ink-secondary);
+      max-width: 64ch;
+      font-size: 15.5px;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: var(--bg-teal-soft);
+      color: var(--teal);
+      display: grid;
+      place-items: center;
+    }
+
+    .service-card h3 {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--ink-secondary);
+      flex: 1;
+    }
+
+    .service-tag {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--cedar);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Interactive Planner */
+    .planner-shell {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .planner-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 940px) {
+      .planner-grid {
+        grid-template-columns: 1.05fr 0.95fr;
+      }
+    }
+
+    .planner-controls {
+      padding: 26px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    @media (min-width: 940px) {
+      .planner-controls {
+        border-bottom: none;
+        border-right: 1px solid var(--border-soft);
+        padding: 32px;
+      }
+    }
+
+    .planner-results {
+      padding: 26px;
+      background-color: var(--bg-linen);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    @media (min-width: 940px) {
+      .planner-results {
+        padding: 32px;
+      }
+    }
+
+    .control-group {
+      margin-bottom: 20px;
+    }
+
+    .field-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill-btn {
+      padding: 9px 15px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-card);
+      color: var(--ink-secondary);
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .pill-btn[aria-pressed="true"] {
+      background-color: var(--teal);
+      border-color: var(--teal);
+      color: #FFFFFF;
+    }
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px;
+    }
+
+    .check-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-soft);
+      background-color: var(--bg-linen);
+      cursor: pointer;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--ink-primary);
+    }
+
+    .check-card input[type="checkbox"] {
+      accent-color: var(--teal);
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      flex-shrink: 0;
+    }
+
+    .estimate-banner {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .estimate-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+    }
+
+    .estimate-price {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--teal);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+    }
+
+    .timeline-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .timeline-item {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .timeline-item strong {
+      display: block;
+      font-size: 14px;
+      color: var(--ink-primary);
+    }
+
+    .timeline-item span {
+      font-size: 13px;
+      color: var(--ink-secondary);
+    }
+
+    .timeline-badge {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: var(--cedar-soft);
+      color: var(--cedar);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Booking Form */
+    .booking-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .booking-card h3 {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      margin: 0 0 14px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 600px) {
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-field-full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-secondary);
+    }
+
+    .form-field input,
+    .form-field select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-linen);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--ink-primary);
+    }
+
+    .form-field input:focus,
+    .form-field select:focus {
+      outline: 2px solid var(--teal);
+      outline-offset: 1px;
+    }
+
+    .summary-box {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-teal-soft);
+      border: 1px solid #C8DFDC;
+      font-size: 13.5px;
+      color: var(--ink-primary);
+      display: none;
+    }
+
+    .summary-box.is-visible {
+      display: block;
+    }
+
+    /* Footer */
+    .site-footer {
+      margin-top: 40px;
+      padding: 32px 0;
+      background-color: var(--bg-warm);
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+
+    .footer-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 6px;
+    }
+
+    .footer-copy {
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      margin: 0;
+    }
+
+    .footer-links-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Austin Vet</span>
+          <span class="brand-sub">Austin, TX Veterinary Clinic</span>
+        </span>
+      </a>
+
+      <nav class="header-nav" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#planner">Wellness Planner</a>
+        <a href="#contact">Clinic Info</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:+15122881040" class="phone-pill">(512) 288-1040</a>
+        <a href="#planner" class="btn btn-primary">Plan Visit</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Austin, Texas</span>
+          <h1>Calm, evidence-based care for dogs and cats.</h1>
+          <p class="hero-lead">
+            Austin Vet provides preventive wellness exams, soft-tissue pet surgery, dental care, and tailored Texas vaccination schedules in a warm, low-stress clinic environment.
+          </p>
+          <div class="hero-cta-row">
+            <a href="#planner" class="btn btn-primary">Open Wellness Planner</a>
+            <a href="#services" class="btn btn-secondary">Explore Services</a>
+          </div>
+          <div class="trust-strip">
+            <div class="trust-item">
+              <strong>Same-Week</strong>
+              <span>Wellness &amp; vaccine slots</span>
+            </div>
+            <div class="trust-item">
+              <strong>AAHA-Aligned</strong>
+              <span>Preventive protocols</span>
+            </div>
+            <div class="trust-item">
+              <strong>Upfront</strong>
+              <span>Transparent visit estimates</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Clinic overview">
+          <h2 class="hero-card-title">Austin Vet Clinic</h2>
+          <p class="hero-card-sub">Serving South &amp; Central Austin families with dedicated feline and canine exam rooms.</p>
+          <div class="clinic-meta-grid">
+            <div class="meta-box">
+              <div class="meta-label">Phone</div>
+              <div class="meta-value">(512) 288-1040</div>
+            </div>
+            <div class="meta-box">
+              <div class="meta-label">Location</div>
+              <div class="meta-value">Austin, TX</div>
+            </div>
+            <div class="meta-box meta-box-full">
+              <div class="meta-label">Email</div>
+              <a href="mailto:info@austinvet.net" class="safe-link">info@austinvet.net</a>
+            </div>
+            <div class="meta-box meta-box-full">
+              <div class="meta-label">Website</div>
+              <a href="https://www.austinvet.net" target="_blank" rel="noopener noreferrer" class="safe-link">https://www.austinvet.net</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Core Veterinary Services</h2>
+          <p>Focused clinical care designed around each stage of your pet's life, from puppy and kitten foundations to senior comfort.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-7-4.5-9-9.5C1.5 7.5 4.5 4 8.5 4c2.1 0 3.5 1.2 3.5 1.2S13.4 4 15.5 4C19.5 4 22.5 7.5 21 11.5c-2 5-9 9.5-9 9.5z"/>
+              </svg>
+            </div>
+            <h3>Wellness Exams</h3>
+            <p>Nose-to-tail physical assessments, baseline bloodwork, nutrition guidance, and early-detection screening.</p>
+            <span class="service-tag">From $68</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.5 4.5L19.5 9.5L8 21H3V16L14.5 4.5Z"/>
+              </svg>
+            </div>
+            <h3>Pet Surgery</h3>
+            <p>Spay and neuter procedures, mass removals, and soft-tissue surgery with continuous vital monitoring.</p>
+            <span class="service-tag">Custom surgical quote</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+              </svg>
+            </div>
+            <h3>Dental Care</h3>
+            <p>Ultrasonic scaling, polishing, digital dental radiographs, and gentle periodontal treatment under anesthesia.</p>
+            <span class="service-tag">From $265</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2l4 4M16 4l-9 9-3 7 7-3 9-9"/>
+              </svg>
+            </div>
+            <h3>Vaccinations</h3>
+            <p>Core and lifestyle immunizations calibrated for Central Texas risks including rabies, leptospirosis, and heartworm.</p>
+            <span class="service-tag">From $32 per vaccine</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="planner" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Pet Wellness &amp; Vaccination Schedule Planner</h2>
+          <p>Select your pet's profile and Austin lifestyle factors to generate a tailored preventive timeline and transparent visit fee estimate.</p>
+        </div>
+
+        <div class="planner-shell">
+          <div class="planner-grid">
+            <div class="planner-controls">
+              <div class="control-group">
+                <div class="field-label">Species</div>
+                <div class="pill-group" role="group" aria-label="Species">
+                  <button type="button" class="pill-btn" data-group="species" data-value="dog" aria-pressed="true">Dog</button>
+                  <button type="button" class="pill-btn" data-group="species" data-value="cat" aria-pressed="false">Cat</button>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <div class="field-label">Age Stage</div>
+                <div class="pill-group" role="group" aria-label="Age Stage">
+                  <button type="button" class="pill-btn" data-group="stage" data-value="young" aria-pressed="false">Puppy / Kitten</button>
+                  <button type="button" class="pill-btn" data-group="stage" data-value="adult" aria-pressed="true">Adult (1–7 yrs)</button>
+                  <button type="button" class="pill-btn" data-group="stage" data-value="senior" aria-pressed="false">Senior (8+ yrs)</button>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <div class="field-label">Weight Tier</div>
+                <div class="pill-group" role="group" aria-label="Weight Tier">
+                  <button type="button" class="pill-btn" data-group="weight" data-value="small" aria-pressed="false">Under 20 lbs</button>
+                  <button type="button" class="pill-btn" data-group="weight" data-value="medium" aria-pressed="true">20–55 lbs</button>
+                  <button type="button" class="pill-btn" data-group="weight" data-value="large" aria-pressed="false">Over 55 lbs</button>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <div class="field-label">Texas Lifestyle Factors</div>
+                <div class="check-grid">
+                  <label class="check-card">
+                    <input type="checkbox" id="lf-park" value="park" checked>
+                    <span>Dog park / trails</span>
+                  </label>
+                  <label class="check-card">
+                    <input type="checkbox" id="lf-boarding" value="boarding">
+                    <span>Boarding / daycare</span>
+                  </label>
+                  <label class="check-card">
+                    <input type="checkbox" id="lf-outdoor" value="outdoor" checked>
+                    <span>Outdoor / creek exposure</span>
+                  </label>
+                  <label class="check-card">
+                    <input type="checkbox" id="lf-dental" value="dental">
+                    <span>Include dental check</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="planner-results">
+              <div class="estimate-banner">
+                <div>
+                  <div class="estimate-label">Estimated Visit Total</div>
+                  <div class="estimate-price" id="estimate-total">$164</div>
+                </div>
+                <div style="text-align: right;">
+                  <div class="estimate-label">Recommended Cadence</div>
+                  <div style="font-size: 14px; font-weight: 700; color: var(--ink-primary);" id="cadence-label">Annual Wellness</div>
+                </div>
+              </div>
+
+              <div>
+                <div class="field-label">Recommended Timeline</div>
+                <div class="timeline-list" id="timeline-list"></div>
+              </div>
+
+              <div class="booking-card">
+                <h3>Request This Appointment</h3>
+                <form id="booking-form" class="form-grid">
+                  <div class="form-field">
+                    <label for="owner-name">Your Name</label>
+                    <input type="text" id="owner-name" name="ownerName" autocomplete="name" required placeholder="Jordan Taylor">
+                  </div>
+                  <div class="form-field">
+                    <label for="pet-name">Pet Name</label>
+                    <input type="text" id="pet-name" name="petName" autocomplete="off" required placeholder="Bowie">
+                  </div>
+                  <div class="form-field">
+                    <label for="owner-email">Email</label>
+                    <input type="email" id="owner-email" name="ownerEmail" autocomplete="email" required placeholder="you@example.com">
+                  </div>
+                  <div class="form-field">
+                    <label for="visit-window">Preferred Window</label>
+                    <select id="visit-window" name="visitWindow" autocomplete="off">
+                      <option value="Morning (8:00 AM - 12:00 PM)">Morning (8:00 AM - 12:00 PM)</option>
+                      <option value="Afternoon (12:00 PM - 4:30 PM)">Afternoon (12:00 PM - 4:30 PM)</option>
+                      <option value="Saturday Morning">Saturday Morning</option>
+                    </select>
+                  </div>
+                  <div class="form-field form-field-full">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Confirm Appointment Request</button>
+                  </div>
+                </form>
+                <div id="booking-summary" class="summary-box" role="status" aria-live="polite"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h2 class="footer-title">Austin Vet</h2>
+        <p class="footer-copy">Austin, TX, USA · Phone: (512) 288-1040</p>
+      </div>
+      <div class="footer-links-grid">
+        <a href="mailto:info@austinvet.net" class="safe-link">info@austinvet.net</a>
+        <a href="https://www.austinvet.net" target="_blank" rel="noopener noreferrer" class="safe-link">https://www.austinvet.net</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        species: 'dog',
+        stage: 'adult',
+        weight: 'medium',
+        park: true,
+        boarding: false,
+        outdoor: true,
+        dental: false
+      };
+
+      const timelineEl = document.getElementById('timeline-list');
+      const totalEl = document.getElementById('estimate-total');
+      const cadenceEl = document.getElementById('cadence-label');
+      const formEl = document.getElementById('booking-form');
+      const summaryEl = document.getElementById('booking-summary');
+
+      function computePlan() {
+        const items = [];
+        let total = 68; // Base Wellness Exam
+
+        items.push({
+          title: 'Comprehensive Wellness Exam',
+          detail: state.stage === 'senior' ? 'Includes senior mobility and organ screen' : 'Full physical exam and nutrition review',
+          timing: 'Today',
+          cost: 68
+        });
+
+        if (state.species === 'dog') {
+          items.push({
+            title: 'Rabies + DHPP Core',
+            detail: state.stage === 'young' ? 'Booster series every 3–4 weeks' : '1-year or 3-year booster',
+            timing: state.stage === 'young' ? 'Weeks 8–16' : 'Annual',
+            cost: 64
+          });
+          total += 64;
+
+          if (state.park || state.boarding) {
+            items.push({
+              title: 'Bordetella (Kennel Cough)',
+              detail: 'Required for Austin dog parks and boarding',
+              timing: 'Every 6–12 mos',
+              cost: 32
+            });
+            total += 32;
+          }
+
+          if (state.outdoor) {
+            items.push({
+              title: 'Leptospirosis & Heartworm Test',
+              detail: 'Recommended for Central Texas creeks and mosquitoes',
+              timing: 'Annual',
+              cost: 54
+            });
+            total += 54;
+          }
+        } else {
+          items.push({
+            title: 'Rabies + FVRCP Core',
+            detail: state.stage === 'young' ? 'Kitten booster series' : 'Core feline protection',
+            timing: state.stage === 'young' ? 'Weeks 8–16' : 'Annual',
+            cost: 60
+          });
+          total += 60;
+
+          if (state.outdoor) {
+            items.push({
+              title: 'FeLV (Feline Leukemia)',
+              detail: 'Recommended for outdoor or patio-roaming cats',
+              timing: 'Annual',
+              cost: 38
+            });
+            total += 38;
+          }
+        }
+
+        if (state.stage === 'senior') {
+          items.push({
+            title: 'Senior Blood Chemistry Panel',
+            detail: 'Kidney, liver, and thyroid baseline',
+            timing: 'Every 6 mos',
+            cost: 115
+          });
+          total += 115;
+        }
+
+        if (state.dental) {
+          const dentalFee = state.weight === 'large' ? 45 : 35;
+          items.push({
+            title: 'Dental Prophylaxis Assessment',
+            detail: 'Oral grading and ultrasonic cleaning estimate',
+            timing: 'This visit',
+            cost: dentalFee
+          });
+          total += dentalFee;
+        }
+
+        cadenceEl.textContent =
+          state.stage === 'young' ? 'Every 3–4 Weeks' :
+          state.stage === 'senior' ? 'Every 6 Months' : 'Annual Wellness';
+
+        totalEl.textContent = '$' + total;
+
+        timelineEl.innerHTML = items.map(function (item) {
+          return (
+            '<div class="timeline-item">' +
+              '<div><strong>' + item.title + '</strong><span>' + item.detail + '</span></div>' +
+              '<span class="timeline-badge">' + item.timing + ' · $' + item.cost + '</span>' +
+            '</div>'
+          );
+        }).join('');
+      }
+
+      document.querySelectorAll('.pill-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const group = btn.getAttribute('data-group');
+          const value = btn.getAttribute('data-value');
+          state[group] = value;
+
+          document.querySelectorAll('.pill-btn[data-group="' + group + '"]').forEach(function (sibling) {
+            sibling.setAttribute('aria-pressed', sibling === btn ? 'true' : 'false');
+          });
+          computePlan();
+        });
+      });
+
+      ['park', 'boarding', 'outdoor', 'dental'].forEach(function (key) {
+        const el = document.getElementById('lf-' + key);
+        if (el) {
+          el.addEventListener('change', function () {
+            state[key] = el.checked;
+            computePlan();
+          });
+        }
+      });
+
+      formEl.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const owner = document.getElementById('owner-name').value.trim();
+        const pet = document.getElementById('pet-name').value.trim();
+        const email = document.getElementById('owner-email').value.trim();
+        const win = document.getElementById('visit-window').value;
+
+        summaryEl.innerHTML =
+          '<strong>Request Logged for ' + pet + '</strong><br>' +
+          'Owner: ' + owner + ' (' + email + ')<br>' +
+          'Plan: ' + state.species.toUpperCase() + ' · ' + cadenceEl.textContent + ' · Estimated Total ' + totalEl.textContent + '<br>' +
+          'Preferred Window: ' + win + '. Our Austin Vet front desk will confirm by email.';
+        summaryEl.classList.add('is-visible');
+      });
+
+      computePlan();
+    })();
+  </script>
+</body>
+</html>
