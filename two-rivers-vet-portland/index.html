@@ -1,0 +1,3384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pet Wellness and Dental Care Cost Estimator for Two Rivers Veterinary Clinic in Portland, OR. Plan Wellness Care, Routine Surgery, Dental Care with digital X-rays, and Alternative Therapies.">
+  <title>Two Rivers Veterinary Clinic | Pet Wellness &amp; Dental Care Cost Estimator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64'%3E%3Crect width='64' height='64' rx='14' fill='%231D5447'/%3E%3Cpath d='M14 42c6-4 12-4 18 0s12 4 18 0' fill='none' stroke='%23F7F6F1' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M14 50c6-4 12-4 18 0s12 4 18 0' fill='none' stroke='%23B56035' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M32 12l10 16h-6l7 10H21l7-10h-6l10-16z' fill='%23F7F6F1'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-birch: #F7F6F1;
+      --bg-surface: #FFFFFF;
+      --bg-linen: #F1EFE8;
+      --bg-tint: #FAF9F5;
+      --border: #E2DFD5;
+      --border-strong: #CCC7B8;
+      --pine: #1D5447;
+      --pine-deep: #153E34;
+      --pine-soft: #EAF2EF;
+      --pine-border: #B9D1CA;
+      --cedar: #B56035;
+      --cedar-deep: #944C27;
+      --cedar-soft: #FBF1EC;
+      --cedar-border: #E7C7B7;
+      --ink: #182320;
+      --ink-body: #34413D;
+      --ink-muted: #5A6762;
+      --ink-subtle: #6E7B76;
+      --danger: #A63A2E;
+      --danger-soft: #FDF1EF;
+      --shadow-sm: 0 1px 2px rgba(24, 35, 32, 0.05);
+      --shadow-md: 0 8px 24px rgba(24, 35, 32, 0.06);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg-birch);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      color: var(--ink);
+      margin: 0;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: var(--pine);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--pine-deep);
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--pine);
+      outline-offset: 2px;
+    }
+
+    .tabular,
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Top Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(247, 246, 241, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: var(--pine);
+      color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-title {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-subtitle {
+      display: block;
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-nav {
+      display: none;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .header-nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-body);
+      white-space: nowrap;
+      transition: color 150ms ease;
+    }
+
+    .header-nav a:hover {
+      color: var(--pine);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1;
+      padding: 11px 16px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .btn-primary {
+      background-color: var(--pine);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--pine-deep);
+      color: #FFFFFF;
+    }
+
+    .btn-cedar {
+      background-color: var(--cedar);
+      color: #FFFFFF;
+    }
+
+    .btn-cedar:hover {
+      background-color: var(--cedar-deep);
+      color: #FFFFFF;
+    }
+
+    .btn-outline {
+      background-color: var(--bg-surface);
+      color: var(--ink);
+      border-color: var(--border-strong);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--bg-linen);
+      border-color: var(--pine);
+      color: var(--pine-deep);
+    }
+
+    .btn-ghost {
+      background-color: transparent;
+      color: var(--pine);
+      border-color: transparent;
+      padding: 8px 12px;
+    }
+
+    .btn-ghost:hover {
+      background-color: var(--pine-soft);
+      color: var(--pine-deep);
+    }
+
+    .header-phone-text {
+      display: none;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 36px 0 28px;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--bg-birch);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--pine);
+      background-color: var(--pine-soft);
+      border: 1px solid var(--pine-border);
+      border-radius: 999px;
+      padding: 5px 12px;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--cedar);
+      flex-shrink: 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.9rem, 3.6vw, 2.85rem);
+      line-height: 1.12;
+      max-width: 19ch;
+      margin-bottom: 14px;
+    }
+
+    .hero-lead {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink-body);
+      max-width: 62ch;
+      margin-bottom: 20px;
+    }
+
+    .preset-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .preset-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      margin-right: 4px;
+    }
+
+    .preset-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 13px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-body);
+      cursor: pointer;
+      transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+
+    .preset-chip:hover {
+      border-color: var(--pine);
+      color: var(--pine-deep);
+      background-color: var(--pine-soft);
+    }
+
+    .preset-chip.is-active {
+      background-color: var(--pine);
+      border-color: var(--pine);
+      color: #FFFFFF;
+    }
+
+    .hero-clinic-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-clinic-heading {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .hero-fact-list {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+      font-size: 13.5px;
+      color: var(--ink-body);
+    }
+
+    .hero-fact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      min-width: 0;
+    }
+
+    .hero-fact-icon {
+      color: var(--pine);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Main Estimator Layout */
+    .estimator-section {
+      padding: 32px 0 48px;
+    }
+
+    .estimator-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel + .panel {
+      margin-top: 20px;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step-kicker {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--cedar);
+      margin-bottom: 4px;
+    }
+
+    .step-title {
+      font-size: 21px;
+      line-height: 1.25;
+    }
+
+    .step-subtitle {
+      font-size: 13.5px;
+      color: var(--ink-muted);
+      margin-top: 4px;
+    }
+
+    /* Controls inside Step 1 */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .control-block {
+      min-width: 0;
+    }
+
+    .control-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .control-hint {
+      font-weight: 400;
+      color: var(--ink-muted);
+      margin-left: 4px;
+    }
+
+    .text-input,
+    .select-input,
+    .textarea-input {
+      width: 100%;
+      background-color: var(--bg-tint);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 14.5px;
+      color: var(--ink);
+      transition: border-color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    .text-input:focus,
+    .select-input:focus,
+    .textarea-input:focus {
+      outline: none;
+      background-color: var(--bg-surface);
+      border-color: var(--pine);
+      box-shadow: 0 0 0 3px rgba(29, 84, 71, 0.14);
+    }
+
+    .textarea-input {
+      resize: vertical;
+      min-height: 92px;
+      line-height: 1.5;
+    }
+
+    /* Segmented Cards */
+    .choice-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .choice-grid-3 {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .choice-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .choice-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      text-align: left;
+      background-color: var(--bg-tint);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 11px 13px;
+      cursor: pointer;
+      color: var(--ink);
+      transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    .choice-card:hover {
+      border-color: var(--pine-border);
+      background-color: var(--bg-surface);
+    }
+
+    .choice-card[aria-checked="true"] {
+      background-color: var(--pine-soft);
+      border-color: var(--pine);
+      box-shadow: inset 0 0 0 1px var(--pine);
+    }
+
+    .choice-card-stack {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
+    }
+
+    .choice-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--pine);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .choice-card[aria-checked="true"] .choice-icon {
+      background-color: var(--pine);
+      border-color: var(--pine);
+      color: #FFFFFF;
+    }
+
+    .choice-title {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+
+    .choice-meta {
+      display: block;
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.3;
+    }
+
+    /* Lifestyle Chips */
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .toggle-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background-color: var(--bg-tint);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-body);
+      cursor: pointer;
+      transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+
+    .toggle-pill:hover {
+      border-color: var(--cedar-border);
+      background-color: var(--cedar-soft);
+    }
+
+    .toggle-pill[aria-pressed="true"] {
+      background-color: var(--cedar-soft);
+      border-color: var(--cedar);
+      color: var(--cedar-deep);
+      font-weight: 600;
+    }
+
+    .toggle-pill-check {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border-strong);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    .toggle-pill[aria-pressed="true"] .toggle-pill-check {
+      background-color: var(--cedar);
+      border-color: var(--cedar);
+      color: #FFFFFF;
+    }
+
+    /* Step 2: Care Selection Tabs & Items */
+    .category-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .cat-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background-color: var(--bg-linen);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-body);
+      cursor: pointer;
+      transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+
+    .cat-tab:hover {
+      border-color: var(--pine-border);
+      color: var(--pine-deep);
+    }
+
+    .cat-tab[aria-selected="true"] {
+      background-color: var(--pine);
+      border-color: var(--pine);
+      color: #FFFFFF;
+    }
+
+    .cat-count {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 11.5px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background-color: rgba(24, 35, 32, 0.08);
+      color: inherit;
+    }
+
+    .cat-tab[aria-selected="true"] .cat-count {
+      background-color: rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+    }
+
+    .service-group + .service-group {
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .service-group.is-hidden {
+      display: none;
+    }
+
+    .service-group-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .service-group-title {
+      font-size: 17px;
+      color: var(--pine-deep);
+    }
+
+    .service-group-note {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+    }
+
+    .procedure-list {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .proc-card {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      width: 100%;
+      text-align: left;
+      background-color: var(--bg-tint);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 13px 15px;
+      cursor: pointer;
+      transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    .proc-card:hover {
+      background-color: var(--bg-surface);
+      border-color: var(--pine-border);
+    }
+
+    .proc-card[aria-checked="true"] {
+      background-color: var(--pine-soft);
+      border-color: var(--pine);
+      box-shadow: inset 0 0 0 1px var(--pine);
+    }
+
+    .proc-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .proc-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border-strong);
+      background-color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+      flex-shrink: 0;
+      color: #FFFFFF;
+      transition: background-color 150ms ease, border-color 150ms ease;
+    }
+
+    .proc-card[aria-checked="true"] .proc-check {
+      background-color: var(--pine);
+      border-color: var(--pine);
+    }
+
+    .proc-body {
+      min-width: 0;
+    }
+
+    .proc-title-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .proc-name {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .proc-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background-color: var(--cedar-soft);
+      color: var(--cedar-deep);
+      border: 1px solid var(--cedar-border);
+    }
+
+    .proc-badge--pine {
+      background-color: #FFFFFF;
+      color: var(--pine);
+      border-color: var(--pine-border);
+    }
+
+    .proc-desc {
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.45;
+      margin-top: 4px;
+    }
+
+    .proc-price-col {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .proc-price {
+      display: block;
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .proc-unit {
+      display: block;
+      font-size: 11.5px;
+      color: var(--ink-subtle);
+      margin-top: 2px;
+    }
+
+    /* Right Column: Summary & Annual Plan */
+    .summary-column {
+      min-width: 0;
+    }
+
+    .summary-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .summary-head {
+      background-color: var(--pine);
+      color: #FFFFFF;
+      padding: 20px 22px;
+    }
+
+    .summary-head-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .summary-kicker {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .reset-btn {
+      background-color: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 150ms ease;
+    }
+
+    .reset-btn:hover {
+      background-color: rgba(255, 255, 255, 0.24);
+    }
+
+    .summary-patient-line {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      color: #FFFFFF;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+
+    .summary-meta-line {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .summary-tabs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      background-color: var(--bg-linen);
+      border-bottom: 1px solid var(--border);
+      padding: 5px;
+      gap: 5px;
+    }
+
+    .summary-tab {
+      background-color: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      padding: 9px 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      cursor: pointer;
+      transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+    }
+
+    .summary-tab[aria-selected="true"] {
+      background-color: var(--bg-surface);
+      border-color: var(--border);
+      color: var(--pine-deep);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .summary-body {
+      padding: 20px 22px;
+    }
+
+    .summary-view.is-hidden {
+      display: none;
+    }
+
+    /* Itemized Breakdown */
+    .estimate-empty {
+      padding: 24px 16px;
+      text-align: center;
+      background-color: var(--bg-tint);
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius-md);
+      color: var(--ink-muted);
+      font-size: 14px;
+    }
+
+    .line-items {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .line-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .line-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .line-item-info {
+      min-width: 0;
+    }
+
+    .line-item-cat {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-subtle);
+    }
+
+    .line-item-name {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    .line-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .line-item-price {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .line-item-credit {
+      color: var(--pine);
+    }
+
+    .remove-item-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background-color: var(--bg-tint);
+      color: var(--ink-muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+    }
+
+    .remove-item-btn:hover {
+      background-color: var(--danger-soft);
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    .clinical-alert {
+      background-color: var(--cedar-soft);
+      border: 1px solid var(--cedar-border);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: var(--ink-body);
+    }
+
+    .clinical-alert strong {
+      display: block;
+      color: var(--cedar-deep);
+      margin-bottom: 4px;
+      font-size: 13.5px;
+    }
+
+    .clinical-alert-btn {
+      margin-top: 8px;
+      background-color: #FFFFFF;
+      border: 1px solid var(--cedar);
+      color: var(--cedar-deep);
+      border-radius: 6px;
+      padding: 6px 11px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 150ms ease;
+    }
+
+    .clinical-alert-btn:hover {
+      background-color: var(--cedar);
+      color: #FFFFFF;
+    }
+
+    .totals-box {
+      background-color: var(--bg-tint);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 15px 16px;
+      margin-bottom: 16px;
+    }
+
+    .total-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13.5px;
+      color: var(--ink-body);
+    }
+
+    .total-row + .total-row {
+      margin-top: 7px;
+    }
+
+    .total-row--main {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-strong);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .total-main-figure {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--pine-deep);
+    }
+
+    .range-note {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 8px;
+      line-height: 1.45;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .credits-detail {
+      font-size: 11.5px;
+      color: var(--pine-deep);
+      margin-top: 4px;
+      line-height: 1.4;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Annual Preventive Plan Tab */
+    .annual-hero {
+      background-color: var(--pine-soft);
+      border: 1px solid var(--pine-border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      margin-bottom: 16px;
+    }
+
+    .annual-hero-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .annual-hero-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--pine-deep);
+    }
+
+    .annual-hero-value {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--pine-deep);
+    }
+
+    .annual-hero-sub {
+      font-size: 12.5px;
+      color: var(--ink-body);
+      margin-top: 5px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timeline-list {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .timeline-item {
+      background-color: var(--bg-tint);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+    }
+
+    .timeline-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .timeline-quarter {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--cedar-deep);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .timeline-est {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .timeline-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .timeline-desc {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      line-height: 1.45;
+    }
+
+    .summary-cta-stack {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 9px;
+    }
+
+    .summary-secondary-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+    }
+
+    .copy-feedback {
+      font-size: 12.5px;
+      color: var(--pine-deep);
+      text-align: center;
+      min-height: 18px;
+      font-weight: 500;
+    }
+
+    /* Core Services Overview Section */
+    .services-section {
+      padding: 48px 0;
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-head {
+      max-width: 680px;
+      margin-bottom: 28px;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cedar);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .section-head p {
+      font-size: 15px;
+      color: var(--ink-body);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .service-card {
+      background-color: var(--bg-birch);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .service-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: var(--pine-soft);
+      border: 1px solid var(--pine-border);
+      color: var(--pine);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .service-card h3 {
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      font-size: 14px;
+      color: var(--ink-body);
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+
+    .service-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    .service-bullets li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .service-bullet-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--cedar);
+      flex-shrink: 0;
+    }
+
+    /* Appointment Request & Clinic Contact Section */
+    .booking-section {
+      padding: 48px 0 56px;
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .field-error {
+      font-size: 12.5px;
+      color: var(--danger);
+      margin-top: 5px;
+      min-height: 16px;
+    }
+
+    .prefill-box {
+      background-color: var(--bg-linen);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .prefill-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .prefill-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--pine-deep);
+    }
+
+    .prefill-total {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .prefill-summary-text {
+      font-size: 13px;
+      color: var(--ink-body);
+      line-height: 1.5;
+      white-space: pre-line;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .confirmation-panel {
+      background-color: var(--pine-soft);
+      border: 1px solid var(--pine);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-top: 16px;
+    }
+
+    .confirmation-panel.is-hidden {
+      display: none;
+    }
+
+    .confirmation-ref {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 12.5px;
+      font-weight: 600;
+      background-color: #FFFFFF;
+      border: 1px solid var(--pine-border);
+      color: var(--pine-deep);
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .confirmation-panel h3 {
+      font-size: 20px;
+      color: var(--pine-deep);
+      margin-bottom: 8px;
+    }
+
+    .confirmation-panel p {
+      font-size: 14px;
+      color: var(--ink-body);
+      margin-bottom: 12px;
+    }
+
+    /* Clinic Info Card & Full-Width Mailto/Website Rows */
+    .clinic-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .clinic-card h3 {
+      font-size: 21px;
+      margin-bottom: 6px;
+    }
+
+    .clinic-card-lead {
+      font-size: 14px;
+      color: var(--ink-muted);
+      margin-bottom: 18px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .contact-item {
+      background-color: var(--bg-tint);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 13px 15px;
+      min-width: 0;
+    }
+
+    .contact-item--full {
+      grid-column: 1 / -1;
+    }
+
+    .contact-label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-subtle);
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.45;
+    }
+
+    .contact-link-nowrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--pine);
+      white-space: nowrap;
+      word-break: normal;
+      text-decoration: underline;
+      text-decoration-color: var(--pine-border);
+      text-underline-offset: 3px;
+    }
+
+    .contact-link-nowrap:hover {
+      color: var(--pine-deep);
+      text-decoration-color: var(--pine-deep);
+    }
+
+    .hours-box {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hours-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .hours-list {
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--ink-body);
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: #162420;
+      color: #E7EBE9;
+      padding: 36px 0 28px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 600;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+
+    .footer-note {
+      font-size: 13.5px;
+      color: rgba(231, 235, 233, 0.78);
+      max-width: 48ch;
+      line-height: 1.55;
+    }
+
+    .footer-contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 18px;
+    }
+
+    .footer-contact-item {
+      min-width: 0;
+    }
+
+    .footer-contact-item--full {
+      grid-column: 1 / -1;
+    }
+
+    .footer-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(231, 235, 233, 0.62);
+      margin-bottom: 3px;
+    }
+
+    .footer-link {
+      color: #FFFFFF;
+      font-size: 13.5px;
+      font-weight: 500;
+    }
+
+    .footer-link:hover {
+      color: #CBE2DA;
+    }
+
+    .footer-link-nowrap {
+      display: inline-block;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #FFFFFF;
+      white-space: nowrap;
+      word-break: normal;
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 255, 255, 0.35);
+      text-underline-offset: 3px;
+    }
+
+    .footer-link-nowrap:hover {
+      color: #CBE2DA;
+    }
+
+    .footer-bottom {
+      padding-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 12.5px;
+      color: rgba(231, 235, 233, 0.68);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 399px) {
+      .container {
+        padding: 0 14px;
+      }
+
+      .panel,
+      .clinic-card {
+        padding: 17px 15px;
+      }
+
+      .summary-head,
+      .summary-body {
+        padding: 16px 15px;
+      }
+
+      .header-actions {
+        gap: 6px;
+      }
+
+      .header-actions .btn {
+        padding: 9px 11px;
+        font-size: 13px;
+      }
+
+      .summary-secondary-actions .btn {
+        padding: 10px 8px;
+        font-size: 13px;
+      }
+    }
+
+    @media (min-width: 640px) {
+      .choice-grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .profile-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .profile-grid .control-block--full {
+        grid-column: 1 / -1;
+      }
+
+      .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .form-field--full {
+        grid-column: 1 / -1;
+      }
+
+      .contact-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .header-phone-text {
+        display: inline;
+      }
+    }
+
+    @media (min-width: 860px) {
+      .header-nav {
+        display: flex;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.9fr);
+        gap: 32px;
+      }
+
+      .choice-grid-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .estimator-layout {
+        grid-template-columns: minmax(0, 1.38fr) minmax(0, 1fr);
+        gap: 28px;
+      }
+
+      .summary-column {
+        position: sticky;
+        top: 90px;
+      }
+
+      .booking-grid {
+        grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+        gap: 28px;
+      }
+
+      .footer-grid {
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      }
+    }
+
+    @media (min-width: 1080px) {
+      .services-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    /* Print Stylesheet */
+    @media print {
+      body {
+        background-color: #FFFFFF;
+        color: #000000;
+      }
+
+      .site-header,
+      .preset-strip,
+      .category-tabs,
+      .summary-cta-stack,
+      .services-section,
+      #appointment-request,
+      .site-footer {
+        display: none;
+      }
+
+      .estimator-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-card {
+        box-shadow: none;
+        border: 1px solid #999999;
+      }
+
+      .summary-head {
+        background-color: #FFFFFF;
+        color: #000000;
+        border-bottom: 1px solid #999999;
+      }
+
+      .summary-patient-line,
+      .summary-meta-line,
+      .summary-kicker {
+        color: #000000;
+      }
+
+      .reset-btn {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="Two Rivers Veterinary Clinic home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3L17 11H13.5L18 17H6L10.5 11H7L12 3Z"></path>
+            <path d="M4 20.5C6.5 19 9.5 19 12 20.5C14.5 22 17.5 22 20 20.5"></path>
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <span class="brand-title">Two Rivers Veterinary Clinic</span>
+          <span class="brand-subtitle">3808 N Williams Ave, Portland, OR</span>
+        </span>
+      </a>
+
+      <nav class="header-nav" aria-label="Primary navigation">
+        <a href="#estimator">Care Estimator</a>
+        <a href="#core-services">Core Services</a>
+        <a href="#appointment-request">Appointment Request</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:+15032802000" class="btn btn-outline" aria-label="Call Two Rivers Veterinary Clinic at 503-280-2000">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          <span class="header-phone-text">503-280-2000</span>
+        </a>
+        <a href="#appointment-request" class="btn btn-primary">Book Visit</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>Portland, OR · Pet Wellness &amp; Dental Cost Estimator</span>
+          </div>
+          <h1>Plan clear veterinary care for your dog or cat.</h1>
+          <p class="hero-lead">
+            Build an itemized USD care estimate and 12-month preventive schedule tailored to your pet's species, life stage, and Pacific Northwest routine at Two Rivers Veterinary Clinic on N Williams Avenue.
+          </p>
+          <div class="preset-strip" role="group" aria-label="Quick care plan presets">
+            <span class="preset-label">Quick start presets:</span>
+            <button type="button" class="preset-chip is-active" data-preset="adult-dental">Adult Dog · Annual + Dental X-Rays</button>
+            <button type="button" class="preset-chip" data-preset="senior-cat">Senior Cat · Labs, Dental &amp; Laser</button>
+            <button type="button" class="preset-chip" data-preset="young-spay">Puppy / Kitten · Vaccines &amp; Spay</button>
+            <button type="button" class="preset-chip" data-preset="mobility">Senior Dog · Acupuncture &amp; Rehab</button>
+          </div>
+        </div>
+
+        <aside class="hero-clinic-card" aria-label="Clinic details">
+          <div class="hero-clinic-heading">Neighborhood Care in North Portland</div>
+          <div class="hero-fact-list">
+            <div class="hero-fact-item">
+              <svg class="hero-fact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>3808 N Williams Ave Suite 129, Portland, OR 97227</span>
+            </div>
+            <div class="hero-fact-item">
+              <svg class="hero-fact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 12l2 2 4-4"></path>
+                <circle cx="12" cy="12" r="9"></circle>
+              </svg>
+              <span>Wellness Care, Routine Surgery, Dental Care &amp; Alternative Therapies</span>
+            </div>
+            <div class="hero-fact-item">
+              <svg class="hero-fact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                <path d="M7 8h10M7 12h6M7 16h8"></path>
+              </svg>
+              <span>Full-mouth digital dental X-rays and monitored surgical protocols</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="estimator" class="estimator-section">
+      <div class="container estimator-layout">
+        <div class="builder-column">
+          <!-- Step 1: Pet Profile -->
+          <div class="panel">
+            <div class="step-header">
+              <div>
+                <span class="step-kicker">Step 01 · Patient Profile</span>
+                <h2 class="step-title">Pet Species, Life Stage &amp; Weight Band</h2>
+                <p class="step-subtitle">Dosing, anesthesia time, and screening panels adjust automatically to your pet.</p>
+              </div>
+            </div>
+
+            <div class="profile-grid">
+              <div class="control-block control-block--full">
+                <label class="control-label" for="pet-name">
+                  Pet Name
+                  <span class="control-hint">(optional, personalizes your estimate and booking request)</span>
+                </label>
+                <input type="text" id="pet-name" name="petName" class="text-input" autocomplete="off" placeholder="e.g., Maple, Cedar, or Bramble">
+              </div>
+
+              <div class="control-block">
+                <span id="species-group-label" class="control-label">Species</span>
+                <div class="choice-grid-2" role="radiogroup" aria-labelledby="species-group-label">
+                  <button type="button" class="choice-card" role="radio" aria-checked="true" data-species="dog">
+                    <span class="choice-icon" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"></path>
+                        <path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.855-1.45-2.239-2.5"></path>
+                        <path d="M8 14v.5"></path>
+                        <path d="M16 14v.5"></path>
+                        <path d="M11.25 16.25h1.5L12 17l-.75-.75Z"></path>
+                        <path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444a11.702 11.702 0 0 0-.493-3.309"></path>
+                      </svg>
+                    </span>
+                    <span>
+                      <span class="choice-title">Dog</span>
+                      <span class="choice-meta">Canine protocols</span>
+                    </span>
+                  </button>
+
+                  <button type="button" class="choice-card" role="radio" aria-checked="false" data-species="cat">
+                    <span class="choice-icon" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.89-6.42-.5-7 1.39-.58 4.72.23 6.5 2.23A9.04 9.04 0 0 1 12 5Z"></path>
+                        <path d="M8 14v.5"></path>
+                        <path d="M16 14v.5"></path>
+                        <path d="M11.25 16.25h1.5L12 17l-.75-.75Z"></path>
+                      </svg>
+                    </span>
+                    <span>
+                      <span class="choice-title">Cat</span>
+                      <span class="choice-meta">Feline protocols</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="control-block control-block--full">
+                <span id="stage-group-label" class="control-label">Life Stage</span>
+                <div class="choice-grid-3" role="radiogroup" aria-labelledby="stage-group-label">
+                  <button type="button" class="choice-card choice-card-stack" role="radio" aria-checked="false" data-stage="young">
+                    <span class="choice-title" id="stage-young-title">Puppy</span>
+                    <span class="choice-meta">Under 1 year · Growth &amp; core immunity</span>
+                  </button>
+                  <button type="button" class="choice-card choice-card-stack" role="radio" aria-checked="true" data-stage="adult">
+                    <span class="choice-title">Adult</span>
+                    <span class="choice-meta">1 to 6 years · Preventive &amp; dental upkeep</span>
+                  </button>
+                  <button type="button" class="choice-card choice-card-stack" role="radio" aria-checked="false" data-stage="senior">
+                    <span class="choice-title">Senior</span>
+                    <span class="choice-meta">7+ years · Organ screening &amp; comfort</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="control-block control-block--full">
+                <span id="weight-group-label" class="control-label">Weight Band</span>
+                <div id="weight-grid" class="choice-grid-4" role="radiogroup" aria-labelledby="weight-group-label">
+                  <!-- Populated dynamically for Dog vs Cat -->
+                </div>
+              </div>
+
+              <div class="control-block control-block--full">
+                <span id="lifestyle-group-label" class="control-label">Pacific Northwest Lifestyle Factors</span>
+                <div class="tag-group" role="group" aria-labelledby="lifestyle-group-label">
+                  <button type="button" class="toggle-pill" aria-pressed="true" data-lifestyle="trail">
+                    <span class="toggle-pill-check" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 6l3 3 5-5"></path>
+                      </svg>
+                    </span>
+                    <span>Portland Trails, Parks &amp; Daycare</span>
+                  </button>
+                  <button type="button" class="toggle-pill" aria-pressed="false" data-lifestyle="indoor">
+                    <span class="toggle-pill-check" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 6l3 3 5-5"></path>
+                      </svg>
+                    </span>
+                    <span>Mostly Indoor Household</span>
+                  </button>
+                  <button type="button" class="toggle-pill" aria-pressed="false" data-lifestyle="joints">
+                    <span class="toggle-pill-check" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 6l3 3 5-5"></path>
+                      </svg>
+                    </span>
+                    <span>Rainy-Season Stiffness or Arthritis</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Core Care Services -->
+          <div class="panel">
+            <div class="step-header">
+              <div>
+                <span class="step-kicker">Step 02 · Care Modules</span>
+                <h2 class="step-title">Select Services Across Our Four Core Areas</h2>
+                <p class="step-subtitle">Filter by specialty or browse all options together. Costs update in real time.</p>
+              </div>
+            </div>
+
+            <div class="category-tabs" role="tablist" aria-label="Service category filter">
+              <button type="button" class="cat-tab" role="tab" aria-selected="true" data-cat-filter="all">
+                <span>All Services</span>
+                <span class="cat-count tabular" id="count-all">0</span>
+              </button>
+              <button type="button" class="cat-tab" role="tab" aria-selected="false" data-cat-filter="wellness">
+                <span>Wellness Care</span>
+                <span class="cat-count tabular" id="count-wellness">0</span>
+              </button>
+              <button type="button" class="cat-tab" role="tab" aria-selected="false" data-cat-filter="surgery">
+                <span>Routine Surgery</span>
+                <span class="cat-count tabular" id="count-surgery">0</span>
+              </button>
+              <button type="button" class="cat-tab" role="tab" aria-selected="false" data-cat-filter="dental">
+                <span>Dental Care</span>
+                <span class="cat-count tabular" id="count-dental">0</span>
+              </button>
+              <button type="button" class="cat-tab" role="tab" aria-selected="false" data-cat-filter="alternative">
+                <span>Alternative Therapies</span>
+                <span class="cat-count tabular" id="count-alternative">0</span>
+              </button>
+            </div>
+
+            <div id="service-groups-container">
+              <!-- Populated and updated dynamically by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Sticky Summary Column -->
+        <aside class="summary-column" aria-label="Cost estimate and annual preventive plan">
+          <div class="summary-card">
+            <div class="summary-head">
+              <div class="summary-head-top">
+                <span class="summary-kicker">Itemized Estimate &amp; Plan</span>
+                <button type="button" class="reset-btn" id="reset-estimate-btn">Reset</button>
+              </div>
+              <div class="summary-patient-line" id="summary-patient-line">Adult Dog · Medium (25–55 lb)</div>
+              <div class="summary-meta-line" id="summary-meta-line">Portland Trails &amp; Parks · 4 services selected</div>
+            </div>
+
+            <div class="summary-tabs" role="tablist" aria-label="Summary view switcher">
+              <button type="button" class="summary-tab" role="tab" aria-selected="true" data-summary-tab="estimate">Visit Estimate</button>
+              <button type="button" class="summary-tab" role="tab" aria-selected="false" data-summary-tab="annual">Annual Preventive Plan</button>
+            </div>
+
+            <div class="summary-body">
+              <!-- View 1: Itemized Visit Estimate -->
+              <div id="view-estimate" class="summary-view">
+                <div id="clinical-guidance-slot"></div>
+                <div id="line-items-slot"></div>
+                <div class="totals-box" id="totals-box">
+                  <div class="total-row">
+                    <span>Selected Services Subtotal</span>
+                    <span class="mono" id="subtotal-figure">$0</span>
+                  </div>
+                  <div class="total-row" id="credits-row">
+                    <span>Combined Visit &amp; Anesthesia Pairing</span>
+                    <span class="mono line-item-credit" id="credits-figure">-$0</span>
+                  </div>
+                  <div class="credits-detail" id="credits-detail"></div>
+                  <div class="total-row total-row--main">
+                    <span>Estimated Visit Total</span>
+                    <span class="total-main-figure" id="total-figure">$0</span>
+                  </div>
+                  <p class="range-note" id="range-note">
+                    Transparent planning estimate in USD. Final clinical plan is confirmed after physical exam.
+                  </p>
+                </div>
+              </div>
+
+              <!-- View 2: Annual Preventive Care Plan -->
+              <div id="view-annual" class="summary-view is-hidden">
+                <div class="annual-hero">
+                  <div class="annual-hero-row">
+                    <span class="annual-hero-label">12-Month Preventive Projection</span>
+                    <span class="annual-hero-value" id="annual-total-figure">$0 / yr</span>
+                  </div>
+                  <div class="annual-hero-sub" id="annual-monthly-sub">
+                    Approx. $0 per month budgeted across four seasonal checkpoints.
+                  </div>
+                </div>
+                <div class="timeline-list" id="annual-timeline-slot"></div>
+                <p class="range-note">
+                  Seasonal cadence pairs Pacific Northwest vector timing with life-stage bloodwork and dental intervals.
+                </p>
+              </div>
+
+              <div class="summary-cta-stack">
+                <a href="#appointment-request" class="btn btn-cedar" id="jump-to-booking-btn">
+                  <span>Prefill Appointment Request</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+                <div class="summary-secondary-actions">
+                  <button type="button" class="btn btn-outline" id="copy-estimate-btn">Copy Summary</button>
+                  <button type="button" class="btn btn-outline" id="print-estimate-btn">Print Estimate</button>
+                </div>
+                <div class="copy-feedback" id="copy-feedback" aria-live="polite"></div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Core Services Reference Section -->
+    <section id="core-services" class="services-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Core Veterinary Services</span>
+          <h2>Thoughtful medicine across every stage of life.</h2>
+          <p>
+            From first puppy and kitten visits to senior dental health and integrative mobility support, every treatment plan at Two Rivers Veterinary Clinic prioritizes gentle handling and clear pricing.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <span class="service-card-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                </svg>
+              </span>
+              <h3>Wellness Care</h3>
+              <p>Comprehensive nose-to-tail exams, individualized vaccine timing, year-round parasite protection, and early organ screening.</p>
+              <ul class="service-bullets">
+                <li><span class="service-bullet-dot" aria-hidden="true"></span><span>Puppy, kitten, adult &amp; senior exams</span></li>
+                <li><span class="service-bullet-dot" aria-hidden="true"></span><span>PNW Leptospirosis &amp; vector coverage</span></li>
+                <li><span class="service-bullet-dot" aria-hidden="true"></span><span>Annual &amp; senior preventive blood panels</span></li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-outline" data-focus-cat="wellness">Explore Wellness Options</button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <span class="service-card-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  <path d="M9 12l2 2 4-4"></path>
+                </svg>
+              </span>
+              <h3>Routine Surgery</h3>
+              <p>Safe spay, neuter, and soft-tissue procedures supported by pre-anesthetic lab work, IV fluids, and multi-modal pain relief.</p>
+              <ul class="service-bullets">
+                <li><span class="service-bullet-dot" aria-hidden="true"></span><span>Individualized anesthesia monitoring</span></li>
+                <li><span class="service-bullet-dot" aria-hidden="true"></span><span>Heated recovery &amp; pain control</span></li>
+                <li><span class="service-bullet-dot" aria-hidden="true"></span><span>Spay, neuter &amp; dermal mass excision</span></li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-outline" data-focus-cat="surgery">Explore Surgery Options</button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <span class="service-card-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 4a4 4 0 0 1 5 1 4 4 0 0 1 5-1c2.5 0 4 2.2 3.5 5-.4 2.4-1.6 4.8-2.3 8.1-.3 1.4-1.3 2.9-2.4 2.9-1 0-1.5-1.2-2-3-.4-1.4-.9-2-1.8-2s-1.4.6-1.8 2c-.5 1.8-1 3-2 3-1.1 0-2.1-1.5-2.4-2.9C5.1 13.8 3.9 11.4 3.5 9 3 6.2 4.5 4 7 4Z"></path>
+                </svg>
+              </span>
+              <h3>Dental Care</h3>
+              <p>Ultrasonic scaling, subgingival cleaning, full-mouth digital dental X-rays, and gentle oral surgery when painful teeth are found.</p>
+              <ul class="service-bullets">
+                <li><span class="service-bullet-dot" aria-hidden="true"></span><span>Full-mouth digital dental radiography</span></li>
+                <li><span class="service-bullet-dot" aria-hidden="true"></span><span>Periodontal charting &amp; root evaluation</span></li>
+                <li><span class="service-bullet-dot" aria-hidden="true"></span><span>Regional nerve blocks for comfort</span></li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-outline" data-focus-cat="dental">Explore Dental Options</button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <span class="service-card-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3c4 4 6 7.5 6 11a6 6 0 1 1-12 0c0-3.5 2-7 6-11z"></path>
+                  <path d="M12 10v8"></path>
+                </svg>
+              </span>
+              <h3>Alternative Therapies</h3>
+              <p>Integrative care blending veterinary acupuncture, Class IV laser therapy, and targeted joint nutrition for smoother movement.</p>
+              <ul class="service-bullets">
+                <li><span class="service-bullet-dot" aria-hidden="true"></span><span>Fine-needle veterinary acupuncture</span></li>
+                <li><span class="service-bullet-dot" aria-hidden="true"></span><span>Class IV laser photobiomodulation</span></li>
+                <li><span class="service-bullet-dot" aria-hidden="true"></span><span>Arthritis &amp; post-surgical rehabilitation</span></li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-outline" data-focus-cat="alternative">Explore Alternative Care</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prefilled Appointment Request & Clinic Contact Section -->
+    <section id="appointment-request" class="booking-section">
+      <div class="container booking-grid">
+        <div class="panel">
+          <div class="step-header">
+            <div>
+              <span class="step-kicker">Appointment Request</span>
+              <h2 class="step-title">Send Your Care Plan to Two Rivers</h2>
+              <p class="step-subtitle">Your selected services and pet profile are automatically attached below for our care coordinators.</p>
+            </div>
+          </div>
+
+          <form id="booking-form" novalidate>
+            <div class="form-grid">
+              <div class="form-field form-field--full">
+                <div class="prefill-box">
+                  <div class="prefill-head">
+                    <span class="prefill-title">Attached Estimator Summary</span>
+                    <span class="prefill-total" id="booking-prefill-total">$0</span>
+                  </div>
+                  <div class="prefill-summary-text" id="booking-prefill-summary"></div>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label class="control-label" for="owner-name">Your Full Name</label>
+                <input type="text" id="owner-name" name="ownerName" class="text-input" autocomplete="name" placeholder="Jordan Miller" required>
+                <div class="field-error" id="err-owner-name" aria-live="polite"></div>
+              </div>
+
+              <div class="form-field">
+                <label class="control-label" for="owner-phone">Phone Number</label>
+                <input type="tel" id="owner-phone" name="ownerPhone" class="text-input" autocomplete="tel" placeholder="503-555-0148" required>
+                <div class="field-error" id="err-owner-phone" aria-live="polite"></div>
+              </div>
+
+              <div class="form-field">
+                <label class="control-label" for="owner-email">Email Address</label>
+                <input type="email" id="owner-email" name="ownerEmail" class="text-input" autocomplete="email" placeholder="you@example.com" required>
+                <div class="field-error" id="err-owner-email" aria-live="polite"></div>
+              </div>
+
+              <div class="form-field">
+                <label class="control-label" for="preferred-window">Preferred Visit Window</label>
+                <select id="preferred-window" name="preferredWindow" class="select-input" autocomplete="off">
+                  <option value="Weekday Morning (8:30 AM – 12:00 PM)">Weekday Morning (8:30 AM – 12:00 PM)</option>
+                  <option value="Weekday Midday (12:00 PM – 3:00 PM)">Weekday Midday (12:00 PM – 3:00 PM)</option>
+                  <option value="Weekday Afternoon (3:00 PM – 5:30 PM)">Weekday Afternoon (3:00 PM – 5:30 PM)</option>
+                  <option value="First Available Surgical / Dental Drop-Off">First Available Surgical / Dental Drop-Off</option>
+                </select>
+                <div class="field-error" aria-live="polite"></div>
+              </div>
+
+              <div class="form-field form-field--full">
+                <label class="control-label" for="visit-type">Primary Reason for Visit</label>
+                <select id="visit-type" name="visitType" class="select-input" autocomplete="off">
+                  <option value="Wellness Care &amp; Annual Preventive Exam">Wellness Care &amp; Annual Preventive Exam</option>
+                  <option value="Dental Care Evaluation &amp; Cleaning Estimate">Dental Care Evaluation &amp; Cleaning Estimate</option>
+                  <option value="Routine Surgery Consultation (Spay / Neuter / Mass)">Routine Surgery Consultation (Spay / Neuter / Mass)</option>
+                  <option value="Alternative Therapies (Acupuncture / Laser Rehab)">Alternative Therapies (Acupuncture / Laser Rehab)</option>
+                </select>
+              </div>
+
+              <div class="form-field form-field--full">
+                <label class="control-label" for="visit-notes">
+                  Notes for the Veterinary Team
+                  <span class="control-hint">(optional, e.g., dental sensitivity, anxiety cues, or prior records)</span>
+                </label>
+                <textarea id="visit-notes" name="visitNotes" class="textarea-input" autocomplete="off" placeholder="Share any symptoms, diet details, or scheduling notes."></textarea>
+              </div>
+
+              <div class="form-field form-field--full">
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 13px 18px; font-size: 15px;">
+                  Generate Prefilled Appointment Request
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div id="confirmation-panel" class="confirmation-panel is-hidden" aria-live="polite">
+            <span class="confirmation-ref tabular" id="confirm-ref">REQ-TRV-2026</span>
+            <h3>Appointment Request Ready</h3>
+            <p id="confirm-message"></p>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <button type="button" class="btn btn-primary" id="copy-request-btn">Copy Full Request Details</button>
+              <a href="tel:+15032802000" class="btn btn-outline">Call 503-280-2000</a>
+            </div>
+          </div>
+        </div>
+
+        <aside class="clinic-card" aria-label="Two Rivers Veterinary Clinic contact details">
+          <h3>Two Rivers Veterinary Clinic</h3>
+          <p class="clinic-card-lead">Located along the N Williams corridor in Portland, OR. Reach out by phone or email with prior vaccination records or dental questions.</p>
+
+          <div class="contact-grid">
+            <div class="contact-item">
+              <span class="contact-label">Clinic Address</span>
+              <div class="contact-value">3808 N Williams Ave Suite 129, Portland, OR 97227</div>
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-label">Phone</span>
+              <div class="contact-value">
+                <a href="tel:+15032802000" class="contact-link-nowrap">503-280-2000</a>
+              </div>
+            </div>
+
+            <div class="contact-item contact-item--full">
+              <span class="contact-label">Email</span>
+              <div class="contact-value">
+                <a href="mailto:info@tworiversvet.com" class="contact-link-nowrap">info@tworiversvet.com</a>
+              </div>
+            </div>
+
+            <div class="contact-item contact-item--full">
+              <span class="contact-label">Clinic Website</span>
+              <div class="contact-value">
+                <a href="https://www.tworiversvet.com/" target="_blank" rel="noopener noreferrer" class="contact-link-nowrap">www.tworiversvet.com</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="hours-box">
+            <div class="hours-title">Estimate &amp; Scheduling Notes</div>
+            <div class="hours-list">
+              <div class="hours-row">
+                <span>Wellness &amp; Integrative Visits</span>
+                <span class="mono">30–45 min</span>
+              </div>
+              <div class="hours-row">
+                <span>Dental &amp; Routine Surgery Drop-Off</span>
+                <span class="mono">8:00 AM – 9:00 AM</span>
+              </div>
+              <div class="hours-row">
+                <span>Pre-Anesthetic Lab Review</span>
+                <span class="mono">Same-Day In-House</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Two Rivers Veterinary Clinic</div>
+          <p class="footer-note">
+            Providing Wellness Care, Routine Surgery, Dental Care, and Alternative Therapies for dogs and cats at 3808 N Williams Ave Suite 129, Portland, OR 97227. Estimates shown on this interactive planner are educational guidelines in USD; final treatment plans are confirmed following an in-clinic physical exam.
+          </p>
+        </div>
+
+        <div class="footer-contact-grid">
+          <div class="footer-contact-item">
+            <span class="footer-label">Phone</span>
+            <a href="tel:+15032802000" class="footer-link tabular">503-280-2000</a>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-label">City</span>
+            <span class="footer-link">Portland, OR</span>
+          </div>
+          <div class="footer-contact-item footer-contact-item--full">
+            <span class="footer-label">Email</span>
+            <a href="mailto:info@tworiversvet.com" class="footer-link-nowrap">info@tworiversvet.com</a>
+          </div>
+          <div class="footer-contact-item footer-contact-item--full">
+            <span class="footer-label">Website</span>
+            <a href="https://www.tworiversvet.com/" target="_blank" rel="noopener noreferrer" class="footer-link-nowrap">www.tworiversvet.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>Two Rivers Veterinary Clinic · 3808 N Williams Ave Suite 129, Portland, OR 97227</span>
+        <span>Interactive Pet Wellness &amp; Dental Care Cost Estimator</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var WEIGHT_BANDS = {
+        dog: [
+          { id: 's', label: 'Small', range: 'Under 25 lb' },
+          { id: 'm', label: 'Medium', range: '25–55 lb' },
+          { id: 'l', label: 'Large', range: '56–90 lb' },
+          { id: 'xl', label: 'Giant', range: 'Over 90 lb' }
+        ],
+        cat: [
+          { id: 's', label: 'Petite', range: 'Under 8 lb' },
+          { id: 'm', label: 'Standard', range: '8–13 lb' },
+          { id: 'l', label: 'Large Breed', range: 'Over 13 lb' }
+        ]
+      };
+
+      var STAGE_LABELS = {
+        dog: { young: 'Puppy', adult: 'Adult Dog', senior: 'Senior Dog' },
+        cat: { young: 'Kitten', adult: 'Adult Cat', senior: 'Senior Cat' }
+      };
+
+      var CATEGORY_META = {
+        wellness: {
+          title: 'Wellness Care',
+          note: 'Exams, vaccines, parasite defense, and preventive diagnostics'
+        },
+        surgery: {
+          title: 'Routine Surgery',
+          note: 'Anesthesia monitoring, IV fluids, and multi-modal pain relief'
+        },
+        dental: {
+          title: 'Dental Care',
+          note: 'Ultrasonic COHAT cleaning, digital dental X-rays, and extractions'
+        },
+        alternative: {
+          title: 'Alternative Therapies',
+          note: 'Acupuncture, Class IV laser therapy, and mobility support'
+        }
+      };
+
+      var PROCEDURES = [
+        // Wellness Care
+        {
+          id: 'wellness-exam',
+          category: 'wellness',
+          name: 'Comprehensive Nose-to-Tail Wellness Exam',
+          badge: 'Foundation',
+          badgeTone: 'pine',
+          description: 'Full physical exam, heart and lung auscultation, oral evaluation, weight score, and tailored preventive review.',
+          unitLabel: 'per visit',
+          price: function () { return 85; }
+        },
+        {
+          id: 'core-vaccines',
+          category: 'wellness',
+          name: 'Core Vaccine Booster Panel',
+          badge: '',
+          badgeTone: 'pine',
+          description: 'Rabies plus DHPP for dogs or FVRCP for cats, timed to AAHA and AAFP immunization intervals.',
+          unitLabel: 'panel',
+          price: function (st) { return st.species === 'dog' ? 78 : 68; }
+        },
+        {
+          id: 'pnw-vaccines',
+          category: 'wellness',
+          name: 'PNW Trail & Social Vaccine Add-On',
+          badge: 'Portland Outdoor',
+          badgeTone: 'cedar',
+          description: 'Leptospirosis and Bordetella for dogs exploring trails or daycare; FeLV protection for social or outdoor cats.',
+          unitLabel: 'add-on',
+          price: function (st) { return st.species === 'dog' ? 72 : 48; }
+        },
+        {
+          id: 'preventive-labs',
+          category: 'wellness',
+          name: 'Preventive Bloodwork & Parasite Screening',
+          badge: 'Age-Adjusted',
+          badgeTone: 'pine',
+          description: 'CBC, organ chemistry, fecal parasite screen, and heartworm/tick or feline viral screen (adds thyroid & urinalysis for seniors).',
+          unitLabel: 'diagnostic panel',
+          price: function (st) {
+            if (st.stage === 'young') return 115;
+            if (st.stage === 'senior') return 245;
+            return 175;
+          }
+        },
+        {
+          id: 'parasite-rx',
+          category: 'wellness',
+          name: '6-Month Flea, Tick & Heartworm Prevention',
+          badge: '',
+          badgeTone: 'pine',
+          description: 'Year-round Pacific Northwest vector coverage dosed cleanly for your pet weight band.',
+          unitLabel: '6-month supply',
+          price: function (st) {
+            var dogPrices = { s: 144, m: 168, l: 192, xl: 216 };
+            var catPrices = { s: 132, m: 144, l: 158 };
+            return st.species === 'dog' ? (dogPrices[st.weight] || 168) : (catPrices[st.weight] || 144);
+          }
+        },
+
+        // Routine Surgery
+        {
+          id: 'spay',
+          category: 'surgery',
+          name: 'Routine Spay (Ovariohysterectomy)',
+          badge: 'Weight-Scaled',
+          badgeTone: 'pine',
+          exclusiveWith: 'neuter',
+          anesthesia: true,
+          description: 'Includes pre-op safety check, IV catheter and warmed fluids, continuous technician monitoring, pain control, and recovery care.',
+          unitLabel: 'surgical package',
+          price: function (st) {
+            var dogPrices = { s: 460, m: 545, l: 645, xl: 740 };
+            var catPrices = { s: 385, m: 410, l: 445 };
+            return st.species === 'dog' ? (dogPrices[st.weight] || 545) : (catPrices[st.weight] || 410);
+          }
+        },
+        {
+          id: 'neuter',
+          category: 'surgery',
+          name: 'Routine Neuter (Orchiectomy)',
+          badge: 'Weight-Scaled',
+          badgeTone: 'pine',
+          exclusiveWith: 'spay',
+          anesthesia: true,
+          description: 'Monitored general anesthesia, IV fluid support, regional and take-home analgesia, and protective e-collar.',
+          unitLabel: 'surgical package',
+          price: function (st) {
+            var dogPrices = { s: 375, m: 445, l: 525, xl: 610 };
+            var catPrices = { s: 265, m: 285, l: 315 };
+            return st.species === 'dog' ? (dogPrices[st.weight] || 445) : (catPrices[st.weight] || 285);
+          }
+        },
+        {
+          id: 'mass-removal',
+          category: 'surgery',
+          name: 'Minor Dermal Mass or Lipoma Removal',
+          badge: 'Includes Biopsy',
+          badgeTone: 'cedar',
+          anesthesia: true,
+          variableNote: true,
+          description: 'Sterile excision of a single uncomplicated skin growth with absorbable closure and histopathology lab review.',
+          unitLabel: 'estimated package',
+          price: function (st) {
+            var dogPrices = { s: 485, m: 540, l: 615, xl: 690 };
+            var catPrices = { s: 465, m: 495, l: 535 };
+            return st.species === 'dog' ? (dogPrices[st.weight] || 540) : (catPrices[st.weight] || 495);
+          }
+        },
+        {
+          id: 'microchip',
+          category: 'surgery',
+          name: 'ISO Microchip Implantation & Registration',
+          badge: '',
+          badgeTone: 'pine',
+          description: 'Permanent scannable ID with lifetime national database registration (paired rate credit applies during anesthesia).',
+          unitLabel: 'one-time',
+          price: function () { return 62; }
+        },
+
+        // Dental Care
+        {
+          id: 'dental-prophy',
+          category: 'dental',
+          name: 'COHAT Dental Cleaning, Scaling & Polish',
+          badge: 'Core Dental',
+          badgeTone: 'pine',
+          anesthesia: true,
+          description: 'Complete ultrasonic scaling above and below the gumline, enamel polishing, and tooth-by-tooth periodontal charting under anesthesia.',
+          unitLabel: 'procedure',
+          price: function (st) {
+            var dogPrices = { s: 510, m: 575, l: 650, xl: 730 };
+            var catPrices = { s: 475, m: 505, l: 545 };
+            return st.species === 'dog' ? (dogPrices[st.weight] || 575) : (catPrices[st.weight] || 505);
+          }
+        },
+        {
+          id: 'dental-xrays',
+          category: 'dental',
+          name: 'Full-Mouth Digital Dental X-Rays',
+          badge: 'Digital Radiography',
+          badgeTone: 'cedar',
+          anesthesia: true,
+          description: 'Intraoral digital X-rays revealing hidden root abscesses, bone loss, and feline resorptive lesions below the gumline.',
+          unitLabel: 'full series',
+          price: function (st) { return st.species === 'dog' ? 185 : 165; }
+        },
+        {
+          id: 'dental-extractions',
+          category: 'dental',
+          name: 'Targeted Surgical Extractions Allowance',
+          badge: 'Grade 2–3 Estimate',
+          badgeTone: 'cedar',
+          anesthesia: true,
+          variableNote: true,
+          description: 'Estimated allowance for 1–3 compromised teeth, local nerve blocks, gingival flap closure, and home pain medication.',
+          unitLabel: 'variable tier',
+          price: function (st) {
+            var dogPrices = { s: 220, m: 265, l: 320, xl: 380 };
+            var catPrices = { s: 210, m: 235, l: 265 };
+            return st.species === 'dog' ? (dogPrices[st.weight] || 265) : (catPrices[st.weight] || 235);
+          }
+        },
+        {
+          id: 'oral-sealant',
+          category: 'dental',
+          name: 'Barrier Oral Sealant & Home Care Kit',
+          badge: '',
+          badgeTone: 'pine',
+          description: 'Post-cleaning plaque barrier gel application paired with a pet-safe enzymatic brushing starter kit.',
+          unitLabel: 'kit + application',
+          price: function () { return 52; }
+        },
+
+        // Alternative Therapies
+        {
+          id: 'acupuncture',
+          category: 'alternative',
+          name: 'Veterinary Acupuncture Session',
+          badge: 'Integrative',
+          badgeTone: 'cedar',
+          description: 'Gentle 45-minute neuromodulation session easing osteoarthritis, intervertebral disc discomfort, or chronic pain.',
+          unitLabel: 'initial session',
+          price: function () { return 125; }
+        },
+        {
+          id: 'laser-pack',
+          category: 'alternative',
+          name: 'Class IV Therapeutic Laser Pack (3 Sessions)',
+          badge: '3-Session Value',
+          badgeTone: 'pine',
+          description: 'Targeted photobiomodulation series to calm joint inflammation, speed soft-tissue healing, and improve stride comfort.',
+          unitLabel: '3-session pack',
+          price: function () { return 180; }
+        },
+        {
+          id: 'integrative-consult',
+          category: 'alternative',
+          name: 'Integrative Mobility, Nutrition & Herbal Consult',
+          badge: '',
+          badgeTone: 'pine',
+          description: 'Individualized review of omega-3 fatty acid dosing, joint nutraceuticals, and herbal support alongside conventional care.',
+          unitLabel: 'consult',
+          price: function () { return 140; }
+        },
+        {
+          id: 'rehab-eval',
+          category: 'alternative',
+          name: 'Post-Op & Gait Rehabilitation Assessment',
+          badge: '',
+          badgeTone: 'pine',
+          description: 'Structured range-of-motion measurement and custom home strengthening exercises after orthopedic or soft-tissue recovery.',
+          unitLabel: 'assessment',
+          price: function () { return 95; }
+        }
+      ];
+
+      var PRESETS = {
+        'adult-dental': {
+          species: 'dog',
+          stage: 'adult',
+          weight: 'm',
+          lifestyle: ['trail'],
+          selected: ['wellness-exam', 'preventive-labs', 'dental-prophy', 'dental-xrays']
+        },
+        'senior-cat': {
+          species: 'cat',
+          stage: 'senior',
+          weight: 'm',
+          lifestyle: ['indoor', 'joints'],
+          selected: ['wellness-exam', 'preventive-labs', 'dental-prophy', 'dental-xrays', 'laser-pack']
+        },
+        'young-spay': {
+          species: 'dog',
+          stage: 'young',
+          weight: 's',
+          lifestyle: ['trail'],
+          selected: ['wellness-exam', 'core-vaccines', 'pnw-vaccines', 'spay', 'microchip']
+        },
+        'mobility': {
+          species: 'dog',
+          stage: 'senior',
+          weight: 'l',
+          lifestyle: ['trail', 'joints'],
+          selected: ['wellness-exam', 'preventive-labs', 'acupuncture', 'laser-pack', 'integrative-consult']
+        }
+      };
+
+      var state = {
+        petName: '',
+        species: 'dog',
+        stage: 'adult',
+        weight: 'm',
+        lifestyle: ['trail'],
+        selected: ['wellness-exam', 'preventive-labs', 'dental-prophy', 'dental-xrays'],
+        activeCategory: 'all',
+        activeSummaryTab: 'estimate',
+        activePreset: 'adult-dental'
+      };
+
+      // DOM References
+      var petNameInput = document.getElementById('pet-name');
+      var weightGrid = document.getElementById('weight-grid');
+      var stageYoungTitle = document.getElementById('stage-young-title');
+      var serviceGroupsContainer = document.getElementById('service-groups-container');
+      var summaryPatientLine = document.getElementById('summary-patient-line');
+      var summaryMetaLine = document.getElementById('summary-meta-line');
+      var clinicalGuidanceSlot = document.getElementById('clinical-guidance-slot');
+      var lineItemsSlot = document.getElementById('line-items-slot');
+      var subtotalFigure = document.getElementById('subtotal-figure');
+      var creditsRow = document.getElementById('credits-row');
+      var creditsFigure = document.getElementById('credits-figure');
+      var totalFigure = document.getElementById('total-figure');
+      var rangeNote = document.getElementById('range-note');
+      var annualTotalFigure = document.getElementById('annual-total-figure');
+      var annualMonthlySub = document.getElementById('annual-monthly-sub');
+      var annualTimelineSlot = document.getElementById('annual-timeline-slot');
+      var bookingPrefillSummary = document.getElementById('booking-prefill-summary');
+      var bookingPrefillTotal = document.getElementById('booking-prefill-total');
+      var visitTypeSelect = document.getElementById('visit-type');
+      var copyFeedback = document.getElementById('copy-feedback');
+      var bookingForm = document.getElementById('booking-form');
+      var confirmationPanel = document.getElementById('confirmation-panel');
+      var confirmRef = document.getElementById('confirm-ref');
+      var confirmMessage = document.getElementById('confirm-message');
+
+      function formatUSD(amount) {
+        return '$' + Math.round(amount).toLocaleString('en-US');
+      }
+
+      function escapeHTML(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function getWeightBandInfo() {
+        var list = WEIGHT_BANDS[state.species];
+        for (var i = 0; i < list.length; i++) {
+          if (list[i].id === state.weight) return list[i];
+        }
+        return list[1] || list[0];
+      }
+
+      function getPetDisplayTitle() {
+        var stageLabel = STAGE_LABELS[state.species][state.stage];
+        var wb = getWeightBandInfo();
+        var prefix = state.petName.trim() ? state.petName.trim() + ' · ' : '';
+        return prefix + stageLabel + ' · ' + wb.label + ' (' + wb.range + ')';
+      }
+
+      function getProcedureById(id) {
+        for (var i = 0; i < PROCEDURES.length; i++) {
+          if (PROCEDURES[i].id === id) return PROCEDURES[i];
+        }
+        return null;
+      }
+
+      function calculateTotals() {
+        var items = [];
+        var subtotal = 0;
+        var hasAnesthesia = false;
+        var hasVariable = false;
+        var hasWellnessExam = false;
+        var hasLabs = false;
+        var hasMicrochip = false;
+        var hasDentalProphy = false;
+        var hasDentalXray = false;
+
+        for (var i = 0; i < state.selected.length; i++) {
+          var proc = getProcedureById(state.selected[i]);
+          if (!proc) continue;
+          var p = proc.price(state);
+          subtotal += p;
+          if (proc.anesthesia) hasAnesthesia = true;
+          if (proc.variableNote) hasVariable = true;
+          if (proc.id === 'wellness-exam') hasWellnessExam = true;
+          if (proc.id === 'preventive-labs') hasLabs = true;
+          if (proc.id === 'microchip') hasMicrochip = true;
+          if (proc.id === 'dental-prophy') hasDentalProphy = true;
+          if (proc.id === 'dental-xrays') hasDentalXray = true;
+          items.push({
+            id: proc.id,
+            category: proc.category,
+            categoryTitle: CATEGORY_META[proc.category].title,
+            name: proc.name,
+            price: p
+          });
+        }
+
+        var credits = 0;
+        var creditLabels = [];
+        if (hasAnesthesia && hasWellnessExam && hasLabs) {
+          credits += 35;
+          creditLabels.push('Combined pre-op exam & lab workflow (-$35)');
+        }
+        if (hasAnesthesia && hasMicrochip) {
+          credits += 17;
+          creditLabels.push('Anesthesia-paired microchip placement (-$17)');
+        }
+
+        var total = Math.max(0, subtotal - credits);
+        var lowRange = hasVariable ? Math.round(total * 0.92) : total;
+        var highRange = hasVariable ? Math.round(total * 1.12) : total;
+
+        return {
+          items: items,
+          subtotal: subtotal,
+          credits: credits,
+          creditLabels: creditLabels,
+          total: total,
+          hasAnesthesia: hasAnesthesia,
+          hasVariable: hasVariable,
+          hasLabs: hasLabs,
+          hasDentalProphy: hasDentalProphy,
+          hasDentalXray: hasDentalXray,
+          lowRange: lowRange,
+          highRange: highRange
+        };
+      }
+
+      function buildAnnualPlan(calc) {
+        var examProc = getProcedureById('wellness-exam');
+        var coreProc = getProcedureById('core-vaccines');
+        var pnwProc = getProcedureById('pnw-vaccines');
+        var labProc = getProcedureById('preventive-labs');
+        var paraProc = getProcedureById('parasite-rx');
+        var dentalProc = getProcedureById('dental-prophy');
+        var xrayProc = getProcedureById('dental-xrays');
+        var laserProc = getProcedureById('laser-pack');
+
+        var q1Cost = examProc.price(state) + coreProc.price(state) + (state.lifestyle.indexOf('trail') !== -1 ? pnwProc.price(state) : 0);
+        var q2Cost = paraProc.price(state);
+        var q3Cost = 0;
+        var q4Cost = labProc.price(state) + paraProc.price(state);
+
+        var q1Title = 'Annual Wellness Exam & Core Immunity';
+        var q1Desc = 'Comprehensive physical check, core boosters' + (state.lifestyle.indexOf('trail') !== -1 ? ', plus Pacific Northwest Leptospirosis/Bordetella coverage.' : '.');
+
+        var q2Title = 'Spring/Summer Parasite Defense';
+        var q2Desc = '6-month flea, tick, and heartworm prevention refill matched to ' + getWeightBandInfo().label.toLowerCase() + ' weight dosing.';
+
+        var q3Title = 'Dental & Oral Preventive Checkpoint';
+        var q3Desc = 'Scheduled oral grade check; includes COHAT cleaning & digital X-rays when planned this year.';
+        if (calc.hasDentalProphy || calc.hasDentalXray) {
+          q3Cost += (calc.hasDentalProphy ? dentalProc.price(state) : 0) + (calc.hasDentalXray ? xrayProc.price(state) : 0);
+        } else {
+          q3Cost += 0;
+          q3Desc = 'Complimentary technician oral health check or optional dental prophylaxis scheduling if tartar Grade 2+ appears.';
+        }
+
+        if (state.lifestyle.indexOf('joints') !== -1 || state.stage === 'senior' || state.selected.indexOf('laser-pack') !== -1) {
+          q3Title = 'Autumn Rainy-Season Mobility & Oral Check';
+          q3Cost += laserProc.price(state);
+          q3Desc = 'Class IV laser 3-session pack to ease damp-weather joint stiffness' + ((calc.hasDentalProphy || calc.hasDentalXray) ? ' plus scheduled dental care.' : ' plus oral health check.');
+        }
+
+        var q4Title = state.stage === 'senior' ? 'Senior Organ Lab Panel & Winter Prevention' : 'Annual Screening Labs & Winter Prevention';
+        var q4Desc = (state.stage === 'senior'
+          ? 'CBC, Chemistry, Thyroid T4, blood pressure, and 6-month winter parasite coverage.'
+          : 'Preventive CBC/Chemistry, parasite check, and 6-month winter flea/heartworm coverage.');
+
+        var annualTotal = q1Cost + q2Cost + q3Cost + q4Cost;
+        var monthlyAvg = Math.round(annualTotal / 12);
+
+        return {
+          annualTotal: annualTotal,
+          monthlyAvg: monthlyAvg,
+          quarters: [
+            { quarter: 'Q1 · Spring', title: q1Title, desc: q1Desc, cost: q1Cost },
+            { quarter: 'Q2 · Summer', title: q2Title, desc: q2Desc, cost: q2Cost },
+            { quarter: 'Q3 · Autumn', title: q3Title, desc: q3Desc, cost: q3Cost },
+            { quarter: 'Q4 · Winter', title: q4Title, desc: q4Desc, cost: q4Cost }
+          ]
+        };
+      }
+
+      function renderWeightBands() {
+        var list = WEIGHT_BANDS[state.species];
+        var valid = false;
+        for (var i = 0; i < list.length; i++) {
+          if (list[i].id === state.weight) valid = true;
+        }
+        if (!valid) state.weight = list[1] ? list[1].id : list[0].id;
+
+        weightGrid.className = list.length === 3 ? 'choice-grid-3' : 'choice-grid-4';
+        var html = '';
+        for (var j = 0; j < list.length; j++) {
+          var wb = list[j];
+          var isChecked = wb.id === state.weight;
+          html += '<button type="button" class="choice-card choice-card-stack" role="radio" aria-checked="' + isChecked + '" data-weight="' + wb.id + '">' +
+            '<span class="choice-title">' + escapeHTML(wb.label) + '</span>' +
+            '<span class="choice-meta tabular">' + escapeHTML(wb.range) + '</span>' +
+            '</button>';
+        }
+        weightGrid.innerHTML = html;
+      }
+
+      function renderProcedures() {
+        var categories = ['wellness', 'surgery', 'dental', 'alternative'];
+        var counts = { all: 0, wellness: 0, surgery: 0, dental: 0, alternative: 0 };
+
+        for (var i = 0; i < state.selected.length; i++) {
+          var p = getProcedureById(state.selected[i]);
+          if (p) {
+            counts.all++;
+            counts[p.category]++;
+          }
+        }
+
+        document.getElementById('count-all').textContent = counts.all;
+        document.getElementById('count-wellness').textContent = counts.wellness;
+        document.getElementById('count-surgery').textContent = counts.surgery;
+        document.getElementById('count-dental').textContent = counts.dental;
+        document.getElementById('count-alternative').textContent = counts.alternative;
+
+        var html = '';
+        for (var c = 0; c < categories.length; c++) {
+          var catKey = categories[c];
+          var meta = CATEGORY_META[catKey];
+          var hiddenClass = (state.activeCategory !== 'all' && state.activeCategory !== catKey) ? ' is-hidden' : '';
+          html += '<div class="service-group' + hiddenClass + '" data-group="' + catKey + '">' +
+            '<div class="service-group-head">' +
+            '<h3 class="service-group-title">' + escapeHTML(meta.title) + '</h3>' +
+            '<span class="service-group-note">' + escapeHTML(meta.note) + '</span>' +
+            '</div>' +
+            '<div class="procedure-list">';
+
+          for (var j = 0; j < PROCEDURES.length; j++) {
+            var proc = PROCEDURES[j];
+            if (proc.category !== catKey) continue;
+            var isChecked = state.selected.indexOf(proc.id) !== -1;
+            var priceVal = proc.price(state);
+            var badgeHtml = '';
+            if (proc.badge) {
+              var badgeClass = proc.badgeTone === 'pine' ? 'proc-badge proc-badge--pine' : 'proc-badge';
+              badgeHtml = '<span class="' + badgeClass + '">' + escapeHTML(proc.badge) + '</span>';
+            }
+            html += '<button type="button" class="proc-card" role="checkbox" aria-checked="' + isChecked + '" data-proc="' + proc.id + '">' +
+              '<span class="proc-left">' +
+              '<span class="proc-check" aria-hidden="true">' +
+              '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' +
+              '<path d="M2 6l3 3 5-5"></path>' +
+              '</svg>' +
+              '</span>' +
+              '<span class="proc-body">' +
+              '<span class="proc-title-row"><span class="proc-name">' + escapeHTML(proc.name) + '</span>' + badgeHtml + '</span>' +
+              '<span class="proc-desc">' + escapeHTML(proc.description) + '</span>' +
+              '</span>' +
+              '</span>' +
+              '<span class="proc-price-col">' +
+              '<span class="proc-price">' + formatUSD(priceVal) + '</span>' +
+              '<span class="proc-unit">' + escapeHTML(proc.unitLabel) + '</span>' +
+              '</span>' +
+              '</button>';
+          }
+
+          html += '</div></div>';
+        }
+        serviceGroupsContainer.innerHTML = html;
+      }
+
+      function renderSummary() {
+        var calc = calculateTotals();
+        var annual = buildAnnualPlan(calc);
+
+        summaryPatientLine.textContent = getPetDisplayTitle();
+
+        var lifestyleMap = {
+          trail: 'Trails & Parks',
+          indoor: 'Indoor',
+          joints: 'Joint Support'
+        };
+        var activeLifeLabels = [];
+        for (var l = 0; l < state.lifestyle.length; l++) {
+          if (lifestyleMap[state.lifestyle[l]]) activeLifeLabels.push(lifestyleMap[state.lifestyle[l]]);
+        }
+        var lifeSummary = activeLifeLabels.length ? activeLifeLabels.join(', ') : 'Standard Home Routine';
+        var itemCountLabel = calc.items.length === 1 ? '1 service selected' : calc.items.length + ' services selected';
+        summaryMetaLine.textContent = lifeSummary + ' · ' + itemCountLabel;
+
+        // Clinical Guidance Alerts
+        var alertHtml = '';
+        if (calc.hasAnesthesia && !calc.hasLabs) {
+          alertHtml += '<div class="clinical-alert">' +
+            '<strong>Pre-Anesthetic Blood Screening Recommended</strong>' +
+            '<span>Selected surgery or dental care uses general anesthesia. Adding Preventive Bloodwork verifies liver and kidney safety beforehand.</span>' +
+            '<div><button type="button" class="clinical-alert-btn" data-quick-add="preventive-labs">Add Preventive Bloodwork (' + formatUSD(getProcedureById('preventive-labs').price(state)) + ')</button></div>' +
+            '</div>';
+        } else if (calc.hasDentalProphy && !calc.hasDentalXray) {
+          alertHtml += '<div class="clinical-alert">' +
+            '<strong>Pair Digital Dental X-Rays with Cleaning</strong>' +
+            '<span>Over 40% of dental pathology sits below the gumline. Digital dental X-rays protect against missed root pain.</span>' +
+            '<div><button type="button" class="clinical-alert-btn" data-quick-add="dental-xrays">Add Full-Mouth Digital X-Rays (' + formatUSD(getProcedureById('dental-xrays').price(state)) + ')</button></div>' +
+            '</div>';
+        }
+        clinicalGuidanceSlot.innerHTML = alertHtml;
+
+        // Line items
+        if (calc.items.length === 0) {
+          lineItemsSlot.innerHTML = '<div class="estimate-empty">Select one or more services on the left to build your itemized USD estimate.</div>';
+        } else {
+          var itemsHtml = '<div class="line-items">';
+          for (var i = 0; i < calc.items.length; i++) {
+            var it = calc.items[i];
+            itemsHtml += '<div class="line-item">' +
+              '<div class="line-item-info">' +
+              '<span class="line-item-cat">' + escapeHTML(it.categoryTitle) + '</span>' +
+              '<span class="line-item-name">' + escapeHTML(it.name) + '</span>' +
+              '</div>' +
+              '<div class="line-item-actions">' +
+              '<span class="line-item-price">' + formatUSD(it.price) + '</span>' +
+              '<button type="button" class="remove-item-btn" data-remove-proc="' + it.id + '" aria-label="Remove ' + escapeHTML(it.name) + '">' +
+              '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">' +
+              '<path d="M2.5 2.5l7 7M9.5 2.5l-7 7"></path>' +
+              '</svg>' +
+              '</button>' +
+              '</div>' +
+              '</div>';
+          }
+          itemsHtml += '</div>';
+          lineItemsSlot.innerHTML = itemsHtml;
+        }
+
+        subtotalFigure.textContent = formatUSD(calc.subtotal);
+        var creditsDetail = document.getElementById('credits-detail');
+        if (calc.credits > 0) {
+          creditsRow.style.display = 'flex';
+          creditsFigure.textContent = '-' + formatUSD(calc.credits);
+          creditsDetail.style.display = 'block';
+          creditsDetail.textContent = calc.creditLabels.join(' · ');
+        } else {
+          creditsRow.style.display = 'none';
+          creditsDetail.style.display = 'none';
+          creditsDetail.textContent = '';
+        }
+        totalFigure.textContent = formatUSD(calc.total);
+
+        if (calc.hasVariable && calc.total > 0) {
+          rangeNote.textContent = 'Estimated range with surgical or extraction variables: ' +
+            formatUSD(calc.lowRange) + ' to ' + formatUSD(calc.highRange) +
+            ' USD. Confirmed after exam and digital dental X-rays.';
+        } else {
+          rangeNote.textContent = 'Transparent planning estimate in USD. Final clinical plan is confirmed after physical exam.';
+        }
+
+        // Annual Plan View
+        annualTotalFigure.textContent = formatUSD(annual.annualTotal) + ' / yr';
+        annualMonthlySub.textContent = 'Equivalent to ' + formatUSD(annual.monthlyAvg) + ' per month across four seasonal Portland care checkpoints.';
+
+        var timelineHtml = '';
+        for (var q = 0; q < annual.quarters.length; q++) {
+          var row = annual.quarters[q];
+          timelineHtml += '<div class="timeline-item">' +
+            '<div class="timeline-top">' +
+            '<span class="timeline-quarter">' + escapeHTML(row.quarter) + '</span>' +
+            '<span class="timeline-est">' + (row.cost > 0 ? formatUSD(row.cost) : 'Included check') + '</span>' +
+            '</div>' +
+            '<div class="timeline-title">' + escapeHTML(row.title) + '</div>' +
+            '<div class="timeline-desc">' + escapeHTML(row.desc) + '</div>' +
+            '</div>';
+        }
+        annualTimelineSlot.innerHTML = timelineHtml;
+
+        // Prefilled Appointment Request Summary
+        bookingPrefillTotal.textContent = calc.hasVariable && calc.total > 0
+          ? formatUSD(calc.lowRange) + '–' + formatUSD(calc.highRange)
+          : formatUSD(calc.total);
+
+        var lines = [];
+        lines.push('Patient: ' + getPetDisplayTitle());
+        if (calc.items.length > 0) {
+          var names = [];
+          for (var n = 0; n < calc.items.length; n++) {
+            names.push(calc.items[n].name + ' (' + formatUSD(calc.items[n].price) + ')');
+          }
+          lines.push('Selected Care: ' + names.join('; '));
+          if (calc.credits > 0) {
+            lines.push('Pairing Credits Applied: -' + formatUSD(calc.credits));
+          }
+          lines.push('Estimated Visit Total: ' + formatUSD(calc.total) + ' USD (Annual Plan Projection: ' + formatUSD(annual.annualTotal) + '/yr)');
+        } else {
+          lines.push('Selected Care: General consultation (no specific procedure modules checked yet)');
+        }
+        bookingPrefillSummary.textContent = lines.join('\n');
+
+        // Auto-align Visit Type select smoothly based on top selected category
+        if (state.selected.indexOf('dental-prophy') !== -1 || state.selected.indexOf('dental-xrays') !== -1) {
+          visitTypeSelect.selectedIndex = 1;
+        } else if (state.selected.indexOf('spay') !== -1 || state.selected.indexOf('neuter') !== -1 || state.selected.indexOf('mass-removal') !== -1) {
+          visitTypeSelect.selectedIndex = 2;
+        } else if (state.selected.indexOf('acupuncture') !== -1 || state.selected.indexOf('laser-pack') !== -1 || state.selected.indexOf('integrative-consult') !== -1) {
+          visitTypeSelect.selectedIndex = 3;
+        } else {
+          visitTypeSelect.selectedIndex = 0;
+        }
+      }
+
+      function syncProfileButtons() {
+        stageYoungTitle.textContent = state.species === 'dog' ? 'Puppy' : 'Kitten';
+
+        var speciesButtons = document.querySelectorAll('[data-species]');
+        for (var i = 0; i < speciesButtons.length; i++) {
+          speciesButtons[i].setAttribute('aria-checked', String(speciesButtons[i].getAttribute('data-species') === state.species));
+        }
+
+        var stageButtons = document.querySelectorAll('[data-stage]');
+        for (var j = 0; j < stageButtons.length; j++) {
+          stageButtons[j].setAttribute('aria-checked', String(stageButtons[j].getAttribute('data-stage') === state.stage));
+        }
+
+        var lifeButtons = document.querySelectorAll('[data-lifestyle]');
+        for (var k = 0; k < lifeButtons.length; k++) {
+          var key = lifeButtons[k].getAttribute('data-lifestyle');
+          lifeButtons[k].setAttribute('aria-pressed', String(state.lifestyle.indexOf(key) !== -1));
+        }
+
+        var presetButtons = document.querySelectorAll('[data-preset]');
+        for (var p = 0; p < presetButtons.length; p++) {
+          var isMatch = presetButtons[p].getAttribute('data-preset') === state.activePreset;
+          presetButtons[p].classList.toggle('is-active', isMatch);
+        }
+      }
+
+      function renderAll() {
+        syncProfileButtons();
+        renderWeightBands();
+        renderProcedures();
+        renderSummary();
+      }
+
+      function toggleProcedure(procId) {
+        state.activePreset = '';
+        var proc = getProcedureById(procId);
+        if (!proc) return;
+        var idx = state.selected.indexOf(procId);
+        if (idx !== -1) {
+          state.selected.splice(idx, 1);
+        } else {
+          if (proc.exclusiveWith) {
+            var exIdx = state.selected.indexOf(proc.exclusiveWith);
+            if (exIdx !== -1) state.selected.splice(exIdx, 1);
+          }
+          state.selected.push(procId);
+        }
+        renderAll();
+      }
+
+      function applyPreset(presetKey) {
+        var preset = PRESETS[presetKey];
+        if (!preset) return;
+        state.species = preset.species;
+        state.stage = preset.stage;
+        state.weight = preset.weight;
+        state.lifestyle = preset.lifestyle.slice();
+        state.selected = preset.selected.slice();
+        state.activePreset = presetKey;
+        renderAll();
+      }
+
+      function buildPlainSummaryText(includeOwner) {
+        var calc = calculateTotals();
+        var annual = buildAnnualPlan(calc);
+        var out = [
+          'Two Rivers Veterinary Clinic - Care Estimate Summary',
+          '3808 N Williams Ave Suite 129, Portland, OR 97227 | 503-280-2000',
+          'Patient: ' + getPetDisplayTitle(),
+          ''
+        ];
+        if (calc.items.length > 0) {
+          out.push('Itemized Services:');
+          for (var i = 0; i < calc.items.length; i++) {
+            out.push('- ' + calc.items[i].name + ': ' + formatUSD(calc.items[i].price));
+          }
+          if (calc.credits > 0) {
+            out.push('Combined Visit Credits: -' + formatUSD(calc.credits));
+          }
+          out.push('Estimated Visit Total: ' + formatUSD(calc.total) + ' USD');
+          if (calc.hasVariable) {
+            out.push('Estimated Range: ' + formatUSD(calc.lowRange) + ' to ' + formatUSD(calc.highRange) + ' USD');
+          }
+        } else {
+          out.push('No specific procedures selected.');
+        }
+        out.push('12-Month Preventive Plan Projection: ' + formatUSD(annual.annualTotal) + ' / yr (' + formatUSD(annual.monthlyAvg) + ' / mo)');
+        if (includeOwner) {
+          out.push('');
+          out.push('Owner: ' + document.getElementById('owner-name').value.trim());
+          out.push('Phone: ' + document.getElementById('owner-phone').value.trim());
+          out.push('Email: ' + document.getElementById('owner-email').value.trim());
+          out.push('Preferred Window: ' + document.getElementById('preferred-window').value);
+          out.push('Primary Reason: ' + visitTypeSelect.value);
+          var notesVal = document.getElementById('visit-notes').value.trim();
+          if (notesVal) out.push('Notes: ' + notesVal);
+        }
+        return out.join('\n');
+      }
+
+      function copyTextWithFallback(text, onDone) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(onDone, function () {
+            fallbackCopy(text, onDone);
+          });
+        } else {
+          fallbackCopy(text, onDone);
+        }
+      }
+
+      function fallbackCopy(text, onDone) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+        } catch (e) {
+          // Ignore clipboard rejection in restricted contexts
+        }
+        document.body.removeChild(ta);
+        onDone();
+      }
+
+      // Event Listeners
+      petNameInput.addEventListener('input', function () {
+        state.petName = petNameInput.value;
+        renderSummary();
+      });
+
+      document.addEventListener('click', function (e) {
+        var presetBtn = e.target.closest('[data-preset]');
+        if (presetBtn) {
+          applyPreset(presetBtn.getAttribute('data-preset'));
+          return;
+        }
+
+        var speciesBtn = e.target.closest('[data-species]');
+        if (speciesBtn) {
+          state.activePreset = '';
+          state.species = speciesBtn.getAttribute('data-species');
+          renderAll();
+          return;
+        }
+
+        var stageBtn = e.target.closest('[data-stage]');
+        if (stageBtn) {
+          state.activePreset = '';
+          state.stage = stageBtn.getAttribute('data-stage');
+          renderAll();
+          return;
+        }
+
+        var weightBtn = e.target.closest('[data-weight]');
+        if (weightBtn) {
+          state.activePreset = '';
+          state.weight = weightBtn.getAttribute('data-weight');
+          renderAll();
+          return;
+        }
+
+        var lifeBtn = e.target.closest('[data-lifestyle]');
+        if (lifeBtn) {
+          state.activePreset = '';
+          var key = lifeBtn.getAttribute('data-lifestyle');
+          var idx = state.lifestyle.indexOf(key);
+          if (idx !== -1) {
+            state.lifestyle.splice(idx, 1);
+          } else {
+            if (key === 'indoor') {
+              var tIdx = state.lifestyle.indexOf('trail');
+              if (tIdx !== -1) state.lifestyle.splice(tIdx, 1);
+            } else if (key === 'trail') {
+              var iIdx = state.lifestyle.indexOf('indoor');
+              if (iIdx !== -1) state.lifestyle.splice(iIdx, 1);
+            }
+            state.lifestyle.push(key);
+          }
+          renderAll();
+          return;
+        }
+
+        var catTab = e.target.closest('[data-cat-filter]');
+        if (catTab) {
+          state.activeCategory = catTab.getAttribute('data-cat-filter');
+          var allTabs = document.querySelectorAll('[data-cat-filter]');
+          for (var t = 0; t < allTabs.length; t++) {
+            allTabs[t].setAttribute('aria-selected', String(allTabs[t] === catTab));
+          }
+          renderProcedures();
+          return;
+        }
+
+        var procBtn = e.target.closest('[data-proc]');
+        if (procBtn) {
+          toggleProcedure(procBtn.getAttribute('data-proc'));
+          return;
+        }
+
+        var removeBtn = e.target.closest('[data-remove-proc]');
+        if (removeBtn) {
+          toggleProcedure(removeBtn.getAttribute('data-remove-proc'));
+          return;
+        }
+
+        var quickAddBtn = e.target.closest('[data-quick-add]');
+        if (quickAddBtn) {
+          var addId = quickAddBtn.getAttribute('data-quick-add');
+          if (state.selected.indexOf(addId) === -1) {
+            state.selected.push(addId);
+            state.activePreset = '';
+            renderAll();
+          }
+          return;
+        }
+
+        var summaryTab = e.target.closest('[data-summary-tab]');
+        if (summaryTab) {
+          var view = summaryTab.getAttribute('data-summary-tab');
+          state.activeSummaryTab = view;
+          var sumTabs = document.querySelectorAll('[data-summary-tab]');
+          for (var s = 0; s < sumTabs.length; s++) {
+            sumTabs[s].setAttribute('aria-selected', String(sumTabs[s] === summaryTab));
+          }
+          document.getElementById('view-estimate').classList.toggle('is-hidden', view !== 'estimate');
+          document.getElementById('view-annual').classList.toggle('is-hidden', view !== 'annual');
+          return;
+        }
+
+        var focusCatBtn = e.target.closest('[data-focus-cat]');
+        if (focusCatBtn) {
+          var targetCat = focusCatBtn.getAttribute('data-focus-cat');
+          state.activeCategory = targetCat;
+          var filterTabs = document.querySelectorAll('[data-cat-filter]');
+          for (var f = 0; f < filterTabs.length; f++) {
+            filterTabs[f].setAttribute('aria-selected', String(filterTabs[f].getAttribute('data-cat-filter') === targetCat));
+          }
+          renderProcedures();
+          document.getElementById('estimator').scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+      });
+
+      document.getElementById('reset-estimate-btn').addEventListener('click', function () {
+        petNameInput.value = '';
+        state.petName = '';
+        applyPreset('adult-dental');
+        copyFeedback.textContent = 'Reset to default adult dog wellness and dental example.';
+        setTimeout(function () { copyFeedback.textContent = ''; }, 3000);
+      });
+
+      document.getElementById('copy-estimate-btn').addEventListener('click', function () {
+        var text = buildPlainSummaryText(false);
+        copyTextWithFallback(text, function () {
+          copyFeedback.textContent = 'Care estimate summary copied to clipboard.';
+          setTimeout(function () { copyFeedback.textContent = ''; }, 3200);
+        });
+      });
+
+      document.getElementById('print-estimate-btn').addEventListener('click', function () {
+        window.print();
+      });
+
+      document.getElementById('copy-request-btn').addEventListener('click', function () {
+        var text = buildPlainSummaryText(true);
+        copyTextWithFallback(text, function () {
+          confirmMessage.textContent = 'Full appointment request details copied. Call 503-280-2000 or send to info@tworiversvet.com to finalize your visit time.';
+        });
+      });
+
+      bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var nameInput = document.getElementById('owner-name');
+        var phoneInput = document.getElementById('owner-phone');
+        var emailInput = document.getElementById('owner-email');
+
+        var errName = document.getElementById('err-owner-name');
+        var errPhone = document.getElementById('err-owner-phone');
+        var errEmail = document.getElementById('err-owner-email');
+
+        errName.textContent = '';
+        errPhone.textContent = '';
+        errEmail.textContent = '';
+
+        var hasError = false;
+        if (!nameInput.value.trim()) {
+          errName.textContent = 'Please enter your name for the clinic coordinator.';
+          hasError = true;
+        }
+        if (phoneInput.value.trim().length < 7) {
+          errPhone.textContent = 'Please enter a valid contact phone number.';
+          hasError = true;
+        }
+        var emailVal = emailInput.value.trim();
+        if (!emailVal || emailVal.indexOf('@') === -1 || emailVal.indexOf('.') === -1) {
+          errEmail.textContent = 'Please enter a valid email address.';
+          hasError = true;
+        }
+
+        if (hasError) return;
+
+        var calc = calculateTotals();
+        var refNum = 'TRV-' + String(Math.floor(1000 + Math.random() * 9000));
+        confirmRef.textContent = 'REQUEST ID · ' + refNum;
+        confirmMessage.textContent =
+          'Prepared for ' + nameInput.value.trim() + ' (' + getPetDisplayTitle() + ') · Preferred window: ' +
+          document.getElementById('preferred-window').value + ' · Estimated visit total: ' + formatUSD(calc.total) +
+          ' USD. Copy the summary below or call 503-280-2000 so our team at 3808 N Williams Ave Suite 129 can lock in your appointment.';
+        confirmationPanel.classList.remove('is-hidden');
+        confirmationPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+
+      // Initial Boot
+      renderAll();
+    })();
+  </script>
+</body>
+</html>

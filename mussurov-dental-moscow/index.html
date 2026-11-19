@@ -1,0 +1,3418 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Калькулятор стоимости имплантации и лечения зубов в Авторской стоматологии доктора Муссурова в Москве. Поэтапная смета в рублях, график визитов и заявка на консультацию.">
+  <title>Калькулятор стоимости лечения — Авторская стоматология доктора Муссурова, Москва</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231A4A45'/%3E%3Cpath d='M10.5 9.5C12.2 8.5 14.3 9.1 16 10.2C17.7 9.1 19.8 8.5 21.5 9.5C23.6 10.7 24.1 13.7 23.2 16.5C22.4 19 21.4 23.5 19.8 23.8C18.6 24 18 21.2 17.2 19.3C16.8 18.4 15.2 18.4 14.8 19.3C14 21.2 13.4 24 12.2 23.8C10.6 23.5 9.6 19 8.8 16.5C7.9 13.7 8.4 10.7 10.5 9.5Z' fill='none' stroke='%23F7F6F3' stroke-width='1.8' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='14.2' r='1.7' fill='%239B6A39'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F7F6F3;
+      --surface: #FFFFFF;
+      --surface-muted: #F1EFEA;
+      --surface-soft: #F4F8F7;
+      --surface-bronze: #FAF6F1;
+      --border: #E3DFD7;
+      --border-strong: #CCC5B8;
+      --primary: #1A4A45;
+      --primary-hover: #143B37;
+      --primary-tint: rgba(26, 74, 69, 0.08);
+      --accent: #9B6A39;
+      --accent-hover: #83572C;
+      --accent-tint: rgba(155, 106, 57, 0.11);
+      --text: #192220;
+      --text-secondary: #4E5855;
+      --text-muted: #6C7673;
+      --danger: #9B3B36;
+      --danger-bg: #FDF4F3;
+      --success-bg: #EDF5F3;
+      --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-card: 0 1px 3px rgba(25, 34, 32, 0.04), 0 8px 24px rgba(25, 34, 32, 0.03);
+      --shadow-focus: 0 0 0 3px rgba(26, 74, 69, 0.16);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--text);
+      background-color: var(--bg);
+      overflow-x: clip;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+      color: inherit;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    a:focus-visible {
+      outline: none;
+      box-shadow: var(--shadow-focus);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .mono-num {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .site-header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+      flex-shrink: 1;
+      flex-basis: auto;
+    }
+
+    .brand-mark {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background-color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-text {
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--text);
+      letter-spacing: -0.015em;
+    }
+
+    .brand-subtitle {
+      margin-top: 2px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .header-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .header-phone:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background-color: var(--surface);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border: 1px solid var(--primary);
+      border-radius: var(--radius-sm);
+      background-color: var(--primary);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+      border-color: var(--primary-hover);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:active {
+      transform: translateY(1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--surface);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background-color: var(--surface-soft);
+    }
+
+    .btn-bronze {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border: 1px solid var(--accent);
+      border-radius: var(--radius-sm);
+      background-color: var(--accent);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .btn-bronze:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+      color: #FFFFFF;
+    }
+
+    /* Hero Band */
+    .hero-band {
+      padding-top: 32px;
+      padding-bottom: 24px;
+    }
+
+    .hero-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .hero-copy {
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background-color: var(--surface-bronze);
+      border: 1px solid rgba(155, 106, 57, 0.28);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      margin: 14px 0 10px;
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+      color: var(--text);
+    }
+
+    .hero-lead {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .hero-clinic-tag {
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--surface-muted);
+      border: 1px solid var(--border);
+      min-width: 240px;
+    }
+
+    .hero-clinic-tag-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .hero-clinic-tag-value {
+      margin-top: 4px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .hero-metrics {
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .hero-metric {
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .hero-metric-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .hero-metric-desc {
+      margin-top: 3px;
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: var(--text-secondary);
+    }
+
+    /* Main Calculator Workspace */
+    .workspace {
+      padding-bottom: 36px;
+    }
+
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.16fr) minmax(0, 0.84fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .panel-section + .panel-section {
+      margin-top: 26px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .section-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background-color: var(--primary);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    .section-hint {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    /* Quick Clinical Presets */
+    .presets-wrap {
+      margin-bottom: 22px;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--surface-muted);
+      border: 1px solid var(--border);
+    }
+
+    .presets-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .presets-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .preset-btn {
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface);
+      color: var(--text-secondary);
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .preset-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .preset-btn[aria-pressed="true"] {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: #FFFFFF;
+    }
+
+    /* Direction Cards */
+    .directions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .direction-card {
+      text-align: left;
+      padding: 15px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background-color: var(--surface);
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .direction-card:hover {
+      border-color: var(--primary);
+      background-color: var(--surface-soft);
+    }
+
+    .direction-card[aria-checked="true"] {
+      border-color: var(--primary);
+      background-color: var(--surface-soft);
+      box-shadow: inset 0 0 0 1px var(--primary);
+    }
+
+    .direction-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background-color: var(--surface-muted);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .direction-card[aria-checked="true"] .direction-icon {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: #FFFFFF;
+    }
+
+    .direction-meta {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .direction-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .direction-desc {
+      margin-top: 4px;
+      font-size: 12.5px;
+      line-height: 1.4;
+      color: var(--text-muted);
+    }
+
+    .direction-base {
+      margin-top: 7px;
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Dynamic Form Controls */
+    .params-stack {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .params-two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .field label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .field-select,
+    .field-input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.4;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .field-select:hover,
+    .field-input:hover {
+      border-color: var(--primary);
+    }
+
+    .field-select:focus,
+    .field-input:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: var(--shadow-focus);
+    }
+
+    .qty-box {
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .qty-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .qty-header label {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .qty-stepper {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stepper-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 7px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface);
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .stepper-btn:hover {
+      border-color: var(--primary);
+      background-color: var(--surface-soft);
+    }
+
+    .qty-number-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .qty-number-input {
+      width: 58px;
+      padding: 5px 6px;
+      text-align: center;
+      border: 1px solid var(--border-strong);
+      border-radius: 7px;
+      background-color: var(--surface);
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .qty-unit-label {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .qty-range {
+      width: 100%;
+      height: 6px;
+      accent-color: var(--primary);
+      cursor: pointer;
+      margin: 4px 0 10px;
+    }
+
+    .qty-presets {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .qty-chip {
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background-color: var(--surface);
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .qty-chip:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .qty-chip.active {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: #FFFFFF;
+    }
+
+    .info-banner {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--surface-bronze);
+      border: 1px solid rgba(155, 106, 57, 0.28);
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* Tier Cards */
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .tier-card {
+      text-align: left;
+      padding: 15px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background-color: var(--surface);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .tier-card:hover {
+      border-color: var(--primary);
+      background-color: var(--surface-soft);
+    }
+
+    .tier-card[aria-checked="true"] {
+      border-color: var(--primary);
+      background-color: var(--surface-soft);
+      box-shadow: inset 0 0 0 1px var(--primary);
+    }
+
+    .tier-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .tier-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .tier-pill {
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      background-color: var(--surface-muted);
+      color: var(--text-secondary);
+    }
+
+    .tier-card[aria-checked="true"] .tier-pill {
+      background-color: var(--primary);
+      color: #FFFFFF;
+    }
+
+    .tier-brand-note {
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: var(--text-secondary);
+    }
+
+    .tier-warranty {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Options Checkboxes */
+    .options-list {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background-color: var(--surface);
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .option-row:hover {
+      border-color: var(--border-strong);
+      background-color: var(--bg);
+    }
+
+    .custom-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin: 2px 0 0;
+      border: 1.5px solid var(--border-strong);
+      border-radius: 6px;
+      background-color: var(--surface);
+      cursor: pointer;
+      position: relative;
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .custom-checkbox:checked {
+      background-color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .custom-checkbox:checked::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 2px;
+      width: 5px;
+      height: 10px;
+      border-right: 2px solid #FFFFFF;
+      border-bottom: 2px solid #FFFFFF;
+      transform: rotate(42deg);
+    }
+
+    .option-content {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .option-label {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: block;
+    }
+
+    .option-sub {
+      margin-top: 2px;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .option-price {
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    /* Summary Panel (Sticky Right Column) */
+    .summary-panel {
+      position: sticky;
+      top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .summary-hero {
+      background-color: var(--primary);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .summary-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .summary-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: rgba(255, 255, 255, 0.14);
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .summary-tier-badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: var(--accent);
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .summary-total-label {
+      margin-top: 16px;
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.78);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+    }
+
+    .summary-total-amount {
+      margin-top: 4px;
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.12;
+      color: #FFFFFF;
+    }
+
+    .summary-range-line {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .summary-kpis {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .summary-kpi-label {
+      font-size: 11.5px;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .summary-kpi-val {
+      margin-top: 3px;
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .summary-actions {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .summary-actions-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .btn-summary-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background-color: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .btn-summary-ghost:hover {
+      background-color: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.45);
+    }
+
+    .copy-feedback {
+      min-height: 18px;
+      font-size: 12.5px;
+      color: #DDF0EC;
+      font-weight: 600;
+    }
+
+    /* Breakdown Card & Visits Card */
+    .detail-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .detail-card-title {
+      margin: 0 0 14px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .detail-card-sub {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .stage-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .stage-item {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .stage-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .stage-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .stage-price {
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stage-desc {
+      margin-top: 4px;
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    .stage-bar-track {
+      margin-top: 8px;
+      width: 100%;
+      height: 4px;
+      border-radius: 999px;
+      background-color: var(--border);
+      overflow: hidden;
+    }
+
+    .stage-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background-color: var(--primary);
+      transition: width 0.25s ease;
+    }
+
+    .visits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .visit-item {
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .visit-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .visit-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background-color: var(--surface-bronze);
+      border: 1px solid rgba(155, 106, 57, 0.35);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 12.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .visit-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .visit-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .visit-timing {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .visit-desc {
+      margin-top: 3px;
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .visit-pay {
+      margin-top: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Booking & Contacts Section */
+    .booking-section {
+      padding-bottom: 48px;
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .booking-title {
+      margin: 0 0 6px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .booking-subtitle {
+      margin: 0 0 18px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .attached-plan-box {
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--surface-soft);
+      border: 1px solid rgba(26, 74, 69, 0.22);
+      margin-bottom: 18px;
+    }
+
+    .attached-plan-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .attached-plan-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--primary);
+    }
+
+    .attached-plan-sum {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .attached-plan-text {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    .booking-form {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .form-two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .checkbox-inline {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .checkbox-inline label {
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .form-error {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--danger-bg);
+      border: 1px solid rgba(155, 59, 54, 0.3);
+      color: var(--danger);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .booking-success-card {
+      padding: 20px;
+      border-radius: var(--radius-md);
+      background-color: var(--success-bg);
+      border: 1px solid rgba(26, 74, 69, 0.28);
+    }
+
+    .booking-success-title {
+      margin: 0 0 8px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .booking-success-text {
+      margin: 0 0 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .booking-success-meta {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    /* Contacts Grid */
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .contact-cell {
+      padding: 13px 14px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      min-width: 0;
+    }
+
+    .contact-full-row {
+      grid-column: 1 / -1;
+    }
+
+    .contact-label {
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .contact-nowrap-link {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      white-space: nowrap;
+      word-break: normal;
+    }
+
+    .contact-nowrap-link:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .clinic-standards {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--surface-bronze);
+      border: 1px solid rgba(155, 106, 57, 0.28);
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--surface);
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+      padding-bottom: 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 24px;
+      align-items: start;
+    }
+
+    .footer-brand-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .footer-address {
+      margin-top: 4px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+
+    .footer-links-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 18px;
+    }
+
+    .footer-note {
+      grid-column: 1 / -1;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      .hero-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .workspace-grid,
+      .booking-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .summary-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .tiers-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .directions-grid,
+      .params-two-col,
+      .form-two-col,
+      .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .hero-card,
+      .panel,
+      .summary-hero,
+      .detail-card {
+        padding: 18px;
+      }
+
+      .hero-title {
+        font-size: 25px;
+      }
+
+      .hero-metrics {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contacts-grid,
+      .footer-links-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .summary-total-amount {
+        font-size: 30px;
+      }
+
+      .summary-kpis {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
+      }
+
+      .summary-actions-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-nowrap-link {
+        font-size: 13px;
+      }
+
+      .header-actions {
+        width: 100%;
+      }
+
+      .header-actions .btn-primary,
+      .header-actions .header-phone {
+        flex: 1 1 auto;
+        justify-content: center;
+      }
+    }
+
+    @media print {
+      body {
+        background-color: #FFFFFF;
+      }
+
+      .site-header .header-actions,
+      .presets-wrap,
+      .summary-actions,
+      .booking-section {
+        display: none;
+      }
+
+      .workspace-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .summary-panel {
+        position: static;
+      }
+
+      .summary-hero {
+        background-color: #FFFFFF;
+        color: var(--text);
+        border: 2px solid var(--primary);
+      }
+
+      .summary-total-label,
+      .summary-total-amount,
+      .summary-range-line,
+      .summary-kpi-label,
+      .summary-kpi-val,
+      .summary-tag {
+        color: var(--text);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6.8 6.5C8.5 5.4 10.4 6.1 12 7.2C13.6 6.1 15.5 5.4 17.2 6.5C19.3 7.8 19.7 10.9 18.7 13.9C17.9 16.5 17 20.6 15.4 20.9C14.2 21.1 13.7 18.3 12.9 16.5C12.5 15.6 11.5 15.6 11.1 16.5C10.3 18.3 9.8 21.1 8.6 20.9C7 20.6 6.1 16.5 5.3 13.9C4.3 10.9 4.7 7.8 6.8 6.5Z" stroke="#F7F6F3" stroke-width="1.7" stroke-linejoin="round"/>
+            <circle cx="12" cy="11.3" r="1.5" fill="#9B6A39"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Авторская стоматология доктора Муссурова</div>
+          <div class="brand-subtitle">г. Москва, Бутырская, 46 (Большая Новодмитровская 23 стр 2)</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a class="header-phone mono-num" href="tel:+74959551293">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 4H9L11 9L8.5 10.5C9.57 12.67 11.33 14.43 13.5 15.5L15 13L20 15V19C20 20.1 19.1 21 18 21C9.93 20.51 3.49 14.07 3 6C3 4.9 3.9 4 5 4Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>+7 (495) 955-12-93</span>
+        </a>
+        <a class="btn-primary" href="#booking">Запись на консультацию</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero-band">
+    <div class="container">
+      <div class="hero-card">
+        <div class="hero-top">
+          <div class="hero-copy">
+            <div class="eyebrow">Цифровое планирование лечения · Москва</div>
+            <h1 class="hero-title">Калькулятор стоимости имплантации и лечения зубов</h1>
+            <p class="hero-lead">
+              Интерактивный расчёт бюджета и длительности лечения по четырём клиническим направлениям: имплантация зубов, эстетическая стоматология, ортодонтия и терапия. Настройте объём, класс применяемых систем и диагностику, чтобы сразу увидеть поэтапную смету в рублях, график визитов и сформировать предзаполненную заявку на очный приём.
+            </p>
+          </div>
+          <div class="hero-clinic-tag">
+            <div class="hero-clinic-tag-label">Режим приёма в Москве</div>
+            <div class="hero-clinic-tag-value">Ежедневно с 09:00 до 21:00</div>
+            <div class="brand-subtitle">Оплата по факту выполнения этапов</div>
+          </div>
+        </div>
+        <div class="hero-metrics">
+          <div class="hero-metric">
+            <div class="hero-metric-title">4 профильных направления</div>
+            <div class="hero-metric-desc">Имплантация, виниры и отбеливание, ортодонтия, лечение под микроскопом</div>
+          </div>
+          <div class="hero-metric">
+            <div class="hero-metric-title">3 класса систем</div>
+            <div class="hero-metric-desc">Прозрачное сравнение протоколов Стандарт, Бизнес и Премиум</div>
+          </div>
+          <div class="hero-metric">
+            <div class="hero-metric-title">КЛКТ 3D и моделирование</div>
+            <div class="hero-metric-desc">Точный учёт диагностики, DSD-дизайна улыбки и профгигиены</div>
+          </div>
+          <div class="hero-metric">
+            <div class="hero-metric-title">Поэтапный график</div>
+            <div class="hero-metric-desc">Детализация визитов, сроков и распределения оплат по этапам</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="workspace">
+    <div class="container workspace-grid">
+      <!-- Left Column: Interactive Configurator -->
+      <section class="panel" aria-label="Параметры расчёта стоимости лечения">
+        <div class="presets-wrap">
+          <div class="presets-title">Типовые клинические сценарии</div>
+          <div class="presets-bar" id="presets-bar">
+            <button type="button" class="preset-btn" data-preset="single-implant" aria-pressed="false">1 имплант под ключ</button>
+            <button type="button" class="preset-btn" data-preset="smile-veneers" aria-pressed="false">Зона улыбки · 6 виниров</button>
+            <button type="button" class="preset-btn" data-preset="aligners-dual" aria-pressed="false">Элайнеры на 2 челюсти</button>
+            <button type="button" class="preset-btn" data-preset="microscope-endo" aria-pressed="false">Канал под микроскопом</button>
+          </div>
+        </div>
+
+        <!-- Step 1: Direction -->
+        <div class="panel-section">
+          <div class="section-head">
+            <h2 class="section-step" id="heading-direction">
+              <span class="step-badge">1</span>
+              <span>Выберите направление лечения</span>
+            </h2>
+            <span class="section-hint">Базовые протоколы клиники</span>
+          </div>
+          <div class="directions-grid" id="direction-group" role="radiogroup" aria-labelledby="heading-direction">
+            <button type="button" class="direction-card" data-direction="implant" role="radio" aria-checked="true">
+              <span class="direction-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M7.5 4.5C9 3.6 10.6 4.1 12 5C13.4 4.1 15 3.6 16.5 4.5C18.2 5.5 18.3 8.1 17 10.2C16.2 11.4 14.8 12 12 12C9.2 12 7.8 11.4 7 10.2C5.7 8.1 5.8 5.5 7.5 4.5Z" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M9.5 12V20M14.5 12V20M9 14.8H15M9.5 17.6H14.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="direction-meta">
+                <span class="direction-title">Имплантация зубов</span>
+                <span class="direction-desc">От 1 имплантата до полной реабилитации All-on-4 и All-on-6</span>
+                <span class="direction-base">от 73 000 ₽ за этап</span>
+              </span>
+            </button>
+
+            <button type="button" class="direction-card" data-direction="esthetics" role="radio" aria-checked="false">
+              <span class="direction-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 3L14.2 8.4L19.8 10.5L14.2 12.6L12 18L9.8 12.6L4.2 10.5L9.8 8.4L12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M18.5 16L19.4 18.1L21.5 19L19.4 19.9L18.5 22L17.6 19.9L15.5 19L17.6 18.1L18.5 16Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="direction-meta">
+                <span class="direction-title">Эстетическая стоматология</span>
+                <span class="direction-desc">Керамические виниры E.max, рефрактор, отбеливание</span>
+                <span class="direction-base">от 14 500 ₽ за единицу</span>
+              </span>
+            </button>
+
+            <button type="button" class="direction-card" data-direction="ortho" role="radio" aria-checked="false">
+              <span class="direction-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="4" y="8.5" width="4.5" height="7" rx="1.3" stroke="currentColor" stroke-width="1.7"/>
+                  <rect x="9.75" y="8.5" width="4.5" height="7" rx="1.3" stroke="currentColor" stroke-width="1.7"/>
+                  <rect x="15.5" y="8.5" width="4.5" height="7" rx="1.3" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M2.5 12H21.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="direction-meta">
+                <span class="direction-title">Ортодонтия</span>
+                <span class="direction-desc">Самолигирующие брекеты, керамика и прозрачные элайнеры</span>
+                <span class="direction-base">от 68 000 ₽ за курс</span>
+              </span>
+            </button>
+
+            <button type="button" class="direction-card" data-direction="therapy" role="radio" aria-checked="false">
+              <span class="direction-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M16 16L20.5 20.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  <path d="M11 8.2V13.8M8.2 11H13.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="direction-meta">
+                <span class="direction-title">Терапевтическое лечение</span>
+                <span class="direction-desc">Лечение кариеса, реставрация и эндодонтия под микроскопом</span>
+                <span class="direction-base">от 9 500 ₽ за зуб</span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Dynamic Clinical Parameters -->
+        <div class="panel-section">
+          <div class="section-head">
+            <h2 class="section-step">
+              <span class="step-badge">2</span>
+              <span>Объём и клинические параметры</span>
+            </h2>
+            <span class="section-hint" id="params-direction-caption">Настройка объёма имплантации</span>
+          </div>
+          <div class="params-stack" id="dynamic-params-container"></div>
+        </div>
+
+        <!-- Step 3: System Tier -->
+        <div class="panel-section">
+          <div class="section-head">
+            <h2 class="section-step" id="heading-tiers">
+              <span class="step-badge">3</span>
+              <span>Класс систем и материалов</span>
+            </h2>
+            <span class="section-hint">Сертифицированные протоколы</span>
+          </div>
+          <div class="tiers-grid" id="tier-group" role="radiogroup" aria-labelledby="heading-tiers">
+            <button type="button" class="tier-card" data-tier="standard" role="radio" aria-checked="false">
+              <div>
+                <div class="tier-head">
+                  <span class="tier-name">Стандарт</span>
+                  <span class="tier-pill">Базовый</span>
+                </div>
+                <div class="tier-brand-note" id="tier-desc-standard">Надёжные сертифицированные системы с предсказуемой клиникой</div>
+              </div>
+              <div class="tier-warranty" id="tier-warranty-standard">Гарантия на работу 3 года</div>
+            </button>
+
+            <button type="button" class="tier-card" data-tier="business" role="radio" aria-checked="true">
+              <div>
+                <div class="tier-head">
+                  <span class="tier-name">Бизнес</span>
+                  <span class="tier-pill">Оптимум</span>
+                </div>
+                <div class="tier-brand-note" id="tier-desc-business">Улучшенная эстетика, быстрая остеоинтеграция и высокий ресурс</div>
+              </div>
+              <div class="tier-warranty" id="tier-warranty-business">Гарантия на работу 5 лет</div>
+            </button>
+
+            <button type="button" class="tier-card" data-tier="premium" role="radio" aria-checked="false">
+              <div>
+                <div class="tier-head">
+                  <span class="tier-name">Премиум</span>
+                  <span class="tier-pill">Флагман</span>
+                </div>
+                <div class="tier-brand-note" id="tier-desc-premium">Швейцарские и немецкие флагманские протоколы под микроскопом</div>
+              </div>
+              <div class="tier-warranty" id="tier-warranty-premium">Гарантия на работу до 10 лет</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4: Diagnostics & Prep Options -->
+        <div class="panel-section">
+          <div class="section-head">
+            <h2 class="section-step">
+              <span class="step-badge">4</span>
+              <span>Диагностика и подготовка полости рта</span>
+            </h2>
+            <span class="section-hint">Рекомендуется до старта лечения</span>
+          </div>
+          <div class="options-list">
+            <div class="option-row">
+              <input type="checkbox" class="custom-checkbox" id="opt-klkt" autocomplete="off" checked>
+              <div class="option-content">
+                <div>
+                  <label class="option-label" for="opt-klkt">КЛКТ 3D-диагностика (компьютерная томография обеих челюстей)</label>
+                  <div class="option-sub">Трёхмерная оценка объёма кости, расположения нервов и состояния корневых каналов</div>
+                </div>
+                <div class="option-price">+ 4 900 ₽</div>
+              </div>
+            </div>
+
+            <div class="option-row">
+              <input type="checkbox" class="custom-checkbox" id="opt-dsd" autocomplete="off">
+              <div class="option-content">
+                <div>
+                  <label class="option-label" for="opt-dsd">Цифровое моделирование улыбки (3D-скан + Digital Smile Design)</label>
+                  <div class="option-sub">Виртуальная примерка будущей формы и пропорций зубов до начала вмешательства</div>
+                </div>
+                <div class="option-price">+ 8 500 ₽</div>
+              </div>
+            </div>
+
+            <div class="option-row">
+              <input type="checkbox" class="custom-checkbox" id="opt-hygiene" autocomplete="off" checked>
+              <div class="option-content">
+                <div>
+                  <label class="option-label" for="opt-hygiene">Профессиональная гигиена полости рта (Air Flow + ультразвук)</label>
+                  <div class="option-sub">Снятие мягкого налёта и зубного камня с реминерализирующим укреплением эмали</div>
+                </div>
+                <div class="option-price">+ 6 800 ₽</div>
+              </div>
+            </div>
+
+            <div class="option-row">
+              <input type="checkbox" class="custom-checkbox" id="opt-consult" autocomplete="off" checked>
+              <div class="option-content">
+                <div>
+                  <label class="option-label" for="opt-consult">Очная консультация ведущего врача с фотопротоколом</label>
+                  <div class="option-sub">Осмотр, составление письменного плана лечения и фиксация сметы</div>
+                </div>
+                <div class="option-price">+ 2 500 ₽</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Live Estimate, Stages & Visits -->
+      <aside class="summary-panel" aria-label="Предварительная смета и график визитов">
+        <div class="summary-hero">
+          <div class="summary-badge-row">
+            <span class="summary-tag" id="summary-direction-tag">Имплантация зубов</span>
+            <span class="summary-tier-badge" id="summary-tier-tag">Класс: Бизнес</span>
+          </div>
+          <div class="summary-total-label">Ориентировочная стоимость плана</div>
+          <div class="summary-total-amount" id="summary-total">126 200 ₽</div>
+          <div class="summary-range-line">
+            <span class="tabular">Диапазон по смете: <strong class="mono-num" id="summary-range">119 900 – 133 800 ₽</strong></span>
+            <span class="tabular">Рассрочка 12 мес: <strong class="mono-num" id="summary-monthly">от 10 517 ₽/мес</strong></span>
+          </div>
+
+          <div class="summary-kpis">
+            <div>
+              <div class="summary-kpi-label">Срок лечения</div>
+              <div class="summary-kpi-val" id="summary-duration">3–4 мес.</div>
+            </div>
+            <div>
+              <div class="summary-kpi-label">График приёмов</div>
+              <div class="summary-kpi-val" id="summary-visits-count">5 визитов</div>
+            </div>
+            <div>
+              <div class="summary-kpi-label">Гарантия</div>
+              <div class="summary-kpi-val" id="summary-warranty">5 лет</div>
+            </div>
+          </div>
+
+          <div class="summary-actions">
+            <a class="btn-bronze" href="#booking" id="jump-to-booking-btn">Оформить заявку с этим расчётом</a>
+            <div class="summary-actions-row">
+              <button type="button" class="btn-summary-ghost" id="copy-estimate-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M5 15H4C2.9 15 2 14.1 2 13V4C2 2.9 2.9 2 4 2H13C14.1 2 15 2.9 15 4V5" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+                <span>Скопировать расчёт</span>
+              </button>
+              <button type="button" class="btn-summary-ghost" id="print-estimate-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M6 9V3H18V9" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <rect x="3" y="9" width="18" height="8" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M6 14H18V21H6V14Z" fill="#1A4A45" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                </svg>
+                <span>Распечатать смету</span>
+              </button>
+            </div>
+            <div class="copy-feedback" id="copy-feedback" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="detail-card">
+          <h3 class="detail-card-title">
+            <span>Поэтапная смета в ₽</span>
+            <span class="detail-card-sub mono-num" id="stages-total-check">126 200 ₽</span>
+          </h3>
+          <div class="stage-list" id="stages-list"></div>
+        </div>
+
+        <div class="detail-card">
+          <h3 class="detail-card-title">
+            <span>График клинических визитов</span>
+            <span class="detail-card-sub" id="visits-subtitle">Поэтапная оплата по визитам</span>
+          </h3>
+          <div class="visits-list" id="visits-list"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <section class="booking-section" id="booking">
+    <div class="container booking-grid">
+      <div class="panel">
+        <h2 class="booking-title">Предзаполненная заявка на консультацию</h2>
+        <p class="booking-subtitle">
+          Параметры вашего расчёта автоматически прикрепляются к записи. Администратор клиники подберёт удобное окно к профильному специалисту и подтвердит время визита по телефону.
+        </p>
+
+        <div class="attached-plan-box">
+          <div class="attached-plan-head">
+            <span class="attached-plan-title">Прикреплённый план из калькулятора</span>
+            <span class="attached-plan-sum" id="booking-attached-sum">126 200 ₽</span>
+          </div>
+          <p class="attached-plan-text" id="booking-attached-summary"></p>
+        </div>
+
+        <div id="booking-form-wrapper">
+          <form class="booking-form" id="consultation-form" novalidate>
+            <div class="form-two-col">
+              <div class="field">
+                <label for="patient-name">Ваше имя</label>
+                <input type="text" class="field-input" id="patient-name" name="name" autocomplete="name" required placeholder="Например, Александр Соколов">
+              </div>
+              <div class="field">
+                <label for="patient-phone">Телефон для связи</label>
+                <input type="tel" class="field-input" id="patient-phone" name="phone" autocomplete="tel" required placeholder="+7 (900) 000-00-00">
+              </div>
+            </div>
+
+            <div class="form-two-col">
+              <div class="field">
+                <label for="patient-email">Электронная почта (по желанию)</label>
+                <input type="email" class="field-input" id="patient-email" name="email" autocomplete="email" placeholder="name@example.ru">
+              </div>
+              <div class="field">
+                <label for="preferred-time">Удобное время звонка и приёма</label>
+                <select class="field-select" id="preferred-time" name="preferred_time" autocomplete="off">
+                  <option value="any">Любое удобное время (09:00 – 21:00)</option>
+                  <option value="morning">Первая половина дня (09:00 – 13:00)</option>
+                  <option value="afternoon">Дневные часы (13:00 – 17:00)</option>
+                  <option value="evening">Вечерний приём (17:00 – 21:00)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="patient-notes">Комментарий к записи</label>
+              <input type="text" class="field-input" id="patient-notes" name="notes" autocomplete="off" placeholder="Удобные дни недели или дополнительные вопросы по плану">
+            </div>
+
+            <div class="checkbox-inline">
+              <input type="checkbox" class="custom-checkbox" id="attach-estimate" name="attach_estimate" autocomplete="off" checked>
+              <label for="attach-estimate">Передать врачу полную поэтапную смету и график визитов из калькулятора</label>
+            </div>
+
+            <div class="checkbox-inline">
+              <input type="checkbox" class="custom-checkbox" id="consent-check" name="consent" autocomplete="off" checked required>
+              <label for="consent-check">Согласен на обработку контактных данных для обратной связи и записи на приём</label>
+            </div>
+
+            <div class="form-error" id="form-error" role="alert" hidden></div>
+
+            <div>
+              <button type="submit" class="btn-primary">Отправить заявку на консультацию</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <aside class="panel" aria-label="Контакты и стандарты клиники">
+        <h2 class="booking-title">Контакты и адрес клиники</h2>
+        <p class="booking-subtitle">
+          Приём пациентов проводится по предварительной записи в Авторской стоматологии доктора Муссурова в Москве.
+        </p>
+
+        <div class="contacts-grid">
+          <div class="contact-cell contact-full-row">
+            <div class="contact-label">Клиника</div>
+            <div class="contact-value">Авторская стоматология доктора Муссурова</div>
+          </div>
+
+          <div class="contact-cell">
+            <div class="contact-label">Город</div>
+            <div class="contact-value">Москва</div>
+          </div>
+
+          <div class="contact-cell">
+            <div class="contact-label">Телефон клиники</div>
+            <div class="contact-value">
+              <a class="contact-nowrap-link mono-num" href="tel:+74959551293">+7 (495) 955-12-93</a>
+            </div>
+          </div>
+
+          <div class="contact-cell contact-full-row">
+            <div class="contact-label">Адрес в Москве</div>
+            <div class="contact-value">г. Москва, Бутырская, 46 (Большая Новодмитровская 23 стр 2)</div>
+          </div>
+
+          <div class="contact-cell contact-full-row">
+            <div class="contact-label">Электронная почта</div>
+            <div class="contact-value">
+              <a class="contact-nowrap-link" href="mailto:iamussurov@yandex.ru">iamussurov@yandex.ru</a>
+            </div>
+          </div>
+
+          <div class="contact-cell contact-full-row">
+            <div class="contact-label">Официальный сайт</div>
+            <div class="contact-value">
+              <a class="contact-nowrap-link" href="https://mussurov.ru/" target="_blank" rel="noopener noreferrer">https://mussurov.ru/</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="clinic-standards">
+          <strong>Принцип фиксированной сметы:</strong> предварительный расчёт помогает оценить масштаб и последовательность лечения. После очного осмотра и КЛКТ-диагностики врач утверждает детальный финансовый план, стоимость в котором фиксируется до начала клинических этапов.
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand-name">Авторская стоматология доктора Муссурова</div>
+        <div class="footer-address">г. Москва, Бутырская, 46 (Большая Новодмитровская 23 стр 2)</div>
+      </div>
+
+      <div class="footer-links-grid">
+        <div class="contact-full-row">
+          <a class="contact-nowrap-link mono-num" href="tel:+74959551293">+7 (495) 955-12-93</a>
+        </div>
+        <div class="contact-full-row">
+          <a class="contact-nowrap-link" href="mailto:iamussurov@yandex.ru">iamussurov@yandex.ru</a>
+        </div>
+        <div class="contact-full-row">
+          <a class="contact-nowrap-link" href="https://mussurov.ru/" target="_blank" rel="noopener noreferrer">https://mussurov.ru/</a>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        Расчёт в калькуляторе носит предварительный информационный характер, не является публичной офертой и уточняется после очной консультации и диагностики в клинике в Москве.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var DIRECTION_META = {
+        implant: {
+          label: 'Имплантация зубов',
+          caption: 'Настройка количества имплантатов, коронок и хирургической подготовки',
+          tiers: {
+            standard: {
+              desc: 'Корейские системы Osstem TS / Dentium с высокой первичной стабильностью',
+              warranty: '3 года',
+              warrantyFull: 'Гарантия на работу 3 года'
+            },
+            business: {
+              desc: 'Системы Neodent Aqua / Astra Tech с ускоренной остеоинтеграцией',
+              warranty: '5 лет',
+              warrantyFull: 'Гарантия на работу 5 лет'
+            },
+            premium: {
+              desc: 'Швейцарские имплантаты Straumann SLActive / Nobel Biocare + 3D-шаблон',
+              warranty: '10 лет',
+              warrantyFull: 'Гарантия на работу до 10 лет'
+            }
+          }
+        },
+        esthetics: {
+          label: 'Эстетическая стоматология',
+          caption: 'Выбор эстетической методики, количества зубов и оттенка',
+          tiers: {
+            standard: {
+              desc: 'Классическая прессованная керамика E.max или композит Estelite',
+              warranty: '3 года',
+              warrantyFull: 'Гарантия на реставрацию 3 года'
+            },
+            business: {
+              desc: 'Послойная керамика Ivoclar E.max с индивидуальной раскраской под микроскопом',
+              warranty: '5 лет',
+              warrantyFull: 'Гарантия на реставрацию 5 лет'
+            },
+            premium: {
+              desc: 'Авторские ультратонкие виниры на рефракторе с минимальной препаровкой',
+              warranty: '7 лет',
+              warrantyFull: 'Гарантия на эстетику 7 лет'
+            }
+          }
+        },
+        ortho: {
+          label: 'Ортодонтия',
+          caption: 'Выбор брекет-системы или элайнеров, челюстей и сложности прикуса',
+          tiers: {
+            standard: {
+              desc: 'Проверенные клинические брекеты или базовый цифровой сет элайнеров',
+              warranty: '2 года',
+              warrantyFull: 'Ретенционный контроль 2 года'
+            },
+            business: {
+              desc: 'Самолигирующие системы Damon / эстетические брекеты или расширенный сет капп',
+              warranty: '3 года',
+              warrantyFull: 'Ретенционный контроль 3 года'
+            },
+            premium: {
+              desc: 'Премиальные низкопрофильные системы и цифровое элайнер-ведение под ключ',
+              warranty: '5 лет',
+              warrantyFull: 'Ретенционный контроль 5 лет'
+            }
+          }
+        },
+        therapy: {
+          label: 'Терапевтическое лечение',
+          caption: 'Выбор профиля кариесологии или эндодонтии под микроскопом',
+          tiers: {
+            standard: {
+              desc: 'Пломбировочные материалы наногибридного класса и коффердам-изоляция',
+              warranty: '2 года',
+              warrantyFull: 'Гарантия на пломбу 2 года'
+            },
+            business: {
+              desc: 'Художественное восстановление бугров и контактных пунктов японским композитом',
+              warranty: '3 года',
+              warrantyFull: 'Гарантия на лечение 3 года'
+            },
+            premium: {
+              desc: 'Многоступенчатое лечение под дентальным микроскопом Leica с 3D-обтурацией',
+              warranty: '5 лет',
+              warrantyFull: 'Гарантия на работу 5 лет'
+            }
+          }
+        }
+      };
+
+      var state = {
+        direction: 'implant',
+        tier: 'business',
+        presetId: null,
+        options: {
+          klkt: true,
+          dsd: false,
+          hygiene: true,
+          consult: true
+        },
+        implant: {
+          scope: 'units',
+          units: 1,
+          crown: 'zirconia',
+          bone: 'none',
+          prosthesis: 'adaptive'
+        },
+        esthetics: {
+          procedure: 'emax',
+          units: 6,
+          shade: 'natural'
+        },
+        ortho: {
+          appliance: 'aligners',
+          jaws: 'dual',
+          complexity: 'medium',
+          retention: true
+        },
+        therapy: {
+          procedure: 'endo_primary',
+          units: 1,
+          canals: '3'
+        }
+      };
+
+      var els = {
+        presetsBar: document.getElementById('presets-bar'),
+        directionGroup: document.getElementById('direction-group'),
+        tierGroup: document.getElementById('tier-group'),
+        paramsContainer: document.getElementById('dynamic-params-container'),
+        paramsCaption: document.getElementById('params-direction-caption'),
+        optKlkt: document.getElementById('opt-klkt'),
+        optDsd: document.getElementById('opt-dsd'),
+        optHygiene: document.getElementById('opt-hygiene'),
+        optConsult: document.getElementById('opt-consult'),
+        summaryDirTag: document.getElementById('summary-direction-tag'),
+        summaryTierTag: document.getElementById('summary-tier-tag'),
+        summaryTotal: document.getElementById('summary-total'),
+        summaryRange: document.getElementById('summary-range'),
+        summaryMonthly: document.getElementById('summary-monthly'),
+        summaryDuration: document.getElementById('summary-duration'),
+        summaryVisitsCount: document.getElementById('summary-visits-count'),
+        summaryWarranty: document.getElementById('summary-warranty'),
+        stagesTotalCheck: document.getElementById('stages-total-check'),
+        stagesList: document.getElementById('stages-list'),
+        visitsSubtitle: document.getElementById('visits-subtitle'),
+        visitsList: document.getElementById('visits-list'),
+        copyBtn: document.getElementById('copy-estimate-btn'),
+        printBtn: document.getElementById('print-estimate-btn'),
+        copyFeedback: document.getElementById('copy-feedback'),
+        bookingAttachedSum: document.getElementById('booking-attached-sum'),
+        bookingAttachedSummary: document.getElementById('booking-attached-summary'),
+        bookingFormWrapper: document.getElementById('booking-form-wrapper'),
+        form: document.getElementById('consultation-form'),
+        formError: document.getElementById('form-error'),
+        tierDescStandard: document.getElementById('tier-desc-standard'),
+        tierDescBusiness: document.getElementById('tier-desc-business'),
+        tierDescPremium: document.getElementById('tier-desc-premium'),
+        tierWarrantyStandard: document.getElementById('tier-warranty-standard'),
+        tierWarrantyBusiness: document.getElementById('tier-warranty-business'),
+        tierWarrantyPremium: document.getElementById('tier-warranty-premium')
+      };
+
+      function formatRub(val) {
+        var rounded = Math.round(val);
+        return rounded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
+      }
+
+      function pluralRu(n, forms) {
+        var abs = Math.abs(n) % 100;
+        var mod10 = abs % 10;
+        if (abs > 10 && abs < 20) return forms[2];
+        if (mod10 > 1 && mod10 < 5) return forms[1];
+        if (mod10 === 1) return forms[0];
+        return forms[2];
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function renderDynamicParams() {
+        var dir = state.direction;
+        els.paramsCaption.textContent = DIRECTION_META[dir].caption;
+        var html = '';
+
+        if (dir === 'implant') {
+          var isUnitScope = state.implant.scope === 'units';
+          html += '<div class="field">' +
+            '<label for="implant-scope">Формат имплантации</label>' +
+            '<select class="field-select" id="implant-scope" autocomplete="off">' +
+              '<option value="units"' + (state.implant.scope === 'units' ? ' selected' : '') + '>По количеству имплантатов (от 1 до 8 единиц)</option>' +
+              '<option value="allon4"' + (state.implant.scope === 'allon4' ? ' selected' : '') + '>Восстановление всей челюсти по протоколу All-on-4</option>' +
+              '<option value="allon6"' + (state.implant.scope === 'allon6' ? ' selected' : '') + '>Восстановление всей челюсти по протоколу All-on-6</option>' +
+              '<option value="dual_jaw"' + (state.implant.scope === 'dual_jaw' ? ' selected' : '') + '>Полная реабилитация двух челюстей (All-on-4 / All-on-6)</option>' +
+            '</select>' +
+          '</div>';
+
+          if (isUnitScope) {
+            html += renderQtyBox(
+              'Количество имплантатов',
+              state.implant.units,
+              1,
+              8,
+              [1, 2, 4, 6],
+              pluralRu(state.implant.units, ['единица', 'единицы', 'единиц'])
+            );
+
+            html += '<div class="params-two-col">' +
+              '<div class="field">' +
+                '<label for="implant-crown">Тип коронки на имплантат</label>' +
+                '<select class="field-select" id="implant-crown" autocomplete="off">' +
+                  '<option value="metal_ceramic"' + (state.implant.crown === 'metal_ceramic' ? ' selected' : '') + '>Металлокерамическая коронка</option>' +
+                  '<option value="zirconia"' + (state.implant.crown === 'zirconia' ? ' selected' : '') + '>Коронка из диоксида циркония</option>' +
+                  '<option value="temp_zirconia"' + (state.implant.crown === 'temp_zirconia' ? ' selected' : '') + '>Временная + постоянная циркониевая</option>' +
+                '</select>' +
+              '</div>' +
+              '<div class="field">' +
+                '<label for="implant-bone">Костная пластика и синус-лифтинг</label>' +
+                '<select class="field-select" id="implant-bone" autocomplete="off">' +
+                  '<option value="none"' + (state.implant.bone === 'none' ? ' selected' : '') + '>Не требуется (достаточный объём кости)</option>' +
+                  '<option value="augmentation"' + (state.implant.bone === 'augmentation' ? ' selected' : '') + '>Локальное наращивание костной ткани</option>' +
+                  '<option value="sinus"' + (state.implant.bone === 'sinus' ? ' selected' : '') + '>Синус-лифтинг (верхняя челюсть)</option>' +
+                '</select>' +
+              '</div>' +
+            '</div>';
+          } else {
+            html += '<div class="field">' +
+              '<label for="implant-prosthesis">Постоянная ортопедическая конструкция</label>' +
+              '<select class="field-select" id="implant-prosthesis" autocomplete="off">' +
+                '<option value="adaptive"' + (state.implant.prosthesis === 'adaptive' ? ' selected' : '') + '>Адаптационный несъёмный протез с винтовой фиксацией</option>' +
+                '<option value="titanium_bar"' + (state.implant.prosthesis === 'titanium_bar' ? ' selected' : '') + '>Адаптационный + армированный протез на титановой балке</option>' +
+                '<option value="full_zirconia"' + (state.implant.prosthesis === 'full_zirconia' ? ' selected' : '') + '>Адаптационный + полноанатомический цирконий</option>' +
+              '</select>' +
+            '</div>' +
+            '<div class="info-banner">Протокол включает установку необходимого числа имплантатов, мультиюнит-абатменты и фиксацию адаптационного протеза в первые 72 часа после операции.</div>';
+          }
+        } else if (dir === 'esthetics') {
+          html += '<div class="params-two-col">' +
+            '<div class="field">' +
+              '<label for="est-procedure">Эстетический профиль</label>' +
+              '<select class="field-select" id="est-procedure" autocomplete="off">' +
+                '<option value="emax"' + (state.esthetics.procedure === 'emax' ? ' selected' : '') + '>Керамические виниры E.max</option>' +
+                '<option value="refractor"' + (state.esthetics.procedure === 'refractor' ? ' selected' : '') + '>Авторские виниры на рефракторе</option>' +
+                '<option value="composite"' + (state.esthetics.procedure === 'composite' ? ' selected' : '') + '>Художественная реставрация композитом</option>' +
+                '<option value="whitening"' + (state.esthetics.procedure === 'whitening' ? ' selected' : '') + '>Клиническое отбеливание зубов</option>' +
+              '</select>' +
+            '</div>' +
+            '<div class="field">' +
+              '<label for="est-shade">Оттенок и восковой прототип</label>' +
+              '<select class="field-select" id="est-shade" autocomplete="off">' +
+                '<option value="natural"' + (state.esthetics.shade === 'natural' ? ' selected' : '') + '>Естественный оттенок по шкале VITA</option>' +
+                '<option value="bleach"' + (state.esthetics.shade === 'bleach' ? ' selected' : '') + '>Осветлённый тон Bleach + Mock-up примерка</option>' +
+              '</select>' +
+            '</div>' +
+          '</div>';
+
+          if (state.esthetics.procedure !== 'whitening') {
+            html += renderQtyBox(
+              'Количество зубов в зоне улыбки',
+              state.esthetics.units,
+              2,
+              20,
+              [4, 6, 8, 10, 12],
+              pluralRu(state.esthetics.units, ['зуб', 'зуба', 'зубов'])
+            );
+          } else {
+            html += '<div class="info-banner">Клиническое отбеливание выполняется сразу на обе челюсти за один основной сеанс с защитой десны и последующей реминерализацией эмали.</div>';
+          }
+        } else if (dir === 'ortho') {
+          html += '<div class="params-two-col">' +
+            '<div class="field">' +
+              '<label for="ortho-appliance">Ортодонтическая система</label>' +
+              '<select class="field-select" id="ortho-appliance" autocomplete="off">' +
+                '<option value="metal"' + (state.ortho.appliance === 'metal' ? ' selected' : '') + '>Металлическая самолигирующая система</option>' +
+                '<option value="ceramic"' + (state.ortho.appliance === 'ceramic' ? ' selected' : '') + '>Керамическая / сапфировая эстетическая система</option>' +
+                '<option value="aligners"' + (state.ortho.appliance === 'aligners' ? ' selected' : '') + '>Прозрачные элайнеры (набор капп)</option>' +
+              '</select>' +
+            '</div>' +
+            '<div class="field">' +
+              '<label for="ortho-jaws">Охват челюстей</label>' +
+              '<select class="field-select" id="ortho-jaws" autocomplete="off">' +
+                '<option value="single"' + (state.ortho.jaws === 'single' ? ' selected' : '') + '>Одна челюсть</option>' +
+                '<option value="dual"' + (state.ortho.jaws === 'dual' ? ' selected' : '') + '>Обе челюсти (верхняя и нижняя)</option>' +
+              '</select>' +
+            '</div>' +
+          '</div>' +
+          '<div class="field">' +
+            '<label for="ortho-complexity">Клиническая сложность и срок коррекции</label>' +
+            '<select class="field-select" id="ortho-complexity" autocomplete="off">' +
+              '<option value="mild"' + (state.ortho.complexity === 'mild' ? ' selected' : '') + '>Лёгкая коррекция положения зубов (6–10 мес.)</option>' +
+              '<option value="medium"' + (state.ortho.complexity === 'medium' ? ' selected' : '') + '>Средняя скученность и коррекция прикуса (12–16 мес.)</option>' +
+              '<option value="complex"' + (state.ortho.complexity === 'complex' ? ' selected' : '') + '>Сложная перестройка прикуса (18–24 мес.)</option>' +
+            '</select>' +
+          '</div>' +
+          '<div class="option-row">' +
+            '<input type="checkbox" class="custom-checkbox" id="ortho-retention" autocomplete="off"' + (state.ortho.retention ? ' checked' : '') + '>' +
+            '<div class="option-content">' +
+              '<div>' +
+                '<label class="option-label" for="ortho-retention">Финальный ретенционный комплект</label>' +
+                '<div class="option-sub">Установка несъёмного проволочного ретейнера и изготовление ночных ретенционных капп</div>' +
+              '</div>' +
+              '<div class="option-price">+' + (state.ortho.jaws === 'dual' ? ' 28 000 ₽' : ' 18 000 ₽') + '</div>' +
+            '</div>' +
+          '</div>';
+        } else if (dir === 'therapy') {
+          html += '<div class="field">' +
+            '<label for="therapy-procedure">Вид терапевтического лечения</label>' +
+            '<select class="field-select" id="therapy-procedure" autocomplete="off">' +
+              '<option value="caries_std"' + (state.therapy.procedure === 'caries_std' ? ' selected' : '') + '>Лечение поверхностного и среднего кариеса</option>' +
+              '<option value="caries_deep"' + (state.therapy.procedure === 'caries_deep' ? ' selected' : '') + '>Глубокий кариес и эстетическая микрореставрация</option>' +
+              '<option value="endo_primary"' + (state.therapy.procedure === 'endo_primary' ? ' selected' : '') + '>Первичная эндодонтия (лечение корневых каналов)</option>' +
+              '<option value="endo_retreat"' + (state.therapy.procedure === 'endo_retreat' ? ' selected' : '') + '>Сложное перелечивание каналов под микроскопом</option>' +
+            '</select>' +
+          '</div>';
+
+          if (state.therapy.procedure === 'endo_primary' || state.therapy.procedure === 'endo_retreat') {
+            html += '<div class="field">' +
+              '<label for="therapy-canals">Анатомия корневых каналов</label>' +
+              '<select class="field-select" id="therapy-canals" autocomplete="off">' +
+                '<option value="1"' + (state.therapy.canals === '1' ? ' selected' : '') + '>1 канал (резцы, клыки)</option>' +
+                '<option value="2"' + (state.therapy.canals === '2' ? ' selected' : '') + '>2 канала (премоляры)</option>' +
+                '<option value="3"' + (state.therapy.canals === '3' ? ' selected' : '') + '>3–4 канала (жевательные моляры)</option>' +
+              '</select>' +
+            '</div>';
+          }
+
+          html += renderQtyBox(
+            'Количество зубов к лечению',
+            state.therapy.units,
+            1,
+            8,
+            [1, 2, 3, 4],
+            pluralRu(state.therapy.units, ['зуб', 'зуба', 'зубов'])
+          );
+        }
+
+        els.paramsContainer.innerHTML = html;
+        bindDynamicParamEvents();
+      }
+
+      function renderQtyBox(labelText, val, min, max, chips, unitLabel) {
+        var chipsHtml = chips.map(function (c) {
+          return '<button type="button" class="qty-chip' + (c === val ? ' active' : '') + '" data-qty-chip="' + c + '">' + c + '</button>';
+        }).join('');
+
+        return '<div class="qty-box">' +
+          '<div class="qty-header">' +
+            '<label for="unit-count-range">' + escapeHtml(labelText) + '</label>' +
+            '<div class="qty-stepper">' +
+              '<button type="button" class="stepper-btn" id="qty-minus" aria-label="Уменьшить количество">-</button>' +
+              '<div class="qty-number-wrap">' +
+                '<input type="number" class="qty-number-input" id="unit-count-number" min="' + min + '" max="' + max + '" value="' + val + '" autocomplete="off">' +
+                '<label class="qty-unit-label" for="unit-count-number">' + escapeHtml(unitLabel) + '</label>' +
+              '</div>' +
+              '<button type="button" class="stepper-btn" id="qty-plus" aria-label="Увеличить количество">+</button>' +
+            '</div>' +
+          '</div>' +
+          '<input type="range" class="qty-range" id="unit-count-range" min="' + min + '" max="' + max + '" step="1" value="' + val + '" autocomplete="off">' +
+          '<div class="qty-presets">' + chipsHtml + '</div>' +
+        '</div>';
+      }
+
+      function setUnitCount(nextVal) {
+        if (state.direction === 'implant') {
+          state.implant.units = Math.max(1, Math.min(8, nextVal));
+        } else if (state.direction === 'esthetics') {
+          state.esthetics.units = Math.max(2, Math.min(20, nextVal));
+        } else if (state.direction === 'therapy') {
+          state.therapy.units = Math.max(1, Math.min(8, nextVal));
+        }
+        state.presetId = null;
+        renderDynamicParams();
+        updateAll();
+      }
+
+      function bindDynamicParamEvents() {
+        var elScope = document.getElementById('implant-scope');
+        if (elScope) {
+          elScope.addEventListener('change', function () {
+            state.implant.scope = elScope.value;
+            state.presetId = null;
+            renderDynamicParams();
+            updateAll();
+          });
+        }
+        var elCrown = document.getElementById('implant-crown');
+        if (elCrown) {
+          elCrown.addEventListener('change', function () {
+            state.implant.crown = elCrown.value;
+            state.presetId = null;
+            updateAll();
+          });
+        }
+        var elBone = document.getElementById('implant-bone');
+        if (elBone) {
+          elBone.addEventListener('change', function () {
+            state.implant.bone = elBone.value;
+            state.presetId = null;
+            updateAll();
+          });
+        }
+        var elProsth = document.getElementById('implant-prosthesis');
+        if (elProsth) {
+          elProsth.addEventListener('change', function () {
+            state.implant.prosthesis = elProsth.value;
+            state.presetId = null;
+            updateAll();
+          });
+        }
+
+        var elEstProc = document.getElementById('est-procedure');
+        if (elEstProc) {
+          elEstProc.addEventListener('change', function () {
+            state.esthetics.procedure = elEstProc.value;
+            state.presetId = null;
+            renderDynamicParams();
+            updateAll();
+          });
+        }
+        var elEstShade = document.getElementById('est-shade');
+        if (elEstShade) {
+          elEstShade.addEventListener('change', function () {
+            state.esthetics.shade = elEstShade.value;
+            state.presetId = null;
+            updateAll();
+          });
+        }
+
+        var elOrthoApp = document.getElementById('ortho-appliance');
+        if (elOrthoApp) {
+          elOrthoApp.addEventListener('change', function () {
+            state.ortho.appliance = elOrthoApp.value;
+            state.presetId = null;
+            updateAll();
+          });
+        }
+        var elOrthoJaws = document.getElementById('ortho-jaws');
+        if (elOrthoJaws) {
+          elOrthoJaws.addEventListener('change', function () {
+            state.ortho.jaws = elOrthoJaws.value;
+            state.presetId = null;
+            renderDynamicParams();
+            updateAll();
+          });
+        }
+        var elOrthoComp = document.getElementById('ortho-complexity');
+        if (elOrthoComp) {
+          elOrthoComp.addEventListener('change', function () {
+            state.ortho.complexity = elOrthoComp.value;
+            state.presetId = null;
+            updateAll();
+          });
+        }
+        var elOrthoRet = document.getElementById('ortho-retention');
+        if (elOrthoRet) {
+          elOrthoRet.addEventListener('change', function () {
+            state.ortho.retention = elOrthoRet.checked;
+            state.presetId = null;
+            updateAll();
+          });
+        }
+
+        var elThProc = document.getElementById('therapy-procedure');
+        if (elThProc) {
+          elThProc.addEventListener('change', function () {
+            state.therapy.procedure = elThProc.value;
+            state.presetId = null;
+            renderDynamicParams();
+            updateAll();
+          });
+        }
+        var elThCanals = document.getElementById('therapy-canals');
+        if (elThCanals) {
+          elThCanals.addEventListener('change', function () {
+            state.therapy.canals = elThCanals.value;
+            state.presetId = null;
+            updateAll();
+          });
+        }
+
+        var rangeEl = document.getElementById('unit-count-range');
+        var numEl = document.getElementById('unit-count-number');
+        var minusBtn = document.getElementById('qty-minus');
+        var plusBtn = document.getElementById('qty-plus');
+
+        if (rangeEl) {
+          rangeEl.addEventListener('input', function () {
+            var val = parseInt(rangeEl.value, 10);
+            if (!isNaN(val)) {
+              setUnitCount(val);
+            }
+          });
+        }
+        if (numEl) {
+          numEl.addEventListener('change', function () {
+            var val = parseInt(numEl.value, 10);
+            if (!isNaN(val)) {
+              setUnitCount(val);
+            }
+          });
+        }
+        if (minusBtn && numEl) {
+          minusBtn.addEventListener('click', function () {
+            var cur = parseInt(numEl.value, 10) || 1;
+            setUnitCount(cur - 1);
+          });
+        }
+        if (plusBtn && numEl) {
+          plusBtn.addEventListener('click', function () {
+            var cur = parseInt(numEl.value, 10) || 1;
+            setUnitCount(cur + 1);
+          });
+        }
+
+        var chips = els.paramsContainer.querySelectorAll('[data-qty-chip]');
+        for (var i = 0; i < chips.length; i++) {
+          (function (btn) {
+            btn.addEventListener('click', function () {
+              var val = parseInt(btn.getAttribute('data-qty-chip'), 10);
+              if (!isNaN(val)) {
+                setUnitCount(val);
+              }
+            });
+          })(chips[i]);
+        }
+      }
+
+      function computeDiagnosticItems() {
+        var items = [];
+        var diagSum = 0;
+        var diagDetails = [];
+
+        if (state.options.consult) {
+          diagSum += 2500;
+          diagDetails.push('очный осмотр и фотопротокол (2 500 ₽)');
+        }
+        if (state.options.klkt) {
+          diagSum += 4900;
+          diagDetails.push('КЛКТ 3D обеих челюстей (4 900 ₽)');
+        }
+        if (state.options.dsd) {
+          diagSum += 8500;
+          diagDetails.push('3D-сканирование и моделирование улыбки DSD (8 500 ₽)');
+        }
+
+        if (diagSum > 0) {
+          items.push({
+            name: 'Этап 1 · Диагностика и планирование',
+            amount: diagSum,
+            desc: 'Включает: ' + diagDetails.join(', ') + '.'
+          });
+        }
+
+        if (state.options.hygiene) {
+          items.push({
+            name: 'Этап ' + (items.length + 1) + ' · Подготовка и профгигиена',
+            amount: 6800,
+            desc: 'Профессиональная гигиена Air Flow, ультразвуковая чистка и реминерализация перед основным лечением.'
+          });
+        }
+
+        return items;
+      }
+
+      function computePlan() {
+        var dir = state.direction;
+        var tier = state.tier;
+        var tierName = tier === 'standard' ? 'Стандарт' : (tier === 'business' ? 'Бизнес' : 'Премиум');
+        var stages = computeDiagnosticItems();
+        var visits = [];
+        var duration = '';
+        var summaryText = '';
+
+        var stageOffset = stages.length;
+
+        if (dir === 'implant') {
+          var scope = state.implant.scope;
+          if (scope === 'units') {
+            var count = state.implant.units;
+            var surgPerUnit = tier === 'standard' ? 38000 : (tier === 'business' ? 54000 : 72000);
+            var abutPerUnit = tier === 'standard' ? 11000 : (tier === 'business' ? 16000 : 22000);
+            var crownTable = {
+              metal_ceramic: { standard: 24000, business: 28000, premium: 32000, label: 'металлокерамических коронок' },
+              zirconia: { standard: 34000, business: 42000, premium: 52000, label: 'коронок из диоксида циркония' },
+              temp_zirconia: { standard: 43000, business: 52000, premium: 64000, label: 'временных + постоянных циркониевых коронок' }
+            };
+            var boneTable = {
+              none: { standard: 0, business: 0, premium: 0, label: 'без костной пластики' },
+              augmentation: { standard: 24000, business: 31000, premium: 39000, label: 'локальная аугментация кости' },
+              sinus: { standard: 42000, business: 54000, premium: 68000, label: 'синус-лифтинг' }
+            };
+
+            var surgicalSum = surgPerUnit * count;
+            var boneFee = boneTable[state.implant.bone][tier];
+            var orthoSum = (abutPerUnit + crownTable[state.implant.crown][tier]) * count;
+
+            var surgDesc = 'Установка ' + count + ' ' + pluralRu(count, ['имплантата', 'имплантатов', 'имплантатов']) +
+              ' (система класса «' + tierName + '»), анестезия, формирователь десны и наложение швов.';
+            if (boneFee > 0) {
+              surgDesc += ' Дополнительно включена процедура: ' + boneTable[state.implant.bone].label + ' (+' + formatRub(boneFee) + ').';
+            }
+
+            stages.push({
+              name: 'Этап ' + (stageOffset + 1) + ' · Хирургическая имплантация',
+              amount: surgicalSum + boneFee,
+              desc: surgDesc
+            });
+
+            stages.push({
+              name: 'Этап ' + (stageOffset + 2) + ' · Постоянное протезирование',
+              amount: orthoSum,
+              desc: 'Индивидуальный абатмент, цифровое снятие слепков и фиксация ' + count + ' ' + crownTable[state.implant.crown].label + '.'
+            });
+
+            duration = boneFee > 0 ? '4–6 мес.' : '3–4 мес.';
+            summaryText = 'Имплантация зубов: ' + count + ' ' + pluralRu(count, ['имплантат', 'имплантата', 'имплантатов']) +
+              ', система «' + tierName + '», ' + boneTable[state.implant.bone].label;
+
+            var diagCost = (stages[0] && stages[0].name.indexOf('Диагностика') !== -1) ? stages[0].amount : 0;
+            var hygCost = state.options.hygiene ? 6800 : 0;
+
+            visits.push({
+              title: 'Первичный приём и 3D-планирование',
+              timing: 'День 1 · 45 мин',
+              desc: 'Осмотр хирурга-имплантолога, разбор КЛКТ 3D и согласование хирургического плана.',
+              pay: diagCost
+            });
+            if (hygCost > 0) {
+              visits.push({
+                title: 'Санация и профгигиена перед операцией',
+                timing: 'День 3–5 · 60 мин',
+                desc: 'Удаление налёта и камня для стерильной подготовки полости рта к хирургии.',
+                pay: hygCost
+              });
+            }
+            visits.push({
+              title: 'Установка ' + count + ' ' + pluralRu(count, ['имплантата', 'имплантатов', 'имплантатов']),
+              timing: 'Через 7 дней · 60–90 мин',
+              desc: 'Бережное хирургическое вмешательство под местной анестезией, установка формирователя.',
+              pay: surgicalSum + boneFee
+            });
+            visits.push({
+              title: 'Контрольный осмотр и снятие швов',
+              timing: 'Через 10–14 дней · 20 мин',
+              desc: 'Проверка заживления слизистой, контрольный снимок. Оплата не требуется.',
+              pay: 0
+            });
+            visits.push({
+              title: 'Цифровое сканирование под коронку',
+              timing: boneFee > 0 ? 'Через 4–5 мес. · 40 мин' : 'Через 3 мес. · 40 мин',
+              desc: 'Подбор цвета по шкале VITA, сканирование под индивидуальный абатмент и коронку.',
+              pay: Math.round(orthoSum * 0.5)
+            });
+            visits.push({
+              title: 'Фиксация постоянной конструкции',
+              timing: '+10 дней после скана · 45 мин',
+              desc: 'Примерка, проверка прикуса и окончательная фиксация на имплантат.',
+              pay: orthoSum - Math.round(orthoSum * 0.5)
+            });
+          } else {
+            var isDual = scope === 'dual_jaw';
+            var jawFactor = isDual ? 2 : 1;
+            var baseTable = {
+              allon4: { standard: 245000, business: 335000, premium: 445000, label: 'All-on-4 (4 имплантата на челюсть)' },
+              allon6: { standard: 310000, business: 415000, premium: 560000, label: 'All-on-6 (6 имплантатов на челюсть)' },
+              dual_jaw: { standard: 270000, business: 365000, premium: 490000, label: 'Комплексная реабилитация 2 челюстей' }
+            };
+            var prosthTable = {
+              adaptive: { add: 0, label: 'адаптационный несъёмный протез' },
+              titanium_bar: { add: 75000, label: 'постоянный протез с титановой балкой' },
+              full_zirconia: { add: 165000, label: 'полноанатомический циркониевый протез' }
+            };
+
+            var surgicalPack = baseTable[scope][tier] * jawFactor;
+            var prosthUpgrade = prosthTable[state.implant.prosthesis].add * jawFactor;
+            var surgicalPart = Math.round(surgicalPack * 0.72);
+            var adaptivePart = surgicalPack - surgicalPart;
+
+            stages.push({
+              name: 'Этап ' + (stageOffset + 1) + ' · Операция и немедленная нагрузка',
+              amount: surgicalPart,
+              desc: baseTable[scope].label + ', установка имплантатов класса «' + tierName + '» и мультиюнит-абатментов.'
+            });
+
+            stages.push({
+              name: 'Этап ' + (stageOffset + 2) + ' · Адаптационное несъёмное протезирование',
+              amount: adaptivePart,
+              desc: 'Снятие слепков и фиксация несъёмного адаптационного протеза в течение 72 часов.'
+            });
+
+            if (prosthUpgrade > 0) {
+              stages.push({
+                name: 'Этап ' + (stageOffset + 3) + ' · Постоянный протез после приживления',
+                amount: prosthUpgrade,
+                desc: 'Изготовление и фиксация финальной конструкции: ' + prosthTable[state.implant.prosthesis].label + '.'
+              });
+            }
+
+            duration = prosthUpgrade > 0 ? '4–6 мес.' : '7–14 дней';
+            summaryText = baseTable[scope].label + ', класс «' + tierName + '», ' + prosthTable[state.implant.prosthesis].label;
+
+            var diagCostFull = (stages[0] && stages[0].name.indexOf('Диагностика') !== -1) ? stages[0].amount : 0;
+            var hygCostFull = state.options.hygiene ? 6800 : 0;
+
+            visits.push({
+              title: 'Консилиум хирурга и ортопеда',
+              timing: 'День 1 · 60 мин',
+              desc: 'Анализ КЛКТ 3D, планирование позиций имплантатов и параметров прикуса.',
+              pay: diagCostFull + hygCostFull
+            });
+            visits.push({
+              title: 'Имплантация по протоколу',
+              timing: 'День 5–7 · 120–180 мин',
+              desc: 'Установка имплантатов и мультиюнит-абатментов, цифровое сканирование.',
+              pay: surgicalPart
+            });
+            visits.push({
+              title: 'Фиксация несъёмного протеза',
+              timing: '+2–3 дня после операции · 60 мин',
+              desc: 'Винтовая фиксация несъёмного адаптационного протеза и коррекция окклюзии.',
+              pay: adaptivePart
+            });
+            if (prosthUpgrade > 0) {
+              visits.push({
+                title: 'Переход на постоянный протез',
+                timing: 'Через 4–6 мес. · 2 визита',
+                desc: 'Цифровое моделирование и установка постоянной конструкции (' + prosthTable[state.implant.prosthesis].label + ').',
+                pay: prosthUpgrade
+              });
+            }
+          }
+        } else if (dir === 'esthetics') {
+          var proc = state.esthetics.procedure;
+          var estUnits = proc === 'whitening' ? 1 : state.esthetics.units;
+          var shadeBonus = (proc !== 'whitening' && state.esthetics.shade === 'bleach') ? 12000 : 0;
+
+          if (proc === 'whitening') {
+            var whPrices = { standard: 22000, business: 31000, premium: 42000 };
+            var whSum = whPrices[tier];
+            stages.push({
+              name: 'Этап ' + (stageOffset + 1) + ' · Клиническое отбеливание',
+              amount: whSum,
+              desc: 'Изоляция мягких тканей, осветление фотоактивируемым гелем на обе челюсти и реминерализация.'
+            });
+            duration = '1–2 визита';
+            summaryText = 'Клиническое отбеливание обеих челюстей, уровень «' + tierName + '»';
+
+            var diagW = (stages[0] && stages[0].name.indexOf('Диагностика') !== -1) ? stages[0].amount : 0;
+            var hygW = state.options.hygiene ? 6800 : 0;
+            if (diagW + hygW > 0) {
+              visits.push({
+                title: 'Подготовка и профгигиена',
+                timing: 'День 1 · 60 мин',
+                desc: 'Оценка исходного оттенка эмали и очистка налёта перед отбеливанием.',
+                pay: diagW + hygW
+              });
+            }
+            visits.push({
+              title: 'Сеанс осветления и укрепление эмали',
+              timing: diagW + hygW > 0 ? 'Через 3–5 дней · 75 мин' : 'День 1 · 75 мин',
+              desc: 'Три цикла деликатного фотоотбеливания и покрытие защитным гелем.',
+              pay: whSum
+            });
+          } else {
+            var perToothMap = {
+              emax: { standard: 32000, business: 41000, premium: 52000, label: 'керамических виниров E.max' },
+              refractor: { standard: 42000, business: 54000, premium: 68000, label: 'авторских виниров на рефракторе' },
+              composite: { standard: 14500, business: 19500, premium: 26000, label: 'прямых художественных реставраций' }
+            };
+
+            var totalEst = perToothMap[proc][tier] * estUnits;
+            var prepPart = Math.round(totalEst * 0.45) + shadeBonus;
+            var finalPart = totalEst + shadeBonus - prepPart;
+
+            stages.push({
+              name: 'Этап ' + (stageOffset + 1) + ' · Подготовка, Mock-up и временные конструкции',
+              amount: prepPart,
+              desc: 'Цифровое сканирование, щадящая обработка в пределах эмали и фиксация временных виниров' +
+                (shadeBonus > 0 ? ' с восковой примеркой оттенка Bleach.' : '.')
+            });
+
+            stages.push({
+              name: 'Этап ' + (stageOffset + 2) + ' · Лабораторное изготовление и фиксация',
+              amount: finalPart,
+              desc: 'Адгезивная фиксация ' + estUnits + ' ' + perToothMap[proc].label + ' с изоляцией коффердамом и проверкой окклюзии.'
+            });
+
+            duration = proc === 'composite' ? '1–2 недели' : '2–3 недели';
+            summaryText = 'Эстетическая стоматология: ' + estUnits + ' ' + pluralRu(estUnits, ['единица', 'единицы', 'единиц']) +
+              ' (' + perToothMap[proc].label + '), класс «' + tierName + '»';
+
+            var diagEst = (stages[0] && stages[0].name.indexOf('Диагностика') !== -1) ? stages[0].amount : 0;
+            var hygEst = state.options.hygiene ? 6800 : 0;
+
+            visits.push({
+              title: 'Эстетическая консультация и фотопротокол',
+              timing: 'День 1 · 50 мин',
+              desc: 'Анализ линии улыбки, 3D-сканирование и планирование формы будущих зубов.',
+              pay: diagEst + hygEst
+            });
+            visits.push({
+              title: 'Примерка будущей улыбки и подготовка',
+              timing: 'День 5 · 90–120 мин',
+              desc: 'Тест-драйв формы Mock-up, препарирование под оптическим увеличением и временные виниры.',
+              pay: prepPart
+            });
+            visits.push({
+              title: 'Финальная адгезивная фиксация',
+              timing: 'Через 10–14 дней · 120 мин',
+              desc: 'Примерка, подбор оттенка цемента и бережная фиксация постоянных виниров.',
+              pay: finalPart
+            });
+          }
+        } else if (dir === 'ortho') {
+          var app = state.ortho.appliance;
+          var jaws = state.ortho.jaws;
+          var comp = state.ortho.complexity;
+
+          var appBaseTable = {
+            metal: {
+              single: { standard: 68000, business: 86000, premium: 108000 },
+              dual: { standard: 118000, business: 148000, premium: 186000 },
+              label: 'Металлическая самолигирующая система'
+            },
+            ceramic: {
+              single: { standard: 84000, business: 106000, premium: 132000 },
+              dual: { standard: 146000, business: 184000, premium: 228000 },
+              label: 'Керамическая / сапфировая система'
+            },
+            aligners: {
+              single: { standard: 115000, business: 155000, premium: 195000 },
+              dual: { standard: 178000, business: 245000, premium: 318000 },
+              label: 'Прозрачные элайнеры'
+            }
+          };
+
+          var compMap = {
+            mild: { add: 0, dur: '6–10 мес.', vCount: 7, label: 'лёгкая коррекция' },
+            medium: { add: 24000, dur: '12–16 мес.', vCount: 12, label: 'средняя сложность' },
+            complex: { add: 48000, dur: '18–24 мес.', vCount: 16, label: 'сложная коррекция прикуса' }
+          };
+
+          var sysPrice = appBaseTable[app][jaws][tier];
+          var compFee = compMap[comp].add;
+          var retFee = state.ortho.retention ? (jaws === 'dual' ? 28000 : 18000) : 0;
+
+          var setupPart = Math.round(sysPrice * 0.55);
+          var activePart = (sysPrice - setupPart) + compFee;
+
+          stages.push({
+            name: 'Этап ' + (stageOffset + 1) + ' · Изготовление и установка системы',
+            amount: setupPart,
+            desc: appBaseTable[app].label + ' (' + (jaws === 'dual' ? 'обе челюсти' : 'одна челюсть') + ', класс «' + tierName + '»).'
+          });
+
+          stages.push({
+            name: 'Этап ' + (stageOffset + 2) + ' · Плановое ведение и коррекции',
+            amount: activePart,
+            desc: 'Регулярные активации, смена дуг или этапов элайнеров в рамках курса (' + compMap[comp].label + ').'
+          });
+
+          if (retFee > 0) {
+            stages.push({
+              name: 'Этап ' + (stageOffset + 3) + ' · Фиксация результата (ретенция)',
+              amount: retFee,
+              desc: 'Снятие аппаратуры, полировка эмали, установка несъёмных ретейнеров и ночных капп.'
+            });
+          }
+
+          duration = compMap[comp].dur;
+          summaryText = appBaseTable[app].label + ', ' + (jaws === 'dual' ? '2 челюсти' : '1 челюсть') +
+            ', класс «' + tierName + '», ' + compMap[comp].label;
+
+          var diagO = (stages[0] && stages[0].name.indexOf('Диагностика') !== -1) ? stages[0].amount : 0;
+          var hygO = state.options.hygiene ? 6800 : 0;
+
+          visits.push({
+            title: 'Ортодонтическая диагностика и расчёт',
+            timing: 'День 1 · 50 мин',
+            desc: '3D-сканирование челюстей, фотопротокол и расчёт перемещения зубов.',
+            pay: diagO + hygO
+          });
+          visits.push({
+            title: app === 'aligners' ? 'Выдача первого комплекта элайнеров' : 'Фиксация брекет-системы',
+            timing: 'Через 10–14 дней · 60 мин',
+            desc: app === 'aligners' ? 'Установка аттачментов и выдача первых капп с инструкцией.' : 'Бережная фиксация замков и установка стартовой дуги.',
+            pay: setupPart
+          });
+          visits.push({
+            title: 'Плановые контрольные визиты',
+            timing: '1 раз в 4–8 недель · ' + compMap[comp].vCount + ' приёмов',
+            desc: 'Контроль перемещения зубов, замена дуг или проверка посадки новых элайнеров.',
+            pay: activePart
+          });
+          if (retFee > 0) {
+            visits.push({
+              title: 'Завершение курса и установка ретейнеров',
+              timing: 'Финал лечения · 60 мин',
+              desc: 'Снятие системы, полировка эмали и фиксация ретенционных аппаратов.',
+              pay: retFee
+            });
+          }
+        } else if (dir === 'therapy') {
+          var tProc = state.therapy.procedure;
+          var tUnits = state.therapy.units;
+          var canalAddTable = { '1': 0, '2': 4500, '3': 9500 };
+
+          if (tProc === 'caries_std' || tProc === 'caries_deep') {
+            var baseCaries = tProc === 'caries_std'
+              ? { standard: 9500, business: 13500, premium: 17500, label: 'лечение поверхностного / среднего кариеса' }
+              : { standard: 12800, business: 16900, premium: 21500, label: 'лечение глубокого кариеса под микроскопом' };
+
+            var mainThSum = baseCaries[tier] * tUnits;
+
+            stages.push({
+              name: 'Этап ' + (stageOffset + 1) + ' · Лечение и эстетическая реставрация',
+              amount: mainThSum,
+              desc: 'Анестезия, коффердам-изоляция, щадящее препарирование и послойная реставрация ' +
+                tUnits + ' ' + pluralRu(tUnits, ['зуба', 'зубов', 'зубов']) + ' (' + baseCaries.label + ').'
+            });
+
+            duration = tUnits > 2 ? '2–3 визита' : '1 визит';
+            summaryText = 'Терапевтическое лечение: ' + tUnits + ' ' + pluralRu(tUnits, ['зуб', 'зуба', 'зубов']) +
+              ' (' + baseCaries.label + '), класс «' + tierName + '»';
+
+            var diagT = (stages[0] && stages[0].name.indexOf('Диагностика') !== -1) ? stages[0].amount : 0;
+            var hygT = state.options.hygiene ? 6800 : 0;
+
+            if (diagT + hygT > 0) {
+              visits.push({
+                title: 'Осмотр, диагностика и профгигиена',
+                timing: 'День 1 · 50 мин',
+                desc: 'Определение точной глубины поражения по снимку и чистка поверхности зубов.',
+                pay: diagT + hygT
+              });
+            }
+            visits.push({
+              title: 'Терапевтическое восстановление ' + tUnits + ' ' + pluralRu(tUnits, ['зуба', 'зубов', 'зубов']),
+              timing: diagT + hygT > 0 ? 'Визит 2 · 60–90 мин' : 'День 1 · 60–90 мин',
+              desc: 'Лечение кариеса с изоляцией коффердамом и восстановлением природной анатомии бугров.',
+              pay: mainThSum
+            });
+          } else {
+            var isRetreat = tProc === 'endo_retreat';
+            var endoBase = isRetreat
+              ? { standard: 21000, business: 28000, premium: 36000 }
+              : { standard: 14000, business: 19000, premium: 25000 };
+            var buildUp = { standard: 7500, business: 9500, premium: 12500 };
+
+            var endoCost = (endoBase[tier] + canalAddTable[state.therapy.canals]) * tUnits;
+            var restoreCost = buildUp[tier] * tUnits;
+
+            stages.push({
+              name: 'Этап ' + (stageOffset + 1) + ' · Эндодонтическое лечение каналов',
+              amount: endoCost,
+              desc: (isRetreat ? 'Распломбировка и перелечивание ' : 'Механическая и медикаментозная обработка ') +
+                state.therapy.canals + '-канальной системы под увеличением для ' + tUnits + ' ' + pluralRu(tUnits, ['зуба', 'зубов', 'зубов']) + '.'
+            });
+
+            stages.push({
+              name: 'Этап ' + (stageOffset + 2) + ' · Восстановление коронковой части',
+              amount: restoreCost,
+              desc: 'Герметичное восстановление зуба композитом или билд-ап под ортопедическую защиту.'
+            });
+
+            duration = '1–2 недели';
+            summaryText = (isRetreat ? 'Перелечивание каналов ' : 'Лечение каналов ') +
+              '(' + state.therapy.canals + ' кан.), ' + tUnits + ' ' + pluralRu(tUnits, ['зуб', 'зуба', 'зубов']) + ', класс «' + tierName + '»';
+
+            var diagE = (stages[0] && stages[0].name.indexOf('Диагностика') !== -1) ? stages[0].amount : 0;
+            var hygE = state.options.hygiene ? 6800 : 0;
+
+            if (diagE + hygE > 0) {
+              visits.push({
+                title: 'Диагностика анатомии каналов',
+                timing: 'День 1 · 40 мин',
+                desc: 'Анализ КЛКТ, оценка числа и кривизны каналов и составление эндодонтического плана.',
+                pay: diagE + hygE
+              });
+            }
+            visits.push({
+              title: 'Эндодонтический этап под микроскопом',
+              timing: diagE + hygE > 0 ? 'Визит 2 · 90 мин' : 'День 1 · 90 мин',
+              desc: 'Прохождение, ультразвуковая дезинфекция и герметичная 3D-обтурация каналов.',
+              pay: endoCost
+            });
+            visits.push({
+              title: 'Финальная реставрация зуба',
+              timing: 'Через 5–7 дней · 60 мин',
+              desc: 'Контрольный снимок и восстановление анатомической формы и прочности зуба.',
+              pay: restoreCost
+            });
+          }
+        }
+
+        var grandTotal = stages.reduce(function (acc, item) {
+          return acc + item.amount;
+        }, 0);
+
+        return {
+          total: grandTotal,
+          minRange: Math.round((grandTotal * 0.95) / 100) * 100,
+          maxRange: Math.round((grandTotal * 1.07) / 100) * 100,
+          monthly: Math.round(grandTotal / 12),
+          duration: duration,
+          warranty: DIRECTION_META[dir].tiers[tier].warranty,
+          stages: stages,
+          visits: visits,
+          summaryText: summaryText
+        };
+      }
+
+      function updateTierLabels() {
+        var tiersMeta = DIRECTION_META[state.direction].tiers;
+        els.tierDescStandard.textContent = tiersMeta.standard.desc;
+        els.tierDescBusiness.textContent = tiersMeta.business.desc;
+        els.tierDescPremium.textContent = tiersMeta.premium.desc;
+        els.tierWarrantyStandard.textContent = tiersMeta.standard.warrantyFull;
+        els.tierWarrantyBusiness.textContent = tiersMeta.business.warrantyFull;
+        els.tierWarrantyPremium.textContent = tiersMeta.premium.warrantyFull;
+      }
+
+      function updateActiveButtons() {
+        var dirBtns = els.directionGroup.querySelectorAll('[data-direction]');
+        for (var i = 0; i < dirBtns.length; i++) {
+          var isSel = dirBtns[i].getAttribute('data-direction') === state.direction;
+          dirBtns[i].setAttribute('aria-checked', isSel ? 'true' : 'false');
+        }
+
+        var tierBtns = els.tierGroup.querySelectorAll('[data-tier]');
+        for (var j = 0; j < tierBtns.length; j++) {
+          var isTier = tierBtns[j].getAttribute('data-tier') === state.tier;
+          tierBtns[j].setAttribute('aria-checked', isTier ? 'true' : 'false');
+        }
+
+        var presetBtns = els.presetsBar.querySelectorAll('[data-preset]');
+        for (var k = 0; k < presetBtns.length; k++) {
+          var isPreset = presetBtns[k].getAttribute('data-preset') === state.presetId;
+          presetBtns[k].setAttribute('aria-pressed', isPreset ? 'true' : 'false');
+        }
+      }
+
+      function renderSummary(plan) {
+        var tierName = state.tier === 'standard' ? 'Стандарт' : (state.tier === 'business' ? 'Бизнес' : 'Премиум');
+        els.summaryDirTag.textContent = DIRECTION_META[state.direction].label;
+        els.summaryTierTag.textContent = 'Класс: ' + tierName;
+        els.summaryTotal.textContent = formatRub(plan.total);
+        els.summaryRange.textContent = formatRub(plan.minRange) + ' – ' + formatRub(plan.maxRange);
+        els.summaryMonthly.textContent = 'от ' + formatRub(plan.monthly) + '/мес';
+        els.summaryDuration.textContent = plan.duration;
+        els.summaryVisitsCount.textContent = plan.visits.length + ' ' + pluralRu(plan.visits.length, ['визит', 'визита', 'визитов']);
+        els.summaryWarranty.textContent = plan.warranty;
+        els.stagesTotalCheck.textContent = formatRub(plan.total);
+
+        var stagesHtml = plan.stages.map(function (st) {
+          var pct = plan.total > 0 ? Math.max(4, Math.round((st.amount / plan.total) * 100)) : 0;
+          return '<div class="stage-item">' +
+            '<div class="stage-top">' +
+              '<span class="stage-name">' + escapeHtml(st.name) + '</span>' +
+              '<span class="stage-price">' + formatRub(st.amount) + '</span>' +
+            '</div>' +
+            '<div class="stage-desc">' + escapeHtml(st.desc) + '</div>' +
+            '<div class="stage-bar-track"><div class="stage-bar-fill" style="width: ' + pct + '%"></div></div>' +
+          '</div>';
+        }).join('');
+        els.stagesList.innerHTML = stagesHtml;
+
+        var visitsHtml = plan.visits.map(function (v, idx) {
+          var numStr = (idx + 1) < 10 ? '0' + (idx + 1) : String(idx + 1);
+          var payText = v.pay > 0 ? ('Этап оплаты: ' + formatRub(v.pay)) : 'Контрольный осмотр · без доплаты';
+          return '<div class="visit-item">' +
+            '<div class="visit-num">' + numStr + '</div>' +
+            '<div>' +
+              '<div class="visit-head">' +
+                '<span class="visit-title">' + escapeHtml(v.title) + '</span>' +
+                '<span class="visit-timing">' + escapeHtml(v.timing) + '</span>' +
+              '</div>' +
+              '<div class="visit-desc">' + escapeHtml(v.desc) + '</div>' +
+              '<div class="visit-pay">' + escapeHtml(payText) + '</div>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+        els.visitsList.innerHTML = visitsHtml;
+
+        var optsText = [];
+        if (state.options.klkt) optsText.push('КЛКТ 3D');
+        if (state.options.dsd) optsText.push('DSD-моделирование');
+        if (state.options.hygiene) optsText.push('Профгигиена');
+        if (state.options.consult) optsText.push('Консультация');
+
+        els.bookingAttachedSum.textContent = formatRub(plan.total);
+        els.bookingAttachedSummary.textContent = plan.summaryText +
+          '. Опции: ' + (optsText.length > 0 ? optsText.join(', ') : 'без дополнительных опций') +
+          '. Срок: ' + plan.duration + ', ' + plan.visits.length + ' ' + pluralRu(plan.visits.length, ['визит', 'визита', 'визитов']) + '.';
+      }
+
+      function updateAll() {
+        updateActiveButtons();
+        updateTierLabels();
+        var plan = computePlan();
+        renderSummary(plan);
+      }
+
+      function applyPreset(presetId) {
+        state.presetId = presetId;
+        if (presetId === 'single-implant') {
+          state.direction = 'implant';
+          state.tier = 'business';
+          state.implant.scope = 'units';
+          state.implant.units = 1;
+          state.implant.crown = 'zirconia';
+          state.implant.bone = 'none';
+          state.options = { klkt: true, dsd: false, hygiene: true, consult: true };
+        } else if (presetId === 'smile-veneers') {
+          state.direction = 'esthetics';
+          state.tier = 'premium';
+          state.esthetics.procedure = 'emax';
+          state.esthetics.units = 6;
+          state.esthetics.shade = 'bleach';
+          state.options = { klkt: false, dsd: true, hygiene: true, consult: true };
+        } else if (presetId === 'aligners-dual') {
+          state.direction = 'ortho';
+          state.tier = 'business';
+          state.ortho.appliance = 'aligners';
+          state.ortho.jaws = 'dual';
+          state.ortho.complexity = 'medium';
+          state.ortho.retention = true;
+          state.options = { klkt: true, dsd: true, hygiene: true, consult: true };
+        } else if (presetId === 'microscope-endo') {
+          state.direction = 'therapy';
+          state.tier = 'premium';
+          state.therapy.procedure = 'endo_retreat';
+          state.therapy.units = 1;
+          state.therapy.canals = '3';
+          state.options = { klkt: true, dsd: false, hygiene: false, consult: true };
+        }
+
+        els.optKlkt.checked = state.options.klkt;
+        els.optDsd.checked = state.options.dsd;
+        els.optHygiene.checked = state.options.hygiene;
+        els.optConsult.checked = state.options.consult;
+
+        renderDynamicParams();
+        updateAll();
+      }
+
+      function buildClipboardText() {
+        var plan = computePlan();
+        var lines = [
+          'Предварительный расчёт — Авторская стоматология доктора Муссурова (Москва)',
+          'План: ' + plan.summaryText,
+          'Ориентировочная стоимость: ' + formatRub(plan.total) + ' (диапазон ' + formatRub(plan.minRange) + ' – ' + formatRub(plan.maxRange) + ')',
+          'Срок лечения: ' + plan.duration + ', график: ' + plan.visits.length + ' ' + pluralRu(plan.visits.length, ['визит', 'визита', 'визитов']),
+          '',
+          'Поэтапная смета:'
+        ];
+        for (var i = 0; i < plan.stages.length; i++) {
+          lines.push('- ' + plan.stages[i].name + ': ' + formatRub(plan.stages[i].amount));
+        }
+        lines.push('');
+        lines.push('Клиника: г. Москва, Бутырская, 46 (Б. Новодмитровская 23 стр 2)');
+        lines.push('Телефон: +7 (495) 955-12-93 · Сайт: https://mussurov.ru/');
+        return lines.join('\n');
+      }
+
+      function bindGlobalEvents() {
+        var dirBtns = els.directionGroup.querySelectorAll('[data-direction]');
+        for (var i = 0; i < dirBtns.length; i++) {
+          (function (btn) {
+            btn.addEventListener('click', function () {
+              state.direction = btn.getAttribute('data-direction');
+              state.presetId = null;
+              renderDynamicParams();
+              updateAll();
+            });
+          })(dirBtns[i]);
+        }
+
+        var tierBtns = els.tierGroup.querySelectorAll('[data-tier]');
+        for (var j = 0; j < tierBtns.length; j++) {
+          (function (btn) {
+            btn.addEventListener('click', function () {
+              state.tier = btn.getAttribute('data-tier');
+              state.presetId = null;
+              updateAll();
+            });
+          })(tierBtns[j]);
+        }
+
+        var presetBtns = els.presetsBar.querySelectorAll('[data-preset]');
+        for (var k = 0; k < presetBtns.length; k++) {
+          (function (btn) {
+            btn.addEventListener('click', function () {
+              applyPreset(btn.getAttribute('data-preset'));
+            });
+          })(presetBtns[k]);
+        }
+
+        els.optKlkt.addEventListener('change', function () {
+          state.options.klkt = els.optKlkt.checked;
+          state.presetId = null;
+          updateAll();
+        });
+        els.optDsd.addEventListener('change', function () {
+          state.options.dsd = els.optDsd.checked;
+          state.presetId = null;
+          updateAll();
+        });
+        els.optHygiene.addEventListener('change', function () {
+          state.options.hygiene = els.optHygiene.checked;
+          state.presetId = null;
+          updateAll();
+        });
+        els.optConsult.addEventListener('change', function () {
+          state.options.consult = els.optConsult.checked;
+          state.presetId = null;
+          updateAll();
+        });
+
+        els.copyBtn.addEventListener('click', function () {
+          var text = buildClipboardText();
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () {
+              els.copyFeedback.textContent = 'Смета скопирована в буфер обмена.';
+              setTimeout(function () {
+                els.copyFeedback.textContent = '';
+              }, 3500);
+            }).catch(function () {
+              els.copyFeedback.textContent = 'Не удалось скопировать автоматически, используйте печать сметы.';
+            });
+          } else {
+            els.copyFeedback.textContent = 'Смета подготовлена. Нажмите «Распечатать смету» для сохранения.';
+          }
+        });
+
+        els.printBtn.addEventListener('click', function () {
+          window.print();
+        });
+
+        bindFormEvents();
+      }
+
+      function bindFormEvents() {
+        var form = document.getElementById('consultation-form');
+        var errBox = document.getElementById('form-error');
+        if (!form) return;
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var nameInput = document.getElementById('patient-name');
+          var phoneInput = document.getElementById('patient-phone');
+          var emailInput = document.getElementById('patient-email');
+          var timeSelect = document.getElementById('preferred-time');
+          var notesInput = document.getElementById('patient-notes');
+          var attachCheck = document.getElementById('attach-estimate');
+          var consentCheck = document.getElementById('consent-check');
+
+          var nameVal = nameInput.value.trim();
+          var phoneDigits = phoneInput.value.replace(/\D/g, '');
+          var emailVal = emailInput.value.trim();
+
+          if (nameVal.length < 2) {
+            errBox.textContent = 'Пожалуйста, укажите ваше имя для оформления записи.';
+            errBox.hidden = false;
+            nameInput.focus();
+            return;
+          }
+          if (phoneDigits.length < 10) {
+            errBox.textContent = 'Пожалуйста, введите корректный номер телефона (от 10 цифр).';
+            errBox.hidden = false;
+            phoneInput.focus();
+            return;
+          }
+          if (emailVal.length > 0 && emailVal.indexOf('@') === -1) {
+            errBox.textContent = 'Проверьте корректность адреса электронной почты.';
+            errBox.hidden = false;
+            emailInput.focus();
+            return;
+          }
+          if (!consentCheck.checked) {
+            errBox.textContent = 'Необходимо подтвердить согласие на обработку контактных данных.';
+            errBox.hidden = false;
+            consentCheck.focus();
+            return;
+          }
+
+          errBox.hidden = true;
+          var plan = computePlan();
+          var reqId = 'МС-' + String(Math.floor(1000 + Math.random() * 8999));
+          var timeLabel = timeSelect.options[timeSelect.selectedIndex].text;
+          var noteText = notesInput.value.trim();
+
+          els.bookingFormWrapper.innerHTML =
+            '<div class="booking-success-card">' +
+              '<h3 class="booking-success-title">Заявка ' + escapeHtml(reqId) + ' сформирована</h3>' +
+              '<p class="booking-success-text">' +
+                'Благодарим, ' + escapeHtml(nameVal) + '. Администратор Авторской стоматологии доктора Муссурова свяжется с вами по номеру ' +
+                '<strong class="mono-num">' + escapeHtml(phoneInput.value.trim()) + '</strong> в выбранный интервал времени.' +
+              '</p>' +
+              '<div class="booking-success-meta">' +
+                '<div><strong>Предпочтительное время:</strong> ' + escapeHtml(timeLabel) + '</div>' +
+                (attachCheck.checked
+                  ? '<div><strong>Прикреплённый расчёт:</strong> ' + escapeHtml(plan.summaryText) + ' (' + formatRub(plan.total) + ')</div>'
+                  : '<div><strong>Формат записи:</strong> очная первичная консультация без прикреплённой сметы</div>') +
+                (noteText ? '<div><strong>Комментарий:</strong> ' + escapeHtml(noteText) + '</div>' : '') +
+              '</div>' +
+              '<button type="button" class="btn-secondary" id="reset-booking-btn">Оформить ещё одну заявку</button>' +
+            '</div>';
+
+          var resetBtn = document.getElementById('reset-booking-btn');
+          if (resetBtn) {
+            resetBtn.addEventListener('click', function () {
+              restoreBookingForm();
+            });
+          }
+        });
+      }
+
+      function restoreBookingForm() {
+        els.bookingFormWrapper.innerHTML =
+          '<form class="booking-form" id="consultation-form" novalidate>' +
+            '<div class="form-two-col">' +
+              '<div class="field">' +
+                '<label for="patient-name">Ваше имя</label>' +
+                '<input type="text" class="field-input" id="patient-name" name="name" autocomplete="name" required placeholder="Например, Александр Соколов">' +
+              '</div>' +
+              '<div class="field">' +
+                '<label for="patient-phone">Телефон для связи</label>' +
+                '<input type="tel" class="field-input" id="patient-phone" name="phone" autocomplete="tel" required placeholder="+7 (900) 000-00-00">' +
+              '</div>' +
+            '</div>' +
+            '<div class="form-two-col">' +
+              '<div class="field">' +
+                '<label for="patient-email">Электронная почта (по желанию)</label>' +
+                '<input type="email" class="field-input" id="patient-email" name="email" autocomplete="email" placeholder="name@example.ru">' +
+              '</div>' +
+              '<div class="field">' +
+                '<label for="preferred-time">Удобное время звонка и приёма</label>' +
+                '<select class="field-select" id="preferred-time" name="preferred_time" autocomplete="off">' +
+                  '<option value="any">Любое удобное время (09:00 – 21:00)</option>' +
+                  '<option value="morning">Первая половина дня (09:00 – 13:00)</option>' +
+                  '<option value="afternoon">Дневные часы (13:00 – 17:00)</option>' +
+                  '<option value="evening">Вечерний приём (17:00 – 21:00)</option>' +
+                '</select>' +
+              '</div>' +
+            '</div>' +
+            '<div class="field">' +
+              '<label for="patient-notes">Комментарий к записи</label>' +
+              '<input type="text" class="field-input" id="patient-notes" name="notes" autocomplete="off" placeholder="Удобные дни недели или дополнительные вопросы по плану">' +
+            '</div>' +
+            '<div class="checkbox-inline">' +
+              '<input type="checkbox" class="custom-checkbox" id="attach-estimate" name="attach_estimate" autocomplete="off" checked>' +
+              '<label for="attach-estimate">Передать врачу полную поэтапную смету и график визитов из калькулятора</label>' +
+            '</div>' +
+            '<div class="checkbox-inline">' +
+              '<input type="checkbox" class="custom-checkbox" id="consent-check" name="consent" autocomplete="off" checked required>' +
+              '<label for="consent-check">Согласен на обработку контактных данных для обратной связи и записи на приём</label>' +
+            '</div>' +
+            '<div class="form-error" id="form-error" role="alert" hidden></div>' +
+            '<div>' +
+              '<button type="submit" class="btn-primary">Отправить заявку на консультацию</button>' +
+            '</div>' +
+          '</form>';
+        bindFormEvents();
+      }
+
+      renderDynamicParams();
+      updateAll();
+      bindGlobalEvents();
+    })();
+  </script>
+</body>
+</html>

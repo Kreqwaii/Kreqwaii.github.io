@@ -1,0 +1,3427 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Physiotherapy Clinics in Edinburgh, Scotland, UK. Physiotherapy and Rehabilitation, Sports Injuries, Vestibular Rehabilitation, and Massage Therapy with interactive session planning and UK insurer excess calculator.">
+  <title>The Physiotherapy Clinics | Edinburgh Physiotherapy, Sports Injury &amp; Rehab Planner</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' width='36' height='36' fill='none'%3E%3Crect width='36' height='36' rx='8' fill='%23193D5A'/%3E%3Cpath d='M9 24C12.5 24 14 12 18 12C22 12 23.5 24 27 24' stroke='%23FFFFFF' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='18' cy='12' r='2.5' fill='%231C6E6B' stroke='%23FFFFFF' stroke-width='1.5'/%3E%3Cpath d='M12 28H24' stroke='%2363C5C1' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F5F7F8;
+      --surface: #FFFFFF;
+      --surface-muted: #EDF1F4;
+      --surface-navy: #EEF3F7;
+      --surface-teal: #ECF5F4;
+      --surface-amber: #FAF3EA;
+      --border: #DDE3E8;
+      --border-strong: #BFC9D2;
+      --navy: #193D5A;
+      --navy-dark: #112A3E;
+      --navy-soft: rgba(25, 61, 90, 0.08);
+      --teal: #1C6E6B;
+      --teal-dark: #13504E;
+      --teal-soft: rgba(28, 110, 107, 0.09);
+      --amber: #8E521C;
+      --ink: #13222E;
+      --ink-secondary: #3D4E5C;
+      --ink-muted: #5A6B78;
+      --shadow-sm: 0 2px 6px rgba(19, 34, 46, 0.04);
+      --shadow-md: 0 10px 26px rgba(19, 34, 46, 0.07);
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --font-display: 'Space Grotesk', system-ui, sans-serif;
+      --font-body: 'Manrope', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+      --container-max: 1200px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      overflow-x: clip;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
+      max-width: 100%;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      margin: 0;
+      color: var(--navy-dark);
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -64px;
+      z-index: 200;
+      background-color: var(--navy);
+      color: #FFFFFF;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      transition: top 0.16s ease;
+    }
+
+    .skip-link:focus {
+      top: 12px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    @media (min-width: 680px) {
+      .container {
+        padding: 0 24px;
+      }
+    }
+
+    /* Top Clinic Strip */
+    .utility-strip {
+      background-color: var(--navy);
+      color: #E7EEF3;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .utility-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 20px;
+      padding: 8px 0;
+    }
+
+    .utility-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 18px;
+      min-width: 0;
+    }
+
+    .utility-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      white-space: normal;
+    }
+
+    .utility-item-nowrap {
+      white-space: nowrap;
+    }
+
+    .utility-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #63C5C1;
+      flex-shrink: 0;
+    }
+
+    .utility-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .utility-links a {
+      color: #DCE9EE;
+      font-weight: 500;
+      transition: color 0.16s ease;
+    }
+
+    .utility-links a:hover,
+    .utility-links a:focus-visible {
+      color: #FFFFFF;
+    }
+
+    /* Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background-color: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: 72px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background-color: var(--navy);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid var(--navy-dark);
+    }
+
+    @media (min-width: 480px) {
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: clamp(14.5px, 3.6vw, 18px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--navy-dark);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--teal);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .main-nav {
+      display: none;
+      align-items: center;
+      gap: 22px;
+    }
+
+    @media (min-width: 980px) {
+      .main-nav {
+        display: flex;
+      }
+    }
+
+    .main-nav a {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      white-space: nowrap;
+      transition: color 0.16s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a:focus-visible {
+      color: var(--navy);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .header-phone-btn {
+      display: none;
+    }
+
+    .header-plan-btn {
+      display: none;
+    }
+
+    @media (min-width: 480px) {
+      .header-plan-btn {
+        display: inline-flex;
+      }
+    }
+
+    @media (min-width: 720px) {
+      .header-phone-btn {
+        display: inline-flex;
+      }
+    }
+
+    .mobile-menu-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background-color: var(--surface);
+      color: var(--navy);
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .mobile-menu-btn:hover {
+      background-color: var(--surface-muted);
+      border-color: var(--border-strong);
+    }
+
+    @media (min-width: 980px) {
+      .mobile-menu-btn {
+        display: none;
+      }
+    }
+
+    .mobile-drawer {
+      border-top: 1px solid var(--border);
+      background-color: var(--surface);
+      padding: 14px 16px 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .mobile-drawer[hidden] {
+      display: none;
+    }
+
+    .mobile-drawer a {
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.25;
+      border: 1px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.12s ease;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background-color: var(--navy);
+      color: #FFFFFF;
+      border-color: var(--navy);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background-color: var(--navy-dark);
+      border-color: var(--navy-dark);
+    }
+
+    .btn-teal {
+      background-color: var(--teal);
+      color: #FFFFFF;
+      border-color: var(--teal);
+    }
+
+    .btn-teal:hover,
+    .btn-teal:focus-visible {
+      background-color: var(--teal-dark);
+      border-color: var(--teal-dark);
+    }
+
+    .btn-outline {
+      background-color: var(--surface);
+      color: var(--navy);
+      border-color: var(--border-strong);
+    }
+
+    .btn-outline:hover,
+    .btn-outline:focus-visible {
+      background-color: var(--surface-muted);
+      border-color: var(--navy);
+    }
+
+    .btn-sm {
+      padding: 8px 13px;
+      font-size: 13px;
+    }
+
+    /* Sections */
+    .section {
+      padding: 52px 0;
+    }
+
+    @media (min-width: 900px) {
+      .section {
+        padding: 72px 0;
+      }
+    }
+
+    .section-header {
+      max-width: 720px;
+      margin-bottom: 32px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background-color: var(--surface-teal);
+      border: 1px solid rgba(28, 110, 107, 0.22);
+      color: var(--teal-dark);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(26px, 3.2vw, 36px);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .section-lead {
+      font-size: 16.5px;
+      color: var(--ink-secondary);
+      line-height: 1.65;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 40px 0 54px;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--surface);
+    }
+
+    @media (min-width: 900px) {
+      .hero {
+        padding: 58px 0 68px;
+      }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (min-width: 940px) {
+      .hero-grid {
+        grid-template-columns: 1.08fr 0.92fr;
+        gap: 44px;
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 4.4vw, 48px);
+      line-height: 1.09;
+      margin-bottom: 18px;
+      color: var(--navy-dark);
+    }
+
+    .hero-copy {
+      font-size: 17px;
+      color: var(--ink-secondary);
+      max-width: 58ch;
+      margin-bottom: 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .hero-facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+    }
+
+    .hero-fact-tile {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 13px 15px;
+    }
+
+    .hero-fact-val {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+
+    .hero-fact-label {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      line-height: 1.35;
+    }
+
+    /* Hero Trajectory Visual Panel */
+    .hero-visual-card {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-visual-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-visual-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--teal);
+      margin-bottom: 4px;
+    }
+
+    .hero-visual-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy-dark);
+    }
+
+    .hero-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    .curve-frame {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 14px 10px;
+      margin-bottom: 16px;
+    }
+
+    .curve-caption-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      margin-top: 8px;
+    }
+
+    .hero-mini-pathways {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    @media (min-width: 440px) {
+      .hero-mini-pathways {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .hero-mini-item {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 9px 11px;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .hero-mini-item:hover {
+      border-color: var(--navy);
+    }
+
+    .hero-mini-item.is-selected {
+      background-color: var(--surface-navy);
+      border-color: var(--navy);
+    }
+
+    .hero-mini-name {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      line-height: 1.25;
+      margin-bottom: 2px;
+    }
+
+    .hero-mini-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--teal);
+    }
+
+    .hero-visual-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--ink-secondary);
+    }
+
+    /* Core Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    @media (min-width: 720px) {
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .service-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow-md);
+    }
+
+    .service-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background-color: var(--surface-navy);
+      border: 1px solid rgba(25, 61, 90, 0.14);
+      color: var(--navy);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .service-duration {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--teal-dark);
+      background-color: var(--surface-teal);
+      border: 1px solid rgba(28, 110, 107, 0.2);
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .service-title {
+      font-size: 21px;
+      margin-bottom: 8px;
+    }
+
+    .service-desc {
+      font-size: 14.5px;
+      color: var(--ink-secondary);
+      margin-bottom: 14px;
+    }
+
+    .service-points {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 6px;
+    }
+
+    .service-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+    }
+
+    .point-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--teal);
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    .service-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .service-fee-hint {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      color: var(--ink-muted);
+    }
+
+    /* Interactive Session Planner */
+    .planner-section {
+      background-color: var(--surface-muted);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .planner-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (min-width: 1020px) {
+      .planner-layout {
+        grid-template-columns: 1.02fr 0.98fr;
+      }
+    }
+
+    .planner-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    @media (min-width: 640px) {
+      .planner-card {
+        padding: 28px;
+      }
+    }
+
+    .control-block {
+      margin-bottom: 24px;
+    }
+
+    .control-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .block-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy-dark);
+    }
+
+    .block-step {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Pathway Radiogroup */
+    .pathway-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 9px;
+    }
+
+    @media (min-width: 540px) {
+      .pathway-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .selector-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: 4px;
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background-color: var(--bg);
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .selector-btn:hover {
+      border-color: var(--border-strong);
+      background-color: var(--surface);
+    }
+
+    .selector-btn[aria-checked="true"] {
+      background-color: var(--surface-navy);
+      border-color: var(--navy);
+      box-shadow: 0 0 0 1px var(--navy);
+    }
+
+    .selector-btn-title {
+      font-family: var(--font-display);
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      line-height: 1.25;
+    }
+
+    .selector-btn-meta {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--ink-muted);
+    }
+
+    .selector-btn[aria-checked="true"] .selector-btn-meta {
+      color: var(--teal-dark);
+    }
+
+    /* Injury Phase Radiogroup */
+    .phase-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 9px;
+    }
+
+    @media (min-width: 540px) {
+      .phase-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .phase-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: 3px;
+      padding: 11px 13px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background-color: var(--bg);
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .phase-btn:hover {
+      border-color: var(--border-strong);
+      background-color: var(--surface);
+    }
+
+    .phase-btn[aria-checked="true"] {
+      background-color: var(--surface-teal);
+      border-color: var(--teal);
+      box-shadow: 0 0 0 1px var(--teal);
+    }
+
+    .phase-btn-name {
+      font-family: var(--font-display);
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--navy-dark);
+    }
+
+    .phase-btn-window {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--teal-dark);
+    }
+
+    .phase-btn-desc {
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.35;
+    }
+
+    /* Form Controls */
+    .fields-two-col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 540px) {
+      .fields-two-col {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .field-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .field-control {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface);
+      color: var(--ink);
+      font-size: 14.5px;
+      line-height: 1.35;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease, background-color 0.16s ease;
+    }
+
+    .field-control:focus {
+      outline: none;
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px var(--navy-soft);
+    }
+
+    .field-control:disabled {
+      background-color: var(--surface-muted);
+      color: var(--ink-muted);
+      cursor: not-allowed;
+    }
+
+    .field-hint {
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+
+    /* Funding / Insurer Pills */
+    .payer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .payer-btn {
+      padding: 10px 8px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background-color: var(--bg);
+      font-family: var(--font-display);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .payer-btn:hover {
+      border-color: var(--border-strong);
+      background-color: var(--surface);
+    }
+
+    .payer-btn[aria-checked="true"] {
+      background-color: var(--navy);
+      border-color: var(--navy);
+      color: #FFFFFF;
+    }
+
+    .excess-panel {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .preset-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .preset-chip {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy);
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .preset-chip:hover {
+      border-color: var(--navy);
+    }
+
+    .preset-chip.is-active {
+      background-color: var(--teal);
+      border-color: var(--teal);
+      color: #FFFFFF;
+    }
+
+    .preset-chip:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .insurer-note-box {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 11px 13px;
+      font-size: 13px;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+    }
+
+    .insurer-note-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--teal-dark);
+      margin-bottom: 4px;
+    }
+
+    /* Output Results Column */
+    .result-stack {
+      display: grid;
+      gap: 20px;
+    }
+
+    .estimate-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 18px;
+    }
+
+    .estimate-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: var(--surface-navy);
+      border: 1px solid rgba(25, 61, 90, 0.2);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    @media (min-width: 540px) {
+      .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .kpi-tile {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .kpi-tile-highlight {
+      background-color: var(--surface-navy);
+      border-color: rgba(25, 61, 90, 0.25);
+    }
+
+    .kpi-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .kpi-value {
+      font-family: var(--font-mono);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--navy-dark);
+      line-height: 1.2;
+    }
+
+    .kpi-sub {
+      font-size: 12px;
+      color: var(--ink-secondary);
+      margin-top: 4px;
+    }
+
+    /* Proportional Cost Share Bar */
+    .share-bar-box {
+      margin-bottom: 18px;
+    }
+
+    .share-bar-labels {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 12.5px;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+
+    .share-bar-track {
+      display: flex;
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      background-color: var(--surface-muted);
+      border: 1px solid var(--border);
+    }
+
+    .share-bar-patient {
+      background-color: var(--navy);
+      height: 100%;
+      transition: width 0.25s ease;
+    }
+
+    .share-bar-benefit {
+      background-color: var(--teal);
+      height: 100%;
+      transition: width 0.25s ease;
+    }
+
+    .fee-breakdown-list {
+      display: grid;
+      gap: 8px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+    }
+
+    .fee-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+    }
+
+    .fee-row strong {
+      color: var(--navy-dark);
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+
+    .fee-row-total {
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+      font-weight: 700;
+      color: var(--navy-dark);
+    }
+
+    .estimate-disclaimer {
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.45;
+    }
+
+    /* 4-Stage Recovery Roadmap */
+    .roadmap-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .roadmap-stage {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .roadmap-stage.is-entry {
+      background-color: var(--surface-teal);
+      border-color: var(--teal);
+    }
+
+    .stage-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .stage-id-group {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .stage-num {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      background-color: var(--navy);
+      color: #FFFFFF;
+    }
+
+    .roadmap-stage.is-entry .stage-num {
+      background-color: var(--teal);
+    }
+
+    .stage-name {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy-dark);
+    }
+
+    .stage-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stage-entry-pill {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--teal-dark);
+      background-color: var(--surface);
+      border: 1px solid rgba(28, 110, 107, 0.25);
+      padding: 2px 7px;
+      border-radius: 999px;
+    }
+
+    .stage-weeks {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--ink-muted);
+    }
+
+    .stage-detail {
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .stage-milestone {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--navy);
+    }
+
+    /* Prefilled Intake Brief Preview */
+    .brief-pre {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--ink);
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin-bottom: 14px;
+    }
+
+    .brief-actions-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 540px) {
+      .brief-actions-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .full-row-contact {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 4px 10px;
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--surface-navy);
+      border: 1px solid rgba(25, 61, 90, 0.22);
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    @media (min-width: 540px) {
+      .full-row-contact {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    .full-row-contact:hover {
+      background-color: #E3ECF3;
+      border-color: var(--navy);
+    }
+
+    .full-row-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy-dark);
+      white-space: nowrap;
+      word-break: normal;
+    }
+
+    .full-row-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--teal-dark);
+      white-space: nowrap;
+    }
+
+    .copy-feedback {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--teal-dark);
+      min-height: 18px;
+      margin-top: 8px;
+    }
+
+    /* UK Insurer & Fee Tariff Section */
+    .insurers-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    @media (min-width: 680px) {
+      .insurers-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1020px) {
+      .insurers-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    .insurer-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .insurer-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .insurer-name {
+      font-size: 19px;
+      color: var(--navy-dark);
+    }
+
+    .insurer-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--teal);
+      background-color: var(--surface-teal);
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+
+    .insurer-copy {
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+    }
+
+    .tariff-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .tariff-head {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--bg);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .tariff-scroll {
+      overflow-x: auto;
+    }
+
+    .tariff-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 580px;
+      font-size: 14px;
+    }
+
+    .tariff-table th,
+    .tariff-table td {
+      padding: 13px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tariff-table th {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      background-color: var(--surface);
+    }
+
+    .tariff-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .tariff-price {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--navy-dark);
+    }
+
+    /* Edinburgh Enquiry & Contact Section */
+    .enquiry-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (min-width: 960px) {
+      .enquiry-grid {
+        grid-template-columns: 1.05fr 0.95fr;
+      }
+    }
+
+    .intake-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .confirmation-panel {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--surface-teal);
+      border: 1px solid var(--teal);
+      display: grid;
+      gap: 10px;
+    }
+
+    .confirmation-panel[hidden] {
+      display: none;
+    }
+
+    .confirmation-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--teal-dark);
+    }
+
+    .confirmation-text {
+      font-size: 13.5px;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    /* Contact Info Grid (Ensuring Full-Width Rows for Mailto & Website) */
+    .contact-details-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    @media (min-width: 540px) {
+      .contact-details-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .contact-tile {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      min-width: 0;
+    }
+
+    .contact-tile-full {
+      grid-column: 1 / -1;
+      background-color: var(--surface-navy);
+      border: 1px solid rgba(25, 61, 90, 0.22);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .contact-tile-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-tile-val {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--navy-dark);
+    }
+
+    .contact-link-nowrap {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      white-space: nowrap;
+      word-break: normal;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .contact-link-nowrap:hover,
+    .contact-link-nowrap:focus-visible {
+      color: var(--teal-dark);
+    }
+
+    /* Accordion */
+    .faq-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background-color: var(--bg);
+      overflow: hidden;
+    }
+
+    .faq-trigger {
+      width: 100%;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--navy-dark);
+    }
+
+    .faq-panel {
+      padding: 0 16px 14px;
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+    }
+
+    .faq-panel[hidden] {
+      display: none;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--navy-dark);
+      color: #DCE6ED;
+      padding: 44px 0 28px;
+      border-top: 1px solid var(--navy);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    @media (min-width: 820px) {
+      .footer-grid {
+        grid-template-columns: 1.2fr 0.8fr 1fr;
+      }
+    }
+
+    .footer-heading {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+    }
+
+    .footer-copy {
+      font-size: 13.5px;
+      color: #C4D4DF;
+      line-height: 1.6;
+      max-width: 44ch;
+    }
+
+    .footer-nav-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+      font-size: 13.5px;
+    }
+
+    .footer-nav-list a {
+      color: #D2E0EA;
+      transition: color 0.15s ease;
+    }
+
+    .footer-nav-list a:hover {
+      color: #FFFFFF;
+    }
+
+    .footer-contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 440px) {
+      .footer-contact-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .footer-contact-cell {
+      background-color: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+    }
+
+    .footer-contact-full {
+      grid-column: 1 / -1;
+      background-color: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      min-width: 0;
+    }
+
+    .footer-label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #93B4C7;
+      margin-bottom: 3px;
+    }
+
+    .footer-link-nowrap {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #FFFFFF;
+      white-space: nowrap;
+      word-break: normal;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .footer-bottom {
+      padding-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px 20px;
+      font-size: 12.5px;
+      color: #9FB7C8;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#planner">Skip to Sports Injury and Rehab Session Planner</a>
+
+  <div class="utility-strip">
+    <div class="container utility-inner">
+      <div class="utility-group">
+        <span class="utility-item utility-item-nowrap">
+          <span class="utility-dot" aria-hidden="true"></span>
+          <span>Edinburgh, Scotland, UK</span>
+        </span>
+        <span class="utility-item">Physiotherapy · Sports Injuries · Vestibular · Massage</span>
+      </div>
+      <div class="utility-links">
+        <a class="tabular" href="tel:+441312183000">0131 218 3000</a>
+        <a href="#planner">Session Planner</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="The Physiotherapy Clinics Edinburgh">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M4 16C7.5 16 9 6 12 6C15 6 16.5 16 20 16" stroke="#FFFFFF" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="6" r="2.1" fill="#1C6E6B" stroke="#FFFFFF" stroke-width="1.4"/>
+            <path d="M7 20H17" stroke="#63C5C1" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">The Physiotherapy Clinics</span>
+          <span class="brand-sub">Edinburgh, Scotland, UK</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#planner">Session Planner</a>
+        <a href="#insurers">UK Insurers &amp; Fees</a>
+        <a href="#enquiry">Edinburgh Intake</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-outline btn-sm header-phone-btn tabular" href="tel:+441312183000">0131 218 3000</a>
+        <a class="btn btn-primary btn-sm header-plan-btn" href="#planner">Plan Sessions</a>
+        <button type="button" class="mobile-menu-btn" id="mobileMenuToggle" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="7" x2="20" y2="7"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <line x1="4" y1="17" x2="20" y2="17"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobileDrawer" hidden>
+      <a href="#services">Core Clinical Services</a>
+      <a href="#planner">Session Planner &amp; Roadmap</a>
+      <a href="#insurers">UK Insurers &amp; Fee Guide</a>
+      <a href="#enquiry">Edinburgh Intake &amp; Contact</a>
+      <a class="tabular" href="tel:+441312183000">Call Clinic: 0131 218 3000</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Edinburgh Clinical Rehabilitation</span>
+          <h1 class="hero-title">Structured physiotherapy and sports injury recovery in Edinburgh.</h1>
+          <p class="hero-copy">
+            The Physiotherapy Clinics delivers integrated musculoskeletal Physiotherapy &amp; Rehabilitation, Sports Injuries management, Vestibular Rehabilitation, and Massage Therapy across Edinburgh, Scotland, UK. Map your recommended session range, UK insurer excess, and 4-stage recovery milestones before booking.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#planner">Open Session Planner</a>
+            <a class="btn btn-outline tabular" href="tel:+441312183000">Call 0131 218 3000</a>
+          </div>
+          <div class="hero-facts">
+            <div class="hero-fact-tile">
+              <div class="hero-fact-val tabular">4 Pathways</div>
+              <div class="hero-fact-label">Physio, Sports, Vestibular &amp; Massage</div>
+            </div>
+            <div class="hero-fact-tile">
+              <div class="hero-fact-val tabular">4 Stages</div>
+              <div class="hero-fact-label">Phase-calibrated recovery roadmap</div>
+            </div>
+            <div class="hero-fact-tile">
+              <div class="hero-fact-val">Bupa · AXA · Vitality · Aviva</div>
+              <div class="hero-fact-label">Plus transparent Self-Pay tariffs</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-visual-card" aria-label="Recovery load trajectory preview">
+          <div class="hero-visual-head">
+            <div>
+              <div class="hero-visual-tag">Live Pathway Model</div>
+              <h2 class="hero-visual-title" id="heroModelTitle">Sports Injuries · Subacute</h2>
+            </div>
+            <span class="hero-pill tabular" id="heroModelSessions">6–8 sessions</span>
+          </div>
+
+          <div class="curve-frame">
+            <svg width="480" height="156" viewBox="0 0 480 156" fill="none" role="img" aria-label="Four-stage rehabilitation capacity curve">
+              <rect x="0" y="0" width="480" height="156" rx="8" fill="#F5F7F8"/>
+              <line x1="24" y1="126" x2="456" y2="126" stroke="#C1CCD4" stroke-width="1.2"/>
+              <line x1="24" y1="92" x2="456" y2="92" stroke="#DDE3E8" stroke-width="1" stroke-dasharray="4 4"/>
+              <line x1="24" y1="58" x2="456" y2="58" stroke="#DDE3E8" stroke-width="1" stroke-dasharray="4 4"/>
+              <line x1="24" y1="24" x2="456" y2="24" stroke="#DDE3E8" stroke-width="1" stroke-dasharray="4 4"/>
+              <path d="M36 116 C110 112, 145 96, 176 86 C225 70, 260 64, 308 48 C355 34, 404 28, 444 24" stroke="#193D5A" stroke-width="3" stroke-linecap="round"/>
+              <circle id="curveDot1" cx="64" cy="113" r="6" fill="#FFFFFF" stroke="#193D5A" stroke-width="2.5"/>
+              <circle id="curveDot2" cx="182" cy="84" r="7" fill="#1C6E6B" stroke="#FFFFFF" stroke-width="2.5"/>
+              <circle id="curveDot3" cx="312" cy="47" r="6" fill="#FFFFFF" stroke="#193D5A" stroke-width="2.5"/>
+              <circle id="curveDot4" cx="436" cy="25" r="6" fill="#FFFFFF" stroke="#193D5A" stroke-width="2.5"/>
+              <text x="44" y="143" fill="#5A6B78" font-family="JetBrains Mono, monospace" font-size="10.5">01 CALM</text>
+              <text x="152" y="143" fill="#5A6B78" font-family="JetBrains Mono, monospace" font-size="10.5">02 CONTROL</text>
+              <text x="278" y="143" fill="#5A6B78" font-family="JetBrains Mono, monospace" font-size="10.5">03 CAPACITY</text>
+              <text x="394" y="143" fill="#5A6B78" font-family="JetBrains Mono, monospace" font-size="10.5">04 RETURN</text>
+            </svg>
+            <div class="curve-caption-row">
+              <span>Load tolerance progression</span>
+              <span class="tabular" id="heroModelEntry">Entry focus: Stage 02</span>
+            </div>
+          </div>
+
+          <div class="hero-mini-pathways">
+            <button type="button" class="hero-mini-item" data-hero-pathway="physio">
+              <div class="hero-mini-name">Physiotherapy &amp; Rehab</div>
+              <div class="hero-mini-meta tabular">Initial £75 · 60 min</div>
+            </button>
+            <button type="button" class="hero-mini-item is-selected" data-hero-pathway="sports">
+              <div class="hero-mini-name">Sports Injuries</div>
+              <div class="hero-mini-meta tabular">Initial £80 · 60 min</div>
+            </button>
+            <button type="button" class="hero-mini-item" data-hero-pathway="vestibular">
+              <div class="hero-mini-name">Vestibular Rehab</div>
+              <div class="hero-mini-meta tabular">Initial £95 · 60 min</div>
+            </button>
+            <button type="button" class="hero-mini-item" data-hero-pathway="massage">
+              <div class="hero-mini-name">Massage Therapy</div>
+              <div class="hero-mini-meta tabular">Initial £65 · 60 min</div>
+            </button>
+          </div>
+
+          <div class="hero-visual-foot">
+            <span id="heroModelEstimate" class="tabular">Indicative total: £405–£535</span>
+            <a class="btn btn-teal btn-sm" href="#planner">Configure Excess</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Core Clinical Disciplines</span>
+          <h2 class="section-title">Four specialist services under one Edinburgh clinic roof.</h2>
+          <p class="section-lead">
+            Select any service below to load its exact fee tariff, injury-phase session range, and 4-stage recovery protocol straight into the interactive planner.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3v18"/>
+                    <path d="M8 7h8"/>
+                    <path d="M7 12h10"/>
+                    <path d="M8 17h8"/>
+                  </svg>
+                </div>
+                <span class="service-duration tabular">45–60 min</span>
+              </div>
+              <h3 class="service-title">Physiotherapy &amp; Rehabilitation</h3>
+              <p class="service-desc">
+                Comprehensive orthopaedic and spinal assessment targeting joint stiffness, nerve irritation, and progressive functional restoration.
+              </p>
+              <ul class="service-points">
+                <li><span class="point-dot" aria-hidden="true"></span><span>Lower back, sciatica, cervical neck, and thoracic pain</span></li>
+                <li><span class="point-dot" aria-hidden="true"></span><span>Post-operative hip, knee, and shoulder joint protocols</span></li>
+                <li><span class="point-dot" aria-hidden="true"></span><span>Targeted exercise prescription with measurable milestones</span></li>
+              </ul>
+            </div>
+            <div class="service-footer">
+              <span class="service-fee-hint tabular">Initial £75 · Follow-up £62</span>
+              <button type="button" class="btn btn-outline btn-sm" data-select-service="physio">Select in Planner</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="13" cy="5" r="2"/>
+                    <path d="M6 19l4-6 3 2 3-5"/>
+                    <path d="M9 11l3-2 4 3"/>
+                  </svg>
+                </div>
+                <span class="service-duration tabular">45–60 min</span>
+              </div>
+              <h3 class="service-title">Sports Injuries</h3>
+              <p class="service-desc">
+                Load-based rehabilitation for runners, club athletes, and active Edinburgh residents recovering from ligament, tendon, or muscle injury.
+              </p>
+              <ul class="service-points">
+                <li><span class="point-dot" aria-hidden="true"></span><span>Achilles, patellar, and gluteal tendinopathy loading</span></li>
+                <li><span class="point-dot" aria-hidden="true"></span><span>ACL, ankle sprain, and hamstring return-to-sport staging</span></li>
+                <li><span class="point-dot" aria-hidden="true"></span><span>Objective strength symmetry and agility clearance checks</span></li>
+              </ul>
+            </div>
+            <div class="service-footer">
+              <span class="service-fee-hint tabular">Initial £80 · Follow-up £65</span>
+              <button type="button" class="btn btn-outline btn-sm" data-select-service="sports">Select in Planner</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="8"/>
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M12 2v2M12 20v2M2 12h2M20 12h2"/>
+                  </svg>
+                </div>
+                <span class="service-duration tabular">45–60 min</span>
+              </div>
+              <h3 class="service-title">Vestibular Rehabilitation</h3>
+              <p class="service-desc">
+                Specialist inner-ear and balance rehabilitation designed to resolve vertigo, visual-motion dizziness, and unsteady walking patterns.
+              </p>
+              <ul class="service-points">
+                <li><span class="point-dot" aria-hidden="true"></span><span>Diagnostic BPPV canalith repositioning manoeuvres</span></li>
+                <li><span class="point-dot" aria-hidden="true"></span><span>Vestibulo-ocular reflex (VOR) gaze stabilisation training</span></li>
+                <li><span class="point-dot" aria-hidden="true"></span><span>Graded habituation for post-concussion and balance deficits</span></li>
+              </ul>
+            </div>
+            <div class="service-footer">
+              <span class="service-fee-hint tabular">Initial £95 · Follow-up £72</span>
+              <button type="button" class="btn btn-outline btn-sm" data-select-service="vestibular">Select in Planner</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 15c2-4 5-6 7-6s5 2 7 6"/>
+                    <path d="M4 19c3-2 5-3 8-3s5 1 8 3"/>
+                    <circle cx="12" cy="5.5" r="1.5"/>
+                  </svg>
+                </div>
+                <span class="service-duration tabular">45–60 min</span>
+              </div>
+              <h3 class="service-title">Massage Therapy</h3>
+              <p class="service-desc">
+                Clinical soft-tissue release and targeted sports massage supporting tissue mobility, training recovery, and muscular tension relief.
+              </p>
+              <ul class="service-points">
+                <li><span class="point-dot" aria-hidden="true"></span><span>Deep myofascial release and trigger-point decompression</span></li>
+                <li><span class="point-dot" aria-hidden="true"></span><span>Pre-event priming and post-race lower-limb flush</span></li>
+                <li><span class="point-dot" aria-hidden="true"></span><span>Coordinated handoff with physiotherapy strength plans</span></li>
+              </ul>
+            </div>
+            <div class="service-footer">
+              <span class="service-fee-hint tabular">Initial £65 · Follow-up £55</span>
+              <button type="button" class="btn btn-outline btn-sm" data-select-service="massage">Select in Planner</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section planner-section" id="planner">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Interactive Clinical Tool</span>
+          <h2 class="section-title">Sports Injury &amp; Rehab Session Planner</h2>
+          <p class="section-lead">
+            Configure your clinical pathway, injury phase, and funding route (Self-Pay or Bupa, AXA, Vitality, and Aviva policy excess) to calculate your indicative GBP session range, 4-stage recovery roadmap, and prefilled Edinburgh intake brief.
+          </p>
+        </div>
+
+        <div class="planner-layout">
+          <div class="planner-card">
+            <div class="control-block">
+              <div class="block-header">
+                <span class="block-title" id="pathwayGroupLabel">1. Select Clinical Pathway</span>
+                <span class="block-step">Pathway</span>
+              </div>
+              <div class="pathway-grid" role="radiogroup" aria-labelledby="pathwayGroupLabel" id="pathwayRadiogroup">
+                <button type="button" class="selector-btn" role="radio" aria-checked="false" data-pathway="physio">
+                  <span class="selector-btn-title">Physiotherapy &amp; Rehabilitation</span>
+                  <span class="selector-btn-meta tabular">Initial £75 · Follow-up £62</span>
+                </button>
+                <button type="button" class="selector-btn" role="radio" aria-checked="true" data-pathway="sports">
+                  <span class="selector-btn-title">Sports Injuries</span>
+                  <span class="selector-btn-meta tabular">Initial £80 · Follow-up £65</span>
+                </button>
+                <button type="button" class="selector-btn" role="radio" aria-checked="false" data-pathway="vestibular">
+                  <span class="selector-btn-title">Vestibular Rehabilitation</span>
+                  <span class="selector-btn-meta tabular">Initial £95 · Follow-up £72</span>
+                </button>
+                <button type="button" class="selector-btn" role="radio" aria-checked="false" data-pathway="massage">
+                  <span class="selector-btn-title">Massage Therapy</span>
+                  <span class="selector-btn-meta tabular">Initial £65 · Follow-up £55</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="control-block">
+              <div class="block-header">
+                <span class="block-title" id="phaseGroupLabel">2. Injury or Symptom Phase</span>
+                <span class="block-step">Acuity</span>
+              </div>
+              <div class="phase-grid" role="radiogroup" aria-labelledby="phaseGroupLabel" id="phaseRadiogroup">
+                <button type="button" class="phase-btn" role="radio" aria-checked="false" data-phase="acute">
+                  <span class="phase-btn-name">Acute</span>
+                  <span class="phase-btn-window tabular">0–14 days</span>
+                  <span class="phase-btn-desc">High irritability, swelling, early symptom calming</span>
+                </button>
+                <button type="button" class="phase-btn" role="radio" aria-checked="true" data-phase="subacute">
+                  <span class="phase-btn-name">Subacute</span>
+                  <span class="phase-btn-window tabular">2–6 weeks</span>
+                  <span class="phase-btn-desc">Settling pain, rebuilding range and graded load</span>
+                </button>
+                <button type="button" class="phase-btn" role="radio" aria-checked="false" data-phase="chronic">
+                  <span class="phase-btn-name">Chronic</span>
+                  <span class="phase-btn-window tabular">6+ weeks</span>
+                  <span class="phase-btn-desc">Persistent symptoms, capacity and endurance rebuild</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="control-block">
+              <div class="block-header">
+                <span class="block-title">3. Clinical Focus &amp; Target Outcome</span>
+                <span class="block-step">Profile</span>
+              </div>
+              <div class="fields-two-col">
+                <div class="field">
+                  <label class="field-label" for="regionFocus">Primary Anatomical / Symptom Focus</label>
+                  <select class="field-control" id="regionFocus" autocomplete="off"></select>
+                </div>
+                <div class="field">
+                  <label class="field-label" for="activityGoal">Recovery Target</label>
+                  <select class="field-control" id="activityGoal" autocomplete="off">
+                    <option value="daily">Daily Comfort &amp; Mobility</option>
+                    <option value="recreational" selected>Recreational Running &amp; Fitness</option>
+                    <option value="competitive">Club / Competitive Sport</option>
+                    <option value="work">Work, Desk &amp; Travel Readiness</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="control-block">
+              <div class="block-header">
+                <span class="block-title" id="payerGroupLabel">4. Funding Route &amp; Insurer Excess Calculator</span>
+                <span class="block-step">GBP £</span>
+              </div>
+
+              <div class="payer-grid" role="radiogroup" aria-labelledby="payerGroupLabel" id="payerRadiogroup">
+                <button type="button" class="payer-btn" role="radio" aria-checked="false" data-payer="selfpay">Self-Pay</button>
+                <button type="button" class="payer-btn" role="radio" aria-checked="true" data-payer="bupa">Bupa</button>
+                <button type="button" class="payer-btn" role="radio" aria-checked="false" data-payer="axa">AXA</button>
+                <button type="button" class="payer-btn" role="radio" aria-checked="false" data-payer="vitality">Vitality</button>
+                <button type="button" class="payer-btn" role="radio" aria-checked="false" data-payer="aviva">Aviva</button>
+              </div>
+
+              <div class="excess-panel">
+                <div class="fields-two-col">
+                  <div class="field">
+                    <label class="field-label" for="insurerExcess">Policy Annual Excess (GBP £)</label>
+                    <input class="field-control tabular" type="number" id="insurerExcess" min="0" max="2000" step="25" value="100" autocomplete="off">
+                    <div class="preset-chips" id="excessPresets" aria-label="Common excess amounts">
+                      <button type="button" class="preset-chip" data-excess="0">£0</button>
+                      <button type="button" class="preset-chip is-active" data-excess="100">£100</button>
+                      <button type="button" class="preset-chip" data-excess="150">£150</button>
+                      <button type="button" class="preset-chip" data-excess="250">£250</button>
+                      <button type="button" class="preset-chip" data-excess="500">£500</button>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label class="field-label" for="sessionCap">Insurer Authorised Limit</label>
+                    <select class="field-control tabular" id="sessionCap" autocomplete="off">
+                      <option value="0" selected>Uncapped / Full Pathway</option>
+                      <option value="5">Up to 5 Sessions</option>
+                      <option value="8">Up to 8 Sessions</option>
+                      <option value="10">Up to 10 Sessions</option>
+                    </select>
+                    <span class="field-hint">Common UK outpatient physiotherapy limits per claim</span>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="field-label" for="selfPayPlan">Self-Pay Package Option</label>
+                  <select class="field-control" id="selfPayPlan" autocomplete="off" disabled>
+                    <option value="payg" selected>Pay-As-You-Go Single Sessions (Standard Tariff)</option>
+                    <option value="block">5-Session Rehab Block (~10% Follow-Up Reduction)</option>
+                  </select>
+                  <span class="field-hint" id="selfPayHint">Active when Self-Pay funding is selected above.</span>
+                </div>
+
+                <div class="insurer-note-box">
+                  <div class="insurer-note-title" id="payerGuidanceTitle">Bupa UK Outpatient Guidance</div>
+                  <div id="payerGuidanceCopy">
+                    Confirm your Bupa pre-authorisation code and membership number before your initial Edinburgh assessment. Any policy excess is settled directly with the clinic once claimed.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-stack">
+            <div class="planner-card" aria-live="polite">
+              <div class="estimate-header">
+                <div>
+                  <div class="block-step">Edinburgh Cost &amp; Care Estimate</div>
+                  <h3 id="outputHeading" style="font-size: 21px; margin-top: 4px;">Sports Injuries · Subacute</h3>
+                </div>
+                <span class="estimate-badge tabular" id="outputPayerBadge">Bupa · £100 Excess</span>
+              </div>
+
+              <div class="kpi-grid">
+                <div class="kpi-tile kpi-tile-highlight">
+                  <div class="kpi-label">Recommended Session Package</div>
+                  <div class="kpi-value tabular" id="kpiSessionRange">6–8 sessions</div>
+                  <div class="kpi-sub tabular" id="kpiTimeline">Indicative window: 4–8 weeks</div>
+                </div>
+                <div class="kpi-tile">
+                  <div class="kpi-label" id="kpiGrossLabel">Indicative Gross Course Value</div>
+                  <div class="kpi-value tabular" id="kpiGrossRange">£405–£535</div>
+                  <div class="kpi-sub tabular" id="kpiUnitRates">£80 Initial · £65 Follow-up</div>
+                </div>
+                <div class="kpi-tile kpi-tile-highlight">
+                  <div class="kpi-label" id="kpiPatientLabel">Estimated Out-of-Pocket</div>
+                  <div class="kpi-value tabular" id="kpiPatientRange">£100</div>
+                  <div class="kpi-sub tabular" id="kpiPatientSub">Policy excess applied once</div>
+                </div>
+                <div class="kpi-tile">
+                  <div class="kpi-label" id="kpiBenefitLabel">Estimated Insurer Covered</div>
+                  <div class="kpi-value tabular" id="kpiBenefitRange">£305–£435</div>
+                  <div class="kpi-sub tabular" id="kpiBenefitSub">Within authorised pathway</div>
+                </div>
+              </div>
+
+              <div class="share-bar-box">
+                <div class="share-bar-labels">
+                  <span class="tabular" id="barLeftLabel">Patient Share: £100</span>
+                  <span class="tabular" id="barRightLabel">Insurer Covered: £305–£435</span>
+                </div>
+                <div class="share-bar-track" aria-hidden="true">
+                  <div class="share-bar-patient" id="barPatientSegment" style="width: 22%;"></div>
+                  <div class="share-bar-benefit" id="barBenefitSegment" style="width: 78%;"></div>
+                </div>
+              </div>
+
+              <div class="fee-breakdown-list" id="feeBreakdownList"></div>
+
+              <p class="estimate-disclaimer">
+                All GBP figures are indicative planning estimates for The Physiotherapy Clinics in Edinburgh. Exact session frequency and insurer billing terms are verified during your initial consultation.
+              </p>
+            </div>
+
+            <div class="planner-card" id="roadmap">
+              <div class="block-header" style="margin-bottom: 14px;">
+                <div>
+                  <div class="block-step">Structured Progression</div>
+                  <h3 style="font-size: 20px; margin-top: 2px;">4-Stage Recovery Roadmap</h3>
+                </div>
+                <span class="hero-pill tabular" id="roadmapFocusTag">Entry: Stage 02</span>
+              </div>
+              <div class="roadmap-list" id="roadmapContainer"></div>
+            </div>
+
+            <div class="planner-card">
+              <div class="block-header" style="margin-bottom: 10px;">
+                <div>
+                  <div class="block-step">Ready for Reception</div>
+                  <h3 style="font-size: 20px; margin-top: 2px;">Prefilled Edinburgh Intake Brief</h3>
+                </div>
+                <span class="hero-pill">Edinburgh, Scotland</span>
+              </div>
+              <pre class="brief-pre" id="intakeBriefPre"></pre>
+              <div class="brief-actions-grid">
+                <button type="button" class="btn btn-primary" id="copyBriefBtn">Copy Intake Brief</button>
+                <a class="btn btn-outline" href="#enquiry">Complete Personal Details</a>
+                <div class="full-row-contact">
+                  <a class="full-row-link" id="briefMailtoLink" href="mailto:info@physioclinics.scot">info@physioclinics.scot</a>
+                  <span class="full-row-tag">Open Prefilled Email</span>
+                </div>
+              </div>
+              <div class="copy-feedback" id="copyFeedback" role="status" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="insurers">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">UK Private Medical Insurance &amp; Self-Pay</span>
+          <h2 class="section-title">Clear pathways for UK insurers and direct patients.</h2>
+          <p class="section-lead">
+            Compare common UK private medical insurer administration requirements alongside our indicative Edinburgh self-pay fee schedule. Click any insurer card to test your policy excess in the calculator above.
+          </p>
+        </div>
+
+        <div class="insurers-grid">
+          <article class="insurer-card">
+            <div>
+              <div class="insurer-card-head">
+                <h3 class="insurer-name">Bupa</h3>
+                <span class="insurer-code">UK PMI</span>
+              </div>
+              <p class="insurer-copy">
+                Bring your Bupa membership number and pre-authorisation code. Many policies allow self-referral triage without a separate GP letter.
+              </p>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" data-select-payer="bupa">Apply Bupa in Planner</button>
+          </article>
+
+          <article class="insurer-card">
+            <div>
+              <div class="insurer-card-head">
+                <h3 class="insurer-name">AXA Health</h3>
+                <span class="insurer-code">UK PMI</span>
+              </div>
+              <p class="insurer-copy">
+                Authorisation is typically arranged through AXA Health Musculoskeletal Pathways or GP referral. Any policy excess is settled directly.
+              </p>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" data-select-payer="axa">Apply AXA in Planner</button>
+          </article>
+
+          <article class="insurer-card">
+            <div>
+              <div class="insurer-card-head">
+                <h3 class="insurer-name">Vitality</h3>
+                <span class="insurer-code">UK PMI</span>
+              </div>
+              <p class="insurer-copy">
+                Use Vitality Priority Physio or a GP referral to generate your claim reference. Check annual outpatient limits and excess tier.
+              </p>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" data-select-payer="vitality">Apply Vitality in Planner</button>
+          </article>
+
+          <article class="insurer-card">
+            <div>
+              <div class="insurer-card-head">
+                <h3 class="insurer-name">Aviva</h3>
+                <span class="insurer-code">UK PMI</span>
+              </div>
+              <p class="insurer-copy">
+                Verify your Aviva BacktoBetter or outpatient physiotherapy authorisation reference prior to attending your initial Edinburgh visit.
+              </p>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" data-select-payer="aviva">Apply Aviva in Planner</button>
+          </article>
+        </div>
+
+        <div class="tariff-card">
+          <div class="tariff-head">
+            <div>
+              <h3 style="font-size: 18px;">Indicative Edinburgh Session Tariff (GBP £)</h3>
+              <p style="font-size: 13.5px; color: var(--ink-muted);">All core clinical disciplines available without GP referral on Self-Pay</p>
+            </div>
+            <button type="button" class="btn btn-teal btn-sm" data-select-payer="selfpay">Test Self-Pay Block</button>
+          </div>
+          <div class="tariff-scroll">
+            <table class="tariff-table">
+              <thead>
+                <tr>
+                  <th>Clinical Service</th>
+                  <th>Initial Assessment</th>
+                  <th>Follow-Up Session</th>
+                  <th>5-Session Block Rate</th>
+                  <th>Typical Duration</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Physiotherapy &amp; Rehabilitation</td>
+                  <td class="tariff-price">£75</td>
+                  <td class="tariff-price">£62</td>
+                  <td class="tariff-price">£56 per follow-up</td>
+                  <td>60 min / 45 min</td>
+                </tr>
+                <tr>
+                  <td>Sports Injuries</td>
+                  <td class="tariff-price">£80</td>
+                  <td class="tariff-price">£65</td>
+                  <td class="tariff-price">£58 per follow-up</td>
+                  <td>60 min / 45 min</td>
+                </tr>
+                <tr>
+                  <td>Vestibular Rehabilitation</td>
+                  <td class="tariff-price">£95</td>
+                  <td class="tariff-price">£72</td>
+                  <td class="tariff-price">£65 per follow-up</td>
+                  <td>60 min / 45 min</td>
+                </tr>
+                <tr>
+                  <td>Massage Therapy</td>
+                  <td class="tariff-price">£65</td>
+                  <td class="tariff-price">£55</td>
+                  <td class="tariff-price">£49 per follow-up</td>
+                  <td>60 min / 45 min</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section planner-section" id="enquiry">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Edinburgh Appointment Request</span>
+          <h2 class="section-title">Submit your prefilled Edinburgh intake brief.</h2>
+          <p class="section-lead">
+            Add your contact details below to attach them automatically to the Edinburgh intake brief, or reach The Physiotherapy Clinics reception directly by telephone or email.
+          </p>
+        </div>
+
+        <div class="enquiry-grid">
+          <div class="planner-card">
+            <h3 style="font-size: 20px; margin-bottom: 14px;">Patient &amp; Appointment Details</h3>
+            <form class="intake-form" id="intakeForm" novalidate>
+              <div class="fields-two-col">
+                <div class="field">
+                  <label class="field-label" for="patientName">Full Name</label>
+                  <input class="field-control" type="text" id="patientName" placeholder="Callum Stewart" autocomplete="name" required>
+                </div>
+                <div class="field">
+                  <label class="field-label" for="patientPhone">Telephone Number</label>
+                  <input class="field-control tabular" type="tel" id="patientPhone" placeholder="07700 900123" autocomplete="tel" required>
+                </div>
+              </div>
+
+              <div class="fields-two-col">
+                <div class="field">
+                  <label class="field-label" for="patientEmail">Email Address</label>
+                  <input class="field-control" type="email" id="patientEmail" placeholder="name@example.co.uk" autocomplete="email" required>
+                </div>
+                <div class="field">
+                  <label class="field-label" for="preferredWindow">Preferred Edinburgh Slot</label>
+                  <select class="field-control" id="preferredWindow" autocomplete="off">
+                    <option value="First Available Edinburgh Appointment">First Available Edinburgh Appointment</option>
+                    <option value="Morning (08:00–12:00)">Morning (08:00–12:00)</option>
+                    <option value="Midday (12:00–15:00)">Midday (12:00–15:00)</option>
+                    <option value="Late Afternoon / Evening">Late Afternoon / Evening</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="insurerRef">Insurer Membership / Pre-Authorisation Code (Optional)</label>
+                <input class="field-control mono" type="text" id="insurerRef" placeholder="e.g. BUPA-88412 or Self-Pay" autocomplete="off">
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="clinicalNotes">Symptom Onset, Sport or Clinical Notes (Optional)</label>
+                <textarea class="field-control" id="clinicalNotes" rows="3" placeholder="Briefly describe when symptoms started, aggravating movements, or upcoming running or sport goals."></textarea>
+              </div>
+
+              <div style="display: flex; flex-wrap: wrap; gap: 10px; padding-top: 4px;">
+                <button type="submit" class="btn btn-primary">Generate Confirmed Intake Summary</button>
+                <button type="button" class="btn btn-outline" id="copyFromFormBtn">Copy Full Brief</button>
+              </div>
+            </form>
+
+            <div class="confirmation-panel" id="confirmationPanel" hidden role="status" aria-live="polite">
+              <div class="confirmation-title">Edinburgh Intake Summary Prepared</div>
+              <p class="confirmation-text" id="confirmationBody"></p>
+              <div class="contact-tile-full" style="margin-top: 4px;">
+                <span class="contact-tile-label">Send Direct to Edinburgh Reception</span>
+                <a class="contact-link-nowrap" id="confirmMailtoLink" href="mailto:info@physioclinics.scot">info@physioclinics.scot</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="planner-card">
+            <h3 style="font-size: 20px; margin-bottom: 14px;">The Physiotherapy Clinics · Edinburgh</h3>
+
+            <div class="contact-details-grid">
+              <div class="contact-tile">
+                <div class="contact-tile-label">City &amp; Region</div>
+                <div class="contact-tile-val">Edinburgh, Scotland, UK</div>
+              </div>
+              <div class="contact-tile">
+                <div class="contact-tile-label">Telephone Reception</div>
+                <div class="contact-tile-val tabular">
+                  <a href="tel:+441312183000" style="text-decoration: underline; text-underline-offset: 3px;">0131 218 3000</a>
+                </div>
+              </div>
+              <div class="contact-tile-full">
+                <div class="contact-tile-label">Email Appointments &amp; Referrals</div>
+                <a class="contact-link-nowrap" href="mailto:info@physioclinics.scot">info@physioclinics.scot</a>
+              </div>
+              <div class="contact-tile-full">
+                <div class="contact-tile-label">Official Clinic Website</div>
+                <a class="contact-link-nowrap" href="https://www.physioclinics.scot" target="_blank" rel="noopener noreferrer">https://www.physioclinics.scot</a>
+              </div>
+            </div>
+
+            <h4 style="font-size: 16px; margin-bottom: 10px;">First Visit Preparation</h4>
+            <div class="faq-list" id="faqList">
+              <div class="faq-item">
+                <button type="button" class="faq-trigger" aria-expanded="true" aria-controls="faq-1">
+                  <span>What should I bring to an initial assessment</span>
+                  <span class="mono" aria-hidden="true">-</span>
+                </button>
+                <div class="faq-panel" id="faq-1">
+                  Wear loose, comfortable athletic clothing so the injured joint or spinal region can be assessed clearly. Bring recent imaging reports or consultant letters if available, plus your insurer pre-authorisation code when claiming.
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-2">
+                  <span>Do I need a GP referral before booking</span>
+                  <span class="mono" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-panel" id="faq-2" hidden>
+                  Self-pay patients can book directly across all four pathways without a GP referral. If using Bupa, AXA, Vitality, or Aviva, check whether your policy requires a triage call or referral code prior to your first visit.
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-3">
+                  <span>How is my policy excess settled</span>
+                  <span class="mono" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-panel" id="faq-3" hidden>
+                  When your insurer processes the first invoice against your annual policy excess, that excess amount is payable directly to the clinic. Subsequent covered sessions inside your authorised cap are billed to your insurer.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-heading">The Physiotherapy Clinics</div>
+          <p class="footer-copy">
+            Evidence-led Physiotherapy &amp; Rehabilitation, Sports Injuries, Vestibular Rehabilitation, and Massage Therapy in Edinburgh, Scotland, UK.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-heading">Pathways &amp; Tools</div>
+          <ul class="footer-nav-list">
+            <li><a href="#services">Clinical Services</a></li>
+            <li><a href="#planner">Session &amp; Excess Planner</a></li>
+            <li><a href="#roadmap">4-Stage Recovery Roadmap</a></li>
+            <li><a href="#insurers">UK Insurer Guidance</a></li>
+            <li><a href="#enquiry">Edinburgh Intake Form</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Edinburgh Contact</div>
+          <div class="footer-contact-grid">
+            <div class="footer-contact-cell">
+              <div class="footer-label">Location</div>
+              <div style="font-size: 13.5px; font-weight: 600; color: #FFFFFF;">Edinburgh, Scotland, UK</div>
+            </div>
+            <div class="footer-contact-cell">
+              <div class="footer-label">Telephone</div>
+              <a class="tabular" href="tel:+441312183000" style="font-size: 13.5px; font-weight: 600; color: #FFFFFF; text-decoration: underline; text-underline-offset: 3px;">0131 218 3000</a>
+            </div>
+            <div class="footer-contact-full">
+              <div class="footer-label">Email</div>
+              <a class="footer-link-nowrap" href="mailto:info@physioclinics.scot">info@physioclinics.scot</a>
+            </div>
+            <div class="footer-contact-full">
+              <div class="footer-label">Website</div>
+              <a class="footer-link-nowrap" href="https://www.physioclinics.scot" target="_blank" rel="noopener noreferrer">https://www.physioclinics.scot</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>The Physiotherapy Clinics · Edinburgh, Scotland, UK</span>
+        <span>Interactive Session Planner Demo · Indicative GBP £ estimates</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var PATHWAYS = {
+        physio: {
+          id: 'physio',
+          name: 'Physiotherapy & Rehabilitation',
+          shortName: 'Physiotherapy & Rehab',
+          initialFee: 75,
+          followFee: 62,
+          blockFollowFee: 56,
+          duration: '60 min Initial · 45 min Follow-up',
+          regions: [
+            'Lower Back & Sciatica',
+            'Neck & Thoracic Spine',
+            'Hip & Pelvic Girdle',
+            'Post-Operative Joint Rehab'
+          ],
+          phases: {
+            acute: { minSessions: 4, maxSessions: 6, weeks: '2–4 weeks', entryStage: 1 },
+            subacute: { minSessions: 5, maxSessions: 7, weeks: '4–6 weeks', entryStage: 2 },
+            chronic: { minSessions: 6, maxSessions: 9, weeks: '6–10 weeks', entryStage: 3 }
+          },
+          roadmap: [
+            {
+              stage: '01',
+              title: 'Clinical Assessment & Symptom Modulation',
+              window: 'Weeks 1–2',
+              detail: 'Full orthopaedic examination, directional movement screening, gentle joint mobilisation, and activity pacing to settle acute irritability.',
+              milestone: 'Milestone: Pain-free sleep posture and controlled daily walking tolerance'
+            },
+            {
+              stage: '02',
+              title: 'Mobility & Motor Control Restoration',
+              window: 'Weeks 2–4',
+              detail: 'Restore pain-free joint range of motion, deep trunk and pelvic control, and graded loading tolerance across daily tasks.',
+              milestone: 'Milestone: Symmetrical active range and pain-free sit-to-stand patterns'
+            },
+            {
+              stage: '03',
+              title: 'Progressive Strength & Tissue Capacity',
+              window: 'Weeks 4–7',
+              detail: 'Structured resistance progression targeting spine, hip, and peripheral load resilience to eliminate recurring flare-ups.',
+              milestone: 'Milestone: Full resistance sets completed without 24-hour symptom rebound'
+            },
+            {
+              stage: '04',
+              title: 'Work, Active Living & Relapse Prevention',
+              window: 'Weeks 7–10',
+              detail: 'Ergonomic load integration, long-term self-management routine, and objective discharge criteria tailored to your lifestyle.',
+              milestone: 'Milestone: Independent home maintenance plan and confident load handling'
+            }
+          ]
+        },
+        sports: {
+          id: 'sports',
+          name: 'Sports Injuries',
+          shortName: 'Sports Injuries',
+          initialFee: 80,
+          followFee: 65,
+          blockFollowFee: 58,
+          duration: '60 min Initial · 45 min Follow-up',
+          regions: [
+            'Knee, ACL & Meniscus',
+            'Achilles, Ankle & Calf',
+            'Hamstring & Quadriceps Strain',
+            'Shoulder & Rotator Cuff'
+          ],
+          phases: {
+            acute: { minSessions: 4, maxSessions: 6, weeks: '2–5 weeks', entryStage: 1 },
+            subacute: { minSessions: 6, maxSessions: 8, weeks: '4–8 weeks', entryStage: 2 },
+            chronic: { minSessions: 7, maxSessions: 10, weeks: '8–12 weeks', entryStage: 3 }
+          },
+          roadmap: [
+            {
+              stage: '01',
+              title: 'Differential Diagnosis & Early Load Protection',
+              window: 'Weeks 1–2',
+              detail: 'Identify exact structural tissue involvement, manage swelling, and maintain safe aerobic conditioning without aggravating the site.',
+              milestone: 'Milestone: Controlled gait mechanics and isometric load tolerance'
+            },
+            {
+              stage: '02',
+              title: 'Tendon & Muscle Rebuilding',
+              window: 'Weeks 2–5',
+              detail: 'Heavy slow resistance and eccentric loading tailored to tendon or muscle fibre orientation while restoring full joint excursion.',
+              milestone: 'Milestone: Pain-free single-leg control and progressive strength parity'
+            },
+            {
+              stage: '03',
+              title: 'Plyometrics, Power & Kinetic Chain Integration',
+              window: 'Weeks 5–8',
+              detail: 'Introduce energy-storage plyometrics, deceleration mechanics, and multi-planar force transfer under fatigue.',
+              milestone: 'Milestone: Limb symmetry index above 90% on functional hop or push tests'
+            },
+            {
+              stage: '04',
+              title: 'Return-to-Run & Competitive Clearance',
+              window: 'Weeks 8–12',
+              detail: 'Sport-specific sprint, cutting, or overhead volume exposure with structured warm-up habits to protect against re-injury.',
+              milestone: 'Milestone: Full training participation cleared with load monitoring guide'
+            }
+          ]
+        },
+        vestibular: {
+          id: 'vestibular',
+          name: 'Vestibular Rehabilitation',
+          shortName: 'Vestibular Rehab',
+          initialFee: 95,
+          followFee: 72,
+          blockFollowFee: 65,
+          duration: '60 min Initial · 45 min Follow-up',
+          regions: [
+            'BPPV & Positional Vertigo',
+            'Unilateral Vestibular Hypofunction',
+            'Post-Concussion Balance & Gaze',
+            'Persistent Dizziness & Gait'
+          ],
+          phases: {
+            acute: { minSessions: 2, maxSessions: 4, weeks: '1–3 weeks', entryStage: 1 },
+            subacute: { minSessions: 3, maxSessions: 5, weeks: '3–5 weeks', entryStage: 2 },
+            chronic: { minSessions: 4, maxSessions: 7, weeks: '5–8 weeks', entryStage: 3 }
+          },
+          roadmap: [
+            {
+              stage: '01',
+              title: 'Oculomotor & Positional Screening',
+              window: 'Weeks 1–2',
+              detail: 'Detailed Dix-Hallpike, head-impulse, and visual tracking screen; immediate canalith repositioning when BPPV is confirmed.',
+              milestone: 'Milestone: Identification of vestibular trigger and acute vertigo relief'
+            },
+            {
+              stage: '02',
+              title: 'Gaze Stabilisation & VOR Adaptation',
+              window: 'Weeks 2–4',
+              detail: 'Targeted vestibulo-ocular reflex drills calibrated to provoke controlled neural adaptation without overwhelming nausea.',
+              milestone: 'Milestone: Clear visual focus during graded horizontal and vertical head turns'
+            },
+            {
+              stage: '03',
+              title: 'Static & Dynamic Balance Retraining',
+              window: 'Weeks 4–6',
+              detail: 'Progress standing stability across narrow bases, dual-task walking, and varying lighting or surface compliance.',
+              milestone: 'Milestone: Confident outdoor walking in busy Edinburgh environments'
+            },
+            {
+              stage: '04',
+              title: 'Complex Motion Tolerance & Discharge',
+              window: 'Weeks 6–8',
+              detail: 'Optokinetic habituation, return-to-driving or sport head-motion exposure, and self-check steps if symptoms recur.',
+              milestone: 'Milestone: Baseline dizziness score normalised for daily travel and exercise'
+            }
+          ]
+        },
+        massage: {
+          id: 'massage',
+          name: 'Massage Therapy',
+          shortName: 'Massage Therapy',
+          initialFee: 65,
+          followFee: 55,
+          blockFollowFee: 49,
+          duration: '60 min Initial · 45 min Follow-up',
+          regions: [
+            'Deep Tissue & Myofascial Release',
+            'Pre / Post-Event Sports Recovery',
+            'Desk & Upper-Back Tension',
+            'Lower-Limb Overload Recovery'
+          ],
+          phases: {
+            acute: { minSessions: 2, maxSessions: 3, weeks: '1–3 weeks', entryStage: 1 },
+            subacute: { minSessions: 3, maxSessions: 5, weeks: '3–5 weeks', entryStage: 2 },
+            chronic: { minSessions: 4, maxSessions: 6, weeks: '4–8 weeks', entryStage: 3 }
+          },
+          roadmap: [
+            {
+              stage: '01',
+              title: 'Tissue Palpation & Tension Mapping',
+              window: 'Week 1',
+              detail: 'Assess myofascial restriction, guarded trigger points, and joint range limits to set safe pressure thresholds.',
+              milestone: 'Milestone: Immediate reduction in protective muscular guarding'
+            },
+            {
+              stage: '02',
+              title: 'Targeted Myofascial & Trigger Release',
+              window: 'Weeks 2–3',
+              detail: 'Deep tissue release paired with active assisted stretching to restore local blood flow and sliding tissue glide.',
+              milestone: 'Milestone: Measurable gain in shoulder, hip, or calf range of motion'
+            },
+            {
+              stage: '03',
+              title: 'Training Cycle Integration',
+              window: 'Weeks 3–5',
+              detail: 'Align treatment cadence with weekly running mileage, gym sessions, or desk posture triggers to prevent tight spots rebuilding.',
+              milestone: 'Milestone: Faster recovery turnaround between heavy training days'
+            },
+            {
+              stage: '04',
+              title: 'Maintenance Cadence & Mobility Habits',
+              window: 'Weeks 5–8',
+              detail: 'Transition to spaced monthly or pre-event maintenance alongside simple 5-minute mobility drills.',
+              milestone: 'Milestone: Sustained tissue suppleness across work and training weeks'
+            }
+          ]
+        }
+      };
+
+      var PHASE_META = {
+        acute: { label: 'Acute (0–14 days)', short: 'Acute' },
+        subacute: { label: 'Subacute (2–6 weeks)', short: 'Subacute' },
+        chronic: { label: 'Chronic (6+ weeks)', short: 'Chronic' }
+      };
+
+      var PAYERS = {
+        selfpay: {
+          name: 'Self-Pay',
+          title: 'Self-Pay Edinburgh Guidance',
+          guidance: 'No GP referral required. Choose Pay-As-You-Go or a 5-Session Rehab Block to reduce follow-up session fees by roughly 10% across your plan.'
+        },
+        bupa: {
+          name: 'Bupa',
+          title: 'Bupa UK Outpatient Guidance',
+          guidance: 'Confirm your Bupa pre-authorisation code and membership number before your initial Edinburgh assessment. Any policy excess is settled directly with the clinic once claimed.'
+        },
+        axa: {
+          name: 'AXA',
+          title: 'AXA Health Outpatient Guidance',
+          guidance: 'Provide your AXA Health claim reference or Working Body authorisation code. Outpatient physiotherapy caps and annual excess vary by policy tier.'
+        },
+        vitality: {
+          name: 'Vitality',
+          title: 'VitalityHealth Outpatient Guidance',
+          guidance: 'Bring your Vitality Priority Physio or outpatient claim authorisation number. Excess applies once per policy year across eligible musculoskeletal care.'
+        },
+        aviva: {
+          name: 'Aviva',
+          title: 'Aviva UK Health Guidance',
+          guidance: 'Share your Aviva pre-authorisation code and membership details at intake. Check whether your policy includes an annual outpatient session limit.'
+        }
+      };
+
+      var GOAL_LABELS = {
+        daily: 'Daily Comfort & Mobility',
+        recreational: 'Recreational Running & Fitness',
+        competitive: 'Club / Competitive Sport',
+        work: 'Work, Desk & Travel Readiness'
+      };
+
+      var state = {
+        pathway: 'sports',
+        phase: 'subacute',
+        region: 'Knee, ACL & Meniscus',
+        goal: 'recreational',
+        payer: 'bupa',
+        excess: 100,
+        cap: 0,
+        selfPayPlan: 'payg'
+      };
+
+      // DOM elements
+      var pathwayButtons = document.querySelectorAll('#pathwayRadiogroup [data-pathway]');
+      var heroMiniButtons = document.querySelectorAll('[data-hero-pathway]');
+      var phaseButtons = document.querySelectorAll('#phaseRadiogroup [data-phase]');
+      var payerButtons = document.querySelectorAll('#payerRadiogroup [data-payer]');
+      var regionSelect = document.getElementById('regionFocus');
+      var goalSelect = document.getElementById('activityGoal');
+      var excessInput = document.getElementById('insurerExcess');
+      var presetChips = document.querySelectorAll('#excessPresets [data-excess]');
+      var capSelect = document.getElementById('sessionCap');
+      var selfPaySelect = document.getElementById('selfPayPlan');
+      var selfPayHint = document.getElementById('selfPayHint');
+
+      var payerGuidanceTitle = document.getElementById('payerGuidanceTitle');
+      var payerGuidanceCopy = document.getElementById('payerGuidanceCopy');
+
+      var outputHeading = document.getElementById('outputHeading');
+      var outputPayerBadge = document.getElementById('outputPayerBadge');
+      var kpiSessionRange = document.getElementById('kpiSessionRange');
+      var kpiTimeline = document.getElementById('kpiTimeline');
+      var kpiGrossLabel = document.getElementById('kpiGrossLabel');
+      var kpiGrossRange = document.getElementById('kpiGrossRange');
+      var kpiUnitRates = document.getElementById('kpiUnitRates');
+      var kpiPatientLabel = document.getElementById('kpiPatientLabel');
+      var kpiPatientRange = document.getElementById('kpiPatientRange');
+      var kpiPatientSub = document.getElementById('kpiPatientSub');
+      var kpiBenefitLabel = document.getElementById('kpiBenefitLabel');
+      var kpiBenefitRange = document.getElementById('kpiBenefitRange');
+      var kpiBenefitSub = document.getElementById('kpiBenefitSub');
+      var barLeftLabel = document.getElementById('barLeftLabel');
+      var barRightLabel = document.getElementById('barRightLabel');
+      var barPatientSegment = document.getElementById('barPatientSegment');
+      var barBenefitSegment = document.getElementById('barBenefitSegment');
+      var feeBreakdownList = document.getElementById('feeBreakdownList');
+
+      var roadmapFocusTag = document.getElementById('roadmapFocusTag');
+      var roadmapContainer = document.getElementById('roadmapContainer');
+      var intakeBriefPre = document.getElementById('intakeBriefPre');
+      var briefMailtoLink = document.getElementById('briefMailtoLink');
+      var confirmMailtoLink = document.getElementById('confirmMailtoLink');
+      var copyFeedback = document.getElementById('copyFeedback');
+
+      var heroModelTitle = document.getElementById('heroModelTitle');
+      var heroModelSessions = document.getElementById('heroModelSessions');
+      var heroModelEntry = document.getElementById('heroModelEntry');
+      var heroModelEstimate = document.getElementById('heroModelEstimate');
+
+      var patientNameInput = document.getElementById('patientName');
+      var patientPhoneInput = document.getElementById('patientPhone');
+      var patientEmailInput = document.getElementById('patientEmail');
+      var preferredWindowSelect = document.getElementById('preferredWindow');
+      var insurerRefInput = document.getElementById('insurerRef');
+      var clinicalNotesInput = document.getElementById('clinicalNotes');
+      var intakeForm = document.getElementById('intakeForm');
+      var confirmationPanel = document.getElementById('confirmationPanel');
+      var confirmationBody = document.getElementById('confirmationBody');
+
+      function formatGBP(amount) {
+        return '£' + Math.round(amount).toLocaleString('en-GB');
+      }
+
+      function formatRangeGBP(minVal, maxVal) {
+        if (Math.round(minVal) === Math.round(maxVal)) {
+          return formatGBP(minVal);
+        }
+        return formatGBP(minVal) + '–' + formatGBP(maxVal);
+      }
+
+      function populateRegions(keepIfPresent) {
+        var pw = PATHWAYS[state.pathway];
+        var previous = keepIfPresent ? state.region : '';
+        regionSelect.innerHTML = '';
+        pw.regions.forEach(function (reg) {
+          var opt = document.createElement('option');
+          opt.value = reg;
+          opt.textContent = reg;
+          regionSelect.appendChild(opt);
+        });
+        if (pw.regions.indexOf(previous) !== -1) {
+          state.region = previous;
+          regionSelect.value = previous;
+        } else {
+          state.region = pw.regions[0];
+          regionSelect.value = pw.regions[0];
+        }
+      }
+
+      function computePlan() {
+        var pw = PATHWAYS[state.pathway];
+        var phaseCfg = pw.phases[state.phase];
+        var minSessions = phaseCfg.minSessions;
+        var maxSessions = phaseCfg.maxSessions;
+
+        if (state.goal === 'competitive' && (state.pathway === 'sports' || state.pathway === 'physio')) {
+          maxSessions += 1;
+        }
+
+        var grossMin = pw.initialFee + (minSessions - 1) * pw.followFee;
+        var grossMax = pw.initialFee + (maxSessions - 1) * pw.followFee;
+
+        var isSelfPay = state.payer === 'selfpay';
+        var followUnit = isSelfPay && state.selfPayPlan === 'block' ? pw.blockFollowFee : pw.followFee;
+
+        var patientMin = 0;
+        var patientMax = 0;
+        var benefitMin = 0;
+        var benefitMax = 0;
+        var excessAppliedMin = 0;
+        var excessAppliedMax = 0;
+        var postCapMin = 0;
+        var postCapMax = 0;
+
+        if (isSelfPay) {
+          patientMin = pw.initialFee + (minSessions - 1) * followUnit;
+          patientMax = pw.initialFee + (maxSessions - 1) * followUnit;
+          benefitMin = grossMin - patientMin;
+          benefitMax = grossMax - patientMax;
+        } else {
+          var excess = Math.max(0, Math.min(2000, Number(state.excess) || 0));
+          var cap = Number(state.cap) || 0;
+
+          function calcInsurer(sessions, gross) {
+            var coveredCount = cap > 0 ? Math.min(sessions, cap) : sessions;
+            var uncappedCount = Math.max(0, sessions - coveredCount);
+            var coveredGross = coveredCount > 0 ? pw.initialFee + Math.max(0, coveredCount - 1) * pw.followFee : 0;
+            var excessPart = Math.min(excess, coveredGross);
+            var postCapPart = uncappedCount * pw.followFee;
+            var patientTotal = excessPart + postCapPart;
+            var insurerTotal = Math.max(0, gross - patientTotal);
+            return {
+              patientTotal: patientTotal,
+              insurerTotal: insurerTotal,
+              excessPart: excessPart,
+              postCapPart: postCapPart
+            };
+          }
+
+          var low = calcInsurer(minSessions, grossMin);
+          var high = calcInsurer(maxSessions, grossMax);
+
+          patientMin = low.patientTotal;
+          patientMax = high.patientTotal;
+          benefitMin = low.insurerTotal;
+          benefitMax = high.insurerTotal;
+          excessAppliedMin = low.excessPart;
+          excessAppliedMax = high.excessPart;
+          postCapMin = low.postCapPart;
+          postCapMax = high.postCapPart;
+        }
+
+        return {
+          pw: pw,
+          phaseCfg: phaseCfg,
+          minSessions: minSessions,
+          maxSessions: maxSessions,
+          followUnit: followUnit,
+          grossMin: grossMin,
+          grossMax: grossMax,
+          patientMin: patientMin,
+          patientMax: patientMax,
+          benefitMin: benefitMin,
+          benefitMax: benefitMax,
+          excessAppliedMin: excessAppliedMin,
+          excessAppliedMax: excessAppliedMax,
+          postCapMin: postCapMin,
+          postCapMax: postCapMax,
+          isSelfPay: isSelfPay
+        };
+      }
+
+      function buildBriefText(plan) {
+        var payerInfo = PAYERS[state.payer];
+        var pName = patientNameInput.value.trim() || 'Not yet entered';
+        var pPhone = patientPhoneInput.value.trim() || 'Not yet entered';
+        var pEmail = patientEmailInput.value.trim() || 'Not yet entered';
+        var pWindow = preferredWindowSelect.value;
+        var pRef = insurerRefInput.value.trim() || (plan.isSelfPay ? 'Self-Pay' : 'Pre-authorisation pending');
+        var pNotes = clinicalNotesInput.value.trim() || 'None added';
+
+        var lines = [
+          'THE PHYSIOTHERAPY CLINICS — EDINBURGH INTAKE BRIEF',
+          'Clinic Contact: 0131 218 3000 | info@physioclinics.scot',
+          '--------------------------------------------------',
+          'Pathway: ' + plan.pw.name,
+          'Injury Phase: ' + PHASE_META[state.phase].label,
+          'Primary Focus: ' + state.region,
+          'Recovery Target: ' + GOAL_LABELS[state.goal],
+          'Recommended Plan: ' + plan.minSessions + '–' + plan.maxSessions + ' sessions (' + plan.phaseCfg.weeks + ')',
+          'Funding Route: ' + payerInfo.name + (plan.isSelfPay ? ' (' + (state.selfPayPlan === 'block' ? '5-Session Block' : 'Pay-As-You-Go') + ')' : ' (Excess ' + formatGBP(state.excess) + (state.cap > 0 ? ', Limit ' + state.cap + ' sessions' : ', Uncapped') + ')'),
+          'Indicative Gross Value: ' + formatRangeGBP(plan.grossMin, plan.grossMax),
+          (plan.isSelfPay ? 'Estimated Patient Total: ' : 'Estimated Out-of-Pocket: ') + formatRangeGBP(plan.patientMin, plan.patientMax),
+          '--------------------------------------------------',
+          'Patient Name: ' + pName,
+          'Telephone: ' + pPhone,
+          'Email: ' + pEmail,
+          'Preferred Slot: ' + pWindow,
+          'Insurer Reference: ' + pRef,
+          'Clinical Notes: ' + pNotes
+        ];
+        return lines.join('\n');
+      }
+
+      function updateHeroCurve(plan) {
+        heroModelTitle.textContent = plan.pw.shortName + ' · ' + PHASE_META[state.phase].short;
+        heroModelSessions.textContent = plan.minSessions + '–' + plan.maxSessions + ' sessions';
+        heroModelEntry.textContent = 'Entry focus: Stage 0' + plan.phaseCfg.entryStage;
+        heroModelEstimate.textContent = 'Indicative total: ' + formatRangeGBP(plan.grossMin, plan.grossMax);
+
+        for (var i = 1; i <= 4; i++) {
+          var dot = document.getElementById('curveDot' + i);
+          if (!dot) continue;
+          if (i === plan.phaseCfg.entryStage) {
+            dot.setAttribute('r', '7.5');
+            dot.setAttribute('fill', '#1C6E6B');
+            dot.setAttribute('stroke', '#FFFFFF');
+          } else {
+            dot.setAttribute('r', '5.5');
+            dot.setAttribute('fill', '#FFFFFF');
+            dot.setAttribute('stroke', '#193D5A');
+          }
+        }
+
+        heroMiniButtons.forEach(function (btn) {
+          var active = btn.getAttribute('data-hero-pathway') === state.pathway;
+          btn.classList.toggle('is-selected', active);
+        });
+      }
+
+      function render() {
+        var plan = computePlan();
+        var payerInfo = PAYERS[state.payer];
+
+        // Update radiogroup ARIA states
+        pathwayButtons.forEach(function (btn) {
+          btn.setAttribute('aria-checked', String(btn.getAttribute('data-pathway') === state.pathway));
+        });
+        phaseButtons.forEach(function (btn) {
+          btn.setAttribute('aria-checked', String(btn.getAttribute('data-phase') === state.phase));
+        });
+        payerButtons.forEach(function (btn) {
+          btn.setAttribute('aria-checked', String(btn.getAttribute('data-payer') === state.payer));
+        });
+
+        // Sync form enabled states cleanly without hiding inputs
+        excessInput.disabled = plan.isSelfPay;
+        capSelect.disabled = plan.isSelfPay;
+        selfPaySelect.disabled = !plan.isSelfPay;
+        selfPayHint.textContent = plan.isSelfPay
+          ? '5-Session Rehab Block applies reduced follow-up rates across your course.'
+          : 'Active when Self-Pay funding is selected above.';
+
+        presetChips.forEach(function (chip) {
+          chip.disabled = plan.isSelfPay;
+          var val = Number(chip.getAttribute('data-excess'));
+          chip.classList.toggle('is-active', !plan.isSelfPay && val === Number(state.excess));
+        });
+
+        payerGuidanceTitle.textContent = payerInfo.title;
+        payerGuidanceCopy.textContent = payerInfo.guidance;
+
+        // Output header and KPIs
+        outputHeading.textContent = plan.pw.name + ' · ' + PHASE_META[state.phase].short;
+        outputPayerBadge.textContent = plan.isSelfPay
+          ? (state.selfPayPlan === 'block' ? 'Self-Pay · 5-Session Block' : 'Self-Pay · Single Sessions')
+          : (payerInfo.name + ' · ' + formatGBP(state.excess) + ' Excess');
+
+        kpiSessionRange.textContent = plan.minSessions + '–' + plan.maxSessions + ' sessions';
+        kpiTimeline.textContent = 'Indicative window: ' + plan.phaseCfg.weeks;
+        kpiGrossLabel.textContent = 'Indicative Gross Course Value';
+        kpiGrossRange.textContent = formatRangeGBP(plan.grossMin, plan.grossMax);
+        kpiUnitRates.textContent = formatGBP(plan.pw.initialFee) + ' Initial · ' + formatGBP(plan.followUnit) + ' Follow-up';
+
+        if (plan.isSelfPay) {
+          kpiPatientLabel.textContent = 'Estimated Patient Total';
+          kpiPatientRange.textContent = formatRangeGBP(plan.patientMin, plan.patientMax);
+          kpiPatientSub.textContent = state.selfPayPlan === 'block' ? 'Includes 5-session block saving' : 'Payable per visit';
+          kpiBenefitLabel.textContent = 'Block Package Saving';
+          kpiBenefitRange.textContent = formatRangeGBP(plan.benefitMin, plan.benefitMax);
+          kpiBenefitSub.textContent = state.selfPayPlan === 'block' ? 'Compared to standard tariff' : 'Switch to Block to view savings';
+        } else {
+          kpiPatientLabel.textContent = 'Estimated Out-of-Pocket';
+          kpiPatientRange.textContent = formatRangeGBP(plan.patientMin, plan.patientMax);
+          kpiPatientSub.textContent = plan.postCapMax > 0 ? 'Includes excess and post-cap sessions' : 'Policy excess applied once';
+          kpiBenefitLabel.textContent = 'Estimated Insurer Covered';
+          kpiBenefitRange.textContent = formatRangeGBP(plan.benefitMin, plan.benefitMax);
+          kpiBenefitSub.textContent = state.cap > 0 ? 'Authorised up to ' + state.cap + ' sessions' : 'Within uncapped pathway';
+        }
+
+        // Proportional Cost Share Bar (using midpoint of range)
+        var midGross = (plan.grossMin + plan.grossMax) / 2;
+        var midPatient = (plan.patientMin + plan.patientMax) / 2;
+        var midBenefit = (plan.benefitMin + plan.benefitMax) / 2;
+        var patientPct = midGross > 0 ? Math.max(4, Math.min(100, Math.round((midPatient / midGross) * 100))) : 100;
+        var benefitPct = 100 - patientPct;
+        if (midBenefit <= 0) {
+          patientPct = 100;
+          benefitPct = 0;
+        }
+        barPatientSegment.style.width = patientPct + '%';
+        barBenefitSegment.style.width = benefitPct + '%';
+        barLeftLabel.textContent = (plan.isSelfPay ? 'Patient Total: ' : 'Patient Out-of-Pocket: ') + formatRangeGBP(plan.patientMin, plan.patientMax);
+        barRightLabel.textContent = (plan.isSelfPay ? 'Block Saving: ' : payerInfo.name + ' Covered: ') + formatRangeGBP(plan.benefitMin, plan.benefitMax);
+
+        // Fee Breakdown Table
+        var followMin = plan.minSessions - 1;
+        var followMax = plan.maxSessions - 1;
+        var breakdownHtml = ''
+          + '<div class="fee-row"><span>Initial Assessment (' + plan.pw.duration.split('·')[0].trim() + ')</span><strong>' + formatGBP(plan.pw.initialFee) + '</strong></div>'
+          + '<div class="fee-row"><span>Follow-Up Sessions (' + followMin + '–' + followMax + ' × ' + formatGBP(plan.followUnit) + ')</span><strong>' + formatRangeGBP(followMin * plan.followUnit, followMax * plan.followUnit) + '</strong></div>';
+
+        if (!plan.isSelfPay) {
+          breakdownHtml += '<div class="fee-row"><span>Applied Annual Policy Excess</span><strong>' + formatRangeGBP(plan.excessAppliedMin, plan.excessAppliedMax) + '</strong></div>';
+          if (plan.postCapMax > 0) {
+            breakdownHtml += '<div class="fee-row"><span>Additional Self-Pay Beyond ' + state.cap + '-Session Cap</span><strong>' + formatRangeGBP(plan.postCapMin, plan.postCapMax) + '</strong></div>';
+          }
+          breakdownHtml += '<div class="fee-row fee-row-total"><span>Estimated Total Payable by Patient</span><strong>' + formatRangeGBP(plan.patientMin, plan.patientMax) + '</strong></div>';
+        } else {
+          if (plan.benefitMax > 0) {
+            breakdownHtml += '<div class="fee-row"><span>5-Session Block Follow-Up Discount</span><strong>-' + formatRangeGBP(plan.benefitMin, plan.benefitMax) + '</strong></div>';
+          }
+          breakdownHtml += '<div class="fee-row fee-row-total"><span>Estimated Total Course Cost</span><strong>' + formatRangeGBP(plan.patientMin, plan.patientMax) + '</strong></div>';
+        }
+        feeBreakdownList.innerHTML = breakdownHtml;
+
+        // 4-Stage Recovery Roadmap
+        roadmapFocusTag.textContent = 'Entry: Stage 0' + plan.phaseCfg.entryStage;
+        var stagesHtml = '';
+        plan.pw.roadmap.forEach(function (st, idx) {
+          var isEntry = (idx + 1) === plan.phaseCfg.entryStage;
+          stagesHtml += ''
+            + '<div class="roadmap-stage' + (isEntry ? ' is-entry' : '') + '">'
+            +   '<div class="stage-top">'
+            +     '<div class="stage-id-group">'
+            +       '<span class="stage-num">STAGE ' + st.stage + '</span>'
+            +       '<span class="stage-name">' + st.title + '</span>'
+            +     '</div>'
+            +     '<div class="stage-meta">'
+            +       (isEntry ? '<span class="stage-entry-pill">Starting Focus</span>' : '')
+            +       '<span class="stage-weeks tabular">' + st.window + '</span>'
+            +     '</div>'
+            +   '</div>'
+            +   '<p class="stage-detail">' + st.detail + '</p>'
+            +   '<div class="stage-milestone">' + st.milestone + '</div>'
+            + '</div>';
+        });
+        roadmapContainer.innerHTML = stagesHtml;
+
+        // Prefilled Edinburgh Intake Brief + Mailto
+        var briefText = buildBriefText(plan);
+        intakeBriefPre.textContent = briefText;
+        var mailSubject = 'Edinburgh Intake Brief - ' + plan.pw.name + ' (' + PHASE_META[state.phase].short + ')';
+        var mailHref = 'mailto:info@physioclinics.scot?subject=' + encodeURIComponent(mailSubject) + '&body=' + encodeURIComponent(briefText);
+        briefMailtoLink.setAttribute('href', mailHref);
+        confirmMailtoLink.setAttribute('href', mailHref);
+
+        updateHeroCurve(plan);
+      }
+
+      // Event bindings
+      function selectPathway(pwId) {
+        if (!PATHWAYS[pwId]) return;
+        state.pathway = pwId;
+        populateRegions(false);
+        render();
+      }
+
+      pathwayButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          selectPathway(btn.getAttribute('data-pathway'));
+        });
+      });
+
+      heroMiniButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          selectPathway(btn.getAttribute('data-hero-pathway'));
+        });
+      });
+
+      document.querySelectorAll('[data-select-service]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          selectPathway(btn.getAttribute('data-select-service'));
+          document.getElementById('planner').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      phaseButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.phase = btn.getAttribute('data-phase');
+          render();
+        });
+      });
+
+      payerButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.payer = btn.getAttribute('data-payer');
+          render();
+        });
+      });
+
+      document.querySelectorAll('[data-select-payer]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.payer = btn.getAttribute('data-select-payer');
+          if (state.payer === 'selfpay') {
+            state.selfPayPlan = 'block';
+            selfPaySelect.value = 'block';
+          }
+          render();
+          document.getElementById('planner').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      regionSelect.addEventListener('change', function () {
+        state.region = regionSelect.value;
+        render();
+      });
+
+      goalSelect.addEventListener('change', function () {
+        state.goal = goalSelect.value;
+        render();
+      });
+
+      excessInput.addEventListener('input', function () {
+        var parsed = parseFloat(excessInput.value);
+        state.excess = isNaN(parsed) ? 0 : Math.max(0, Math.min(2000, parsed));
+        render();
+      });
+
+      presetChips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          if (state.payer === 'selfpay') return;
+          var val = Number(chip.getAttribute('data-excess'));
+          state.excess = val;
+          excessInput.value = String(val);
+          render();
+        });
+      });
+
+      capSelect.addEventListener('change', function () {
+        state.cap = Number(capSelect.value) || 0;
+        render();
+      });
+
+      selfPaySelect.addEventListener('change', function () {
+        state.selfPayPlan = selfPaySelect.value;
+        render();
+      });
+
+      [patientNameInput, patientPhoneInput, patientEmailInput, preferredWindowSelect, insurerRefInput, clinicalNotesInput].forEach(function (el) {
+        el.addEventListener('input', render);
+        el.addEventListener('change', render);
+      });
+
+      function copyBriefToClipboard() {
+        var text = intakeBriefPre.textContent;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            copyFeedback.textContent = 'Intake brief copied to clipboard.';
+          }, function () {
+            fallbackCopy(text);
+          });
+        } else {
+          fallbackCopy(text);
+        }
+      }
+
+      function fallbackCopy(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          copyFeedback.textContent = 'Intake brief copied to clipboard.';
+        } catch (err) {
+          copyFeedback.textContent = 'Select and copy the intake brief text above.';
+        }
+        document.body.removeChild(ta);
+      }
+
+      document.getElementById('copyBriefBtn').addEventListener('click', copyBriefToClipboard);
+      document.getElementById('copyFromFormBtn').addEventListener('click', function () {
+        copyBriefToClipboard();
+        document.getElementById('copyFeedback').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+
+      intakeForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var plan = computePlan();
+        var name = patientNameInput.value.trim();
+        var phone = patientPhoneInput.value.trim();
+        var email = patientEmailInput.value.trim();
+
+        if (!name || !phone || !email) {
+          confirmationPanel.hidden = false;
+          confirmationBody.textContent = 'Please enter your full name, telephone number, and email address above to personalise your Edinburgh intake summary.';
+          return;
+        }
+
+        render();
+        confirmationPanel.hidden = false;
+        confirmationBody.textContent = 'Summary ready for ' + name + ' (' + plan.pw.name + ', ' + PHASE_META[state.phase].short + ', ' + plan.minSessions + '–' + plan.maxSessions + ' sessions, ' + PAYERS[state.payer].name + '). Use the direct reception email link below or call 0131 218 3000 to confirm your Edinburgh slot.';
+      });
+
+      // FAQ Accordion
+      document.querySelectorAll('#faqList .faq-trigger').forEach(function (trigger) {
+        trigger.addEventListener('click', function () {
+          var expanded = trigger.getAttribute('aria-expanded') === 'true';
+          var targetId = trigger.getAttribute('aria-controls');
+          var panel = document.getElementById(targetId);
+          trigger.setAttribute('aria-expanded', String(!expanded));
+          var indicator = trigger.querySelector('.mono');
+          if (indicator) indicator.textContent = expanded ? '+' : '-';
+          if (panel) panel.hidden = expanded;
+        });
+      });
+
+      // Mobile Drawer Toggle
+      var mobileToggle = document.getElementById('mobileMenuToggle');
+      var mobileDrawer = document.getElementById('mobileDrawer');
+      mobileToggle.addEventListener('click', function () {
+        var open = mobileToggle.getAttribute('aria-expanded') === 'true';
+        mobileToggle.setAttribute('aria-expanded', String(!open));
+        mobileDrawer.hidden = open;
+      });
+      mobileDrawer.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          mobileToggle.setAttribute('aria-expanded', 'false');
+          mobileDrawer.hidden = true;
+        });
+      });
+
+      // Initial hydration
+      populateRegions(false);
+      render();
+    })();
+  </script>
+</body>
+</html>

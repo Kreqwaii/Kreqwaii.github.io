@@ -1,0 +1,2826 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Калькулятор стоимости лечения, протезирования, имплантации и профессиональной гигиены в клинике Стоматология на Масловке (г. Москва, Масловка). Смета в рублях, разбивка по визитам и запись на приём.">
+  <title>Калькулятор лечения и протезирования — Стоматология на Масловке, Москва</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231C3D5A'/%3E%3Cpath d='M11.2 8.5C8.9 8.5 7.5 10.3 7.5 12.8C7.5 16.4 9.5 19.3 10.6 23.1C11.1 24.8 12.7 25 13.5 23.4L15 20.1C15.4 19.3 16.6 19.3 17 20.1L18.5 23.4C19.3 25 20.9 24.8 21.4 23.1C22.5 19.3 24.5 16.4 24.5 12.8C24.5 10.3 23.1 8.5 20.8 8.5C19.1 8.5 17.7 9.4 16 9.4C14.3 9.4 12.9 8.5 11.2 8.5Z' fill='%23FFFFFF'/%3E%3Ccircle cx='22.5' cy='9.5' r='3.5' fill='%231E6B64'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #F5F7F9;
+      --bg-card: #FFFFFF;
+      --bg-subtle: #EEF3F7;
+      --bg-teal-soft: #EAF4F2;
+      --bg-slate-soft: #E9EFF5;
+      --border: #DCE2E8;
+      --border-strong: #C2CDD7;
+      --slate: #1C3D5A;
+      --slate-hover: #142E45;
+      --teal: #1E6B64;
+      --teal-hover: #16544E;
+      --text: #152536;
+      --text-secondary: #435568;
+      --text-muted: #5C6E80;
+      --danger-bg: #FDF2F2;
+      --danger-border: #E5BDBD;
+      --danger-text: #8F2C2C;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 8px;
+      --shadow-card: 0 1px 3px rgba(28, 61, 90, 0.05), 0 6px 20px rgba(28, 61, 90, 0.04);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: clip;
+      max-width: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--text);
+      background-color: var(--bg-page);
+      overflow-x: clip;
+      max-width: 100%;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .mono,
+    .num {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tnum {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-mark {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: var(--bg-slate-soft);
+      border: 1px solid var(--border);
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-title {
+      display: block;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--slate);
+      letter-spacing: -0.01em;
+    }
+
+    .brand-sub {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background-color: var(--bg-page);
+      color: var(--slate);
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      transition: border-color 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .phone-pill:hover {
+      border-color: var(--slate);
+      background-color: var(--bg-slate-soft);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--slate);
+      background-color: var(--slate);
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--slate-hover);
+      border-color: var(--slate-hover);
+    }
+
+    .btn-teal {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--teal);
+      background-color: var(--teal);
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .btn-teal:hover {
+      background-color: var(--teal-hover);
+      border-color: var(--teal-hover);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 15px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-card);
+      color: var(--slate);
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-subtle);
+      border-color: var(--slate);
+    }
+
+    /* Hero Band */
+    .hero-band {
+      padding: 28px 0 22px;
+    }
+
+    .hero-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 26px 28px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .hero-copy {
+      max-width: 720px;
+      min-width: 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background-color: var(--bg-teal-soft);
+      color: var(--teal);
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      margin-bottom: 12px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--teal);
+      flex-shrink: 0;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(24px, 3vw, 33px);
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      color: var(--slate);
+    }
+
+    .hero-lead {
+      margin: 0;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .hero-facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(150px, 1fr));
+      gap: 10px;
+      min-width: 280px;
+    }
+
+    .hero-fact-box {
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+    }
+
+    .hero-fact-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .hero-fact-val {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--slate);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .core-services-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .strip-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      min-width: 0;
+      transition: border-color 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .strip-pill:hover {
+      border-color: var(--teal);
+      background-color: var(--bg-teal-soft);
+      color: var(--slate);
+    }
+
+    .strip-pill.is-active {
+      border-color: var(--teal);
+      background-color: var(--bg-teal-soft);
+      color: var(--slate);
+    }
+
+    .strip-pill-icon {
+      color: var(--teal);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Main Workspace */
+    .workspace {
+      padding-bottom: 36px;
+    }
+
+    .calculator-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.32fr) minmax(350px, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .panel-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      min-width: 0;
+    }
+
+    .step-block {
+      padding-bottom: 22px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step-block:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .step-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      background-color: var(--slate);
+      color: #FFFFFF;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 13px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    .step-title {
+      margin: 0;
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--slate);
+    }
+
+    .step-hint {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Service Cards Selector */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .choice-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: 6px;
+      width: 100%;
+      padding: 14px 15px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background-color: var(--bg-card);
+      color: var(--text);
+      font-family: inherit;
+      cursor: pointer;
+      transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .choice-card:hover {
+      border-color: var(--border-strong);
+      background-color: var(--bg-page);
+    }
+
+    .choice-card[aria-checked="true"] {
+      border-color: var(--teal);
+      background-color: var(--bg-teal-soft);
+      box-shadow: 0 0 0 1px var(--teal);
+    }
+
+    .choice-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 8px;
+    }
+
+    .choice-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background-color: var(--bg-slate-soft);
+      color: var(--slate);
+      flex-shrink: 0;
+    }
+
+    .choice-card[aria-checked="true"] .choice-icon {
+      background-color: var(--teal);
+      color: #FFFFFF;
+    }
+
+    .choice-price-tag {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--teal);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .choice-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--slate);
+      line-height: 1.3;
+    }
+
+    .choice-desc {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* Controls Grid */
+    .controls-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .field-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .form-control {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-card);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14.5px;
+      font-weight: 500;
+      line-height: 1.4;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(30, 107, 100, 0.14);
+    }
+
+    .scenario-note {
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* Stepper */
+    .stepper-wrap {
+      display: inline-flex;
+      align-items: stretch;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background-color: var(--bg-card);
+      width: 100%;
+    }
+
+    .stepper-btn {
+      width: 42px;
+      min-width: 42px;
+      border: none;
+      background-color: var(--bg-page);
+      color: var(--slate);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .stepper-btn:hover {
+      background-color: var(--bg-slate-soft);
+    }
+
+    .stepper-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .stepper-input {
+      flex: 1;
+      min-width: 0;
+      width: 100%;
+      border: none;
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      padding: 9px 8px;
+      text-align: center;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--slate);
+      background-color: var(--bg-card);
+      font-variant-numeric: tabular-nums;
+      -moz-appearance: textfield;
+    }
+
+    .stepper-input::-webkit-outer-spin-button,
+    .stepper-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .stepper-input:focus {
+      outline: none;
+      background-color: var(--bg-teal-soft);
+    }
+
+    .unit-caption {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Material Options */
+    .material-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .material-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      text-align: left;
+      padding: 13px 13px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background-color: var(--bg-card);
+      color: var(--text);
+      font-family: inherit;
+      cursor: pointer;
+      transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .material-card:hover {
+      border-color: var(--border-strong);
+      background-color: var(--bg-page);
+    }
+
+    .material-card[aria-checked="true"] {
+      border-color: var(--slate);
+      background-color: var(--bg-slate-soft);
+      box-shadow: 0 0 0 1px var(--slate);
+    }
+
+    .material-badge {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 2px;
+    }
+
+    .material-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--slate);
+      line-height: 1.3;
+    }
+
+    .material-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.35;
+    }
+
+    .material-delta {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--slate);
+      font-variant-numeric: tabular-nums;
+      padding-top: 6px;
+      border-top: 1px solid var(--border);
+      width: 100%;
+    }
+
+    /* Additional Checkboxes */
+    .addons-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .addon-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 13px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background-color: var(--bg-card);
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .addon-item.is-checked {
+      border-color: var(--teal);
+      background-color: var(--bg-teal-soft);
+    }
+
+    .addon-checkbox {
+      width: 18px;
+      height: 18px;
+      margin: 2px 0 0;
+      accent-color: var(--teal);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .addon-label {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+      min-width: 0;
+      cursor: pointer;
+    }
+
+    .addon-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--slate);
+      line-height: 1.3;
+    }
+
+    .addon-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .addon-price {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-weight: 600;
+      color: var(--teal);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .config-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      margin-top: 6px;
+    }
+
+    .plan-status-note {
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: 600;
+      min-height: 20px;
+    }
+
+    /* Summary Panel */
+    .summary-sticky {
+      position: sticky;
+      top: 78px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .estimate-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .estimate-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background-color: var(--bg-slate-soft);
+      color: var(--slate);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .estimate-title {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--slate);
+      line-height: 1.3;
+    }
+
+    .estimate-sub {
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .total-box {
+      background-color: var(--bg-teal-soft);
+      border: 1px solid #C2DED9;
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      margin: 16px 0;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .total-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal);
+    }
+
+    .total-amount-wrap {
+      text-align: right;
+    }
+
+    .total-amount {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--slate);
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .total-range {
+      display: block;
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .section-subhead {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--slate);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .breakdown-list {
+      list-style: none;
+      margin: 0 0 18px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13.5px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .breakdown-row:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .breakdown-name {
+      color: var(--text-secondary);
+      min-width: 0;
+    }
+
+    .breakdown-val {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-weight: 600;
+      color: var(--slate);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Visits Timeline */
+    .visits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .visit-card {
+      padding: 12px 13px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+    }
+
+    .visit-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .visit-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--teal);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .visit-amount {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--slate);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .visit-desc {
+      font-size: 13px;
+      color: var(--text);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .visit-meta {
+      margin-top: 3px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Multi-Stage Saved Plan */
+    .saved-plan-box {
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-slate-soft);
+      border: 1px solid var(--border-strong);
+      margin-bottom: 16px;
+    }
+
+    .saved-plan-list {
+      list-style: none;
+      margin: 10px 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .saved-plan-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 11px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .saved-plan-info {
+      min-width: 0;
+    }
+
+    .saved-plan-title {
+      font-weight: 700;
+      color: var(--slate);
+      display: block;
+    }
+
+    .saved-plan-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    .saved-plan-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn-remove {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background-color: var(--bg-page);
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-remove:hover {
+      background-color: var(--danger-bg);
+      color: var(--danger-text);
+      border-color: var(--danger-border);
+    }
+
+    .summary-footer-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .disclaimer-note {
+      margin: 12px 0 0;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* Booking Section */
+    .booking-section {
+      padding: 8px 0 42px;
+    }
+
+    .booking-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .booking-title {
+      margin: 0 0 8px;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--slate);
+      line-height: 1.25;
+    }
+
+    .booking-lead {
+      margin: 0 0 18px;
+      font-size: 14.5px;
+      color: var(--text-secondary);
+    }
+
+    .prefill-summary-box {
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      margin-bottom: 18px;
+    }
+
+    .prefill-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .prefill-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .prefill-sum {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--slate);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .prefill-text {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .contact-cell {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      min-width: 0;
+    }
+
+    .contact-cell-full {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 4px 12px;
+    }
+
+    .contact-k {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .contact-cell-full .contact-k {
+      margin-bottom: 0;
+    }
+
+    .contact-v {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--slate);
+      text-decoration: none;
+    }
+
+    .contact-v-nowrap {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--slate);
+      text-decoration: none;
+      white-space: nowrap;
+      word-break: normal;
+      transition: color 0.18s ease;
+    }
+
+    .contact-v-nowrap:hover,
+    .contact-v:hover {
+      color: var(--teal);
+      text-decoration: underline;
+    }
+
+    .booking-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .form-full {
+      grid-column: 1 / -1;
+    }
+
+    .form-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    .form-consent input {
+      width: 17px;
+      height: 17px;
+      margin-top: 2px;
+      accent-color: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .form-error {
+      grid-column: 1 / -1;
+      padding: 10px 13px;
+      border-radius: var(--radius-sm);
+      background-color: var(--danger-bg);
+      border: 1px solid var(--danger-border);
+      color: var(--danger-text);
+      font-size: 13.5px;
+      font-weight: 500;
+      display: none;
+    }
+
+    .form-error.visible {
+      display: block;
+    }
+
+    .booking-success {
+      padding: 20px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-teal-soft);
+      border: 1px solid #BDDAD5;
+      display: none;
+    }
+
+    .booking-success.visible {
+      display: block;
+    }
+
+    .success-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background-color: var(--teal);
+      color: #FFFFFF;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 12.5px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .success-title {
+      margin: 0 0 8px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--slate);
+    }
+
+    .success-details {
+      margin: 0 0 16px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg-card);
+      border-top: 1px solid var(--border);
+      padding: 28px 0 34px;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .footer-clinic-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--slate);
+      margin: 0 0 6px;
+    }
+
+    .footer-desc {
+      margin: 0 0 14px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      max-width: 480px;
+    }
+
+    .footer-services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer-tag {
+      padding: 5px 10px;
+      border-radius: 6px;
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .footer-contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .footer-cell {
+      padding: 10px 13px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      min-width: 0;
+    }
+
+    .footer-cell-full {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 4px 12px;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      .calculator-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-sticky {
+        position: static;
+      }
+
+      .booking-card {
+        grid-template-columns: 1fr;
+      }
+
+      .core-services-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header-inner {
+        flex-wrap: wrap;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .hero-card,
+      .panel-card,
+      .booking-card {
+        padding: 18px;
+      }
+
+      .hero-facts {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .service-grid,
+      .controls-row,
+      .material-list,
+      .addons-grid,
+      .booking-form,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-footer-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .container {
+        padding: 0 14px;
+      }
+
+      .core-services-strip,
+      .contact-grid,
+      .footer-contacts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-pill {
+        padding: 8px 10px;
+        font-size: 13px;
+      }
+
+      .btn-primary {
+        padding: 9px 14px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand" id="top">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M8.4 4.5C6.2 4.5 4.8 6.2 4.8 8.6C4.8 11.9 6.6 14.5 7.6 18C8.1 19.7 9.6 19.8 10.3 18.2L11.4 15.6C11.7 14.9 12.3 14.9 12.6 15.6L13.7 18.2C14.4 19.8 15.9 19.7 16.4 18C17.4 14.5 19.2 11.9 19.2 8.6C19.2 6.2 17.8 4.5 15.6 4.5C14 4.5 13 5.2 12 5.2C11 5.2 10 4.5 8.4 4.5Z" stroke="#1C3D5A" stroke-width="1.75" stroke-linejoin="round"/>
+            <path d="M16.5 6.5V10.5M14.5 8.5H18.5" stroke="#1E6B64" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <span class="brand-title">Стоматология на Масловке</span>
+          <span class="brand-sub">г. Москва, Масловка</span>
+        </span>
+      </a>
+
+      <div class="header-actions">
+        <a href="tel:+74956136260" class="phone-pill">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M22 16.92V19.92C22 20.47 21.56 20.92 21.01 20.95C19.98 21.01 18.96 20.92 17.96 20.69C14.55 19.9 11.43 17.98 9.04 15.32C6.65 12.66 5.05 9.37 4.46 5.83C4.29 4.82 4.26 3.8 4.37 2.79C4.42 2.25 4.88 1.84 5.42 1.84H8.42C8.92 1.84 9.35 2.21 9.41 2.71C9.52 3.57 9.73 4.41 10.04 5.21C10.18 5.58 10.09 6 9.81 6.28L8.55 7.54C9.85 9.83 11.75 11.73 14.04 13.03L15.3 11.77C15.58 11.49 16 11.4 16.37 11.54C17.17 11.85 18.01 12.06 18.87 12.17C19.37 12.23 19.74 12.66 19.74 13.16L22 16.92Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>+7(495)613-62-60</span>
+        </a>
+        <a href="#booking-section" class="btn-primary">Записаться на приём</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero-band">
+    <div class="container">
+      <div class="hero-card">
+        <div class="hero-top">
+          <div class="hero-copy">
+            <span class="eyebrow">
+              <span class="eyebrow-dot" aria-hidden="true"></span>
+              <span>Прозрачное планирование бюджета</span>
+            </span>
+            <h1>Калькулятор стоимости лечения и протезирования зубов</h1>
+            <p class="hero-lead">
+              Выберите клиническое направление, количество единиц, материал коронки или систему имплантата и нужные диагностические опции. Вы сразу получите расчёт в рублях, график визитов и подготовленную заявку на приём в клинику «Стоматология на Масловке».
+            </p>
+          </div>
+          <div class="hero-facts">
+            <div class="hero-fact-box">
+              <span class="hero-fact-label">Расчёт по этапам</span>
+              <span class="hero-fact-val">По визитам в ₽</span>
+            </div>
+            <div class="hero-fact-box">
+              <span class="hero-fact-label">Адрес клиники</span>
+              <span class="hero-fact-val">г. Москва, Масловка</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="core-services-strip" aria-label="Ключевые направления клиники">
+          <button type="button" class="strip-pill is-active" data-quick-service="therapy">
+            <span class="strip-pill-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M9 12L11 14L15 10M21 12C21 16.97 16.97 21 12 21C7.03 21 3 16.97 3 12C3 7.03 7.03 3 12 3C16.97 3 21 7.03 21 12Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Лечение зубов</span>
+          </button>
+          <button type="button" class="strip-pill" data-quick-service="prosthetics">
+            <span class="strip-pill-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M4 10L7 6L12 9L17 6L20 10L18 18H6L4 10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Протезирование</span>
+          </button>
+          <button type="button" class="strip-pill" data-quick-service="implantation">
+            <span class="strip-pill-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3V9M9 9H15L14 19L12 21L10 19L9 9ZM9.5 13H14.5M10 16H14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Имплантация</span>
+          </button>
+          <button type="button" class="strip-pill" data-quick-service="hygiene">
+            <span class="strip-pill-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3C9.5 7 6 10.2 6 14C6 17.3 8.7 20 12 20C15.3 20 18 17.3 18 14C18 10.2 14.5 7 12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Профессиональная гигиена</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="workspace">
+    <div class="container">
+      <div class="calculator-grid">
+        <section class="panel-card" aria-label="Параметры расчёта">
+          <div class="step-block">
+            <div class="step-header">
+              <div class="step-title-group">
+                <span class="step-num">1</span>
+                <h2 class="step-title" id="step1-heading">Направление лечения</h2>
+              </div>
+              <span class="step-hint">Выберите основной раздел</span>
+            </div>
+            <div class="service-grid" id="serviceGrid" role="radiogroup" aria-labelledby="step1-heading"></div>
+          </div>
+
+          <div class="step-block">
+            <div class="step-header">
+              <div class="step-title-group">
+                <span class="step-num">2</span>
+                <h2 class="step-title">Клиническая задача и объём</h2>
+              </div>
+              <span class="step-hint">Укажите задачу и количество</span>
+            </div>
+
+            <div class="controls-row">
+              <div class="field-group">
+                <label for="scenarioSelect" class="field-label">Процедура или клинический случай</label>
+                <select id="scenarioSelect" class="form-control" autocomplete="off"></select>
+              </div>
+
+              <div class="field-group">
+                <label for="unitCount" class="field-label" id="unitFieldLabel">Количество единиц</label>
+                <div class="stepper-wrap">
+                  <button type="button" class="stepper-btn" id="unitMinus" aria-label="Уменьшить количество">−</button>
+                  <input type="number" id="unitCount" class="stepper-input" value="1" min="1" max="16" step="1" autocomplete="off">
+                  <button type="button" class="stepper-btn" id="unitPlus" aria-label="Увеличить количество">+</button>
+                </div>
+                <span class="unit-caption tnum" id="unitTextPreview">Выбрано: 1 зуб</span>
+              </div>
+            </div>
+
+            <div class="scenario-note" id="scenarioNote"></div>
+          </div>
+
+          <div class="step-block">
+            <div class="step-header">
+              <div class="step-title-group">
+                <span class="step-num">3</span>
+                <h2 class="step-title" id="materialHeading">Выбор материала или системы</h2>
+              </div>
+              <span class="step-hint">Влияет на стоимость за единицу</span>
+            </div>
+            <div class="material-list" id="materialList" role="radiogroup" aria-labelledby="materialHeading"></div>
+          </div>
+
+          <div class="step-block">
+            <div class="step-header">
+              <div class="step-title-group">
+                <span class="step-num">4</span>
+                <h2 class="step-title">Дополнительные опции приёма</h2>
+              </div>
+              <span class="step-hint">Анестезия, снимки и защита</span>
+            </div>
+
+            <div class="addons-grid" id="addonsGrid">
+              <div class="addon-item" id="addonWrap-anesthesia">
+                <input type="checkbox" id="opt-anesthesia" class="addon-checkbox" autocomplete="off" checked>
+                <label for="opt-anesthesia" class="addon-label">
+                  <span class="addon-title">Анестезия (аппликация и карпульная)</span>
+                  <span class="addon-meta">
+                    <span>Комфортный приём за визит</span>
+                    <span class="addon-price">+ 850 ₽</span>
+                  </span>
+                </label>
+              </div>
+
+              <div class="addon-item" id="addonWrap-xray">
+                <input type="checkbox" id="opt-xray" class="addon-checkbox" autocomplete="off" checked>
+                <label for="opt-xray" class="addon-label">
+                  <span class="addon-title">Рентген-контроль (прицельный RVG)</span>
+                  <span class="addon-meta">
+                    <span>Контрольный снимок зоны</span>
+                    <span class="addon-price">+ 700 ₽</span>
+                  </span>
+                </label>
+              </div>
+
+              <div class="addon-item" id="addonWrap-tempCrown">
+                <input type="checkbox" id="opt-tempCrown" class="addon-checkbox" autocomplete="off">
+                <label for="opt-tempCrown" class="addon-label">
+                  <span class="addon-title">Временная коронка (PMMA)</span>
+                  <span class="addon-meta">
+                    <span>Защита и эстетика за единицу</span>
+                    <span class="addon-price">+ 3 200 ₽ / ед.</span>
+                  </span>
+                </label>
+              </div>
+
+              <div class="addon-item" id="addonWrap-cofferdam">
+                <input type="checkbox" id="opt-cofferdam" class="addon-checkbox" autocomplete="off">
+                <label for="opt-cofferdam" class="addon-label">
+                  <span class="addon-title">Изоляция коффердамом</span>
+                  <span class="addon-meta">
+                    <span>Сухое и стерильное поле</span>
+                    <span class="addon-price">+ 950 ₽</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="config-actions">
+              <span class="plan-status-note" id="planStatusNote" aria-live="polite"></span>
+              <button type="button" class="btn-secondary" id="addToPlanBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span>Добавить этап в сводный план</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <aside class="summary-sticky" aria-label="Предварительная смета">
+          <div class="panel-card">
+            <div class="estimate-header">
+              <div>
+                <span class="estimate-badge" id="summaryServiceBadge">Лечение зубов</span>
+                <h2 class="estimate-title" id="summaryTitle">Лечение среднего кариеса</h2>
+                <p class="estimate-sub" id="summarySubtitle">1 зуб · Светоотверждаемый композит</p>
+              </div>
+            </div>
+
+            <div class="total-box">
+              <div>
+                <span class="total-label" id="totalLabelText">Предварительная смета</span>
+                <span class="total-range" id="totalRangeText">Ориентир после осмотра: 8 300 – 9 150 ₽</span>
+              </div>
+              <div class="total-amount-wrap">
+                <div class="total-amount" id="totalAmountText">8 300 ₽</div>
+              </div>
+            </div>
+
+            <div id="savedPlanSection" class="saved-plan-box" style="display: none;">
+              <div class="section-subhead" style="margin-bottom: 0;">
+                <span id="savedPlanHeading">Сводный план лечения</span>
+                <button type="button" class="btn-remove" id="clearPlanBtn" title="Очистить сводный план" aria-label="Очистить сводный план">×</button>
+              </div>
+              <ul class="saved-plan-list tnum" id="savedPlanList"></ul>
+            </div>
+
+            <h3 class="section-subhead">
+              <span>Состав сметы</span>
+              <span class="tnum" style="font-size: 12px; color: var(--text-muted); font-weight: 500;" id="breakdownCount">3 позиции</span>
+            </h3>
+            <ul class="breakdown-list" id="breakdownList"></ul>
+
+            <h3 class="section-subhead">
+              <span>Разбивка по визитам</span>
+              <span class="tnum" style="font-size: 12px; color: var(--text-muted); font-weight: 500;" id="visitsCount">1 визит</span>
+            </h3>
+            <div class="visits-list" id="visitsList"></div>
+
+            <div class="summary-footer-actions">
+              <button type="button" class="btn-secondary" id="copyEstimateBtn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M5 15H4C2.9 15 2 14.1 2 13V4C2 2.9 2.9 2 4 2H13C14.1 2 15 2.9 15 4V5" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+                <span id="copyBtnText">Скопировать смету</span>
+              </button>
+              <a href="#booking-section" class="btn-teal">Записаться по смете</a>
+            </div>
+
+            <p class="disclaimer-note">
+              Расчёт носит предварительный характер. Точный план и фиксированная стоимость утверждаются врачом после очной диагностики и снимка.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <section class="booking-section" id="booking-section" aria-label="Предзаполненная заявка на приём">
+    <div class="container">
+      <div class="booking-card">
+        <div>
+          <span class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>Запись в клинику</span>
+          </span>
+          <h2 class="booking-title">Предзаполненная заявка на приём</h2>
+          <p class="booking-lead">
+            Параметры из калькулятора уже перенесены в заявку. Администратор клиники «Стоматология на Масловке» уточнит удобное время приёма и подтвердит запись по телефону.
+          </p>
+
+          <div class="prefill-summary-box">
+            <div class="prefill-head">
+              <span class="prefill-label" id="bookingPrefillMode">Текущий расчёт калькулятора</span>
+              <span class="prefill-sum" id="bookingPrefillSum">8 300 ₽</span>
+            </div>
+            <p class="prefill-text tnum" id="bookingPrefillText"></p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-cell">
+              <span class="contact-k">Телефон клиники</span>
+              <a href="tel:+74956136260" class="contact-v tnum">+7(495)613-62-60</a>
+            </div>
+            <div class="contact-cell">
+              <span class="contact-k">Адрес</span>
+              <span class="contact-v">г. Москва, Масловка</span>
+            </div>
+            <div class="contact-cell contact-cell-full">
+              <span class="contact-k">Электронная почта</span>
+              <a href="mailto:stom-ant@yandex.ru" class="contact-v-nowrap">stom-ant@yandex.ru</a>
+            </div>
+            <div class="contact-cell contact-cell-full">
+              <span class="contact-k">Официальный сайт</span>
+              <a href="http://maslovka.pro/" target="_blank" rel="noopener noreferrer" class="contact-v-nowrap">http://maslovka.pro/</a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <form id="bookingForm" class="booking-form" novalidate>
+            <div class="field-group form-full">
+              <label for="bookingPlanSummaryInput" class="field-label">Состав обращения (передаётся администратору)</label>
+              <input type="text" id="bookingPlanSummaryInput" class="form-control tnum" autocomplete="off" readonly>
+            </div>
+
+            <div class="field-group">
+              <label for="patientName" class="field-label">Ваше имя</label>
+              <input type="text" id="patientName" class="form-control" placeholder="Например, Анна Сергеевна" autocomplete="name" required>
+            </div>
+
+            <div class="field-group">
+              <label for="patientPhone" class="field-label">Контактный телефон</label>
+              <input type="tel" id="patientPhone" class="form-control tnum" placeholder="+7 (999) 000-00-00" autocomplete="tel" required>
+            </div>
+
+            <div class="field-group">
+              <label for="visitTimeSlot" class="field-label">Удобное время визита</label>
+              <select id="visitTimeSlot" class="form-control" autocomplete="off">
+                <option value="Ближайший будний день (утро 09:00–13:00)">Будний день, утро (09:00–13:00)</option>
+                <option value="Будний день (день 13:00–17:00)">Будний день, день (13:00–17:00)</option>
+                <option value="Будний день (вечер 17:00–20:30)">Будний день, вечер (17:00–20:30)</option>
+                <option value="Выходной день (суббота / воскресенье)">Выходной день</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="contactChannel" class="field-label">Способ подтверждения</label>
+              <select id="contactChannel" class="form-control" autocomplete="off">
+                <option value="Звонок администратора">Звонок администратора</option>
+                <option value="Звонок и дубль на почту">Звонок и уведомление</option>
+              </select>
+            </div>
+
+            <div class="field-group form-full">
+              <label for="patientNote" class="field-label">Комментарий или жалобы (необязательно)</label>
+              <input type="text" id="patientNote" class="form-control" placeholder="Укажите удобную дату или особенности состояния" autocomplete="off">
+            </div>
+
+            <div class="form-consent form-full">
+              <input type="checkbox" id="consentCheck" autocomplete="off" checked>
+              <label for="consentCheck">Согласие на обработку контактных данных для записи на приём в клинику «Стоматология на Масловке»</label>
+            </div>
+
+            <div class="form-error" id="bookingError" role="alert"></div>
+
+            <div class="form-full">
+              <button type="submit" class="btn-primary" style="width: 100%; padding: 12px 18px; font-size: 15px;">
+                Отправить предзаполненную заявку
+              </button>
+            </div>
+          </form>
+
+          <div class="booking-success" id="bookingSuccess" aria-live="polite">
+            <span class="success-badge" id="bookingTicketCode">Расчёт МД-1042</span>
+            <h3 class="success-title">Заявка на приём сформирована</h3>
+            <p class="success-details tnum" id="bookingSuccessDetails"></p>
+            <button type="button" class="btn-secondary" id="resetBookingBtn">Оформить ещё одну заявку</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <p class="footer-clinic-name">Стоматология на Масловке</p>
+        <p class="footer-desc">
+          Клинический приём в Москве по направлениям терапевтической стоматологии, ортопедии, имплантологии и профессиональной гигиены полости рта.
+        </p>
+        <div class="footer-services">
+          <span class="footer-tag">Лечение зубов</span>
+          <span class="footer-tag">Протезирование</span>
+          <span class="footer-tag">Имплантация</span>
+          <span class="footer-tag">Профессиональная гигиена</span>
+        </div>
+      </div>
+
+      <div class="footer-contacts-grid">
+        <div class="footer-cell">
+          <span class="contact-k">Адрес</span>
+          <span class="contact-v">г. Москва, Масловка</span>
+        </div>
+        <div class="footer-cell">
+          <span class="contact-k">Телефон</span>
+          <a href="tel:+74956136260" class="contact-v tnum">+7(495)613-62-60</a>
+        </div>
+        <div class="footer-cell footer-cell-full">
+          <span class="contact-k">Почта</span>
+          <a href="mailto:stom-ant@yandex.ru" class="contact-v-nowrap">stom-ant@yandex.ru</a>
+        </div>
+        <div class="footer-cell footer-cell-full">
+          <span class="contact-k">Сайт</span>
+          <a href="http://maslovka.pro/" target="_blank" rel="noopener noreferrer" class="contact-v-nowrap">http://maslovka.pro/</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var SERVICES = {
+        therapy: {
+          key: 'therapy',
+          title: 'Лечение зубов',
+          shortDesc: 'Кариес, пульпит, восстановление каналов',
+          priceHint: 'от 5 800 ₽',
+          unitForms: ['зуб', 'зуба', 'зубов'],
+          unitFieldLabel: 'Количество зубов',
+          maxUnits: 16,
+          materialHeading: 'Пломбировочный материал и протокол',
+          iconSvg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 12L11 14L15 10M21 12C21 16.97 16.97 21 12 21C7.03 21 3 16.97 3 12C3 7.03 7.03 3 12 3C16.97 3 21 7.03 21 12Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+          defaultAddons: { anesthesia: true, xray: true, tempCrown: false, cofferdam: true },
+          scenarios: [
+            {
+              id: 'caries_mid',
+              title: 'Лечение среднего кариеса',
+              basePrice: 5800,
+              visitsCount: 1,
+              duration: '45 мин',
+              note: 'Очистка кариозной полости, антисептическая обработка и анатомическая реставрация за один приём.'
+            },
+            {
+              id: 'caries_deep',
+              title: 'Лечение глубокого кариеса',
+              basePrice: 7600,
+              visitsCount: 1,
+              duration: '60 мин',
+              note: 'Удаление изменённого дентина, наложение лечебной изолирующей прокладки и герметичная пломба.'
+            },
+            {
+              id: 'pulpitis_1_2',
+              title: 'Лечение пульпита (1–2 канала)',
+              basePrice: 13400,
+              visitsCount: 2,
+              duration: '60–75 мин за визит',
+              note: 'Инструментальная и медикаментозная обработка корневых каналов с последующей постоянной пломбировкой и реставрацией.'
+            },
+            {
+              id: 'pulpitis_3',
+              title: 'Лечение пульпита (3+ канала) или перелечивание',
+              basePrice: 18200,
+              visitsCount: 2,
+              duration: '75–90 мин за визит',
+              note: 'Сложная эндодонтия многокорневого зуба с контролем проходимости каждого канала и восстановлением коронки.'
+            }
+          ],
+          materials: [
+            {
+              id: 'comp_std',
+              badge: 'Базовый выбор',
+              name: 'Светокомпозит стандарт',
+              desc: 'Надёжная полимерная пломба с подбором основного оттенка.',
+              deltaPerUnit: 0
+            },
+            {
+              id: 'comp_est',
+              badge: 'Высокая эстетика',
+              name: 'Нанокомпозит послойный',
+              desc: 'Воссоздание прозрачности режущего края и рельефа жевательных бугров.',
+              deltaPerUnit: 2200
+            },
+            {
+              id: 'microscope',
+              badge: 'Прецизионный протокол',
+              name: 'Композит + оптика / эндомотор',
+              desc: 'Увеличение при работе с каналами и микротрещинами эмали.',
+              deltaPerUnit: 4600
+            }
+          ]
+        },
+
+        prosthetics: {
+          key: 'prosthetics',
+          title: 'Протезирование',
+          shortDesc: 'Коронки, мосты, виниры и керамика',
+          priceHint: 'от 18 000 ₽',
+          unitForms: ['единица', 'единицы', 'единиц'],
+          unitFieldLabel: 'Количество единиц (коронок)',
+          maxUnits: 14,
+          materialHeading: 'Материал коронки или протеза',
+          iconSvg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10L7 6L12 9L17 6L20 10L18 18H6L4 10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>',
+          defaultAddons: { anesthesia: true, xray: true, tempCrown: true, cofferdam: false },
+          scenarios: [
+            {
+              id: 'crown_single',
+              title: 'Одиночная постоянная коронка',
+              basePrice: 6500,
+              visitsCount: 3,
+              duration: '45–60 мин за визит',
+              note: 'Подготовка опорного зуба, снятие высокоточных оттисков, примерка и фиксация постоянной коронки.'
+            },
+            {
+              id: 'bridge_unit',
+              title: 'Мостовидный протез (за единицу)',
+              basePrice: 7200,
+              visitsCount: 3,
+              duration: '60 мин за визит',
+              note: 'Восстановление отсутствующего зуба с опорой на соседние зубы. Укажите общее число единиц в мосте.'
+            },
+            {
+              id: 'implant_crown',
+              title: 'Коронка на имплантате с абатментом',
+              basePrice: 11500,
+              visitsCount: 2,
+              duration: '45 мин за визит',
+              note: 'Подбор или фрезеровка абатмента, снятие слепка с уровня имплантата и винтовая/цементная фиксация.'
+            },
+            {
+              id: 'veneer_inlay',
+              title: 'Керамический винир или вкладка',
+              basePrice: 8000,
+              visitsCount: 2,
+              duration: '60 мин за визит',
+              note: 'Щадящая обработка эмали и лабораторное изготовление тонкой цельнокерамической реставрации.'
+            }
+          ],
+          materials: [
+            {
+              id: 'metal_ceramic',
+              badge: 'Классика',
+              name: 'Металлокерамика (CoCr)',
+              desc: 'Прочный каркас для жевательной группы зубов с керамической облицовкой.',
+              deltaPerUnit: 11500
+            },
+            {
+              id: 'zirconia',
+              badge: 'Безметалловый',
+              name: 'Диоксид циркония (ZrO2)',
+              desc: 'Высокая биосовместимость, точность прилегания и естественный оттенок.',
+              deltaPerUnit: 19500
+            },
+            {
+              id: 'emax',
+              badge: 'Зона улыбки',
+              name: 'Пресс-керамика E.max',
+              desc: 'Максимальная светопроницаемость и эстетика для передних зубов.',
+              deltaPerUnit: 22500
+            }
+          ]
+        },
+
+        implantation: {
+          key: 'implantation',
+          title: 'Имплантация',
+          shortDesc: 'Установка имплантатов и комплекс под ключ',
+          priceHint: 'от 34 000 ₽',
+          unitForms: ['имплантат', 'имплантата', 'имплантатов'],
+          unitFieldLabel: 'Количество имплантатов',
+          maxUnits: 12,
+          materialHeading: 'Система имплантатов',
+          iconSvg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3V9M9 9H15L14 19L12 21L10 19L9 9ZM9.5 13H14.5M10 16H14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+          defaultAddons: { anesthesia: true, xray: true, tempCrown: true, cofferdam: false },
+          scenarios: [
+            {
+              id: 'implant_classic',
+              title: 'Хирургический этап установки имплантата',
+              basePrice: 11000,
+              visitsCount: 2,
+              duration: '60 мин (операция) + осмотр',
+              note: 'Формирование костного ложа, установка титанового имплантата, наложение швов и снятие швов через 10–14 дней.'
+            },
+            {
+              id: 'implant_gingiva',
+              title: 'Имплантат и формирователь десны',
+              basePrice: 15500,
+              visitsCount: 2,
+              duration: '60 мин + контроль',
+              note: 'Установка имплантата с одновременным или отсроченным формированием ровного десневого контура под коронку.'
+            },
+            {
+              id: 'implant_immediate',
+              title: 'Одномоментная имплантация с удалением',
+              basePrice: 18500,
+              visitsCount: 2,
+              duration: '75 мин + осмотр',
+              note: 'Атравматичное удаление разрушенного зуба и установка имплантата в лунку в рамках одного хирургического визита.'
+            },
+            {
+              id: 'implant_key',
+              title: 'Имплантация под ключ (с циркониевой коронкой)',
+              basePrice: 38500,
+              visitsCount: 3,
+              duration: 'полный цикл до фиксации',
+              note: 'Включает хирургическую установку, формирователь десны, абатмент и постоянную безметалловую коронку.'
+            }
+          ],
+          materials: [
+            {
+              id: 'osstem',
+              badge: 'Оптимальный выбор',
+              name: 'Osstem / Dentium (Корея)',
+              desc: 'Проверенные системы с надёжной первичной стабилизацией и быстрым приживлением.',
+              deltaPerUnit: 23000
+            },
+            {
+              id: 'biohorizons',
+              badge: 'Усиленная резьба',
+              name: 'BioHorizons / Ankylos',
+              desc: 'Расширенная линейка размеров для сложных анатомических условий.',
+              deltaPerUnit: 34000
+            },
+            {
+              id: 'straumann',
+              badge: 'Премиум-сегмент',
+              name: 'Straumann / Astra Tech',
+              desc: 'Швейцарско-шведские системы с гидрофильной поверхностью и ускоренной остеоинтеграцией.',
+              deltaPerUnit: 46000
+            }
+          ]
+        },
+
+        hygiene: {
+          key: 'hygiene',
+          title: 'Профессиональная гигиена',
+          shortDesc: 'AirFlow, ультразвук и профилактика',
+          priceHint: 'от 4 200 ₽',
+          unitForms: ['комплекс', 'комплекса', 'комплексов'],
+          unitFieldLabel: 'Количество комплексов (челюстей/визитов)',
+          maxUnits: 4,
+          materialHeading: 'Состав профилактического протокола',
+          iconSvg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3C9.5 7 6 10.2 6 14C6 17.3 8.7 20 12 20C15.3 20 18 17.3 18 14C18 10.2 14.5 7 12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>',
+          defaultAddons: { anesthesia: false, xray: false, tempCrown: false, cofferdam: false },
+          scenarios: [
+            {
+              id: 'hygiene_single',
+              title: 'Гигиена одной челюсти (УЗ + AirFlow)',
+              basePrice: 4200,
+              visitsCount: 1,
+              duration: '35 мин',
+              note: 'Удаление наддесневого зубного камня ультразвуком и пигментного налёта методом AirFlow на одной челюсти.'
+            },
+            {
+              id: 'hygiene_full',
+              title: 'Полный комплекс AirFlow + ультразвук (обе челюсти)',
+              basePrice: 6400,
+              visitsCount: 1,
+              duration: '50 мин',
+              note: 'Комплексная гигиена обеих челюстей: ультразвуковой скейлинг, бережный порошок AirFlow и подбор домашнего ухода.'
+            },
+            {
+              id: 'hygiene_perio',
+              title: 'Пародонтологическая чистка и уход за карманами',
+              basePrice: 8900,
+              visitsCount: 1,
+              duration: '65 мин',
+              note: 'Деликатная обработка поддесневых отложений, сглаживание поверхности корня и антисептическая аппликация.'
+            }
+          ],
+          materials: [
+            {
+              id: 'hyg_base',
+              badge: 'Стандарт',
+              name: 'Базовый AirFlow + ультразвук',
+              desc: 'Снятие плотного зубного камня и тёмного налёта от кофе или чая.',
+              deltaPerUnit: 0
+            },
+            {
+              id: 'hyg_polish',
+              badge: 'Гладкая эмаль',
+              name: 'Протокол + полировка пастами',
+              desc: 'Финишная полировка межзубных промежутков для замедления нового налёта.',
+              deltaPerUnit: 1400
+            },
+            {
+              id: 'hyg_remin',
+              badge: 'Защита эмали',
+              name: 'Комплекс + реминерализация',
+              desc: 'Покрытие эмали кальций-фторсодержащим гелем для снижения чувствительности.',
+              deltaPerUnit: 2600
+            }
+          ]
+        }
+      };
+
+      var ADDONS = {
+        anesthesia: { title: 'Анестезия (аппликация + карпульная)', price: 850, perUnit: false },
+        xray: { title: 'Рентген-контроль (прицельный RVG-снимок)', price: 700, perUnit: false },
+        tempCrown: { title: 'Временная коронка (PMMA)', price: 3200, perUnit: true },
+        cofferdam: { title: 'Изоляция коффердамом', price: 950, perUnit: false }
+      };
+
+      var state = {
+        serviceKey: 'therapy',
+        scenarioId: 'caries_mid',
+        units: 1,
+        materialId: 'comp_std',
+        addons: {
+          anesthesia: true,
+          xray: true,
+          tempCrown: false,
+          cofferdam: true
+        },
+        savedStages: []
+      };
+
+      var els = {
+        serviceGrid: document.getElementById('serviceGrid'),
+        scenarioSelect: document.getElementById('scenarioSelect'),
+        scenarioNote: document.getElementById('scenarioNote'),
+        unitFieldLabel: document.getElementById('unitFieldLabel'),
+        unitCount: document.getElementById('unitCount'),
+        unitMinus: document.getElementById('unitMinus'),
+        unitPlus: document.getElementById('unitPlus'),
+        unitTextPreview: document.getElementById('unitTextPreview'),
+        materialHeading: document.getElementById('materialHeading'),
+        materialList: document.getElementById('materialList'),
+        optAnesthesia: document.getElementById('opt-anesthesia'),
+        optXray: document.getElementById('opt-xray'),
+        optTempCrown: document.getElementById('opt-tempCrown'),
+        optCofferdam: document.getElementById('opt-cofferdam'),
+        addToPlanBtn: document.getElementById('addToPlanBtn'),
+        planStatusNote: document.getElementById('planStatusNote'),
+        summaryServiceBadge: document.getElementById('summaryServiceBadge'),
+        summaryTitle: document.getElementById('summaryTitle'),
+        summarySubtitle: document.getElementById('summarySubtitle'),
+        totalLabelText: document.getElementById('totalLabelText'),
+        totalRangeText: document.getElementById('totalRangeText'),
+        totalAmountText: document.getElementById('totalAmountText'),
+        savedPlanSection: document.getElementById('savedPlanSection'),
+        savedPlanHeading: document.getElementById('savedPlanHeading'),
+        savedPlanList: document.getElementById('savedPlanList'),
+        clearPlanBtn: document.getElementById('clearPlanBtn'),
+        breakdownCount: document.getElementById('breakdownCount'),
+        breakdownList: document.getElementById('breakdownList'),
+        visitsCount: document.getElementById('visitsCount'),
+        visitsList: document.getElementById('visitsList'),
+        copyEstimateBtn: document.getElementById('copyEstimateBtn'),
+        copyBtnText: document.getElementById('copyBtnText'),
+        bookingPrefillMode: document.getElementById('bookingPrefillMode'),
+        bookingPrefillSum: document.getElementById('bookingPrefillSum'),
+        bookingPrefillText: document.getElementById('bookingPrefillText'),
+        bookingPlanSummaryInput: document.getElementById('bookingPlanSummaryInput'),
+        bookingForm: document.getElementById('bookingForm'),
+        patientName: document.getElementById('patientName'),
+        patientPhone: document.getElementById('patientPhone'),
+        visitTimeSlot: document.getElementById('visitTimeSlot'),
+        contactChannel: document.getElementById('contactChannel'),
+        patientNote: document.getElementById('patientNote'),
+        consentCheck: document.getElementById('consentCheck'),
+        bookingError: document.getElementById('bookingError'),
+        bookingSuccess: document.getElementById('bookingSuccess'),
+        bookingTicketCode: document.getElementById('bookingTicketCode'),
+        bookingSuccessDetails: document.getElementById('bookingSuccessDetails'),
+        resetBookingBtn: document.getElementById('resetBookingBtn')
+      };
+
+      function formatRub(val) {
+        return Math.round(val).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
+      }
+
+      function pluralize(count, forms) {
+        var mod10 = count % 10;
+        var mod100 = count % 100;
+        if (mod10 === 1 && mod100 !== 11) return forms[0];
+        if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return forms[1];
+        return forms[2];
+      }
+
+      function roundTo50(num) {
+        return Math.round(num / 50) * 50;
+      }
+
+      function buildVisitsForStage(serviceKey, scenario, total) {
+        if (serviceKey === 'hygiene' || scenario.visitsCount === 1) {
+          return [
+            {
+              stepTitle: 'Визит 1 · Проведение процедуры',
+              meta: 'Длительность: ' + scenario.duration,
+              amount: total
+            }
+          ];
+        }
+
+        if (serviceKey === 'therapy') {
+          var v1Therapy = roundTo50(total * 0.55);
+          var v2Therapy = total - v1Therapy;
+          return [
+            {
+              stepTitle: 'Визит 1 · Анестезия, обработка каналов и лечебная повязка',
+              meta: 'Длительность: ' + scenario.duration,
+              amount: v1Therapy
+            },
+            {
+              stepTitle: 'Визит 2 · Рентген-контроль, постоянная пломбировка и реставрация',
+              meta: 'Через 3–7 дней · ' + scenario.duration,
+              amount: v2Therapy
+            }
+          ];
+        }
+
+        if (serviceKey === 'prosthetics') {
+          if (scenario.visitsCount === 2) {
+            var v1Pros = roundTo50(total * 0.45);
+            var v2Pros = total - v1Pros;
+            return [
+              {
+                stepTitle: 'Визит 1 · Подготовка и снятие слепков / сканирование',
+                meta: 'Длительность: ' + scenario.duration,
+                amount: v1Pros
+              },
+              {
+                stepTitle: 'Визит 2 · Примерка и постоянная фиксация конструкции',
+                meta: 'Через 7–10 дней · ' + scenario.duration,
+                amount: v2Pros
+              }
+            ];
+          }
+          var p1 = roundTo50(total * 0.35);
+          var p2 = roundTo50(total * 0.35);
+          var p3 = total - p1 - p2;
+          return [
+            {
+              stepTitle: 'Визит 1 · Подготовка опоры, слепки и временная защита',
+              meta: 'Длительность: ' + scenario.duration,
+              amount: p1
+            },
+            {
+              stepTitle: 'Визит 2 · Примерка каркаса и согласование оттенка',
+              meta: 'Через 5–7 дней · 30–40 мин',
+              amount: p2
+            },
+            {
+              stepTitle: 'Визит 3 · Окончательная фиксация и проверка прикуса',
+              meta: 'Через 5–7 дней · 40 мин',
+              amount: p3
+            }
+          ];
+        }
+
+        if (serviceKey === 'implantation') {
+          if (scenario.visitsCount === 3) {
+            var i1 = roundTo50(total * 0.55);
+            var i2 = roundTo50(total * 0.15);
+            var i3 = total - i1 - i2;
+            return [
+              {
+                stepTitle: 'Визит 1 · Хирургическая установка имплантата',
+                meta: 'Длительность: 60 мин + снятие швов через 10–14 дней',
+                amount: i1
+              },
+              {
+                stepTitle: 'Визит 2 · Формирователь десны и слепок под коронку',
+                meta: 'Через 3–4 месяца · 40 мин',
+                amount: i2
+              },
+              {
+                stepTitle: 'Визит 3 · Фиксация абатмента и циркониевой коронки',
+                meta: 'Через 10–14 дней · 45 мин',
+                amount: i3
+              }
+            ];
+          }
+          var imp1 = roundTo50(total * 0.85);
+          var imp2 = total - imp1;
+          return [
+            {
+              stepTitle: 'Визит 1 · Операция установки имплантата и рентген-контроль',
+              meta: 'Длительность: ' + scenario.duration,
+              amount: imp1
+            },
+            {
+              stepTitle: 'Визит 2 · Контрольный осмотр и снятие швов',
+              meta: 'Через 10–14 дней · 20 мин',
+              amount: imp2
+            }
+          ];
+        }
+
+        return [
+          {
+            stepTitle: 'Визит 1 · Основной приём',
+            meta: scenario.duration,
+            amount: total
+          }
+        ];
+      }
+
+      function calculateDraft() {
+        var service = SERVICES[state.serviceKey];
+        var scenario = service.scenarios.find(function (s) { return s.id === state.scenarioId; }) || service.scenarios[0];
+        var material = service.materials.find(function (m) { return m.id === state.materialId; }) || service.materials[0];
+        var units = state.units;
+        var unitWord = pluralize(units, service.unitForms);
+
+        var procedureSum = scenario.basePrice * units;
+        var materialSum = material.deltaPerUnit * units;
+
+        var lines = [
+          {
+            name: scenario.title + ' (' + units + ' ' + unitWord + ' × ' + formatRub(scenario.basePrice) + ')',
+            amount: procedureSum
+          }
+        ];
+
+        if (materialSum > 0) {
+          lines.push({
+            name: material.name + ' (' + units + ' ' + unitWord + ' × ' + formatRub(material.deltaPerUnit) + ')',
+            amount: materialSum
+          });
+        } else {
+          lines.push({
+            name: material.name + ' (включено в тариф)',
+            amount: 0
+          });
+        }
+
+        var addonsSum = 0;
+        var activeAddonNames = [];
+        Object.keys(ADDONS).forEach(function (key) {
+          if (state.addons[key] === true) {
+            var opt = ADDONS[key];
+            var optAmount = opt.perUnit ? opt.price * units : opt.price;
+            addonsSum += optAmount;
+            activeAddonNames.push(opt.title);
+            lines.push({
+              name: opt.perUnit ? opt.title + ' (' + units + ' ' + unitWord + ')' : opt.title,
+              amount: optAmount
+            });
+          }
+        });
+
+        var total = procedureSum + materialSum + addonsSum;
+        var visits = buildVisitsForStage(service.key, scenario, total);
+
+        return {
+          serviceKey: service.key,
+          serviceTitle: service.title,
+          scenarioTitle: scenario.title,
+          scenarioDuration: scenario.duration,
+          materialName: material.name,
+          units: units,
+          unitWord: unitWord,
+          activeAddonNames: activeAddonNames,
+          lines: lines,
+          total: total,
+          visits: visits
+        };
+      }
+
+      function renderServiceCards() {
+        var html = '';
+        Object.keys(SERVICES).forEach(function (key) {
+          var svc = SERVICES[key];
+          var isActive = state.serviceKey === key;
+          html +=
+            '<button type="button" class="choice-card" role="radio" aria-checked="' + (isActive ? 'true' : 'false') + '" data-service="' + svc.key + '">' +
+              '<span class="choice-card-top">' +
+                '<span class="choice-icon">' + svc.iconSvg + '</span>' +
+                '<span class="choice-price-tag">' + svc.priceHint + '</span>' +
+              '</span>' +
+              '<span class="choice-title">' + svc.title + '</span>' +
+              '<span class="choice-desc">' + svc.shortDesc + '</span>' +
+            '</button>';
+        });
+        els.serviceGrid.innerHTML = html;
+
+        var quickPills = document.querySelectorAll('[data-quick-service]');
+        quickPills.forEach(function (pill) {
+          if (pill.getAttribute('data-quick-service') === state.serviceKey) {
+            pill.classList.add('is-active');
+          } else {
+            pill.classList.remove('is-active');
+          }
+        });
+      }
+
+      function renderScenariosAndUnits() {
+        var svc = SERVICES[state.serviceKey];
+        var optionsHtml = '';
+        svc.scenarios.forEach(function (sc) {
+          var selected = sc.id === state.scenarioId ? ' selected' : '';
+          optionsHtml += '<option value="' + sc.id + '"' + selected + '>' + sc.title + ' — ' + formatRub(sc.basePrice) + '</option>';
+        });
+        els.scenarioSelect.innerHTML = optionsHtml;
+
+        var activeScenario = svc.scenarios.find(function (s) { return s.id === state.scenarioId; }) || svc.scenarios[0];
+        els.scenarioNote.textContent = activeScenario.note;
+
+        els.unitFieldLabel.textContent = svc.unitFieldLabel;
+        els.unitCount.max = String(svc.maxUnits);
+        if (state.units > svc.maxUnits) {
+          state.units = svc.maxUnits;
+        }
+        els.unitCount.value = String(state.units);
+        els.unitMinus.disabled = state.units <= 1;
+        els.unitPlus.disabled = state.units >= svc.maxUnits;
+        els.unitTextPreview.textContent = 'Выбрано: ' + state.units + ' ' + pluralize(state.units, svc.unitForms);
+      }
+
+      function renderMaterials() {
+        var svc = SERVICES[state.serviceKey];
+        els.materialHeading.textContent = svc.materialHeading;
+        var html = '';
+        svc.materials.forEach(function (mat) {
+          var isSelected = mat.id === state.materialId;
+          var deltaText = mat.deltaPerUnit > 0 ? '+ ' + formatRub(mat.deltaPerUnit) + ' / ед.' : 'Включено в базовый тариф';
+          html +=
+            '<button type="button" class="material-card" role="radio" aria-checked="' + (isSelected ? 'true' : 'false') + '" data-material="' + mat.id + '">' +
+              '<div>' +
+                '<span class="material-badge">' + mat.badge + '</span>' +
+                '<div class="material-name">' + mat.name + '</div>' +
+                '<div class="material-desc">' + mat.desc + '</div>' +
+              '</div>' +
+              '<div class="material-delta">' + deltaText + '</div>' +
+            '</button>';
+        });
+        els.materialList.innerHTML = html;
+      }
+
+      function renderAddonsCheckboxes() {
+        var mapping = {
+          anesthesia: els.optAnesthesia,
+          xray: els.optXray,
+          tempCrown: els.optTempCrown,
+          cofferdam: els.optCofferdam
+        };
+        Object.keys(mapping).forEach(function (key) {
+          var cb = mapping[key];
+          var isChecked = state.addons[key] === true;
+          cb.checked = isChecked;
+          var wrap = document.getElementById('addonWrap-' + key);
+          if (wrap) {
+            if (isChecked) {
+              wrap.classList.add('is-checked');
+            } else {
+              wrap.classList.remove('is-checked');
+            }
+          }
+        });
+      }
+
+      function renderSummaryAndBooking() {
+        var draft = calculateDraft();
+        var hasSaved = state.savedStages.length > 0;
+
+        if (hasSaved) {
+          els.summaryServiceBadge.textContent = 'Комплексный план';
+          els.summaryTitle.textContent = 'Сводный план лечения (' + state.savedStages.length + ' ' + pluralize(state.savedStages.length, ['этап', 'этапа', 'этапов']) + ')';
+          els.summarySubtitle.textContent = 'Текущий редактор: ' + draft.scenarioTitle + ' (' + formatRub(draft.total) + ')';
+        } else {
+          els.summaryServiceBadge.textContent = draft.serviceTitle;
+          els.summaryTitle.textContent = draft.scenarioTitle;
+          els.summarySubtitle.textContent = draft.units + ' ' + draft.unitWord + ' · ' + draft.materialName;
+        }
+
+        var activeTotal = draft.total;
+        var breakdownLines = draft.lines;
+        var visitsToRender = draft.visits;
+
+        if (hasSaved) {
+          els.savedPlanSection.style.display = 'block';
+          els.savedPlanHeading.textContent = 'Сводный план лечения (' + state.savedStages.length + ')';
+          var savedHtml = '';
+          var savedTotal = 0;
+          var combinedVisits = [];
+
+          state.savedStages.forEach(function (st, idx) {
+            savedTotal += st.total;
+            st.visits.forEach(function (v) {
+              combinedVisits.push({
+                stepTitle: 'Этап ' + (idx + 1) + ' (' + st.serviceTitle + ') · ' + v.stepTitle,
+                meta: v.meta,
+                amount: v.amount
+              });
+            });
+            savedHtml +=
+              '<li class="saved-plan-item">' +
+                '<div class="saved-plan-info">' +
+                  '<span class="saved-plan-title">' + (idx + 1) + '. ' + st.scenarioTitle + '</span>' +
+                  '<span class="saved-plan-meta">' + st.units + ' ' + st.unitWord + ' · ' + st.materialName + '</span>' +
+                '</div>' +
+                '<div class="saved-plan-right">' +
+                  '<span class="mono" style="font-weight: 700; color: var(--slate);">' + formatRub(st.total) + '</span>' +
+                  '<button type="button" class="btn-remove" data-remove-stage="' + st.id + '" aria-label="Удалить этап">×</button>' +
+                '</div>' +
+              '</li>';
+          });
+          els.savedPlanList.innerHTML = savedHtml;
+
+          activeTotal = savedTotal;
+          visitsToRender = combinedVisits;
+          els.totalLabelText.textContent = 'Итого по сводному плану';
+          breakdownLines = state.savedStages.map(function (st, idx) {
+            return {
+              name: 'Этап ' + (idx + 1) + ': ' + st.serviceTitle + ' — ' + st.scenarioTitle + ' (' + st.units + ' ' + st.unitWord + ')',
+              amount: st.total
+            };
+          });
+        } else {
+          els.savedPlanSection.style.display = 'none';
+          els.savedPlanList.innerHTML = '';
+          els.totalLabelText.textContent = 'Предварительная смета';
+        }
+
+        var upperRange = roundTo50(activeTotal * 1.1);
+        els.totalAmountText.textContent = formatRub(activeTotal);
+        els.totalRangeText.textContent = 'Ориентир после осмотра: ' + formatRub(activeTotal) + ' – ' + formatRub(upperRange);
+
+        els.breakdownCount.textContent = breakdownLines.length + ' ' + pluralize(breakdownLines.length, ['позиция', 'позиции', 'позиций']);
+        var linesHtml = '';
+        breakdownLines.forEach(function (line) {
+          linesHtml +=
+            '<li class="breakdown-row">' +
+              '<span class="breakdown-name">' + line.name + '</span>' +
+              '<span class="breakdown-val">' + (line.amount > 0 ? formatRub(line.amount) : '0 ₽') + '</span>' +
+            '</li>';
+        });
+        els.breakdownList.innerHTML = linesHtml;
+
+        els.visitsCount.textContent = visitsToRender.length + ' ' + pluralize(visitsToRender.length, ['визит', 'визита', 'визитов']);
+        var visitsHtml = '';
+        visitsToRender.forEach(function (v) {
+          visitsHtml +=
+            '<div class="visit-card">' +
+              '<div class="visit-top">' +
+                '<span class="visit-tag">' + v.stepTitle + '</span>' +
+                '<span class="visit-amount">' + formatRub(v.amount) + '</span>' +
+              '</div>' +
+              '<div class="visit-meta">' + v.meta + '</div>' +
+            '</div>';
+        });
+        els.visitsList.innerHTML = visitsHtml;
+
+        // Sync Booking Card
+        els.bookingPrefillSum.textContent = formatRub(activeTotal);
+        if (hasSaved) {
+          els.bookingPrefillMode.textContent = 'Сводный план (' + state.savedStages.length + ' ' + pluralize(state.savedStages.length, ['этап', 'этапа', 'этапов']) + ')';
+          var stageSummaryList = state.savedStages.map(function (st, idx) {
+            return (idx + 1) + ') ' + st.serviceTitle + ': ' + st.scenarioTitle + ' (' + st.units + ' ' + st.unitWord + ', ' + st.materialName + ') — ' + formatRub(st.total);
+          }).join('; ');
+          els.bookingPrefillText.textContent = stageSummaryList;
+          els.bookingPlanSummaryInput.value = 'Сводный план: ' + state.savedStages.map(function (st) {
+            return st.scenarioTitle + ' (' + st.units + ' ' + st.unitWord + ')';
+          }).join(' + ') + ' · Итого ' + formatRub(activeTotal);
+        } else {
+          els.bookingPrefillMode.textContent = 'Текущий расчёт калькулятора';
+          var addonsText = draft.activeAddonNames.length > 0 ? draft.activeAddonNames.join(', ') : 'без дополнительных опций';
+          var fullSummary = draft.serviceTitle + ' — ' + draft.scenarioTitle + ' (' + draft.units + ' ' + draft.unitWord + '), ' + draft.materialName + ', опции: ' + addonsText + '. Визитов: ' + draft.visits.length + '.';
+          els.bookingPrefillText.textContent = fullSummary;
+          els.bookingPlanSummaryInput.value = draft.serviceTitle + ': ' + draft.scenarioTitle + ' (' + draft.units + ' ' + draft.unitWord + ', ' + draft.materialName + ') · ' + formatRub(activeTotal);
+        }
+      }
+
+      function renderAll() {
+        renderServiceCards();
+        renderScenariosAndUnits();
+        renderMaterials();
+        renderAddonsCheckboxes();
+        renderSummaryAndBooking();
+      }
+
+      function selectService(serviceKey) {
+        if (!SERVICES[serviceKey]) return;
+        state.serviceKey = serviceKey;
+        var svc = SERVICES[serviceKey];
+        state.scenarioId = svc.scenarios[0].id;
+        state.materialId = svc.materials[0].id;
+        state.units = 1;
+        state.addons = {
+          anesthesia: svc.defaultAddons.anesthesia,
+          xray: svc.defaultAddons.xray,
+          tempCrown: svc.defaultAddons.tempCrown,
+          cofferdam: svc.defaultAddons.cofferdam
+        };
+        els.planStatusNote.textContent = '';
+        renderAll();
+      }
+
+      // Event Listeners
+      els.serviceGrid.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-service]');
+        if (!btn) return;
+        selectService(btn.getAttribute('data-service'));
+      });
+
+      document.querySelectorAll('[data-quick-service]').forEach(function (pill) {
+        pill.addEventListener('click', function () {
+          selectService(pill.getAttribute('data-quick-service'));
+          var target = document.getElementById('step1-heading');
+          if (target && target.scrollIntoView) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      els.scenarioSelect.addEventListener('change', function () {
+        state.scenarioId = els.scenarioSelect.value;
+        els.planStatusNote.textContent = '';
+        renderScenariosAndUnits();
+        renderSummaryAndBooking();
+      });
+
+      els.unitMinus.addEventListener('click', function () {
+        if (state.units > 1) {
+          state.units -= 1;
+          renderScenariosAndUnits();
+          renderSummaryAndBooking();
+        }
+      });
+
+      els.unitPlus.addEventListener('click', function () {
+        var max = SERVICES[state.serviceKey].maxUnits;
+        if (state.units < max) {
+          state.units += 1;
+          renderScenariosAndUnits();
+          renderSummaryAndBooking();
+        }
+      });
+
+      els.unitCount.addEventListener('input', function () {
+        var max = SERVICES[state.serviceKey].maxUnits;
+        var parsed = parseInt(els.unitCount.value, 10);
+        if (isNaN(parsed) || parsed < 1) {
+          parsed = 1;
+        } else if (parsed > max) {
+          parsed = max;
+        }
+        state.units = parsed;
+        els.unitMinus.disabled = state.units <= 1;
+        els.unitPlus.disabled = state.units >= max;
+        els.unitTextPreview.textContent = 'Выбрано: ' + state.units + ' ' + pluralize(state.units, SERVICES[state.serviceKey].unitForms);
+        renderSummaryAndBooking();
+      });
+
+      els.unitCount.addEventListener('blur', function () {
+        els.unitCount.value = String(state.units);
+      });
+
+      els.materialList.addEventListener('click', function (e) {
+        var card = e.target.closest('[data-material]');
+        if (!card) return;
+        state.materialId = card.getAttribute('data-material');
+        renderMaterials();
+        renderSummaryAndBooking();
+      });
+
+      [
+        { key: 'anesthesia', el: els.optAnesthesia },
+        { key: 'xray', el: els.optXray },
+        { key: 'tempCrown', el: els.optTempCrown },
+        { key: 'cofferdam', el: els.optCofferdam }
+      ].forEach(function (item) {
+        item.el.addEventListener('change', function () {
+          state.addons[item.key] = item.el.checked;
+          renderAddonsCheckboxes();
+          renderSummaryAndBooking();
+        });
+      });
+
+      els.addToPlanBtn.addEventListener('click', function () {
+        var draft = calculateDraft();
+        state.savedStages.push({
+          id: String(Date.now()) + '-' + Math.random().toString(16).slice(2, 6),
+          serviceKey: draft.serviceKey,
+          serviceTitle: draft.serviceTitle,
+          scenarioTitle: draft.scenarioTitle,
+          materialName: draft.materialName,
+          units: draft.units,
+          unitWord: draft.unitWord,
+          total: draft.total,
+          visits: draft.visits
+        });
+        els.planStatusNote.textContent = 'Этап добавлен в сводный план (' + formatRub(draft.total) + ').';
+        renderSummaryAndBooking();
+      });
+
+      els.savedPlanList.addEventListener('click', function (e) {
+        var rmBtn = e.target.closest('[data-remove-stage]');
+        if (!rmBtn) return;
+        var targetId = rmBtn.getAttribute('data-remove-stage');
+        state.savedStages = state.savedStages.filter(function (st) { return st.id !== targetId; });
+        els.planStatusNote.textContent = state.savedStages.length > 0 ? 'Список этапов обновлён.' : '';
+        renderSummaryAndBooking();
+      });
+
+      els.clearPlanBtn.addEventListener('click', function () {
+        state.savedStages = [];
+        els.planStatusNote.textContent = 'Сводный план очищен.';
+        renderSummaryAndBooking();
+      });
+
+      els.copyEstimateBtn.addEventListener('click', function () {
+        var text =
+          'Стоматология на Масловке (г. Москва, Масловка)\n' +
+          'Предварительный расчёт: ' + els.bookingPrefillSum.textContent + '\n' +
+          els.bookingPrefillText.textContent + '\n' +
+          'Телефон клиники: +7(495)613-62-60 · E-mail: stom-ant@yandex.ru';
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            els.copyBtnText.textContent = 'Смета скопирована';
+            setTimeout(function () {
+              els.copyBtnText.textContent = 'Скопировать смету';
+            }, 2200);
+          }).catch(function () {
+            els.copyBtnText.textContent = 'Готово в заявке ниже';
+          });
+        } else {
+          els.copyBtnText.textContent = 'Готово в заявке ниже';
+          setTimeout(function () {
+            els.copyBtnText.textContent = 'Скопировать смету';
+          }, 2200);
+        }
+      });
+
+      els.bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        els.bookingError.classList.remove('visible');
+        els.bookingError.textContent = '';
+
+        var nameVal = els.patientName.value.trim();
+        var phoneVal = els.patientPhone.value.trim();
+        var digitsCount = phoneVal.replace(/\D/g, '').length;
+
+        if (nameVal.length < 2) {
+          els.bookingError.textContent = 'Пожалуйста, укажите ваше имя для оформления записи.';
+          els.bookingError.classList.add('visible');
+          els.patientName.focus();
+          return;
+        }
+
+        if (digitsCount < 7) {
+          els.bookingError.textContent = 'Укажите корректный контактный номер телефона.';
+          els.bookingError.classList.add('visible');
+          els.patientPhone.focus();
+          return;
+        }
+
+        if (els.consentCheck.checked === false) {
+          els.bookingError.textContent = 'Необходимо подтвердить согласие на обработку контактных данных.';
+          els.bookingError.classList.add('visible');
+          els.consentCheck.focus();
+          return;
+        }
+
+        var ticketNum = 'МД-' + (Math.floor(Math.random() * 8900) + 1000);
+        var slotVal = els.visitTimeSlot.value;
+        var channelVal = els.contactChannel.value;
+        var noteVal = els.patientNote.value.trim();
+        var summaryLine = els.bookingPlanSummaryInput.value;
+
+        els.bookingTicketCode.textContent = 'Расчёт ' + ticketNum;
+        var detailsText =
+          nameVal + ', ваша предварительная смета (' + summaryLine + ') зафиксирована. ' +
+          'Предпочтительное время визита: ' + slotVal + '. ' +
+          'Способ подтверждения: ' + channelVal + ' по номеру ' + phoneVal + '.';
+        if (noteVal.length > 0) {
+          detailsText += ' Комментарий: ' + noteVal + '.';
+        }
+        detailsText += ' По срочным вопросам можно позвонить по номеру +7(495)613-62-60.';
+
+        els.bookingSuccessDetails.textContent = detailsText;
+        els.bookingForm.style.display = 'none';
+        els.bookingSuccess.classList.add('visible');
+      });
+
+      els.resetBookingBtn.addEventListener('click', function () {
+        els.bookingSuccess.classList.remove('visible');
+        els.bookingForm.style.display = 'grid';
+        els.bookingError.classList.remove('visible');
+      });
+
+      renderAll();
+    })();
+  </script>
+</body>
+</html>
