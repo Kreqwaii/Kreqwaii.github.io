@@ -1,0 +1,2502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive 24/7 Emergency Plumbing and HVAC Dispatch Estimator for Pipe Wrench Plumbing, Heating & Cooling in Knoxville, TN. Instant itemized USD estimates and priority dispatch windows.">
+  <title>24/7 Dispatch Estimator | Pipe Wrench Plumbing, Heating &amp; Cooling — Knoxville, TN</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231B365D'/%3E%3Cpath d='M9 22.5L18.5 13a4.5 4.5 0 0 1 5.6-5.6l-2.4 2.4 1.9 1.9 2.4-2.4a4.5 4.5 0 0 1-5.6 5.6L11 24.4a1.4 1.4 0 0 1-2-1.9z' fill='%23FFFFFF'/%3E%3Crect x='6' y='24' width='20' height='2.5' rx='1.25' fill='%23B85D19'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #F6F5F0;
+      --bg-card: #FFFFFF;
+      --bg-subtle: #FAF9F5;
+      --bg-recessed: #EFECE4;
+      --bg-copper-wash: #FBF3EC;
+      --bg-navy-wash: #EEF2F7;
+      --border: #E2DFD7;
+      --border-strong: #C9C4B8;
+      --border-copper: #DFB798;
+      --navy: #1B365D;
+      --navy-deep: #132642;
+      --navy-hover: #244575;
+      --copper: #B85D19;
+      --copper-dark: #974A11;
+      --ink: #18212F;
+      --ink-muted: #4C5563;
+      --ink-soft: #636C7A;
+      --success: #1E6B47;
+      --success-bg: #ECF7F1;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', monospace;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-card: 0 1px 2px rgba(27, 54, 93, 0.04), 0 4px 14px rgba(27, 54, 93, 0.04);
+      --shadow-focus: 0 0 0 3px rgba(184, 93, 25, 0.22);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-page);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Top Dispatch Utility Bar */
+    .utility-bar {
+      background-color: var(--navy-deep);
+      color: #E8EDF4;
+      font-size: 12.5px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .utility-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 0;
+      flex-wrap: wrap;
+    }
+
+    .dispatch-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      min-width: 0;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #E07A2F;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 3px rgba(224, 122, 47, 0.25);
+    }
+
+    .utility-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: #CBD5E4;
+    }
+
+    .utility-meta a {
+      color: #FFFFFF;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .utility-meta a:hover {
+      text-decoration-color: #FFFFFF;
+    }
+
+    /* Site Header */
+    .site-header {
+      background-color: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background-color: var(--navy);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid var(--navy-deep);
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--navy);
+      line-height: 1.25;
+      overflow-wrap: break-word;
+    }
+
+    .brand-sub {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      line-height: 1.35;
+      margin-top: 2px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .header-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-copper-wash);
+      border: 1px solid var(--border-copper);
+      color: var(--copper-dark);
+      font-weight: 600;
+      font-size: 14px;
+      white-space: nowrap;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .header-phone:hover {
+      background-color: #F6E4D5;
+      border-color: var(--copper);
+    }
+
+    .header-print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 13px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 13.5px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .header-print-btn:hover {
+      background-color: var(--bg-subtle);
+      border-color: var(--border-strong);
+    }
+
+    /* Editorial Masthead */
+    .masthead {
+      padding: 28px 0 22px;
+    }
+
+    .masthead-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 10px;
+    }
+
+    .masthead h1 {
+      margin: 0 0 10px;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+      color: var(--navy);
+      max-width: 820px;
+    }
+
+    .masthead-lead {
+      margin: 0 0 22px;
+      font-size: 15.5px;
+      color: var(--ink-muted);
+      max-width: 780px;
+    }
+
+    .facts-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .fact-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 13px 15px;
+    }
+
+    .fact-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-soft);
+      margin-bottom: 4px;
+    }
+
+    .fact-value {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+
+    .fact-note {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    /* Main Workbench */
+    .workbench {
+      padding-bottom: 42px;
+    }
+
+    .workbench-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.24fr) minmax(0, 0.92fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+    }
+
+    .config-panel {
+      padding: 24px;
+    }
+
+    .step-block {
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step-block:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    .step-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .step-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--copper-dark);
+      background-color: var(--bg-copper-wash);
+      border: 1px solid var(--border-copper);
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .step-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+
+    .step-hint {
+      font-size: 12.5px;
+      color: var(--ink-soft);
+    }
+
+    /* Category Tabs */
+    .category-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .cat-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: 6px;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+      min-width: 0;
+    }
+
+    .cat-tab:hover {
+      border-color: var(--border-strong);
+      background-color: var(--bg-card);
+    }
+
+    .cat-tab[aria-selected="true"] {
+      background-color: var(--navy);
+      border-color: var(--navy);
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(27, 54, 93, 0.16);
+    }
+
+    .cat-tab-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--navy);
+      flex-shrink: 0;
+    }
+
+    .cat-tab[aria-selected="true"] .cat-tab-icon {
+      background-color: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+    }
+
+    .cat-tab-name {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .cat-tab-sub {
+      font-size: 11.5px;
+      color: var(--ink-soft);
+      line-height: 1.3;
+    }
+
+    .cat-tab[aria-selected="true"] .cat-tab-sub {
+      color: #D2DCEB;
+    }
+
+    /* Issue Cards */
+    .issue-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .issue-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left;
+      gap: 10px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .issue-card:hover {
+      border-color: var(--navy);
+      background-color: var(--bg-subtle);
+    }
+
+    .issue-card[aria-pressed="true"] {
+      border-color: var(--copper);
+      background-color: var(--bg-copper-wash);
+      box-shadow: inset 0 0 0 1px var(--copper);
+    }
+
+    .issue-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.32;
+      margin-bottom: 4px;
+    }
+
+    .issue-desc {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      line-height: 1.42;
+    }
+
+    .issue-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+    }
+
+    .issue-price {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--copper-dark);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .issue-time {
+      font-family: var(--font-mono);
+      color: var(--ink-soft);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Severity Selector */
+    .severity-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .severity-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: 5px;
+      padding: 13px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .severity-btn:hover {
+      border-color: var(--navy);
+      background-color: var(--bg-subtle);
+    }
+
+    .severity-btn[aria-pressed="true"] {
+      border-color: var(--navy);
+      background-color: var(--bg-navy-wash);
+      box-shadow: inset 0 0 0 1px var(--navy);
+    }
+
+    .severity-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background-color: var(--bg-recessed);
+      color: var(--ink-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .severity-btn[aria-pressed="true"] .severity-badge {
+      background-color: var(--navy);
+      color: #FFFFFF;
+    }
+
+    .severity-btn.is-emergency[aria-pressed="true"] .severity-badge {
+      background-color: var(--copper);
+      color: #FFFFFF;
+    }
+
+    .severity-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .severity-detail {
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.38;
+    }
+
+    /* Form Grid & Controls */
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .field-group-full {
+      grid-column: 1 / -1;
+    }
+
+    .field-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    label.field-label {
+      cursor: pointer;
+    }
+
+    .control {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-card);
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.4;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .control:focus {
+      outline: none;
+      border-color: var(--copper);
+      box-shadow: var(--shadow-focus);
+    }
+
+    textarea.control {
+      resize: vertical;
+      min-height: 68px;
+    }
+
+    /* Pill Options Group */
+    .addon-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .addon-toggle {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      text-align: left;
+      padding: 11px 13px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .addon-toggle:hover {
+      border-color: var(--border-strong);
+    }
+
+    .addon-toggle[aria-pressed="true"] {
+      background-color: var(--success-bg);
+      border-color: var(--success);
+    }
+
+    .addon-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+
+    .addon-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 2px;
+      line-height: 1.35;
+    }
+
+    .addon-state {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 4px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-card);
+      color: var(--ink-muted);
+      flex-shrink: 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .addon-toggle[aria-pressed="true"] .addon-state {
+      background-color: var(--success);
+      border-color: var(--success);
+      color: #FFFFFF;
+    }
+
+    /* Sticky Dispatch Ledger (Right Column) */
+    .ledger-panel {
+      position: sticky;
+      top: 18px;
+      overflow: hidden;
+    }
+
+    .ledger-header {
+      background-color: var(--navy);
+      color: #FFFFFF;
+      padding: 20px 22px;
+      border-bottom: 3px solid var(--copper);
+    }
+
+    .ledger-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .ledger-ref {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #CBD7E8;
+      letter-spacing: 0.04em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ledger-priority-pill {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background-color: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: #FFFFFF;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ledger-priority-pill.is-emergency {
+      background-color: var(--copper);
+      border-color: #D77A34;
+    }
+
+    .ledger-total-label {
+      font-size: 12.5px;
+      color: #CBD7E8;
+      margin-bottom: 4px;
+    }
+
+    .ledger-total-range {
+      font-family: var(--font-mono);
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ledger-window-box {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: rgba(19, 38, 66, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .ledger-window-label {
+      font-size: 12px;
+      color: #CBD7E8;
+    }
+
+    .ledger-window-val {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: #F6AD7B;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ledger-body {
+      padding: 20px 22px;
+    }
+
+    .scope-summary {
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .scope-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--copper-dark);
+      margin-bottom: 3px;
+    }
+
+    .scope-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+
+    .scope-context {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      margin-top: 4px;
+    }
+
+    .itemized-list {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+    }
+
+    .itemized-list th,
+    .itemized-list td {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13.5px;
+      vertical-align: top;
+    }
+
+    .itemized-list th {
+      text-align: left;
+      font-weight: 500;
+      color: var(--ink-muted);
+      padding-right: 10px;
+    }
+
+    .itemized-list td {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .itemized-list tr.is-credit td {
+      color: var(--success);
+    }
+
+    .itemized-list tr.is-total th {
+      font-weight: 700;
+      color: var(--navy);
+      border-bottom: none;
+      padding-top: 12px;
+    }
+
+    .itemized-list tr.is-total td {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--navy);
+      border-bottom: none;
+      padding-top: 12px;
+    }
+
+    .dispatch-guarantee {
+      padding: 11px 13px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-navy-wash);
+      border: 1px solid #D4DFEE;
+      font-size: 12.5px;
+      color: var(--navy);
+      margin-bottom: 16px;
+      line-height: 1.45;
+    }
+
+    .dispatch-guarantee strong {
+      font-weight: 700;
+    }
+
+    /* Action Buttons & Full-Width Mailto Container */
+    .action-stack {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .mailto-container {
+      grid-column: 1 / -1;
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-align: center;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--navy);
+      color: #FFFFFF;
+      border-color: var(--navy-deep);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--navy-hover);
+    }
+
+    .mailto-btn {
+      font-size: 14px;
+      white-space: nowrap;
+      word-break: normal;
+    }
+
+    .btn-copper {
+      background-color: var(--copper);
+      color: #FFFFFF;
+      border-color: var(--copper-dark);
+    }
+
+    .btn-copper:hover {
+      background-color: var(--copper-dark);
+    }
+
+    .utility-btn-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .btn-outline {
+      background-color: var(--bg-card);
+      color: var(--navy);
+      border-color: var(--border-strong);
+      font-size: 13px;
+      padding: 10px 12px;
+    }
+
+    .btn-outline:hover {
+      background-color: var(--bg-subtle);
+      border-color: var(--navy);
+    }
+
+    .status-banner {
+      min-height: 20px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--success);
+      text-align: center;
+    }
+
+    /* Coverage & Dispatch Zones Table */
+    .coverage-section {
+      padding: 8px 0 44px;
+    }
+
+    .coverage-card {
+      padding: 24px;
+    }
+
+    .coverage-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .coverage-head h2 {
+      margin: 0 0 4px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.015em;
+    }
+
+    .coverage-head p {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--ink-muted);
+    }
+
+    .zones-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .zone-card {
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .zone-card:hover {
+      border-color: var(--navy);
+      background-color: var(--bg-card);
+    }
+
+    .zone-card.is-active {
+      border-color: var(--copper);
+      background-color: var(--bg-copper-wash);
+      box-shadow: inset 0 0 0 1px var(--copper);
+    }
+
+    .zone-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--copper-dark);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .zone-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+
+    .zone-zips {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .zone-eta {
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg-card);
+      border-top: 1px solid var(--border);
+      padding: 28px 0 36px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+
+    .footer-heading {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 0 0 8px;
+    }
+
+    .footer-copy {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--ink-muted);
+      line-height: 1.55;
+    }
+
+    .footer-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 13.5px;
+      color: var(--ink-muted);
+      line-height: 1.65;
+    }
+
+    .footer-mailto-block {
+      grid-column: 1 / -1;
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-mailto-label {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .footer-mailto-link {
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--copper-dark);
+      white-space: nowrap;
+      word-break: normal;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .footer-bottom {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 12.5px;
+      color: var(--ink-soft);
+    }
+
+    /* Focus visibility */
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--copper);
+      outline-offset: 2px;
+    }
+
+    /* Print Summary Stylesheet */
+    .print-only-meta {
+      display: none;
+    }
+
+    @media print {
+      body {
+        background-color: #FFFFFF;
+        color: #111111;
+        font-size: 12px;
+      }
+
+      .utility-bar,
+      .header-actions,
+      .config-panel,
+      .coverage-section,
+      .action-stack,
+      .status-banner {
+        display: none;
+      }
+
+      .site-header {
+        border-bottom: 2px solid #1B365D;
+      }
+
+      .masthead {
+        padding: 14px 0 10px;
+      }
+
+      .masthead h1 {
+        font-size: 22px;
+      }
+
+      .facts-strip {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-bottom: 12px;
+      }
+
+      .workbench-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .ledger-panel {
+        position: static;
+        box-shadow: none;
+        border: 1px solid #999999;
+      }
+
+      .ledger-header {
+        background-color: #FFFFFF;
+        color: #1B365D;
+        border-bottom: 2px solid #1B365D;
+      }
+
+      .ledger-ref,
+      .ledger-total-label,
+      .ledger-window-label {
+        color: #4C5563;
+      }
+
+      .ledger-total-range {
+        color: #1B365D;
+      }
+
+      .ledger-priority-pill {
+        background-color: #F6F5F0;
+        color: #1B365D;
+        border-color: #1B365D;
+      }
+
+      .ledger-window-box {
+        background-color: #FAF9F5;
+        border-color: #C9C4B8;
+      }
+
+      .ledger-window-val {
+        color: #974A11;
+      }
+
+      .print-only-meta {
+        display: block;
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid #C9C4B8;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .site-footer {
+        border-top: 1px solid #C9C4B8;
+        padding: 14px 0;
+      }
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1080px) {
+      .workbench-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .ledger-panel {
+        position: static;
+      }
+
+      .zones-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 820px) {
+      .facts-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .category-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .zones-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 14px;
+      }
+
+      .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 14px 0;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .header-phone {
+        flex: 1 1 auto;
+        justify-content: center;
+      }
+
+      .masthead {
+        padding: 20px 0 18px;
+      }
+
+      .masthead h1 {
+        font-size: 24px;
+      }
+
+      .config-panel,
+      .coverage-card {
+        padding: 16px;
+      }
+
+      .ledger-header,
+      .ledger-body {
+        padding: 16px;
+      }
+
+      .issue-grid,
+      .severity-grid,
+      .form-grid-2,
+      .addon-list,
+      .zones-grid,
+      .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .utility-btn-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .facts-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .fact-card {
+        padding: 11px 12px;
+      }
+
+      .ledger-total-range {
+        font-size: 26px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .brand-name {
+        font-size: 15.5px;
+      }
+
+      .header-actions {
+        flex-wrap: wrap;
+      }
+
+      .header-print-btn {
+        flex: 1 1 auto;
+        justify-content: center;
+      }
+
+      .category-tabs {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .facts-strip {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="dispatch-status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>24/7 Knoxville Emergency Dispatch Active</span>
+      </div>
+      <div class="utility-meta">
+        <span>11441 Kingston Pike, Knoxville, TN 37934</span>
+        <a href="https://www.pipewrench.com" target="_blank" rel="noopener noreferrer">www.pipewrench.com</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="4" y1="21" x2="20" y2="21" stroke="#E07A2F" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-copy">
+          <div class="brand-name">Pipe Wrench Plumbing, Heating &amp; Cooling</div>
+          <div class="brand-sub">Knoxville, TN &middot; Plumbing, Drain, Water Heater &amp; HVAC Dispatch Estimator</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a class="header-phone tabular" href="tel:+18655833957">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span>(865) 583-3957</span>
+        </a>
+        <button type="button" class="header-print-btn" id="headerPrintBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 6 2 18 2 18 9"/>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+            <rect x="6" y="14" width="12" height="8"/>
+          </svg>
+          <span>Print Summary</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="masthead">
+      <div class="container">
+        <div class="masthead-eyebrow">KNOXVILLE DISPATCH WORKBENCH &amp; ESTIMATE GUIDE</div>
+        <h1>24/7 Emergency Plumbing &amp; HVAC Dispatch Estimator</h1>
+        <p class="masthead-lead">Select your system category, active issue, urgency level, home infrastructure era, and Knoxville zone to calculate an itemized USD repair range and live arrival window from our Kingston Pike operations hub.</p>
+
+        <div class="facts-strip">
+          <div class="fact-card">
+            <div class="fact-kicker">Dispatch Depot</div>
+            <div class="fact-value tabular">11441 Kingston Pike</div>
+            <div class="fact-note">Knoxville, TN 37934</div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-kicker">Service Availability</div>
+            <div class="fact-value tabular">24 Hours / 7 Days</div>
+            <div class="fact-note">Same-day &amp; emergency trucks</div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-kicker">Diagnostic Policy</div>
+            <div class="fact-value tabular">$89 Credited</div>
+            <div class="fact-note">Applied toward approved repair</div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-kicker">Direct Dispatch</div>
+            <div class="fact-value tabular">(865) 583-3957</div>
+            <div class="fact-note">Upfront range before work begins</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="workbench" aria-label="Dispatch Estimator Configurator and Itemized Ledger">
+      <div class="container workbench-grid">
+        <!-- Left Configurator -->
+        <div class="panel config-panel">
+
+          <!-- Step 01: Core Service Category -->
+          <div class="step-block">
+            <div class="step-head">
+              <div class="step-title-wrap">
+                <span class="step-num">01</span>
+                <h2 class="step-title">Core Service Category</h2>
+              </div>
+              <span class="step-hint">Select system discipline</span>
+            </div>
+            <div class="category-tabs" role="tablist" aria-label="Core Service Categories" id="categoryTabs"></div>
+          </div>
+
+          <!-- Step 02: Specific Symptom / Scope -->
+          <div class="step-block">
+            <div class="step-head">
+              <div class="step-title-wrap">
+                <span class="step-num">02</span>
+                <h2 class="step-title">Reported Issue or Project Scope</h2>
+              </div>
+              <span class="step-hint" id="categoryScopeHint">Drain &amp; sewer operations</span>
+            </div>
+            <div class="issue-grid" id="issueGrid" role="group" aria-label="Service Issue Options"></div>
+          </div>
+
+          <!-- Step 03: Urgency & Dispatch Tier -->
+          <div class="step-block">
+            <div class="step-head">
+              <div class="step-title-wrap">
+                <span class="step-num">03</span>
+                <h2 class="step-title">Issue Severity &amp; Dispatch Tier</h2>
+              </div>
+              <span class="step-hint">Sets truck priority &amp; window</span>
+            </div>
+            <div class="severity-grid" id="severityGrid" role="group" aria-label="Urgency and Dispatch Tier"></div>
+          </div>
+
+          <!-- Step 04: Home Age & Equipment Profile -->
+          <div class="step-block">
+            <div class="step-head">
+              <div class="step-title-wrap">
+                <span class="step-num">04</span>
+                <h2 class="step-title">Home Age, Equipment &amp; Options</h2>
+              </div>
+              <span class="step-hint">Refines parts &amp; access allowance</span>
+            </div>
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label class="field-label" for="homeAgeSelect">Home Construction Era</label>
+                <select class="control" id="homeAgeSelect" autocomplete="off">
+                  <option value="modern">2016–Present (PEX / PVC / High-SEER2)</option>
+                  <option value="standard" selected>2000–2015 (Copper or PEX / R-410A)</option>
+                  <option value="legacy">1975–1999 (Mixed Piping / Older Ductwork)</option>
+                  <option value="historic">Pre-1975 Historic (Cast Iron / Galvanized)</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="equipTypeSelect">Equipment &amp; Access Profile</label>
+                <select class="control" id="equipTypeSelect" autocomplete="off"></select>
+              </div>
+            </div>
+
+            <div class="field-label" style="margin-top: 16px;" id="optionalAdjustmentsLabel">Service Options &amp; Maintenance Plan</div>
+            <div class="addon-list" role="group" aria-labelledby="optionalAdjustmentsLabel">
+              <button type="button" class="addon-toggle" id="toggleMemberPlan" aria-pressed="false">
+                <div>
+                  <div class="addon-title">Annual Protection Membership</div>
+                  <div class="addon-sub">Adds 10% repair credit today plus two seasonal HVAC &amp; plumbing inspections</div>
+                </div>
+                <span class="addon-state" id="memberBadge">+$189/yr</span>
+              </button>
+              <button type="button" class="addon-toggle" id="toggleReportAddon" aria-pressed="true">
+                <div>
+                  <div class="addon-title">Digital Diagnostic Photo Log</div>
+                  <div class="addon-sub">Technician notes, pressure/camera readings, and code checklist emailed post-visit</div>
+                </div>
+                <span class="addon-state" id="reportBadge">INCLUDED</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 05: Knoxville Zone & Dispatch Request Info -->
+          <div class="step-block">
+            <div class="step-head">
+              <div class="step-title-wrap">
+                <span class="step-num">05</span>
+                <h2 class="step-title">Knoxville Area Zone &amp; Contact Details</h2>
+              </div>
+              <span class="step-hint">Prefills your email dispatch summary</span>
+            </div>
+            <div class="form-grid-2">
+              <div class="field-group field-group-full">
+                <label class="field-label" for="zoneSelect">Knoxville Dispatch Zone &amp; ZIP Cluster</label>
+                <select class="control" id="zoneSelect" autocomplete="postal-code">
+                  <option value="z1" selected>Zone 1 — Farragut &amp; West Knoxville (37934, 37922, 37919)</option>
+                  <option value="z2">Zone 2 — Cedar Bluff, Bearden &amp; Sequoyah (37923, 37909, 37921)</option>
+                  <option value="z3">Zone 3 — Downtown, North &amp; East Knoxville (37902, 37917, 37918, 37914)</option>
+                  <option value="z4">Zone 4 — Powell, Karns &amp; Halls (37849, 37931, 37938)</option>
+                  <option value="z5">Zone 5 — Oak Ridge, Maryville &amp; Lenoir City (37830, 37801, 37771)</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="custName">Homeowner or Contact Name</label>
+                <input class="control" type="text" id="custName" placeholder="Jordan Miller" autocomplete="name">
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="custPhone">Callback Phone Number</label>
+                <input class="control" type="tel" id="custPhone" placeholder="(865) 555-0148" autocomplete="tel">
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="custEmail">Email for Written Confirmation</label>
+                <input class="control" type="email" id="custEmail" placeholder="name@example.com" autocomplete="email">
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="custAddress">Street Address &amp; Gate Note</label>
+                <input class="control" type="text" id="custAddress" placeholder="Kingston Pike area street and ZIP" autocomplete="street-address">
+              </div>
+              <div class="field-group field-group-full">
+                <label class="field-label" for="custNotes">Symptom Notes (Water Shutoff, Thermostat Code, or Access Details)</label>
+                <textarea class="control" id="custNotes" autocomplete="off" placeholder="Describe active leaks, breaker trips, odor, or unit location (crawlspace, attic, garage)"></textarea>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Sticky Dispatch & Estimate Ledger -->
+        <aside class="panel ledger-panel" aria-label="Instant Itemized Estimate and Dispatch Summary">
+          <div class="ledger-header">
+            <div class="ledger-top-row">
+              <span class="ledger-ref" id="ledgerRef">EST-PW-Z1-37934</span>
+              <span class="ledger-priority-pill" id="ledgerPriorityPill">STANDARD DISPATCH</span>
+            </div>
+            <div class="ledger-total-label">Estimated Project &amp; Dispatch Total (USD)</div>
+            <div class="ledger-total-range" id="ledgerTotalRange">$295 – $540</div>
+            <div class="ledger-window-box">
+              <span class="ledger-window-label">Projected Arrival Window</span>
+              <span class="ledger-window-val" id="ledgerWindowVal">Next Available 2-Hr Slot</span>
+            </div>
+          </div>
+
+          <div class="ledger-body">
+            <div class="scope-summary">
+              <div class="scope-kicker" id="summaryCategoryLabel">Drain Cleaning &amp; Sewer Repair</div>
+              <div class="scope-name" id="summaryIssueName">Main Sewer Line Clearing &amp; Camera Inspection</div>
+              <div class="scope-context" id="summaryContextLine">2000–2015 Era &middot; PVC Cleanout Accessible &middot; Farragut / West Knoxville</div>
+            </div>
+
+            <table class="itemized-list" aria-label="Itemized USD Breakdown">
+              <tbody id="ledgerRows"></tbody>
+            </table>
+
+            <div class="dispatch-guarantee" id="diagnosticPolicyNote">
+              <strong>Upfront Knoxville Dispatch Policy:</strong> $89 diagnostic dispatch assessment is credited in full when you approve the on-site flat-rate quote.
+            </div>
+
+            <div class="action-stack">
+              <div class="mailto-container">
+                <a class="btn btn-primary mailto-btn" id="mailtoDispatchBtn" href="mailto:csr@pipewrenchplumbing.com">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                  <span>Send Prefilled Dispatch Email</span>
+                </a>
+              </div>
+
+              <a class="btn btn-copper tabular" href="tel:+18655833957">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                <span>Call 24/7 Dispatch: (865) 583-3957</span>
+              </a>
+
+              <div class="utility-btn-row">
+                <button type="button" class="btn btn-outline" id="printSummaryBtn">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 6 2 18 2 18 9"/>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                    <rect x="6" y="14" width="12" height="8"/>
+                  </svg>
+                  <span>Print Summary</span>
+                </button>
+                <button type="button" class="btn btn-outline" id="copySummaryBtn">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                  <span>Copy Estimate</span>
+                </button>
+              </div>
+
+              <div class="status-banner" id="actionStatus" role="status" aria-live="polite"></div>
+            </div>
+
+            <div class="print-only-meta" id="printCustomerMeta"></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Knoxville Dispatch Zone Reference -->
+    <section class="coverage-section" aria-label="Knoxville Dispatch Zone Coverage">
+      <div class="container">
+        <div class="panel coverage-card">
+          <div class="coverage-head">
+            <div>
+              <h2>Knoxville Service Zones from 11441 Kingston Pike</h2>
+              <p>Select any regional zone card below to update truck transit time and dispatch allowance in your estimate.</p>
+            </div>
+            <div class="mono" style="font-size: 12.5px; color: var(--ink-soft);">Origin Hub: 37934 West Knoxville</div>
+          </div>
+          <div class="zones-grid" id="zoneCardsGrid"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-heading">Pipe Wrench Plumbing, Heating &amp; Cooling</h3>
+          <p class="footer-copy">
+            11441 Kingston Pike<br>
+            Knoxville, TN 37934<br>
+            24/7 Dispatch Line: <a class="tabular" href="tel:+18655833957">(865) 583-3957</a>
+          </p>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Core Residential &amp; Emergency Services</h3>
+          <ul class="footer-list">
+            <li>Drain Cleaning &amp; Sewer Repair</li>
+            <li>Water Heater Repair &amp; Installation</li>
+            <li>Air Conditioning Repair &amp; Installation</li>
+            <li>Furnace &amp; Heating Maintenance</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Estimate Scope &amp; Online Portal</h3>
+          <p class="footer-copy">
+            Figures shown are planning ranges based on Knoxville residential equipment profiles. Exact flat-rate pricing is confirmed on-site before work begins.
+            <br><a href="https://www.pipewrench.com" target="_blank" rel="noopener noreferrer" style="display: inline-block; margin-top: 6px; font-weight: 600;">Visit www.pipewrench.com</a>
+          </p>
+        </div>
+
+        <div class="footer-mailto-block">
+          <span class="footer-mailto-label">Customer Service &amp; Dispatch Email Desk:</span>
+          <a class="footer-mailto-link" href="mailto:csr@pipewrenchplumbing.com">csr@pipewrenchplumbing.com</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>Pipe Wrench Plumbing, Heating &amp; Cooling &middot; Knoxville, TN</span>
+        <span class="tabular">Address: 11441 Kingston Pike, Knoxville, TN 37934 &middot; Phone: (865) 583-3957</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var SERVICE_CATALOG = {
+        drain: {
+          id: 'drain',
+          label: 'Drain Cleaning & Sewer Repair',
+          shortTag: 'Hydro-Jet & Camera',
+          crewRole: 'Master Drain & Sewer Technician',
+          hint: 'Clog clearing, hydro-jetting & line repair',
+          iconSvg: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>',
+          equipmentOptions: [
+            { value: 'cleanout', label: 'Accessible Exterior PVC / ABS Cleanout', factor: 1.00 },
+            { value: 'crawlspace', label: 'Crawlspace or Basement Stack Tie-In', factor: 1.07 },
+            { value: 'cast_clay', label: 'Cast Iron or Clay Yard Main Line', factor: 1.14 },
+            { value: 'multi_story', label: 'Multi-Level Branch or Slab Routing', factor: 1.18 }
+          ],
+          issues: [
+            {
+              id: 'fixture_clog',
+              title: 'Single Fixture Clog & Drain Snaking',
+              desc: 'Targeted mechanical auger clearing for kitchen sink, tub, shower, or floor drain.',
+              min: 165,
+              max: 285,
+              duration: '45–75 min',
+              diagnosticWaived: true
+            },
+            {
+              id: 'main_sewer_camera',
+              title: 'Main Sewer Line Clearing & Camera Inspection',
+              desc: 'Whole-home stoppage relief paired with HD fiber-optic video locate and depth check.',
+              min: 295,
+              max: 540,
+              duration: '90–120 min',
+              diagnosticWaived: true
+            },
+            {
+              id: 'hydro_jetting',
+              title: 'High-Pressure Hydro-Jetting Scour',
+              desc: '360-degree pressurized nozzle scouring for heavy kitchen grease, scale, or root intrusion.',
+              min: 480,
+              max: 890,
+              duration: '2–3 hrs',
+              diagnosticWaived: true
+            },
+            {
+              id: 'sewer_spot_repair',
+              title: 'Spot Sewer Line Repair & Cleanout Install',
+              desc: 'Damaged main section replacement with schedule-40 PVC transition and two-way cleanout.',
+              min: 1450,
+              max: 3400,
+              duration: 'Half–Full Day',
+              diagnosticWaived: false
+            }
+          ]
+        },
+        water_heater: {
+          id: 'water_heater',
+          label: 'Water Heater Repair & Installation',
+          shortTag: 'Tank & Tankless',
+          crewRole: 'Licensed Water Heater Specialist',
+          hint: 'No hot water, leaks & tankless upgrades',
+          iconSvg: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>',
+          equipmentOptions: [
+            { value: 'garage_gas', label: 'Garage or Utility Natural Gas Tank', factor: 1.00 },
+            { value: 'electric_closet', label: 'Interior Electric Tank Heater', factor: 1.03 },
+            { value: 'attic_tight', label: 'Attic or Tight Crawlspace Placement', factor: 1.12 },
+            { value: 'tankless_sys', label: 'Tankless Condensing / Recirculation Loop', factor: 1.15 }
+          ],
+          issues: [
+            {
+              id: 'thermostat_element',
+              title: 'Thermostat, Igniter, or Heating Element Repair',
+              desc: 'Restore hot water via gas control valve calibration, pilot assembly, or electric elements.',
+              min: 195,
+              max: 390,
+              duration: '60–90 min',
+              diagnosticWaived: true
+            },
+            {
+              id: 'valve_expansion',
+              title: 'Relief Valve, Expansion Tank & Leak Control',
+              desc: 'Code-compliant thermal expansion tank sizing, T&P relief valve, and ball shutoff upgrade.',
+              min: 260,
+              max: 485,
+              duration: '60–90 min',
+              diagnosticWaived: true
+            },
+            {
+              id: 'tank_swap',
+              title: 'Standard 40/50-Gal Tank Replacement',
+              desc: 'Full haul-away, code drip pan, sediment trap, flex connectors, and pressure check.',
+              min: 1650,
+              max: 2550,
+              duration: '3–4 hrs',
+              diagnosticWaived: false
+            },
+            {
+              id: 'tankless_install',
+              title: 'High-Efficiency Tankless Installation',
+              desc: 'Wall-mounted condensing tankless system, service isolation valves, venting, and gas sizing.',
+              min: 3100,
+              max: 4850,
+              duration: '5–7 hrs',
+              diagnosticWaived: false
+            }
+          ]
+        },
+        ac: {
+          id: 'ac',
+          label: 'Air Conditioning Repair & Installation',
+          shortTag: 'Cooling & Heat Pumps',
+          crewRole: 'NATE-Certified Cooling Technician',
+          hint: 'No-cool diagnostics, coils & SEER2 installs',
+          iconSvg: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5l-5 5-5-5"/><path d="M17 19l-5-5-5 5"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M5 7l5 5-5 5"/><path d="M19 7l-5 5 5 5"/></svg>',
+          equipmentOptions: [
+            { value: 'split_ground', label: 'Split Central System (Ground Condenser)', factor: 1.00 },
+            { value: 'heat_pump', label: 'Heat Pump + Indoor Air Handler', factor: 1.06 },
+            { value: 'attic_package', label: 'Attic Air Handler or Package Unit', factor: 1.12 },
+            { value: 'mini_split', label: 'Multi-Zone Variable / Ductless System', factor: 1.15 }
+          ],
+          issues: [
+            {
+              id: 'ac_capacitor',
+              title: 'No-Cool Diagnostic, Capacitor & Contactor Fix',
+              desc: 'Electrical troubleshooting, dual-run capacitor swap, contactor, and condensate drain clear.',
+              min: 185,
+              max: 385,
+              duration: '60–90 min',
+              diagnosticWaived: true
+            },
+            {
+              id: 'coil_refrigerant',
+              title: 'Coil Cleaning & Refrigerant Leak Service',
+              desc: 'Evaporator coil wash, electronic/nitrogen leak check, and subcooling refrigerant charge.',
+              min: 340,
+              max: 720,
+              duration: '90–150 min',
+              diagnosticWaived: true
+            },
+            {
+              id: 'blower_fan',
+              title: 'Blower Motor, Control Board, or Fan Assembly',
+              desc: 'ECM or PSC blower motor replacement, relay board swap, and static pressure verification.',
+              min: 490,
+              max: 980,
+              duration: '2–3 hrs',
+              diagnosticWaived: true
+            },
+            {
+              id: 'ac_system_install',
+              title: 'High-SEER2 Central AC or Heat Pump Install',
+              desc: 'Matched outdoor condenser and indoor coil installation, line-set flush, and load commissioning.',
+              min: 6400,
+              max: 10800,
+              duration: '1 Day',
+              diagnosticWaived: false
+            }
+          ]
+        },
+        heating: {
+          id: 'heating',
+          label: 'Furnace & Heating Maintenance',
+          shortTag: 'Gas & Electric Heat',
+          crewRole: 'NATE-Certified Heating Specialist',
+          hint: 'Safety tune-ups, no-heat fixes & furnaces',
+          iconSvg: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>',
+          equipmentOptions: [
+            { value: 'gas_forced', label: 'Natural Gas or Propane Forced-Air Furnace', factor: 1.00 },
+            { value: 'electric_strips', label: 'Electric Air Handler + Heat Strip Sequencer', factor: 1.02 },
+            { value: 'dual_fuel', label: 'Dual-Fuel Hybrid Heat Pump + Gas Furnace', factor: 1.10 },
+            { value: 'attic_furnace', label: 'Horizontal Attic or Crawlspace Furnace', factor: 1.14 }
+          ],
+          issues: [
+            {
+              id: 'safety_tuneup',
+              title: '21-Point Heating Safety & Combustion Tune-Up',
+              desc: 'Heat exchanger camera check, CO test, flame sensor polish, burner alignment, and filter check.',
+              min: 119,
+              max: 179,
+              duration: '60 min',
+              diagnosticWaived: false
+            },
+            {
+              id: 'igniter_sensor',
+              title: 'No-Heat Igniter, Flame Sensor, or Limit Fix',
+              desc: 'Hot-surface silicon nitride igniter, pressure switch clearing, or lockout diagnostic repair.',
+              min: 210,
+              max: 440,
+              duration: '60–90 min',
+              diagnosticWaived: true
+            },
+            {
+              id: 'inducer_gas_valve',
+              title: 'Inducer Draft Motor, Gas Valve, or Sequencer',
+              desc: 'OEM draft blower assembly, dual-stage gas valve replacement, or heat strip kit installation.',
+              min: 460,
+              max: 890,
+              duration: '2–3 hrs',
+              diagnosticWaived: true
+            },
+            {
+              id: 'furnace_replacement',
+              title: 'High-Efficiency Gas Furnace Replacement',
+              desc: '80% to 96% AFUE furnace installation, flue transition, plenum sealing, and thermostat setup.',
+              min: 4200,
+              max: 7200,
+              duration: '1 Day',
+              diagnosticWaived: false
+            }
+          ]
+        }
+      };
+
+      var SEVERITY_TIERS = [
+        {
+          id: 'standard',
+          badge: '+$0 SLOT',
+          pillLabel: 'STANDARD DISPATCH',
+          title: 'Standard Scheduled Visit',
+          detail: 'Next open weekday arrival slot during normal service hours.',
+          fee: 0,
+          windowText: 'Next Available 2-Hr Slot',
+          isEmergency: false
+        },
+        {
+          id: 'priority',
+          badge: '+$45 TODAY',
+          pillLabel: 'SAME-DAY PRIORITY',
+          title: 'Priority Same-Day Dispatch',
+          detail: 'Reserved today for active leaks, slow mains, or single-zone outages.',
+          fee: 45,
+          windowText: 'Today Within 3–5 Hours',
+          isEmergency: false
+        },
+        {
+          id: 'emergency',
+          badge: '+$115 24/7',
+          pillLabel: '24/7 EMERGENCY',
+          title: '24/7 Emergency Rapid Dispatch',
+          detail: 'Immediate truck routing nights/weekends for flooding, backups, or freeze risk.',
+          fee: 115,
+          windowText: 'Immediate Truck Dispatch',
+          isEmergency: true
+        }
+      ];
+
+      var HOME_ERAS = {
+        modern: { label: '2016–Present Era', factor: 1.00 },
+        standard: { label: '2000–2015 Era', factor: 1.04 },
+        legacy: { label: '1975–1999 Era', factor: 1.10 },
+        historic: { label: 'Pre-1975 Historic', factor: 1.18 }
+      };
+
+      var ZONES = {
+        z1: {
+          id: 'z1',
+          code: 'ZONE 1',
+          name: 'Farragut & West Knoxville',
+          zips: '37934, 37922, 37919',
+          drive: '10–25 min',
+          fee: 0,
+          refZip: '37934'
+        },
+        z2: {
+          id: 'z2',
+          code: 'ZONE 2',
+          name: 'Cedar Bluff & Bearden',
+          zips: '37923, 37909, 37921',
+          drive: '15–30 min',
+          fee: 0,
+          refZip: '37923'
+        },
+        z3: {
+          id: 'z3',
+          code: 'ZONE 3',
+          name: 'Downtown, North & East Knox',
+          zips: '37902, 37917, 37918, 37914',
+          drive: '25–40 min',
+          fee: 15,
+          refZip: '37902'
+        },
+        z4: {
+          id: 'z4',
+          code: 'ZONE 4',
+          name: 'Powell, Karns & Halls',
+          zips: '37849, 37931, 37938',
+          drive: '25–45 min',
+          fee: 20,
+          refZip: '37849'
+        },
+        z5: {
+          id: 'z5',
+          code: 'ZONE 5',
+          name: 'Oak Ridge, Maryville & Lenoir City',
+          zips: '37830, 37801, 37771',
+          drive: '30–50 min',
+          fee: 35,
+          refZip: '37830'
+        }
+      };
+
+      var state = {
+        categoryId: 'drain',
+        issueId: 'main_sewer_camera',
+        severityId: 'priority',
+        homeAge: 'standard',
+        equipType: 'cleanout',
+        zoneId: 'z1',
+        includeMemberPlan: false,
+        includeReportLog: true
+      };
+
+      var dom = {
+        categoryTabs: document.getElementById('categoryTabs'),
+        categoryScopeHint: document.getElementById('categoryScopeHint'),
+        issueGrid: document.getElementById('issueGrid'),
+        severityGrid: document.getElementById('severityGrid'),
+        homeAgeSelect: document.getElementById('homeAgeSelect'),
+        equipTypeSelect: document.getElementById('equipTypeSelect'),
+        zoneSelect: document.getElementById('zoneSelect'),
+        zoneCardsGrid: document.getElementById('zoneCardsGrid'),
+        toggleMemberPlan: document.getElementById('toggleMemberPlan'),
+        toggleReportAddon: document.getElementById('toggleReportAddon'),
+        memberBadge: document.getElementById('memberBadge'),
+        reportBadge: document.getElementById('reportBadge'),
+        custName: document.getElementById('custName'),
+        custPhone: document.getElementById('custPhone'),
+        custEmail: document.getElementById('custEmail'),
+        custAddress: document.getElementById('custAddress'),
+        custNotes: document.getElementById('custNotes'),
+        ledgerRef: document.getElementById('ledgerRef'),
+        ledgerPriorityPill: document.getElementById('ledgerPriorityPill'),
+        ledgerTotalRange: document.getElementById('ledgerTotalRange'),
+        ledgerWindowVal: document.getElementById('ledgerWindowVal'),
+        summaryCategoryLabel: document.getElementById('summaryCategoryLabel'),
+        summaryIssueName: document.getElementById('summaryIssueName'),
+        summaryContextLine: document.getElementById('summaryContextLine'),
+        ledgerRows: document.getElementById('ledgerRows'),
+        diagnosticPolicyNote: document.getElementById('diagnosticPolicyNote'),
+        mailtoDispatchBtn: document.getElementById('mailtoDispatchBtn'),
+        printSummaryBtn: document.getElementById('printSummaryBtn'),
+        headerPrintBtn: document.getElementById('headerPrintBtn'),
+        copySummaryBtn: document.getElementById('copySummaryBtn'),
+        actionStatus: document.getElementById('actionStatus'),
+        printCustomerMeta: document.getElementById('printCustomerMeta')
+      };
+
+      function formatUsd(val) {
+        return '$' + Math.round(val).toLocaleString('en-US');
+      }
+
+      function roundToFive(val) {
+        return Math.round(val / 5) * 5;
+      }
+
+      function getCurrentCategory() {
+        return SERVICE_CATALOG[state.categoryId];
+      }
+
+      function getCurrentIssue() {
+        var cat = getCurrentCategory();
+        var i;
+        for (i = 0; i < cat.issues.length; i += 1) {
+          if (cat.issues[i].id === state.issueId) {
+            return cat.issues[i];
+          }
+        }
+        return cat.issues[0];
+      }
+
+      function getCurrentSeverity() {
+        var i;
+        for (i = 0; i < SEVERITY_TIERS.length; i += 1) {
+          if (SEVERITY_TIERS[i].id === state.severityId) {
+            return SEVERITY_TIERS[i];
+          }
+        }
+        return SEVERITY_TIERS[0];
+      }
+
+      function getCurrentEquipment() {
+        var cat = getCurrentCategory();
+        var i;
+        for (i = 0; i < cat.equipmentOptions.length; i += 1) {
+          if (cat.equipmentOptions[i].value === state.equipType) {
+            return cat.equipmentOptions[i];
+          }
+        }
+        return cat.equipmentOptions[0];
+      }
+
+      function computeEstimate() {
+        var cat = getCurrentCategory();
+        var issue = getCurrentIssue();
+        var sev = getCurrentSeverity();
+        var era = HOME_ERAS[state.homeAge];
+        var equip = getCurrentEquipment();
+        var zone = ZONES[state.zoneId];
+
+        var combinedMultiplier = era.factor * equip.factor;
+        var baseMin = issue.min;
+        var baseMax = issue.max;
+
+        var complexityAddMin = roundToFive(baseMin * (combinedMultiplier - 1));
+        var complexityAddMax = roundToFive(baseMax * (combinedMultiplier - 1));
+
+        var dispatchFee = sev.fee;
+        var zoneFee = zone.fee;
+
+        var subtotalMin = baseMin + complexityAddMin + dispatchFee + zoneFee;
+        var subtotalMax = baseMax + complexityAddMax + dispatchFee + zoneFee;
+
+        var memberCreditMin = state.includeMemberPlan ? roundToFive((baseMin + complexityAddMin) * 0.10) : 0;
+        var memberCreditMax = state.includeMemberPlan ? roundToFive((baseMax + complexityAddMax) * 0.10) : 0;
+        var memberPlanFee = state.includeMemberPlan ? 189 : 0;
+
+        var totalMin = subtotalMin - memberCreditMin + memberPlanFee;
+        var totalMax = subtotalMax - memberCreditMax + memberPlanFee;
+
+        var arrivalSummary = sev.windowText + ' (' + zone.drive + ' transit)';
+        if (sev.id === 'emergency') {
+          arrivalSummary = 'ETA ' + zone.drive + ' + Dispatch Routing';
+        }
+
+        return {
+          cat: cat,
+          issue: issue,
+          sev: sev,
+          era: era,
+          equip: equip,
+          zone: zone,
+          baseMin: baseMin,
+          baseMax: baseMax,
+          complexityAddMin: complexityAddMin,
+          complexityAddMax: complexityAddMax,
+          dispatchFee: dispatchFee,
+          zoneFee: zoneFee,
+          memberCreditMin: memberCreditMin,
+          memberCreditMax: memberCreditMax,
+          memberPlanFee: memberPlanFee,
+          totalMin: totalMin,
+          totalMax: totalMax,
+          arrivalSummary: arrivalSummary
+        };
+      }
+
+      function renderCategoryTabs() {
+        var keys = Object.keys(SERVICE_CATALOG);
+        var html = '';
+        var i;
+        for (i = 0; i < keys.length; i += 1) {
+          var cat = SERVICE_CATALOG[keys[i]];
+          var isSelected = cat.id === state.categoryId;
+          html += '<button type="button" class="cat-tab" role="tab" aria-selected="' + (isSelected ? 'true' : 'false') + '" data-cat="' + cat.id + '">' +
+            '<span class="cat-tab-icon" aria-hidden="true">' + cat.iconSvg + '</span>' +
+            '<span class="cat-tab-name">' + cat.label + '</span>' +
+            '<span class="cat-tab-sub">' + cat.shortTag + '</span>' +
+            '</button>';
+        }
+        dom.categoryTabs.innerHTML = html;
+
+        var buttons = dom.categoryTabs.querySelectorAll('.cat-tab');
+        for (i = 0; i < buttons.length; i += 1) {
+          buttons[i].addEventListener('click', function () {
+            var nextCat = this.getAttribute('data-cat');
+            if (nextCat !== state.categoryId) {
+              state.categoryId = nextCat;
+              state.issueId = SERVICE_CATALOG[nextCat].issues[0].id;
+              state.equipType = SERVICE_CATALOG[nextCat].equipmentOptions[0].value;
+              renderCategoryTabs();
+              renderIssues();
+              renderEquipmentSelect();
+              renderLedger();
+            }
+          });
+        }
+      }
+
+      function renderIssues() {
+        var cat = getCurrentCategory();
+        dom.categoryScopeHint.textContent = cat.hint;
+        var html = '';
+        var i;
+        for (i = 0; i < cat.issues.length; i += 1) {
+          var issue = cat.issues[i];
+          var isActive = issue.id === state.issueId;
+          html += '<button type="button" class="issue-card" aria-pressed="' + (isActive ? 'true' : 'false') + '" data-issue="' + issue.id + '">' +
+            '<div>' +
+              '<div class="issue-title">' + issue.title + '</div>' +
+              '<div class="issue-desc">' + issue.desc + '</div>' +
+            '</div>' +
+            '<div class="issue-meta">' +
+              '<span class="issue-price">' + formatUsd(issue.min) + ' – ' + formatUsd(issue.max) + '</span>' +
+              '<span class="issue-time">' + issue.duration + '</span>' +
+            '</div>' +
+            '</button>';
+        }
+        dom.issueGrid.innerHTML = html;
+
+        var cards = dom.issueGrid.querySelectorAll('.issue-card');
+        for (i = 0; i < cards.length; i += 1) {
+          cards[i].addEventListener('click', function () {
+            state.issueId = this.getAttribute('data-issue');
+            renderIssues();
+            renderLedger();
+          });
+        }
+      }
+
+      function renderSeverity() {
+        var html = '';
+        var i;
+        for (i = 0; i < SEVERITY_TIERS.length; i += 1) {
+          var tier = SEVERITY_TIERS[i];
+          var isActive = tier.id === state.severityId;
+          var extraClass = tier.isEmergency ? ' is-emergency' : '';
+          html += '<button type="button" class="severity-btn' + extraClass + '" aria-pressed="' + (isActive ? 'true' : 'false') + '" data-sev="' + tier.id + '">' +
+            '<span class="severity-badge">' + tier.badge + '</span>' +
+            '<span class="severity-name">' + tier.title + '</span>' +
+            '<span class="severity-detail">' + tier.detail + '</span>' +
+            '</button>';
+        }
+        dom.severityGrid.innerHTML = html;
+
+        var btns = dom.severityGrid.querySelectorAll('.severity-btn');
+        for (i = 0; i < btns.length; i += 1) {
+          btns[i].addEventListener('click', function () {
+            state.severityId = this.getAttribute('data-sev');
+            renderSeverity();
+            renderLedger();
+          });
+        }
+      }
+
+      function renderEquipmentSelect() {
+        var cat = getCurrentCategory();
+        var html = '';
+        var i;
+        for (i = 0; i < cat.equipmentOptions.length; i += 1) {
+          var opt = cat.equipmentOptions[i];
+          var selectedAttr = opt.value === state.equipType ? ' selected' : '';
+          html += '<option value="' + opt.value + '"' + selectedAttr + '>' + opt.label + '</option>';
+        }
+        dom.equipTypeSelect.innerHTML = html;
+      }
+
+      function renderZoneCards() {
+        var keys = Object.keys(ZONES);
+        var html = '';
+        var i;
+        for (i = 0; i < keys.length; i += 1) {
+          var z = ZONES[keys[i]];
+          var activeClass = z.id === state.zoneId ? ' is-active' : '';
+          var feeLabel = z.fee === 0 ? 'No Zone Fee' : '+' + formatUsd(z.fee) + ' Transit';
+          html += '<button type="button" class="zone-card' + activeClass + '" data-zone="' + z.id + '">' +
+            '<span class="zone-tag">' + z.code + ' &middot; ' + feeLabel + '</span>' +
+            '<span class="zone-title">' + z.name + '</span>' +
+            '<span class="zone-zips">' + z.zips + '</span>' +
+            '<span class="zone-eta">Truck Drive: ' + z.drive + '</span>' +
+            '</button>';
+        }
+        dom.zoneCardsGrid.innerHTML = html;
+
+        var cards = dom.zoneCardsGrid.querySelectorAll('.zone-card');
+        for (i = 0; i < cards.length; i += 1) {
+          cards[i].addEventListener('click', function () {
+            state.zoneId = this.getAttribute('data-zone');
+            dom.zoneSelect.value = state.zoneId;
+            renderZoneCards();
+            renderLedger();
+          });
+        }
+      }
+
+      function buildPlainSummaryText(calc) {
+        var nameVal = dom.custName.value.trim() || 'Not provided';
+        var phoneVal = dom.custPhone.value.trim() || 'Not provided';
+        var emailVal = dom.custEmail.value.trim() || 'Not provided';
+        var addrVal = dom.custAddress.value.trim() || 'Not provided';
+        var notesVal = dom.custNotes.value.trim() || 'None';
+
+        var lines = [
+          'PIPE WRENCH PLUMBING, HEATING & COOLING — KNOXVILLE DISPATCH ESTIMATE',
+          'Address: 11441 Kingston Pike, Knoxville, TN 37934 | Phone: (865) 583-3957',
+          'Reference: EST-PW-' + calc.zone.id.toUpperCase() + '-' + calc.zone.refZip,
+          '------------------------------------------------------------------------',
+          'Service Category: ' + calc.cat.label,
+          'Selected Scope: ' + calc.issue.title + ' (' + calc.issue.duration + ')',
+          'Dispatch Tier: ' + calc.sev.title,
+          'Projected Window: ' + calc.arrivalSummary,
+          'Home Era & Access: ' + calc.era.label + ' / ' + calc.equip.label,
+          'Knoxville Zone: ' + calc.zone.name + ' (' + calc.zone.zips + ')',
+          '',
+          'ITEMIZED USD RANGE:',
+          '- Core Service & Labor Scope: ' + formatUsd(calc.baseMin) + ' - ' + formatUsd(calc.baseMax),
+          '- Infrastructure & Access Allowance: ' + (calc.complexityAddMax > 0 ? '+' + formatUsd(calc.complexityAddMin) + ' - +' + formatUsd(calc.complexityAddMax) : '$0 (Standard Baseline)'),
+          '- Dispatch Priority / After-Hours Fee: ' + (calc.dispatchFee > 0 ? '+' + formatUsd(calc.dispatchFee) : '$0 (Standard Slot)'),
+          '- Knoxville Zone Travel Allowance: ' + (calc.zoneFee > 0 ? '+' + formatUsd(calc.zoneFee) : '$0 (Local Hub Zone)')
+        ];
+
+        if (state.includeMemberPlan) {
+          lines.push('- Annual Protection Plan Enrollment: +$189');
+          lines.push('- Member 10% Repair Credit: -' + formatUsd(calc.memberCreditMin) + ' to -' + formatUsd(calc.memberCreditMax));
+        }
+
+        lines.push('TOTAL ESTIMATED RANGE: ' + formatUsd(calc.totalMin) + ' - ' + formatUsd(calc.totalMax));
+        lines.push('Digital Photo & Reading Log: ' + (state.includeReportLog ? 'Included' : 'Standard receipt only'));
+        lines.push('');
+        lines.push('CUSTOMER & SITE DETAILS:');
+        lines.push('Name: ' + nameVal);
+        lines.push('Phone: ' + phoneVal);
+        lines.push('Email: ' + emailVal);
+        lines.push('Street Address: ' + addrVal);
+        lines.push('Notes: ' + notesVal);
+
+        return lines.join('\n');
+      }
+
+      function renderLedger() {
+        var calc = computeEstimate();
+
+        dom.ledgerRef.textContent = 'EST-PW-' + calc.zone.id.toUpperCase() + '-' + calc.zone.refZip;
+        dom.ledgerPriorityPill.textContent = calc.sev.pillLabel;
+        if (calc.sev.isEmergency) {
+          dom.ledgerPriorityPill.classList.add('is-emergency');
+        } else {
+          dom.ledgerPriorityPill.classList.remove('is-emergency');
+        }
+
+        dom.ledgerTotalRange.textContent = formatUsd(calc.totalMin) + ' – ' + formatUsd(calc.totalMax);
+        dom.ledgerWindowVal.textContent = calc.arrivalSummary;
+
+        dom.summaryCategoryLabel.textContent = calc.cat.label;
+        dom.summaryIssueName.textContent = calc.issue.title;
+        dom.summaryContextLine.textContent = calc.era.label + ' \u00B7 ' + calc.equip.label + ' \u00B7 ' + calc.zone.name;
+
+        var rowsHtml = '';
+        rowsHtml += '<tr><th>Core Service &amp; Labor Scope (' + calc.issue.duration + ')</th><td>' + formatUsd(calc.baseMin) + ' – ' + formatUsd(calc.baseMax) + '</td></tr>';
+
+        if (calc.complexityAddMax > 0) {
+          rowsHtml += '<tr><th>Era &amp; Access Allowance (' + calc.era.label + ')</th><td>+' + formatUsd(calc.complexityAddMin) + ' – +' + formatUsd(calc.complexityAddMax) + '</td></tr>';
+        } else {
+          rowsHtml += '<tr><th>Era &amp; Access Allowance</th><td>$0</td></tr>';
+        }
+
+        rowsHtml += '<tr><th>Dispatch Tier (' + calc.sev.title + ')</th><td>' + (calc.dispatchFee > 0 ? '+' + formatUsd(calc.dispatchFee) : '$0') + '</td></tr>';
+        rowsHtml += '<tr><th>Knoxville Zone Travel (' + calc.zone.code + ')</th><td>' + (calc.zoneFee > 0 ? '+' + formatUsd(calc.zoneFee) : '$0') + '</td></tr>';
+
+        if (state.includeMemberPlan) {
+          rowsHtml += '<tr><th>Annual Protection Membership (12 mo)</th><td>+$189</td></tr>';
+          rowsHtml += '<tr class="is-credit"><th>10% Member Repair Credit</th><td>-' + formatUsd(calc.memberCreditMin) + ' – -' + formatUsd(calc.memberCreditMax) + '</td></tr>';
+        }
+
+        rowsHtml += '<tr><th>Digital Diagnostic Log</th><td>' + (state.includeReportLog ? 'Included' : 'Standard') + '</td></tr>';
+        rowsHtml += '<tr class="is-total"><th>Estimated USD Total Range</th><td>' + formatUsd(calc.totalMin) + ' – ' + formatUsd(calc.totalMax) + '</td></tr>';
+
+        dom.ledgerRows.innerHTML = rowsHtml;
+
+        if (calc.issue.diagnosticWaived) {
+          dom.diagnosticPolicyNote.innerHTML = '<strong>Diagnostic Credit Policy:</strong> $89 diagnostic dispatch fee is credited toward this repair upon on-site flat-rate approval with your ' + calc.cat.crewRole + '.';
+        } else {
+          dom.diagnosticPolicyNote.innerHTML = '<strong>Upfront Proposal Policy:</strong> Includes on-site evaluation by a ' + calc.cat.crewRole + ' and written line-item quote prior to installation or tune-up work.';
+        }
+
+        var summaryText = buildPlainSummaryText(calc);
+        var mailSubject = 'Dispatch Estimate Request — ' + calc.cat.label + ' (' + calc.zone.name + ')';
+        dom.mailtoDispatchBtn.href = 'mailto:csr@pipewrenchplumbing.com?subject=' + encodeURIComponent(mailSubject) + '&body=' + encodeURIComponent(summaryText);
+
+        var namePrint = dom.custName.value.trim() || 'Not entered';
+        var phonePrint = dom.custPhone.value.trim() || 'Not entered';
+        var addrPrint = dom.custAddress.value.trim() || 'Not entered';
+        var notesPrint = dom.custNotes.value.trim() || 'None';
+
+        dom.printCustomerMeta.innerHTML =
+          '<strong>Prepared For:</strong> ' + escapeHtml(namePrint) + ' &middot; <strong>Phone:</strong> ' + escapeHtml(phonePrint) + '<br>' +
+          '<strong>Site Address:</strong> ' + escapeHtml(addrPrint) + ' &middot; <strong>Zone:</strong> ' + escapeHtml(calc.zone.name) + ' (' + escapeHtml(calc.zone.zips) + ')<br>' +
+          '<strong>Customer Notes:</strong> ' + escapeHtml(notesPrint);
+      }
+
+      function escapeHtml(str) {
+        return str
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function setStatusMessage(msg) {
+        dom.actionStatus.textContent = msg;
+      }
+
+      function bindEvents() {
+        dom.homeAgeSelect.addEventListener('change', function () {
+          state.homeAge = this.value;
+          renderLedger();
+        });
+
+        dom.equipTypeSelect.addEventListener('change', function () {
+          state.equipType = this.value;
+          renderLedger();
+        });
+
+        dom.zoneSelect.addEventListener('change', function () {
+          state.zoneId = this.value;
+          renderZoneCards();
+          renderLedger();
+        });
+
+        dom.toggleMemberPlan.addEventListener('click', function () {
+          state.includeMemberPlan = state.includeMemberPlan === false;
+          this.setAttribute('aria-pressed', state.includeMemberPlan ? 'true' : 'false');
+          dom.memberBadge.textContent = state.includeMemberPlan ? 'ACTIVE' : '+$189/yr';
+          renderLedger();
+        });
+
+        dom.toggleReportAddon.addEventListener('click', function () {
+          state.includeReportLog = state.includeReportLog === false;
+          this.setAttribute('aria-pressed', state.includeReportLog ? 'true' : 'false');
+          dom.reportBadge.textContent = state.includeReportLog ? 'INCLUDED' : 'OPT OUT';
+          renderLedger();
+        });
+
+        var customerInputs = [dom.custName, dom.custPhone, dom.custEmail, dom.custAddress, dom.custNotes];
+        var i;
+        for (i = 0; i < customerInputs.length; i += 1) {
+          customerInputs[i].addEventListener('input', renderLedger);
+        }
+
+        function triggerPrint() {
+          window.print();
+        }
+
+        dom.printSummaryBtn.addEventListener('click', triggerPrint);
+        dom.headerPrintBtn.addEventListener('click', triggerPrint);
+
+        dom.copySummaryBtn.addEventListener('click', function () {
+          var calc = computeEstimate();
+          var text = buildPlainSummaryText(calc);
+          if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+            navigator.clipboard.writeText(text).then(function () {
+              setStatusMessage('Itemized dispatch estimate copied to clipboard.');
+            }).catch(function () {
+              fallbackCopy(text);
+            });
+          } else {
+            fallbackCopy(text);
+          }
+        });
+      }
+
+      function fallbackCopy(text) {
+        var area = document.createElement('textarea');
+        area.value = text;
+        area.setAttribute('readonly', '');
+        area.style.position = 'fixed';
+        area.style.left = '-9999px';
+        document.body.appendChild(area);
+        area.select();
+        try {
+          document.execCommand('copy');
+          setStatusMessage('Itemized dispatch estimate copied to clipboard.');
+        } catch (err) {
+          setStatusMessage('Copy unavailable in this browser; use Print Summary or Email.');
+        }
+        document.body.removeChild(area);
+      }
+
+      renderCategoryTabs();
+      renderIssues();
+      renderSeverity();
+      renderEquipmentSelect();
+      renderZoneCards();
+      bindEvents();
+      renderLedger();
+    }());
+  </script>
+</body>
+</html>

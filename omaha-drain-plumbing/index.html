@@ -1,0 +1,3025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Instant Drain &amp; Sewer Issue Triage &amp; Quote Calculator for Omaha Drain Cleaning &amp; Plumbing in Omaha, NE. Estimate hydro jetting, sewer camera inspections, trenchless repair, and tankless water heater installation.">
+  <title>Omaha Drain Cleaning &amp; Plumbing | Instant Drain &amp; Sewer Issue Triage &amp; Quote Calculator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32'%3E%3Crect width='32' height='32' rx='6' fill='%230F4C5C'/%3E%3Cpath d='M8 10h16v4H18v8h-4v-8H8v-4z' fill='%23FFFFFF'/%3E%3Ccircle cx='23' cy='22' r='4' fill='%23C04A2B'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F4F6F8;
+      --surface: #FFFFFF;
+      --surface-alt: #EDF1F5;
+      --surface-subtle: #F8FAFC;
+      --border: #DCE2E8;
+      --border-strong: #C3CDD7;
+      --ink: #111A22;
+      --ink-2: #2E3D4B;
+      --muted: #566573;
+      --teal: #0F4C5C;
+      --teal-dark: #0A3743;
+      --teal-mid: #1F6E82;
+      --teal-soft: #E6F0F2;
+      --rust: #C04A2B;
+      --rust-dark: #9A381F;
+      --rust-soft: #FBECE8;
+      --ok: #196847;
+      --ok-soft: #E7F4EE;
+      --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+      --font-body: 'Manrope', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-card: 0 1px 2px rgba(17, 26, 34, 0.04), 0 6px 18px rgba(15, 76, 92, 0.04);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: clip;
+      max-width: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.55;
+      overflow-x: clip;
+      max-width: 100%;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-accent-bar {
+      height: 3px;
+      background-color: var(--teal);
+      width: 100%;
+    }
+
+    .site-header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex: 1 1 220px;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand:hover {
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background-color: var(--teal);
+      border: 1px solid var(--teal-dark);
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 1.2;
+      color: var(--ink);
+      overflow-wrap: break-word;
+    }
+
+    .brand-sub {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .dispatch-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background-color: var(--teal-soft);
+      border: 1px solid #C6DCE1;
+      color: var(--teal-dark);
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--rust);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .btn-call-header {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--rust);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      text-decoration: none;
+      white-space: nowrap;
+      border: 1px solid var(--rust-dark);
+      transition: background-color 150ms ease, border-color 150ms ease;
+    }
+
+    .btn-call-header:hover {
+      background-color: var(--rust-dark);
+      text-decoration: none;
+    }
+
+    /* Hero Band */
+    .hero-band {
+      padding: 28px 0 22px;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--surface);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background-color: var(--surface-alt);
+      border: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 32px;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: var(--ink-2);
+      max-width: 68ch;
+      line-height: 1.6;
+    }
+
+    .hero-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .kpi-box {
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      min-width: 0;
+    }
+
+    .kpi-val {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--teal);
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+
+    .kpi-label {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    /* Quick Presets Bar */
+    .presets-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .presets-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-right: 4px;
+    }
+
+    .preset-btn {
+      appearance: none;
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-2);
+      cursor: pointer;
+      transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+
+    .preset-btn:hover {
+      background-color: var(--teal-soft);
+      border-color: var(--teal-mid);
+      color: var(--teal-dark);
+    }
+
+    .preset-btn.is-active {
+      background-color: var(--teal);
+      border-color: var(--teal);
+      color: #FFFFFF;
+    }
+
+    /* Main Workspace */
+    .workspace-section {
+      padding: 26px 0 36px;
+    }
+
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 15px 20px;
+      background-color: var(--surface-subtle);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .panel-title-wrap {
+      min-width: 0;
+    }
+
+    .panel-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 2px;
+    }
+
+    .panel-title {
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .panel-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 4px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--ink-2);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .panel-body {
+      padding: 20px;
+    }
+
+    .step-block {
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step-block:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    .field-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .field-label-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .input-label {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-2);
+      margin-bottom: 6px;
+    }
+
+    /* Symptom Cards 2x2 */
+    .symptom-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .choice-card {
+      appearance: none;
+      text-align: left;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 13px 14px;
+      border-radius: var(--radius-md);
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      width: 100%;
+      min-width: 0;
+      transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    .choice-card:hover {
+      background-color: #FFFFFF;
+      border-color: var(--teal-mid);
+    }
+
+    .choice-card[aria-checked="true"] {
+      background-color: var(--teal-soft);
+      border-color: var(--teal);
+      box-shadow: inset 0 0 0 1px var(--teal);
+    }
+
+    .choice-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-sm);
+      background-color: #FFFFFF;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--teal);
+      margin-top: 1px;
+    }
+
+    .choice-card[aria-checked="true"] .choice-icon {
+      background-color: var(--teal);
+      border-color: var(--teal);
+      color: #FFFFFF;
+    }
+
+    .choice-content {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .choice-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 3px;
+    }
+
+    .choice-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-bottom: 5px;
+    }
+
+    .choice-base {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--teal-dark);
+    }
+
+    /* 3-col Segmented Cards */
+    .segment-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .seg-btn {
+      appearance: none;
+      text-align: left;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      min-width: 0;
+      transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+
+    .seg-btn:hover {
+      border-color: var(--teal-mid);
+      background-color: #FFFFFF;
+    }
+
+    .seg-btn[aria-checked="true"] {
+      background-color: var(--teal);
+      border-color: var(--teal);
+      color: #FFFFFF;
+    }
+
+    .seg-btn-title {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 2px;
+    }
+
+    .seg-btn-sub {
+      display: block;
+      font-size: 11.5px;
+      opacity: 0.85;
+      line-height: 1.3;
+    }
+
+    .seg-btn[aria-checked="true"] .seg-btn-sub {
+      color: #E2EEF1;
+      opacity: 1;
+    }
+
+    /* Form Controls */
+    .two-col-inputs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .form-control {
+      width: 100%;
+      height: 40px;
+      padding: 8px 11px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: #FFFFFF;
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      line-height: 1.4;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(15, 76, 92, 0.14);
+    }
+
+    .range-wrap {
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      margin-top: 12px;
+    }
+
+    .range-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .range-head label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-2);
+    }
+
+    .range-readout {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--teal);
+      background-color: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .range-slider {
+      width: 100%;
+      accent-color: var(--teal);
+      cursor: pointer;
+      height: 6px;
+      margin: 4px 0;
+    }
+
+    .range-scale {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      margin-top: 2px;
+    }
+
+    /* Add-ons Check Cards */
+    .addons-stack {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+    }
+
+    .addon-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 11px 13px;
+      border-radius: var(--radius-md);
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: background-color 150ms ease, border-color 150ms ease;
+    }
+
+    .addon-row:hover {
+      background-color: #FFFFFF;
+      border-color: var(--teal-mid);
+    }
+
+    .addon-row.is-checked {
+      background-color: var(--teal-soft);
+      border-color: var(--teal);
+    }
+
+    .addon-checkbox {
+      width: 18px;
+      height: 18px;
+      margin: 2px 0 0;
+      accent-color: var(--teal);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .addon-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .addon-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .addon-name {
+      font-family: var(--font-display);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .addon-price {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--teal-dark);
+      background-color: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 2px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .addon-desc {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    /* Right Results Column */
+    .results-column {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .estimate-hero {
+      padding: 18px 20px;
+      background-color: var(--teal);
+      color: #FFFFFF;
+    }
+
+    .estimate-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .severity-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border-radius: 4px;
+      background-color: var(--rust);
+      color: #FFFFFF;
+    }
+
+    .severity-tag.is-planned {
+      background-color: var(--teal-dark);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .crew-time-pill {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+      color: #E0EEF2;
+    }
+
+    .estimate-range {
+      font-family: var(--font-display);
+      font-size: 34px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .estimate-sub {
+      font-size: 13px;
+      color: #D2E4E9;
+    }
+
+    /* Cost Composition Bar */
+    .cost-bar-wrap {
+      padding: 14px 20px;
+      background-color: var(--surface-subtle);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cost-bar {
+      display: flex;
+      height: 10px;
+      width: 100%;
+      border-radius: 999px;
+      overflow: hidden;
+      background-color: var(--border);
+      gap: 2px;
+    }
+
+    .bar-seg-base {
+      background-color: var(--teal);
+      transition: width 220ms ease;
+    }
+
+    .bar-seg-cond {
+      background-color: var(--teal-mid);
+      transition: width 220ms ease;
+    }
+
+    .bar-seg-addon {
+      background-color: var(--rust);
+      transition: width 220ms ease;
+    }
+
+    .bar-legend {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .legend-swatch {
+      width: 9px;
+      height: 9px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    /* Technical SVG Schematic */
+    .schematic-box {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      background-color: #FFFFFF;
+    }
+
+    .schematic-caption {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .schematic-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+
+    .schematic-status {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--rust);
+    }
+
+    .schematic-svg {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: 138px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background-color: var(--surface-subtle);
+    }
+
+    /* Line Items */
+    .line-items-wrap {
+      padding: 16px 20px;
+    }
+
+    .section-mini-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .line-items-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .line-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--border);
+      font-size: 13.5px;
+    }
+
+    .line-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .line-item-name {
+      color: var(--ink-2);
+      min-width: 0;
+    }
+
+    .line-item-note {
+      display: block;
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    .line-item-cost {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--ink);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .estimate-footnote {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* Diagnostic Protocol */
+    .protocol-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .protocol-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border);
+    }
+
+    .protocol-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      background-color: var(--teal);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .protocol-text {
+      min-width: 0;
+      font-size: 13px;
+      color: var(--ink-2);
+      line-height: 1.45;
+    }
+
+    .protocol-text strong {
+      display: block;
+      color: var(--ink);
+      font-size: 13.5px;
+      margin-bottom: 2px;
+    }
+
+    /* Dispatch Form & Prefilled Summary */
+    .dispatch-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .dispatch-form-full {
+      grid-column: 1 / -1;
+    }
+
+    .dispatch-pre-wrap {
+      background-color: #111A22;
+      color: #E6EDF3;
+      border-radius: var(--radius-md);
+      padding: 14px;
+      border: 1px solid #22313F;
+      margin-bottom: 12px;
+    }
+
+    .dispatch-pre-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #263747;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #9FB1C1;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .dispatch-pre {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.5;
+      font-variant-numeric: tabular-nums;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      color: #F0F4F8;
+    }
+
+    .dispatch-actions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .btn-primary {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--rust);
+      border: 1px solid var(--rust-dark);
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 150ms ease, border-color 150ms ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--rust-dark);
+    }
+
+    .btn-secondary {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--surface);
+      border: 1px solid var(--border-strong);
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 150ms ease, border-color 150ms ease;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--surface-alt);
+      border-color: var(--teal);
+    }
+
+    .mailto-row {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--teal-soft);
+      border: 1px solid #C6DCE1;
+      width: 100%;
+    }
+
+    .mailto-caption {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--teal-dark);
+    }
+
+    .mailto-link {
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--teal);
+      white-space: nowrap;
+      word-break: normal;
+      text-decoration: underline;
+    }
+
+    .ticket-confirmation {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--ok-soft);
+      border: 1px solid #B6DBC9;
+      color: #134E35;
+      font-size: 13px;
+      line-height: 1.45;
+      display: none;
+    }
+
+    .ticket-confirmation.is-visible {
+      display: block;
+    }
+
+    /* Core Services Grid */
+    .services-section {
+      padding: 36px 0 44px;
+      background-color: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      line-height: 1.2;
+      margin-top: 4px;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 58ch;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .service-card-top {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .service-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--rust);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .service-name {
+      font-size: 17px;
+      line-height: 1.25;
+      color: var(--ink);
+    }
+
+    .service-copy {
+      font-size: 13.5px;
+      color: var(--ink-2);
+      line-height: 1.5;
+    }
+
+    .service-specs {
+      list-style: none;
+      margin: 4px 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .service-specs li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .spec-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .service-load-btn {
+      appearance: none;
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      background-color: #FFFFFF;
+      border: 1px solid var(--border-strong);
+      color: var(--teal);
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+
+    .service-load-btn:hover {
+      background-color: var(--teal);
+      border-color: var(--teal);
+      color: #FFFFFF;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg);
+      padding: 32px 0 38px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .footer-company {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .footer-about {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 50ch;
+      margin-bottom: 12px;
+    }
+
+    .area-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .area-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-2);
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .contact-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .contact-item {
+      min-width: 0;
+    }
+
+    .contact-item--full {
+      grid-column: 1 / -1;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .contact-key {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .contact-val {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink);
+      overflow-wrap: break-word;
+    }
+
+    .contact-val.tabular {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .footer-bottom {
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Responsive Rules */
+    @media (max-width: 1060px) {
+      .workspace-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-header {
+        position: static;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      .site-header-inner {
+        gap: 10px;
+      }
+
+      .brand-name {
+        font-size: 15px;
+      }
+
+      .brand-sub {
+        white-space: normal;
+        font-size: 11.5px;
+      }
+
+      .dispatch-status-pill {
+        display: none;
+      }
+
+      .hero-title {
+        font-size: 25px;
+      }
+
+      .hero-kpis {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .kpi-box {
+        padding: 10px 10px;
+      }
+
+      .kpi-val {
+        font-size: 15px;
+      }
+
+      .panel-body,
+      .line-items-wrap,
+      .estimate-hero {
+        padding: 16px;
+      }
+
+      .symptom-grid,
+      .segment-grid,
+      .two-col-inputs,
+      .dispatch-form-grid,
+      .dispatch-actions-grid,
+      .services-grid,
+      .footer-grid,
+      .contact-card {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .estimate-range {
+        font-size: 28px;
+      }
+
+      .schematic-svg {
+        height: 96px;
+      }
+
+      .mailto-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-accent-bar"></div>
+    <div class="container site-header-inner">
+      <a class="brand" href="#top" aria-label="Omaha Drain Cleaning &amp; Plumbing home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M3 7h18v3.5h-6.5V20h-5v-9.5H3V7z" fill="#FFFFFF"/>
+            <circle cx="18.5" cy="17.5" r="3.5" fill="#C04A2B"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Omaha Drain Cleaning &amp; Plumbing</span>
+          <span class="brand-sub">4824 S 135th St, Omaha, NE 68137</span>
+        </span>
+      </a>
+
+      <div class="header-actions">
+        <span class="dispatch-status-pill">
+          <span class="status-dot" aria-hidden="true"></span>
+          Omaha Metro Dispatch
+        </span>
+        <a class="btn-call-header" href="tel:+14022005059">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          (402) 200-5059
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero-band">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M12 7v5l3 2"/>
+              </svg>
+              Omaha Field Triage &amp; Scoping Engine
+            </div>
+            <h1 class="hero-title">Instant Drain &amp; Sewer Issue Triage &amp; Quote Calculator</h1>
+            <p class="hero-desc">
+              Scope residential or commercial drain stoppages, main line hydro jetting, sewer camera inspections, trenchless line evaluations, or tankless water heater conversions across Omaha, NE. Receive an itemized USD estimate, field diagnostic protocol, and ready-to-send dispatch ticket.
+            </p>
+          </div>
+          <div class="hero-kpis">
+            <div class="kpi-box">
+              <div class="kpi-val">4,000 PSI</div>
+              <div class="kpi-label">Hydro Jetting Scour Capacity</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val">HD Video</div>
+              <div class="kpi-label">Sonde Line Depth Locating</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val">Same-Day</div>
+              <div class="kpi-label">Dispatch From S 135th St</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="presets-bar" aria-label="Quick Omaha Call Scenarios">
+          <span class="presets-label">Typical Omaha Scenarios:</span>
+          <button type="button" class="preset-btn is-active" data-preset="basement_backup">Basement Floor Drain Backup</button>
+          <button type="button" class="preset-btn" data-preset="kitchen_clog">Slow Kitchen Grease Clog</button>
+          <button type="button" class="preset-btn" data-preset="clay_roots">Older Clay Lateral Root Intrusion</button>
+          <button type="button" class="preset-btn" data-preset="tankless_conv">Tankless Water Heater Upgrade</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace-section" id="triage-workspace">
+      <div class="container">
+        <div class="workspace-grid">
+          <!-- LEFT COLUMN: INPUTS -->
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title-wrap">
+                <div class="panel-kicker">Field Intake Parameters</div>
+                <h2 class="panel-title">Configure Symptom &amp; Site Conditions</h2>
+              </div>
+              <span class="panel-badge mono">OMAHA-NE-CALC</span>
+            </div>
+
+            <div class="panel-body">
+              <!-- STEP 1 -->
+              <div class="step-block">
+                <div class="field-label" id="lbl-symptom">
+                  <span>01 · Primary Issue or Equipment Upgrade</span>
+                  <span class="field-label-tag">Select one</span>
+                </div>
+                <div class="symptom-grid" role="radiogroup" aria-labelledby="lbl-symptom">
+                  <button type="button" class="choice-card" role="radio" aria-checked="false" data-symptom="fixture">
+                    <span class="choice-icon" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 10h14v2a7 7 0 0 1-14 0v-2z"/>
+                        <path d="M12 19v3"/>
+                        <path d="M8 10V6a2 2 0 0 1 4 0"/>
+                      </svg>
+                    </span>
+                    <span class="choice-content">
+                      <span class="choice-title">Single Fixture Clog</span>
+                      <span class="choice-desc">One sink, shower, tub, or toilet draining slowly or backed up locally.</span>
+                      <span class="choice-base">Base $165 – $235</span>
+                    </span>
+                  </button>
+
+                  <button type="button" class="choice-card" role="radio" aria-checked="true" data-symptom="main_backup">
+                    <span class="choice-icon" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 15h18"/>
+                        <path d="M7 15v4"/>
+                        <path d="M17 15v4"/>
+                        <path d="M12 4v11"/>
+                        <path d="M9 7l3-3 3 3"/>
+                      </svg>
+                    </span>
+                    <span class="choice-content">
+                      <span class="choice-title">Main Sewer Backup</span>
+                      <span class="choice-desc">Multiple fixtures gurgling or basement floor drain backing up.</span>
+                      <span class="choice-base">Base $285 – $395</span>
+                    </span>
+                  </button>
+
+                  <button type="button" class="choice-card" role="radio" aria-checked="false" data-symptom="roots">
+                    <span class="choice-icon" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3v9"/>
+                        <path d="M12 12c-3 2-5 5-6 9"/>
+                        <path d="M12 12c3 2 5 5 6 9"/>
+                        <path d="M7 7l5 5 5-5"/>
+                      </svg>
+                    </span>
+                    <span class="choice-content">
+                      <span class="choice-title">Root Intrusion</span>
+                      <span class="choice-desc">Recurring main line stoppage in tree-lined or older clay/cast iron laterals.</span>
+                      <span class="choice-base">Base $340 – $480</span>
+                    </span>
+                  </button>
+
+                  <button type="button" class="choice-card" role="radio" aria-checked="false" data-symptom="tankless">
+                    <span class="choice-icon" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="6" y="3" width="12" height="16" rx="2"/>
+                        <path d="M10 9c0 2 2 2 2 4a2 2 0 1 1-4 0"/>
+                        <path d="M9 19v3"/>
+                        <path d="M15 19v3"/>
+                      </svg>
+                    </span>
+                    <span class="choice-content">
+                      <span class="choice-title">Tankless Upgrade</span>
+                      <span class="choice-desc">High-efficiency condensing tankless water heater installation &amp; sizing.</span>
+                      <span class="choice-base">Base $3,200 – $4,150</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- STEP 2 -->
+              <div class="step-block">
+                <div class="field-label" id="lbl-property">
+                  <span>02 · Property Classification &amp; Existing System</span>
+                  <span class="field-label-tag">Affects equipment &amp; load</span>
+                </div>
+                <div class="segment-grid" role="radiogroup" aria-labelledby="lbl-property">
+                  <button type="button" class="seg-btn" role="radio" aria-checked="true" data-property="residential">
+                    <span class="seg-btn-title">Single-Family</span>
+                    <span class="seg-btn-sub">Standard residential line</span>
+                  </button>
+                  <button type="button" class="seg-btn" role="radio" aria-checked="false" data-property="multiunit">
+                    <span class="seg-btn-title">Multi-Unit / Duplex</span>
+                    <span class="seg-btn-sub">Shared stacks &amp; isolation</span>
+                  </button>
+                  <button type="button" class="seg-btn" role="radio" aria-checked="false" data-property="commercial">
+                    <span class="seg-btn-title">Commercial</span>
+                    <span class="seg-btn-sub">Heavy grease / high demand</span>
+                  </button>
+                </div>
+
+                <div class="two-col-inputs">
+                  <div>
+                    <label class="input-label" for="infra-select" id="infra-label">Pipe Material / Era</label>
+                    <select class="form-control" id="infra-select" autocomplete="off">
+                      <option value="pvc">PVC Schedule 40 (Post-1990)</option>
+                      <option value="cast_iron" selected>Cast Iron / Galvanized (1950–1989)</option>
+                      <option value="clay">Vitrified Clay / Orangeburg (Pre-1970)</option>
+                      <option value="unknown">Unknown / Need Field Check</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="input-label" for="urgency-select">Dispatch Priority Window</label>
+                    <select class="form-control" id="urgency-select" autocomplete="off">
+                      <option value="standard">Standard Scheduled (Next Window)</option>
+                      <option value="sameday" selected>Same-Day Dispatch (2–4 hr Window)</option>
+                      <option value="emergency">After-Hours Emergency (Immediate)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- STEP 3 -->
+              <div class="step-block">
+                <div class="field-label" id="lbl-access">
+                  <span id="access-heading-text">03 · Cleanout Access &amp; Lateral Distance</span>
+                  <span class="field-label-tag" id="access-sub-tag">Setup complexity</span>
+                </div>
+                <div class="segment-grid" id="access-group" role="radiogroup" aria-labelledby="lbl-access">
+                  <button type="button" class="seg-btn" role="radio" aria-checked="false" data-access="exterior">
+                    <span class="seg-btn-title" data-role="access-title">Exterior Cleanout</span>
+                    <span class="seg-btn-sub" data-role="access-sub">Direct 4-inch yard access</span>
+                  </button>
+                  <button type="button" class="seg-btn" role="radio" aria-checked="true" data-access="basement">
+                    <span class="seg-btn-title" data-role="access-title">Basement Stack Cap</span>
+                    <span class="seg-btn-sub" data-role="access-sub">Indoor containment setup</span>
+                  </button>
+                  <button type="button" class="seg-btn" role="radio" aria-checked="false" data-access="none">
+                    <span class="seg-btn-title" data-role="access-title">No Known Cleanout</span>
+                    <span class="seg-btn-sub" data-role="access-sub">Toilet pull or roof vent</span>
+                  </button>
+                </div>
+
+                <div class="range-wrap">
+                  <div class="range-head">
+                    <label for="scope-range" id="scope-range-label">Estimated Lateral / Run Length</label>
+                    <span class="range-readout" id="scope-range-readout">60 ft</span>
+                  </div>
+                  <input type="range" class="range-slider" id="scope-range" min="30" max="120" step="10" value="60" autocomplete="off">
+                  <div class="range-scale" id="scope-range-scale">
+                    <span>30 ft (Short Branch)</span>
+                    <span>70 ft (Standard Lot)</span>
+                    <span>120 ft (Deep Setback)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- STEP 4 -->
+              <div class="step-block">
+                <div class="field-label">
+                  <span id="addons-heading-text">04 · Camera Inspection &amp; Equipment Add-Ons</span>
+                  <span class="field-label-tag">Optional field scope</span>
+                </div>
+                <div class="addons-stack" id="addons-container">
+                  <label class="addon-row is-checked" for="addon-1">
+                    <input type="checkbox" class="addon-checkbox" id="addon-1" checked autocomplete="off">
+                    <span class="addon-body">
+                      <span class="addon-top">
+                        <span class="addon-name" id="addon-1-name">Sewer Camera Inspections (HD Video + Locator)</span>
+                        <span class="addon-price" id="addon-1-price">+$145 – $175</span>
+                      </span>
+                      <span class="addon-desc" id="addon-1-desc">Fiber-optic line inspection with sonde depth marking. Bundled rate applies with active cleaning.</span>
+                    </span>
+                  </label>
+
+                  <label class="addon-row is-checked" for="addon-2">
+                    <input type="checkbox" class="addon-checkbox" id="addon-2" checked autocomplete="off">
+                    <span class="addon-body">
+                      <span class="addon-top">
+                        <span class="addon-name" id="addon-2-name">Main Drain Cleaning &amp; Hydro Jetting (4,000 PSI)</span>
+                        <span class="addon-price" id="addon-2-price">+$240 – $330</span>
+                      </span>
+                      <span class="addon-desc" id="addon-2-desc">High-pressure rotary water scouring clears grease, mineral scale, and fine roots wall-to-wall.</span>
+                    </span>
+                  </label>
+
+                  <label class="addon-row" for="addon-3">
+                    <input type="checkbox" class="addon-checkbox" id="addon-3" autocomplete="off">
+                    <span class="addon-body">
+                      <span class="addon-top">
+                        <span class="addon-name" id="addon-3-name">Trenchless Sewer Line Repair Evaluation</span>
+                        <span class="addon-price" id="addon-3-price">$0 w/ Camera</span>
+                      </span>
+                      <span class="addon-desc" id="addon-3-desc">Measure crack or offset length for CIPP cured-in-place structural lining without yard excavation.</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: OUTPUT + SUMMARY -->
+          <div class="results-column">
+            <div class="panel">
+              <div class="estimate-hero">
+                <div class="estimate-top-row">
+                  <span class="severity-tag" id="severity-badge">HIGH PRIORITY · MAIN LINE</span>
+                  <span class="crew-time-pill" id="crew-time-readout">Est. Crew Time: 2.0 – 3.0 hrs</span>
+                </div>
+                <div class="estimate-range" id="total-range-readout">$780 – $1,085</div>
+                <div class="estimate-sub" id="estimate-subtitle">Itemized Omaha field range including same-day dispatch from 4824 S 135th St.</div>
+              </div>
+
+              <div class="cost-bar-wrap">
+                <div class="cost-bar" aria-hidden="true">
+                  <div class="bar-seg-base" id="bar-base" style="width: 45%"></div>
+                  <div class="bar-seg-cond" id="bar-cond" style="width: 25%"></div>
+                  <div class="bar-seg-addon" id="bar-addon" style="width: 30%"></div>
+                </div>
+                <div class="bar-legend">
+                  <span class="legend-item"><span class="legend-swatch" style="background-color: var(--teal)"></span><span id="leg-base">Core Scope 45%</span></span>
+                  <span class="legend-item"><span class="legend-swatch" style="background-color: var(--teal-mid)"></span><span id="leg-cond">Site &amp; Priority 25%</span></span>
+                  <span class="legend-item"><span class="legend-swatch" style="background-color: var(--rust)"></span><span id="leg-addon">Add-Ons 30%</span></span>
+                </div>
+              </div>
+
+              <div class="schematic-box">
+                <div class="schematic-caption">
+                  <span class="schematic-title" id="schematic-title">Diagnostic Lateral Schematic</span>
+                  <span class="schematic-status" id="schematic-status">Main Line + Camera + Jetter</span>
+                </div>
+                <svg class="schematic-svg" id="system-diagram" viewBox="0 0 600 138" width="600" height="138" role="img" aria-label="Dynamic plumbing diagnostic schematic"></svg>
+              </div>
+
+              <div class="line-items-wrap">
+                <div class="section-mini-title">Itemized Estimate Breakdown (USD)</div>
+                <ul class="line-items-list" id="line-items-list"></ul>
+                <div class="estimate-footnote">
+                  Transparent field estimate based on your selected conditions. Final flat-rate approval is confirmed on site prior to starting any clearing, camera, or installation work.
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title-wrap">
+                  <div class="panel-kicker">Field Sequence</div>
+                  <h2 class="panel-title">Recommended Diagnostic Steps</h2>
+                </div>
+                <span class="panel-badge" id="protocol-count-badge">4 STEPS</span>
+              </div>
+              <div class="panel-body">
+                <ol class="protocol-list" id="protocol-list"></ol>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title-wrap">
+                  <div class="panel-kicker">Dispatch Packet</div>
+                  <h2 class="panel-title">Prefilled Dispatch Summary</h2>
+                </div>
+                <span class="panel-badge">LIVE SYNC</span>
+              </div>
+              <div class="panel-body">
+                <div class="dispatch-form-grid">
+                  <div>
+                    <label class="input-label" for="cust-name">Contact Name</label>
+                    <input type="text" class="form-control" id="cust-name" placeholder="Jordan Miller" autocomplete="name">
+                  </div>
+                  <div>
+                    <label class="input-label" for="cust-phone">Callback Phone</label>
+                    <input type="tel" class="form-control" id="cust-phone" placeholder="(402) 555-0148" autocomplete="tel">
+                  </div>
+                  <div>
+                    <label class="input-label" for="cust-email">Email Address</label>
+                    <input type="email" class="form-control" id="cust-email" placeholder="name@example.com" autocomplete="email">
+                  </div>
+                  <div>
+                    <label class="input-label" for="cust-zip">Omaha ZIP Code</label>
+                    <input type="text" class="form-control" id="cust-zip" placeholder="68137" inputmode="numeric" autocomplete="postal-code">
+                  </div>
+                  <div class="dispatch-form-full">
+                    <label class="input-label" for="cust-address">Service Street Address</label>
+                    <input type="text" class="form-control" id="cust-address" placeholder="Street address in Omaha metro area" autocomplete="street-address">
+                  </div>
+                </div>
+
+                <div class="dispatch-pre-wrap">
+                  <div class="dispatch-pre-head">
+                    <span>OMAHA DISPATCH SUMMARY</span>
+                    <span id="summary-ref-code">REF #ODP-PREVIEW</span>
+                  </div>
+                  <pre class="dispatch-pre" id="dispatch-summary"></pre>
+                </div>
+
+                <div class="dispatch-actions-grid">
+                  <button type="button" class="btn-secondary" id="copy-summary-btn">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="9" y="9" width="13" height="13" rx="2"/>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    <span id="copy-btn-label">Copy Summary</span>
+                  </button>
+                  <button type="button" class="btn-primary" id="lock-ticket-btn">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                      <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Prepare Dispatch Ticket
+                  </button>
+                  <div class="mailto-row">
+                    <span class="mailto-caption">Send summary directly</span>
+                    <a class="mailto-link" id="dispatch-mailto-link" href="mailto:contact@omahadrain.com">contact@omahadrain.com</a>
+                  </div>
+                </div>
+
+                <div class="ticket-confirmation" id="ticket-confirmation" role="status" aria-live="polite"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE SERVICES SECTION -->
+    <section class="services-section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="panel-kicker">Core Field Capabilities</div>
+            <h2 class="section-title">Omaha Drain Cleaning &amp; Plumbing Services</h2>
+          </div>
+          <p class="section-subtitle">
+            Click any service below to load its typical Omaha field configuration directly into the triage and quote calculator above.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-card-top">
+              <span class="service-code">SVC-01 · HIGH PRESSURE</span>
+              <h3 class="service-name">Main Drain Cleaning &amp; Hydro Jetting</h3>
+              <p class="service-copy">
+                Mechanical augering and 4,000 PSI rotary water jetting to clear heavy sludge, kitchen grease, soap scale, and lateral blockages back to full pipe diameter.
+              </p>
+              <ul class="service-specs">
+                <li><span class="spec-dot" aria-hidden="true"></span>Up to 4,000 PSI commercial scour</li>
+                <li><span class="spec-dot" aria-hidden="true"></span>Residential &amp; food-service mains</li>
+                <li><span class="spec-dot" aria-hidden="true"></span>Full lateral diameter restoration</li>
+              </ul>
+            </div>
+            <button type="button" class="service-load-btn" data-load-preset="basement_backup">Load in Triage Tool</button>
+          </article>
+
+          <article class="service-card">
+            <div class="service-card-top">
+              <span class="service-code">SVC-02 · NO-DIG STRUCTURAL</span>
+              <h3 class="service-name">Trenchless Sewer Line Repair</h3>
+              <p class="service-copy">
+                Structural pipe lining and spot repairs for cracked vitrified clay, root-damaged joints, and aging Omaha laterals without excavating driveways or mature trees.
+              </p>
+              <ul class="service-specs">
+                <li><span class="spec-dot" aria-hidden="true"></span>Preserves landscaping &amp; concrete</li>
+                <li><span class="spec-dot" aria-hidden="true"></span>Seamless corrosion-resistant liner</li>
+                <li><span class="spec-dot" aria-hidden="true"></span>Scoped via post-clean HD camera</li>
+              </ul>
+            </div>
+            <button type="button" class="service-load-btn" data-load-preset="clay_roots">Load in Triage Tool</button>
+          </article>
+
+          <article class="service-card">
+            <div class="service-card-top">
+              <span class="service-code">SVC-03 · HD DIAGNOSTICS</span>
+              <h3 class="service-name">Sewer Camera Inspections</h3>
+              <p class="service-copy">
+                High-definition waterproof fiber-optic video inspection with electronic sonde locating to pinpoint root intrusions, bellies, and offset joints before work begins.
+              </p>
+              <ul class="service-specs">
+                <li><span class="spec-dot" aria-hidden="true"></span>Exact depth &amp; surface marking</li>
+                <li><span class="spec-dot" aria-hidden="true"></span>Pre-purchase home buyer scans</li>
+                <li><span class="spec-dot" aria-hidden="true"></span>Recorded footage &amp; condition log</li>
+              </ul>
+            </div>
+            <button type="button" class="service-load-btn" data-load-preset="camera_audit">Load in Triage Tool</button>
+          </article>
+
+          <article class="service-card">
+            <div class="service-card-top">
+              <span class="service-code">SVC-04 · CONTINUOUS HOT WATER</span>
+              <h3 class="service-name">Tankless Water Heater Installation</h3>
+              <p class="service-copy">
+                High-efficiency condensing tankless installations sized for Nebraska incoming groundwater temperatures, complete with gas manifold checks and scale protection.
+              </p>
+              <ul class="service-specs">
+                <li><span class="spec-dot" aria-hidden="true"></span>Cold-climate GPM demand sizing</li>
+                <li><span class="spec-dot" aria-hidden="true"></span>Isolation valves &amp; scale filtration</li>
+                <li><span class="spec-dot" aria-hidden="true"></span>Clean removal of legacy tank units</li>
+              </ul>
+            </div>
+            <button type="button" class="service-load-btn" data-load-preset="tankless_conv">Load in Triage Tool</button>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h2 class="footer-company">Omaha Drain Cleaning &amp; Plumbing</h2>
+          <p class="footer-about">
+            Local drain clearing, sewer diagnostics, trenchless rehabilitation, and high-efficiency plumbing installations serving homeowners and commercial properties throughout Omaha, NE.
+          </p>
+          <div class="area-tags">
+            <span class="area-tag">Millard</span>
+            <span class="area-tag">West Omaha</span>
+            <span class="area-tag">Dundee</span>
+            <span class="area-tag">Benson</span>
+            <span class="area-tag">Aksarben</span>
+            <span class="area-tag">Ralston</span>
+            <span class="area-tag">Elkhorn</span>
+            <span class="area-tag">Papillion</span>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-item">
+            <span class="contact-key">Address</span>
+            <span class="contact-val">4824 S 135th St, Omaha, NE 68137</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-key">Phone</span>
+            <a class="contact-val tabular" href="tel:+14022005059">(402) 200-5059</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-key">Website</span>
+            <a class="contact-val" href="https://www.omahadrain.com" target="_blank" rel="noopener noreferrer">https://www.omahadrain.com</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-key">City</span>
+            <span class="contact-val">Omaha, NE</span>
+          </div>
+          <div class="contact-item contact-item--full">
+            <span class="contact-key" style="margin-bottom: 0;">Dispatch Email</span>
+            <a class="mailto-link" href="mailto:contact@omahadrain.com">contact@omahadrain.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>Omaha Drain Cleaning &amp; Plumbing · 4824 S 135th St, Omaha, NE 68137</span>
+        <span class="mono">Interactive Field Triage &amp; Estimate Tool</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var SYMPTOM_META = {
+        fixture: {
+          title: 'Single Fixture Clog',
+          baseLow: 165,
+          baseHigh: 235,
+          hoursLow: 1.0,
+          hoursHigh: 1.5,
+          severityText: 'LOCALIZED BRANCH LINE',
+          isPlanned: false,
+          mode: 'drain',
+          truckGear: 'K-40 / K-60 Drum Auger, Trap Kit, Wet-Vac Containment'
+        },
+        main_backup: {
+          title: 'Main Sewer Backup',
+          baseLow: 285,
+          baseHigh: 395,
+          hoursLow: 1.5,
+          hoursHigh: 2.5,
+          severityText: 'HIGH PRIORITY · MAIN LINE',
+          isPlanned: false,
+          mode: 'drain',
+          truckGear: 'Main Sectional Cable Machine, 4,000 PSI Trailer Jetter, HD Camera'
+        },
+        roots: {
+          title: 'Root Intrusion',
+          baseLow: 340,
+          baseHigh: 480,
+          hoursLow: 2.0,
+          hoursHigh: 3.5,
+          severityText: 'STRUCTURAL LATERAL RISK',
+          isPlanned: false,
+          mode: 'drain',
+          truckGear: '3-Inch Rotary Root Cutter, 4,000 PSI Jetter, HD Sonde Locator'
+        },
+        tankless: {
+          title: 'Tankless Upgrade',
+          baseLow: 3200,
+          baseHigh: 4150,
+          hoursLow: 5.0,
+          hoursHigh: 7.5,
+          severityText: 'PLANNED SYSTEM UPGRADE',
+          isPlanned: true,
+          mode: 'tankless',
+          truckGear: 'Condensing Tankless Unit, Isolation Valve Kit, Vent & Gas Manifold Gear'
+        }
+      };
+
+      var PROPERTY_MODS = {
+        residential: {
+          label: 'Single-Family Home',
+          drainLow: 0, drainHigh: 0,
+          tanklessLow: 0, tanklessHigh: 0
+        },
+        multiunit: {
+          label: 'Multi-Unit / Duplex',
+          drainLow: 85, drainHigh: 135,
+          tanklessLow: 450, tanklessHigh: 650
+        },
+        commercial: {
+          label: 'Commercial / Food Service',
+          drainLow: 180, drainHigh: 290,
+          tanklessLow: 1150, tanklessHigh: 1650
+        }
+      };
+
+      var DRAIN_INFRA = {
+        pvc: { label: 'PVC Schedule 40 (Post-1990)', low: 0, high: 0 },
+        cast_iron: { label: 'Cast Iron / Galvanized (1950–1989)', low: 65, high: 110 },
+        clay: { label: 'Vitrified Clay / Orangeburg (Pre-1970)', low: 95, high: 160 },
+        unknown: { label: 'Unknown / Need Field Check', low: 0, high: 75 }
+      };
+
+      var TANKLESS_INFRA = {
+        gas_tank: { label: 'Existing Atmospheric Gas Tank', low: 0, high: 0 },
+        electric_conv: { label: 'Electric Tank to Gas Tankless', low: 480, high: 720 },
+        direct_swap: { label: 'Existing Tankless Replacement', low: -250, high: -180 },
+        unknown: { label: 'Need Site Mechanical Audit', low: 0, high: 220 }
+      };
+
+      var DRAIN_ACCESS = {
+        exterior: { label: 'Exterior Ground Cleanout', title: 'Exterior Cleanout', sub: 'Direct 4-inch yard access', low: 0, high: 0 },
+        basement: { label: 'Basement Stack Cap', title: 'Basement Stack Cap', sub: 'Indoor containment setup', low: 55, high: 85 },
+        none: { label: 'No Known Cleanout', title: 'No Known Cleanout', sub: 'Toilet pull or roof vent', low: 145, high: 220 }
+      };
+
+      var TANKLESS_ACCESS = {
+        exterior: { label: 'Exterior Wall / Easy Venting', title: 'Exterior Wall Access', sub: 'Short concentric vent run', low: 0, high: 0 },
+        basement: { label: 'Interior Closet (Extended Vent)', title: 'Interior Closet Run', sub: 'Extended intake/exhaust', low: 280, high: 420 },
+        none: { label: 'Needs Gas Line Upsizing', title: 'Gas Line Upsize', sub: 'Dedicated 3/4" or 1" feed', low: 390, high: 580 }
+      };
+
+      var URGENCY_MODS = {
+        standard: { label: 'Standard Scheduled', low: 0, high: 0, windowText: 'Next Available Business Window' },
+        sameday: { label: 'Same-Day Dispatch', low: 85, high: 115, windowText: 'Today · 2–4 hr Arrival Window' },
+        emergency: { label: 'After-Hours Emergency', low: 165, high: 225, windowText: 'Priority Response · 60–90 min' }
+      };
+
+      var state = {
+        symptom: 'main_backup',
+        property: 'residential',
+        infra: 'cast_iron',
+        urgency: 'sameday',
+        access: 'basement',
+        rangeVal: 60,
+        demandBaths: 2,
+        addon1: true,
+        addon2: true,
+        addon3: false,
+        ticketRef: ''
+      };
+
+      var els = {
+        symptomButtons: document.querySelectorAll('[data-symptom]'),
+        propertyButtons: document.querySelectorAll('[data-property]'),
+        accessButtons: document.querySelectorAll('[data-access]'),
+        presetButtons: document.querySelectorAll('[data-preset]'),
+        serviceLoadButtons: document.querySelectorAll('[data-load-preset]'),
+        infraLabel: document.getElementById('infra-label'),
+        infraSelect: document.getElementById('infra-select'),
+        urgencySelect: document.getElementById('urgency-select'),
+        accessHeadingText: document.getElementById('access-heading-text'),
+        accessSubTag: document.getElementById('access-sub-tag'),
+        scopeRangeLabel: document.getElementById('scope-range-label'),
+        scopeRange: document.getElementById('scope-range'),
+        scopeRangeReadout: document.getElementById('scope-range-readout'),
+        scopeRangeScale: document.getElementById('scope-range-scale'),
+        addonsHeadingText: document.getElementById('addons-heading-text'),
+        addon1: document.getElementById('addon-1'),
+        addon2: document.getElementById('addon-2'),
+        addon3: document.getElementById('addon-3'),
+        addon1Name: document.getElementById('addon-1-name'),
+        addon1Price: document.getElementById('addon-1-price'),
+        addon1Desc: document.getElementById('addon-1-desc'),
+        addon2Name: document.getElementById('addon-2-name'),
+        addon2Price: document.getElementById('addon-2-price'),
+        addon2Desc: document.getElementById('addon-2-desc'),
+        addon3Name: document.getElementById('addon-3-name'),
+        addon3Price: document.getElementById('addon-3-price'),
+        addon3Desc: document.getElementById('addon-3-desc'),
+        severityBadge: document.getElementById('severity-badge'),
+        crewTimeReadout: document.getElementById('crew-time-readout'),
+        totalRangeReadout: document.getElementById('total-range-readout'),
+        estimateSubtitle: document.getElementById('estimate-subtitle'),
+        barBase: document.getElementById('bar-base'),
+        barCond: document.getElementById('bar-cond'),
+        barAddon: document.getElementById('bar-addon'),
+        legBase: document.getElementById('leg-base'),
+        legCond: document.getElementById('leg-cond'),
+        legAddon: document.getElementById('leg-addon'),
+        schematicTitle: document.getElementById('schematic-title'),
+        schematicStatus: document.getElementById('schematic-status'),
+        systemDiagram: document.getElementById('system-diagram'),
+        lineItemsList: document.getElementById('line-items-list'),
+        protocolList: document.getElementById('protocol-list'),
+        custName: document.getElementById('cust-name'),
+        custPhone: document.getElementById('cust-phone'),
+        custEmail: document.getElementById('cust-email'),
+        custZip: document.getElementById('cust-zip'),
+        custAddress: document.getElementById('cust-address'),
+        dispatchSummary: document.getElementById('dispatch-summary'),
+        summaryRefCode: document.getElementById('summary-ref-code'),
+        copySummaryBtn: document.getElementById('copy-summary-btn'),
+        copyBtnLabel: document.getElementById('copy-btn-label'),
+        lockTicketBtn: document.getElementById('lock-ticket-btn'),
+        dispatchMailtoLink: document.getElementById('dispatch-mailto-link'),
+        ticketConfirmation: document.getElementById('ticket-confirmation')
+      };
+
+      function formatUsd(n) {
+        return '$' + Math.round(n).toLocaleString('en-US');
+      }
+
+      function formatRange(low, high) {
+        if (low === high) {
+          return formatUsd(low);
+        }
+        return formatUsd(low) + ' – ' + formatUsd(high);
+      }
+
+      function syncInfraAndModeControls() {
+        var meta = SYMPTOM_META[state.symptom];
+        var isTankless = meta.mode === 'tankless';
+
+        if (isTankless) {
+          els.infraLabel.textContent = 'Existing Water Heater Setup';
+          var currentInfra = state.infra;
+          var tanklessKeys = Object.keys(TANKLESS_INFRA);
+          if (tanklessKeys.indexOf(currentInfra) === -1) {
+            state.infra = 'gas_tank';
+          }
+          els.infraSelect.innerHTML = '' +
+            '<option value="gas_tank">Existing Atmospheric Gas Tank</option>' +
+            '<option value="electric_conv">Electric Tank to Gas Tankless</option>' +
+            '<option value="direct_swap">Existing Tankless Replacement</option>' +
+            '<option value="unknown">Need Site Mechanical Audit</option>';
+          els.infraSelect.value = state.infra;
+
+          els.accessHeadingText.textContent = '03 · Venting, Gas Access & Hot Water Demand';
+          els.accessSubTag.textContent = 'Mechanical routing';
+
+          els.accessButtons.forEach(function (btn) {
+            var key = btn.getAttribute('data-access');
+            var info = TANKLESS_ACCESS[key];
+            btn.querySelector('[data-role="access-title"]').textContent = info.title;
+            btn.querySelector('[data-role="access-sub"]').textContent = info.sub;
+          });
+
+          els.scopeRangeLabel.textContent = 'Simultaneous Hot Water Demand';
+          els.scopeRange.min = '1';
+          els.scopeRange.max = '4';
+          els.scopeRange.step = '1';
+          els.scopeRange.value = String(state.demandBaths);
+          els.scopeRangeReadout.textContent = state.demandBaths + (state.demandBaths === 1 ? ' Full Bath' : ' Full Baths');
+          els.scopeRangeScale.innerHTML = '<span>1 Bath (150k BTU)</span><span>2–3 Baths (199k BTU)</span><span>4+ Baths (High GPM)</span>';
+
+          els.addonsHeadingText.textContent = '04 · Tankless Protection & Installation Add-Ons';
+          els.addon1Name.textContent = 'Dedicated Recirculation Pump & Crossover Valve';
+          els.addon1Price.textContent = '+$340 – $460';
+          els.addon1Desc.textContent = 'Delivers rapid hot water to distant master baths and reduces cold-water purge wait time.';
+
+          els.addon2Name.textContent = 'Scale-Guard Filter & Condensate Neutralizer';
+          els.addon2Price.textContent = '+$195 – $265';
+          els.addon2Desc.textContent = 'Protects stainless heat exchanger against Omaha hard-water mineral scaling and neutralizes acidic condensate.';
+
+          els.addon3Name.textContent = 'Old Tank Haul-Away & Omaha Permit Filing';
+          els.addon3Price.textContent = '+$145 – $195';
+          els.addon3Desc.textContent = 'Includes draining, disposal of legacy water heater, and municipal mechanical permit coordination.';
+        } else {
+          els.infraLabel.textContent = 'Pipe Material / Era';
+          var drainKeys = Object.keys(DRAIN_INFRA);
+          if (drainKeys.indexOf(state.infra) === -1) {
+            state.infra = 'cast_iron';
+          }
+          els.infraSelect.innerHTML = '' +
+            '<option value="pvc">PVC Schedule 40 (Post-1990)</option>' +
+            '<option value="cast_iron">Cast Iron / Galvanized (1950–1989)</option>' +
+            '<option value="clay">Vitrified Clay / Orangeburg (Pre-1970)</option>' +
+            '<option value="unknown">Unknown / Need Field Check</option>';
+          els.infraSelect.value = state.infra;
+
+          els.accessHeadingText.textContent = '03 · Cleanout Access & Lateral Distance';
+          els.accessSubTag.textContent = 'Setup complexity';
+
+          els.accessButtons.forEach(function (btn) {
+            var key = btn.getAttribute('data-access');
+            var info = DRAIN_ACCESS[key];
+            btn.querySelector('[data-role="access-title"]').textContent = info.title;
+            btn.querySelector('[data-role="access-sub"]').textContent = info.sub;
+          });
+
+          els.scopeRangeLabel.textContent = 'Estimated Lateral / Run Length';
+          els.scopeRange.min = '30';
+          els.scopeRange.max = '120';
+          els.scopeRange.step = '10';
+          els.scopeRange.value = String(state.rangeVal);
+          els.scopeRangeReadout.textContent = state.rangeVal + ' ft';
+          els.scopeRangeScale.innerHTML = '<span>30 ft (Short Branch)</span><span>70 ft (Standard Lot)</span><span>120 ft (Deep Setback)</span>';
+
+          els.addonsHeadingText.textContent = '04 · Camera Inspection & Equipment Add-Ons';
+          els.addon1Name.textContent = 'Sewer Camera Inspections (HD Video + Locator)';
+          els.addon1Price.textContent = state.addon2 ? '+$145 – $175' : '+$185 – $225';
+          els.addon1Desc.textContent = 'Fiber-optic line inspection with sonde depth marking. Bundled discount applies when combined with hydro jetting.';
+
+          els.addon2Name.textContent = 'Main Drain Cleaning & Hydro Jetting (4,000 PSI)';
+          els.addon2Price.textContent = state.symptom === 'fixture' ? '+$190 – $250' : '+$240 – $330';
+          els.addon2Desc.textContent = 'High-pressure rotary water scouring clears grease, mineral scale, and fine roots wall-to-wall.';
+
+          els.addon3Name.textContent = 'Trenchless Sewer Line Repair Evaluation';
+          els.addon3Price.textContent = state.addon1 ? '$0 w/ Camera' : '+$95 – $130';
+          els.addon3Desc.textContent = 'Measure crack or offset length for CIPP cured-in-place structural lining without yard excavation.';
+        }
+      }
+
+      function computeEstimate() {
+        var meta = SYMPTOM_META[state.symptom];
+        var prop = PROPERTY_MODS[state.property];
+        var urg = URGENCY_MODS[state.urgency];
+        var isTankless = meta.mode === 'tankless';
+
+        var lineItems = [];
+        var baseLow = meta.baseLow;
+        var baseHigh = meta.baseHigh;
+        var condLow = 0;
+        var condHigh = 0;
+        var addonLow = 0;
+        var addonHigh = 0;
+        var hoursLow = meta.hoursLow;
+        var hoursHigh = meta.hoursHigh;
+
+        lineItems.push({
+          name: meta.title + ' — Core Field Scope',
+          note: meta.truckGear,
+          low: baseLow,
+          high: baseHigh
+        });
+
+        if (isTankless) {
+          if (prop.tanklessLow > 0) {
+            condLow += prop.tanklessLow;
+            condHigh += prop.tanklessHigh;
+            lineItems.push({
+              name: prop.label + ' Capacity Sizing',
+              note: 'Commercial or multi-zone BTU/GPM sizing',
+              low: prop.tanklessLow,
+              high: prop.tanklessHigh
+            });
+          }
+
+          var tInfra = TANKLESS_INFRA[state.infra] || TANKLESS_INFRA.gas_tank;
+          if (tInfra.low !== 0 || tInfra.high !== 0) {
+            condLow += tInfra.low;
+            condHigh += tInfra.high;
+            lineItems.push({
+              name: tInfra.label,
+              note: 'Fuel, electrical & mechanical transition',
+              low: tInfra.low,
+              high: tInfra.high
+            });
+          }
+
+          var tAcc = TANKLESS_ACCESS[state.access] || TANKLESS_ACCESS.exterior;
+          if (tAcc.low > 0) {
+            condLow += tAcc.low;
+            condHigh += tAcc.high;
+            hoursLow += 0.5;
+            hoursHigh += 1.0;
+            lineItems.push({
+              name: tAcc.label,
+              note: 'Vent routing & manifold compliance',
+              low: tAcc.low,
+              high: tAcc.high
+            });
+          }
+
+          if (state.demandBaths >= 3) {
+            var bathLow = state.demandBaths === 3 ? 320 : 620;
+            var bathHigh = state.demandBaths === 3 ? 440 : 850;
+            condLow += bathLow;
+            condHigh += bathHigh;
+            lineItems.push({
+              name: state.demandBaths + '-Bathroom Peak Demand Upgrade',
+              note: '199k BTU condensing flow capacity for Nebraska winter inlet temps',
+              low: bathLow,
+              high: bathHigh
+            });
+          }
+
+          if (state.addon1) {
+            addonLow += 340;
+            addonHigh += 460;
+            hoursLow += 0.5;
+            hoursHigh += 1.0;
+            lineItems.push({
+              name: 'Dedicated Recirculation Pump & Crossover Valve',
+              note: 'Instant hot water loop commissioning',
+              low: 340,
+              high: 460
+            });
+          }
+
+          if (state.addon2) {
+            addonLow += 195;
+            addonHigh += 265;
+            lineItems.push({
+              name: 'Scale-Guard Filter & Condensate Neutralizer',
+              note: 'Hard-water heat exchanger defense',
+              low: 195,
+              high: 265
+            });
+          }
+
+          if (state.addon3) {
+            addonLow += 145;
+            addonHigh += 195;
+            lineItems.push({
+              name: 'Old Tank Haul-Away & Omaha Permit Filing',
+              note: 'Unit drainage, disposal & city inspection sign-off',
+              low: 145,
+              high: 195
+            });
+          }
+        } else {
+          if (prop.drainLow > 0) {
+            condLow += prop.drainLow;
+            condHigh += prop.drainHigh;
+            hoursLow += 0.5;
+            hoursHigh += 0.5;
+            lineItems.push({
+              name: prop.label + ' Containment & Stack Scope',
+              note: 'Multi-fixture isolation & commercial/multi-unit setup',
+              low: prop.drainLow,
+              high: prop.drainHigh
+            });
+          }
+
+          var dInfra = DRAIN_INFRA[state.infra] || DRAIN_INFRA.cast_iron;
+          if (dInfra.low > 0 || dInfra.high > 0) {
+            condLow += dInfra.low;
+            condHigh += dInfra.high;
+            lineItems.push({
+              name: dInfra.label,
+              note: 'Torque calibration for aging joints or tuberculation',
+              low: dInfra.low,
+              high: dInfra.high
+            });
+          }
+
+          var dAcc = DRAIN_ACCESS[state.access] || DRAIN_ACCESS.basement;
+          if (dAcc.low > 0) {
+            condLow += dAcc.low;
+            condHigh += dAcc.high;
+            hoursLow += state.access === 'none' ? 0.5 : 0.25;
+            hoursHigh += state.access === 'none' ? 1.0 : 0.5;
+            lineItems.push({
+              name: dAcc.label,
+              note: state.access === 'none' ? 'Fixture pull & reset or stack access' : 'Drop-cloth & floor containment setup',
+              low: dAcc.low,
+              high: dAcc.high
+            });
+          }
+
+          if (state.rangeVal > 60) {
+            var extraIncrements = Math.ceil((state.rangeVal - 60) / 20);
+            var distLow = extraIncrements * 35;
+            var distHigh = extraIncrements * 50;
+            condLow += distLow;
+            condHigh += distHigh;
+            hoursLow += 0.25;
+            hoursHigh += 0.5;
+            lineItems.push({
+              name: 'Extended Lateral Reach (' + state.rangeVal + ' ft run)',
+              note: 'Additional cable/hose sections to street main',
+              low: distLow,
+              high: distHigh
+            });
+          }
+
+          if (state.addon2) {
+            var jetLow = state.symptom === 'fixture' ? 190 : 240;
+            var jetHigh = state.symptom === 'fixture' ? 250 : 330;
+            addonLow += jetLow;
+            addonHigh += jetHigh;
+            hoursLow += 0.5;
+            hoursHigh += 1.0;
+            lineItems.push({
+              name: 'Main Drain Cleaning & Hydro Jetting (4,000 PSI)',
+              note: 'Wall-to-wall rotary nozzle grease, scale & root scouring',
+              low: jetLow,
+              high: jetHigh
+            });
+          }
+
+          if (state.addon1) {
+            var camLow = state.addon2 ? 145 : 185;
+            var camHigh = state.addon2 ? 175 : 225;
+            addonLow += camLow;
+            addonHigh += camHigh;
+            hoursLow += 0.5;
+            hoursHigh += 0.5;
+            lineItems.push({
+              name: 'Sewer Camera Inspections (HD Video + Locator)',
+              note: state.addon2 ? 'Bundled post-jetting verification & depth locate' : 'Fiber-optic line scan & sonde locate',
+              low: camLow,
+              high: camHigh
+            });
+          }
+
+          if (state.addon3) {
+            var trLow = state.addon1 ? 0 : 95;
+            var trHigh = state.addon1 ? 0 : 130;
+            addonLow += trLow;
+            addonHigh += trHigh;
+            lineItems.push({
+              name: 'Trenchless Sewer Line Repair Evaluation',
+              note: state.addon1 ? 'Included CIPP liner footage audit with camera scan' : 'Standalone surface markout & depth measurement',
+              low: trLow,
+              high: trHigh
+            });
+          }
+        }
+
+        if (urg.low > 0) {
+          condLow += urg.low;
+          condHigh += urg.high;
+          lineItems.push({
+            name: urg.label,
+            note: urg.windowText,
+            low: urg.low,
+            high: urg.high
+          });
+        }
+
+        var totalLow = Math.max(0, baseLow + condLow + addonLow);
+        var totalHigh = Math.max(totalLow, baseHigh + condHigh + addonHigh);
+
+        return {
+          meta: meta,
+          prop: prop,
+          urg: urg,
+          isTankless: isTankless,
+          baseLow: baseLow,
+          baseHigh: baseHigh,
+          condLow: Math.max(0, condLow),
+          condHigh: Math.max(0, condHigh),
+          addonLow: addonLow,
+          addonHigh: addonHigh,
+          totalLow: totalLow,
+          totalHigh: totalHigh,
+          hoursLow: hoursLow,
+          hoursHigh: hoursHigh,
+          lineItems: lineItems
+        };
+      }
+
+      function buildDiagnosticSteps(calc) {
+        if (calc.isTankless) {
+          var steps = [
+            {
+              title: 'Measure Peak Simultaneous GPM & Winter Inlet Temperature',
+              body: 'Size condensing BTU output for ' + state.demandBaths + ' simultaneous bath(s) against 42°F–48°F Nebraska winter incoming groundwater.'
+            },
+            {
+              title: 'Verify Gas Line Pressure & Category III / PVC Vent Routing',
+              body: 'Inspect meter capacity and manifold drop (' + TANKLESS_ACCESS[state.access].label + ') to support full burner modulation.'
+            },
+            {
+              title: 'Install Isolation Service Valves & Condensate Drainage',
+              body: 'Mount flushing service ports, pressure relief line, and ' + (state.addon2 ? 'Scale-Guard cartridge + acid neutralizer.' : 'wall manifold clearance.')
+            },
+            {
+              title: 'Commission Flow Sensor, Combustion Test & Walkthrough',
+              body: 'Confirm thermostat setpoint, recirculation loop behavior, and annual descaling flush interval.'
+            }
+          ];
+          return steps;
+        }
+
+        var accessStep = state.access === 'none'
+          ? 'Locate cleanout tee or pull ground-level toilet to establish direct 3–4 inch main line entry.'
+          : state.access === 'basement'
+            ? 'Set containment drop mats around basement stack cap and relieve static head pressure safely.'
+            : 'Uncap exterior ground cleanout for direct downstream flow toward the Omaha city lateral.';
+
+        var clearingStep = state.addon2
+          ? 'Run mechanical pilot path followed by 4,000 PSI rotary hydro jetting across ' + state.rangeVal + ' ft to scour full pipe ID.'
+          : 'Advance properly sized cutter/auger cable across ' + state.rangeVal + ' ft until standing water drops and flow stabilizes.';
+
+        var camStep = state.addon1
+          ? 'Deploy HD sewer camera with 512 Hz sonde to record pipe integrity, root re-entry points, and exact depth markings.'
+          : 'Flush multiple fixtures simultaneously to confirm sustained flow clearance; recommend camera check if recurrence occurs.';
+
+        var finalStep = state.addon3
+          ? 'Measure damaged joint or offset footage and deliver no-dig Trenchless CIPP liner options before re-burial or paving.'
+          : 'Sanitize work zone, verify cleanout cap seal, and document pipe era (' + DRAIN_INFRA[state.infra].label + ') on service log.';
+
+        return [
+          { title: 'Establish Safe Line Access & Containment', body: accessStep },
+          { title: 'Clear Stoppage & Restore Lateral Flow', body: clearingStep },
+          { title: 'Verify Line Condition & Depth Location', body: camStep },
+          { title: 'Post-Service Flow Test & Structural Log', body: finalStep }
+        ];
+      }
+
+      function renderSchematic(calc) {
+        var svg = els.systemDiagram;
+        if (calc.isTankless) {
+          els.schematicTitle.textContent = 'Tankless Mechanical Utility Schematic';
+          els.schematicStatus.textContent = state.demandBaths + ' Bath Sizing · ' + (state.addon1 ? 'Recirc Loop' : 'Standard Loop');
+
+          var recircStroke = state.addon1 ? '#C04A2B' : '#C3CDD7';
+          var filterFill = state.addon2 ? '#E6F0F2' : '#FFFFFF';
+          var filterStroke = state.addon2 ? '#0F4C5C' : '#9AA8B6';
+          var gasHighlight = state.access === 'none' ? '#C04A2B' : '#0F4C5C';
+
+          svg.innerHTML = '' +
+            '<rect x="18" y="24" width="120" height="90" rx="6" fill="#FFFFFF" stroke="#C3CDD7" stroke-width="1.5"/>' +
+            '<text x="78" y="45" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#566573">COLD SUPPLY</text>' +
+            '<rect x="34" y="56" width="88" height="34" rx="4" fill="' + filterFill + '" stroke="' + filterStroke + '" stroke-width="1.6"/>' +
+            '<text x="78" y="77" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="#0F4C5C">' + (state.addon2 ? 'SCALE GUARD' : 'VALVE PORT') + '</text>' +
+            '<line x1="138" y1="73" x2="230" y2="73" stroke="#0F4C5C" stroke-width="4"/>' +
+            '<rect x="230" y="18" width="136" height="102" rx="8" fill="#0F4C5C"/>' +
+            '<text x="298" y="44" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">CONDENSING UNIT</text>' +
+            '<text x="298" y="64" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#D2E4E9">' + (state.demandBaths >= 3 ? '199K BTU' : '160K BTU') + '</text>' +
+            '<rect x="254" y="78" width="88" height="24" rx="4" fill="#0A3743"/>' +
+            '<text x="298" y="94" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#FFFFFF">VENT + CONDENSATE</text>' +
+            '<line x1="298" y1="18" x2="298" y2="5" stroke="' + gasHighlight + '" stroke-width="4"/>' +
+            '<line x1="366" y1="62" x2="458" y2="62" stroke="#C04A2B" stroke-width="4"/>' +
+            '<path d="M458 92 H366" stroke="' + recircStroke + '" stroke-width="3" stroke-dasharray="6 4"/>' +
+            '<rect x="458" y="24" width="124" height="90" rx="6" fill="#FFFFFF" stroke="#C3CDD7" stroke-width="1.5"/>' +
+            '<text x="520" y="54" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#566573">HOT DISTRIBUTION</text>' +
+            '<text x="520" y="75" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="700" fill="#111A22">' + state.demandBaths + ' BATHS</text>' +
+            '<text x="520" y="95" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="' + (state.addon1 ? '#C04A2B' : '#566573') + '">' + (state.addon1 ? 'RECIRC ACTIVE' : 'STANDARD FLOW') + '</text>';
+          return;
+        }
+
+        els.schematicTitle.textContent = 'Diagnostic Lateral Schematic (' + state.rangeVal + ' ft)';
+        var modeParts = [calc.meta.title];
+        if (state.addon2) modeParts.push('4,000 PSI Jetter');
+        if (state.addon1) modeParts.push('HD Camera');
+        els.schematicStatus.textContent = modeParts.join(' · ');
+
+        var accessX = state.access === 'exterior' ? 275 : 185;
+        var accessColor = state.access === 'none' ? '#C04A2B' : '#0F4C5C';
+        var accessLabel = state.access === 'none' ? 'PULL / VENT' : (state.access === 'exterior' ? 'EXT CLEANOUT' : 'BSMT CAP');
+
+        var faultX = state.symptom === 'fixture' ? 115 : (state.symptom === 'roots' ? 400 : 320);
+        var faultLabel = state.symptom === 'fixture' ? 'TRAP / BRANCH' : (state.symptom === 'roots' ? 'ROOT MASS' : 'MAIN BLOCKAGE');
+
+        var jetLine = state.addon2
+          ? '<line x1="' + accessX + '" y1="90" x2="505" y2="90" stroke="#0F4C5C" stroke-width="3" stroke-dasharray="8 4"/>'
+          : '';
+        var camMarker = state.addon1
+          ? '<circle cx="' + faultX + '" cy="90" r="17" fill="none" stroke="#0F4C5C" stroke-width="2" stroke-dasharray="3 3"/>'
+          : '';
+        var trenchlessBadge = state.addon3
+          ? '<rect x="352" y="108" width="96" height="20" rx="3" fill="#E6F0F2" stroke="#0F4C5C" stroke-width="1"/><text x="400" y="121" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#0F4C5C">CIPP LINER ZONE</text>'
+          : '';
+
+        svg.innerHTML = '' +
+          '<rect x="18" y="20" width="130" height="86" rx="6" fill="#FFFFFF" stroke="#C3CDD7" stroke-width="1.5"/>' +
+          '<text x="83" y="40" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#566573">HOME / STACK</text>' +
+          '<path d="M54 55h58v18H83v18" fill="none" stroke="#2E3D4B" stroke-width="4" stroke-linecap="round"/>' +
+          '<line x1="148" y1="54" x2="582" y2="54" stroke="#DCE2E8" stroke-width="1.5"/>' +
+          '<text x="360" y="45" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#566573">GROUND GRADE · ' + state.rangeVal + ' FT LATERAL (' + state.infra.replace('_', ' ').toUpperCase() + ')</text>' +
+          '<path d="M83 90 H508" stroke="#9AA8B6" stroke-width="14" stroke-linecap="round"/>' +
+          '<path d="M83 90 H508" stroke="#F8FAFC" stroke-width="8" stroke-linecap="round"/>' +
+          jetLine +
+          '<line x1="' + accessX + '" y1="42" x2="' + accessX + '" y2="85" stroke="' + accessColor + '" stroke-width="5"/>' +
+          '<rect x="' + (accessX - 44) + '" y="16" width="88" height="20" rx="3" fill="' + accessColor + '"/>' +
+          '<text x="' + accessX + '" y="29" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#FFFFFF">' + accessLabel + '</text>' +
+          camMarker +
+          '<circle cx="' + faultX + '" cy="90" r="10" fill="#C04A2B"/>' +
+          '<text x="' + faultX + '" y="73" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600" fill="#C04A2B">' + faultLabel + '</text>' +
+          trenchlessBadge +
+          '<rect x="504" y="54" width="76" height="62" rx="6" fill="#0F4C5C"/>' +
+          '<text x="542" y="82" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">OMAHA</text>' +
+          '<text x="542" y="97" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#D2E4E9">CITY MAIN</text>';
+      }
+
+      function buildDispatchSummaryText(calc) {
+        var name = (els.custName.value || '').trim() || 'Not provided';
+        var phone = (els.custPhone.value || '').trim() || 'Not provided';
+        var email = (els.custEmail.value || '').trim() || 'Not provided';
+        var zip = (els.custZip.value || '').trim() || 'Omaha Metro';
+        var address = (els.custAddress.value || '').trim() || 'Service address pending confirmation';
+
+        var infraText = calc.isTankless
+          ? (TANKLESS_INFRA[state.infra] || TANKLESS_INFRA.gas_tank).label
+          : (DRAIN_INFRA[state.infra] || DRAIN_INFRA.cast_iron).label;
+        var accessText = calc.isTankless
+          ? (TANKLESS_ACCESS[state.access] || TANKLESS_ACCESS.exterior).label
+          : (DRAIN_ACCESS[state.access] || DRAIN_ACCESS.basement).label;
+        var scopeDetail = calc.isTankless
+          ? (state.demandBaths + ' Full Bathroom Demand')
+          : (state.rangeVal + ' ft Estimated Lateral Run');
+
+        var addonsList = [];
+        if (state.addon1) addonsList.push(els.addon1Name.textContent);
+        if (state.addon2) addonsList.push(els.addon2Name.textContent);
+        if (state.addon3) addonsList.push(els.addon3Name.textContent);
+        var addonsStr = addonsList.length > 0 ? addonsList.join('; ') : 'None selected';
+
+        var refLine = state.ticketRef ? ('Reference ID: #' + state.ticketRef) : 'Reference ID: Pending Ticket Generation';
+
+        return [
+          'COMPANY: Omaha Drain Cleaning & Plumbing',
+          'ORIGIN: 4824 S 135th St, Omaha, NE 68137 | (402) 200-5059',
+          refLine,
+          '--------------------------------------------------',
+          'SERVICE SCOPE: ' + calc.meta.title,
+          'PRIORITY: ' + calc.urg.label + ' (' + calc.urg.windowText + ')',
+          'PROPERTY: ' + calc.prop.label,
+          'INFRASTRUCTURE: ' + infraText,
+          'ACCESS / ROUTING: ' + accessText,
+          'SIZING / DISTANCE: ' + scopeDetail,
+          'ADD-ONS: ' + addonsStr,
+          'ESTIMATED RANGE: ' + formatRange(calc.totalLow, calc.totalHigh) + ' USD',
+          'ESTIMATED ON-SITE TIME: ' + calc.hoursLow.toFixed(1) + ' – ' + calc.hoursHigh.toFixed(1) + ' hrs',
+          'RECOMMENDED TRUCK GEAR: ' + calc.meta.truckGear,
+          '--------------------------------------------------',
+          'CUSTOMER: ' + name,
+          'PHONE: ' + phone,
+          'EMAIL: ' + email,
+          'ADDRESS: ' + address + ' (ZIP ' + zip + ')'
+        ].join('\n');
+      }
+
+      function renderAll() {
+        syncInfraAndModeControls();
+        var calc = computeEstimate();
+
+        els.severityBadge.textContent = calc.meta.severityText;
+        if (calc.meta.isPlanned) {
+          els.severityBadge.classList.add('is-planned');
+        } else {
+          els.severityBadge.classList.remove('is-planned');
+        }
+
+        els.crewTimeReadout.textContent = 'Est. Crew Time: ' + calc.hoursLow.toFixed(1) + ' – ' + calc.hoursHigh.toFixed(1) + ' hrs';
+        els.totalRangeReadout.textContent = formatRange(calc.totalLow, calc.totalHigh);
+        els.estimateSubtitle.textContent = calc.urg.label + ' (' + calc.urg.windowText + ') · Dispatched from 4824 S 135th St, Omaha, NE.';
+
+        var midTotal = Math.max(1, (calc.totalLow + calc.totalHigh) / 2);
+        var midBase = (calc.baseLow + calc.baseHigh) / 2;
+        var midCond = (calc.condLow + calc.condHigh) / 2;
+        var midAddon = (calc.addonLow + calc.addonHigh) / 2;
+
+        var pctBase = Math.round((midBase / midTotal) * 100);
+        var pctCond = Math.round((midCond / midTotal) * 100);
+        var pctAddon = Math.max(0, 100 - pctBase - pctCond);
+
+        els.barBase.style.width = pctBase + '%';
+        els.barCond.style.width = pctCond + '%';
+        els.barAddon.style.width = pctAddon + '%';
+
+        els.legBase.textContent = 'Core Scope ' + pctBase + '%';
+        els.legCond.textContent = 'Site & Priority ' + pctCond + '%';
+        els.legAddon.textContent = 'Add-Ons ' + pctAddon + '%';
+
+        renderSchematic(calc);
+
+        els.lineItemsList.innerHTML = '';
+        calc.lineItems.forEach(function (item) {
+          var li = document.createElement('li');
+          li.className = 'line-item';
+
+          var nameSpan = document.createElement('span');
+          nameSpan.className = 'line-item-name';
+          nameSpan.textContent = item.name;
+
+          var noteSpan = document.createElement('span');
+          noteSpan.className = 'line-item-note';
+          noteSpan.textContent = item.note;
+          nameSpan.appendChild(noteSpan);
+
+          var costSpan = document.createElement('span');
+          costSpan.className = 'line-item-cost';
+          if (item.low < 0) {
+            costSpan.textContent = '-' + formatUsd(Math.abs(item.high)) + ' to -' + formatUsd(Math.abs(item.low));
+          } else {
+            costSpan.textContent = formatRange(item.low, item.high);
+          }
+
+          li.appendChild(nameSpan);
+          li.appendChild(costSpan);
+          els.lineItemsList.appendChild(li);
+        });
+
+        var steps = buildDiagnosticSteps(calc);
+        els.protocolList.innerHTML = '';
+        steps.forEach(function (st, idx) {
+          var li = document.createElement('li');
+          li.className = 'protocol-step';
+
+          var numDiv = document.createElement('div');
+          numDiv.className = 'protocol-num';
+          numDiv.textContent = String(idx + 1);
+
+          var bodyDiv = document.createElement('div');
+          bodyDiv.className = 'protocol-text';
+          var strongEl = document.createElement('strong');
+          strongEl.textContent = st.title;
+          bodyDiv.appendChild(strongEl);
+          bodyDiv.appendChild(document.createTextNode(st.body));
+
+          li.appendChild(numDiv);
+          li.appendChild(bodyDiv);
+          els.protocolList.appendChild(li);
+        });
+
+        var summaryText = buildDispatchSummaryText(calc);
+        els.dispatchSummary.textContent = summaryText;
+        els.summaryRefCode.textContent = state.ticketRef ? ('REF #' + state.ticketRef) : 'REF #ODP-PREVIEW';
+
+        var mailSubject = 'Omaha Drain Triage Estimate: ' + calc.meta.title + ' (' + formatRange(calc.totalLow, calc.totalHigh) + ')';
+        els.dispatchMailtoLink.href = 'mailto:contact@omahadrain.com?subject=' + encodeURIComponent(mailSubject) + '&body=' + encodeURIComponent(summaryText);
+
+        els.addon1.parentElement.classList.toggle('is-checked', state.addon1);
+        els.addon2.parentElement.classList.toggle('is-checked', state.addon2);
+        els.addon3.parentElement.classList.toggle('is-checked', state.addon3);
+      }
+
+      function applyPreset(presetKey) {
+        els.presetButtons.forEach(function (b) {
+          b.classList.toggle('is-active', b.getAttribute('data-preset') === presetKey);
+        });
+
+        if (presetKey === 'basement_backup') {
+          state.symptom = 'main_backup';
+          state.property = 'residential';
+          state.infra = 'cast_iron';
+          state.urgency = 'sameday';
+          state.access = 'basement';
+          state.rangeVal = 60;
+          state.addon1 = true;
+          state.addon2 = true;
+          state.addon3 = false;
+        } else if (presetKey === 'kitchen_clog') {
+          state.symptom = 'fixture';
+          state.property = 'residential';
+          state.infra = 'pvc';
+          state.urgency = 'standard';
+          state.access = 'basement';
+          state.rangeVal = 40;
+          state.addon1 = false;
+          state.addon2 = false;
+          state.addon3 = false;
+        } else if (presetKey === 'clay_roots') {
+          state.symptom = 'roots';
+          state.property = 'residential';
+          state.infra = 'clay';
+          state.urgency = 'sameday';
+          state.access = 'none';
+          state.rangeVal = 80;
+          state.addon1 = true;
+          state.addon2 = true;
+          state.addon3 = true;
+        } else if (presetKey === 'camera_audit') {
+          state.symptom = 'main_backup';
+          state.property = 'residential';
+          state.infra = 'unknown';
+          state.urgency = 'standard';
+          state.access = 'exterior';
+          state.rangeVal = 70;
+          state.addon1 = true;
+          state.addon2 = false;
+          state.addon3 = true;
+        } else if (presetKey === 'tankless_conv') {
+          state.symptom = 'tankless';
+          state.property = 'residential';
+          state.infra = 'gas_tank';
+          state.urgency = 'standard';
+          state.access = 'exterior';
+          state.demandBaths = 2;
+          state.addon1 = false;
+          state.addon2 = true;
+          state.addon3 = true;
+        }
+
+        syncRadios();
+        els.urgencySelect.value = state.urgency;
+        els.addon1.checked = state.addon1;
+        els.addon2.checked = state.addon2;
+        els.addon3.checked = state.addon3;
+        renderAll();
+      }
+
+      function syncRadios() {
+        els.symptomButtons.forEach(function (btn) {
+          btn.setAttribute('aria-checked', String(btn.getAttribute('data-symptom') === state.symptom));
+        });
+        els.propertyButtons.forEach(function (btn) {
+          btn.setAttribute('aria-checked', String(btn.getAttribute('data-property') === state.property));
+        });
+        els.accessButtons.forEach(function (btn) {
+          btn.setAttribute('aria-checked', String(btn.getAttribute('data-access') === state.access));
+        });
+      }
+
+      els.symptomButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.symptom = btn.getAttribute('data-symptom');
+          els.presetButtons.forEach(function (b) { b.classList.remove('is-active'); });
+          syncRadios();
+          renderAll();
+        });
+      });
+
+      els.propertyButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.property = btn.getAttribute('data-property');
+          syncRadios();
+          renderAll();
+        });
+      });
+
+      els.accessButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.access = btn.getAttribute('data-access');
+          syncRadios();
+          renderAll();
+        });
+      });
+
+      els.infraSelect.addEventListener('change', function () {
+        state.infra = els.infraSelect.value;
+        renderAll();
+      });
+
+      els.urgencySelect.addEventListener('change', function () {
+        state.urgency = els.urgencySelect.value;
+        renderAll();
+      });
+
+      els.scopeRange.addEventListener('input', function () {
+        if (SYMPTOM_META[state.symptom].mode === 'tankless') {
+          state.demandBaths = parseInt(els.scopeRange.value, 10) || 2;
+        } else {
+          state.rangeVal = parseInt(els.scopeRange.value, 10) || 60;
+        }
+        renderAll();
+      });
+
+      els.addon1.addEventListener('change', function () {
+        state.addon1 = els.addon1.checked;
+        renderAll();
+      });
+
+      els.addon2.addEventListener('change', function () {
+        state.addon2 = els.addon2.checked;
+        renderAll();
+      });
+
+      els.addon3.addEventListener('change', function () {
+        state.addon3 = els.addon3.checked;
+        renderAll();
+      });
+
+      [els.custName, els.custPhone, els.custEmail, els.custZip, els.custAddress].forEach(function (inp) {
+        inp.addEventListener('input', function () {
+          renderAll();
+        });
+      });
+
+      els.presetButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          applyPreset(btn.getAttribute('data-preset'));
+        });
+      });
+
+      els.serviceLoadButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          applyPreset(btn.getAttribute('data-load-preset'));
+          var target = document.getElementById('triage-workspace');
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      els.copySummaryBtn.addEventListener('click', function () {
+        var text = els.dispatchSummary.textContent;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            els.copyBtnLabel.textContent = 'Copied to Clipboard';
+            setTimeout(function () {
+              els.copyBtnLabel.textContent = 'Copy Summary';
+            }, 2200);
+          }).catch(function () {
+            fallbackCopy(text);
+          });
+        } else {
+          fallbackCopy(text);
+        }
+      });
+
+      function fallbackCopy(text) {
+        var area = document.createElement('textarea');
+        area.value = text;
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        try {
+          document.execCommand('copy');
+          els.copyBtnLabel.textContent = 'Copied to Clipboard';
+          setTimeout(function () {
+            els.copyBtnLabel.textContent = 'Copy Summary';
+          }, 2200);
+        } catch (err) {
+          els.copyBtnLabel.textContent = 'Select Summary Above';
+        }
+        document.body.removeChild(area);
+      }
+
+      els.lockTicketBtn.addEventListener('click', function () {
+        var calc = computeEstimate();
+        var seed = (calc.totalLow * 7 + calc.totalHigh * 3 + state.rangeVal * 11) % 9000 + 1000;
+        state.ticketRef = 'ODP-' + seed;
+        renderAll();
+
+        els.ticketConfirmation.innerHTML = '' +
+          '<strong>Dispatch Packet Prepared (Ref #' + state.ticketRef + ')</strong> — ' +
+          'Estimated range ' + formatRange(calc.totalLow, calc.totalHigh) + ' for ' + calc.meta.title + '. ' +
+          'Call <a href="tel:+14022005059">(402) 200-5059</a> and reference <strong>#' + state.ticketRef + '</strong> or send the prefilled packet via email above.';
+        els.ticketConfirmation.classList.add('is-visible');
+      });
+
+      renderAll();
+    }());
+  </script>
+</body>
+</html>
