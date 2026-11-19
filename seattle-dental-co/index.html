@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Seattle Dental Co — Private preventive, cosmetic, implant, and clear aligner dentistry in Seattle, WA. Estimate treatment costs and PPO coverage online.">
+  <title>Seattle Dental Co | Private Dentistry in Seattle, WA</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231B4332'/%3E%3Cpath d='M16 7c-3.5 0-6 2.3-6 5.5 0 2.1.8 4.4 1.5 6.8.5 1.8 1.2 4.7 2.2 4.7.8 0 1.2-2.2 2.3-2.2s1.5 2.2 2.3 2.2c1 0 1.7-2.9 2.2-4.7.7-2.4 1.5-4.7 1.5-6.8C22 9.3 19.5 7 16 7z' fill='%23FBFBF8'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-porcelain: #FBFBF8;
+      --bg-surface: #F3F2EC;
+      --bg-card: #FFFFFF;
+      --pine-deep: #1B4332;
+      --pine-mid: #2D6A4F;
+      --pine-soft: #E8F0EC;
+      --slate-ink: #1E293B;
+      --slate-muted: #526071;
+      --border-warm: #E2E0D8;
+      --border-strong: #CBC8BC;
+      --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background-color: var(--bg-porcelain);
+      color: var(--slate-ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(251, 251, 248, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-warm);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 68px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--pine-deep);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background-color: var(--pine-deep);
+      display: grid;
+      place-items: center;
+      color: var(--bg-porcelain);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      font-weight: 700;
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-loc {
+      font-size: 0.75rem;
+      color: var(--slate-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .header-nav {
+      display: none;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .header-nav a {
+      text-decoration: none;
+      color: var(--slate-muted);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .header-nav a:hover {
+      color: var(--pine-deep);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--pine-deep);
+      color: var(--bg-porcelain);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--pine-mid);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-card);
+      color: var(--pine-deep);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-surface);
+      border-color: var(--pine-deep);
+    }
+
+    @media (min-width: 768px) {
+      .header-nav {
+        display: flex;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      padding: 56px 0 48px;
+      border-bottom: 1px solid var(--border-warm);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .hero {
+        padding: 76px 0 64px;
+      }
+      .hero-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 48px;
+      }
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--pine-mid);
+      background-color: var(--pine-soft);
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-serif);
+      color: var(--slate-ink);
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4.2vw, 3.125rem);
+      font-weight: 700;
+      margin-bottom: 18px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-lead {
+      font-size: 1.0625rem;
+      color: var(--slate-muted);
+      margin: 0 0 28px;
+      max-width: 56ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(27, 67, 50, 0.05);
+    }
+
+    .hero-card-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--pine-deep);
+    }
+
+    .stat-list {
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-warm);
+      gap: 12px;
+    }
+
+    .stat-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .stat-label {
+      font-size: 0.9375rem;
+      color: var(--slate-muted);
+    }
+
+    .stat-val {
+      font-weight: 700;
+      color: var(--pine-deep);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    /* Services */
+    .section {
+      padding: 56px 0;
+    }
+
+    .section-alt {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border-warm);
+      border-bottom: 1px solid var(--border-warm);
+    }
+
+    .section-head {
+      margin-bottom: 32px;
+      max-width: 62ch;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.625rem, 3vw, 2.25rem);
+      margin-bottom: 10px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--slate-muted);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 680px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .service-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .service-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--pine-mid);
+    }
+
+    .service-card h3 {
+      font-size: 1.25rem;
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 0.9375rem;
+      color: var(--slate-muted);
+    }
+
+    /* Interactive Pre-Screener */
+    .screener-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (min-width: 900px) {
+      .screener-layout {
+        grid-template-columns: 1.1fr 0.9fr;
+      }
+    }
+
+    .panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    @media (min-width: 600px) {
+      .panel {
+        padding: 30px;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--slate-ink);
+      margin-bottom: 8px;
+    }
+
+    .field-hint {
+      display: block;
+      font-size: 0.8125rem;
+      color: var(--slate-muted);
+      margin-top: 6px;
+    }
+
+    select, input[type="text"], input[type="email"], input[type="tel"], textarea {
+      width: 100%;
+      padding: 11px 14px;
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      color: var(--slate-ink);
+      background-color: var(--bg-porcelain);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    select:focus, input:focus, textarea:focus {
+      outline: 2px solid var(--pine-mid);
+      outline-offset: 1px;
+      border-color: var(--pine-deep);
+      background-color: var(--bg-card);
+    }
+
+    .unit-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    @media (min-width: 520px) {
+      .unit-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .unit-btn {
+      padding: 10px 8px;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--slate-ink);
+      background-color: var(--bg-porcelain);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-variant-numeric: tabular-nums;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .unit-btn[aria-pressed="true"] {
+      background-color: var(--pine-deep);
+      color: var(--bg-porcelain);
+      border-color: var(--pine-deep);
+    }
+
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      accent-color: var(--pine-deep);
+      cursor: pointer;
+    }
+
+    .slider-readout {
+      min-width: 54px;
+      text-align: right;
+      font-weight: 700;
+      color: var(--pine-deep);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .breakdown-box {
+      background-color: var(--bg-porcelain);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 22px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 8px 0;
+      font-size: 0.9375rem;
+      gap: 12px;
+    }
+
+    .breakdown-row + .breakdown-row {
+      border-top: 1px solid var(--border-warm);
+    }
+
+    .breakdown-total {
+      padding-top: 12px;
+      margin-top: 4px;
+      border-top: 2px solid var(--pine-deep);
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: var(--pine-deep);
+    }
+
+    .num {
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .form-status {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--pine-soft);
+      color: var(--pine-deep);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      display: none;
+    }
+
+    .form-status.visible {
+      display: block;
+    }
+
+    /* Footer & Contact */
+    .site-footer {
+      background-color: var(--bg-card);
+      border-top: 1px solid var(--border-warm);
+      padding: 44px 0 36px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 720px) {
+      .footer-grid {
+        grid-template-columns: 1.2fr 1fr;
+      }
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .contact-row-full {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .contact-row-full {
+        font-size: 13px;
+      }
+    }
+
+    .contact-row-full a {
+      color: var(--pine-deep);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .contact-row-full a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-note {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-warm);
+      font-size: 0.8125rem;
+      color: var(--slate-muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 4c-3.5 0-6 2.2-6 5.4 0 2 .8 4.2 1.5 6.4.5 1.7 1.1 4.2 2 4.2.8 0 1.2-2 2.5-2s1.7 2 2.5 2c.9 0 1.5-2.5 2-4.2.7-2.2 1.5-4.4 1.5-6.4C18 6.2 15.5 4 12 4z"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Seattle Dental Co</span>
+          <span class="brand-loc">Seattle, WA</span>
+        </span>
+      </a>
+      <nav class="header-nav" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#screener">Cost &amp; PPO Pre-Screener</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#screener" class="btn btn-primary">Estimate Cost</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Private Dentistry in Seattle, WA</span>
+          <h1>Thoughtful restorative, cosmetic, and family dental care.</h1>
+          <p class="hero-lead">
+            Seattle Dental Co combines Pacific Northwest calm with evidence-based clinical precision. Explore transparent treatment ranges and preview your PPO insurance coverage before your first visit.
+          </p>
+          <div class="hero-actions">
+            <a href="#screener" class="btn btn-primary">Open Cost Pre-Screener</a>
+            <a href="#services" class="btn btn-secondary">Explore Services</a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Practice highlights">
+          <div class="hero-card-title">Practice Snapshot</div>
+          <ul class="stat-list">
+            <li class="stat-item">
+              <span class="stat-label">Location</span>
+              <span class="stat-val">Seattle, WA</span>
+            </li>
+            <li class="stat-item">
+              <span class="stat-label">PPO Claims</span>
+              <span class="stat-val">Submitted Direct</span>
+            </li>
+            <li class="stat-item">
+              <span class="stat-label">Consultations</span>
+              <span class="stat-val">Same-Week Slots</span>
+            </li>
+            <li class="stat-item">
+              <span class="stat-label">Direct Phone</span>
+              <span class="stat-val num">(206) 284-4412</span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Clinical Services</h2>
+          <p>Comprehensive private dental care tailored to long-term oral health, natural aesthetics, and patient comfort.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <span class="service-tag">Foundation</span>
+            <h3>Preventive &amp; Family Dentistry</h3>
+            <p>Digital low-dose exams, gentle periodontal cleanings, oral cancer screenings, and custom nightguards for lasting enamel protection.</p>
+          </article>
+          <article class="service-card">
+            <span class="service-tag">Aesthetics</span>
+            <h3>Porcelain Veneers &amp; Cosmetic Dentistry</h3>
+            <p>Hand-layered porcelain veneers, conservative composite bonding, and clinician-supervised whitening calibrated to your facial symmetry.</p>
+          </article>
+          <article class="service-card">
+            <span class="service-tag">Restorative</span>
+            <h3>Dental Implants &amp; Restorative Care</h3>
+            <p>3D-guided titanium and ceramic implants, custom crowns, and full-arch restorations designed for natural bite function.</p>
+          </article>
+          <article class="service-card">
+            <span class="service-tag">Alignment</span>
+            <h3>Clear Aligner Orthodontics</h3>
+            <p>Discreet, digitally mapped clear aligner therapy with fewer in-office adjustments and predictable bite alignment.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="screener" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Cosmetic &amp; Implant Treatment Cost &amp; PPO Coverage Pre-Screener</h2>
+          <p>Select a treatment track, unit or arch scope, and your estimated PPO benefit percentage for an instant USD out-of-pocket breakdown.</p>
+        </div>
+
+        <div class="screener-layout">
+          <div class="panel">
+            <div class="form-group">
+              <label for="treatment-track" class="field-label">Treatment Track</label>
+              <select id="treatment-track" autocomplete="off">
+                <option value="veneers">Porcelain Veneers &amp; Cosmetic Dentistry ($1,450 / unit)</option>
+                <option value="implants">Dental Implants &amp; Restorative Care ($4,200 / unit)</option>
+                <option value="aligners">Clear Aligner Orthodontics ($4,800 / arch)</option>
+                <option value="preventive">Preventive &amp; Family Dentistry ($320 / visit)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <span class="field-label" id="unit-group-label">Arch / Unit Selector</span>
+              <div class="unit-grid" role="group" aria-labelledby="unit-group-label">
+                <button type="button" class="unit-btn" data-units="1" aria-pressed="true">1 Unit</button>
+                <button type="button" class="unit-btn" data-units="2" aria-pressed="false">2 Units</button>
+                <button type="button" class="unit-btn" data-units="4" aria-pressed="false">4 Units</button>
+                <button type="button" class="unit-btn" data-units="6" aria-pressed="false">6 Units</button>
+              </div>
+              <span class="field-hint" id="unit-hint">Select number of teeth, implants, or arches.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="ppo-slider" class="field-label">Estimated PPO Coverage Percentage</label>
+              <div class="slider-row">
+                <input type="range" id="ppo-slider" min="0" max="80" step="5" value="50" autocomplete="off">
+                <span class="slider-readout num" id="ppo-readout">50%</span>
+              </div>
+              <span class="field-hint">Most Seattle PPO plans cover 50% of major restorative care and 80% of preventive visits.</span>
+            </div>
+
+            <div class="breakdown-box" aria-live="polite">
+              <div class="breakdown-row">
+                <span>Estimated Gross Fee</span>
+                <span class="num" id="gross-fee">$1,450</span>
+              </div>
+              <div class="breakdown-row">
+                <span>Estimated PPO Benefit (<span id="benefit-pct">50%</span>)</span>
+                <span class="num" id="ppo-benefit">-$725</span>
+              </div>
+              <div class="breakdown-row breakdown-total">
+                <span>Estimated Out-of-Pocket</span>
+                <span class="num" id="out-of-pocket">$725</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3 style="margin-bottom: 8px; font-size: 1.375rem;">Request Appointment &amp; Benefits Check</h3>
+            <p style="margin: 0 0 20px; font-size: 0.9375rem; color: var(--slate-muted);">
+              Send your pre-screener estimate to our Seattle front desk for a complimentary PPO verification.
+            </p>
+            <form id="appointment-form">
+              <div class="form-group">
+                <label for="patient-name" class="field-label">Full Name</label>
+                <input type="text" id="patient-name" name="name" placeholder="Jordan Miller" autocomplete="name" required>
+              </div>
+              <div class="form-group">
+                <label for="patient-email" class="field-label">Email Address</label>
+                <input type="email" id="patient-email" name="email" placeholder="jordan@example.com" autocomplete="email" required>
+              </div>
+              <div class="form-group">
+                <label for="patient-phone" class="field-label">Phone Number</label>
+                <input type="tel" id="patient-phone" name="tel" placeholder="(206) 555-0148" autocomplete="tel" required>
+              </div>
+              <div class="form-group">
+                <label for="preferred-window" class="field-label">Preferred Visit Window</label>
+                <select id="preferred-window" name="window" autocomplete="off">
+                  <option value="Morning (8:00 AM - 12:00 PM)">Morning (8:00 AM - 12:00 PM)</option>
+                  <option value="Afternoon (12:00 PM - 4:30 PM)">Afternoon (12:00 PM - 4:30 PM)</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Request Appointment</button>
+              <div id="form-status" class="form-status" role="status"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 8px;">Seattle Dental Co</h3>
+          <p style="margin: 0; color: var(--slate-muted); font-size: 0.9375rem; max-width: 44ch;">
+            Private preventive, cosmetic, implant, and clear aligner dentistry serving Seattle, WA.
+          </p>
+        </div>
+        <div>
+          <h3 style="font-size: 1.125rem; margin-bottom: 4px;">Direct Contact</h3>
+          <div class="contact-grid">
+            <div class="contact-row-full">
+              Phone: <span class="num">(206) 284-4412</span>
+            </div>
+            <div class="contact-row-full">
+              Email: <a href="mailto:hello@seattledentalco.com">hello@seattledentalco.com</a>
+            </div>
+            <div class="contact-row-full">
+              Website: <a href="https://www.seattledentalco.com" target="_blank" rel="noopener noreferrer">seattledentalco.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-note">
+        <span>Seattle Dental Co — Seattle, WA, USA</span>
+        <span>All estimates in USD ($). Final treatment plans follow clinical examination.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const tracks = {
+        veneers: { label: 'Porcelain Veneers & Cosmetic Dentistry', unitPrice: 1450, unitName: 'Unit' },
+        implants: { label: 'Dental Implants & Restorative Care', unitPrice: 4200, unitName: 'Unit' },
+        aligners: { label: 'Clear Aligner Orthodontics', unitPrice: 4800, unitName: 'Arch' },
+        preventive: { label: 'Preventive & Family Dentistry', unitPrice: 320, unitName: 'Visit' }
+      };
+
+      const trackSelect = document.getElementById('treatment-track');
+      const unitButtons = document.querySelectorAll('.unit-btn');
+      const ppoSlider = document.getElementById('ppo-slider');
+      const ppoReadout = document.getElementById('ppo-readout');
+      const grossFeeEl = document.getElementById('gross-fee');
+      const benefitPctEl = document.getElementById('benefit-pct');
+      const ppoBenefitEl = document.getElementById('ppo-benefit');
+      const outOfPocketEl = document.getElementById('out-of-pocket');
+      const form = document.getElementById('appointment-form');
+      const formStatus = document.getElementById('form-status');
+
+      let selectedUnits = 1;
+
+      function formatUSD(amount) {
+        return '$' + Math.round(amount).toLocaleString('en-US');
+      }
+
+      function updateEstimate() {
+        const track = tracks[trackSelect.value];
+        const ppoPct = Number(ppoSlider.value);
+        const gross = track.unitPrice * selectedUnits;
+        const benefit = gross * (ppoPct / 100);
+        const outOfPocket = gross - benefit;
+
+        ppoReadout.textContent = ppoPct + '%';
+        benefitPctEl.textContent = ppoPct + '%';
+        grossFeeEl.textContent = formatUSD(gross);
+        ppoBenefitEl.textContent = '-' + formatUSD(benefit);
+        outOfPocketEl.textContent = formatUSD(outOfPocket);
+
+        unitButtons.forEach(function (btn) {
+          const count = Number(btn.getAttribute('data-units'));
+          const plural = count > 1 ? (track.unitName === 'Arch' ? 'Arches' : track.unitName + 's') : track.unitName;
+          btn.textContent = count + ' ' + plural;
+          btn.setAttribute('aria-pressed', count === selectedUnits ? 'true' : 'false');
+        });
+      }
+
+      trackSelect.addEventListener('change', updateEstimate);
+      ppoSlider.addEventListener('input', updateEstimate);
+
+      unitButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          selectedUnits = Number(btn.getAttribute('data-units'));
+          updateEstimate();
+        });
+      });
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const name = document.getElementById('patient-name').value.trim();
+        const track = tracks[trackSelect.value].label;
+        const estimate = outOfPocketEl.textContent;
+        formStatus.textContent = 'Request received for ' + name + '. Track: ' + track + ' (Est. ' + estimate + '). Our Seattle coordinator will follow up shortly.';
+        formStatus.classList.add('visible');
+        form.reset();
+      });
+
+      updateEstimate();
+    })();
+  </script>
+</body>
+</html>

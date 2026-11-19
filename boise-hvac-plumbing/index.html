@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Peppy Heating and Cooling in Boise, ID. 24/7 HVAC and plumbing dispatch, AC and heat pump repair, furnace maintenance, indoor air quality, and live diagnostic estimator.">
+  <title>Peppy Heating and Cooling | Boise, ID HVAC &amp; Plumbing</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2317253b'/%3E%3Cpath d='M16 6l8 7v11a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V13l8-7z' fill='none' stroke='%23d4793e' stroke-width='2.2' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='17' r='3.2' fill='%23d4793e'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #faf7f2;
+      --bg-surface: #ffffff;
+      --bg-sand: #f2ebe0;
+      --bg-navy: #17253b;
+      --bg-navy-soft: #223554;
+      --copper: #b85d28;
+      --copper-hover: #9e4c1d;
+      --copper-soft: #f7e8de;
+      --text-main: #17253b;
+      --text-muted: #556173;
+      --text-light: #f9f6f0;
+      --border-warm: #e2d8c8;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-card: 0 10px 30px rgba(23, 37, 59, 0.06);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Manrope', sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .font-serif {
+      font-family: 'Fraunces', serif;
+      margin: 0;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(250, 247, 242, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-warm);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background-color: var(--bg-navy);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .phone-link {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--text-main);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-sand);
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .phone-link:hover {
+      background-color: var(--border-warm);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--copper);
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 11px 18px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--copper-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg-surface);
+      color: var(--text-main);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-sm);
+      padding: 11px 18px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-sand);
+      border-color: var(--copper);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 56px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--copper-soft);
+      color: var(--copper-hover);
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 4vw, 3.25rem);
+      color: var(--bg-navy);
+      margin-bottom: 16px;
+    }
+
+    .hero-lead {
+      font-size: 1.06rem;
+      color: var(--text-muted);
+      max-width: 56ch;
+      margin: 0 0 26px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-warm);
+    }
+
+    .trust-item strong {
+      display: block;
+      font-size: 1.15rem;
+      color: var(--bg-navy);
+    }
+
+    .trust-item span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .hero-card {
+      background-color: var(--bg-navy);
+      color: var(--text-light);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero-card-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e6a67e;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .hero-card h2 {
+      font-size: 1.55rem;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .hero-card p {
+      font-size: 0.92rem;
+      color: #cfd7e3;
+      margin: 0 0 20px;
+    }
+
+    .climate-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .metric-box {
+      background-color: var(--bg-navy-soft);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+    }
+
+    .metric-box span {
+      display: block;
+      font-size: 0.75rem;
+      color: #b7c3d4;
+    }
+
+    .metric-box strong {
+      font-size: 1.15rem;
+      color: #ffffff;
+    }
+
+    /* Services */
+    .section {
+      padding: 48px 0;
+    }
+
+    .section-header {
+      margin-bottom: 28px;
+      max-width: 640px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--bg-navy);
+      margin-bottom: 8px;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--text-muted);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      box-shadow: 0 4px 16px rgba(23, 37, 59, 0.03);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--copper);
+      transform: translateY(-2px);
+    }
+
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: var(--copper-soft);
+      color: var(--copper);
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+    }
+
+    .service-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: var(--bg-navy);
+    }
+
+    .service-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* Interactive Estimator */
+    .estimator-wrap {
+      background-color: var(--bg-sand);
+      border-top: 1px solid var(--border-warm);
+      border-bottom: 1px solid var(--border-warm);
+      padding: 56px 0;
+    }
+
+    .estimator-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    .field label,
+    .field .field-label {
+      display: block;
+      font-weight: 700;
+      font-size: 0.86rem;
+      color: var(--bg-navy);
+      margin-bottom: 7px;
+    }
+
+    .field input[type="number"],
+    .field select,
+    .field input[type="text"],
+    .field input[type="tel"] {
+      width: 100%;
+      padding: 11px 13px;
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-sm);
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.94rem;
+      color: var(--text-main);
+      background-color: #ffffff;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      outline: 2px solid var(--copper);
+      outline-offset: 1px;
+    }
+
+    .range-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .age-badge {
+      background-color: var(--bg-navy);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--copper);
+      cursor: pointer;
+    }
+
+    .urgency-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .urgency-btn {
+      border: 1px solid var(--border-warm);
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      border-radius: var(--radius-sm);
+      padding: 11px 12px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      font-size: 0.86rem;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .urgency-btn.active {
+      background-color: var(--bg-navy);
+      border-color: var(--bg-navy);
+      color: #ffffff;
+    }
+
+    /* Estimate Output */
+    .estimate-card {
+      background-color: var(--bg-navy);
+      color: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .estimate-kicker {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e6a67e;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .estimate-price {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 3.6vw, 2.75rem);
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .estimate-sub {
+      font-size: 0.86rem;
+      color: #c5d0e0;
+      margin: 0 0 18px;
+    }
+
+    .risk-pill {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      background-color: rgba(212, 121, 62, 0.22);
+      color: #f4b78e;
+    }
+
+    .breakdown-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .breakdown-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.88rem;
+      color: #dce4f0;
+    }
+
+    .dispatch-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding-top: 8px;
+    }
+
+    .dispatch-form input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background-color: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.88rem;
+    }
+
+    .dispatch-form input::placeholder {
+      color: #b7c3d4;
+    }
+
+    .dispatch-status {
+      grid-column: 1 / -1;
+      font-size: 0.85rem;
+      color: #f4b78e;
+      min-height: 20px;
+    }
+
+    /* Footer & Contact */
+    .site-footer {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border-warm);
+      padding: 36px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 16px;
+    }
+
+    .contact-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    .contact-value {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--text-main);
+    }
+
+    .full-row-link {
+      grid-column: 1 / -1;
+    }
+
+    a[href^="mailto:"],
+    a[href^="http"] {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 13px;
+      color: var(--copper-hover);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    a[href^="mailto:"]:hover,
+    a[href^="http"]:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .estimator-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .services-grid,
+      .form-grid,
+      .dispatch-form,
+      .trust-strip,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-link {
+        display: none;
+      }
+
+      a[href^="mailto:"],
+      a[href^="http"] {
+        font-size: 12.5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3L20 9.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9.5L12 3z" stroke="#d4793e" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="12" cy="14" r="2.8" fill="#d4793e"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Peppy Heating and Cooling</span>
+          <span class="brand-sub">Boise, ID &bull; HVAC &amp; Plumbing</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a href="tel:+12089066928" class="phone-link tabular-nums">(208) 906-6928</a>
+        <a href="#estimator" class="btn-primary">Run Diagnostic</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Boise, Idaho &bull; 24/7 Dispatch Ready</span>
+          <h1>Precision HVAC &amp; Plumbing Care for Treasure Valley Homes</h1>
+          <p class="hero-lead">
+            From high-desert summer cooling to sub-freezing Boise winters, Peppy Heating and Cooling keeps your furnace, heat pump, ductwork, and plumbing running at peak efficiency.
+          </p>
+          <div class="hero-cta-row">
+            <a href="#estimator" class="btn-primary">Estimate Tune-Up &amp; Repair</a>
+            <a href="tel:+12089066928" class="btn-secondary tabular-nums">Call (208) 906-6928</a>
+          </div>
+          <div class="trust-strip">
+            <div class="trust-item">
+              <strong class="tabular-nums">24/7</strong>
+              <span>Emergency HVAC Dispatch</span>
+            </div>
+            <div class="trust-item">
+              <strong class="tabular-nums">Same-Day</strong>
+              <span>Boise Metro Coverage</span>
+            </div>
+            <div class="trust-item">
+              <strong class="tabular-nums">Upfront USD</strong>
+              <span>Diagnostic Pricing</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Boise seasonal climate readiness">
+          <span class="hero-card-tag">Treasure Valley Climate Check</span>
+          <h2>Built for 102&deg;F Summers &amp; 18&deg;F Winters</h2>
+          <p>
+            Wide seasonal temperature swings put extra strain on heat exchangers, capacitors, and duct seals. Check your system age and get an instant USD estimate below.
+          </p>
+          <div class="climate-metrics">
+            <div class="metric-box">
+              <span>Avg. AC Lifespan</span>
+              <strong class="tabular-nums">12&ndash;15 Years</strong>
+            </div>
+            <div class="metric-box">
+              <span>Avg. Furnace Lifespan</span>
+              <strong class="tabular-nums">15&ndash;20 Years</strong>
+            </div>
+          </div>
+          <a href="#estimator" class="btn-primary" style="width: 100%;">Open Boise Diagnostic Tool</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2>Core HVAC &amp; Plumbing Services</h2>
+          <p>Licensed technicians serving Boise, Meridian, Eagle, and Garden City with transparent flat-rate diagnostics.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2v20M4.93 4.93l14.14 14.14M2 12h20M4.93 19.07L19.07 4.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>AC &amp; Heat Pump Repair &amp; Installation</h3>
+            <p>High-SEER2 cooling upgrades, refrigerant diagnostics, compressor service, and dual-fuel heat pump tuning.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3c2.5 3.5 5 6.2 5 10a5 5 0 1 1-10 0c0-3.8 2.5-6.5 5-10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Furnace Maintenance &amp; Replacement</h3>
+            <p>Safety heat-exchanger inspections, igniter and blower motor service, and high-efficiency gas furnace installs.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M3 8h13a3 3 0 1 0-3-3M3 12h16a3 3 0 1 1-3 3M3 16h9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Indoor Air Quality &amp; Duct Services</h3>
+            <p>Duct sealing, airflow balancing, whole-home HEPA filtration, and humidity control for dry Idaho winters.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>24/7 Emergency HVAC Dispatch</h3>
+            <p>Rapid-response technicians on call day and night for no-heat, no-cool, and urgent plumbing shutoff calls.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="estimator-wrap" id="estimator">
+      <div class="container">
+        <div class="section-header">
+          <h2>Boise HVAC System Age &amp; Seasonal Tune-Up Diagnostic Estimator</h2>
+          <p>Adjust your home size, equipment type, unit age, and dispatch urgency to preview an estimated USD service range.</p>
+        </div>
+
+        <div class="estimator-grid">
+          <div class="panel">
+            <form id="diagnostic-form" class="form-grid" onsubmit="return false;">
+              <div class="field">
+                <label for="home-sqft">Home Square Footage (sq ft)</label>
+                <input id="home-sqft" name="homeSqft" type="number" min="600" max="8000" step="100" value="2100" autocomplete="off">
+              </div>
+
+              <div class="field">
+                <label for="system-type">Primary System Type</label>
+                <select id="system-type" name="systemType" autocomplete="off">
+                  <option value="ac">Central Air Conditioner</option>
+                  <option value="heatpump">Heat Pump System</option>
+                  <option value="furnace">Gas Furnace</option>
+                  <option value="ductwork">Ductwork &amp; Air Quality</option>
+                </select>
+              </div>
+
+              <div class="field field-full">
+                <div class="range-header">
+                  <label for="equipment-age" style="margin-bottom: 0;">Equipment Age</label>
+                  <span class="age-badge tabular-nums" id="age-display">9 Years</span>
+                </div>
+                <input id="equipment-age" name="equipmentAge" type="range" min="0" max="25" value="9" autocomplete="off">
+              </div>
+
+              <div class="field field-full">
+                <div class="field-label">Dispatch Urgency</div>
+                <div class="urgency-group" role="group" aria-label="Dispatch urgency">
+                  <button type="button" class="urgency-btn active" data-urgency="scheduled">Scheduled Tune-Up</button>
+                  <button type="button" class="urgency-btn" data-urgency="sameday">Same-Day Dispatch</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="estimate-card" aria-live="polite">
+            <div class="estimate-kicker">Estimated Boise Service Range</div>
+            <div class="estimate-price tabular-nums" id="estimate-range">$149 &ndash; $219</div>
+            <p class="estimate-sub" id="estimate-summary">2,100 sq ft &bull; Central Air Conditioner &bull; Scheduled</p>
+            <span class="risk-pill" id="risk-pill">Mid-Life Preventive Check Recommended</span>
+
+            <ul class="breakdown-list">
+              <li>
+                <span>Base Diagnostic &amp; Inspection</span>
+                <strong class="tabular-nums" id="base-cost">$119</strong>
+              </li>
+              <li>
+                <span>Home Size &amp; System Load Factor</span>
+                <strong class="tabular-nums" id="size-cost">$30</strong>
+              </li>
+              <li>
+                <span>Urgency &amp; Age Calibration</span>
+                <strong class="tabular-nums" id="urgency-cost">$0</strong>
+              </li>
+            </ul>
+
+            <form id="dispatch-form" class="dispatch-form">
+              <input id="customer-name" name="name" type="text" placeholder="Your Name" autocomplete="name" required>
+              <input id="customer-phone" name="phone" type="tel" placeholder="(208) 555-0199" autocomplete="tel" required>
+              <button type="submit" class="btn-primary field-full">Request Boise Dispatch Slot</button>
+              <div class="dispatch-status" id="dispatch-status"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3 style="font-size: 1.25rem; margin-bottom: 6px;">Peppy Heating and Cooling</h3>
+        <p style="margin: 0; font-size: 0.88rem; color: var(--text-muted);">
+          Trusted HVAC &amp; Plumbing specialists in Boise, ID. Transparent USD pricing, licensed technicians, and 24/7 emergency dispatch.
+        </p>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <span class="contact-label">Phone</span>
+          <span class="contact-value tabular-nums">(208) 906-6928</span>
+        </div>
+        <div>
+          <span class="contact-label">Service Area</span>
+          <span class="contact-value">Boise, ID, USA</span>
+        </div>
+        <a href="mailto:schedule@callpeppy.com">schedule@callpeppy.com</a>
+        <a href="https://www.callpeppy.com" target="_blank" rel="noopener noreferrer">https://www.callpeppy.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const sqftInput = document.getElementById('home-sqft');
+      const systemSelect = document.getElementById('system-type');
+      const ageSlider = document.getElementById('equipment-age');
+      const ageDisplay = document.getElementById('age-display');
+      const urgencyBtns = document.querySelectorAll('.urgency-btn');
+
+      const estimateRangeEl = document.getElementById('estimate-range');
+      const estimateSummaryEl = document.getElementById('estimate-summary');
+      const riskPillEl = document.getElementById('risk-pill');
+      const baseCostEl = document.getElementById('base-cost');
+      const sizeCostEl = document.getElementById('size-cost');
+      const urgencyCostEl = document.getElementById('urgency-cost');
+
+      const dispatchForm = document.getElementById('dispatch-form');
+      const dispatchStatus = document.getElementById('dispatch-status');
+
+      let urgency = 'scheduled';
+
+      const systemLabels = {
+        ac: 'Central Air Conditioner',
+        heatpump: 'Heat Pump System',
+        furnace: 'Gas Furnace',
+        ductwork: 'Ductwork & Air Quality'
+      };
+
+      const baseRates = {
+        ac: 119,
+        heatpump: 139,
+        furnace: 115,
+        ductwork: 149
+      };
+
+      function updateEstimate() {
+        const rawSqft = parseInt(sqftInput.value, 10);
+        const sqft = Number.isFinite(rawSqft) ? Math.min(8000, Math.max(600, rawSqft)) : 2100;
+        const sys = systemSelect.value;
+        const age = parseInt(ageSlider.value, 10) || 0;
+
+        ageDisplay.textContent = age + (age === 1 ? ' Year' : ' Years');
+
+        const base = baseRates[sys] || 119;
+        const sizeFactor = Math.round(Math.max(0, sqft - 1200) / 300) * 10;
+        const ageFactor = age >= 12 ? 35 : age >= 7 ? 15 : 0;
+        const urgencyFee = urgency === 'sameday' ? 59 : 0;
+
+        const low = base + sizeFactor + urgencyFee;
+        const high = low + 55 + ageFactor;
+
+        estimateRangeEl.textContent = '$' + low + ' \u2013 $' + high;
+        estimateSummaryEl.textContent =
+          sqft.toLocaleString('en-US') +
+          ' sq ft \u2022 ' +
+          systemLabels[sys] +
+          ' \u2022 ' +
+          (urgency === 'sameday' ? 'Same-Day Dispatch' : 'Scheduled');
+
+        baseCostEl.textContent = '$' + base;
+        sizeCostEl.textContent = '$' + sizeFactor;
+        urgencyCostEl.textContent = '$' + (urgencyFee + ageFactor);
+
+        if (age >= 14) {
+          riskPillEl.textContent = 'Aging Unit: Efficiency & Replacement Review Advised';
+        } else if (age >= 7) {
+          riskPillEl.textContent = 'Mid-Life Preventive Check Recommended';
+        } else {
+          riskPillEl.textContent = 'Warranty-Safe Seasonal Tune-Up';
+        }
+      }
+
+      urgencyBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          urgencyBtns.forEach(function (b) {
+            b.classList.remove('active');
+          });
+          btn.classList.add('active');
+          urgency = btn.getAttribute('data-urgency');
+          updateEstimate();
+        });
+      });
+
+      sqftInput.addEventListener('input', updateEstimate);
+      systemSelect.addEventListener('change', updateEstimate);
+      ageSlider.addEventListener('input', updateEstimate);
+
+      dispatchForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('customer-name').value.trim();
+        const phone = document.getElementById('customer-phone').value.trim();
+        if (!name || !phone) {
+          dispatchStatus.textContent = 'Please enter your name and phone number to request dispatch.';
+          return;
+        }
+        dispatchStatus.textContent =
+          'Request logged for ' + name + ' (' + phone + '). Boise dispatch will confirm shortly.';
+        dispatchForm.reset();
+      });
+
+      updateEstimate();
+    })();
+  </script>
+</body>
+</html>
