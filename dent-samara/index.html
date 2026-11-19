@@ -1,0 +1,3086 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Стоматология Дент-Самара — Онлайн-запись и расчёт лечения в Самаре</title>
+  <meta name="description" content="Интерактивная онлайн-запись к стоматологу и предварительный расчёт стоимости лечения или визита по ДМС в клинике Стоматология Дент-Самара (г. Самара, Промышленный район). Терапия, профгигиена, протезирование и имплантация.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230D9488'/%3E%3Cpath d='M22 19c-4.2 0-7.5 3.4-7.5 8 0 5.2 2.2 9.4 3.6 15 .9 3.6 2 8 4.7 8 2.2 0 3.3-3.5 4.8-7.2 1.2-2.9 2.3-4.4 4.4-4.4s3.2 1.5 4.4 4.4c1.5 3.7 2.6 7.2 4.8 7.2 2.7 0 3.8-4.4 4.7-8 1.4-5.6 3.6-9.8 3.6-15 0-4.6-3.3-8-7.5-8-3.4 0-6.2 2-10 2s-6.6-2-10-2Z' fill='none' stroke='%23FFFFFF' stroke-width='3.2' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #FAF9F7;
+      --bg-subtle: #F3F0EA;
+      --surface: #FFFFFF;
+      --surface-soft: #F9F8F5;
+      --border: #E5E2DC;
+      --border-strong: #D4CFC5;
+      --ink: #18181B;
+      --ink-secondary: #4B4B52;
+      --ink-muted: #6C6C75;
+      --accent: #0D9488;
+      --accent-hover: #0F766E;
+      --accent-deep: #115E59;
+      --accent-soft: #EEF8F7;
+      --accent-border: #B7E0DB;
+      --tag-bg: #F4F2ED;
+      --warn-bg: #FDF7EC;
+      --warn-border: #EBD8B5;
+      --warn-ink: #7A5210;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 8px;
+      --shadow-card: 0 1px 2px rgba(24, 24, 27, 0.04);
+      --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--ink);
+      background-color: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    a[href^="mailto:"] {
+      white-space: nowrap;
+      word-break: normal;
+    }
+
+    .num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: var(--accent);
+      color: #FFFFFF;
+      padding: 10px 16px;
+      border-radius: 0 0 8px 0;
+      z-index: 100;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .skip-link:focus {
+      left: 0;
+    }
+
+    /* Top utility strip */
+    .utility-bar {
+      background-color: var(--bg-subtle);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.875rem;
+      color: var(--ink-secondary);
+    }
+
+    .utility-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 20px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    .utility-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 16px;
+    }
+
+    .utility-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .utility-phone {
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .utility-phone:hover {
+      color: var(--accent);
+    }
+
+    /* Main sticky header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(250, 249, 247, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .brand-sub {
+      font-size: 0.8125rem;
+      color: var(--ink-muted);
+      line-height: 1.25;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-shrink: 0;
+    }
+
+    .nav-link {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      text-decoration: none;
+      transition: color 0.16s ease;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: var(--accent);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      line-height: 1.25;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .btn:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .btn-sm {
+      padding: 8px 14px;
+      font-size: 0.875rem;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    .btn-outline {
+      background-color: var(--surface);
+      color: var(--ink);
+      border-color: var(--border-strong);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--bg-subtle);
+      border-color: var(--ink-muted);
+    }
+
+    .btn-soft {
+      background-color: var(--accent-soft);
+      color: var(--accent-deep);
+      border-color: var(--accent-border);
+    }
+
+    .btn-soft:hover {
+      background-color: #E0F3F0;
+      border-color: var(--accent);
+    }
+
+    /* Hero section */
+    .hero {
+      padding: 44px 0 36px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.88fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background-color: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      color: var(--accent-deep);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      line-height: 1.16;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .hero-lead {
+      margin: 0 0 24px;
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      color: var(--ink-secondary);
+      max-width: 62ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .hero-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .highlight-box {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .highlight-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 4px;
+    }
+
+    .highlight-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* Clinic dossier card in Hero */
+    .clinic-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .clinic-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .clinic-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent-deep);
+    }
+
+    .clinic-status {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      background-color: var(--tag-bg);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .clinic-card h2 {
+      margin: 0 0 14px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .clinic-facts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .fact-cell {
+      padding: 11px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background-color: var(--surface-soft);
+      min-width: 0;
+    }
+
+    .fact-cell-wide {
+      grid-column: 1 / -1;
+    }
+
+    .fact-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      margin-bottom: 3px;
+    }
+
+    .fact-val {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .fact-val a {
+      color: var(--accent-deep);
+      text-decoration: none;
+    }
+
+    .fact-val a:hover {
+      text-decoration: underline;
+    }
+
+    .clinic-services-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .service-pill {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      background-color: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 5px 11px;
+    }
+
+    /* Section chrome */
+    .section {
+      padding: 48px 0;
+    }
+
+    .section-tight {
+      padding: 40px 0;
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .section-kicker {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent-deep);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(1.375rem, 2.2vw, 1.85rem);
+      font-weight: 700;
+      line-height: 1.22;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+    }
+
+    .section-desc {
+      margin: 6px 0 0;
+      color: var(--ink-secondary);
+      max-width: 64ch;
+      font-size: 0.96875rem;
+    }
+
+    /* Interactive Workspace */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.32fr) minmax(0, 0.92fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .panel-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .step-block {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .step-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      color: var(--accent-deep);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .field-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .field-hint {
+      font-size: 0.8125rem;
+      color: var(--ink-muted);
+      margin-top: 6px;
+    }
+
+    /* Payment segmented toggle */
+    .segmented-group {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .seg-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
+      padding: 13px 15px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface-soft);
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .seg-btn:hover {
+      border-color: var(--accent);
+      background-color: #FFFFFF;
+    }
+
+    .seg-btn[aria-pressed="true"] {
+      background-color: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent-deep);
+    }
+
+    .seg-title {
+      font-size: 0.96875rem;
+      font-weight: 700;
+    }
+
+    .seg-sub {
+      font-size: 0.8125rem;
+      color: var(--ink-secondary);
+      line-height: 1.35;
+    }
+
+    .seg-btn[aria-pressed="true"] .seg-sub {
+      color: var(--accent-deep);
+    }
+
+    .dms-subpanel {
+      margin-top: 14px;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--surface-soft);
+      border: 1px solid var(--accent-border);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .dms-subpanel[hidden] {
+      display: none;
+    }
+
+    .dms-note-wide {
+      grid-column: 1 / -1;
+      font-size: 0.8125rem;
+      color: var(--ink-secondary);
+      margin: 0;
+    }
+
+    /* Presets & Direction tabs */
+    .presets-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .preset-caption {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      margin-right: 4px;
+    }
+
+    .chip-btn {
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface);
+      color: var(--ink-secondary);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .chip-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent-deep);
+    }
+
+    .chip-btn[aria-pressed="true"] {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .tabs-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tab-btn {
+      padding: 8px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background-color: var(--surface-soft);
+      color: var(--ink-secondary);
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--accent);
+      color: var(--ink);
+    }
+
+    .tab-btn[aria-pressed="true"] {
+      background-color: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent-deep);
+    }
+
+    /* Procedure list */
+    .proc-groups {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .proc-group-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--accent-deep);
+      margin: 0 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .proc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .proc-item {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background-color: var(--surface);
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .proc-item.is-selected {
+      border-color: var(--accent);
+      background-color: #F7FCFB;
+    }
+
+    .proc-main {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      flex: 1 1 280px;
+      min-width: 0;
+    }
+
+    .proc-checkbox {
+      width: 19px;
+      height: 19px;
+      margin-top: 2px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .proc-label {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      cursor: pointer;
+      min-width: 0;
+    }
+
+    .proc-title {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    .proc-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 10px;
+      font-size: 0.8125rem;
+      color: var(--ink-muted);
+    }
+
+    .dms-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+    }
+
+    .dms-covered {
+      background-color: var(--accent-soft);
+      border-color: var(--accent-border);
+      color: var(--accent-deep);
+    }
+
+    .dms-approval {
+      background-color: var(--warn-bg);
+      border-color: var(--warn-border);
+      color: var(--warn-ink);
+    }
+
+    .dms-extra {
+      background-color: var(--tag-bg);
+      border-color: var(--border);
+      color: var(--ink-secondary);
+    }
+
+    .proc-controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    .qty-stepper {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--surface);
+      overflow: hidden;
+    }
+
+    .qty-btn {
+      width: 28px;
+      height: 28px;
+      border: none;
+      background-color: transparent;
+      color: var(--ink);
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.14s ease;
+    }
+
+    .qty-btn:hover:not(:disabled) {
+      background-color: var(--bg-subtle);
+    }
+
+    .qty-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .qty-val {
+      min-width: 44px;
+      padding: 0 4px;
+      text-align: center;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--ink);
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      line-height: 28px;
+    }
+
+    .proc-price-col {
+      text-align: right;
+      min-width: 92px;
+    }
+
+    .proc-price {
+      font-size: 0.96875rem;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .proc-price-note {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      white-space: nowrap;
+    }
+
+    /* Form inputs & schedule */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .form-field-full {
+      grid-column: 1 / -1;
+    }
+
+    .input-label {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: #FFFFFF;
+      color: var(--ink);
+      font-size: 0.9375rem;
+      transition: border-color 0.16s ease;
+    }
+
+    .form-input:hover,
+    .form-select:hover,
+    .form-textarea:hover {
+      border-color: var(--ink-muted);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 68px;
+    }
+
+    .day-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .slot-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .slot-btn {
+      padding: 9px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface);
+      color: var(--ink);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .slot-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent-deep);
+    }
+
+    .slot-btn[aria-pressed="true"] {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    /* Sticky summary card */
+    .summary-card {
+      position: sticky;
+      top: 86px;
+      background-color: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .summary-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .summary-title {
+      margin: 0;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .mode-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      background-color: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      color: var(--accent-deep);
+    }
+
+    .totals-box {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .total-item-wide {
+      grid-column: 1 / -1;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--ink-secondary);
+    }
+
+    .total-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      margin-bottom: 3px;
+    }
+
+    .total-figure {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+
+    .total-figure-accent {
+      color: var(--accent-deep);
+    }
+
+    .summary-section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .summary-subhead {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--ink-muted);
+    }
+
+    .text-link-btn {
+      border: none;
+      background: transparent;
+      padding: 0;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--accent-deep);
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .text-link-btn:hover {
+      color: var(--accent-hover);
+    }
+
+    .selected-list {
+      list-style: none;
+      margin: 0 0 16px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 230px;
+      overflow-y: auto;
+    }
+
+    .selected-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.875rem;
+      padding-bottom: 7px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .selected-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .selected-name {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .selected-sub {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+    }
+
+    .selected-cost {
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .empty-state {
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      color: var(--warn-ink);
+      font-size: 0.84rem;
+    }
+
+    .booking-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      background-color: var(--surface-soft);
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+      font-size: 0.84rem;
+    }
+
+    .meta-pair-wide {
+      grid-column: 1 / -1;
+    }
+
+    .meta-k {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      margin-bottom: 2px;
+    }
+
+    .meta-v {
+      font-weight: 600;
+      color: var(--ink);
+      word-break: break-word;
+    }
+
+    .card-actions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .btn-mailto-wide {
+      grid-column: 1 / -1;
+      width: 100%;
+    }
+
+    .status-toast {
+      min-height: 20px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--accent-deep);
+      margin-bottom: 8px;
+    }
+
+    .disclaimer {
+      margin: 0;
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: var(--ink-muted);
+    }
+
+    /* Services 2x2 Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .service-card-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .service-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      color: var(--accent-deep);
+      flex-shrink: 0;
+    }
+
+    .service-card h3 {
+      margin: 0;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .service-card p {
+      margin: 0 0 12px;
+      font-size: 0.9375rem;
+      color: var(--ink-secondary);
+    }
+
+    .service-bullets {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 0.875rem;
+      color: var(--ink-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    /* DMS vs Private comparison */
+    .comparison-section {
+      background-color: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .compare-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+
+    .compare-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .compare-list {
+      margin: 0;
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.9375rem;
+      color: var(--ink-secondary);
+    }
+
+    /* Contacts section */
+    .contacts-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .contact-item {
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--surface-soft);
+      border: 1px solid var(--border);
+      min-width: 0;
+    }
+
+    .contact-item-wide {
+      grid-column: 1 / -1;
+    }
+
+    .contact-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .contact-value a {
+      color: var(--accent-deep);
+      text-decoration: none;
+    }
+
+    .contact-value a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background-color: var(--surface);
+      padding: 28px 0 36px;
+      font-size: 0.875rem;
+      color: var(--ink-secondary);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .footer-wide {
+      grid-column: 1 / -1;
+    }
+
+    .footer-brand {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+    }
+
+    .footer-links a {
+      color: var(--accent-deep);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-preview-note {
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      color: var(--ink-muted);
+      font-size: 0.8125rem;
+    }
+
+    /* Print sheet header (visible only on print) */
+    .print-only-header {
+      display: none;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .main-nav {
+        display: none;
+      }
+
+      .hero-highlights,
+      .services-grid,
+      .comparison-grid,
+      .contacts-card,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .slot-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .brand {
+        gap: 10px;
+      }
+
+      .brand-name {
+        font-size: 0.9375rem;
+      }
+
+      .brand-sub {
+        font-size: 0.75rem;
+      }
+
+      .header-actions .btn-outline {
+        display: none;
+      }
+
+      .header-actions .btn-primary {
+        padding: 8px 11px;
+        font-size: 0.8125rem;
+        white-space: nowrap;
+      }
+
+      .segmented-group,
+      .dms-subpanel,
+      .form-grid,
+      .clinic-facts-grid,
+      .totals-box,
+      .booking-meta-grid,
+      .card-actions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .panel,
+      .step-block,
+      .summary-card,
+      .clinic-card,
+      .service-card,
+      .contacts-card {
+        padding: 16px;
+      }
+
+      .proc-controls {
+        width: 100%;
+        justify-content: space-between;
+        margin-left: 0;
+      }
+    }
+
+    @media print {
+      body {
+        background-color: #FFFFFF;
+        color: #18181B;
+        font-size: 12pt;
+      }
+
+      .utility-bar,
+      .site-header,
+      .hero,
+      .panel-stack,
+      #services,
+      #dms-info,
+      #contacts,
+      .site-footer,
+      .card-actions-grid,
+      .status-toast,
+      .text-link-btn {
+        display: none;
+      }
+
+      .print-only-header {
+        display: block;
+        border-bottom: 2px solid #0D9488;
+        padding-bottom: 12px;
+        margin-bottom: 18px;
+      }
+
+      .print-only-header h1 {
+        font-size: 16pt;
+        margin: 0 0 6px;
+      }
+
+      .print-only-header p {
+        margin: 2px 0;
+        font-size: 10.5pt;
+        color: #4B4B52;
+      }
+
+      .section {
+        padding: 0;
+      }
+
+      .section-head {
+        display: none;
+      }
+
+      .workspace-grid {
+        display: block;
+      }
+
+      .summary-card {
+        position: static;
+        border: 1px solid #D4CFC5;
+        box-shadow: none;
+        padding: 18px;
+      }
+
+      .selected-list {
+        max-height: none;
+        overflow: visible;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#calculator">Перейти к калькулятору и записи</a>
+
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="utility-meta">
+        <span class="utility-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 21s-6-5.2-6-10a6 6 0 1 1 12 0c0 4.8-6 10-6 10Z"/>
+            <circle cx="12" cy="11" r="2.2"/>
+          </svg>
+          <span>г. Самара, Промышленный район</span>
+        </span>
+        <span class="utility-item">Частная стоматология</span>
+      </div>
+      <div class="utility-meta">
+        <a class="utility-phone num" href="tel:+78462248008">8 (846) 224-80-08</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Стоматология Дент-Самара">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <rect width="36" height="36" rx="9" fill="#0D9488"/>
+            <path d="M12.5 11.5c-2.3 0-4.1 1.9-4.1 4.5 0 2.9 1.2 5.3 2 8.4.5 2 1.1 4.5 2.6 4.5 1.3 0 1.9-2 2.8-4.1.7-1.6 1.3-2.5 2.2-2.5s1.5.9 2.2 2.5c.9 2.1 1.5 4.1 2.8 4.1 1.5 0 2.1-2.5 2.6-4.5.8-3.1 2-5.5 2-8.4 0-2.6-1.8-4.5-4.1-4.5-1.9 0-3.4 1.1-5.5 1.1s-3.6-1.1-5.5-1.1Z" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Стоматология Дент-Самара</span>
+          <span class="brand-sub">Частная стоматология · г. Самара, Промышленный район</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Навигация по разделам">
+        <a class="nav-link" href="#calculator">Калькулятор и запись</a>
+        <a class="nav-link" href="#services">Направления</a>
+        <a class="nav-link" href="#dms-info">Частный приём и ДМС</a>
+        <a class="nav-link" href="#contacts">Контакты</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-outline btn-sm num" href="tel:+78462248008">8 (846) 224-80-08</a>
+        <a class="btn btn-primary btn-sm" href="#calculator">Рассчитать визит</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="print-only-header">
+      <h1>Памятка пациента — Стоматология Дент-Самара</h1>
+      <p>Частная стоматология · г. Самара, Промышленный район</p>
+      <p>Телефон: 8 (846) 224-80-08 · Электронная почта: info@dent-samara.ru · Сайт: https://dent-samara.ru/</p>
+    </div>
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>г. Самара, Промышленный район · Приём пациентов и лечение по ДМС</span>
+          </div>
+          <h1>Онлайн-запись к стоматологу и расчёт стоимости визита в клинике «Стоматология Дент-Самара»</h1>
+          <p class="hero-lead">
+            Выберите формат оплаты — частный приём или полис ДМС, отметьте нужные направления и процедуры, подберите удобный день и время. Система мгновенно рассчитает ориентировочную стоимость в рублях, длительность приёма и сформирует готовую карточку заявки.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#calculator">
+              <span>Перейти к калькулятору и записи</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6"/>
+              </svg>
+            </a>
+            <a class="btn btn-outline num" href="tel:+78462248008">Позвонить: 8 (846) 224-80-08</a>
+          </div>
+
+          <div class="hero-highlights">
+            <div class="highlight-box">
+              <div class="highlight-label">Форматы приёма</div>
+              <div class="highlight-value">Частный и по ДМС</div>
+            </div>
+            <div class="highlight-box">
+              <div class="highlight-label">Расчёт до визита</div>
+              <div class="highlight-value">Бюджет в RUB и минуты</div>
+            </div>
+            <div class="highlight-box">
+              <div class="highlight-label">Передача заявки</div>
+              <div class="highlight-value">Копирование, печать, email</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="clinic-card" aria-label="Справка о клинике">
+          <div class="clinic-card-top">
+            <span class="clinic-tag">Частная стоматология</span>
+            <span class="clinic-status">Самара</span>
+          </div>
+          <h2>Стоматология Дент-Самара</h2>
+          <div class="clinic-facts-grid">
+            <div class="fact-cell">
+              <div class="fact-label">Расположение</div>
+              <div class="fact-val">г. Самара, Промышленный район</div>
+            </div>
+            <div class="fact-cell">
+              <div class="fact-label">Телефон записи</div>
+              <div class="fact-val num"><a href="tel:+78462248008">8 (846) 224-80-08</a></div>
+            </div>
+            <div class="fact-cell fact-cell-wide">
+              <div class="fact-label">Электронная почта</div>
+              <div class="fact-val"><a href="mailto:info@dent-samara.ru">info@dent-samara.ru</a></div>
+            </div>
+            <div class="fact-cell fact-cell-wide">
+              <div class="fact-label">Официальный сайт</div>
+              <div class="fact-val"><a href="https://dent-samara.ru/" target="_blank" rel="noopener noreferrer">https://dent-samara.ru/</a></div>
+            </div>
+          </div>
+          <div class="field-label">Основные направления клиники</div>
+          <div class="clinic-services-pills">
+            <span class="service-pill">Терапевтическая стоматология</span>
+            <span class="service-pill">Профессиональная гигиена и отбеливание</span>
+            <span class="service-pill">Протезирование и имплантация</span>
+            <span class="service-pill">Лечение по полисам ДМС</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="calculator">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Интерактивный сервис</div>
+            <h2 class="section-title">Калькулятор стоимости лечения и онлайн-запись</h2>
+            <p class="section-desc">
+              Сформируйте предварительный план визита в клинику «Стоматология Дент-Самара» с учётом формата оплаты, объёма процедур и удобного времени.
+            </p>
+          </div>
+        </div>
+
+        <div class="workspace-grid">
+          <div class="panel-stack">
+            <!-- Step 1: Payment format -->
+            <div class="step-block">
+              <div class="step-header">
+                <div class="step-badge">
+                  <span class="step-num num">1</span>
+                  <span>Формат оплаты визита</span>
+                </div>
+              </div>
+              <div class="field-label">Выберите способ обслуживания</div>
+              <div class="segmented-group" role="group" aria-label="Формат оплаты">
+                <button type="button" class="seg-btn" id="pay-private" data-pay="private" aria-pressed="true">
+                  <span class="seg-title">Частный приём</span>
+                  <span class="seg-sub">Предварительный расчёт по прайсу в рублях</span>
+                </button>
+                <button type="button" class="seg-btn" id="pay-dms" data-pay="dms" aria-pressed="false">
+                  <span class="seg-title">Полис ДМС</span>
+                  <span class="seg-sub">Приём по программе страховой компании и доп. опциям</span>
+                </button>
+              </div>
+
+              <div class="dms-subpanel" id="dms-panel" hidden>
+                <div class="form-field">
+                  <label class="input-label" for="dms-insurer">Страховая компания</label>
+                  <select class="form-select" id="dms-insurer" autocomplete="organization">
+                    <option value="СОГАЗ">СОГАЗ</option>
+                    <option value="АльфаСтрахование">АльфаСтрахование</option>
+                    <option value="РЕСО-Гарантия">РЕСО-Гарантия</option>
+                    <option value="Ингосстрах">Ингосстрах</option>
+                    <option value="ВСК">ВСК</option>
+                    <option value="Ренессанс Страхование">Ренессанс Страхование</option>
+                    <option value="Другая страховая компания">Другая страховая компания</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label class="input-label" for="dms-policy">Номер полиса ДМС (если под рукой)</label>
+                  <input class="form-input num" id="dms-policy" type="text" autocomplete="off" placeholder="Например, 0045-1920-2026">
+                </div>
+                <p class="dms-note-wide">
+                  Базовая диагностика и терапия в пределах вашей программы ДМС рассчитываются без прямой оплаты (по гарантийному письму или прямому прикреплению). Эстетические процедуры, отбеливание и имплантация обычно оплачиваются отдельно.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 2: Services and procedures -->
+            <div class="step-block">
+              <div class="step-header">
+                <div class="step-badge">
+                  <span class="step-num num">2</span>
+                  <span>Направления и процедуры</span>
+                </div>
+              </div>
+
+              <div class="presets-row">
+                <span class="preset-caption">Готовые сценарии:</span>
+                <button type="button" class="chip-btn" data-preset="checkup" aria-pressed="false">Осмотр и гигиена</button>
+                <button type="button" class="chip-btn" data-preset="caries" aria-pressed="false">Лечение кариеса</button>
+                <button type="button" class="chip-btn" data-preset="implant" aria-pressed="false">Имплантация и коронка</button>
+                <button type="button" class="chip-btn" data-preset="dms-visit" aria-pressed="false">Визит по ДМС</button>
+              </div>
+
+              <div class="field-label">Фильтр по направлению клиники</div>
+              <div class="tabs-row" role="group" aria-label="Направления клиники">
+                <button type="button" class="tab-btn" data-cat="all" aria-pressed="true">Все направления</button>
+                <button type="button" class="tab-btn" data-cat="therapy" aria-pressed="false">Терапевтическая стоматология</button>
+                <button type="button" class="tab-btn" data-cat="hygiene" aria-pressed="false">Профессиональная гигиена и отбеливание</button>
+                <button type="button" class="tab-btn" data-cat="prosthetics" aria-pressed="false">Протезирование и имплантация</button>
+                <button type="button" class="tab-btn" data-cat="dms" aria-pressed="false">Лечение по полисам ДМС</button>
+              </div>
+
+              <div class="proc-groups" id="procedures-container"></div>
+            </div>
+
+            <!-- Step 3: Date, time & patient details -->
+            <div class="step-block">
+              <div class="step-header">
+                <div class="step-badge">
+                  <span class="step-num num">3</span>
+                  <span>Удобный день, время и контакты для связи</span>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-field form-field-full">
+                  <div class="field-label">Предпочтительный день визита</div>
+                  <div class="day-chips" id="day-chips" role="group" aria-label="Быстрый выбор дня визита"></div>
+                </div>
+
+                <div class="form-field">
+                  <label class="input-label" for="visit-date">Календарная дата</label>
+                  <input class="form-input num" id="visit-date" type="date" autocomplete="off">
+                </div>
+
+                <div class="form-field">
+                  <div class="input-label">Предпочтительное время</div>
+                  <div class="slot-grid" id="time-slots" role="group" aria-label="Выбор времени приёма">
+                    <button type="button" class="slot-btn num" data-time="09:00" aria-pressed="false">09:00</button>
+                    <button type="button" class="slot-btn num" data-time="10:30" aria-pressed="true">10:30</button>
+                    <button type="button" class="slot-btn num" data-time="12:00" aria-pressed="false">12:00</button>
+                    <button type="button" class="slot-btn num" data-time="14:00" aria-pressed="false">14:00</button>
+                    <button type="button" class="slot-btn num" data-time="15:30" aria-pressed="false">15:30</button>
+                    <button type="button" class="slot-btn num" data-time="17:00" aria-pressed="false">17:00</button>
+                    <button type="button" class="slot-btn num" data-time="18:30" aria-pressed="false">18:30</button>
+                    <button type="button" class="slot-btn num" data-time="19:30" aria-pressed="false">19:30</button>
+                  </div>
+                  <div class="field-hint">Точное окно приёма подтверждает администратор по телефону.</div>
+                </div>
+
+                <div class="form-field">
+                  <label class="input-label" for="patient-name">Ваше имя</label>
+                  <input class="form-input" id="patient-name" type="text" autocomplete="name" placeholder="Например, Анна Сергеевна">
+                </div>
+
+                <div class="form-field">
+                  <label class="input-label" for="patient-phone">Телефон для подтверждения</label>
+                  <input class="form-input num" id="patient-phone" type="tel" autocomplete="tel" placeholder="+7 (927) 000-00-00">
+                </div>
+
+                <div class="form-field form-field-full">
+                  <label class="input-label" for="patient-comment">Повод обращения или пожелания (необязательно)</label>
+                  <textarea class="form-textarea" id="patient-comment" autocomplete="off" placeholder="Например: плановый осмотр, чувствительность зуба, консультация по имплантации"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sticky Summary Card -->
+          <aside class="summary-card" id="booking-card" aria-label="Итоговая карточка заявки">
+            <div class="summary-top">
+              <h3 class="summary-title">Карточка заявки</h3>
+              <span class="mode-pill" id="summary-mode-pill">Частный приём</span>
+            </div>
+
+            <div class="totals-box">
+              <div>
+                <div class="total-label" id="total-cost-label">Ориентировочная стоимость</div>
+                <div class="total-figure total-figure-accent num" id="total-cost-value">0 ₽</div>
+              </div>
+              <div>
+                <div class="total-label">Длительность визита</div>
+                <div class="total-figure num" id="total-duration-value">0 мин</div>
+              </div>
+              <div class="total-item-wide" id="dms-tariff-row" hidden>
+                <span>Оценка объёма по прайсу (покрытие / согласование СК):</span>
+                <strong class="num" id="dms-covered-value">0 ₽</strong>
+              </div>
+            </div>
+
+            <div class="summary-section-head">
+              <span class="summary-subhead">Выбранные процедуры</span>
+              <button type="button" class="text-link-btn" id="reset-btn">Сбросить</button>
+            </div>
+
+            <ul class="selected-list" id="summary-items-list"></ul>
+            <div class="empty-state" id="summary-empty" hidden>
+              Выберите хотя бы одну процедуру в списке слева, чтобы рассчитать ориентировочный бюджет и время приёма.
+            </div>
+
+            <div class="booking-meta-grid">
+              <div>
+                <div class="meta-k">Клиника и район</div>
+                <div class="meta-v">Стоматология Дент-Самара, г. Самара, Промышленный район</div>
+              </div>
+              <div>
+                <div class="meta-k">День и время</div>
+                <div class="meta-v num" id="summary-datetime">Не выбрано</div>
+              </div>
+              <div>
+                <div class="meta-k">Формат оплаты</div>
+                <div class="meta-v" id="summary-payment">Частный приём</div>
+              </div>
+              <div>
+                <div class="meta-k">Пациент</div>
+                <div class="meta-v" id="summary-patient">Не указано</div>
+              </div>
+              <div class="meta-pair-wide" id="summary-comment-wrap" hidden>
+                <div class="meta-k">Комментарий</div>
+                <div class="meta-v" id="summary-comment"></div>
+              </div>
+            </div>
+
+            <div class="card-actions-grid">
+              <button type="button" class="btn btn-outline" id="copy-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                <span>Скопировать заявку</span>
+              </button>
+              <button type="button" class="btn btn-soft" id="print-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M6 9V2h12v7"/>
+                  <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                  <rect x="6" y="14" width="12" height="8"/>
+                </svg>
+                <span>Печать памятки</span>
+              </button>
+              <a class="btn btn-primary btn-mailto-wide" id="mailto-btn" href="mailto:info@dent-samara.ru">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+                <span>Написать на info@dent-samara.ru</span>
+              </a>
+            </div>
+
+            <div class="status-toast" id="copy-status" role="status" aria-live="polite"></div>
+
+            <p class="disclaimer">
+              Расчёт носит ориентировочный характер для планирования визита. Итоговая стоимость, объём вмешательства и условия согласования по ДМС определяются врачом после очного осмотра и диагностики.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Клинический профиль</div>
+            <h2 class="section-title">Направления клиники «Стоматология Дент-Самара»</h2>
+            <p class="section-desc">
+              Выберите нужное направление, чтобы сразу открыть его процедуры в калькуляторе и оценить время визита.
+            </p>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-card-head">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 3v18M3 12h18"/>
+                  </svg>
+                </span>
+                <h3>Терапевтическая стоматология</h3>
+              </div>
+              <p>
+                Диагностика, щадящее лечение кариеса и его осложнений, восстановление анатомии зуба современными композитными материалами и эндодонтическое лечение каналов.
+              </p>
+              <ul class="service-bullets">
+                <li>Первичная консультация и составление плана лечения</li>
+                <li>Лечение поверхностного, среднего и глубокого кариеса</li>
+                <li>Механическая и медикаментозная обработка корневых каналов</li>
+              </ul>
+            </div>
+            <div>
+              <button type="button" class="btn btn-outline btn-sm jump-cat-btn" data-jump-cat="therapy">Рассчитать терапию</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-head">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4L12 2Z"/>
+                  </svg>
+                </span>
+                <h3>Профессиональная гигиена и отбеливание</h3>
+              </div>
+              <p>
+                Комплексное удаление зубного камня и пигментированного налёта, укрепление эмали и щадящее клиническое отбеливание с индивидуальным подбором ухода.
+              </p>
+              <ul class="service-bullets">
+                <li>Ультразвуковая чистка, Air Flow и полировка пастами</li>
+                <li>Реминерализующая терапия для снижения чувствительности</li>
+                <li>Кабинетное и домашнее отбеливание под контролем врача</li>
+              </ul>
+            </div>
+            <div>
+              <button type="button" class="btn btn-outline btn-sm jump-cat-btn" data-jump-cat="hygiene">Рассчитать гигиену</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-head">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="8" r="5"/>
+                    <path d="M8 13v7l4-2 4 2v-7"/>
+                  </svg>
+                </span>
+                <h3>Протезирование и имплантация</h3>
+              </div>
+              <p>
+                Восстановление утраченных и разрушенных зубов с поэтапным ортопедическим и хирургическим планированием: от временных коронок до циркониевых реставраций.
+              </p>
+              <ul class="service-bullets">
+                <li>Совместный осмотр ортопеда и хирурга-имплантолога</li>
+                <li>Хирургический этап установки дентальных имплантатов</li>
+                <li>Коронки из диоксида циркония и индивидуальные абатменты</li>
+              </ul>
+            </div>
+            <div>
+              <button type="button" class="btn btn-outline btn-sm jump-cat-btn" data-jump-cat="prosthetics">Рассчитать ортопедию</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-head">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="5" width="18" height="14" rx="2"/>
+                    <path d="M7 10h10M7 14h6"/>
+                  </svg>
+                </span>
+                <h3>Лечение по полисам ДМС</h3>
+              </div>
+              <p>
+                Организованный приём застрахованных пациентов в рамках программ добровольного медицинского страхования с учётом перечня покрываемых и согласуемых услуг.
+              </p>
+              <ul class="service-bullets">
+                <li>Плановый приём и помощь при острой боли по ДМС</li>
+                <li>Предварительное выделение процедур по согласованию СК</li>
+                <li>Прозрачный расчёт при сочетании ДМС и частных услуг</li>
+              </ul>
+            </div>
+            <div>
+              <button type="button" class="btn btn-outline btn-sm jump-cat-btn" data-jump-cat="dms" data-force-dms="true">Рассчитать визит по ДМС</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight comparison-section" id="dms-info">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Памятка перед визитом</div>
+            <h2 class="section-title">Как проходит приём в частном порядке и по полису ДМС</h2>
+          </div>
+        </div>
+
+        <div class="comparison-grid">
+          <div class="compare-card">
+            <h3>Частный приём</h3>
+            <ul class="compare-list">
+              <li>Вы выбираете любое направление и объём процедур без привязки к страховым лимитам.</li>
+              <li>Перед началом лечения врач фиксирует состояние полости рта и согласует пошаговую смету в рублях.</li>
+              <li>Калькулятор помогает заранее сопоставить ориентировочный бюджет и заложить нужное время в расписании дня.</li>
+            </ul>
+          </div>
+          <div class="compare-card">
+            <h3>Лечение по полисам ДМС</h3>
+            <ul class="compare-list">
+              <li>Укажите страховую компанию и при наличии номер полиса при оформлении карточки заявки.</li>
+              <li>Врач и администратор проверяют прямое прикрепление либо запрашивают гарантийное письмо на согласование.</li>
+              <li>Процедуры сверх базовой программы можно комбинировать в одном визите с понятным расчётом доплаты.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight" id="contacts">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Контактная информация</div>
+            <h2 class="section-title">Связь с клиникой «Стоматология Дент-Самара»</h2>
+          </div>
+        </div>
+
+        <div class="contacts-card">
+          <div class="contact-item">
+            <div class="contact-label">Клиника и специализация</div>
+            <div class="contact-value">Стоматология Дент-Самара · Частная стоматология</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-label">Город и район</div>
+            <div class="contact-value">г. Самара, Промышленный район</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-label">Телефон регистратуры</div>
+            <div class="contact-value num"><a href="tel:+78462248008">8 (846) 224-80-08</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-label">Официальный сайт</div>
+            <div class="contact-value"><a href="https://dent-samara.ru/" target="_blank" rel="noopener noreferrer">https://dent-samara.ru/</a></div>
+          </div>
+          <div class="contact-item contact-item-wide">
+            <div class="contact-label">Электронная почта для заявок и документов ДМС</div>
+            <div class="contact-value"><a href="mailto:info@dent-samara.ru">info@dent-samara.ru</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand">Стоматология Дент-Самара</div>
+        <div>Частная стоматология · г. Самара, Промышленный район</div>
+      </div>
+      <div class="footer-links">
+        <a class="num" href="tel:+78462248008">8 (846) 224-80-08</a>
+        <a href="https://dent-samara.ru/" target="_blank" rel="noopener noreferrer">https://dent-samara.ru/</a>
+      </div>
+      <div class="footer-wide footer-links">
+        <span>Электронная почта:</span>
+        <a href="mailto:info@dent-samara.ru">info@dent-samara.ru</a>
+      </div>
+      <div class="footer-wide footer-preview-note">
+        Интерактивный макет онлайн-записи и предварительного калькулятора визита подготовлен для клиники «Стоматология Дент-Самара».
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var PROCEDURES = [
+        {
+          id: 't-consult',
+          category: 'therapy',
+          categoryLabel: 'Терапевтическая стоматология',
+          title: 'Первичная консультация стоматолога-терапевта и план лечения',
+          note: 'Осмотр полости рта, оценка состояния пломб и предварительный план',
+          price: 900,
+          duration: 30,
+          dmsMode: 'covered',
+          countable: false
+        },
+        {
+          id: 't-xray',
+          category: 'therapy',
+          categoryLabel: 'Терапевтическая стоматология',
+          title: 'Прицельный цифровой снимок зуба',
+          note: 'Точечная диагностика состояния корня и скрытых полостей',
+          price: 600,
+          duration: 10,
+          dmsMode: 'covered',
+          countable: true,
+          unit: 'сн.',
+          maxQty: 4
+        },
+        {
+          id: 't-caries-mid',
+          category: 'therapy',
+          categoryLabel: 'Терапевтическая стоматология',
+          title: 'Лечение поверхностного и среднего кариеса',
+          note: 'Подготовка полости и восстановление светоотверждаемой пломбой',
+          price: 4500,
+          duration: 50,
+          dmsMode: 'covered',
+          countable: true,
+          unit: 'зуб',
+          maxQty: 6
+        },
+        {
+          id: 't-caries-deep',
+          category: 'therapy',
+          categoryLabel: 'Терапевтическая стоматология',
+          title: 'Лечение глубокого кариеса с лечебной прокладкой и реставрацией',
+          note: 'Изоляция, защита пульпы и послойное восстановление коронки зуба',
+          price: 5800,
+          duration: 60,
+          dmsMode: 'covered',
+          countable: true,
+          unit: 'зуб',
+          maxQty: 4
+        },
+        {
+          id: 't-endo',
+          category: 'therapy',
+          categoryLabel: 'Терапевтическая стоматология',
+          title: 'Эндодонтическое лечение корневых каналов (за 1 канал)',
+          note: 'Инструментальная обработка, антисептическая промывка и пломбирование',
+          price: 4900,
+          duration: 60,
+          dmsMode: 'approval',
+          countable: true,
+          unit: 'кан.',
+          maxQty: 4
+        },
+        {
+          id: 'h-complex',
+          category: 'hygiene',
+          categoryLabel: 'Профессиональная гигиена и отбеливание',
+          title: 'Комплексная профгигиена (ультразвук, Air Flow, полировка)',
+          note: 'Удаление наддесневого камня, мягкого налёта и финишное фторирование',
+          price: 4200,
+          duration: 60,
+          dmsMode: 'approval',
+          countable: false
+        },
+        {
+          id: 'h-remin',
+          category: 'hygiene',
+          categoryLabel: 'Профессиональная гигиена и отбеливание',
+          title: 'Реминерализующая терапия эмали',
+          note: 'Укрепление эмали и снижение повышенной чувствительности зубов',
+          price: 1900,
+          duration: 25,
+          dmsMode: 'extra',
+          countable: false
+        },
+        {
+          id: 'h-whitening',
+          category: 'hygiene',
+          categoryLabel: 'Профессиональная гигиена и отбеливание',
+          title: 'Клиническое отбеливание зубов в зоне улыбки',
+          note: 'Щадящее осветление эмали в кресле врача после предварительного осмотра',
+          price: 16500,
+          duration: 75,
+          dmsMode: 'extra',
+          countable: false
+        },
+        {
+          id: 'h-home-tray',
+          category: 'hygiene',
+          categoryLabel: 'Профессиональная гигиена и отбеливание',
+          title: 'Изготовление индивидуальной капы для домашнего ухода',
+          note: 'Снятие слепков и подбор курса поддерживающего отбеливания или реминерализации',
+          price: 7500,
+          duration: 30,
+          dmsMode: 'extra',
+          countable: false
+        },
+        {
+          id: 'p-consult',
+          category: 'prosthetics',
+          categoryLabel: 'Протезирование и имплантация',
+          title: 'Консультация ортопеда и хирурга-имплантолога',
+          note: 'Оценка прикуса, костной ткани и вариантов поэтапного восстановления',
+          price: 1200,
+          duration: 40,
+          dmsMode: 'approval',
+          countable: false
+        },
+        {
+          id: 'p-temp-crown',
+          category: 'prosthetics',
+          categoryLabel: 'Протезирование и имплантация',
+          title: 'Временная защитная коронка',
+          note: 'Сохранение эстетики и контура десны на период изготовления постоянной конструкции',
+          price: 3200,
+          duration: 35,
+          dmsMode: 'extra',
+          countable: true,
+          unit: 'ед.',
+          maxQty: 6
+        },
+        {
+          id: 'p-zirconia',
+          category: 'prosthetics',
+          categoryLabel: 'Протезирование и имплантация',
+          title: 'Постоянная коронка из диоксида циркония',
+          note: 'Высокоточная безметалловая конструкция на собственный зуб или имплантат',
+          price: 24500,
+          duration: 60,
+          dmsMode: 'extra',
+          countable: true,
+          unit: 'ед.',
+          maxQty: 6
+        },
+        {
+          id: 'p-implant',
+          category: 'prosthetics',
+          categoryLabel: 'Протезирование и имплантация',
+          title: 'Установка дентального имплантата (хирургический этап)',
+          note: 'Операция по установке титанового имплантата с последующим контролем',
+          price: 32000,
+          duration: 70,
+          dmsMode: 'extra',
+          countable: true,
+          unit: 'ед.',
+          maxQty: 4
+        },
+        {
+          id: 'p-abutment',
+          category: 'prosthetics',
+          categoryLabel: 'Протезирование и имплантация',
+          title: 'Установка формирователя десны и абатмента',
+          note: 'Подготовка мягких тканей и опорного элемента перед протезированием',
+          price: 8900,
+          duration: 35,
+          dmsMode: 'extra',
+          countable: true,
+          unit: 'ед.',
+          maxQty: 4
+        },
+        {
+          id: 'd-primary',
+          category: 'dms',
+          categoryLabel: 'Лечение по полисам ДМС',
+          title: 'Первичный осмотр и оформление визита по полису ДМС',
+          note: 'Сверка программы страхования, диагностика и согласование объёма помощи',
+          price: 1100,
+          duration: 30,
+          dmsMode: 'covered',
+          countable: false
+        },
+        {
+          id: 'd-emergency',
+          category: 'dms',
+          categoryLabel: 'Лечение по полисам ДМС',
+          title: 'Обращение по острой боли в рамках ДМС',
+          note: 'Срочный осмотр, рентген-контроль и купирование болевого синдрома',
+          price: 2800,
+          duration: 45,
+          dmsMode: 'covered',
+          countable: false
+        },
+        {
+          id: 'd-therapy',
+          category: 'dms',
+          categoryLabel: 'Лечение по полисам ДМС',
+          title: 'Терапевтическое лечение зуба по гарантийному письму ДМС',
+          note: 'Восстановление твёрдых тканей зуба по условиям страхового полиса',
+          price: 4700,
+          duration: 50,
+          dmsMode: 'covered',
+          countable: true,
+          unit: 'зуб',
+          maxQty: 4
+        },
+        {
+          id: 'd-hygiene',
+          category: 'dms',
+          categoryLabel: 'Лечение по полисам ДМС',
+          title: 'Профгигиена полости рта по согласованию со страховой',
+          note: 'Доступна при наличии профилактического блока в годовой программе ДМС',
+          price: 4200,
+          duration: 55,
+          dmsMode: 'approval',
+          countable: false
+        }
+      ];
+
+      var CATEGORY_ORDER = [
+        { key: 'therapy', label: 'Терапевтическая стоматология' },
+        { key: 'hygiene', label: 'Профессиональная гигиена и отбеливание' },
+        { key: 'prosthetics', label: 'Протезирование и имплантация' },
+        { key: 'dms', label: 'Лечение по полисам ДМС' }
+      ];
+
+      var PRESETS = {
+        checkup: {
+          payment: 'private',
+          category: 'all',
+          items: { 't-consult': 1, 'h-complex': 1 }
+        },
+        caries: {
+          payment: 'private',
+          category: 'therapy',
+          items: { 't-consult': 1, 't-xray': 1, 't-caries-mid': 1 }
+        },
+        implant: {
+          payment: 'private',
+          category: 'prosthetics',
+          items: { 'p-consult': 1, 'p-implant': 1, 'p-zirconia': 1 }
+        },
+        'dms-visit': {
+          payment: 'dms',
+          category: 'dms',
+          items: { 'd-primary': 1, 'd-therapy': 1 }
+        }
+      };
+
+      var state = {
+        payment: 'private',
+        activeCategory: 'all',
+        activePreset: 'checkup',
+        selected: {
+          't-consult': 1,
+          'h-complex': 1
+        },
+        visitDate: '',
+        visitTime: '10:30',
+        patientName: '',
+        patientPhone: '',
+        patientComment: '',
+        dmsInsurer: 'СОГАЗ',
+        dmsPolicy: ''
+      };
+
+      var elProceduresContainer = document.getElementById('procedures-container');
+      var elDmsPanel = document.getElementById('dms-panel');
+      var elDmsInsurer = document.getElementById('dms-insurer');
+      var elDmsPolicy = document.getElementById('dms-policy');
+      var elVisitDate = document.getElementById('visit-date');
+      var elDayChips = document.getElementById('day-chips');
+      var elTimeSlots = document.getElementById('time-slots');
+      var elPatientName = document.getElementById('patient-name');
+      var elPatientPhone = document.getElementById('patient-phone');
+      var elPatientComment = document.getElementById('patient-comment');
+
+      var elSummaryModePill = document.getElementById('summary-mode-pill');
+      var elTotalCostLabel = document.getElementById('total-cost-label');
+      var elTotalCostValue = document.getElementById('total-cost-value');
+      var elTotalDurationValue = document.getElementById('total-duration-value');
+      var elDmsTariffRow = document.getElementById('dms-tariff-row');
+      var elDmsCoveredValue = document.getElementById('dms-covered-value');
+      var elSummaryItemsList = document.getElementById('summary-items-list');
+      var elSummaryEmpty = document.getElementById('summary-empty');
+      var elSummaryDatetime = document.getElementById('summary-datetime');
+      var elSummaryPayment = document.getElementById('summary-payment');
+      var elSummaryPatient = document.getElementById('summary-patient');
+      var elSummaryCommentWrap = document.getElementById('summary-comment-wrap');
+      var elSummaryComment = document.getElementById('summary-comment');
+      var elCopyBtn = document.getElementById('copy-btn');
+      var elPrintBtn = document.getElementById('print-btn');
+      var elMailtoBtn = document.getElementById('mailto-btn');
+      var elResetBtn = document.getElementById('reset-btn');
+      var elCopyStatus = document.getElementById('copy-status');
+
+      function formatRub(amount) {
+        return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' \u20BD';
+      }
+
+      function formatDuration(minutes) {
+        if (minutes <= 0) {
+          return '0 мин';
+        }
+        var hrs = Math.floor(minutes / 60);
+        var mins = minutes % 60;
+        if (hrs === 0) {
+          return mins + ' мин';
+        }
+        if (mins === 0) {
+          return hrs + ' ч';
+        }
+        return hrs + ' ч ' + mins + ' мин';
+      }
+
+      function toIsoDate(dateObj) {
+        var y = dateObj.getFullYear();
+        var m = String(dateObj.getMonth() + 1);
+        if (m.length < 2) m = '0' + m;
+        var d = String(dateObj.getDate());
+        if (d.length < 2) d = '0' + d;
+        return y + '-' + m + '-' + d;
+      }
+
+      function formatRuDate(isoStr) {
+        if (!isoStr) {
+          return 'Дата не выбрана';
+        }
+        var parts = isoStr.split('-');
+        if (parts.length !== 3) {
+          return isoStr;
+        }
+        var d = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+        var weekdays = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+        var months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+        return weekdays[d.getDay()] + ', ' + d.getDate() + ' ' + months[d.getMonth()];
+      }
+
+      function getDmsLabel(dmsMode) {
+        if (dmsMode === 'covered') {
+          return { text: 'Входит в базовый ДМС', cls: 'dms-covered' };
+        }
+        if (dmsMode === 'approval') {
+          return { text: 'По согласованию СК', cls: 'dms-approval' };
+        }
+        return { text: 'Частный тариф / вне ДМС', cls: 'dms-extra' };
+      }
+
+      function initDayChips() {
+        var today = new Date();
+        var weekdays = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+        var chips = [];
+        for (var i = 0; i < 6; i++) {
+          var dt = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
+          var iso = toIsoDate(dt);
+          var label;
+          if (i === 0) {
+            label = 'Сегодня';
+          } else if (i === 1) {
+            label = 'Завтра';
+          } else {
+            var dd = String(dt.getDate());
+            var mm = String(dt.getMonth() + 1);
+            if (dd.length < 2) dd = '0' + dd;
+            if (mm.length < 2) mm = '0' + mm;
+            label = weekdays[dt.getDay()] + ', ' + dd + '.' + mm;
+          }
+          chips.push({ iso: iso, label: label });
+        }
+
+        state.visitDate = chips[1].iso;
+        elVisitDate.min = chips[0].iso;
+        elVisitDate.value = state.visitDate;
+
+        elDayChips.innerHTML = '';
+        chips.forEach(function (chip) {
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'chip-btn num';
+          btn.setAttribute('data-date', chip.iso);
+          btn.setAttribute('aria-pressed', chip.iso === state.visitDate ? 'true' : 'false');
+          btn.textContent = chip.label;
+          btn.addEventListener('click', function () {
+            state.visitDate = chip.iso;
+            elVisitDate.value = chip.iso;
+            syncDayChipsUI();
+            renderSummary();
+          });
+          elDayChips.appendChild(btn);
+        });
+      }
+
+      function syncDayChipsUI() {
+        var buttons = elDayChips.querySelectorAll('button[data-date]');
+        buttons.forEach(function (btn) {
+          var active = btn.getAttribute('data-date') === state.visitDate;
+          btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+      }
+
+      function renderProcedures() {
+        elProceduresContainer.innerHTML = '';
+        var visibleCategories = CATEGORY_ORDER.filter(function (cat) {
+          return state.activeCategory === 'all' || state.activeCategory === cat.key;
+        });
+
+        visibleCategories.forEach(function (cat) {
+          var groupItems = PROCEDURES.filter(function (item) {
+            return item.category === cat.key;
+          });
+          if (groupItems.length === 0) return;
+
+          var groupWrap = document.createElement('div');
+          var heading = document.createElement('h3');
+          heading.className = 'proc-group-title';
+          heading.textContent = cat.label;
+          groupWrap.appendChild(heading);
+
+          var listEl = document.createElement('div');
+          listEl.className = 'proc-list';
+
+          groupItems.forEach(function (proc) {
+            var qty = state.selected[proc.id] || 0;
+            var isSelected = qty > 0;
+
+            var row = document.createElement('div');
+            row.className = isSelected ? 'proc-item is-selected' : 'proc-item';
+
+            var main = document.createElement('div');
+            main.className = 'proc-main';
+
+            var checkboxId = 'proc-' + proc.id;
+            var checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'proc-checkbox';
+            checkbox.id = checkboxId;
+            checkbox.checked = isSelected;
+            checkbox.setAttribute('autocomplete', 'off');
+            checkbox.addEventListener('change', function () {
+              if (checkbox.checked) {
+                state.selected[proc.id] = 1;
+              } else {
+                delete state.selected[proc.id];
+              }
+              state.activePreset = '';
+              syncPresetUI();
+              renderProcedures();
+              renderSummary();
+            });
+
+            var label = document.createElement('label');
+            label.className = 'proc-label';
+            label.setAttribute('for', checkboxId);
+
+            var titleSpan = document.createElement('span');
+            titleSpan.className = 'proc-title';
+            titleSpan.textContent = proc.title;
+
+            var metaSpan = document.createElement('span');
+            metaSpan.className = 'proc-meta';
+
+            var descSpan = document.createElement('span');
+            descSpan.textContent = proc.note + ' · ';
+
+            var durSpan = document.createElement('span');
+            durSpan.className = 'num';
+            durSpan.textContent = proc.duration + ' мин';
+
+            metaSpan.appendChild(descSpan);
+            metaSpan.appendChild(durSpan);
+
+            if (state.payment === 'dms' || proc.category === 'dms') {
+              var badgeInfo = getDmsLabel(proc.dmsMode);
+              var dmsBadge = document.createElement('span');
+              dmsBadge.className = 'dms-badge ' + badgeInfo.cls;
+              dmsBadge.textContent = badgeInfo.text;
+              metaSpan.appendChild(dmsBadge);
+            }
+
+            label.appendChild(titleSpan);
+            label.appendChild(metaSpan);
+
+            main.appendChild(checkbox);
+            main.appendChild(label);
+
+            var controls = document.createElement('div');
+            controls.className = 'proc-controls';
+
+            if (proc.countable) {
+              var stepper = document.createElement('div');
+              stepper.className = 'qty-stepper';
+
+              var btnDec = document.createElement('button');
+              btnDec.type = 'button';
+              btnDec.className = 'qty-btn';
+              btnDec.textContent = '-';
+              btnDec.setAttribute('aria-label', 'Уменьшить количество: ' + proc.title);
+              btnDec.disabled = qty <= 1;
+              btnDec.addEventListener('click', function () {
+                if ((state.selected[proc.id] || 0) > 1) {
+                  state.selected[proc.id] -= 1;
+                  state.activePreset = '';
+                  syncPresetUI();
+                  renderProcedures();
+                  renderSummary();
+                }
+              });
+
+              var qtyDisplay = document.createElement('span');
+              qtyDisplay.className = 'qty-val num';
+              qtyDisplay.textContent = (qty > 0 ? qty : 1) + ' ' + proc.unit;
+
+              var btnInc = document.createElement('button');
+              btnInc.type = 'button';
+              btnInc.className = 'qty-btn';
+              btnInc.textContent = '+';
+              btnInc.setAttribute('aria-label', 'Увеличить количество: ' + proc.title);
+              btnInc.disabled = qty >= proc.maxQty;
+              btnInc.addEventListener('click', function () {
+                var current = state.selected[proc.id] || 0;
+                if (current === 0) {
+                  state.selected[proc.id] = 1;
+                } else if (current < proc.maxQty) {
+                  state.selected[proc.id] = current + 1;
+                }
+                state.activePreset = '';
+                syncPresetUI();
+                renderProcedures();
+                renderSummary();
+              });
+
+              stepper.appendChild(btnDec);
+              stepper.appendChild(qtyDisplay);
+              stepper.appendChild(btnInc);
+              controls.appendChild(stepper);
+            }
+
+            var priceCol = document.createElement('div');
+            priceCol.className = 'proc-price-col';
+
+            var effectiveQty = qty > 0 ? qty : 1;
+            var lineTariff = proc.price * effectiveQty;
+
+            var priceVal = document.createElement('div');
+            priceVal.className = 'proc-price num';
+
+            var priceNote = document.createElement('div');
+            priceNote.className = 'proc-price-note num';
+
+            if (state.payment === 'dms') {
+              if (proc.dmsMode === 'covered') {
+                priceVal.textContent = '0 \u20BD';
+                priceNote.textContent = 'По ДМС (прайс ' + formatRub(lineTariff) + ')';
+              } else if (proc.dmsMode === 'approval') {
+                priceVal.textContent = 'По СК';
+                priceNote.textContent = 'Прайс ' + formatRub(lineTariff);
+              } else {
+                priceVal.textContent = formatRub(lineTariff);
+                priceNote.textContent = 'Вне базового ДМС';
+              }
+            } else {
+              priceVal.textContent = formatRub(lineTariff);
+              priceNote.textContent = effectiveQty > 1 ? effectiveQty + ' x ' + formatRub(proc.price) : proc.duration + ' мин';
+            }
+
+            priceCol.appendChild(priceVal);
+            priceCol.appendChild(priceNote);
+            controls.appendChild(priceCol);
+
+            row.appendChild(main);
+            row.appendChild(controls);
+            listEl.appendChild(row);
+          });
+
+          groupWrap.appendChild(listEl);
+          elProceduresContainer.appendChild(groupWrap);
+        });
+      }
+
+      function computeTotals() {
+        var selectedItems = [];
+        var totalPrivate = 0;
+        var dmsOutOfPocket = 0;
+        var dmsCoveredValue = 0;
+        var totalMinutes = 0;
+
+        PROCEDURES.forEach(function (proc) {
+          var qty = state.selected[proc.id] || 0;
+          if (qty > 0) {
+            var lineTariff = proc.price * qty;
+            var lineDuration = proc.duration * qty;
+            totalPrivate += lineTariff;
+            totalMinutes += lineDuration;
+
+            if (proc.dmsMode === 'extra') {
+              dmsOutOfPocket += lineTariff;
+            } else {
+              dmsCoveredValue += lineTariff;
+            }
+
+            selectedItems.push({
+              proc: proc,
+              qty: qty,
+              lineTariff: lineTariff,
+              lineDuration: lineDuration
+            });
+          }
+        });
+
+        return {
+          items: selectedItems,
+          totalPrivate: totalPrivate,
+          dmsOutOfPocket: dmsOutOfPocket,
+          dmsCoveredValue: dmsCoveredValue,
+          totalMinutes: totalMinutes
+        };
+      }
+
+      function buildPlainSummaryText(calc) {
+        var lines = [];
+        lines.push('Заявка на приём — Стоматология Дент-Самара');
+        lines.push('Клиника: г. Самара, Промышленный район');
+        lines.push('Телефон клиники: 8 (846) 224-80-08');
+        lines.push('');
+
+        if (state.payment === 'dms') {
+          lines.push('Формат оплаты: Полис ДМС (' + state.dmsInsurer + (state.dmsPolicy.trim() ? ', полис ' + state.dmsPolicy.trim() : '') + ')');
+        } else {
+          lines.push('Формат оплаты: Частный приём');
+        }
+
+        lines.push('Желаемая дата и время: ' + formatRuDate(state.visitDate) + ', ' + state.visitTime);
+
+        if (state.patientName.trim()) {
+          lines.push('Пациент: ' + state.patientName.trim());
+        }
+        if (state.patientPhone.trim()) {
+          lines.push('Телефон для связи: ' + state.patientPhone.trim());
+        }
+        if (state.patientComment.trim()) {
+          lines.push('Комментарий: ' + state.patientComment.trim());
+        }
+
+        lines.push('');
+        lines.push('Выбранные процедуры:');
+        if (calc.items.length === 0) {
+          lines.push('- Процедуры не выбраны');
+        } else {
+          calc.items.forEach(function (entry) {
+            var qtyNote = entry.proc.countable ? ' (' + entry.qty + ' ' + entry.proc.unit + ')' : '';
+            var costText;
+            if (state.payment === 'dms') {
+              if (entry.proc.dmsMode === 'covered') {
+                costText = 'по ДМС 0 руб. (прайс ' + formatRub(entry.lineTariff) + ')';
+              } else if (entry.proc.dmsMode === 'approval') {
+                costText = 'по согласованию СК (прайс ' + formatRub(entry.lineTariff) + ')';
+              } else {
+                costText = 'к доплате ' + formatRub(entry.lineTariff);
+              }
+            } else {
+              costText = formatRub(entry.lineTariff);
+            }
+            lines.push('- ' + entry.proc.title + qtyNote + ' — ' + costText + ', ' + entry.lineDuration + ' мин');
+          });
+        }
+
+        lines.push('');
+        if (state.payment === 'dms') {
+          lines.push('Ориентировочно к доплате вне полиса: ' + formatRub(calc.dmsOutOfPocket));
+          lines.push('Объём по ДМС и согласованию СК (по прайсу): ' + formatRub(calc.dmsCoveredValue));
+        } else {
+          lines.push('Ориентировочная стоимость: ' + formatRub(calc.totalPrivate));
+        }
+        lines.push('Оценка длительности приёма: ' + formatDuration(calc.totalMinutes));
+        lines.push('');
+        lines.push('Расчёт предварительный; точный план лечения определяется врачом на очном приёме.');
+        return lines.join('\n');
+      }
+
+      function renderSummary() {
+        var calc = computeTotals();
+        var isDms = state.payment === 'dms';
+
+        elSummaryModePill.textContent = isDms ? 'Полис ДМС' : 'Частный приём';
+        elTotalDurationValue.textContent = formatDuration(calc.totalMinutes);
+
+        if (isDms) {
+          elTotalCostLabel.textContent = 'Ориентировочно к доплате';
+          elTotalCostValue.textContent = formatRub(calc.dmsOutOfPocket);
+          elDmsTariffRow.hidden = false;
+          elDmsCoveredValue.textContent = formatRub(calc.dmsCoveredValue);
+        } else {
+          elTotalCostLabel.textContent = 'Ориентировочная стоимость';
+          elTotalCostValue.textContent = calc.totalPrivate > 0 ? '~ ' + formatRub(calc.totalPrivate) : '0 \u20BD';
+          elDmsTariffRow.hidden = true;
+        }
+
+        elSummaryItemsList.innerHTML = '';
+        if (calc.items.length === 0) {
+          elSummaryItemsList.hidden = true;
+          elSummaryEmpty.hidden = false;
+        } else {
+          elSummaryItemsList.hidden = false;
+          elSummaryEmpty.hidden = true;
+          calc.items.forEach(function (entry) {
+            var li = document.createElement('li');
+            li.className = 'selected-row';
+
+            var left = document.createElement('div');
+            var nameSpan = document.createElement('span');
+            nameSpan.className = 'selected-name';
+            nameSpan.textContent = entry.proc.title + (entry.proc.countable ? ' (' + entry.qty + ' ' + entry.proc.unit + ')' : '');
+
+            var subSpan = document.createElement('span');
+            subSpan.className = 'selected-sub num';
+            subSpan.textContent = entry.proc.categoryLabel + ' · ' + entry.lineDuration + ' мин';
+
+            left.appendChild(nameSpan);
+            left.appendChild(subSpan);
+
+            var right = document.createElement('div');
+            right.className = 'selected-cost num';
+            if (isDms) {
+              if (entry.proc.dmsMode === 'covered') {
+                right.textContent = '0 \u20BD (ДМС)';
+              } else if (entry.proc.dmsMode === 'approval') {
+                right.textContent = 'По СК';
+              } else {
+                right.textContent = formatRub(entry.lineTariff);
+              }
+            } else {
+              right.textContent = formatRub(entry.lineTariff);
+            }
+
+            li.appendChild(left);
+            li.appendChild(right);
+            elSummaryItemsList.appendChild(li);
+          });
+        }
+
+        elSummaryDatetime.textContent = formatRuDate(state.visitDate) + ', ' + state.visitTime;
+
+        if (isDms) {
+          var polText = state.dmsPolicy.trim() ? ' (полис ' + state.dmsPolicy.trim() + ')' : '';
+          elSummaryPayment.textContent = 'Полис ДМС · ' + state.dmsInsurer + polText;
+        } else {
+          elSummaryPayment.textContent = 'Частный приём';
+        }
+
+        var nameVal = state.patientName.trim();
+        var phoneVal = state.patientPhone.trim();
+        if (nameVal && phoneVal) {
+          elSummaryPatient.textContent = nameVal + ', ' + phoneVal;
+        } else if (nameVal) {
+          elSummaryPatient.textContent = nameVal;
+        } else if (phoneVal) {
+          elSummaryPatient.textContent = phoneVal;
+        } else {
+          elSummaryPatient.textContent = 'Не указано';
+        }
+
+        var commentVal = state.patientComment.trim();
+        if (commentVal) {
+          elSummaryCommentWrap.hidden = false;
+          elSummaryComment.textContent = commentVal;
+        } else {
+          elSummaryCommentWrap.hidden = true;
+          elSummaryComment.textContent = '';
+        }
+
+        var plainText = buildPlainSummaryText(calc);
+        var subjectText = 'Заявка на приём (' + (isDms ? 'ДМС' : 'Частный приём') + ') — Стоматология Дент-Самара';
+        elMailtoBtn.href = 'mailto:info@dent-samara.ru?subject=' + encodeURIComponent(subjectText) + '&body=' + encodeURIComponent(plainText);
+      }
+
+      function syncPaymentUI() {
+        var isDms = state.payment === 'dms';
+        document.getElementById('pay-private').setAttribute('aria-pressed', isDms ? 'false' : 'true');
+        document.getElementById('pay-dms').setAttribute('aria-pressed', isDms ? 'true' : 'false');
+        elDmsPanel.hidden = !isDms;
+      }
+
+      function syncCategoryTabsUI() {
+        var tabs = document.querySelectorAll('.tab-btn[data-cat]');
+        tabs.forEach(function (tab) {
+          var active = tab.getAttribute('data-cat') === state.activeCategory;
+          tab.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+      }
+
+      function syncPresetUI() {
+        var btns = document.querySelectorAll('.chip-btn[data-preset]');
+        btns.forEach(function (btn) {
+          var active = btn.getAttribute('data-preset') === state.activePreset;
+          btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+      }
+
+      function applyPreset(presetKey) {
+        var preset = PRESETS[presetKey];
+        if (!preset) return;
+        state.payment = preset.payment;
+        state.activeCategory = preset.category;
+        state.activePreset = presetKey;
+        state.selected = {};
+        Object.keys(preset.items).forEach(function (id) {
+          state.selected[id] = preset.items[id];
+        });
+        syncPaymentUI();
+        syncCategoryTabsUI();
+        syncPresetUI();
+        renderProcedures();
+        renderSummary();
+      }
+
+      // Bind payment buttons
+      document.querySelectorAll('.seg-btn[data-pay]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.payment = btn.getAttribute('data-pay');
+          state.activePreset = '';
+          syncPaymentUI();
+          syncPresetUI();
+          renderProcedures();
+          renderSummary();
+        });
+      });
+
+      // Bind category tabs
+      document.querySelectorAll('.tab-btn[data-cat]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.activeCategory = btn.getAttribute('data-cat');
+          syncCategoryTabsUI();
+          renderProcedures();
+        });
+      });
+
+      // Bind presets
+      document.querySelectorAll('.chip-btn[data-preset]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          applyPreset(btn.getAttribute('data-preset'));
+        });
+      });
+
+      // Bind service section jump buttons
+      document.querySelectorAll('.jump-cat-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var targetCat = btn.getAttribute('data-jump-cat');
+          var forceDms = btn.getAttribute('data-force-dms') === 'true';
+          if (forceDms) {
+            state.payment = 'dms';
+            syncPaymentUI();
+          }
+          state.activeCategory = targetCat;
+          syncCategoryTabsUI();
+          renderProcedures();
+          renderSummary();
+          document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      // Bind time slots
+      elTimeSlots.querySelectorAll('.slot-btn[data-time]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.visitTime = btn.getAttribute('data-time');
+          elTimeSlots.querySelectorAll('.slot-btn[data-time]').forEach(function (item) {
+            item.setAttribute('aria-pressed', item === btn ? 'true' : 'false');
+          });
+          renderSummary();
+        });
+      });
+
+      // Bind inputs
+      elVisitDate.addEventListener('change', function () {
+        state.visitDate = elVisitDate.value;
+        syncDayChipsUI();
+        renderSummary();
+      });
+
+      elDmsInsurer.addEventListener('change', function () {
+        state.dmsInsurer = elDmsInsurer.value;
+        renderSummary();
+      });
+
+      elDmsPolicy.addEventListener('input', function () {
+        state.dmsPolicy = elDmsPolicy.value;
+        renderSummary();
+      });
+
+      elPatientName.addEventListener('input', function () {
+        state.patientName = elPatientName.value;
+        renderSummary();
+      });
+
+      elPatientPhone.addEventListener('input', function () {
+        state.patientPhone = elPatientPhone.value;
+        renderSummary();
+      });
+
+      elPatientComment.addEventListener('input', function () {
+        state.patientComment = elPatientComment.value;
+        renderSummary();
+      });
+
+      // Reset button
+      elResetBtn.addEventListener('click', function () {
+        state.selected = {};
+        state.activePreset = '';
+        syncPresetUI();
+        renderProcedures();
+        renderSummary();
+      });
+
+      // Copy button
+      elCopyBtn.addEventListener('click', function () {
+        var calc = computeTotals();
+        var text = buildPlainSummaryText(calc);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            elCopyStatus.textContent = 'Текст заявки скопирован в буфер обмена.';
+          }, function () {
+            fallbackCopy(text);
+          });
+        } else {
+          fallbackCopy(text);
+        }
+      });
+
+      function fallbackCopy(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          elCopyStatus.textContent = 'Текст заявки скопирован в буфер обмена.';
+        } catch (err) {
+          elCopyStatus.textContent = 'Выделите и скопируйте текст через кнопку отправки на email.';
+        }
+        document.body.removeChild(ta);
+      }
+
+      // Print button
+      elPrintBtn.addEventListener('click', function () {
+        window.print();
+      });
+
+      // Initialize
+      initDayChips();
+      syncPaymentUI();
+      syncCategoryTabsUI();
+      syncPresetUI();
+      renderProcedures();
+      renderSummary();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,2501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive Pet Vaccine Reminder, Booster Schedule Calculator, and Walk-In Clinic Queue Estimator prepared for Low Cost Pet Vet in San Antonio, TX.">
+  <title>Low Cost Pet Vet | Vaccine Reminder &amp; Walk-In Queue Estimator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F766E'/%3E%3Cpath d='M14 7h4v7h7v4h-7v7h-4v-7H7v-4h7V7z' fill='%23FFFFFF'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #F8FAF9;
+      --surface: #FFFFFF;
+      --surface-alt: #F1F6F4;
+      --surface-tint: #E6F4F1;
+      --border: #DCE7E3;
+      --border-strong: #C2D4CE;
+      --text: #0F172A;
+      --text-secondary: #334155;
+      --text-muted: #475569;
+      --accent: #0F766E;
+      --accent-hover: #115E59;
+      --accent-light: #CCFBF1;
+      --focus-ring: rgba(15, 118, 110, 0.25);
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 6px 20px rgba(15, 23, 42, 0.05);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      font-variant-numeric: tabular-nums;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.16s ease;
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    a[href^="mailto:"] {
+      white-space: nowrap;
+      word-break: normal;
+    }
+
+    button, input, select {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(248, 250, 249, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand:hover {
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      background-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .phone-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background-color: var(--surface);
+      color: var(--text);
+      font-size: 0.875rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .phone-chip:hover {
+      border-color: var(--accent);
+      background-color: var(--surface-tint);
+      text-decoration: none;
+      color: var(--accent-hover);
+    }
+
+    .btn-primary-sm {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent);
+      color: #FFFFFF;
+      font-size: 0.875rem;
+      font-weight: 600;
+      white-space: nowrap;
+      border: 1px solid var(--accent);
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .btn-primary-sm:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 44px 0 36px;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--bg);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+      gap: 32px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background-color: var(--surface);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .hero h1 {
+      margin: 0 0 14px;
+      font-size: clamp(1.75rem, 3.1vw, 2.5rem);
+      line-height: 1.16;
+      letter-spacing: -0.025em;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .hero-lead {
+      margin: 0 0 24px;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      max-width: 62ch;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent);
+      border: 1px solid var(--accent);
+      color: #FFFFFF;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: var(--radius-sm);
+      background-color: var(--surface);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      background-color: var(--surface-tint);
+      color: var(--accent-hover);
+      text-decoration: none;
+    }
+
+    .hero-panel {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel-kicker {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .hero-panel h2 {
+      margin: 0 0 14px;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .fact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .fact-tile {
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .fact-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .fact-value {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      word-break: break-word;
+    }
+
+    .hero-panel-note {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Section Base */
+    .section {
+      padding: 48px 0;
+    }
+
+    .section-alt {
+      background-color: var(--surface-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      margin-bottom: 26px;
+      max-width: 72ch;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .section-header h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.375rem, 2.3vw, 1.85rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 0.975rem;
+    }
+
+    /* Interactive Workbench */
+    .workbench {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.95fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card + .card {
+      margin-top: 20px;
+    }
+
+    .card-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-title-row h3 {
+      margin: 0;
+      font-size: 1.075rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .step-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: var(--surface-tint);
+      color: var(--accent);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .field-label {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .field-group {
+      margin-bottom: 18px;
+    }
+
+    .field-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .species-toggle {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .species-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg);
+      color: var(--text-secondary);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .species-btn:hover {
+      border-color: var(--accent);
+      background-color: var(--surface-tint);
+      color: var(--text);
+    }
+
+    .species-btn[aria-pressed="true"] {
+      background-color: var(--surface-tint);
+      border-color: var(--accent);
+      color: var(--accent-hover);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+
+    .two-col-fields {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .control-input,
+    .control-select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface);
+      color: var(--text);
+      font-size: 0.9375rem;
+      font-variant-numeric: tabular-nums;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .control-input:focus,
+    .control-select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--focus-ring);
+    }
+
+    .preset-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .preset-btn {
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg);
+      color: var(--text-secondary);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .preset-btn:hover {
+      border-color: var(--accent);
+      background-color: var(--surface-tint);
+      color: var(--accent-hover);
+    }
+
+    /* Package Checklist */
+    .package-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .pkg-item {
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: start;
+      width: 100%;
+      text-align: left;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background-color: var(--bg);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .pkg-item:hover {
+      border-color: var(--accent);
+      background-color: var(--surface);
+    }
+
+    .pkg-item[aria-checked="true"] {
+      background-color: var(--surface);
+      border-color: var(--accent);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+
+    .pkg-box {
+      width: 22px;
+      height: 22px;
+      margin-top: 2px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border-strong);
+      background-color: var(--surface);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      flex-shrink: 0;
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .pkg-item[aria-checked="true"] .pkg-box {
+      background-color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .pkg-check-icon {
+      opacity: 0;
+      transition: opacity 0.14s ease;
+    }
+
+    .pkg-item[aria-checked="true"] .pkg-check-icon {
+      opacity: 1;
+    }
+
+    .pkg-body {
+      min-width: 0;
+    }
+
+    .pkg-title {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .pkg-desc {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      line-height: 1.42;
+      margin-bottom: 6px;
+    }
+
+    .pkg-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .pkg-price {
+      text-align: right;
+      white-space: nowrap;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      padding-top: 2px;
+    }
+
+    .pkg-duration {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Sticky Summary Column */
+    .results-column {
+      position: sticky;
+      top: 86px;
+    }
+
+    .queue-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .metric-box {
+      padding: 12px 10px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .metric-label {
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .metric-value {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.25;
+    }
+
+    .queue-meter-wrap {
+      margin-bottom: 12px;
+    }
+
+    .queue-meter-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .queue-track {
+      height: 8px;
+      width: 100%;
+      border-radius: 999px;
+      background-color: var(--surface-tint);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .queue-fill {
+      height: 100%;
+      width: 45%;
+      border-radius: 999px;
+      background-color: var(--accent);
+      transition: width 0.2s ease;
+    }
+
+    .intake-tip {
+      margin: 0;
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--surface-alt);
+      border: 1px solid var(--border);
+    }
+
+    /* Itemized Estimate */
+    .estimate-list {
+      list-style: none;
+      margin: 0 0 14px;
+      padding: 0;
+    }
+
+    .estimate-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 0.9rem;
+    }
+
+    .estimate-row:last-child {
+      border-bottom: none;
+    }
+
+    .estimate-name {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .estimate-cost {
+      color: var(--text);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .estimate-empty {
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg);
+      border: 1px dashed var(--border-strong);
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin-bottom: 14px;
+    }
+
+    .estimate-total-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background-color: var(--surface-tint);
+      border: 1px solid var(--border-strong);
+      margin-bottom: 10px;
+    }
+
+    .total-label {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--accent-hover);
+    }
+
+    .total-amount {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .disclaimer-micro {
+      margin: 0;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* Booster Schedule */
+    .booster-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .booster-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .booster-name {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .booster-note {
+      font-size: 0.77rem;
+      color: var(--text-muted);
+    }
+
+    .booster-date {
+      text-align: right;
+      white-space: nowrap;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Summary & Mailto Box */
+    .summary-preview {
+      margin: 0 0 14px;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+      font-size: 0.79rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-variant-numeric: tabular-nums;
+      max-height: 230px;
+      overflow-y: auto;
+    }
+
+    .summary-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface);
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .action-btn:hover {
+      border-color: var(--accent);
+      background-color: var(--surface-tint);
+      color: var(--accent-hover);
+    }
+
+    .action-btn.copied {
+      background-color: var(--surface-tint);
+      border-color: var(--accent);
+      color: var(--accent-hover);
+    }
+
+    .mailto-row {
+      grid-column: 1 / -1;
+      width: 100%;
+    }
+
+    .btn-mailto {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent);
+      border: 1px solid var(--accent);
+      color: #FFFFFF;
+      font-size: 0.94rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      word-break: normal;
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .btn-mailto:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+
+    .mailto-subtext {
+      grid-column: 1 / -1;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: -2px;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .service-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background-color: var(--surface-tint);
+      color: var(--accent);
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+
+    .service-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 0.925rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .service-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .service-tag {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .service-add-btn {
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .service-add-btn:hover {
+      background-color: var(--surface-tint);
+      border-color: var(--accent);
+    }
+
+    /* Guidance Trio */
+    .guidance-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .guidance-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .guidance-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: var(--surface-tint);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .guidance-card h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .guidance-card p {
+      margin: 0;
+      font-size: 0.89rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .contact-details-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .contact-item {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .contact-email-row {
+      grid-column: 1 / -1;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--surface-tint);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .contact-email-row a {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .contact-k {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .contact-v {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      word-break: break-word;
+    }
+
+    .capability-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+
+    .capability-list li + li {
+      margin-top: 8px;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background-color: var(--surface);
+      padding: 28px 0 36px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-brand {
+      font-weight: 700;
+      color: var(--text);
+      font-size: 0.96rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-email-row {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 0 2px;
+      border-top: 1px solid var(--border);
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-note {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 980px) {
+      .hero-grid,
+      .workbench,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .results-column {
+        position: static;
+      }
+
+      .guidance-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .header-inner {
+        gap: 10px;
+      }
+
+      .btn-primary-sm {
+        display: none;
+      }
+
+      .phone-chip {
+        padding: 7px 10px;
+        font-size: 0.8125rem;
+      }
+
+      .hero {
+        padding: 28px 0 24px;
+      }
+
+      .section {
+        padding: 32px 0;
+      }
+
+      .card,
+      .service-card {
+        padding: 18px;
+      }
+
+      .two-col-fields,
+      .services-grid,
+      .contact-details-grid,
+      .queue-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .pkg-item {
+        grid-template-columns: 24px minmax(0, 1fr);
+      }
+
+      .pkg-price {
+        grid-column: 2;
+        text-align: left;
+        padding-top: 4px;
+      }
+
+      .summary-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background-color: #FFFFFF;
+        color: #0F172A;
+        font-size: 12pt;
+      }
+
+      .site-header,
+      .hero,
+      #services,
+      #schedule,
+      #contact,
+      .preset-bar,
+      .summary-actions {
+        display: none;
+      }
+
+      .workbench {
+        display: block;
+      }
+
+      .card {
+        box-shadow: none;
+        border: 1px solid #C2D4CE;
+        break-inside: avoid;
+        margin-bottom: 14px;
+      }
+
+      .summary-preview {
+        max-height: none;
+        border: 1px solid #0F766E;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 4v16M4 12h16" />
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Low Cost Pet Vet</span>
+          <span class="brand-sub">Veterinary Clinic • San Antonio, TX</span>
+        </span>
+      </a>
+
+      <nav class="header-nav" aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a href="#estimator">Queue Estimator</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#schedule">Walk-In Prep</a></li>
+          <li><a href="#contact">Clinic Info</a></li>
+        </ul>
+        <div class="header-actions">
+          <a href="tel:+12106000838" class="phone-chip" aria-label="Call Low Cost Pet Vet at (210) 600-0838">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            <span>(210) 600-0838</span>
+          </a>
+          <a href="#estimator" class="btn-primary-sm">Start Pre-Check-In</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>San Antonio, TX • Veterinary Clinic</span>
+          </div>
+          <h1>Transparent Vaccine Planning and Walk-In Queue Clarity</h1>
+          <p class="hero-lead">
+            Designed for pet families visiting Low Cost Pet Vet in San Antonio, TX. Plan Dog or Cat immunizations, estimate walk-in turnaround by arrival window, calculate upcoming booster due dates, and generate a ready-to-send pre-check-in summary in seconds.
+          </p>
+          <div class="hero-cta-row">
+            <a href="#estimator" class="btn-primary">Open Vaccine &amp; Queue Estimator</a>
+            <a href="tel:+12106000838" class="btn-secondary">Call (210) 600-0838</a>
+            <a href="https://sanantoniopetvet.com/" target="_blank" rel="noopener noreferrer" class="btn-secondary">sanantoniopetvet.com</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Clinic overview">
+          <div class="panel-kicker">Clinic Care Overview</div>
+          <h2>Low Cost Pet Vet at a Glance</h2>
+          <div class="fact-grid">
+            <div class="fact-tile">
+              <div class="fact-label">Service Area</div>
+              <div class="fact-value">San Antonio, TX</div>
+            </div>
+            <div class="fact-tile">
+              <div class="fact-label">Clinic Phone</div>
+              <div class="fact-value">(210) 600-0838</div>
+            </div>
+            <div class="fact-tile">
+              <div class="fact-label">Core Preventive Focus</div>
+              <div class="fact-value">Vaccines &amp; Heartworm</div>
+            </div>
+            <div class="fact-tile">
+              <div class="fact-label">Care Tracks</div>
+              <div class="fact-value">4 Clinical Pillars</div>
+            </div>
+          </div>
+          <p class="hero-panel-note">
+            Select your pet's species, bracket, and preferred care checklist below to preview estimated visit cost, walk-in wait windows, and exact next-booster dates before arriving.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="estimator">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Interactive Clinical Tool</span>
+          <h2>Pet Vaccine Reminder &amp; Walk-In Clinic Queue Estimator</h2>
+          <p>Toggle Dog or Cat care protocols, select vaccines and preventive consultations, and export a structured pre-check-in checklist for Low Cost Pet Vet.</p>
+        </div>
+
+        <div class="workbench">
+          <div>
+            <div class="card">
+              <div class="card-title-row">
+                <h3>Pet Profile &amp; Arrival Window</h3>
+                <span class="step-badge">Step 1 of 3</span>
+              </div>
+
+              <div class="field-group">
+                <div class="field-label">Pet Species</div>
+                <div class="species-toggle" role="group" aria-label="Select pet species">
+                  <button type="button" class="species-btn" id="btn-dog" data-species="dog" aria-pressed="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5" />
+                      <path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.855-1.45-2.239-2.5" />
+                      <path d="M8 14v.5M16 14v.5" />
+                      <path d="M11.25 16.25h1.5L12 17l-.75-.75z" />
+                      <path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.061-.162-2.2-.493-3.309m-9.243-6.082A8.801 8.801 0 0 1 12 5c.78 0 1.5.108 2.161.306" />
+                    </svg>
+                    <span>Dog</span>
+                  </button>
+                  <button type="button" class="species-btn" id="btn-cat" data-species="cat" aria-pressed="false">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3.1-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.89-6.42-.5-7 1.39-.58 4.72.23 6.5 2.23A9.04 9.04 0 0 1 12 5z" />
+                      <path d="M8 14v.5M16 14v.5" />
+                      <path d="M11.25 16.25h1.5L12 17l-.75-.75z" />
+                    </svg>
+                    <span>Cat</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="form-label" for="pet-bracket">Age / Weight Bracket</label>
+                <select id="pet-bracket" class="control-select" autocomplete="off"></select>
+              </div>
+
+              <div class="field-group two-col-fields">
+                <div>
+                  <label class="form-label" for="last-vaccine-date">Baseline / Last Vaccine Date</label>
+                  <input type="date" id="last-vaccine-date" class="control-input" autocomplete="off">
+                </div>
+                <div>
+                  <label class="form-label" for="walkin-window">Preferred Walk-In Window</label>
+                  <select id="walkin-window" class="control-select" autocomplete="off">
+                    <option value="morning">Morning Walk-In (8:30 AM - 10:30 AM)</option>
+                    <option value="midday">Midday Walk-In (10:30 AM - 1:30 PM)</option>
+                    <option value="afternoon">Afternoon Walk-In (1:30 PM - 4:30 PM)</option>
+                    <option value="weekend">Weekend Vaccine Clinic Block</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <div class="field-label">Quick Care Presets</div>
+                <div class="preset-bar">
+                  <button type="button" class="preset-btn" data-preset="core">Core Vaccines Only</button>
+                  <button type="button" class="preset-btn" data-preset="annual">Annual Wellness + Heartworm</button>
+                  <button type="button" class="preset-btn" data-preset="allergy">Allergy &amp; Skin Consult</button>
+                  <button type="button" class="preset-btn" data-preset="clear">Clear All</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title-row">
+                <h3>Vaccine &amp; Preventive Package Checklist</h3>
+                <span class="step-badge">Step 2 of 3</span>
+              </div>
+              <div class="package-list" id="package-list" role="group" aria-label="Vaccine and preventive services checklist"></div>
+            </div>
+
+            <div class="card">
+              <div class="card-title-row">
+                <h3>Optional Pre-Check-In Contact Details</h3>
+                <span class="step-badge">Step 3 of 3</span>
+              </div>
+              <div class="two-col-fields field-group">
+                <div>
+                  <label class="form-label" for="pet-name">Pet Name</label>
+                  <input type="text" id="pet-name" class="control-input" placeholder="e.g. Bella" autocomplete="off">
+                </div>
+                <div>
+                  <label class="form-label" for="owner-name">Owner Name</label>
+                  <input type="text" id="owner-name" class="control-input" placeholder="Your full name" autocomplete="name">
+                </div>
+              </div>
+              <div class="two-col-fields">
+                <div>
+                  <label class="form-label" for="owner-phone">Callback Phone</label>
+                  <input type="tel" id="owner-phone" class="control-input" placeholder="(210) 555-0148" autocomplete="tel">
+                </div>
+                <div>
+                  <label class="form-label" for="visit-notes">Symptom or Record Note</label>
+                  <input type="text" id="visit-notes" class="control-input" placeholder="e.g. Prior rabies tag available" autocomplete="off">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="results-column">
+            <div class="card">
+              <div class="card-title-row">
+                <h3>Walk-In Queue &amp; Visit Duration</h3>
+                <span class="step-badge" id="track-badge">Standard Preventive</span>
+              </div>
+              <div class="queue-metrics">
+                <div class="metric-box">
+                  <div class="metric-label">Est. Queue Wait</div>
+                  <div class="metric-value" id="metric-wait">10 - 20 min</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-label">In-Clinic Care</div>
+                  <div class="metric-value" id="metric-care">15 min</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-label">Total Turnaround</div>
+                  <div class="metric-value" id="metric-total">25 - 35 min</div>
+                </div>
+              </div>
+              <div class="queue-meter-wrap">
+                <div class="queue-meter-head">
+                  <span>Visit Complexity &amp; Room Flow</span>
+                  <span id="complexity-label">Moderate Intake</span>
+                </div>
+                <div class="queue-track" aria-hidden="true">
+                  <div class="queue-fill" id="queue-fill"></div>
+                </div>
+              </div>
+              <p class="intake-tip" id="intake-tip">
+                Morning walk-ins generally experience the fastest intake. Bring any prior Rabies certificate to verify 1-year or 3-year booster eligibility.
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="card-title-row">
+                <h3>Transparent Visit Estimate</h3>
+                <span class="step-badge" id="item-count-badge">3 Selected</span>
+              </div>
+              <div id="estimate-body"></div>
+              <div class="estimate-total-bar">
+                <span class="total-label">Estimated Clinic Range</span>
+                <span class="total-amount" id="total-amount">$0</span>
+              </div>
+              <p class="disclaimer-micro">
+                Planning estimate for San Antonio walk-in budgeting. Final vaccine eligibility, weight-tiered dosing, and exact fees are confirmed by the Low Cost Pet Vet team at check-in.
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="card-title-row">
+                <h3>Recommended Next-Booster Schedule</h3>
+                <span class="step-badge" id="cycle-badge">Annual Cycle</span>
+              </div>
+              <div class="booster-list" id="booster-list"></div>
+            </div>
+
+            <div class="card">
+              <div class="card-title-row">
+                <h3>Live Pre-Check-In Summary</h3>
+                <span class="step-badge">Ready to Export</span>
+              </div>
+              <pre class="summary-preview" id="summary-preview" aria-live="polite"></pre>
+              <div class="summary-actions">
+                <button type="button" class="action-btn" id="btn-copy">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                  </svg>
+                  <span id="copy-label">Copy Summary</span>
+                </button>
+                <button type="button" class="action-btn" id="btn-print">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 6 2 18 2 18 9" />
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+                    <rect x="6" y="14" width="12" height="8" />
+                  </svg>
+                  <span>Print Checklist</span>
+                </button>
+                <div class="mailto-row">
+                  <a id="mailto-checkin" class="btn-mailto" href="mailto:contact@sapetvet.com">Send Pre-Check-In Email</a>
+                </div>
+                <div class="mailto-subtext">Pre-fills recipient: contact@sapetvet.com</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="services">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Core Veterinary Services</span>
+          <h2>Focused Preventive and Everyday Care in San Antonio</h2>
+          <p>Explore Low Cost Pet Vet's four dedicated service pillars. Add any service directly to your interactive visit checklist above.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 2l4 4" />
+                  <path d="M17 7l3-3" />
+                  <path d="M19 9L8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5" />
+                  <path d="M9 11l4 4" />
+                  <path d="M5 19l-3 3" />
+                  <path d="M14 4l6 6" />
+                </svg>
+              </div>
+              <h3>Pet Vaccination Clinics</h3>
+              <p>Streamlined canine and feline immunization protocols covering Rabies, DHPP, FVRCP, and Bordetella with clear booster intervals and walk-in accessibility.</p>
+            </div>
+            <div class="service-footer">
+              <span class="service-tag">Dogs &amp; Cats • All Ages</span>
+              <button type="button" class="service-add-btn" data-quick-select="core">Add Core Vaccines</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path d="M9 12l2 2 4-4" />
+                </svg>
+              </div>
+              <h3>Heartworm &amp; Parasite Prevention</h3>
+              <p>Same-visit heartworm antigen testing paired with South Texas calibrated monthly heartworm, flea, and intestinal parasite defense scaled to pet weight.</p>
+            </div>
+            <div class="service-footer">
+              <span class="service-tag">Year-Round Texas Defense</span>
+              <button type="button" class="service-add-btn" data-quick-toggle="heartworm">Add to Checklist</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M9 12h6M12 9v6" />
+                </svg>
+              </div>
+              <h3>Itchy Skin &amp; Allergy Treatment</h3>
+              <p>Targeted dermatology evaluations for persistent paw chewing, seasonal pollen flare-ups, hot spots, flaky coats, and recurring ear irritation.</p>
+            </div>
+            <div class="service-footer">
+              <span class="service-tag">Dermatology &amp; Relief</span>
+              <button type="button" class="service-add-btn" data-quick-toggle="allergy">Add Allergy Consult</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3" />
+                  <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4" />
+                  <circle cx="20" cy="10" r="2" />
+                </svg>
+              </div>
+              <h3>Routine Veterinary Wellness Exams</h3>
+              <p>Hands-on nose-to-tail checkups evaluating heart and lung sounds, dental condition, lymph nodes, body score, and senior preventive baselines.</p>
+            </div>
+            <div class="service-footer">
+              <span class="service-tag">Comprehensive Checkup</span>
+              <button type="button" class="service-add-btn" data-quick-toggle="wellness">Add Wellness Exam</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="schedule">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Walk-In Readiness Guide</span>
+          <h2>Smooth Clinic Check-In for San Antonio Pet Families</h2>
+          <p>Simple preparation helps keep lobby wait times short and ensures accurate vaccine record continuity.</p>
+        </div>
+
+        <div class="guidance-grid">
+          <div class="guidance-card">
+            <div class="guidance-num">1</div>
+            <h3>Bring Prior Vaccine Paperwork</h3>
+            <p>A prior signed Rabies certificate allows eligible adult pets to transition from a 1-year initial booster to a 3-year immunity window.</p>
+          </div>
+          <div class="guidance-card">
+            <div class="guidance-num">2</div>
+            <h3>Puppy &amp; Kitten Intervals</h3>
+            <p>Pets under 16 weeks require booster doses spaced 3 to 4 weeks apart. Selecting the Puppy or Kitten bracket updates your next due date automatically.</p>
+          </div>
+          <div class="guidance-card">
+            <div class="guidance-num">3</div>
+            <h3>Leash &amp; Carrier Safety</h3>
+            <p>Keep dogs on a non-retractable leash and cats in a latched carrier before entering the San Antonio clinic lobby for stress-free triage.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Clinic Directory &amp; Pre-Check-In</span>
+          <h2>Connect with Low Cost Pet Vet</h2>
+          <p>Direct San Antonio clinic information paired with your exported walk-in pre-check-in plan.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card">
+            <div class="card-title-row">
+              <h3>Clinic Information</h3>
+              <span class="step-badge">San Antonio, TX</span>
+            </div>
+            <div class="contact-details-grid">
+              <div class="contact-item">
+                <div class="contact-k">Practice Name</div>
+                <div class="contact-v">Low Cost Pet Vet</div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-k">Location</div>
+                <div class="contact-v">San Antonio, TX</div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-k">Phone</div>
+                <div class="contact-v"><a href="tel:+12106000838">(210) 600-0838</a></div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-k">Website</div>
+                <div class="contact-v"><a href="https://sanantoniopetvet.com/" target="_blank" rel="noopener noreferrer">sanantoniopetvet.com</a></div>
+              </div>
+              <div class="contact-email-row">
+                <div>
+                  <div class="contact-k">Pre-Check-In &amp; Inquiries Email</div>
+                  <a href="mailto:contact@sapetvet.com">contact@sapetvet.com</a>
+                </div>
+                <span class="service-tag">Direct Clinic Inbox</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title-row">
+              <h3>Portal Capabilities</h3>
+              <span class="step-badge">Clinic Tooling</span>
+            </div>
+            <ul class="capability-list">
+              <li>Species-aware Dog and Cat vaccine checklists with age and weight bracket calibration.</li>
+              <li>Real-time walk-in queue window and total clinic turnaround estimator.</li>
+              <li>Automated next-booster date calculator covering puppy/kitten series and annual renewals.</li>
+              <li>One-click clipboard copy, print-ready clinic worksheet, and pre-filled mailto intake summary.</li>
+              <li>Zero external tracking, scripts, or third-party dependencies for fast mobile and desktop loading.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">Low Cost Pet Vet • San Antonio, TX</div>
+        <div class="footer-links">
+          <a href="tel:+12106000838">(210) 600-0838</a>
+          <a href="https://sanantoniopetvet.com/" target="_blank" rel="noopener noreferrer">https://sanantoniopetvet.com/</a>
+        </div>
+      </div>
+      <div class="footer-email-row">
+        Direct Email: <a href="mailto:contact@sapetvet.com">contact@sapetvet.com</a>
+      </div>
+      <p class="footer-note">
+        Interactive B2B preview portal prepared for Low Cost Pet Vet (Veterinary Clinic, San Antonio, TX). Visit price ranges, booster timelines, and walk-in queue figures serve as planning guides confirmed at clinic check-in.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const BRACKETS = {
+        dog: [
+          { id: 'puppy', label: 'Puppy (Under 16 Weeks)', isYoung: true, hwMin: 24, hwMax: 34, cycleLabel: '21-Day Puppy Series' },
+          { id: 'dog_sm', label: 'Small / Medium Adult Dog (Under 40 lbs)', isYoung: false, hwMin: 40, hwMax: 58, cycleLabel: 'Annual Adult Cycle' },
+          { id: 'dog_lg', label: 'Large Adult Dog (40 to 85 lbs)', isYoung: false, hwMin: 48, hwMax: 68, cycleLabel: 'Annual Adult Cycle' },
+          { id: 'dog_xl', label: 'Extra-Large Adult Dog (85+ lbs)', isYoung: false, hwMin: 56, hwMax: 78, cycleLabel: 'Annual Adult Cycle' },
+          { id: 'dog_sr', label: 'Senior Dog (7+ Years)', isYoung: false, hwMin: 44, hwMax: 65, cycleLabel: 'Senior Wellness Cycle' }
+        ],
+        cat: [
+          { id: 'kitten', label: 'Kitten (Under 16 Weeks)', isYoung: true, hwMin: 22, hwMax: 32, cycleLabel: '21-Day Kitten Series' },
+          { id: 'cat_indoor', label: 'Adult Indoor Cat (1 to 7 Years)', isYoung: false, hwMin: 28, hwMax: 42, cycleLabel: 'Annual Adult Cycle' },
+          { id: 'cat_out', label: 'Adult Indoor / Outdoor Cat (1 to 7 Years)', isYoung: false, hwMin: 32, hwMax: 48, cycleLabel: 'Annual Adult Cycle' },
+          { id: 'cat_sr', label: 'Senior Cat (8+ Years)', isYoung: false, hwMin: 30, hwMax: 45, cycleLabel: 'Senior Wellness Cycle' }
+        ]
+      };
+
+      const QUEUE_WINDOWS = {
+        morning: {
+          label: 'Morning Walk-In (8:30 AM - 10:30 AM)',
+          waitMin: 10,
+          waitMax: 20,
+          tip: 'Morning walk-ins generally move through check-in quickly. Bring prior Rabies records if available.'
+        },
+        midday: {
+          label: 'Midday Walk-In (10:30 AM - 1:30 PM)',
+          waitMin: 15,
+          waitMax: 30,
+          tip: 'Midday slots balance routine vaccines and skin consults. Pre-check-in notes speed up front-desk intake.'
+        },
+        afternoon: {
+          label: 'Afternoon Walk-In (1:30 PM - 4:30 PM)',
+          waitMin: 20,
+          waitMax: 35,
+          tip: 'Afternoon walk-in flow can peak after school hours. Keep pets hydrated and on standard leashes or carriers.'
+        },
+        weekend: {
+          label: 'Weekend Vaccine Clinic Block',
+          waitMin: 25,
+          waitMax: 45,
+          tip: 'Weekend vaccine blocks are popular across San Antonio. Sending your pre-check-in summary ahead helps triage.'
+        }
+      };
+
+      const PACKAGES = [
+        {
+          id: 'rabies',
+          name: 'Rabies',
+          dogDesc: 'Core state-mandated canine Rabies immunization and metal tag.',
+          catDesc: 'Core state-mandated feline Rabies immunization and certificate.',
+          tag: 'Required Core',
+          min: 18,
+          max: 25,
+          minutes: 5
+        },
+        {
+          id: 'core',
+          name: 'DHPP / FVRCP',
+          dogDesc: 'Canine DHPP combination (Distemper, Hepatitis, Parvovirus, Parainfluenza).',
+          catDesc: 'Feline FVRCP combination (Rhinotracheitis, Calicivirus, Panleukopenia).',
+          tag: 'Core Immunization',
+          min: 22,
+          max: 30,
+          minutes: 5
+        },
+        {
+          id: 'bordetella',
+          name: 'Bordetella',
+          dogDesc: 'Oral or intranasal kennel cough defense for boarding, parks, and grooming.',
+          catDesc: 'Upper respiratory Bordetella screening/coverage for multi-cat or boarding stays.',
+          tag: 'Social / Boarding',
+          min: 20,
+          max: 28,
+          minutes: 5
+        },
+        {
+          id: 'heartworm',
+          name: 'Heartworm test + prevention',
+          dogDesc: 'Same-visit antigen heartworm test plus weight-scaled Texas preventive starter.',
+          catDesc: 'Feline heartworm, flea, and parasite preventive guidance tailored to lifestyle.',
+          tag: 'Parasite Defense',
+          dynamicPricing: true,
+          min: 35,
+          max: 65,
+          minutes: 10
+        },
+        {
+          id: 'allergy',
+          name: 'Allergy consult',
+          dogDesc: 'Itchy skin, paw licking, ear redness, and San Antonio seasonal flare-up consult.',
+          catDesc: 'Itchy skin, over-grooming, miliary dermatitis, and allergen relief evaluation.',
+          tag: 'Skin & Allergy Care',
+          min: 45,
+          max: 75,
+          minutes: 15
+        },
+        {
+          id: 'wellness',
+          name: 'Wellness exam',
+          dogDesc: 'Nose-to-tail physical check: heart, lungs, teeth, lymph nodes, and body score.',
+          catDesc: 'Comprehensive feline wellness exam covering oral health, coat, weight, and vitals.',
+          tag: 'Preventive Exam',
+          min: 35,
+          max: 50,
+          minutes: 15
+        }
+      ];
+
+      const state = {
+        species: 'dog',
+        bracketId: 'dog_sm',
+        windowId: 'morning',
+        baselineDate: '',
+        selected: new Set(['rabies', 'core', 'heartworm']),
+        petName: '',
+        ownerName: '',
+        ownerPhone: '',
+        visitNotes: ''
+      };
+
+      const elDogBtn = document.getElementById('btn-dog');
+      const elCatBtn = document.getElementById('btn-cat');
+      const elBracket = document.getElementById('pet-bracket');
+      const elDate = document.getElementById('last-vaccine-date');
+      const elWindow = document.getElementById('walkin-window');
+      const elPkgList = document.getElementById('package-list');
+
+      const elPetName = document.getElementById('pet-name');
+      const elOwnerName = document.getElementById('owner-name');
+      const elOwnerPhone = document.getElementById('owner-phone');
+      const elVisitNotes = document.getElementById('visit-notes');
+
+      const elMetricWait = document.getElementById('metric-wait');
+      const elMetricCare = document.getElementById('metric-care');
+      const elMetricTotal = document.getElementById('metric-total');
+      const elTrackBadge = document.getElementById('track-badge');
+      const elComplexityLabel = document.getElementById('complexity-label');
+      const elQueueFill = document.getElementById('queue-fill');
+      const elIntakeTip = document.getElementById('intake-tip');
+
+      const elItemCountBadge = document.getElementById('item-count-badge');
+      const elEstimateBody = document.getElementById('estimate-body');
+      const elTotalAmount = document.getElementById('total-amount');
+
+      const elCycleBadge = document.getElementById('cycle-badge');
+      const elBoosterList = document.getElementById('booster-list');
+
+      const elSummaryPreview = document.getElementById('summary-preview');
+      const elCopyBtn = document.getElementById('btn-copy');
+      const elCopyLabel = document.getElementById('copy-label');
+      const elPrintBtn = document.getElementById('btn-print');
+      const elMailtoBtn = document.getElementById('mailto-checkin');
+
+      function getTodayIso() {
+        const now = new Date();
+        const y = now.getFullYear();
+        const m = String(now.getMonth() + 1).padStart(2, '0');
+        const d = String(now.getDate()).padStart(2, '0');
+        return y + '-' + m + '-' + d;
+      }
+
+      function parseLocalDate(isoStr) {
+        if ((typeof isoStr === 'string') === false || isoStr.indexOf('-') < 0) {
+          return new Date();
+        }
+        const parts = isoStr.split('-');
+        if ((parts.length === 3) === false) {
+          return new Date();
+        }
+        const y = parseInt(parts[0], 10);
+        const m = parseInt(parts[1], 10) - 1;
+        const d = parseInt(parts[2], 10);
+        const dt = new Date(y, m, d);
+        if (Number.isNaN(dt.getTime())) {
+          return new Date();
+        }
+        return dt;
+      }
+
+      function addDays(dateObj, days) {
+        const res = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
+        res.setDate(res.getDate() + days);
+        return res;
+      }
+
+      function addMonths(dateObj, months) {
+        const res = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
+        res.setMonth(res.getMonth() + months);
+        return res;
+      }
+
+      function formatDisplayDate(dateObj) {
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return months[dateObj.getMonth()] + ' ' + dateObj.getDate() + ', ' + dateObj.getFullYear();
+      }
+
+      function getCurrentBracket() {
+        const list = BRACKETS[state.species];
+        for (let i = 0; i < list.length; i += 1) {
+          if (list[i].id === state.bracketId) {
+            return list[i];
+          }
+        }
+        return list[0];
+      }
+
+      function getPackagePricing(pkg, bracket) {
+        if (pkg.dynamicPricing) {
+          return { min: bracket.hwMin, max: bracket.hwMax };
+        }
+        return { min: pkg.min, max: pkg.max };
+      }
+
+      function getPackageTitle(pkg) {
+        if (pkg.id === 'core') {
+          return state.species === 'dog' ? 'DHPP / FVRCP (Canine DHPP)' : 'DHPP / FVRCP (Feline FVRCP)';
+        }
+        return pkg.name;
+      }
+
+      function populateBrackets() {
+        const list = BRACKETS[state.species];
+        elBracket.innerHTML = '';
+        let found = false;
+        for (let i = 0; i < list.length; i += 1) {
+          const opt = document.createElement('option');
+          opt.value = list[i].id;
+          opt.textContent = list[i].label;
+          if (list[i].id === state.bracketId) {
+            opt.selected = true;
+            found = true;
+          }
+          elBracket.appendChild(opt);
+        }
+        if (found === false && list.length > 0) {
+          state.bracketId = list[1] ? list[1].id : list[0].id;
+          elBracket.value = state.bracketId;
+        }
+      }
+
+      function renderPackages() {
+        const bracket = getCurrentBracket();
+        elPkgList.innerHTML = '';
+
+        for (let i = 0; i < PACKAGES.length; i += 1) {
+          const pkg = PACKAGES[i];
+          const isChecked = state.selected.has(pkg.id);
+          const pricing = getPackagePricing(pkg, bracket);
+          const title = getPackageTitle(pkg);
+          const desc = state.species === 'dog' ? pkg.dogDesc : pkg.catDesc;
+
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'pkg-item';
+          btn.setAttribute('role', 'checkbox');
+          btn.setAttribute('aria-checked', isChecked ? 'true' : 'false');
+          btn.setAttribute('data-pkg-id', pkg.id);
+
+          const box = document.createElement('span');
+          box.className = 'pkg-box';
+          box.setAttribute('aria-hidden', 'true');
+          box.innerHTML = '<svg class="pkg-check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>';
+
+          const body = document.createElement('span');
+          body.className = 'pkg-body';
+
+          const titleEl = document.createElement('div');
+          titleEl.className = 'pkg-title';
+          titleEl.textContent = title;
+
+          const descEl = document.createElement('div');
+          descEl.className = 'pkg-desc';
+          descEl.textContent = desc;
+
+          const metaEl = document.createElement('div');
+          metaEl.className = 'pkg-meta';
+          metaEl.textContent = pkg.tag;
+
+          body.appendChild(titleEl);
+          body.appendChild(descEl);
+          body.appendChild(metaEl);
+
+          const priceCol = document.createElement('span');
+          priceCol.className = 'pkg-price';
+          priceCol.textContent = '$' + pricing.min + ' - $' + pricing.max;
+
+          const durEl = document.createElement('span');
+          durEl.className = 'pkg-duration';
+          durEl.textContent = '+' + pkg.minutes + ' min care';
+          priceCol.appendChild(durEl);
+
+          btn.appendChild(box);
+          btn.appendChild(body);
+          btn.appendChild(priceCol);
+
+          btn.addEventListener('click', function () {
+            if (state.selected.has(pkg.id)) {
+              state.selected.delete(pkg.id);
+            } else {
+              state.selected.add(pkg.id);
+            }
+            updateAll();
+          });
+
+          elPkgList.appendChild(btn);
+        }
+      }
+
+      function updateAll() {
+        elDogBtn.setAttribute('aria-pressed', state.species === 'dog' ? 'true' : 'false');
+        elCatBtn.setAttribute('aria-pressed', state.species === 'cat' ? 'true' : 'false');
+
+        const bracket = getCurrentBracket();
+        const win = QUEUE_WINDOWS[state.windowId] || QUEUE_WINDOWS.morning;
+
+        renderPackages();
+
+        let totalMin = 0;
+        let totalMax = 0;
+        let careMinutes = 0;
+        const selectedItems = [];
+
+        for (let i = 0; i < PACKAGES.length; i += 1) {
+          const pkg = PACKAGES[i];
+          if (state.selected.has(pkg.id)) {
+            const pricing = getPackagePricing(pkg, bracket);
+            totalMin += pricing.min;
+            totalMax += pricing.max;
+            careMinutes += pkg.minutes;
+            selectedItems.push({
+              id: pkg.id,
+              title: getPackageTitle(pkg),
+              min: pricing.min,
+              max: pricing.max,
+              minutes: pkg.minutes
+            });
+          }
+        }
+
+        const count = selectedItems.length;
+        const baseIntake = count > 0 ? 5 : 0;
+        const roomMinutes = baseIntake + careMinutes;
+        const totalTurnMin = win.waitMin + roomMinutes;
+        const totalTurnMax = win.waitMax + roomMinutes;
+
+        elMetricWait.textContent = win.waitMin + ' - ' + win.waitMax + ' min';
+        elMetricCare.textContent = roomMinutes + ' min';
+        elMetricTotal.textContent = totalTurnMin + ' - ' + totalTurnMax + ' min';
+
+        let complexityText = 'No Services Selected';
+        let trackText = 'Awaiting Selection';
+        let meterPercent = 12;
+
+        if (count > 0 && roomMinutes <= 15) {
+          complexityText = 'Express Vaccine Flow';
+          trackText = 'Express Track';
+          meterPercent = 34;
+        } else if (roomMinutes > 15 && roomMinutes <= 30) {
+          complexityText = 'Standard Preventive Visit';
+          trackText = 'Standard Preventive';
+          meterPercent = 64;
+        } else if (roomMinutes > 30) {
+          complexityText = 'Comprehensive Exam & Consult';
+          trackText = 'Extended Consult';
+          meterPercent = 92;
+        }
+
+        elComplexityLabel.textContent = complexityText;
+        elTrackBadge.textContent = trackText;
+        elQueueFill.style.width = meterPercent + '%';
+
+        if (state.species === 'cat') {
+          elIntakeTip.textContent = win.tip + ' Please keep feline companions inside a latched carrier during check-in.';
+        } else {
+          elIntakeTip.textContent = win.tip + ' Keep dogs on a standard non-retractable leash in the waiting room.';
+        }
+
+        elItemCountBadge.textContent = count + (count === 1 ? ' Service Selected' : ' Services Selected');
+
+        if (count === 0) {
+          elEstimateBody.innerHTML = '<div class="estimate-empty">Select at least one vaccine or consult item on the left to calculate an itemized clinic estimate.</div>';
+          elTotalAmount.textContent = '$0';
+        } else {
+          const ul = document.createElement('ul');
+          ul.className = 'estimate-list';
+          for (let i = 0; i < selectedItems.length; i += 1) {
+            const li = document.createElement('li');
+            li.className = 'estimate-row';
+
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'estimate-name';
+            nameSpan.textContent = selectedItems[i].title;
+
+            const costSpan = document.createElement('span');
+            costSpan.className = 'estimate-cost';
+            costSpan.textContent = '$' + selectedItems[i].min + ' - $' + selectedItems[i].max;
+
+            li.appendChild(nameSpan);
+            li.appendChild(costSpan);
+            ul.appendChild(li);
+          }
+          elEstimateBody.innerHTML = '';
+          elEstimateBody.appendChild(ul);
+          elTotalAmount.textContent = '$' + totalMin + ' - $' + totalMax;
+        }
+
+        // Next-Booster Schedule Calculator
+        const baseDate = parseLocalDate(state.baselineDate);
+        elCycleBadge.textContent = bracket.cycleLabel;
+        elBoosterList.innerHTML = '';
+
+        const boosterEntries = [];
+        if (bracket.isYoung) {
+          boosterEntries.push({
+            name: state.species === 'dog' ? 'Next Puppy DHPP Series Booster' : 'Next Kitten FVRCP Series Booster',
+            note: '3-week puppy/kitten maternal antibody interval',
+            date: formatDisplayDate(addDays(baseDate, 21))
+          });
+          boosterEntries.push({
+            name: 'Rabies Eligibility / First Annual Window',
+            note: 'Administered at 12-16 weeks, then 1-year renewal',
+            date: formatDisplayDate(addMonths(baseDate, 12))
+          });
+        } else {
+          boosterEntries.push({
+            name: state.species === 'dog' ? 'Next Canine DHPP Booster' : 'Next Feline FVRCP Booster',
+            note: 'Annual preventive immunization reminder',
+            date: formatDisplayDate(addMonths(baseDate, 12))
+          });
+          boosterEntries.push({
+            name: 'Next Rabies Renewal',
+            note: '1-Yr standard (3-Yr eligible with prior signed certificate)',
+            date: formatDisplayDate(addMonths(baseDate, 12))
+          });
+        }
+
+        if (state.selected.has('bordetella')) {
+          boosterEntries.push({
+            name: 'Bordetella Refresh',
+            note: state.species === 'dog' ? '6-month high-exposure or 12-month routine' : '12-month multi-cat boarding window',
+            date: formatDisplayDate(addMonths(baseDate, state.species === 'dog' ? 6 : 12))
+          });
+        }
+
+        if (state.selected.has('heartworm')) {
+          boosterEntries.push({
+            name: 'Monthly Heartworm / Parasite Dose',
+            note: '30-day South Texas mosquito & flea reminder',
+            date: formatDisplayDate(addDays(baseDate, 30))
+          });
+          boosterEntries.push({
+            name: 'Annual Heartworm Retest',
+            note: 'Yearly antigen verification prior to renewal',
+            date: formatDisplayDate(addMonths(baseDate, 12))
+          });
+        }
+
+        if (state.selected.has('wellness') || state.selected.has('allergy')) {
+          const isSenior = bracket.id.indexOf('_sr') >= 0;
+          boosterEntries.push({
+            name: 'Routine Wellness / Skin Follow-Up',
+            note: isSenior ? '6-month senior wellness checkpoint' : '12-month routine physical exam',
+            date: formatDisplayDate(addMonths(baseDate, isSenior ? 6 : 12))
+          });
+        }
+
+        for (let i = 0; i < boosterEntries.length; i += 1) {
+          const item = boosterEntries[i];
+          const row = document.createElement('div');
+          row.className = 'booster-row';
+
+          const left = document.createElement('div');
+          const nm = document.createElement('div');
+          nm.className = 'booster-name';
+          nm.textContent = item.name;
+          const nt = document.createElement('div');
+          nt.className = 'booster-note';
+          nt.textContent = item.note;
+          left.appendChild(nm);
+          left.appendChild(nt);
+
+          const dt = document.createElement('div');
+          dt.className = 'booster-date';
+          dt.textContent = item.date;
+
+          row.appendChild(left);
+          row.appendChild(dt);
+          elBoosterList.appendChild(row);
+        }
+
+        // Build Pre-Check-In Summary
+        const petDisplay = state.petName.trim() === '' ? 'Unnamed Pet' : state.petName.trim();
+        const ownerDisplay = state.ownerName.trim() === '' ? 'Walk-In Pet Owner' : state.ownerName.trim();
+        const phoneDisplay = state.ownerPhone.trim() === '' ? 'Not provided' : state.ownerPhone.trim();
+        const notesDisplay = state.visitNotes.trim() === '' ? 'None listed' : state.visitNotes.trim();
+
+        const lines = [
+          'LOW COST PET VET - PRE-CHECK-IN SUMMARY',
+          'Clinic: San Antonio, TX | Phone: (210) 600-0838',
+          '----------------------------------------',
+          'Pet: ' + petDisplay + ' (' + (state.species === 'dog' ? 'Dog' : 'Cat') + ')',
+          'Bracket: ' + bracket.label,
+          'Owner: ' + ownerDisplay + ' | Callback: ' + phoneDisplay,
+          'Walk-In Window: ' + win.label,
+          'Est. Queue Wait: ' + win.waitMin + ' - ' + win.waitMax + ' min (Total: ' + totalTurnMin + ' - ' + totalTurnMax + ' min)',
+          '',
+          'Selected Services:'
+        ];
+
+        if (selectedItems.length === 0) {
+          lines.push('- No packages selected yet');
+        } else {
+          for (let i = 0; i < selectedItems.length; i += 1) {
+            lines.push('- ' + selectedItems[i].title + ' ($' + selectedItems[i].min + ' - $' + selectedItems[i].max + ')');
+          }
+        }
+
+        lines.push('');
+        lines.push('Estimated Visit Range: ' + (count === 0 ? '$0' : '$' + totalMin + ' - $' + totalMax));
+        lines.push('Baseline Date: ' + formatDisplayDate(baseDate));
+        lines.push('Next Key Booster: ' + boosterEntries[0].name + ' on ' + boosterEntries[0].date);
+        lines.push('Notes: ' + notesDisplay);
+
+        const summaryText = lines.join('\n');
+        elSummaryPreview.textContent = summaryText;
+
+        const mailSubject = 'Walk-In Pre-Check-In: ' + petDisplay + ' (' + (state.species === 'dog' ? 'Dog' : 'Cat') + ') - Low Cost Pet Vet';
+        elMailtoBtn.href = 'mailto:contact@sapetvet.com?subject=' + encodeURIComponent(mailSubject) + '&body=' + encodeURIComponent(summaryText);
+      }
+
+      // Event Bindings
+      elDogBtn.addEventListener('click', function () {
+        if ((state.species === 'dog') === false) {
+          state.species = 'dog';
+          state.bracketId = 'dog_sm';
+          populateBrackets();
+          updateAll();
+        }
+      });
+
+      elCatBtn.addEventListener('click', function () {
+        if ((state.species === 'cat') === false) {
+          state.species = 'cat';
+          state.bracketId = 'cat_indoor';
+          populateBrackets();
+          updateAll();
+        }
+      });
+
+      elBracket.addEventListener('change', function () {
+        state.bracketId = elBracket.value;
+        updateAll();
+      });
+
+      elDate.addEventListener('change', function () {
+        state.baselineDate = elDate.value || getTodayIso();
+        updateAll();
+      });
+
+      elWindow.addEventListener('change', function () {
+        state.windowId = elWindow.value;
+        updateAll();
+      });
+
+      elPetName.addEventListener('input', function () {
+        state.petName = elPetName.value;
+        updateAll();
+      });
+
+      elOwnerName.addEventListener('input', function () {
+        state.ownerName = elOwnerName.value;
+        updateAll();
+      });
+
+      elOwnerPhone.addEventListener('input', function () {
+        state.ownerPhone = elOwnerPhone.value;
+        updateAll();
+      });
+
+      elVisitNotes.addEventListener('input', function () {
+        state.visitNotes = elVisitNotes.value;
+        updateAll();
+      });
+
+      // Presets
+      const presetButtons = document.querySelectorAll('[data-preset]');
+      for (let i = 0; i < presetButtons.length; i += 1) {
+        presetButtons[i].addEventListener('click', function () {
+          const mode = this.getAttribute('data-preset');
+          state.selected.clear();
+          if (mode === 'core') {
+            state.selected.add('rabies');
+            state.selected.add('core');
+            state.selected.add('bordetella');
+          } else if (mode === 'annual') {
+            state.selected.add('rabies');
+            state.selected.add('core');
+            state.selected.add('heartworm');
+            state.selected.add('wellness');
+          } else if (mode === 'allergy') {
+            state.selected.add('allergy');
+            state.selected.add('wellness');
+          }
+          updateAll();
+        });
+      }
+
+      // Service card quick buttons
+      const quickSelectBtns = document.querySelectorAll('[data-quick-select]');
+      for (let i = 0; i < quickSelectBtns.length; i += 1) {
+        quickSelectBtns[i].addEventListener('click', function () {
+          state.selected.add('rabies');
+          state.selected.add('core');
+          updateAll();
+          document.getElementById('estimator').scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+
+      const quickToggleBtns = document.querySelectorAll('[data-quick-toggle]');
+      for (let i = 0; i < quickToggleBtns.length; i += 1) {
+        quickToggleBtns[i].addEventListener('click', function () {
+          const targetId = this.getAttribute('data-quick-toggle');
+          if (targetId) {
+            state.selected.add(targetId);
+            updateAll();
+            document.getElementById('estimator').scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+
+      // Copy Summary
+      let copyTimer = null;
+      elCopyBtn.addEventListener('click', function () {
+        const text = elSummaryPreview.textContent || '';
+        function showCopied() {
+          elCopyBtn.classList.add('copied');
+          elCopyLabel.textContent = 'Summary Copied';
+          if ((copyTimer === null) === false) {
+            clearTimeout(copyTimer);
+          }
+          copyTimer = setTimeout(function () {
+            elCopyBtn.classList.remove('copied');
+            elCopyLabel.textContent = 'Copy Summary';
+          }, 2200);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(showCopied).catch(function () {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+              document.execCommand('copy');
+              showCopied();
+            } catch (err) {
+              elCopyLabel.textContent = 'Select & Copy';
+            }
+            document.body.removeChild(ta);
+          });
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try {
+            document.execCommand('copy');
+            showCopied();
+          } catch (err) {
+            elCopyLabel.textContent = 'Select & Copy';
+          }
+          document.body.removeChild(ta);
+        }
+      });
+
+      // Print Checklist
+      elPrintBtn.addEventListener('click', function () {
+        window.print();
+      });
+
+      // Initialize
+      state.baselineDate = getTodayIso();
+      elDate.value = state.baselineDate;
+      populateBrackets();
+      updateAll();
+    }());
+  </script>
+</body>
+</html>

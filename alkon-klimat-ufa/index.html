@@ -1,0 +1,2951 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Алькон Климат в Уфе — продажа и монтаж сплит-систем, обслуживание и заправка кондиционеров, промышленная вентиляция и фанкойлы, осушители и тепловое оборудование. Онлайн-калькулятор мощности BTU / кВт и расчёт сметы.">
+  <title>Алькон Климат — Климат и вентиляция в Уфе | Калькулятор подбора BTU / кВт и сметы</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23FFFFFF' stroke='%23DCE4EE' stroke-width='1.5'/%3E%3Crect x='4' y='4' width='24' height='24' rx='5' fill='%230284C7'/%3E%3Cpath d='M16 8V24M9.07 12L22.93 20M22.93 12L9.07 20' stroke='%23FFFFFF' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%230284C7' stroke='%23FFFFFF' stroke-width='1.5'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg-page: #F7F9FB;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #F1F5F9;
+      --bg-tint: #F0F9FF;
+      --bg-tint-strong: #E0F2FE;
+      --border: #DCE4EE;
+      --border-strong: #C3D0E0;
+      --border-tint: #BAE6FD;
+      --text-primary: #0F172A;
+      --text-secondary: #334155;
+      --text-muted: #64748B;
+      --accent: #0284C7;
+      --accent-hover: #0369A1;
+      --accent-ink: #FFFFFF;
+      --ok-bg: #ECFDF5;
+      --ok-border: #A7F3D0;
+      --ok-text: #065F46;
+      --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --font-mono: 'Cascadia Mono', 'Consolas', ui-monospace, monospace;
+      --radius-lg: 12px;
+      --radius-md: 8px;
+      --radius-sm: 6px;
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 8px 24px -8px rgba(15, 23, 42, 0.08), 0 1px 4px rgba(15, 23, 42, 0.03);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: clip;
+      max-width: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-sans);
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
+      max-width: 100%;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: 68px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-primary);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background-color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .site-nav a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      transition: color 150ms ease;
+    }
+
+    .site-nav a:hover,
+    .site-nav a:focus-visible {
+      color: var(--accent);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .header-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background-color: var(--bg-surface);
+      white-space: nowrap;
+      transition: border-color 150ms ease, color 150ms ease;
+    }
+
+    .header-phone:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-ink);
+      background-color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 150ms ease, border-color 150ms ease;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 15px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease;
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+      background-color: var(--bg-tint);
+    }
+
+    /* Engineering Hero */
+    .hero {
+      padding: 40px 0 36px;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--bg-page);
+      background-image:
+        linear-gradient(to right, rgba(220, 228, 238, 0.45) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(220, 228, 238, 0.45) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .hero h1 {
+      margin: 0 0 14px;
+      font-size: clamp(26px, 3.2vw, 38px);
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .hero-lead {
+      margin: 0 0 22px;
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 640px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .kpi-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 13px 14px;
+    }
+
+    .kpi-value {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+    }
+
+    .kpi-label {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    /* Reference Card in Hero */
+    .ref-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+
+    .ref-card-header {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--bg-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .ref-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .ref-card-badge {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--accent);
+      background-color: var(--bg-tint);
+      border: 1px solid var(--border-tint);
+      padding: 2px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .ref-table-wrap {
+      overflow-x: auto;
+    }
+
+    .ref-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .ref-table th {
+      text-align: left;
+      padding: 10px 14px;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      background-color: var(--bg-surface);
+    }
+
+    .ref-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+
+    .ref-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .ref-row-btn {
+      cursor: pointer;
+      transition: background-color 150ms ease;
+    }
+
+    .ref-row-btn:hover {
+      background-color: var(--bg-tint);
+    }
+
+    .ref-code {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 30px;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background-color: var(--bg-tint);
+      border: 1px solid var(--border-tint);
+      color: var(--accent);
+      font-weight: 700;
+      font-family: var(--font-mono);
+    }
+
+    .ref-card-foot {
+      padding: 12px 18px;
+      background-color: var(--bg-page);
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Section Shell */
+    .section {
+      padding: 44px 0;
+    }
+
+    .section-alt {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-head {
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .section-kicker {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(21px, 2.3vw, 28px);
+      line-height: 1.24;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+    }
+
+    .section-desc {
+      margin: 6px 0 0;
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      max-width: 700px;
+    }
+
+    /* Calculator Layout */
+    .calc-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 22px;
+    }
+
+    .panel-sticky {
+      position: sticky;
+      top: 84px;
+    }
+
+    .preset-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .preset-btn {
+      padding: 6px 11px;
+      font-family: var(--font-sans);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease;
+    }
+
+    .preset-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background-color: var(--bg-tint);
+    }
+
+    .field-block {
+      margin-bottom: 18px;
+    }
+
+    .field-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .field-hint {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .seg-btn {
+      padding: 10px 10px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-align: center;
+      line-height: 1.3;
+      transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease;
+    }
+
+    .seg-btn:hover {
+      border-color: var(--border-strong);
+      color: var(--text-primary);
+    }
+
+    .seg-btn[aria-pressed="true"] {
+      background-color: var(--bg-tint);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .seg-sub {
+      display: block;
+      margin-top: 2px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .seg-btn[aria-pressed="true"] .seg-sub {
+      color: var(--accent-hover);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .input-card {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background-color: var(--bg-page);
+    }
+
+    .input-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .input-top label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .num-input-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 4px 8px;
+    }
+
+    .num-input {
+      width: 58px;
+      border: none;
+      background: transparent;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-align: right;
+      outline: none;
+    }
+
+    .num-unit {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .range-slider {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+      margin: 0;
+    }
+
+    .range-scale {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .stepper-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .step-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 150ms ease, background-color 150ms ease;
+    }
+
+    .step-btn:hover {
+      border-color: var(--accent);
+      background-color: var(--bg-tint);
+    }
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background-color: var(--bg-page);
+      cursor: pointer;
+      transition: border-color 150ms ease, background-color 150ms ease;
+    }
+
+    .check-item:hover {
+      border-color: var(--border-strong);
+    }
+
+    .check-item input[type="checkbox"] {
+      margin: 2px 0 0;
+      width: 16px;
+      height: 16px;
+      accent-color: var(--accent);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .check-item label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      line-height: 1.35;
+      cursor: pointer;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .text-input {
+      width: 100%;
+      padding: 9px 12px;
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      color: var(--text-primary);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      outline: none;
+      transition: border-color 150ms ease;
+    }
+
+    .text-input:focus {
+      border-color: var(--accent);
+    }
+
+    .input-label-plain {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 5px;
+    }
+
+    /* Calculator Result Panel */
+    .result-hero {
+      padding: 18px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-tint);
+      border: 1px solid var(--border-tint);
+      margin-bottom: 18px;
+    }
+
+    .result-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-tint);
+      color: var(--accent-hover);
+    }
+
+    .result-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .metric-box {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 11px 13px;
+    }
+
+    .metric-caption {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .metric-val {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .metric-sub {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .size-strip-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 7px;
+    }
+
+    .size-scale {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .size-chip {
+      padding: 7px 4px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background-color: var(--bg-surface);
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .size-chip.active {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: var(--accent-ink);
+    }
+
+    .heat-breakdown {
+      font-size: 12px;
+      color: var(--text-secondary);
+      padding-top: 9px;
+      border-top: 1px solid var(--border-tint);
+      line-height: 1.45;
+    }
+
+    /* Estimate Table */
+    .estimate-block {
+      margin-bottom: 18px;
+    }
+
+    .estimate-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .estimate-rows {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .estimate-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 12px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--bg-surface);
+    }
+
+    .estimate-row:last-child {
+      border-bottom: none;
+    }
+
+    .estimate-row-name {
+      color: var(--text-secondary);
+    }
+
+    .estimate-row-sum {
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+
+    .estimate-total {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    .estimate-total-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .estimate-total-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .estimate-note {
+      margin-top: 7px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Application / Brief Box */
+    .brief-box {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background-color: var(--bg-page);
+      padding: 14px;
+    }
+
+    .brief-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .brief-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .brief-preview {
+      margin: 0 0 12px;
+      padding: 10px 12px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 165px;
+      overflow-y: auto;
+    }
+
+    .brief-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .btn-mailto {
+      grid-column: 1 / -1;
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 14px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-ink);
+      background-color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      white-space: nowrap;
+      word-break: normal;
+      transition: background-color 150ms ease, border-color 150ms ease;
+    }
+
+    .btn-mailto:hover,
+    .btn-mailto:focus-visible {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    .copy-status {
+      display: none;
+      margin-top: 9px;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      background-color: var(--ok-bg);
+      border: 1px solid var(--ok-border);
+      color: var(--ok-text);
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    .copy-status.visible {
+      display: block;
+    }
+
+    /* Services 2x2 Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      transition: border-color 150ms ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--border-strong);
+    }
+
+    .service-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .service-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-tint);
+      border: 1px solid var(--border-tint);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .service-title {
+      margin: 0 0 6px;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .service-text {
+      margin: 0 0 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .service-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 5px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .service-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .service-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .service-foot {
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .service-tag {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* Engineering Methodology & Checklist */
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+
+    .formula-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+
+    .formula-box {
+      padding: 12px 14px;
+      background-color: var(--bg-tint);
+      border: 1px solid var(--border-tint);
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-hover);
+      margin: 12px 0 14px;
+    }
+
+    .param-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .param-list li {
+      padding: 10px 12px;
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+
+    .param-list strong {
+      color: var(--text-primary);
+    }
+
+    .tab-row {
+      display: inline-flex;
+      gap: 6px;
+      padding: 4px;
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 14px;
+    }
+
+    .tab-btn {
+      padding: 7px 12px;
+      font-family: var(--font-sans);
+      font-size: 12.5px;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: background-color 150ms ease, color 150ms ease;
+    }
+
+    .tab-btn[aria-selected="true"] {
+      background-color: var(--bg-surface);
+      color: var(--accent);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stage-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .stage-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 12px;
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    .stage-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      background-color: var(--bg-tint);
+      border: 1px solid var(--border-tint);
+      border-radius: 6px;
+      padding: 3px 7px;
+      flex-shrink: 0;
+    }
+
+    .stage-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .stage-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* Contacts Section */
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 20px;
+    }
+
+    .contact-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+
+    .contact-items {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .contact-item {
+      padding: 12px 14px;
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    .contact-item-wide {
+      grid-column: 1 / -1;
+      padding: 12px 14px;
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    .contact-k {
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-v {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .contact-v a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .contact-v a:hover {
+      text-decoration: underline;
+    }
+
+    .mailto-inline {
+      display: inline-block;
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      word-break: normal;
+    }
+
+    .mailto-inline:hover {
+      text-decoration: underline;
+    }
+
+    .district-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 14px 0 16px;
+    }
+
+    .district-tag {
+      padding: 5px 10px;
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      padding: 28px 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .footer-meta {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .footer-note {
+      margin-top: 10px;
+      padding: 10px 12px;
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      justify-items: start;
+      min-width: 0;
+      width: 100%;
+    }
+
+    .footer-link-row {
+      grid-column: 1 / -1;
+      width: 100%;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+
+    .footer-link-row a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .footer-link-row a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .calc-grid,
+      .contacts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .panel-sticky {
+        position: static;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .site-nav {
+        display: none;
+      }
+
+      .services-grid,
+      .method-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .header-inner {
+        min-height: 62px;
+        gap: 10px;
+      }
+
+      .header-phone {
+        display: none;
+      }
+
+      .btn-primary-hdr {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+
+      .hero {
+        padding: 26px 0 28px;
+      }
+
+      .kpi-strip,
+      .segmented,
+      .two-col,
+      .check-grid,
+      .result-metrics,
+      .brief-actions,
+      .contact-items,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .panel,
+      .contact-card,
+      .formula-card,
+      .service-card {
+        padding: 16px;
+      }
+
+      .brief-box {
+        padding: 12px;
+      }
+
+      .btn-mailto {
+        font-size: 13px;
+        padding: 11px 10px;
+        gap: 6px;
+      }
+    }
+
+    /* Print Specification Sheet */
+    @media print {
+      body {
+        background-color: #FFFFFF;
+        color: #0F172A;
+      }
+
+      .site-header,
+      .hero,
+      .preset-bar,
+      .brief-actions,
+      .copy-status,
+      #services,
+      #methodology,
+      .no-print {
+        display: none;
+      }
+
+      .section {
+        padding: 10px 0;
+      }
+
+      .calc-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .panel {
+        border: 1px solid #CBD5E1;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 2.5V19.5M3.64 6.75L18.36 15.25M18.36 6.75L3.64 15.25" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="11" cy="11" r="2.6" fill="#0284C7" stroke="#FFFFFF" stroke-width="1.6"/>
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <span class="brand-title">Алькон Климат</span>
+          <span class="brand-sub">Климат и вентиляция · Уфа</span>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Разделы портала">
+        <a href="#calculator">Калькулятор</a>
+        <a href="#services">Услуги</a>
+        <a href="#methodology">Методика</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:+73472944000" class="header-phone tabular">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.2 2.4H5.7L6.9 5.6L5.3 6.8C6.1 8.4 7.5 9.8 9.2 10.7L10.4 9.1L13.6 10.3V12.8C13.6 13.4 13.1 13.9 12.5 13.9C7.1 13.6 2.4 8.9 2.1 3.5C2.1 2.9 2.6 2.4 3.2 2.4Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+          </svg>
+          +7 (347) 294-40-00
+        </a>
+        <a href="#calculator" class="btn-primary btn-primary-hdr">Рассчитать</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>г. Уфа, пр-т Октября, 152/1 · Климат и вентиляция</span>
+          </div>
+          <h1>Инженерный подбор сплит-систем и расчёт сметы для объектов в Уфе</h1>
+          <p class="hero-lead">
+            Определите требуемую холодопроизводительность в кВт и BTU, подберите типоразмер оборудования 07–24 и получите предварительную смету на монтаж, сервисное обслуживание или вентиляцию с учётом длины трассы.
+          </p>
+          <div class="hero-cta-row">
+            <a href="#calculator" class="btn-primary">Открыть калькулятор BTU / кВт</a>
+            <a href="tel:+73472944000" class="btn-secondary tabular">Позвонить +7 (347) 294-40-00</a>
+          </div>
+          <div class="kpi-strip">
+            <div class="kpi-card">
+              <div class="kpi-value tabular">07 — 24 BTU</div>
+              <div class="kpi-label">Линейка мощностей от 2,1 до 7,0 кВт и мульти-конфигурации</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-value tabular">Q₁ + Q₂ + Q₃</div>
+              <div class="kpi-label">Тепловой баланс: объём, инсоляция, люди и оргтехника</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-value">4 направления</div>
+              <div class="kpi-label">Сплит-системы, ТО, фанкойлы, осушители и тепло</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="ref-card" aria-label="Справочная таблица типоразмеров">
+          <div class="ref-card-header">
+            <span class="ref-card-title">Сетка типоразмеров сплит-систем</span>
+            <span class="ref-card-badge">Клик для подстановки</span>
+          </div>
+          <div class="ref-table-wrap">
+            <table class="ref-table">
+              <thead>
+                <tr>
+                  <th>Индекс</th>
+                  <th>Площадь</th>
+                  <th>Холод</th>
+                  <th>Монтаж от</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="ref-row-btn" data-preset-area="18" data-preset-ins="low" data-preset-people="2" data-preset-equip="1">
+                  <td><span class="ref-code">07</span></td>
+                  <td class="tabular">до 20 м²</td>
+                  <td class="tabular">2,1 кВт · 7 000 BTU</td>
+                  <td class="tabular">12 500 ₽</td>
+                </tr>
+                <tr class="ref-row-btn" data-preset-area="24" data-preset-ins="medium" data-preset-people="2" data-preset-equip="1">
+                  <td><span class="ref-code">09</span></td>
+                  <td class="tabular">21–27 м²</td>
+                  <td class="tabular">2,6 кВт · 9 000 BTU</td>
+                  <td class="tabular">12 900 ₽</td>
+                </tr>
+                <tr class="ref-row-btn" data-preset-area="32" data-preset-ins="medium" data-preset-people="2" data-preset-equip="2">
+                  <td><span class="ref-code">12</span></td>
+                  <td class="tabular">28–38 м²</td>
+                  <td class="tabular">3,5 кВт · 12 000 BTU</td>
+                  <td class="tabular">14 500 ₽</td>
+                </tr>
+                <tr class="ref-row-btn" data-preset-area="48" data-preset-ins="medium" data-preset-people="3" data-preset-equip="3">
+                  <td><span class="ref-code">18</span></td>
+                  <td class="tabular">39–55 м²</td>
+                  <td class="tabular">5,2 кВт · 18 000 BTU</td>
+                  <td class="tabular">17 900 ₽</td>
+                </tr>
+                <tr class="ref-row-btn" data-preset-area="65" data-preset-ins="high" data-preset-people="5" data-preset-equip="4">
+                  <td><span class="ref-code">24</span></td>
+                  <td class="tabular">56–75 м²</td>
+                  <td class="tabular">7,0 кВт · 24 000 BTU</td>
+                  <td class="tabular">22 500 ₽</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="ref-card-foot">
+            Нажмите на строку таблицы, чтобы загрузить типовые параметры в калькулятор и пересчитать смету с учётом высоты потолков и длины трассы.
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="calculator" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Инженерный калькулятор</div>
+            <h2 class="section-title">Подбор мощности (BTU / кВт) и ориентировочная смета в Уфе</h2>
+            <p class="section-desc">
+              Укажите параметры помещения и задачу — расчёт мощности, типоразмера 07 / 09 / 12 / 18 / 24, сметы в рублях и текста заявки обновляется мгновенно.
+            </p>
+          </div>
+        </div>
+
+        <div class="calc-grid">
+          <!-- Left: Controls -->
+          <div class="panel">
+            <div class="field-label" id="presetsLabel">
+              <span>Быстрые сценарии</span>
+              <span class="field-hint">Типовые объекты Уфы</span>
+            </div>
+            <div class="preset-bar" role="group" aria-labelledby="presetsLabel">
+              <button type="button" class="preset-btn" data-scenario="bedroom">Спальня · 18 м²</button>
+              <button type="button" class="preset-btn" data-scenario="living">Гостиная · 32 м²</button>
+              <button type="button" class="preset-btn" data-scenario="office">Офис · 45 м²</button>
+              <button type="button" class="preset-btn" data-scenario="retail">Торговый зал · 75 м²</button>
+            </div>
+
+            <div class="field-block">
+              <div class="field-label" id="serviceLabel">
+                <span>Выбор услуги</span>
+                <span class="field-hint">Влияет на состав сметы</span>
+              </div>
+              <div class="segmented" role="radiogroup" aria-labelledby="serviceLabel">
+                <button type="button" class="seg-btn" data-service="install" aria-pressed="true">
+                  Подбор + монтаж
+                  <span class="seg-sub">Трасса и запуск</span>
+                </button>
+                <button type="button" class="seg-btn" data-service="maintenance" aria-pressed="false">
+                  ТО и заправка
+                  <span class="seg-sub">Чистка и хладагент</span>
+                </button>
+                <button type="button" class="seg-btn" data-service="ventilation" aria-pressed="false">
+                  Вентиляция и фанкойлы
+                  <span class="seg-sub">Обмен м³/ч и узел</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-block">
+              <div class="field-label" id="objLabel">
+                <span>Тип объекта</span>
+                <span class="field-hint">Коэффициент теплонагрузки</span>
+              </div>
+              <div class="segmented" role="radiogroup" aria-labelledby="objLabel">
+                <button type="button" class="seg-btn" data-obj="apartment" aria-pressed="true">
+                  Квартира
+                  <span class="seg-sub">Жилой режим</span>
+                </button>
+                <button type="button" class="seg-btn" data-obj="office" aria-pressed="false">
+                  Офис
+                  <span class="seg-sub">Рабочие места</span>
+                </button>
+                <button type="button" class="seg-btn" data-obj="commercial" aria-pressed="false">
+                  Коммерческое помещение
+                  <span class="seg-sub">Зал / магазин / склад</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-block two-col">
+              <div class="input-card">
+                <div class="input-top">
+                  <label for="areaInput">Площадь помещения</label>
+                  <div class="num-input-wrap">
+                    <input id="areaInput" class="num-input tabular" type="number" min="10" max="250" step="1" value="28" autocomplete="off">
+                    <span class="num-unit">м²</span>
+                  </div>
+                </div>
+                <input id="areaRange" class="range-slider" type="range" min="10" max="250" step="1" value="28" aria-label="Площадь помещения ползунок" autocomplete="off">
+                <div class="range-scale tabular">
+                  <span>10 м²</span>
+                  <span>120 м²</span>
+                  <span>250 м²</span>
+                </div>
+              </div>
+
+              <div class="input-card">
+                <div class="input-top">
+                  <label for="heightInput">Высота потолков</label>
+                  <div class="num-input-wrap">
+                    <input id="heightInput" class="num-input tabular" type="number" min="2.4" max="5.5" step="0.1" value="2.7" autocomplete="off">
+                    <span class="num-unit">м</span>
+                  </div>
+                </div>
+                <input id="heightRange" class="range-slider" type="range" min="2.4" max="5.5" step="0.1" value="2.7" aria-label="Высота потолков ползунок" autocomplete="off">
+                <div class="range-scale tabular">
+                  <span>2,4 м</span>
+                  <span>3,5 м</span>
+                  <span>5,5 м</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="field-block">
+              <div class="field-label" id="insLabel">
+                <span>Инсоляция / сторона света</span>
+                <span class="field-hint">Солнечные теплопритоки</span>
+              </div>
+              <div class="segmented" role="radiogroup" aria-labelledby="insLabel">
+                <button type="button" class="seg-btn" data-ins="low" aria-pressed="false">
+                  Слабая
+                  <span class="seg-sub">Север / тень · 30 Вт/м³</span>
+                </button>
+                <button type="button" class="seg-btn" data-ins="medium" aria-pressed="true">
+                  Средняя
+                  <span class="seg-sub">Восток / запад · 35 Вт/м³</span>
+                </button>
+                <button type="button" class="seg-btn" data-ins="high" aria-pressed="false">
+                  Сильная
+                  <span class="seg-sub">Юг / панорама · 40 Вт/м³</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-block two-col">
+              <div class="input-card">
+                <div class="input-top">
+                  <label for="peopleInput">Люди в помещении</label>
+                  <span class="field-hint tabular">≈ 0,10 кВт/чел.</span>
+                </div>
+                <div class="stepper-row">
+                  <button type="button" class="step-btn" data-step-target="people" data-delta="-1" aria-label="Уменьшить количество людей">−</button>
+                  <div class="num-input-wrap">
+                    <input id="peopleInput" class="num-input tabular" type="number" min="0" max="60" step="1" value="2" autocomplete="off">
+                    <span class="num-unit">чел.</span>
+                  </div>
+                  <button type="button" class="step-btn" data-step-target="people" data-delta="1" aria-label="Увеличить количество людей">+</button>
+                </div>
+              </div>
+
+              <div class="input-card">
+                <div class="input-top">
+                  <label for="equipInput">Техника (ПК, ТВ, приборы)</label>
+                  <span class="field-hint tabular">≈ 0,25 кВт/ед.</span>
+                </div>
+                <div class="stepper-row">
+                  <button type="button" class="step-btn" data-step-target="equip" data-delta="-1" aria-label="Уменьшить количество техники">−</button>
+                  <div class="num-input-wrap">
+                    <input id="equipInput" class="num-input tabular" type="number" min="0" max="40" step="1" value="2" autocomplete="off">
+                    <span class="num-unit">шт.</span>
+                  </div>
+                  <button type="button" class="step-btn" data-step-target="equip" data-delta="1" aria-label="Увеличить количество техники">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="field-block">
+              <div class="input-card">
+                <div class="input-top">
+                  <label for="routeInput">Длина фреоновой / инженерной трассы</label>
+                  <div class="num-input-wrap">
+                    <input id="routeInput" class="num-input tabular" type="number" min="2" max="30" step="1" value="3" autocomplete="off">
+                    <span class="num-unit">м</span>
+                  </div>
+                </div>
+                <input id="routeRange" class="range-slider" type="range" min="2" max="30" step="1" value="3" aria-label="Длина трассы ползунок" autocomplete="off">
+                <div class="range-scale tabular">
+                  <span>2 м</span>
+                  <span id="routeHintText">Стандартный монтаж до 3 м включён в базу</span>
+                  <span>30 м</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="field-block">
+              <div class="field-label">
+                <span>Дополнительные работы и состав сметы</span>
+              </div>
+              <div class="check-grid">
+                <div class="check-item">
+                  <input id="opt1" type="checkbox" autocomplete="off">
+                  <label id="opt1Label" for="opt1">Включить ориентир стоимости оборудования</label>
+                </div>
+                <div class="check-item">
+                  <input id="opt2" type="checkbox" autocomplete="off">
+                  <label id="opt2Label" for="opt2">Штробление стены под скрытую трассу</label>
+                </div>
+                <div class="check-item">
+                  <input id="opt3" type="checkbox" autocomplete="off">
+                  <label id="opt3Label" for="opt3">Дренажная помпа для отвода конденсата</label>
+                </div>
+                <div class="check-item">
+                  <input id="opt4" type="checkbox" autocomplete="off">
+                  <label id="opt4Label" for="opt4">Зимний комплект (работа до -25 °C)</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="two-col">
+              <div>
+                <label class="input-label-plain" for="contactName">Контактное лицо или организация (для заявки)</label>
+                <input id="contactName" class="text-input" type="text" placeholder="Например: ООО Спектр / Алексей" autocomplete="name">
+              </div>
+              <div>
+                <label class="input-label-plain" for="contactPhone">Телефон для обратной связи</label>
+                <input id="contactPhone" class="text-input tabular" type="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel">
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Results & Application -->
+          <div id="applicationCard" class="panel panel-sticky">
+            <div class="result-hero">
+              <div class="result-badges">
+                <span class="pill" id="resServicePill">Подбор + монтаж</span>
+                <span class="pill" id="resObjPill">Квартира</span>
+                <span class="pill tabular" id="resVolumePill">Объём: 75,6 м³</span>
+              </div>
+
+              <div class="result-metrics">
+                <div class="metric-box">
+                  <div class="metric-caption">Требуемая мощность</div>
+                  <div class="metric-val tabular" id="resKw">3,35 кВт</div>
+                  <div class="metric-sub tabular" id="resBtu">11 430 BTU/ч</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-caption" id="resSecondCaption">Рекомендуемый типоразмер</div>
+                  <div class="metric-val tabular" id="resModelSize">12 (3,5 кВт)</div>
+                  <div class="metric-sub tabular" id="resModelSub">Запас по холоду: +4%</div>
+                </div>
+              </div>
+
+              <div class="size-strip-head">
+                <span>Линейка типоразмеров сплит-систем</span>
+                <span class="tabular" id="resUnitsNote">1 внутренний блок</span>
+              </div>
+              <div class="size-scale" aria-label="Шкала типоразмеров BTU">
+                <div class="size-chip" data-size="07">07</div>
+                <div class="size-chip" data-size="09">09</div>
+                <div class="size-chip active" data-size="12">12</div>
+                <div class="size-chip" data-size="18">18</div>
+                <div class="size-chip" data-size="24">24</div>
+              </div>
+
+              <div class="heat-breakdown tabular" id="resBreakdown">
+                Теплопритоки: Q₁ (ограждения) 2,65 кВт + Q₂ (люди) 0,20 кВт + Q₃ (техника) 0,50 кВт = 3,35 кВт
+              </div>
+            </div>
+
+            <div class="estimate-block">
+              <div class="estimate-title">
+                <span>Ориентировочная смета (г. Уфа)</span>
+                <span class="field-hint tabular" id="resRefEquipHint">Оборудование класса 12 — от 38 900 ₽</span>
+              </div>
+              <div class="estimate-rows" id="estimateRows"></div>
+              <div class="estimate-total">
+                <span class="estimate-total-label">Итого ориентировочно</span>
+                <span class="estimate-total-value tabular" id="estimateTotal">14 500 ₽</span>
+              </div>
+              <div class="estimate-note">
+                Расчёт является ориентировочным. Окончательная стоимость фиксируется после выезда инженера на объект в Уфе, проверки электросети и места монтажа наружного блока.
+              </div>
+            </div>
+
+            <div class="brief-box">
+              <div class="brief-head">
+                <span class="brief-title">Готовая заявка для отправки в Алькон Климат</span>
+              </div>
+              <pre class="brief-preview" id="briefPreview"></pre>
+              <div class="brief-actions">
+                <button type="button" class="btn-secondary" id="copyBtn">
+                  <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+                    <path d="M11 5V3.5C11 2.7 10.3 2 9.5 2H3.5C2.7 2 2 2.7 2 3.5V9.5C2 10.3 2.7 11 3.5 11H5" stroke="currentColor" stroke-width="1.4"/>
+                  </svg>
+                  Скопировать расчёт
+                </button>
+                <button type="button" class="btn-secondary" id="printBtn">
+                  <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 6V2.5H12V6M4 11H2.5V7C2.5 6.4 2.9 6 3.5 6H12.5C13.1 6 13.5 6.4 13.5 7V11H12M4.5 9.5H11.5V13.5H4.5V9.5Z" stroke="currentColor" stroke-width="1.35" stroke-linejoin="round"/>
+                  </svg>
+                  Печать / PDF
+                </button>
+                <a id="mailtoBtn" class="btn-mailto" href="mailto:klimat-ufa@mail.ru">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1.8" y="3.2" width="12.4" height="9.6" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+                    <path d="M2.2 4L8 8.6L13.8 4" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                  </svg>
+                  Отправить: klimat-ufa@mail.ru
+                </a>
+              </div>
+              <div id="copyStatus" class="copy-status" role="status" aria-live="polite">
+                Расчёт скопирован в буфер обмена. Можно вставить в мессенджер или письмо.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Направления работы</div>
+            <h2 class="section-title">Услуги компании Алькон Климат</h2>
+            <p class="section-desc">
+              Поставка климатического оборудования, сертифицированный монтаж, сервисное сопровождение и инженерные системы для жилых и коммерческих объектов в Уфе.
+            </p>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2.5" y="5" width="17" height="8" rx="2" stroke="currentColor" stroke-width="1.6"/>
+                    <path d="M5.5 10.5H16.5M7 16C7 17.2 6.2 18 5.2 18.5M11 16V19M15 16C15 17.2 15.8 18 16.8 18.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="service-title">Продажа и монтаж сплит-систем</h3>
+                  <p class="service-text">
+                    Подбор настенных, кассетных и мульти-сплит систем по тепловому балансу помещения с установкой за один выезд или в два этапа на стадии ремонта.
+                  </p>
+                </div>
+              </div>
+              <ul class="service-list">
+                <li><span class="service-dot" aria-hidden="true"></span>Расчёт мощности от 07 до 24 BTU и выше</li>
+                <li><span class="service-dot" aria-hidden="true"></span>Медная трасса, дренаж, вакуумирование контура</li>
+                <li><span class="service-dot" aria-hidden="true"></span>Скрытая прокладка коммуникаций в штробу</li>
+              </ul>
+            </div>
+            <div class="service-foot">
+              <span class="service-tag">Квартиры, офисы, коммерция</span>
+              <button type="button" class="btn-secondary" data-jump-service="install">Рассчитать монтаж</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="11" cy="11" r="7.5" stroke="currentColor" stroke-width="1.6"/>
+                    <path d="M11 6.5V11L14.2 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="service-title">Обслуживание и заправка кондиционеров</h3>
+                  <p class="service-text">
+                    Регламентное ТО бытовых и полупромышленных систем: восстановление холодопроизводительности, чистка дренажа и заправка фреоном по весам.
+                  </p>
+                </div>
+              </div>
+              <ul class="service-list">
+                <li><span class="service-dot" aria-hidden="true"></span>Мойка теплообменника и рабочего колеса турбины</li>
+                <li><span class="service-dot" aria-hidden="true"></span>Контроль давления и заправка R32 / R410A</li>
+                <li><span class="service-dot" aria-hidden="true"></span>Опрессовка азотом и поиск микроутечек</li>
+              </ul>
+            </div>
+            <div class="service-foot">
+              <span class="service-tag">Разовое и годовое ТО</span>
+              <button type="button" class="btn-secondary" data-jump-service="maintenance">Рассчитать ТО</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 7H19M3 15H19M6 7V15M16 7V15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    <circle cx="11" cy="11" r="2.2" stroke="currentColor" stroke-width="1.5"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="service-title">Промышленная вентиляция и фанкойлы</h3>
+                  <p class="service-text">
+                    Монтаж приточно-вытяжных систем с рекуперацией, узлов обвязки чиллер–фанкойл и балансировка воздухораспределения на коммерческих объектах.
+                  </p>
+                </div>
+              </div>
+              <ul class="service-list">
+                <li><span class="service-dot" aria-hidden="true"></span>Расчёт требуемого воздухообмена в м³/ч</li>
+                <li><span class="service-dot" aria-hidden="true"></span>Монтаж фанкойлов и теплоизолированных магистралей</li>
+                <li><span class="service-dot" aria-hidden="true"></span>Пусконаладка, анемометрия и паспортизация</li>
+              </ul>
+            </div>
+            <div class="service-foot">
+              <span class="service-tag">Офисы, торговые площади, цеха</span>
+              <button type="button" class="btn-secondary" data-jump-service="ventilation">Рассчитать вентиляцию</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-top">
+                <div class="service-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 3.2C11 3.2 6 8.8 6 12.6C6 15.4 8.2 17.8 11 17.8C13.8 17.8 16 15.4 16 12.6C16 8.8 11 3.2 11 3.2Z" stroke="currentColor" stroke-width="1.6"/>
+                    <path d="M9 13.2C9 14.3 9.9 15.2 11 15.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="service-title">Осушители и тепловое оборудование</h3>
+                  <p class="service-text">
+                    Подбор промышленных и бытовых осушителей воздуха, тепловых завес для входных групп, тепловентиляторов и инфракрасных обогревателей.
+                  </p>
+                </div>
+              </div>
+              <ul class="service-list">
+                <li><span class="service-dot" aria-hidden="true"></span>Осушение бассейнов, складов, архивов и подвалов</li>
+                <li><span class="service-dot" aria-hidden="true"></span>Тепловые завесы на входные зоны и ворота</li>
+                <li><span class="service-dot" aria-hidden="true"></span>Подбор по кратности влажности и теплопотерям</li>
+              </ul>
+            </div>
+            <div class="service-foot">
+              <span class="service-tag">Запрос под ТЗ объекта</span>
+              <button type="button" class="btn-secondary" id="thermalPresetBtn">Подготовить заявку</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="methodology" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Инженерная основа</div>
+            <h2 class="section-title">Методика расчёта и порядок подготовки объекта</h2>
+          </div>
+        </div>
+
+        <div class="method-grid">
+          <div class="formula-card">
+            <h3 class="service-title">Тепловой баланс помещения</h3>
+            <p class="service-text">
+              При подборе учитываются не только квадратные метры, но и высота потолков, инсоляция в климатических условиях Башкортостана, а также постоянные внутренние источники тепла.
+            </p>
+            <div class="formula-box tabular">Q = Q₁ (V × q × k) + Q₂ (люди) + Q₃ (техника)</div>
+            <ul class="param-list">
+              <li><strong>Q₁ — Ограждения и окна:</strong> объём V = S × H умножается на удельную нагрузку 30 / 35 / 40 Вт/м³ и поправку типа объекта (1,00 для квартиры, 1,08 для офиса, 1,15 для коммерции).</li>
+              <li><strong>Q₂ и Q₃ — Внутреннее тепло:</strong> добавляется ≈ 0,10–0,13 кВт на каждого человека и ≈ 0,25 кВт на единицу работающего оборудования.</li>
+              <li><strong>Магистраль и перепад высот:</strong> при трассе длиннее 7 м учитывается дополнительная заправка хладагентом, а при сложной траектории слива — дренажная помпа.</li>
+            </ul>
+          </div>
+
+          <div class="formula-card">
+            <h3 class="service-title">Подготовка к монтажу в Уфе</h3>
+            <div class="tab-row" role="tablist" aria-label="Сценарии подготовки объекта">
+              <button type="button" class="tab-btn" role="tab" aria-selected="true" data-prep-tab="flat">Квартира</button>
+              <button type="button" class="tab-btn" role="tab" aria-selected="false" data-prep-tab="biz">Офис / коммерция</button>
+            </div>
+
+            <div class="stage-list" id="prepList">
+              <div class="stage-item">
+                <span class="stage-num">01</span>
+                <div>
+                  <div class="stage-title">Точка подключения электропитания</div>
+                  <div class="stage-desc">Для блоков 07–12 достаточно линии 220 В с отдельным автоматом 16 А, для моделей 18–24 рекомендуется выделенный кабель от щитка.</div>
+                </div>
+              </div>
+              <div class="stage-item">
+                <span class="stage-num">02</span>
+                <div>
+                  <div class="stage-title">Расположение наружного блока</div>
+                  <div class="stage-desc">Проверка фасадных корзин управляющей компании и доступа к месту монтажа через окно или с привлечением автовышки / альпиниста.</div>
+                </div>
+              </div>
+              <div class="stage-item">
+                <span class="stage-num">03</span>
+                <div>
+                  <div class="stage-title">Отвод конденсата и уклон трассы</div>
+                  <div class="stage-desc">Самотёчный дренаж требует уклона без провисаний или отвода в канализацию через сифон с сухим затвором на этапе ремонта.</div>
+                </div>
+              </div>
+              <div class="stage-item">
+                <span class="stage-num">04</span>
+                <div>
+                  <div class="stage-title">Вакуумирование и контрольный пуск</div>
+                  <div class="stage-desc">Обязательное удаление влаги и воздуха из медного контура вакуумным насосом перед открытием портов и проверкой перепада температур.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Контакты и выезд</div>
+            <h2 class="section-title">Связаться с Алькон Климат в Уфе</h2>
+          </div>
+        </div>
+
+        <div class="contacts-grid">
+          <div class="contact-card">
+            <h3 class="service-title">Реквизиты и каналы связи</h3>
+            <p class="service-text">
+              Отправьте готовый расчёт из калькулятора на электронную почту или позвоните для согласования времени осмотра объекта.
+            </p>
+            <div class="contact-items">
+              <div class="contact-item">
+                <div class="contact-k">Компания</div>
+                <div class="contact-v">Алькон Климат</div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-k">Специализация</div>
+                <div class="contact-v">Климат и вентиляция</div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-k">Адрес в Уфе</div>
+                <div class="contact-v">г. Уфа, пр-т Октября, 152/1</div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-k">Телефон</div>
+                <div class="contact-v tabular"><a href="tel:+73472944000">+7 (347) 294-40-00</a></div>
+              </div>
+              <div class="contact-item-wide">
+                <div class="contact-k">Электронная почта для расчётов и ТЗ</div>
+                <div class="contact-v">
+                  <a href="mailto:klimat-ufa@mail.ru" class="mailto-inline">klimat-ufa@mail.ru</a>
+                </div>
+              </div>
+              <div class="contact-item-wide">
+                <div class="contact-k">Официальный сайт</div>
+                <div class="contact-v">
+                  <a href="https://www.klimat-ufa.ru/" target="_blank" rel="noopener noreferrer">https://www.klimat-ufa.ru/</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <h3 class="service-title">География выезда и работа с юрлицами</h3>
+            <p class="service-text">
+              Инженерные бригады выезжают на замеры, монтаж и сервисное обслуживание по всем районам Уфы и ближайшему пригороду.
+            </p>
+            <div class="district-tags">
+              <span class="district-tag">Проспект Октября</span>
+              <span class="district-tag">Центр</span>
+              <span class="district-tag">Зелёная Роща</span>
+              <span class="district-tag">Сипайлово</span>
+              <span class="district-tag">Черниковка</span>
+              <span class="district-tag">Инорс</span>
+              <span class="district-tag">Дёма</span>
+              <span class="district-tag">Затон</span>
+              <span class="district-tag">Уфимский район</span>
+            </div>
+            <ul class="service-list">
+              <li><span class="service-dot" aria-hidden="true"></span>Подготовка коммерческих предложений для B2B и тендеров</li>
+              <li><span class="service-dot" aria-hidden="true"></span>Договор, счёт на оплату и закрывающие документы (ЭДО / УПД)</li>
+              <li><span class="service-dot" aria-hidden="true"></span>Согласование графиков монтажа и ТО в нерабочее время объекта</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-meta">
+        <strong>Алькон Климат</strong> — Климат и вентиляция · г. Уфа, пр-т Октября, 152/1
+        <div class="footer-note">
+          Интерактивное превью подготовлено для компании Алькон Климат (Уфа). Все расчёты мощности в кВт / BTU и сметы в рублях носят ориентировочный характер и уточняются инженером при осмотре объекта.
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-link-row tabular">Телефон: <a href="tel:+73472944000">+7 (347) 294-40-00</a></div>
+        <div class="footer-link-row">
+          Почта: <a href="mailto:klimat-ufa@mail.ru" class="mailto-inline">klimat-ufa@mail.ru</a>
+        </div>
+        <div class="footer-link-row">
+          Сайт: <a href="https://www.klimat-ufa.ru/" target="_blank" rel="noopener noreferrer">https://www.klimat-ufa.ru/</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var SPLIT_MODELS = [
+        { code: '07', btu: 7000,  nomKw: 2.1, maxCalcKw: 2.35, installBase: 12500, maintBase: 3200, unitPrice: 27900, meterRate: 1400 },
+        { code: '09', btu: 9000,  nomKw: 2.6, maxCalcKw: 2.95, installBase: 12900, maintBase: 3200, unitPrice: 31900, meterRate: 1400 },
+        { code: '12', btu: 12000, nomKw: 3.5, maxCalcKw: 3.95, installBase: 14500, maintBase: 3500, unitPrice: 38900, meterRate: 1400 },
+        { code: '18', btu: 18000, nomKw: 5.2, maxCalcKw: 5.75, installBase: 17900, maintBase: 4200, unitPrice: 58900, meterRate: 1800 },
+        { code: '24', btu: 24000, nomKw: 7.0, maxCalcKw: 7.70, installBase: 22500, maintBase: 4800, unitPrice: 77500, meterRate: 1800 }
+      ];
+
+      var SERVICE_META = {
+        install: {
+          title: 'Подбор + монтаж',
+          routeHint: 'Стандартный монтаж до 3 м включён в базу',
+          opts: [
+            'Включить ориентир стоимости сплит-системы',
+            'Штробление стены под скрытую трассу',
+            'Дренажная помпа для отвода конденсата',
+            'Зимний комплект (работа до -25 °C)'
+          ]
+        },
+        maintenance: {
+          title: 'ТО и заправка',
+          routeHint: 'Трасса > 5 м требует контроля объёма хладагента',
+          opts: [
+            'Полная разборка и мойка крыльчатки турбины',
+            'Антибактериальная обработка парогенератором',
+            'Чистка и диагностика дренажной помпы',
+            'Опрессовка азотом и поиск утечки хладагента'
+          ]
+        },
+        ventilation: {
+          title: 'Вентиляция и фанкойлы',
+          routeHint: 'Протяжённость теплоизолированной магистрали / канала',
+          opts: [
+            'Включить ориентир стоимости агрегата / фанкойла',
+            'Алмазное бурение ж/б перекрытий',
+            'Дренажная помпа с поплавковым датчиком',
+            'Пусконаладка, анемометрия и баланс расхода'
+          ]
+        }
+      };
+
+      var OBJ_META = {
+        apartment:  { title: 'Квартира', kLoad: 1.00, qPerson: 0.10, ach: 1.5, installMult: 1.00, maintAdd: 0, ventMult: 1.00 },
+        office:     { title: 'Офис', kLoad: 1.08, qPerson: 0.11, ach: 2.5, installMult: 1.05, maintAdd: 400, ventMult: 1.10 },
+        commercial: { title: 'Коммерческое помещение', kLoad: 1.15, qPerson: 0.13, ach: 3.5, installMult: 1.12, maintAdd: 900, ventMult: 1.18 }
+      };
+
+      var INS_META = {
+        low:    { title: 'Слабая (север / тень)', qWm3: 30 },
+        medium: { title: 'Средняя (восток / запад)', qWm3: 35 },
+        high:   { title: 'Сильная (юг / панорама)', qWm3: 40 }
+      };
+
+      var PREP_CONTENT = {
+        flat: [
+          { num: '01', title: 'Точка подключения электропитания', desc: 'Для блоков 07–12 достаточно линии 220 В с отдельным автоматом 16 А, для моделей 18–24 рекомендуется выделенный кабель от щитка.' },
+          { num: '02', title: 'Расположение наружного блока', desc: 'Проверка фасадных корзин управляющей компании и доступа к месту монтажа через окно или с привлечением автовышки / альпиниста.' },
+          { num: '03', title: 'Отвод конденсата и уклон трассы', desc: 'Самотёчный дренаж требует уклона без провисаний или отвода в канализацию через сифон с сухим затвором на этапе ремонта.' },
+          { num: '04', title: 'Вакуумирование и контрольный пуск', desc: 'Обязательное удаление влаги и воздуха из медного контура вакуумным насосом перед открытием портов и проверкой перепада температур.' }
+        ],
+        biz: [
+          { num: '01', title: 'Акт осмотра и проектная привязка', desc: 'Определение мест прокладки магистралей по техническим коридорам, проверка несущей способности стен и точек ввода 220/380 В.' },
+          { num: '02', title: 'Регламент доступа и график работ', desc: 'Согласование допусков с администрацией бизнес-центра или ТЦ в Уфе, при необходимости — монтаж в вечерние или выходные часы.' },
+          { num: '03', title: 'Серверные и круглогодичное охлаждение', desc: 'Для технических помещений устанавливаются зимние комплекты с регулятором давления конденсации и подогревом картера.' },
+          { num: '04', title: 'Исполнительная документация и ТО', desc: 'Передача актов пусконаладки, паспортов вентиляционных систем и фиксация графика сезонного обслуживания.' }
+        ]
+      };
+
+      var state = {
+        service: 'install',
+        objType: 'apartment',
+        area: 28,
+        height: 2.7,
+        insolation: 'medium',
+        people: 2,
+        equipment: 2,
+        routeLength: 3,
+        opt1: false,
+        opt2: false,
+        opt3: false,
+        opt4: false,
+        extraScopeNote: '',
+        contactName: '',
+        contactPhone: ''
+      };
+
+      var els = {
+        areaInput: document.getElementById('areaInput'),
+        areaRange: document.getElementById('areaRange'),
+        heightInput: document.getElementById('heightInput'),
+        heightRange: document.getElementById('heightRange'),
+        peopleInput: document.getElementById('peopleInput'),
+        equipInput: document.getElementById('equipInput'),
+        routeInput: document.getElementById('routeInput'),
+        routeRange: document.getElementById('routeRange'),
+        routeHintText: document.getElementById('routeHintText'),
+        opt1: document.getElementById('opt1'),
+        opt2: document.getElementById('opt2'),
+        opt3: document.getElementById('opt3'),
+        opt4: document.getElementById('opt4'),
+        opt1Label: document.getElementById('opt1Label'),
+        opt2Label: document.getElementById('opt2Label'),
+        opt3Label: document.getElementById('opt3Label'),
+        opt4Label: document.getElementById('opt4Label'),
+        contactName: document.getElementById('contactName'),
+        contactPhone: document.getElementById('contactPhone'),
+        resServicePill: document.getElementById('resServicePill'),
+        resObjPill: document.getElementById('resObjPill'),
+        resVolumePill: document.getElementById('resVolumePill'),
+        resKw: document.getElementById('resKw'),
+        resBtu: document.getElementById('resBtu'),
+        resSecondCaption: document.getElementById('resSecondCaption'),
+        resModelSize: document.getElementById('resModelSize'),
+        resModelSub: document.getElementById('resModelSub'),
+        resUnitsNote: document.getElementById('resUnitsNote'),
+        resBreakdown: document.getElementById('resBreakdown'),
+        resRefEquipHint: document.getElementById('resRefEquipHint'),
+        estimateRows: document.getElementById('estimateRows'),
+        estimateTotal: document.getElementById('estimateTotal'),
+        briefPreview: document.getElementById('briefPreview'),
+        copyBtn: document.getElementById('copyBtn'),
+        printBtn: document.getElementById('printBtn'),
+        mailtoBtn: document.getElementById('mailtoBtn'),
+        copyStatus: document.getElementById('copyStatus'),
+        prepList: document.getElementById('prepList'),
+        thermalPresetBtn: document.getElementById('thermalPresetBtn')
+      };
+
+      var numFmt = new Intl.NumberFormat('ru-RU');
+
+      function clamp(val, min, max) {
+        if (Number.isNaN(val)) return min;
+        return Math.min(max, Math.max(min, val));
+      }
+
+      function fmtRub(value) {
+        return numFmt.format(Math.round(value)) + ' ₽';
+      }
+
+      function fmtKw(value) {
+        return value.toFixed(2).replace('.', ',') + ' кВт';
+      }
+
+      function fmtNum(value, decimals) {
+        return value.toFixed(decimals).replace('.', ',');
+      }
+
+      function selectConfiguration(calcKw) {
+        for (var i = 0; i < SPLIT_MODELS.length; i += 1) {
+          if (calcKw <= SPLIT_MODELS[i].maxCalcKw) {
+            return { model: SPLIT_MODELS[i], count: 1 };
+          }
+        }
+        var best = { model: SPLIT_MODELS[4], count: Math.ceil(calcKw / SPLIT_MODELS[4].maxCalcKw) };
+        var model18 = SPLIT_MODELS[3];
+        var count18 = Math.ceil(calcKw / model18.maxCalcKw);
+        var model24 = SPLIT_MODELS[4];
+        var count24 = Math.ceil(calcKw / model24.maxCalcKw);
+        if (count18 * model18.nomKw < count24 * model24.nomKw && count18 <= 3) {
+          best = { model: model18, count: count18 };
+        } else {
+          best = { model: model24, count: count24 };
+        }
+        return best;
+      }
+
+      function calculate() {
+        var obj = OBJ_META[state.objType];
+        var ins = INS_META[state.insolation];
+        var svc = SERVICE_META[state.service];
+
+        var volume = state.area * state.height;
+        var q1 = (volume * ins.qWm3 / 1000) * obj.kLoad;
+        var q2 = state.people * obj.qPerson;
+        var q3 = state.equipment * 0.25;
+        var totalKw = q1 + q2 + q3;
+        var totalBtu = Math.round(totalKw * 3412);
+        var airFlow = Math.round(volume * obj.ach);
+
+        var cfg = selectConfiguration(totalKw);
+        var model = cfg.model;
+        var count = cfg.count;
+        var installedKw = model.nomKw * count;
+        var reservePct = Math.round(((installedKw - totalKw) / totalKw) * 100);
+
+        var items = [];
+        if (state.service === 'install') {
+          var baseInstall = Math.round(model.installBase * count * obj.installMult / 100) * 100;
+          items.push({
+            name: 'Базовый монтаж (' + (count > 1 ? count + ' × ' : '') + 'типоразмер ' + model.code + ', до 3 м трассы)',
+            sum: baseInstall
+          });
+
+          var extraMeters = Math.max(0, state.routeLength - 3);
+          if (extraMeters > 0) {
+            var routeSum = extraMeters * model.meterRate * count;
+            items.push({
+              name: 'Дополнительная трасса (' + extraMeters + ' м × ' + numFmt.format(model.meterRate) + ' ₽' + (count > 1 ? ' × ' + count : '') + ')',
+              sum: routeSum
+            });
+          } else {
+            items.push({
+              name: 'Фреоновая магистраль до 3 м и расходники',
+              sum: 0,
+              note: 'включено'
+            });
+          }
+
+          if (state.routeLength > 7) {
+            items.push({
+              name: 'Дозаправка хладагентом (трасса свыше 7 м)',
+              sum: 1800 * count
+            });
+          }
+
+          if (state.opt1) {
+            items.push({
+              name: 'Ориентир стоимости оборудования (' + (count > 1 ? count + ' × ' : '') + 'класс ' + model.code + ')',
+              sum: model.unitPrice * count
+            });
+          }
+          if (state.opt2) {
+            var chaseSum = Math.max(4500, state.routeLength * 1500);
+            items.push({
+              name: 'Штробление стены под скрытую трассу (' + state.routeLength + ' м)',
+              sum: chaseSum
+            });
+          }
+          if (state.opt3) {
+            items.push({
+              name: 'Дренажная помпа с монтажом',
+              sum: 6800 * count
+            });
+          }
+          if (state.opt4) {
+            items.push({
+              name: 'Зимний комплект (работа до -25 °C)',
+              sum: 7500 * count
+            });
+          }
+        } else if (state.service === 'maintenance') {
+          var maintBase = (model.maintBase + obj.maintAdd) * count;
+          items.push({
+            name: 'Регламентное ТО (' + (count > 1 ? count + ' × ' : '') + 'типоразмер ' + model.code + ')',
+            sum: maintBase
+          });
+
+          if (state.routeLength > 5) {
+            var over5 = state.routeLength - 5;
+            items.push({
+              name: 'Корректировка объёма фреона (трасса ' + state.routeLength + ' м)',
+              sum: over5 * 300 * count
+            });
+          } else {
+            items.push({
+              name: 'Контроль рабочего давления хладагента',
+              sum: 0,
+              note: 'включено'
+            });
+          }
+
+          if (state.opt1) {
+            items.push({ name: 'Разборка и мойка крыльчатки турбины', sum: 1800 * count });
+          }
+          if (state.opt2) {
+            items.push({ name: 'Антибактериальная обработка парогенератором', sum: 900 * count });
+          }
+          if (state.opt3) {
+            items.push({ name: 'Чистка и проверка дренажной помпы', sum: 1200 * count });
+          }
+          if (state.opt4) {
+            items.push({ name: 'Опрессовка азотом и поиск утечки', sum: 2400 * count });
+          }
+        } else {
+          var ventBase = Math.round((18500 + totalKw * 1900) * obj.ventMult / 100) * 100;
+          items.push({
+            name: 'Обвязка и монтаж узла фанкойла / ПВУ (' + fmtKw(totalKw) + ')',
+            sum: ventBase
+          });
+          items.push({
+            name: 'Изолированная магистраль / воздуховод (' + state.routeLength + ' м)',
+            sum: state.routeLength * 2100
+          });
+          if (state.opt1) {
+            var ventUnitEst = Math.round((totalKw * 12500) / 500) * 500;
+            items.push({ name: 'Ориентир стоимости агрегата / фанкойла', sum: ventUnitEst });
+          }
+          if (state.opt2) {
+            items.push({ name: 'Алмазное бурение ж/б перекрытий', sum: 5500 });
+          }
+          if (state.opt3) {
+            items.push({ name: 'Дренажная помпа с поплавковым датчиком', sum: 7200 });
+          }
+          if (state.opt4) {
+            items.push({ name: 'Пусконаладка, анемометрия и балансировка', sum: 6500 });
+          }
+        }
+
+        var totalEstimate = 0;
+        for (var j = 0; j < items.length; j += 1) {
+          totalEstimate += items[j].sum;
+        }
+
+        return {
+          svc: svc,
+          obj: obj,
+          ins: ins,
+          volume: volume,
+          q1: q1,
+          q2: q2,
+          q3: q3,
+          totalKw: totalKw,
+          totalBtu: totalBtu,
+          airFlow: airFlow,
+          model: model,
+          count: count,
+          installedKw: installedKw,
+          reservePct: reservePct,
+          items: items,
+          totalEstimate: totalEstimate
+        };
+      }
+
+      function buildBriefText(res) {
+        var lines = [
+          'ЗАЯВКА В КОМПАНИЮ АЛЬКОН КЛИМАТ (Г. УФА)',
+          'Услуга: ' + res.svc.title,
+          'Объект: ' + res.obj.title,
+          'Площадь / высота: ' + state.area + ' м² × ' + fmtNum(state.height, 1) + ' м (' + fmtNum(res.volume, 1) + ' м³)',
+          'Инсоляция: ' + res.ins.title,
+          'Нагрузка: людей — ' + state.people + ', техники — ' + state.equipment + ' шт.',
+          'Длина трассы: ' + state.routeLength + ' м',
+          'Расчётная мощность: ' + fmtKw(res.totalKw) + ' (' + numFmt.format(res.totalBtu) + ' BTU/ч)',
+          'Рекомендуемый типоразмер: ' + (res.count > 1 ? res.count + ' × ' : '') + res.model.code + ' (' + fmtNum(res.installedKw, 1) + ' кВт)'
+        ];
+
+        if (state.service === 'ventilation') {
+          lines.push('Расчётный воздухообмен: ' + numFmt.format(res.airFlow) + ' м³/ч');
+        }
+
+        var activeOpts = [];
+        if (state.opt1) activeOpts.push(res.svc.opts[0]);
+        if (state.opt2) activeOpts.push(res.svc.opts[1]);
+        if (state.opt3) activeOpts.push(res.svc.opts[2]);
+        if (state.opt4) activeOpts.push(res.svc.opts[3]);
+
+        if (activeOpts.length > 0) {
+          lines.push('Опции: ' + activeOpts.join('; '));
+        }
+
+        if (state.extraScopeNote) {
+          lines.push('Примечание: ' + state.extraScopeNote);
+        }
+
+        lines.push('Ориентировочная смета: ' + fmtRub(res.totalEstimate));
+
+        if (state.contactName.trim().length > 0) {
+          lines.push('Контакт / организация: ' + state.contactName.trim());
+        }
+        if (state.contactPhone.trim().length > 0) {
+          lines.push('Телефон для связи: ' + state.contactPhone.trim());
+        }
+
+        lines.push('Сайт: https://www.klimat-ufa.ru/ · Тел.: +7 (347) 294-40-00');
+        return lines.join('\n');
+      }
+
+      function render() {
+        var svcMeta = SERVICE_META[state.service];
+        els.routeHintText.textContent = svcMeta.routeHint;
+        els.opt1Label.textContent = svcMeta.opts[0];
+        els.opt2Label.textContent = svcMeta.opts[1];
+        els.opt3Label.textContent = svcMeta.opts[2];
+        els.opt4Label.textContent = svcMeta.opts[3];
+
+        var serviceButtons = document.querySelectorAll('[data-service]');
+        serviceButtons.forEach(function (btn) {
+          btn.setAttribute('aria-pressed', btn.dataset.service === state.service ? 'true' : 'false');
+        });
+
+        var objButtons = document.querySelectorAll('[data-obj]');
+        objButtons.forEach(function (btn) {
+          btn.setAttribute('aria-pressed', btn.dataset.obj === state.objType ? 'true' : 'false');
+        });
+
+        var insButtons = document.querySelectorAll('[data-ins]');
+        insButtons.forEach(function (btn) {
+          btn.setAttribute('aria-pressed', btn.dataset.ins === state.insolation ? 'true' : 'false');
+        });
+
+        var res = calculate();
+
+        els.resServicePill.textContent = res.svc.title;
+        els.resObjPill.textContent = res.obj.title;
+        els.resVolumePill.textContent = 'Объём: ' + fmtNum(res.volume, 1) + ' м³';
+
+        els.resKw.textContent = fmtKw(res.totalKw);
+        els.resBtu.textContent = numFmt.format(res.totalBtu) + ' BTU/ч';
+
+        if (state.service === 'ventilation') {
+          els.resSecondCaption.textContent = 'Воздухообмен и типоразмер';
+          els.resModelSize.textContent = numFmt.format(res.airFlow) + ' м³/ч';
+          els.resModelSub.textContent = 'Эквивалент по холоду: ' + (res.count > 1 ? res.count + ' × ' : '') + res.model.code;
+        } else {
+          els.resSecondCaption.textContent = 'Рекомендуемый типоразмер';
+          els.resModelSize.textContent = (res.count > 1 ? res.count + ' × ' : '') + res.model.code + ' (' + fmtNum(res.installedKw, 1) + ' кВт)';
+          var reserveSign = res.reservePct >= 0 ? '+' : '';
+          els.resModelSub.textContent = 'Запас мощности: ' + reserveSign + res.reservePct + '% · ' + (res.model.btu * res.count / 1000) + 'k BTU';
+        }
+
+        els.resUnitsNote.textContent = res.count === 1 ? '1 внутренний блок' : res.count + ' блока типоразмера ' + res.model.code;
+
+        var chips = document.querySelectorAll('.size-chip');
+        chips.forEach(function (chip) {
+          chip.classList.toggle('active', chip.dataset.size === res.model.code);
+        });
+
+        els.resBreakdown.textContent =
+          'Теплопритоки: Q₁ (ограждения) ' + fmtKw(res.q1) +
+          ' + Q₂ (люди) ' + fmtKw(res.q2) +
+          ' + Q₃ (техника) ' + fmtKw(res.q3) +
+          ' = ' + fmtKw(res.totalKw);
+
+        els.resRefEquipHint.textContent = 'Оборудование класса ' + res.model.code + ' — от ' + fmtRub(res.model.unitPrice * res.count);
+
+        els.estimateRows.innerHTML = '';
+        res.items.forEach(function (item) {
+          var row = document.createElement('div');
+          row.className = 'estimate-row';
+
+          var nameSpan = document.createElement('span');
+          nameSpan.className = 'estimate-row-name';
+          nameSpan.textContent = item.name;
+
+          var sumSpan = document.createElement('span');
+          sumSpan.className = 'estimate-row-sum tabular';
+          sumSpan.textContent = item.note ? item.note : fmtRub(item.sum);
+
+          row.appendChild(nameSpan);
+          row.appendChild(sumSpan);
+          els.estimateRows.appendChild(row);
+        });
+
+        els.estimateTotal.textContent = fmtRub(res.totalEstimate);
+
+        var brief = buildBriefText(res);
+        els.briefPreview.textContent = brief;
+
+        var subject = encodeURIComponent('Расчёт для Алькон Климат: ' + res.svc.title + ' (' + state.area + ' м², типоразмер ' + res.model.code + ')');
+        var body = encodeURIComponent(brief);
+        els.mailtoBtn.setAttribute('href', 'mailto:klimat-ufa@mail.ru?subject=' + subject + '&body=' + body);
+      }
+
+      function syncInputsFromState() {
+        els.areaInput.value = state.area;
+        els.areaRange.value = state.area;
+        els.heightInput.value = state.height.toFixed(1);
+        els.heightRange.value = state.height.toFixed(1);
+        els.peopleInput.value = state.people;
+        els.equipInput.value = state.equipment;
+        els.routeInput.value = state.routeLength;
+        els.routeRange.value = state.routeLength;
+        els.opt1.checked = state.opt1;
+        els.opt2.checked = state.opt2;
+        els.opt3.checked = state.opt3;
+        els.opt4.checked = state.opt4;
+      }
+
+      /* Event Bindings */
+      document.querySelectorAll('[data-service]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.service = btn.dataset.service;
+          state.extraScopeNote = '';
+          render();
+        });
+      });
+
+      document.querySelectorAll('[data-obj]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.objType = btn.dataset.obj;
+          render();
+        });
+      });
+
+      document.querySelectorAll('[data-ins]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.insolation = btn.dataset.ins;
+          render();
+        });
+      });
+
+      els.areaRange.addEventListener('input', function () {
+        state.area = clamp(parseInt(els.areaRange.value, 10), 10, 250);
+        els.areaInput.value = state.area;
+        render();
+      });
+
+      els.areaInput.addEventListener('input', function () {
+        var parsed = parseInt(els.areaInput.value, 10);
+        if (Number.isNaN(parsed) === false) {
+          state.area = clamp(parsed, 10, 250);
+          els.areaRange.value = state.area;
+          render();
+        }
+      });
+
+      els.areaInput.addEventListener('blur', function () {
+        state.area = clamp(parseInt(els.areaInput.value, 10), 10, 250);
+        syncInputsFromState();
+        render();
+      });
+
+      els.heightRange.addEventListener('input', function () {
+        state.height = clamp(parseFloat(els.heightRange.value), 2.4, 5.5);
+        els.heightInput.value = state.height.toFixed(1);
+        render();
+      });
+
+      els.heightInput.addEventListener('input', function () {
+        var parsed = parseFloat(els.heightInput.value);
+        if (Number.isNaN(parsed) === false) {
+          state.height = clamp(parsed, 2.4, 5.5);
+          els.heightRange.value = state.height.toFixed(1);
+          render();
+        }
+      });
+
+      els.heightInput.addEventListener('blur', function () {
+        state.height = clamp(parseFloat(els.heightInput.value), 2.4, 5.5);
+        syncInputsFromState();
+        render();
+      });
+
+      els.routeRange.addEventListener('input', function () {
+        state.routeLength = clamp(parseInt(els.routeRange.value, 10), 2, 30);
+        els.routeInput.value = state.routeLength;
+        render();
+      });
+
+      els.routeInput.addEventListener('input', function () {
+        var parsed = parseInt(els.routeInput.value, 10);
+        if (Number.isNaN(parsed) === false) {
+          state.routeLength = clamp(parsed, 2, 30);
+          els.routeRange.value = state.routeLength;
+          render();
+        }
+      });
+
+      els.routeInput.addEventListener('blur', function () {
+        state.routeLength = clamp(parseInt(els.routeInput.value, 10), 2, 30);
+        syncInputsFromState();
+        render();
+      });
+
+      els.peopleInput.addEventListener('input', function () {
+        var parsed = parseInt(els.peopleInput.value, 10);
+        if (Number.isNaN(parsed) === false) {
+          state.people = clamp(parsed, 0, 60);
+          render();
+        }
+      });
+
+      els.peopleInput.addEventListener('blur', function () {
+        state.people = clamp(parseInt(els.peopleInput.value, 10), 0, 60);
+        syncInputsFromState();
+        render();
+      });
+
+      els.equipInput.addEventListener('input', function () {
+        var parsed = parseInt(els.equipInput.value, 10);
+        if (Number.isNaN(parsed) === false) {
+          state.equipment = clamp(parsed, 0, 40);
+          render();
+        }
+      });
+
+      els.equipInput.addEventListener('blur', function () {
+        state.equipment = clamp(parseInt(els.equipInput.value, 10), 0, 40);
+        syncInputsFromState();
+        render();
+      });
+
+      document.querySelectorAll('[data-step-target]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var target = btn.dataset.stepTarget;
+          var delta = parseInt(btn.dataset.delta, 10);
+          if (target === 'people') {
+            state.people = clamp(state.people + delta, 0, 60);
+            els.peopleInput.value = state.people;
+          } else if (target === 'equip') {
+            state.equipment = clamp(state.equipment + delta, 0, 40);
+            els.equipInput.value = state.equipment;
+          }
+          render();
+        });
+      });
+
+      els.opt1.addEventListener('change', function () { state.opt1 = els.opt1.checked; render(); });
+      els.opt2.addEventListener('change', function () { state.opt2 = els.opt2.checked; render(); });
+      els.opt3.addEventListener('change', function () { state.opt3 = els.opt3.checked; render(); });
+      els.opt4.addEventListener('change', function () { state.opt4 = els.opt4.checked; render(); });
+
+      els.contactName.addEventListener('input', function () { state.contactName = els.contactName.value; render(); });
+      els.contactPhone.addEventListener('input', function () { state.contactPhone = els.contactPhone.value; render(); });
+
+      /* Scenarios */
+      var SCENARIOS = {
+        bedroom: { service: 'install', objType: 'apartment', area: 18, height: 2.7, insolation: 'low', people: 2, equipment: 1, routeLength: 3 },
+        living:  { service: 'install', objType: 'apartment', area: 32, height: 2.7, insolation: 'medium', people: 2, equipment: 2, routeLength: 4 },
+        office:  { service: 'install', objType: 'office', area: 45, height: 3.0, insolation: 'medium', people: 6, equipment: 6, routeLength: 6 },
+        retail:  { service: 'ventilation', objType: 'commercial', area: 75, height: 3.4, insolation: 'high', people: 10, equipment: 4, routeLength: 8 }
+      };
+
+      document.querySelectorAll('[data-scenario]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var preset = SCENARIOS[btn.dataset.scenario];
+          if (preset) {
+            state.service = preset.service;
+            state.objType = preset.objType;
+            state.area = preset.area;
+            state.height = preset.height;
+            state.insolation = preset.insolation;
+            state.people = preset.people;
+            state.equipment = preset.equipment;
+            state.routeLength = preset.routeLength;
+            state.extraScopeNote = '';
+            syncInputsFromState();
+            render();
+          }
+        });
+      });
+
+      /* Hero Reference Table Click */
+      document.querySelectorAll('.ref-row-btn').forEach(function (row) {
+        row.addEventListener('click', function () {
+          state.area = parseInt(row.dataset.presetArea, 10);
+          state.insolation = row.dataset.presetIns;
+          state.people = parseInt(row.dataset.presetPeople, 10);
+          state.equipment = parseInt(row.dataset.presetEquip, 10);
+          state.service = 'install';
+          state.objType = state.area >= 48 ? 'office' : 'apartment';
+          state.extraScopeNote = '';
+          syncInputsFromState();
+          render();
+          document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      /* Jump from Service Cards */
+      document.querySelectorAll('[data-jump-service]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.service = btn.dataset.jumpService;
+          state.extraScopeNote = '';
+          render();
+          document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      els.thermalPresetBtn.addEventListener('click', function () {
+        state.service = 'ventilation';
+        state.objType = 'commercial';
+        state.area = 60;
+        state.height = 3.2;
+        state.extraScopeNote = 'Требуется подбор осушителя или теплового оборудования под параметры объекта';
+        syncInputsFromState();
+        render();
+        document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      /* Prep Checklist Tabs */
+      document.querySelectorAll('[data-prep-tab]').forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var key = tab.dataset.prepTab;
+          document.querySelectorAll('[data-prep-tab]').forEach(function (other) {
+            other.setAttribute('aria-selected', other === tab ? 'true' : 'false');
+          });
+          var rows = PREP_CONTENT[key] || PREP_CONTENT.flat;
+          els.prepList.innerHTML = '';
+          rows.forEach(function (st) {
+            var item = document.createElement('div');
+            item.className = 'stage-item';
+
+            var num = document.createElement('span');
+            num.className = 'stage-num';
+            num.textContent = st.num;
+
+            var wrap = document.createElement('div');
+            var title = document.createElement('div');
+            title.className = 'stage-title';
+            title.textContent = st.title;
+
+            var desc = document.createElement('div');
+            desc.className = 'stage-desc';
+            desc.textContent = st.desc;
+
+            wrap.appendChild(title);
+            wrap.appendChild(desc);
+            item.appendChild(num);
+            item.appendChild(wrap);
+            els.prepList.appendChild(item);
+          });
+        });
+      });
+
+      /* Copy & Print */
+      var copyTimer = null;
+      els.copyBtn.addEventListener('click', function () {
+        var text = els.briefPreview.textContent;
+        function showCopied() {
+          els.copyStatus.classList.add('visible');
+          if (copyTimer) clearTimeout(copyTimer);
+          copyTimer = setTimeout(function () {
+            els.copyStatus.classList.remove('visible');
+          }, 3200);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(showCopied, function () {
+            fallbackCopy(text, showCopied);
+          });
+        } else {
+          fallbackCopy(text, showCopied);
+        }
+      });
+
+      function fallbackCopy(text, onDone) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          onDone();
+        } catch (err) {
+          /* ignore */
+        }
+        document.body.removeChild(ta);
+      }
+
+      els.printBtn.addEventListener('click', function () {
+        window.print();
+      });
+
+      syncInputsFromState();
+      render();
+    })();
+  </script>
+</body>
+</html>
