@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jax Auto Detailing in Jacksonville, FL. Mobile and Studio Auto Detailing Package Estimator for Full Auto Detailing, Ceramic Coating, Paint Correction, and Headlight Restoration.">
+  <title>Jax Auto Detailing | Mobile &amp; Studio Package Estimator — Jacksonville, FL</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b7a8a'/%3E%3Cpath d='M7 20l3-7h12l3 7v4h-2.5v-2h-13v2H7v-4zm4.2-5l-1.5 3.5h12.6L20.8 15H11.2z' fill='%23f7f5f0'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-sand: #f6f4ef;
+      --bg-surface: #ffffff;
+      --bg-muted: #ebe7de;
+      --bg-teal-tint: #e8f3f5;
+      --ink-graphite: #182228;
+      --ink-secondary: #4a5963;
+      --ink-muted: #687782;
+      --teal-primary: #0b7a8a;
+      --teal-hover: #085c69;
+      --teal-border: #b8dce1;
+      --sand-border: #dcd6ca;
+      --accent-warm: #c28b42;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-card: 0 2px 10px rgba(24, 34, 40, 0.05);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-sand);
+      color: var(--ink-graphite);
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .site-header {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--sand-border);
+      padding: 14px 20px;
+    }
+
+    .header-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      border-radius: var(--radius-sm);
+      background-color: var(--teal-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink-graphite);
+      line-height: 1.2;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--ink-secondary);
+      margin-top: 2px;
+    }
+
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .phone-link {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--teal-primary);
+      text-decoration: none;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .phone-link:hover {
+      color: var(--teal-hover);
+      text-decoration: underline;
+    }
+
+    .badge-loc {
+      background-color: var(--bg-teal-tint);
+      color: var(--teal-hover);
+      border: 1px solid var(--teal-border);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+    }
+
+    .hero-strip {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--sand-border);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .hero-copy {
+      max-width: 680px;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(22px, 3vw, 28px);
+      font-weight: 800;
+      color: var(--ink-graphite);
+      margin-bottom: 6px;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      color: var(--ink-secondary);
+      font-size: 14.5px;
+    }
+
+    .service-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .service-pill {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-graphite);
+      background-color: var(--bg-sand);
+      border: 1px solid var(--sand-border);
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+    }
+
+    .estimator-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.95fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--sand-border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .panel-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink-graphite);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--bg-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .step-tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--teal-hover);
+      background-color: var(--bg-teal-tint);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .field-group {
+      margin-bottom: 20px;
+    }
+
+    .field-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-graphite);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .field-hint {
+      font-weight: 500;
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .seg-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .seg-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .choice-btn {
+      appearance: none;
+      background-color: var(--bg-sand);
+      border: 1px solid var(--sand-border);
+      border-radius: var(--radius-md);
+      padding: 11px 12px;
+      text-align: left;
+      cursor: pointer;
+      color: var(--ink-graphite);
+      font-family: inherit;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .choice-btn:hover {
+      border-color: var(--teal-primary);
+    }
+
+    .choice-btn.active {
+      background-color: var(--bg-teal-tint);
+      border-color: var(--teal-primary);
+      box-shadow: inset 0 0 0 1px var(--teal-primary);
+    }
+
+    .choice-title {
+      font-weight: 700;
+      font-size: 13.5px;
+      color: var(--ink-graphite);
+    }
+
+    .choice-sub {
+      font-size: 12px;
+      color: var(--ink-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .addon-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .addon-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      background-color: var(--bg-sand);
+      border: 1px solid var(--sand-border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .addon-item:hover {
+      border-color: var(--teal-primary);
+    }
+
+    .addon-item.selected {
+      background-color: var(--bg-teal-tint);
+      border-color: var(--teal-primary);
+    }
+
+    .addon-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .addon-left input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: var(--teal-primary);
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .addon-name {
+      font-weight: 600;
+      font-size: 13.5px;
+      color: var(--ink-graphite);
+      display: block;
+    }
+
+    .addon-desc {
+      font-size: 12px;
+      color: var(--ink-secondary);
+      display: block;
+    }
+
+    .addon-price {
+      font-weight: 700;
+      font-size: 13.5px;
+      color: var(--teal-hover);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .summary-card {
+      position: sticky;
+      top: 16px;
+    }
+
+    .total-box {
+      background-color: var(--ink-graphite);
+      color: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .total-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .total-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #b8dce1;
+    }
+
+    .total-amount {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+    }
+
+    .total-meta {
+      font-size: 12.5px;
+      color: #cbd5dc;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .line-items {
+      border-top: 1px solid var(--bg-muted);
+      border-bottom: 1px solid var(--bg-muted);
+      padding: 12px 0;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .line-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 13.5px;
+    }
+
+    .line-row span:first-child {
+      color: var(--ink-secondary);
+    }
+
+    .line-row span:last-child {
+      font-weight: 600;
+      color: var(--ink-graphite);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1px solid var(--sand-border);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-sand);
+      color: var(--ink-graphite);
+      font-family: inherit;
+      font-size: 13.5px;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      outline: 2px solid var(--teal-primary);
+      outline-offset: -1px;
+      background-color: #ffffff;
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 12px;
+      padding: 12px 16px;
+      background-color: var(--teal-primary);
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-md);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: var(--teal-hover);
+    }
+
+    .confirm-box {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 14px;
+      background-color: var(--bg-teal-tint);
+      border: 1px solid var(--teal-border);
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      color: var(--ink-graphite);
+    }
+
+    .confirm-box.visible {
+      display: block;
+    }
+
+    .contact-strip {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--bg-muted);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .contact-strip a[href^="mailto:"],
+    .contact-strip a[href^="http"] {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 11.5px;
+      color: var(--teal-primary);
+      text-decoration: none;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .contact-strip a:hover {
+      text-decoration: underline;
+    }
+
+    .site-footer {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px 32px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+      color: var(--ink-muted);
+      font-size: 12.5px;
+    }
+
+    .site-footer a[href^="mailto:"],
+    .site-footer a[href^="http"] {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 11.5px;
+      color: var(--teal-primary);
+      text-decoration: none;
+    }
+
+    @media (max-width: 920px) {
+      .estimator-grid {
+        grid-template-columns: 1fr;
+      }
+      .summary-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .seg-grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .seg-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-strip {
+        padding: 18px;
+      }
+      .panel {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 17h14v-5l-2.5-5h-9L5 12v5z"/>
+            <circle cx="7.5" cy="17" r="1.5"/>
+            <circle cx="16.5" cy="17" r="1.5"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Jax Auto Detailing</div>
+          <div class="brand-sub">Jacksonville, FL &middot; Studio &amp; Mobile Detailing</div>
+        </div>
+      </div>
+      <div class="header-meta">
+        <span class="badge-loc">Duval &amp; St. Johns County</span>
+        <a class="phone-link" href="tel:+19043527757">(904) 352-7757</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero-strip">
+      <div class="hero-copy">
+        <h1>Mobile &amp; Studio Auto Detailing Package Estimator</h1>
+        <p>Configure your vehicle size, Jacksonville service mode, core detailing or ceramic package, and Florida coastal protection add-ons for an instant USD estimate.</p>
+      </div>
+      <div class="service-pills">
+        <span class="service-pill">Full Auto Detailing</span>
+        <span class="service-pill">Ceramic Coating</span>
+        <span class="service-pill">Paint Correction</span>
+        <span class="service-pill">Mobile Detailing</span>
+        <span class="service-pill">Headlight Restoration</span>
+      </div>
+    </section>
+
+    <div class="estimator-grid">
+      <section class="panel" aria-label="Package Configuration">
+        <div class="panel-title">
+          <span>1. Configure Vehicle &amp; Service</span>
+          <span class="step-tag">USD Estimator</span>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">
+            <span>Vehicle Size</span>
+            <span class="field-hint">Affects labor &amp; coating volume</span>
+          </div>
+          <div class="seg-grid-4" id="size-group">
+            <button type="button" class="choice-btn active" data-size="sedan" data-mult="1">
+              <span class="choice-title">Sedan / Coupe</span>
+              <span class="choice-sub">Base Rate</span>
+            </button>
+            <button type="button" class="choice-btn" data-size="suv" data-mult="1.2">
+              <span class="choice-title">Midsize SUV</span>
+              <span class="choice-sub">+20%</span>
+            </button>
+            <button type="button" class="choice-btn" data-size="truck" data-mult="1.35">
+              <span class="choice-title">Full-Size / Truck</span>
+              <span class="choice-sub">+35%</span>
+            </button>
+            <button type="button" class="choice-btn" data-size="van" data-mult="1.45">
+              <span class="choice-title">3-Row / Van</span>
+              <span class="choice-sub">+45%</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">
+            <span>Service Location (Jacksonville Metro)</span>
+            <span class="field-hint">Studio or Mobile Rig</span>
+          </div>
+          <div class="seg-grid" id="mode-group">
+            <button type="button" class="choice-btn active" data-mode="studio" data-fee="0">
+              <span class="choice-title">Jacksonville Studio Bay</span>
+              <span class="choice-sub">$0 &middot; Climate-controlled curing</span>
+            </button>
+            <button type="button" class="choice-btn" data-mode="mobile" data-fee="35">
+              <span class="choice-title">Mobile Unit (Home / Office)</span>
+              <span class="choice-sub">+$35 &middot; Spot-free water &amp; power</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">
+            <span>Core Detailing Package</span>
+            <span class="field-hint">Select one primary tier</span>
+          </div>
+          <div class="seg-grid" id="package-group">
+            <button type="button" class="choice-btn active" data-pkg="full" data-price="240" data-hours="4">
+              <span class="choice-title">Full Auto Detailing</span>
+              <span class="choice-sub">$240 base &middot; Interior + Exterior</span>
+            </button>
+            <button type="button" class="choice-btn" data-pkg="correction" data-price="490" data-hours="6">
+              <span class="choice-title">Paint Correction (1-2 Step)</span>
+              <span class="choice-sub">$490 base &middot; Swirl &amp; oxidation removal</span>
+            </button>
+            <button type="button" class="choice-btn" data-pkg="ceramic3" data-price="750" data-hours="7">
+              <span class="choice-title">Ceramic Coating (3-Year)</span>
+              <span class="choice-sub">$750 base &middot; Hydrophobic UV shield</span>
+            </button>
+            <button type="button" class="choice-btn" data-pkg="ceramic5" data-price="1150" data-hours="9">
+              <span class="choice-title">Ceramic Pro-Grade (5-Year)</span>
+              <span class="choice-sub">$1,150 base &middot; Multi-layer + wheels</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">
+            <span>Florida Salt-Air, UV &amp; Restoration Add-Ons</span>
+            <span class="field-hint">Optional</span>
+          </div>
+          <div class="addon-list" id="addon-list">
+            <label class="addon-item">
+              <span class="addon-left">
+                <input type="checkbox" data-addon="headlights" data-price="95" data-hours="1">
+                <span>
+                  <span class="addon-name">Headlight Restoration &amp; UV Clear Seal</span>
+                  <span class="addon-desc">Wet-sand, polish, and ceramic UV lens coating</span>
+                </span>
+              </span>
+              <span class="addon-price">+$95</span>
+            </label>
+            <label class="addon-item">
+              <span class="addon-left">
+                <input type="checkbox" data-addon="salt" data-price="85" data-hours="1">
+                <span>
+                  <span class="addon-name">Coastal Salt-Air Undercarriage Flush</span>
+                  <span class="addon-desc">Neutralizes Atlantic salt spray &amp; brake dust</span>
+                </span>
+              </span>
+              <span class="addon-price">+$85</span>
+            </label>
+            <label class="addon-item">
+              <span class="addon-left">
+                <input type="checkbox" data-addon="leather" data-price="75" data-hours="0.75">
+                <span>
+                  <span class="addon-name">Florida UV Leather &amp; Dash Conditioning</span>
+                  <span class="addon-desc">Matte UV blocker for high-heat cabin surfaces</span>
+                </span>
+              </span>
+              <span class="addon-price">+$75</span>
+            </label>
+            <label class="addon-item">
+              <span class="addon-left">
+                <input type="checkbox" data-addon="glass" data-price="65" data-hours="0.5">
+                <span>
+                  <span class="addon-name">Hydrophobic Rain-Repellent Glass</span>
+                  <span class="addon-desc">All exterior windows for heavy FL downpours</span>
+                </span>
+              </span>
+              <span class="addon-price">+$65</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel summary-card" aria-label="Estimate Summary and Booking">
+        <div class="panel-title">
+          <span>2. Estimate &amp; Booking Request</span>
+          <span class="step-tag">Live Quote</span>
+        </div>
+
+        <div class="total-box">
+          <div class="total-top">
+            <span class="total-label">Estimated Total</span>
+            <span class="total-amount num" id="total-price">$240</span>
+          </div>
+          <div class="total-meta">
+            <span id="summary-vehicle">Sedan / Coupe &middot; Studio Bay</span>
+            <span class="num" id="summary-time">Est. 4.0 hrs</span>
+          </div>
+        </div>
+
+        <div class="line-items" id="line-items"></div>
+
+        <form id="quote-form">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="cust-name">Full Name</label>
+              <input type="text" id="cust-name" name="name" autocomplete="name" placeholder="Jordan Miller" required>
+            </div>
+            <div class="form-field">
+              <label for="cust-phone">Phone Number</label>
+              <input type="tel" id="cust-phone" name="phone" autocomplete="tel" placeholder="(904) 555-0148" required>
+            </div>
+            <div class="form-field full">
+              <label for="cust-email">Email Address</label>
+              <input type="email" id="cust-email" name="email" autocomplete="email" placeholder="jordan@example.com" required>
+            </div>
+            <div class="form-field">
+              <label for="cust-area">Jacksonville Area / ZIP</label>
+              <select id="cust-area" name="area" autocomplete="address-level2">
+                <option value="Southside / Baymeadows">Southside / Baymeadows</option>
+                <option value="San Marco / Riverside">San Marco / Riverside</option>
+                <option value="Jax Beach / Ponte Vedra">Jax Beach / Ponte Vedra</option>
+                <option value="Mandarin / St. Johns">Mandarin / St. Johns</option>
+                <option value="Northside / Amelia">Northside / Amelia</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="cust-vehicle">Vehicle Year &amp; Model</label>
+              <input type="text" id="cust-vehicle" name="vehicle" autocomplete="off" placeholder="2023 Ford Bronco">
+            </div>
+            <div class="form-field full">
+              <label for="cust-notes">Condition Notes (Optional)</label>
+              <textarea id="cust-notes" name="notes" rows="2" autocomplete="off" placeholder="Pet hair, water spots, or preferred date"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="submit-btn">Request Appointment &amp; Lock Estimate</button>
+        </form>
+
+        <div class="confirm-box" id="confirm-box" role="status" aria-live="polite"></div>
+
+        <div class="contact-strip">
+          <a href="mailto:quotes@jaxautodetailing.com">quotes@jaxautodetailing.com</a>
+          <a href="https://www.jaxautodetailing.com" target="_blank" rel="noopener noreferrer">https://www.jaxautodetailing.com</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <span>Jax Auto Detailing &middot; Jacksonville, FL &middot; (904) 352-7757</span>
+    <a href="mailto:quotes@jaxautodetailing.com">quotes@jaxautodetailing.com</a>
+    <a href="https://www.jaxautodetailing.com" target="_blank" rel="noopener noreferrer">https://www.jaxautodetailing.com</a>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        sizeLabel: 'Sedan / Coupe',
+        sizeMult: 1,
+        modeLabel: 'Studio Bay',
+        modeFee: 0,
+        pkgLabel: 'Full Auto Detailing',
+        pkgPrice: 240,
+        pkgHours: 4
+      };
+
+      const totalEl = document.getElementById('total-price');
+      const vehicleEl = document.getElementById('summary-vehicle');
+      const timeEl = document.getElementById('summary-time');
+      const linesEl = document.getElementById('line-items');
+      const formEl = document.getElementById('quote-form');
+      const confirmEl = document.getElementById('confirm-box');
+
+      function formatUSD(val) {
+        return '$' + Math.round(val).toLocaleString('en-US');
+      }
+
+      function render() {
+        const scaledPkg = Math.round(state.pkgPrice * state.sizeMult);
+        let addonsTotal = 0;
+        let totalHours = state.pkgHours;
+        const lines = [
+          { label: state.pkgLabel + ' (' + state.sizeLabel + ')', price: scaledPkg }
+        ];
+
+        if (state.modeFee > 0) {
+          lines.push({ label: 'Mobile Rig Dispatch (Jacksonville)', price: state.modeFee });
+        }
+
+        document.querySelectorAll('#addon-list input[type="checkbox"]').forEach(function (cb) {
+          const item = cb.closest('.addon-item');
+          if (cb.checked) {
+            item.classList.add('selected');
+            const p = Number(cb.dataset.price);
+            const h = Number(cb.dataset.hours);
+            addonsTotal += p;
+            totalHours += h;
+            lines.push({ label: item.querySelector('.addon-name').textContent, price: p });
+          } else {
+            item.classList.remove('selected');
+          }
+        });
+
+        const grandTotal = scaledPkg + state.modeFee + addonsTotal;
+        totalEl.textContent = formatUSD(grandTotal);
+        vehicleEl.textContent = state.sizeLabel + ' \u00b7 ' + state.modeLabel;
+        timeEl.textContent = 'Est. ' + totalHours.toFixed(1) + ' hrs';
+
+        linesEl.innerHTML = lines.map(function (l) {
+          return '<div class="line-row"><span>' + l.label + '</span><span>' + formatUSD(l.price) + '</span></div>';
+        }).join('');
+      }
+
+      document.getElementById('size-group').addEventListener('click', function (e) {
+        const btn = e.target.closest('.choice-btn');
+        if (!btn) return;
+        this.querySelectorAll('.choice-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        state.sizeLabel = btn.querySelector('.choice-title').textContent;
+        state.sizeMult = Number(btn.dataset.mult);
+        render();
+      });
+
+      document.getElementById('mode-group').addEventListener('click', function (e) {
+        const btn = e.target.closest('.choice-btn');
+        if (!btn) return;
+        this.querySelectorAll('.choice-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        state.modeLabel = btn.dataset.mode === 'mobile' ? 'Mobile Unit' : 'Studio Bay';
+        state.modeFee = Number(btn.dataset.fee);
+        render();
+      });
+
+      document.getElementById('package-group').addEventListener('click', function (e) {
+        const btn = e.target.closest('.choice-btn');
+        if (!btn) return;
+        this.querySelectorAll('.choice-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        state.pkgLabel = btn.querySelector('.choice-title').textContent;
+        state.pkgPrice = Number(btn.dataset.price);
+        state.pkgHours = Number(btn.dataset.hours);
+        render();
+      });
+
+      document.getElementById('addon-list').addEventListener('change', render);
+
+      formEl.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('cust-name').value.trim();
+        const area = document.getElementById('cust-area').value;
+        confirmEl.textContent = 'Request logged for ' + name + ' (' + area + '). Estimated total ' + totalEl.textContent + ' sent to quotes@jaxautodetailing.com. Call (904) 352-7757 for same-day dispatch.';
+        confirmEl.classList.add('visible');
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>

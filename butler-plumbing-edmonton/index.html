@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Butler Plumbing Heating & Gasfitting in Edmonton, AB. Interactive CAD cost estimator for plumbing repairs, furnace service, hot water tanks, gasfitting, and drain cleaning.">
+  <title>Butler Plumbing Heating &amp; Gasfitting | Edmonton, AB</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F3D5E'/%3E%3Cpath d='M16 6c-3.5 4.8-6 8.2-6 11.8a6 6 0 0 0 12 0C22 14.2 19.5 10.8 16 6z' fill='%23B85D2B'/%3E%3Ccircle cx='16' cy='18.5' r='2.2' fill='%23FAF9F6'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #FAF9F6;
+      --bg-surface: #FFFFFF;
+      --bg-muted: #F1EFEA;
+      --bg-navy: #0F3D5E;
+      --bg-navy-deep: #092940;
+      --accent-copper: #B85D2B;
+      --accent-copper-hover: #9C4C21;
+      --accent-copper-soft: #FDF3ED;
+      --text-primary: #14222E;
+      --text-secondary: #4A5A68;
+      --text-muted: #687785;
+      --border-subtle: #E2DFD7;
+      --border-strong: #C9C4B8;
+      --status-ok: #1E6B4B;
+      --status-ok-bg: #EBF7F1;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-sm: 0 1px 3px rgba(15, 61, 94, 0.06);
+      --shadow-md: 0 8px 24px rgba(15, 61, 94, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .brand-name {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background-color: var(--bg-navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--bg-navy);
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-muted);
+      color: var(--bg-navy);
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .phone-pill:hover {
+      background-color: var(--border-subtle);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border: none;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-copper);
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 0.18s ease, transform 0.12s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-copper-hover);
+    }
+
+    .btn-primary:active {
+      transform: translateY(1px);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 40px 0 28px;
+      border-bottom: 1px solid var(--border-subtle);
+      background-color: var(--bg-page);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background-color: var(--accent-copper-soft);
+      color: var(--accent-copper);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 3.6vw, 40px);
+      line-height: 1.14;
+      color: var(--bg-navy);
+      margin-bottom: 14px;
+    }
+
+    .hero-lead {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 60ch;
+      margin: 0 0 20px;
+    }
+
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .trust-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .hero-card {
+      background-color: var(--bg-navy);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-card-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #B6CCE0;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .metric-box {
+      background-color: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+    }
+
+    .metric-val {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.2;
+    }
+
+    .metric-lbl {
+      font-size: 12px;
+      color: #C7D8E8;
+      margin-top: 3px;
+    }
+
+    /* Main Workspace */
+    .workspace {
+      padding: 32px 0 48px;
+    }
+
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel-header {
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .panel-header h2 {
+      font-size: 20px;
+      color: var(--bg-navy);
+      margin-bottom: 4px;
+    }
+
+    .panel-header p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .field-group {
+      margin-bottom: 20px;
+    }
+
+    .field-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    label.input-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .option-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .choice-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      padding: 11px 12px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .choice-btn:hover {
+      border-color: var(--bg-navy);
+    }
+
+    .choice-btn.active {
+      background-color: var(--bg-navy);
+      border-color: var(--bg-navy);
+      color: #FFFFFF;
+    }
+
+    .choice-sub {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .choice-btn.active .choice-sub {
+      color: #C7D8E8;
+    }
+
+    .toggle-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 13px 14px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-page);
+      cursor: pointer;
+    }
+
+    .toggle-card.active {
+      border-color: var(--accent-copper);
+      background-color: var(--accent-copper-soft);
+    }
+
+    .toggle-info strong {
+      display: block;
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+
+    .toggle-info span {
+      display: block;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .toggle-pill {
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background-color: var(--border-subtle);
+      color: var(--text-primary);
+      flex-shrink: 0;
+    }
+
+    .toggle-card.active .toggle-pill {
+      background-color: var(--accent-copper);
+      color: #FFFFFF;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-full {
+      grid-column: 1 / -1;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: #FFFFFF;
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      transition: border-color 0.16s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 2px solid rgba(15, 61, 94, 0.18);
+      border-color: var(--bg-navy);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 76px;
+    }
+
+    /* Estimate Output */
+    .estimate-card {
+      background-color: var(--bg-navy);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 20px;
+    }
+
+    .estimate-kicker {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #B6CCE0;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .estimate-range {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(28px, 3vw, 36px);
+      font-weight: 800;
+      line-height: 1.15;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+
+    .estimate-note {
+      font-size: 13px;
+      color: #C7D8E8;
+      margin-bottom: 18px;
+    }
+
+    .breakdown-list {
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      padding-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      font-size: 13px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: #E3EDF6;
+    }
+
+    .breakdown-row strong {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .status-banner {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--status-ok-bg);
+      color: var(--status-ok);
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(30, 107, 75, 0.25);
+    }
+
+    .status-banner.visible {
+      display: block;
+    }
+
+    /* Services & Contact Footer */
+    .services-section {
+      padding: 28px 0 40px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .section-title {
+      font-size: 20px;
+      color: var(--bg-navy);
+      margin-bottom: 16px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .service-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+
+    .service-card h3 {
+      font-size: 14px;
+      color: var(--bg-navy);
+      margin-bottom: 6px;
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    .site-footer {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      padding: 22px 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 20px;
+      align-items: center;
+    }
+
+    .footer-link-row {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      align-items: center;
+    }
+
+    .footer-link-row a[href^="mailto:"],
+    .footer-link-row a[href^="http"] {
+      color: var(--bg-navy);
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 12px;
+    }
+
+    .footer-link-row a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-actions .phone-pill {
+        display: none;
+      }
+
+      .option-grid,
+      .option-grid-3,
+      .form-grid,
+      .services-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .panel,
+      .estimate-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#estimator">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3C8.5 7.8 6 11.2 6 14.8a6 6 0 0 0 12 0C18 11.2 15.5 7.8 12 3Z" fill="#B85D2B"/>
+            <circle cx="12" cy="15.2" r="2.2" fill="#FAF9F6"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Butler Plumbing Heating &amp; Gasfitting</span>
+          <span class="brand-sub">Edmonton, AB &middot; Licensed &amp; Insured</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a class="phone-pill num" href="tel:+17804323947">+1 (780) 432-3947</a>
+        <a class="btn-primary" href="#dispatch-form">Request Dispatch</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Edmonton &amp; Capital Region &middot; CAD Estimator</div>
+          <h1>Edmonton Plumbing, Furnace &amp; Hot Water Tank Cost Estimator</h1>
+          <p class="hero-lead">
+            Plan residential or commercial mechanical work in Edmonton with transparent CAD ranges. Select your service, equipment tier, and Alberta winter dispatch priority to generate an instant estimate.
+          </p>
+          <div class="trust-strip">
+            <span class="trust-item">Red Seal Plumbers &amp; Gasfitters</span>
+            <span class="trust-item">24/7 Alberta Winter Dispatch</span>
+            <span class="trust-item">Upfront CAD Pricing</span>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-title">Edmonton Service Benchmarks</div>
+          <div class="hero-metrics">
+            <div class="metric-box">
+              <div class="metric-val num">60-90 min</div>
+              <div class="metric-lbl">Winter emergency response</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val num">CAD $165</div>
+              <div class="metric-lbl">Standard diagnostic call</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val num">5 Core</div>
+              <div class="metric-lbl">Plumbing &amp; HVAC trades</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val num">100%</div>
+              <div class="metric-lbl">Alberta code compliant</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace" id="estimator">
+      <div class="container workspace-grid">
+        <div class="panel">
+          <div class="panel-header">
+            <h2>Configure Your Scope</h2>
+            <p>All estimates are calculated in Canadian Dollars (CAD) for Edmonton, St. Albert, Sherwood Park, and Leduc.</p>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">1. Primary Service</div>
+            <div class="option-grid" id="service-options">
+              <button type="button" class="choice-btn active" data-service="plumbing" data-base-min="240" data-base-max="580">
+                <span>Plumbing Repairs</span>
+                <span class="choice-sub">Leaks, valves, frozen pipes</span>
+              </button>
+              <button type="button" class="choice-btn" data-service="furnace" data-base-min="290" data-base-max="740">
+                <span>Furnace &amp; Heating Service</span>
+                <span class="choice-sub">Diagnostics, blowers, igniters</span>
+              </button>
+              <button type="button" class="choice-btn" data-service="hotwater" data-base-min="1650" data-base-max="2450">
+                <span>Hot Water Tank Installation</span>
+                <span class="choice-sub">Supply, haul-away, venting</span>
+              </button>
+              <button type="button" class="choice-btn" data-service="gasfitting" data-base-min="380" data-base-max="920">
+                <span>Gasfitting</span>
+                <span class="choice-sub">BBQ lines, garage heaters, ranges</span>
+              </button>
+              <button type="button" class="choice-btn" data-service="drain" data-base-min="260" data-base-max="640">
+                <span>Drain Cleaning</span>
+                <span class="choice-sub">Augering, hydro-jetting, camera</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">2. Equipment / System Type</div>
+            <div class="option-grid-3" id="system-options">
+              <button type="button" class="choice-btn active" data-system="tank" data-mult="1.0">
+                <span>Tank</span>
+                <span class="choice-sub">Standard 40-60 gal</span>
+              </button>
+              <button type="button" class="choice-btn" data-system="tankless" data-mult="1.45">
+                <span>Tankless</span>
+                <span class="choice-sub">On-demand condensing</span>
+              </button>
+              <button type="button" class="choice-btn" data-system="furnace" data-mult="1.3">
+                <span>High-Efficiency Furnace</span>
+                <span class="choice-sub">96%+ AFUE modulating</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">3. Alberta Winter Emergency Dispatch</div>
+            <button type="button" class="toggle-card" id="winter-toggle" aria-pressed="false">
+              <span class="toggle-info">
+                <strong>Priority Sub-Zero Dispatch (-20 C / After-Hours)</strong>
+                <span>Includes priority same-day routing for no-heat or burst-pipe emergencies</span>
+              </span>
+              <span class="toggle-pill num" id="winter-pill">+CAD $145</span>
+            </button>
+          </div>
+
+          <div class="field-group">
+            <label class="input-label" for="property-zone">4. Edmonton Service Zone</label>
+            <select id="property-zone" name="property_zone" autocomplete="address-level2">
+              <option value="1.0">Central / South Edmonton (Standard)</option>
+              <option value="1.0">West / North Edmonton (Standard)</option>
+              <option value="1.06">St. Albert / Sherwood Park (+6% travel)</option>
+              <option value="1.1">Leduc / Spruce Grove / Stony Plain (+10% travel)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <div class="estimate-card" aria-live="polite">
+            <div class="estimate-kicker">Estimated Project Range (CAD)</div>
+            <div class="estimate-range num" id="estimate-output">CAD $240 – $580</div>
+            <div class="estimate-note" id="estimate-summary">
+              Plumbing Repairs &middot; Tank system &middot; Standard Edmonton scheduling
+            </div>
+            <div class="breakdown-list">
+              <div class="breakdown-row">
+                <span>Base Service Scope</span>
+                <strong class="num" id="bd-base">CAD $240 – $580</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>System Multiplier</span>
+                <strong class="num" id="bd-system">1.00x (Tank)</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Winter Emergency Priority</span>
+                <strong class="num" id="bd-winter">CAD $0</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Zone Adjustment</span>
+                <strong class="num" id="bd-zone">Standard (1.00x)</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="dispatch-form">
+            <div class="panel-header">
+              <h2>Request Quote or Dispatch</h2>
+              <p>Send your configured estimate directly to Butler Plumbing Heating &amp; Gasfitting.</p>
+            </div>
+            <form id="quote-form">
+              <div class="form-grid">
+                <div>
+                  <label class="input-label" for="client-name">Full Name</label>
+                  <input type="text" id="client-name" name="name" autocomplete="name" placeholder="Jordan Reid" required>
+                </div>
+                <div>
+                  <label class="input-label" for="client-phone">Phone Number</label>
+                  <input type="tel" id="client-phone" name="tel" autocomplete="tel" placeholder="(780) 555-0148" required>
+                </div>
+                <div class="form-full">
+                  <label class="input-label" for="client-email">Email Address</label>
+                  <input type="email" id="client-email" name="email" autocomplete="email" placeholder="jordan@example.ca" required>
+                </div>
+                <div class="form-full">
+                  <label class="input-label" for="client-address">Edmonton Street Address</label>
+                  <input type="text" id="client-address" name="street_address" autocomplete="street-address" placeholder="10420 82 Ave NW, Edmonton, AB">
+                </div>
+                <div class="form-full">
+                  <label class="input-label" for="client-notes">Issue Details</label>
+                  <textarea id="client-notes" name="notes" autocomplete="off" placeholder="Describe symptoms, unit age, or preferred arrival window."></textarea>
+                </div>
+                <div class="form-full">
+                  <button type="submit" class="btn-primary" style="width: 100%;">Submit Estimate Request</button>
+                </div>
+              </div>
+              <div class="status-banner" id="form-status">
+                Request logged for Butler Plumbing Heating &amp; Gasfitting. For immediate winter dispatch, call +1 (780) 432-3947.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-section">
+      <div class="container">
+        <h2 class="section-title">Core Edmonton Services</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>Plumbing Repairs</h3>
+            <p>Fixture replacements, copper/PEX repiping, pressure-reducing valves, and frozen pipe thawing.</p>
+          </div>
+          <div class="service-card">
+            <h3>Furnace &amp; Heating Service</h3>
+            <p>High-efficiency furnace diagnostics, heat exchanger checks, and winter no-heat recovery.</p>
+          </div>
+          <div class="service-card">
+            <h3>Hot Water Tank Installation</h3>
+            <p>Conventional gas/electric tanks and condensing tankless systems sized for Alberta homes.</p>
+          </div>
+          <div class="service-card">
+            <h3>Gasfitting</h3>
+            <p>Licensed natural gas piping for garage heaters, ranges, dryers, and outdoor BBQ lines.</p>
+          </div>
+          <div class="service-card">
+            <h3>Drain Cleaning</h3>
+            <p>Main sewer augering, hydro-jetting, and camera inspections for older Edmonton neighbourhoods.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>Butler Plumbing Heating &amp; Gasfitting &middot; Edmonton, AB, Canada</div>
+      <div class="num">Phone: +1 (780) 432-3947</div>
+      <div class="footer-link-row">
+        <a href="https://www.butlerplumbing.ca" target="_blank" rel="noopener noreferrer">https://www.butlerplumbing.ca</a>
+        <a href="mailto:info@butlerplumbing.ca">info@butlerplumbing.ca</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        serviceLabel: 'Plumbing Repairs',
+        baseMin: 240,
+        baseMax: 580,
+        systemLabel: 'Tank',
+        systemMult: 1.0,
+        winterEmergency: false,
+        winterFee: 145,
+        zoneMult: 1.0
+      };
+
+      const serviceBtns = document.querySelectorAll('#service-options .choice-btn');
+      const systemBtns = document.querySelectorAll('#system-options .choice-btn');
+      const winterToggle = document.getElementById('winter-toggle');
+      const zoneSelect = document.getElementById('property-zone');
+      const outputEl = document.getElementById('estimate-output');
+      const summaryEl = document.getElementById('estimate-summary');
+      const bdBase = document.getElementById('bd-base');
+      const bdSystem = document.getElementById('bd-system');
+      const bdWinter = document.getElementById('bd-winter');
+      const bdZone = document.getElementById('bd-zone');
+      const quoteForm = document.getElementById('quote-form');
+      const formStatus = document.getElementById('form-status');
+
+      function formatCad(val) {
+        return 'CAD $' + Math.round(val).toLocaleString('en-CA');
+      }
+
+      function updateEstimate() {
+        const winterAdd = state.winterEmergency ? state.winterFee : 0;
+        const minTotal = (state.baseMin * state.systemMult * state.zoneMult) + winterAdd;
+        const maxTotal = (state.baseMax * state.systemMult * state.zoneMult) + winterAdd;
+
+        outputEl.textContent = formatCad(minTotal) + ' – ' + formatCad(maxTotal);
+        summaryEl.textContent =
+          state.serviceLabel + ' · ' + state.systemLabel + ' system · ' +
+          (state.winterEmergency ? 'Alberta Winter Emergency Dispatch' : 'Standard Edmonton scheduling');
+
+        bdBase.textContent = formatCad(state.baseMin) + ' – ' + formatCad(state.baseMax);
+        bdSystem.textContent = state.systemMult.toFixed(2) + 'x (' + state.systemLabel + ')';
+        bdWinter.textContent = state.winterEmergency ? formatCad(state.winterFee) : 'CAD $0';
+        bdZone.textContent = state.zoneMult === 1 ? 'Standard (1.00x)' : state.zoneMult.toFixed(2) + 'x';
+      }
+
+      serviceBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          serviceBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.serviceLabel = btn.querySelector('span').textContent;
+          state.baseMin = Number(btn.getAttribute('data-base-min'));
+          state.baseMax = Number(btn.getAttribute('data-base-max'));
+          updateEstimate();
+        });
+      });
+
+      systemBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          systemBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.systemLabel = btn.querySelector('span').textContent;
+          state.systemMult = Number(btn.getAttribute('data-mult'));
+          updateEstimate();
+        });
+      });
+
+      winterToggle.addEventListener('click', function () {
+        state.winterEmergency = !state.winterEmergency;
+        winterToggle.classList.toggle('active', state.winterEmergency);
+        winterToggle.setAttribute('aria-pressed', String(state.winterEmergency));
+        updateEstimate();
+      });
+
+      zoneSelect.addEventListener('change', function () {
+        state.zoneMult = Number(zoneSelect.value);
+        updateEstimate();
+      });
+
+      quoteForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        formStatus.classList.add('visible');
+      });
+
+      updateEstimate();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Albuquerque Roofing B2B &amp; Residential Cost Calculator for New Mexico Flat TPO, Modified Bitumen, Architectural Shingle, and Metal Roof Replacement.">
+  <title>Albuquerque Roofing | New Mexico Roof Replacement Cost Calculator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23B84A2E'/%3E%3Cpath d='M5 18L16 8l11 10v7H5v-7z' fill='%23F7F3EC'/%3E%3Cpath d='M12 25v-6h8v6' fill='%231F2429'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #F7F3EC;
+      --bg-surface: #FFFFFF;
+      --bg-sand: #EFE7DA;
+      --bg-sand-deep: #E4D8C5;
+      --ink-primary: #1F2429;
+      --ink-secondary: #4A525A;
+      --ink-muted: #6C747D;
+      --accent: #B84A2E;
+      --accent-hover: #9E3B22;
+      --accent-soft: #F6E5DF;
+      --border: #DDD3C4;
+      --border-strong: #C9BCAE;
+      --success: #2A6F4E;
+      --success-bg: #E7F3EC;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 2px 8px rgba(31, 36, 41, 0.05);
+      --shadow-md: 0 10px 28px rgba(31, 36, 41, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-page);
+      color: var(--ink-primary);
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 68px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--ink-primary);
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background: var(--accent);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      line-height: 1.15;
+      color: var(--ink-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: var(--bg-sand);
+      color: var(--ink-primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      border: 1px solid var(--border);
+      white-space: nowrap;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .phone-pill:hover {
+      background: var(--bg-sand-deep);
+      border-color: var(--border-strong);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      background: var(--accent);
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 0.18s ease, transform 0.12s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-primary:active {
+      transform: translateY(1px);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 36px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-hover);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 3.6vw, 40px);
+      line-height: 1.12;
+      font-weight: 800;
+      color: var(--ink-primary);
+      margin-bottom: 12px;
+    }
+
+    .hero-lead {
+      font-size: 16px;
+      color: var(--ink-secondary);
+      max-width: 62ch;
+      margin: 0 0 18px;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .service-tag {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+    }
+
+    .climate-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .climate-card-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 10px;
+    }
+
+    .climate-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .climate-metric {
+      background: var(--bg-sand);
+      border-radius: var(--radius-sm);
+      padding: 10px;
+    }
+
+    .climate-metric-val {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .climate-metric-lbl {
+      font-size: 11px;
+      color: var(--ink-secondary);
+      margin-top: 2px;
+      line-height: 1.25;
+    }
+
+    /* Main Workspace */
+    .workspace {
+      padding: 8px 0 48px;
+    }
+
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .panel-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--ink-primary);
+    }
+
+    .panel-subtitle {
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin-top: 3px;
+    }
+
+    .step-badge {
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--bg-sand);
+      color: var(--ink-secondary);
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .field-group {
+      margin-bottom: 20px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 8px;
+    }
+
+    label.field-label {
+      cursor: pointer;
+    }
+
+    .field-hint {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 5px;
+    }
+
+    .area-row {
+      display: grid;
+      grid-template-columns: 1fr 130px;
+      gap: 12px;
+      align-items: center;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+      height: 6px;
+    }
+
+    .input-control, .select-control, .textarea-control {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      font-family: inherit;
+      font-size: 14px;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .input-control:focus, .select-control:focus, .textarea-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(184, 74, 46, 0.14);
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .option-btn {
+      text-align: left;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-page);
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .option-btn:hover {
+      border-color: var(--border-strong);
+      background: var(--bg-sand);
+    }
+
+    .option-btn.is-active {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .option-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--ink-primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .option-rate {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-hover);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .option-desc {
+      font-size: 12px;
+      color: var(--ink-secondary);
+      margin-top: 3px;
+    }
+
+    .addon-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .addon-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 11px 13px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+    }
+
+    .addon-item input[type="checkbox"] {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .addon-label {
+      flex: 1;
+      min-width: 0;
+      cursor: pointer;
+    }
+
+    .addon-title {
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--ink-primary);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .addon-price {
+      color: var(--accent-hover);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .addon-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    /* Estimate Summary */
+    .estimate-box {
+      background: var(--bg-sand);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    .estimate-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .estimate-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-secondary);
+    }
+
+    .estimate-range {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(24px, 3vw, 30px);
+      font-weight: 800;
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+    }
+
+    .breakdown-list {
+      border-top: 1px solid var(--border-strong);
+      padding-top: 12px;
+      display: grid;
+      gap: 7px;
+      font-size: 13px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--ink-secondary);
+    }
+
+    .breakdown-row strong {
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Quote Form */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .form-full {
+      grid-column: 1 / -1;
+    }
+
+    .contact-strip {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .contact-row-full {
+      grid-column: 1 / -1;
+    }
+
+    .contact-link {
+      display: inline-block;
+      color: var(--accent-hover);
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 12px;
+    }
+
+    .contact-link:hover {
+      text-decoration: underline;
+    }
+
+    .status-banner {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--success-bg);
+      color: var(--success);
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(42, 111, 78, 0.25);
+    }
+
+    .status-banner.is-visible {
+      display: block;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-surface);
+      padding: 20px 0;
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-inner {
+        flex-wrap: wrap;
+      }
+      .option-grid,
+      .form-grid,
+      .climate-metrics {
+        grid-template-columns: 1fr;
+      }
+      .area-row {
+        grid-template-columns: 1fr;
+      }
+      .panel {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 12L12 4L21 12V20H3V12Z" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M9 20V14H15V20" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Albuquerque Roofing</span>
+          <span class="brand-sub">Albuquerque, NM | Residential &amp; Commercial</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a href="tel:+15058436822" class="phone-pill tabular">(505) 843-6822</a>
+        <a href="#quote-form" class="btn-primary">Request Estimate</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">New Mexico High-Desert Roofing</div>
+          <h1>New Mexico Flat TPO &amp; Shingle Roof Replacement Cost Calculator</h1>
+          <p class="hero-lead">
+            Instant itemized budgeting for Albuquerque homes and commercial buildings. Engineered for high-altitude UV exposure, monsoon thermal shock, and flat-roof drainage.
+          </p>
+          <div class="service-tags">
+            <span class="service-tag">Residential Roof Replacement</span>
+            <span class="service-tag">Commercial Roofing</span>
+            <span class="service-tag">Roof Repair</span>
+            <span class="service-tag">Roof Inspections</span>
+            <span class="service-tag">TPO &amp; Flat Roofing</span>
+          </div>
+        </div>
+        <aside class="climate-card" aria-label="Albuquerque Climate Specifications">
+          <div class="climate-card-title">Albuquerque Climate Spec</div>
+          <div class="climate-metrics">
+            <div class="climate-metric">
+              <div class="climate-metric-val">5,312 ft</div>
+              <div class="climate-metric-lbl">Elevation UV load</div>
+            </div>
+            <div class="climate-metric">
+              <div class="climate-metric-val">310+</div>
+              <div class="climate-metric-lbl">Sunny days / yr</div>
+            </div>
+            <div class="climate-metric">
+              <div class="climate-metric-val">R-30+</div>
+              <div class="climate-metric-lbl">Polyiso target</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="container workspace-grid">
+        <!-- Left: Calculator -->
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">1. Roof Scope &amp; System</h2>
+              <p class="panel-subtitle">Select roof area, membrane or shingle system, and climate upgrades.</p>
+            </div>
+            <span class="step-badge">USD / sq ft</span>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="roof-area-input">Roof Area (sq ft)</label>
+            <div class="area-row">
+              <input type="range" id="roof-area-range" min="800" max="15000" step="100" value="2400" autocomplete="off" aria-label="Roof Area Slider">
+              <input type="number" id="roof-area-input" class="input-control tabular" min="400" max="50000" step="50" value="2400" autocomplete="off">
+            </div>
+            <div class="field-hint">Typical Albuquerque residential: 1,800 - 3,200 sq ft. Commercial flat: 4,000 - 15,000+ sq ft.</div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">Roofing System</div>
+            <div class="option-grid" id="system-options">
+              <button type="button" class="option-btn is-active" data-system="tpo" data-rate="8.75" data-label="TPO Flat (60-mil)">
+                <div class="option-name">
+                  <span>TPO Flat</span>
+                  <span class="option-rate">$8.75/sq ft</span>
+                </div>
+                <div class="option-desc">Heat-welded white reflective membrane for flat roofs.</div>
+              </button>
+              <button type="button" class="option-btn" data-system="modbit" data-rate="7.90" data-label="Modified Bitumen">
+                <div class="option-name">
+                  <span>Modified Bitumen</span>
+                  <span class="option-rate">$7.90/sq ft</span>
+                </div>
+                <div class="option-desc">Multi-ply torch or self-adhered flat roof system.</div>
+              </button>
+              <button type="button" class="option-btn" data-system="shingle" data-rate="5.85" data-label="Architectural Shingle">
+                <div class="option-name">
+                  <span>Architectural Shingle</span>
+                  <span class="option-rate">$5.85/sq ft</span>
+                </div>
+                <div class="option-desc">Class 4 impact-rated dimensional asphalt shingles.</div>
+              </button>
+              <button type="button" class="option-btn" data-system="metal" data-rate="11.50" data-label="Standing Seam Metal">
+                <div class="option-name">
+                  <span>Metal</span>
+                  <span class="option-rate">$11.50/sq ft</span>
+                </div>
+                <div class="option-desc">24-gauge concealed-fastener steel for 50-year life.</div>
+              </button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="project-type">Project Type</label>
+            <select id="project-type" class="select-control" autocomplete="off">
+              <option value="residential">Residential Roof Replacement</option>
+              <option value="commercial">Commercial Roofing (TPO / Flat)</option>
+              <option value="repair">Targeted Roof Repair / Restoration</option>
+              <option value="inspection">Roof Inspection + Preventive Maintenance</option>
+            </select>
+          </div>
+
+          <div class="field-group" style="margin-bottom: 0;">
+            <div class="field-label">Albuquerque Climate &amp; Tear-Off Options</div>
+            <div class="addon-list">
+              <div class="addon-item">
+                <input type="checkbox" id="addon-uv" data-rate="1.45" checked autocomplete="off">
+                <label class="addon-label" for="addon-uv">
+                  <div class="addon-title">
+                    <span>High-Altitude Silicone UV Coating</span>
+                    <span class="addon-price">+$1.45/sq ft</span>
+                  </div>
+                  <div class="addon-sub">Reflects 88% solar heat and prevents monsoon ponding degradation.</div>
+                </label>
+              </div>
+              <div class="addon-item">
+                <input type="checkbox" id="addon-insulation" data-rate="1.85" autocomplete="off">
+                <label class="addon-label" for="addon-insulation">
+                  <div class="addon-title">
+                    <span>Polyiso R-30 Thermal Insulation</span>
+                    <span class="addon-price">+$1.85/sq ft</span>
+                  </div>
+                  <div class="addon-sub">Reduces summer cooling load and winter heat loss in NM desert climate.</div>
+                </label>
+              </div>
+              <div class="addon-item">
+                <input type="checkbox" id="addon-tearoff" data-rate="1.25" checked autocomplete="off">
+                <label class="addon-label" for="addon-tearoff">
+                  <div class="addon-title">
+                    <span>Existing Roof Tear-Off &amp; Disposal</span>
+                    <span class="addon-price">+$1.25/sq ft</span>
+                  </div>
+                  <div class="addon-sub">Full removal of old membrane or shingles plus deck inspection.</div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Estimate + Request Form -->
+        <div class="panel" id="quote-form">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">2. Instant Estimate &amp; Quote</h2>
+              <p class="panel-subtitle">Send your calculated scope directly to Albuquerque Roofing.</p>
+            </div>
+            <span class="step-badge">Live USD</span>
+          </div>
+
+          <div class="estimate-box">
+            <div class="estimate-top">
+              <div>
+                <div class="estimate-label">Estimated Project Range</div>
+                <div class="estimate-range" id="estimate-range">$25,180 - $29,380</div>
+              </div>
+            </div>
+            <div class="breakdown-list">
+              <div class="breakdown-row">
+                <span>System (<span id="sum-system">TPO Flat (60-mil)</span>)</span>
+                <strong id="sum-base">$21,000</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>UV Coating &amp; Insulation</span>
+                <strong id="sum-climate">$3,480</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Tear-Off &amp; Disposal</span>
+                <strong id="sum-tearoff">$3,000</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Estimated Midpoint (<span id="sum-area" class="tabular">2,400 sq ft</span>)</span>
+                <strong id="sum-total">$27,480</strong>
+              </div>
+            </div>
+          </div>
+
+          <form id="lead-form" novalidate>
+            <div class="form-grid">
+              <div>
+                <label class="field-label" for="lead-name">Full Name</label>
+                <input type="text" id="lead-name" class="input-control" placeholder="Carlos Mendoza" autocomplete="name" required>
+              </div>
+              <div>
+                <label class="field-label" for="lead-phone">Phone Number</label>
+                <input type="tel" id="lead-phone" class="input-control" placeholder="(505) 555-0194" autocomplete="tel" required>
+              </div>
+              <div>
+                <label class="field-label" for="lead-email">Email Address</label>
+                <input type="email" id="lead-email" class="input-control" placeholder="you@company.com" autocomplete="email" required>
+              </div>
+              <div>
+                <label class="field-label" for="lead-address">Property Address (Albuquerque, NM)</label>
+                <input type="text" id="lead-address" class="input-control" placeholder="4200 Menaul Blvd NE" autocomplete="street-address">
+              </div>
+              <div class="form-full">
+                <label class="field-label" for="lead-notes">Scope Notes</label>
+                <textarea id="lead-notes" class="textarea-control" rows="2" placeholder="Parapet flashing, skylight curbs, or leak locations..." autocomplete="off"></textarea>
+              </div>
+              <div class="form-full">
+                <button type="submit" class="btn-primary" style="width: 100%;">Request On-Site Inspection &amp; Written Quote</button>
+              </div>
+            </div>
+
+            <div class="status-banner" id="form-status" role="status" aria-live="polite"></div>
+
+            <div class="contact-strip">
+              <div class="contact-row-full">
+                <a href="mailto:sales@abqroofing.com" class="contact-link">sales@abqroofing.com</a>
+              </div>
+              <div class="contact-row-full">
+                <a href="https://www.abqroofing.com" target="_blank" rel="noopener noreferrer" class="contact-link">https://www.abqroofing.com</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>Albuquerque Roofing | Albuquerque, NM | Phone: <span class="tabular">(505) 843-6822</span></div>
+      <div class="contact-row-full">
+        <a href="mailto:sales@abqroofing.com" class="contact-link">sales@abqroofing.com</a>
+      </div>
+      <div class="contact-row-full">
+        <a href="https://www.abqroofing.com" target="_blank" rel="noopener noreferrer" class="contact-link">https://www.abqroofing.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const areaRange = document.getElementById('roof-area-range');
+      const areaInput = document.getElementById('roof-area-input');
+      const systemButtons = document.querySelectorAll('#system-options .option-btn');
+      const projectType = document.getElementById('project-type');
+      const addonUv = document.getElementById('addon-uv');
+      const addonInsulation = document.getElementById('addon-insulation');
+      const addonTearoff = document.getElementById('addon-tearoff');
+
+      const elRange = document.getElementById('estimate-range');
+      const elSumSystem = document.getElementById('sum-system');
+      const elSumBase = document.getElementById('sum-base');
+      const elSumClimate = document.getElementById('sum-climate');
+      const elSumTearoff = document.getElementById('sum-tearoff');
+      const elSumArea = document.getElementById('sum-area');
+      const elSumTotal = document.getElementById('sum-total');
+
+      const leadForm = document.getElementById('lead-form');
+      const formStatus = document.getElementById('form-status');
+
+      let activeSystem = {
+        key: 'tpo',
+        rate: 8.75,
+        label: 'TPO Flat (60-mil)'
+      };
+
+      const fmt = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0
+      });
+
+      function clampArea(val) {
+        const num = Number(val);
+        if (!Number.isFinite(num) || num < 400) return 400;
+        if (num > 50000) return 50000;
+        return Math.round(num);
+      }
+
+      function calculate() {
+        const area = clampArea(areaInput.value);
+        const typeFactor = projectType.value === 'repair' ? 0.35 : projectType.value === 'inspection' ? 0.08 : 1;
+
+        const baseCost = area * activeSystem.rate * typeFactor;
+        const uvCost = addonUv.checked ? area * Number(addonUv.dataset.rate) * typeFactor : 0;
+        const insCost = addonInsulation.checked ? area * Number(addonInsulation.dataset.rate) * typeFactor : 0;
+        const tearoffCost = addonTearoff.checked ? area * Number(addonTearoff.dataset.rate) * typeFactor : 0;
+
+        const climateCost = uvCost + insCost;
+        const total = Math.max(450, Math.round(baseCost + climateCost + tearoffCost));
+        const low = Math.round(total * 0.92);
+        const high = Math.round(total * 1.08);
+
+        elRange.textContent = fmt.format(low) + ' - ' + fmt.format(high);
+        elSumSystem.textContent = activeSystem.label;
+        elSumBase.textContent = fmt.format(Math.round(baseCost));
+        elSumClimate.textContent = fmt.format(Math.round(climateCost));
+        elSumTearoff.textContent = fmt.format(Math.round(tearoffCost));
+        elSumArea.textContent = area.toLocaleString('en-US') + ' sq ft';
+        elSumTotal.textContent = fmt.format(total);
+      }
+
+      areaRange.addEventListener('input', function () {
+        areaInput.value = areaRange.value;
+        calculate();
+      });
+
+      areaInput.addEventListener('input', function () {
+        const val = clampArea(areaInput.value);
+        if (val <= 15000) {
+          areaRange.value = String(val);
+        }
+        calculate();
+      });
+
+      systemButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          systemButtons.forEach(function (b) { b.classList.remove('is-active'); });
+          btn.classList.add('is-active');
+          activeSystem = {
+            key: btn.dataset.system,
+            rate: Number(btn.dataset.rate),
+            label: btn.dataset.label
+          };
+          calculate();
+        });
+      });
+
+      [projectType, addonUv, addonInsulation, addonTearoff].forEach(function (el) {
+        el.addEventListener('change', calculate);
+      });
+
+      leadForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('lead-name').value.trim();
+        const email = document.getElementById('lead-email').value.trim();
+        const phone = document.getElementById('lead-phone').value.trim();
+
+        if (!name || !email || !phone) {
+          formStatus.textContent = 'Please enter your name, phone number, and email address.';
+          formStatus.classList.add('is-visible');
+          return;
+        }
+
+        formStatus.textContent = 'Estimate request prepared for ' + name + ' (' + elRange.textContent + ' | ' + activeSystem.label + '). Our Albuquerque team will contact you at ' + phone + '.';
+        formStatus.classList.add('is-visible');
+      });
+
+      calculate();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Harbour Cities Veterinary Hospital in Halifax, NS. Interactive Pet Wellness, Dental & Surgical Care Cost Estimator in CAD and appointment scheduling." />
+  <title>Harbour Cities Veterinary Hospital — Care Cost Estimator | Halifax, NS</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230d6e6e'/%3E%3Cpath d='M16 7v18M7 16h18' stroke='%23ffffff' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f6f2;
+      --surface: #ffffff;
+      --surface-alt: #eef4f3;
+      --ink: #132527;
+      --ink-muted: #4b6164;
+      --teal: #0d6e6e;
+      --teal-dark: #095252;
+      --teal-soft: #e3f0ef;
+      --border: #d7e2e1;
+      --accent: #1d7a8c;
+      --radius: 12px;
+      --shadow: 0 8px 24px rgba(13, 42, 44, 0.06);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .brand-title {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+      padding: 12px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 13px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .phone-link {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--teal-dark);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      background-color: var(--teal-soft);
+      white-space: nowrap;
+    }
+
+    .phone-link:hover {
+      background-color: #d3e7e5;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 40px 0 28px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal-dark);
+      background-color: var(--teal-soft);
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 3.6vw, 40px);
+      line-height: 1.15;
+      color: var(--ink);
+      max-width: 780px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--ink-muted);
+      max-width: 680px;
+      font-size: 16px;
+    }
+
+    /* Main Grid */
+    .workspace {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 24px;
+      align-items: start;
+      padding-bottom: 48px;
+    }
+
+    .card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: var(--ink-muted);
+      margin: 0 0 20px;
+    }
+
+    .field-group {
+      margin-bottom: 20px;
+    }
+
+    .field-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .seg-btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background-color: var(--surface);
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 11px 14px;
+      border-radius: 9px;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .seg-btn[aria-pressed="true"] {
+      background-color: var(--teal);
+      border-color: var(--teal);
+      color: #ffffff;
+    }
+
+    .weight-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .weight-btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background-color: var(--surface);
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 8px;
+      border-radius: 9px;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .weight-btn span {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    .weight-btn[aria-pressed="true"] {
+      background-color: var(--teal-soft);
+      border-color: var(--teal);
+      color: var(--teal-dark);
+    }
+
+    /* Services list */
+    .service-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background-color: var(--surface);
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .service-item.is-selected {
+      border-color: var(--teal);
+      background-color: var(--surface-alt);
+    }
+
+    .service-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .service-check {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--teal);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .service-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .service-meta {
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .service-price {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--teal-dark);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Estimate Summary */
+    .summary-box {
+      background-color: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 14px;
+      color: var(--ink-muted);
+      margin-bottom: 8px;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-top: 12px;
+      margin-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    .summary-total-label {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .summary-total-value {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--teal-dark);
+    }
+
+    .summary-note {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin: 10px 0 0;
+    }
+
+    /* Booking Form */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-full {
+      grid-column: 1 / -1;
+    }
+
+    .input-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 5px;
+    }
+
+    .input-control {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--ink);
+      background-color: var(--surface);
+    }
+
+    .input-control:focus {
+      outline: 2px solid var(--teal);
+      outline-offset: 1px;
+      border-color: var(--teal);
+    }
+
+    .btn-primary {
+      width: 100%;
+      appearance: none;
+      border: none;
+      background-color: var(--teal);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 13px 18px;
+      border-radius: 9px;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--teal-dark);
+    }
+
+    .form-status {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background-color: var(--teal-soft);
+      color: var(--teal-dark);
+      font-size: 13px;
+      font-weight: 500;
+      display: none;
+    }
+
+    .form-status.is-visible {
+      display: block;
+    }
+
+    /* Clinic Info & Services Footer */
+    .clinic-footer {
+      background-color: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+
+    .footer-heading {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .footer-text {
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin: 0;
+    }
+
+    .contact-links {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-links a[href^="mailto:"],
+    .contact-links a[href^="http"] {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 12px;
+      color: var(--teal-dark);
+      text-decoration: none;
+      font-weight: 600;
+      width: fit-content;
+    }
+
+    .contact-links a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .weight-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .header-inner {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 5v14M5 12h14" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Harbour Cities Veterinary Hospital</div>
+          <div class="brand-sub">Halifax, NS, Canada</div>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="tel:9024637610" class="phone-link num">902-463-7610</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <section class="hero">
+      <div class="hero-badge">Halifax Veterinary Care Estimator</div>
+      <h1>Pet Wellness, Dental &amp; Surgical Care Cost Estimator</h1>
+      <p>
+        Plan your pet's visit at Harbour Cities Veterinary Hospital. Select species, weight class, and clinical services to view an estimated range in CAD and request an appointment.
+      </p>
+    </section>
+
+    <section class="workspace" aria-label="Cost Estimator and Appointment Request">
+      <div class="card">
+        <h2 class="card-title">1. Patient &amp; Service Selection</h2>
+        <p class="card-desc">Estimates are calculated in Canadian Dollars (CAD) based on standard Halifax clinical protocols.</p>
+
+        <div class="field-group">
+          <div class="field-label">Pet Species</div>
+          <div class="segmented" role="group" aria-label="Pet Species">
+            <button type="button" class="seg-btn" data-species="dog" aria-pressed="true">Dog</button>
+            <button type="button" class="seg-btn" data-species="cat" aria-pressed="false">Cat</button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">Weight Category</div>
+          <div class="weight-grid" role="group" aria-label="Weight Category">
+            <button type="button" class="weight-btn" data-weight="small" aria-pressed="true">
+              Small<span class="num">Under 10 kg</span>
+            </button>
+            <button type="button" class="weight-btn" data-weight="medium" aria-pressed="false">
+              Medium<span class="num">10 - 25 kg</span>
+            </button>
+            <button type="button" class="weight-btn" data-weight="large" aria-pressed="false">
+              Large<span class="num">25 - 45 kg</span>
+            </button>
+            <button type="button" class="weight-btn" data-weight="giant" aria-pressed="false">
+              Giant<span class="num">45+ kg</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">Veterinary Services</div>
+          <div class="service-list" id="serviceList">
+            <label class="service-item is-selected">
+              <span class="service-left">
+                <input type="checkbox" class="service-check" value="wellness" checked />
+                <span>
+                  <span class="service-name">Wellness &amp; Preventive Care Exam</span>
+                  <span class="service-meta">Comprehensive physical exam, nutrition &amp; parasite review</span>
+                </span>
+              </span>
+              <span class="service-price num" data-price-for="wellness">$95</span>
+            </label>
+
+            <label class="service-item">
+              <span class="service-left">
+                <input type="checkbox" class="service-check" value="vaccinations" />
+                <span>
+                  <span class="service-name">Vaccinations</span>
+                  <span class="service-meta">Core immunizations &amp; Nova Scotia regional boosters</span>
+                </span>
+              </span>
+              <span class="service-price num" data-price-for="vaccinations">$75</span>
+            </label>
+
+            <label class="service-item">
+              <span class="service-left">
+                <input type="checkbox" class="service-check" value="dental" />
+                <span>
+                  <span class="service-name">Pet Dental Care</span>
+                  <span class="service-meta">Ultrasonic scaling, polishing &amp; dental charting</span>
+                </span>
+              </span>
+              <span class="service-price num" data-price-for="dental">$420</span>
+            </label>
+
+            <label class="service-item">
+              <span class="service-left">
+                <input type="checkbox" class="service-check" value="imaging" />
+                <span>
+                  <span class="service-name">Diagnostic Imaging (Ultrasound / X-Ray)</span>
+                  <span class="service-meta">Digital radiography or abdominal ultrasound study</span>
+                </span>
+              </span>
+              <span class="service-price num" data-price-for="imaging">$280</span>
+            </label>
+
+            <label class="service-item">
+              <span class="service-left">
+                <input type="checkbox" class="service-check" value="surgery" />
+                <span>
+                  <span class="service-name">Veterinary Surgery</span>
+                  <span class="service-meta">Soft-tissue or spay/neuter procedure with monitoring</span>
+                </span>
+              </span>
+              <span class="service-price num" data-price-for="surgery">$460</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">2. Estimated Care Plan &amp; Booking</h2>
+        <p class="card-desc">Review your itemized CAD estimate and request a convenient appointment time.</p>
+
+        <div class="summary-box" aria-live="polite">
+          <div class="summary-row">
+            <span>Selected Patient</span>
+            <strong id="summaryPatient">Dog, Small (Under 10 kg)</strong>
+          </div>
+          <div class="summary-row">
+            <span>Selected Services</span>
+            <strong id="summaryCount" class="num">1 service</strong>
+          </div>
+          <div class="summary-row">
+            <span>Estimated Subtotal (CAD)</span>
+            <strong id="summarySubtotal" class="num">$95.00</strong>
+          </div>
+          <div class="summary-row">
+            <span>NS HST (15%)</span>
+            <strong id="summaryTax" class="num">$14.25</strong>
+          </div>
+          <div class="summary-total">
+            <span class="summary-total-label">Estimated Total (CAD)</span>
+            <span class="summary-total-value num" id="summaryTotal">$109.25</span>
+          </div>
+          <p class="summary-note">
+            Final treatment plan and exact quote are confirmed by our Halifax veterinary team following physical examination.
+          </p>
+        </div>
+
+        <form id="bookingForm" novalidate>
+          <div class="form-grid">
+            <div>
+              <label class="input-label" for="ownerName">Your Name</label>
+              <input id="ownerName" name="ownerName" type="text" class="input-control" placeholder="Alex MacLeod" autocomplete="name" required />
+            </div>
+            <div>
+              <label class="input-label" for="ownerPhone">Phone Number</label>
+              <input id="ownerPhone" name="ownerPhone" type="tel" class="input-control" placeholder="902-555-0148" autocomplete="tel" required />
+            </div>
+            <div class="form-full">
+              <label class="input-label" for="ownerEmail">Email Address</label>
+              <input id="ownerEmail" name="ownerEmail" type="email" class="input-control" placeholder="alex@example.ca" autocomplete="email" required />
+            </div>
+            <div>
+              <label class="input-label" for="petName">Pet Name</label>
+              <input id="petName" name="petName" type="text" class="input-control" placeholder="Finley" autocomplete="off" required />
+            </div>
+            <div>
+              <label class="input-label" for="visitWindow">Preferred Time</label>
+              <select id="visitWindow" name="visitWindow" class="input-control" autocomplete="off">
+                <option value="morning">Morning (8:30 AM - 12:00 PM)</option>
+                <option value="afternoon">Afternoon (12:00 PM - 4:30 PM)</option>
+                <option value="evening">Late Afternoon (4:30 PM - 6:00 PM)</option>
+              </select>
+            </div>
+            <div class="form-full">
+              <label class="input-label" for="visitNotes">Clinical Notes</label>
+              <textarea id="visitNotes" name="visitNotes" rows="2" class="input-control" placeholder="Any symptoms, medication history, or questions" autocomplete="off"></textarea>
+            </div>
+            <div class="form-full">
+              <button type="submit" class="btn-primary">Request Appointment &amp; Estimate</button>
+            </div>
+          </div>
+          <div id="formStatus" class="form-status" role="status"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="clinic-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-heading">Harbour Cities Veterinary Hospital</div>
+        <p class="footer-text">Full-service veterinary care in Halifax, Nova Scotia: Wellness &amp; Preventive Care, Veterinary Surgery, Pet Dental Care, Diagnostic Imaging, and Vaccinations.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Hospital Contact</div>
+        <p class="footer-text num">Phone: 902-463-7610</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:info@harbourcitiesvet.ca">info@harbourcitiesvet.ca</a>
+        <a href="https://www.harbourcitiesvet.ca" target="_blank" rel="noopener noreferrer">https://www.harbourcitiesvet.ca</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        species: 'dog',
+        weight: 'small'
+      };
+
+      const basePrices = {
+        dog: {
+          wellness: 95,
+          vaccinations: 75,
+          dental: 420,
+          imaging: 280,
+          surgery: 460
+        },
+        cat: {
+          wellness: 90,
+          vaccinations: 70,
+          dental: 380,
+          imaging: 250,
+          surgery: 390
+        }
+      };
+
+      const weightMultipliers = {
+        small: 1.0,
+        medium: 1.15,
+        large: 1.3,
+        giant: 1.48
+      };
+
+      const weightLabels = {
+        small: 'Small (Under 10 kg)',
+        medium: 'Medium (10 - 25 kg)',
+        large: 'Large (25 - 45 kg)',
+        giant: 'Giant (45+ kg)'
+      };
+
+      const speciesButtons = document.querySelectorAll('[data-species]');
+      const weightButtons = document.querySelectorAll('[data-weight]');
+      const serviceChecks = document.querySelectorAll('.service-check');
+      const summaryPatient = document.getElementById('summaryPatient');
+      const summaryCount = document.getElementById('summaryCount');
+      const summarySubtotal = document.getElementById('summarySubtotal');
+      const summaryTax = document.getElementById('summaryTax');
+      const summaryTotal = document.getElementById('summaryTotal');
+      const bookingForm = document.getElementById('bookingForm');
+      const formStatus = document.getElementById('formStatus');
+
+      function formatCAD(amount) {
+        return '$' + amount.toFixed(2);
+      }
+
+      function computeServicePrice(serviceKey) {
+        const base = basePrices[state.species][serviceKey];
+        if (serviceKey === 'wellness' || serviceKey === 'vaccinations') {
+          return base;
+        }
+        return Math.round(base * weightMultipliers[state.weight]);
+      }
+
+      function updateUI() {
+        let subtotal = 0;
+        let count = 0;
+
+        serviceChecks.forEach(function (checkbox) {
+          const key = checkbox.value;
+          const price = computeServicePrice(key);
+          const priceEl = document.querySelector('[data-price-for="' + key + '"]');
+          if (priceEl) {
+            priceEl.textContent = '$' + price;
+          }
+          const parent = checkbox.closest('.service-item');
+          if (checkbox.checked) {
+            subtotal += price;
+            count += 1;
+            if (parent) parent.classList.add('is-selected');
+          } else {
+            if (parent) parent.classList.remove('is-selected');
+          }
+        });
+
+        const tax = subtotal * 0.15;
+        const total = subtotal + tax;
+        const speciesLabel = state.species === 'dog' ? 'Dog' : 'Cat';
+
+        summaryPatient.textContent = speciesLabel + ', ' + weightLabels[state.weight];
+        summaryCount.textContent = count + (count === 1 ? ' service' : ' services');
+        summarySubtotal.textContent = formatCAD(subtotal);
+        summaryTax.textContent = formatCAD(tax);
+        summaryTotal.textContent = formatCAD(total);
+      }
+
+      speciesButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.species = btn.getAttribute('data-species');
+          speciesButtons.forEach(function (b) {
+            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+          });
+          updateUI();
+        });
+      });
+
+      weightButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.weight = btn.getAttribute('data-weight');
+          weightButtons.forEach(function (b) {
+            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+          });
+          updateUI();
+        });
+      });
+
+      serviceChecks.forEach(function (checkbox) {
+        checkbox.addEventListener('change', updateUI);
+      });
+
+      bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const ownerName = document.getElementById('ownerName').value.trim();
+        const petName = document.getElementById('petName').value.trim();
+        const totalText = summaryTotal.textContent;
+
+        if (!ownerName || !petName) {
+          formStatus.textContent = 'Please enter your name and your pet name to submit the request.';
+          formStatus.classList.add('is-visible');
+          return;
+        }
+
+        formStatus.textContent = 'Appointment request prepared for ' + petName + ' (' + totalText + ' CAD est.). Our Halifax reception team will confirm by phone or email.';
+        formStatus.classList.add('is-visible');
+      });
+
+      updateUI();
+    })();
+  </script>
+</body>
+</html>

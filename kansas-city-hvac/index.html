@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kansas City HVAC commercial and residential climate systems in Kansas City, KS. Interactive HVAC System Sizing, Replacement and Repair Cost Estimator.">
+  <title>Kansas City HVAC | System Sizing &amp; Cost Estimator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32'%3E%3Crect width='32' height='32' rx='6' fill='%230f2942'/%3E%3Cpath d='M16 6v20M6 16h20M9.5 9.5l13 13M22.5 9.5l-13 13' stroke='%23d97706' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-muted: #f1f5f9;
+      --navy-900: #0f2942;
+      --navy-800: #163a5c;
+      --navy-700: #1e4b75;
+      --amber-600: #d97706;
+      --amber-700: #b45309;
+      --amber-50: #fffbeb;
+      --amber-200: #fde68a;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-sm: 0 1px 3px rgba(15, 41, 66, 0.06);
+      --shadow-md: 0 8px 24px rgba(15, 41, 66, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      color: var(--navy-900);
+      letter-spacing: -0.02em;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--navy-900);
+      color: #ffffff;
+      border-bottom: 3px solid var(--amber-600);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background-color: var(--navy-800);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: #ffffff;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-loc {
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.3;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--amber-600);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 9px 16px;
+      border-radius: 8px;
+      white-space: nowrap;
+      transition: background-color 0.15s ease;
+    }
+
+    .phone-pill:hover {
+      background-color: var(--amber-700);
+    }
+
+    /* Main Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 20px 48px;
+    }
+
+    .hero-banner {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .hero-copy {
+      max-width: 720px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--amber-700);
+      background-color: var(--amber-50);
+      border: 1px solid var(--amber-200);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(22px, 3vw, 30px);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+
+    .service-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .service-chip {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy-800);
+      background-color: var(--bg-muted);
+      border: 1px solid var(--border);
+      padding: 5px 10px;
+      border-radius: 6px;
+    }
+
+    /* Estimator Grid */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .panel-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0 0 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .field-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy-900);
+      margin-bottom: 8px;
+    }
+
+    label.field-label {
+      cursor: pointer;
+    }
+
+    .value-badge {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--amber-700);
+      background-color: var(--amber-50);
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--amber-200);
+    }
+
+    /* Range Slider */
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--navy-900);
+      cursor: pointer;
+      height: 6px;
+    }
+
+    .range-scale {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Option Buttons */
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .option-grid.cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .opt-btn {
+      appearance: none;
+      background-color: var(--bg-muted);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 11px 12px;
+      text-align: left;
+      cursor: pointer;
+      color: var(--text-primary);
+      font-family: inherit;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .opt-btn:hover {
+      border-color: var(--navy-700);
+    }
+
+    .opt-btn.active {
+      background-color: var(--navy-900);
+      border-color: var(--navy-900);
+      color: #ffffff;
+    }
+
+    .opt-btn-title {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .opt-btn-desc {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .opt-btn.active .opt-btn-desc {
+      color: #cbd5e1;
+    }
+
+    /* Inputs */
+    .input-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .text-input, .select-input, .textarea-input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text-primary);
+      background-color: #ffffff;
+      transition: border-color 0.15s ease;
+    }
+
+    .text-input:focus, .select-input:focus, .textarea-input:focus {
+      outline: none;
+      border-color: var(--navy-900);
+    }
+
+    .textarea-input {
+      resize: vertical;
+      min-height: 72px;
+    }
+
+    /* Summary Card */
+    .summary-card {
+      background-color: var(--navy-900);
+      color: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 20px;
+    }
+
+    .summary-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      margin-bottom: 16px;
+    }
+
+    .summary-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+
+    .summary-total {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-top: 4px;
+    }
+
+    .tonnage-badge {
+      background-color: var(--amber-600);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 10px;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+
+    .breakdown-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 16px;
+    }
+
+    .breakdown-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
+    }
+
+    .breakdown-list li:last-child {
+      border-bottom: none;
+    }
+
+    .breakdown-list strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .summary-note {
+      font-size: 12px;
+      color: #94a3b8;
+      margin: 0;
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      width: 100%;
+      background-color: var(--amber-600);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 13px 18px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--amber-700);
+    }
+
+    .status-banner {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background-color: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #065f46;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .status-banner.visible {
+      display: block;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background-color: var(--bg-card);
+      padding: 24px 20px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      align-items: center;
+    }
+
+    .footer-meta {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .footer-links-row {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+
+    a[href^="mailto:"],
+    a[href^="http"] {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 12px;
+      color: var(--navy-800);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    a[href^="mailto:"]:hover,
+    a[href^="http"]:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .option-grid,
+      .option-grid.cols-3,
+      .input-row,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-banner,
+      .panel,
+      .summary-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.2" stroke-linecap="round">
+            <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/>
+            <circle cx="12" cy="12" r="3.5" fill="#ffffff" stroke="none"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Kansas City HVAC</div>
+          <div class="brand-loc">Kansas City, KS | Commercial &amp; Residential Climate Systems</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a class="phone-pill tabular" href="tel:9132842224">Call 913-284-2224</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero-banner">
+      <div class="hero-copy">
+        <span class="eyebrow">B2B &amp; Residential Sizing Desk</span>
+        <h1>HVAC System Sizing, Replacement &amp; Repair Cost Estimator</h1>
+        <p>Calculate recommended tonnage, SEER2 efficiency tier, and itemized USD project investment for Kansas City, KS properties before scheduling an on-site load inspection.</p>
+        <div class="service-chips">
+          <span class="service-chip">AC Repair &amp; Installation</span>
+          <span class="service-chip">Furnace Repair</span>
+          <span class="service-chip">HVAC Maintenance</span>
+          <span class="service-chip">Heat Pump Services</span>
+          <span class="service-chip">Indoor Air Quality</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="workspace-grid">
+      <!-- Left: Interactive Controls -->
+      <section class="panel" aria-label="System Parameters">
+        <h2 class="panel-title">1. Property &amp; System Parameters</h2>
+        <p class="panel-sub">Adjust conditioned square footage, equipment scope, and dispatch priority.</p>
+
+        <div class="form-group">
+          <label class="field-label" for="sqftRange">
+            <span>Conditioned Area (sq ft)</span>
+            <span class="value-badge tabular" id="sqftDisplay">2,200 sq ft</span>
+          </label>
+          <input type="range" id="sqftRange" name="sqft" min="800" max="5500" step="100" value="2200" autocomplete="off">
+          <div class="range-scale tabular">
+            <span>800 sq ft</span>
+            <span>2,500 sq ft</span>
+            <span>4,000 sq ft</span>
+            <span>5,500 sq ft</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="field-label">
+            <span>Equipment &amp; Work Type</span>
+          </div>
+          <div class="option-grid" id="workTypeGroup">
+            <button type="button" class="opt-btn active" data-work="ac">
+              <span class="opt-btn-title">Central AC System</span>
+              <span class="opt-btn-desc">Condenser, coil &amp; refrigerant line</span>
+            </button>
+            <button type="button" class="opt-btn" data-work="furnace">
+              <span class="opt-btn-title">Gas Furnace</span>
+              <span class="opt-btn-desc">High-efficiency heating unit</span>
+            </button>
+            <button type="button" class="opt-btn" data-work="dualfuel">
+              <span class="opt-btn-title">Full Dual-Fuel</span>
+              <span class="opt-btn-desc">Heat pump + gas furnace hybrid</span>
+            </button>
+            <button type="button" class="opt-btn" data-work="heatpump">
+              <span class="opt-btn-title">Heat Pump System</span>
+              <span class="opt-btn-desc">All-electric heating &amp; cooling</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="field-label">
+            <span>Efficiency Tier (SEER2)</span>
+          </div>
+          <div class="option-grid cols-3" id="seerGroup">
+            <button type="button" class="opt-btn" data-seer="14.3">
+              <span class="opt-btn-title">14.3 SEER2</span>
+              <span class="opt-btn-desc">Standard code</span>
+            </button>
+            <button type="button" class="opt-btn active" data-seer="16.5">
+              <span class="opt-btn-title">16.5 SEER2</span>
+              <span class="opt-btn-desc">Two-stage value</span>
+            </button>
+            <button type="button" class="opt-btn" data-seer="19.0">
+              <span class="opt-btn-title">19.0+ SEER2</span>
+              <span class="opt-btn-desc">Variable inverter</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="field-label" for="urgencySelect">
+            <span>Dispatch Urgency</span>
+          </label>
+          <select id="urgencySelect" name="urgency" class="select-input" autocomplete="off">
+            <option value="standard">Standard Scheduled (3-5 Business Days)</option>
+            <option value="priority">Priority Next-Day Service (+$225)</option>
+            <option value="emergency">Same-Day Emergency Dispatch (+$450)</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <div class="field-label">
+            <span>Optional Add-Ons</span>
+          </div>
+          <div class="option-grid" id="addonGroup">
+            <button type="button" class="opt-btn" data-addon="iaq">
+              <span class="opt-btn-title">Indoor Air Quality</span>
+              <span class="opt-btn-desc">HEPA + UV-C purifier (+$890)</span>
+            </button>
+            <button type="button" class="opt-btn" data-addon="thermostat">
+              <span class="opt-btn-title">Smart Thermostat</span>
+              <span class="opt-btn-desc">Zoning-ready control (+$340)</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right: Live Estimate & Dispatch Request -->
+      <div>
+        <section class="summary-card" aria-label="Cost Estimate Summary">
+          <div class="summary-header">
+            <div>
+              <div class="summary-label">Estimated Project Investment</div>
+              <div class="summary-total tabular" id="totalRange">$6,450 - $7,650</div>
+            </div>
+            <div class="tonnage-badge tabular" id="tonnageBadge">3.5 Ton | 42,000 BTU</div>
+          </div>
+          <ul class="breakdown-list tabular">
+            <li><span>Equipment &amp; Sizing Tier</span><strong id="equipCost">$4,600</strong></li>
+            <li><span>Installation &amp; Commissioning</span><strong id="laborCost">$1,850</strong></li>
+            <li><span>Efficiency &amp; Add-On Adjustments</span><strong id="addonCost">$600</strong></li>
+            <li><span>Dispatch Priority Fee</span><strong id="urgencyCost">$0</strong></li>
+          </ul>
+          <p class="summary-note">Preliminary Manual J sizing estimate for Kansas City, KS climate zone. Final quote confirmed after ductwork inspection.</p>
+        </section>
+
+        <section class="panel" aria-label="Request Estimate">
+          <h2 class="panel-title">2. Request On-Site Load Verification</h2>
+          <p class="panel-sub">Lock in your sizing parameters and schedule a technician visit.</p>
+
+          <form id="quoteForm">
+            <div class="input-row form-group">
+              <div>
+                <label class="field-label" for="contactName">Full Name</label>
+                <input type="text" id="contactName" name="name" class="text-input" placeholder="Jordan Miller" autocomplete="name" required>
+              </div>
+              <div>
+                <label class="field-label" for="contactPhone">Phone Number</label>
+                <input type="tel" id="contactPhone" name="phone" class="text-input" placeholder="913-555-0148" autocomplete="tel" required>
+              </div>
+            </div>
+
+            <div class="input-row form-group">
+              <div>
+                <label class="field-label" for="contactEmail">Work or Personal Email</label>
+                <input type="email" id="contactEmail" name="email" class="text-input" placeholder="facilities@company.com" autocomplete="email" required>
+              </div>
+              <div>
+                <label class="field-label" for="contactZip">Kansas City ZIP</label>
+                <input type="text" id="contactZip" name="postal-code" class="text-input" placeholder="66101" autocomplete="postal-code" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="field-label" for="projectNotes">System Notes or Existing Unit Model</label>
+              <textarea id="projectNotes" name="notes" class="textarea-input" placeholder="Current unit age, airflow issues, or commercial roof access details" autocomplete="off"></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Submit Sizing &amp; Dispatch Request</button>
+            <div class="status-banner" id="formStatus" role="status">
+              Request logged for Kansas City HVAC. Our dispatch desk will call 913-284-2224 confirmation within 30 minutes.
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-meta"><strong>Kansas City HVAC</strong> &middot; Kansas City, KS</div>
+      <div class="footer-meta tabular">Direct Dispatch: 913-284-2224</div>
+      <div class="footer-links-row">
+        <a href="mailto:office@kansascityhvac.com">office@kansascityhvac.com</a>
+        <a href="https://www.kansascityhvac.com" target="_blank" rel="noopener noreferrer">https://www.kansascityhvac.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        sqft: 2200,
+        work: 'ac',
+        seer: 16.5,
+        urgency: 'standard',
+        addons: new Set()
+      };
+
+      const workBase = {
+        ac: { equip: 3600, labor: 1650 },
+        furnace: { equip: 3100, labor: 1450 },
+        dualfuel: { equip: 6400, labor: 2600 },
+        heatpump: { equip: 4900, labor: 2100 }
+      };
+
+      const seerMultiplier = {
+        '14.3': 1.0,
+        '16.5': 1.18,
+        '19.0': 1.38
+      };
+
+      const urgencyFee = {
+        standard: 0,
+        priority: 225,
+        emergency: 450
+      };
+
+      const addonPrices = {
+        iaq: 890,
+        thermostat: 340
+      };
+
+      const sqftRange = document.getElementById('sqftRange');
+      const sqftDisplay = document.getElementById('sqftDisplay');
+      const urgencySelect = document.getElementById('urgencySelect');
+      const totalRange = document.getElementById('totalRange');
+      const tonnageBadge = document.getElementById('tonnageBadge');
+      const equipCostEl = document.getElementById('equipCost');
+      const laborCostEl = document.getElementById('laborCost');
+      const addonCostEl = document.getElementById('addonCost');
+      const urgencyCostEl = document.getElementById('urgencyCost');
+
+      function formatUSD(val) {
+        return '$' + Math.round(val).toLocaleString('en-US');
+      }
+
+      function computeTonnage(sqft) {
+        const raw = sqft / 600;
+        const rounded = Math.max(1.5, Math.min(5.0, Math.round(raw * 2) / 2));
+        return rounded;
+      }
+
+      function updateEstimate() {
+        const tons = computeTonnage(state.sqft);
+        const btu = Math.round(tons * 12000);
+        tonnageBadge.textContent = tons.toFixed(1) + ' Ton | ' + btu.toLocaleString('en-US') + ' BTU';
+        sqftDisplay.textContent = state.sqft.toLocaleString('en-US') + ' sq ft';
+
+        const base = workBase[state.work];
+        const sizeFactor = 0.75 + (tons / 3.5) * 0.35;
+        const equip = base.equip * sizeFactor;
+        const labor = base.labor * (0.85 + (tons / 5.0) * 0.25);
+        const seerDelta = equip * (seerMultiplier[String(state.seer)] - 1);
+
+        let addonsTotal = 0;
+        state.addons.forEach(function (key) {
+          addonsTotal += addonPrices[key] || 0;
+        });
+
+        const urg = urgencyFee[state.urgency] || 0;
+        const total = equip + labor + seerDelta + addonsTotal + urg;
+        const low = Math.round((total * 0.94) / 50) * 50;
+        const high = Math.round((total * 1.08) / 50) * 50;
+
+        equipCostEl.textContent = formatUSD(equip);
+        laborCostEl.textContent = formatUSD(labor);
+        addonCostEl.textContent = formatUSD(seerDelta + addonsTotal);
+        urgencyCostEl.textContent = formatUSD(urg);
+        totalRange.textContent = formatUSD(low) + ' - ' + formatUSD(high);
+      }
+
+      sqftRange.addEventListener('input', function (e) {
+        state.sqft = parseInt(e.target.value, 10);
+        updateEstimate();
+      });
+
+      document.getElementById('workTypeGroup').addEventListener('click', function (e) {
+        const btn = e.target.closest('.opt-btn');
+        if (!btn) return;
+        this.querySelectorAll('.opt-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        state.work = btn.getAttribute('data-work');
+        updateEstimate();
+      });
+
+      document.getElementById('seerGroup').addEventListener('click', function (e) {
+        const btn = e.target.closest('.opt-btn');
+        if (!btn) return;
+        this.querySelectorAll('.opt-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        state.seer = parseFloat(btn.getAttribute('data-seer'));
+        updateEstimate();
+      });
+
+      document.getElementById('addonGroup').addEventListener('click', function (e) {
+        const btn = e.target.closest('.opt-btn');
+        if (!btn) return;
+        const key = btn.getAttribute('data-addon');
+        if (state.addons.has(key)) {
+          state.addons.delete(key);
+          btn.classList.remove('active');
+        } else {
+          state.addons.add(key);
+          btn.classList.add('active');
+        }
+        updateEstimate();
+      });
+
+      urgencySelect.addEventListener('change', function (e) {
+        state.urgency = e.target.value;
+        updateEstimate();
+      });
+
+      document.getElementById('quoteForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        document.getElementById('formStatus').classList.add('visible');
+      });
+
+      updateEstimate();
+    })();
+  </script>
+</body>
+</html>

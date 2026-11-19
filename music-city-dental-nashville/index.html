@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Music City Dental in Nashville, TN — Interactive Dental Treatment and Insurance Coverage Estimator for General Dentistry, Cosmetic Dentistry, Dental Implants, Teeth Whitening, and Emergency Dental Care.">
+  <title>Music City Dental — Treatment &amp; Insurance Coverage Estimator | Nashville, TN</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E252B'/%3E%3Cpath d='M16 6c-3.8 0-6.5 2.4-6.5 6.1 0 2.5 1 4.4 1.8 6.8.7 2.1 1.1 4.7 2 6.1.5.8 1.3.8 1.7 0 .6-1.3.7-3.7 1-3.7s.4 2.4 1 3.7c.4.8 1.2.8 1.7 0 .9-1.4 1.3-4 2-6.1.8-2.4 1.8-4.3 1.8-6.8C22.5 8.4 19.8 6 16 6z' fill='%23C99A3E'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAF8F4;
+      --surface: #FFFFFF;
+      --surface-alt: #F3EFE6;
+      --surface-warm: #EDE6D8;
+      --ink: #1E252B;
+      --ink-muted: #55606B;
+      --accent: #B38328;
+      --accent-strong: #966B1B;
+      --accent-soft: #F7F0E0;
+      --border: #E2DACB;
+      --border-strong: #CFC4B0;
+      --success: #2A6F4E;
+      --success-bg: #EBF5F0;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 2px 8px rgba(30, 37, 43, 0.05);
+      --shadow-md: 0 10px 30px rgba(30, 37, 43, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      color: var(--ink);
+    }
+
+    .num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      background-color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-loc {
+      font-size: 12px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background-color: var(--surface-alt);
+      border: 1px solid var(--border);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .phone-pill:hover {
+      background-color: var(--surface-warm);
+      border-color: var(--border-strong);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 36px 0 24px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background-color: var(--accent-soft);
+      border: 1px solid #E5D4B0;
+      color: var(--accent-strong);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      max-width: 780px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 680px;
+      color: var(--ink-muted);
+      font-size: 16px;
+    }
+
+    /* Main Workspace Grid */
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.95fr);
+      gap: 24px;
+      align-items: start;
+      padding-bottom: 40px;
+    }
+
+    .card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 24px;
+      min-width: 0;
+    }
+
+    .card-title {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .card-subtitle {
+      font-size: 14px;
+      color: var(--ink-muted);
+      margin: 0 0 20px;
+    }
+
+    /* Form Controls */
+    .field-group {
+      margin-bottom: 20px;
+    }
+
+    .field-label, label.control-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px;
+      letter-spacing: 0.01em;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 10px;
+    }
+
+    .choice-btn {
+      appearance: none;
+      background-color: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      text-align: left;
+      cursor: pointer;
+      color: var(--ink);
+      font-family: inherit;
+      transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .choice-btn:hover {
+      background-color: var(--surface-warm);
+      border-color: var(--border-strong);
+    }
+
+    .choice-btn[aria-pressed="true"] {
+      background-color: var(--accent-soft);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .choice-title {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .choice-meta {
+      display: block;
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    select.input-control,
+    input.input-control,
+    textarea.input-control {
+      width: 100%;
+      padding: 11px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface);
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 14px;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    select.input-control:focus,
+    input.input-control:focus,
+    textarea.input-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(179, 131, 40, 0.16);
+    }
+
+    /* Stepper */
+    .stepper {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--surface);
+      overflow: hidden;
+    }
+
+    .stepper-btn {
+      appearance: none;
+      width: 42px;
+      height: 42px;
+      border: none;
+      background-color: var(--surface-alt);
+      color: var(--ink);
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background-color 0.15s ease;
+    }
+
+    .stepper-btn:hover {
+      background-color: var(--surface-warm);
+    }
+
+    .stepper input {
+      border: none;
+      text-align: center;
+      font-weight: 700;
+      width: 100%;
+      min-width: 0;
+      padding: 8px 4px;
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--ink);
+      background: transparent;
+    }
+
+    .stepper input:focus {
+      outline: none;
+    }
+
+    /* Segmented Toggle */
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      background-color: var(--surface-alt);
+      padding: 5px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+    }
+
+    .seg-btn {
+      appearance: none;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      background-color: transparent;
+      cursor: pointer;
+      transition: background-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .seg-btn[aria-pressed="true"] {
+      background-color: var(--surface);
+      color: var(--ink);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ppo-panel {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background-color: var(--surface-alt);
+      border: 1px solid var(--border);
+    }
+
+    .ppo-panel[hidden] {
+      display: none;
+    }
+
+    /* Summary Card */
+    .summary-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 24px;
+      min-width: 0;
+    }
+
+    .estimate-hero {
+      background-color: var(--ink);
+      color: #FFFFFF;
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .estimate-kicker {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #D7C6A3;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .estimate-amount {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(30px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .estimate-note {
+      font-size: 13px;
+      color: #CBD3DA;
+      margin: 0;
+    }
+
+    .breakdown-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .breakdown-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .breakdown-label {
+      color: var(--ink-muted);
+    }
+
+    .breakdown-val {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .breakdown-val.savings {
+      color: var(--success);
+    }
+
+    /* Booking Form */
+    .booking-box {
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .booking-box h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .form-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .submit-btn {
+      appearance: none;
+      width: 100%;
+      padding: 13px 18px;
+      border: none;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent);
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.18s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: var(--accent-strong);
+    }
+
+    .form-status {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--success-bg);
+      color: var(--success);
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid #B7DEC9;
+    }
+
+    .form-status[hidden] {
+      display: none;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background-color: var(--surface);
+      padding: 24px 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 20px;
+      align-items: center;
+    }
+
+    .footer-meta {
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    .footer-links-row {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-links-row a[href^="mailto:"],
+    .footer-links-row a[href^="http"] {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 12px;
+      color: var(--accent-strong);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .footer-links-row a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 920px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .two-col,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .card,
+      .summary-card {
+        padding: 18px;
+      }
+      .phone-pill {
+        padding: 8px 11px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#estimator">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3C7.8 3 5 5.6 5 9.6c0 2.7 1.1 4.8 1.9 7.3.7 2.2 1.2 4.6 2.1 5.6.5.6 1.3.5 1.7-.3.6-1.2.7-3.4 1.3-3.4s.7 2.2 1.3 3.4c.4.8 1.2.9 1.7.3.9-1 1.4-3.4 2.1-5.6.8-2.5 1.9-4.6 1.9-7.3C19 5.6 16.2 3 12 3z" fill="#C99A3E"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Music City Dental</span>
+          <span class="brand-loc">Nashville, TN</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a class="phone-pill num" href="tel:+16159532469">+1-(615) 953-2469</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="estimator">
+    <section class="hero">
+      <div class="hero-badge">Nashville Patient Cost Planner</div>
+      <h1>Dental Treatment &amp; Insurance Coverage Estimator</h1>
+      <p>Calculate transparent out-of-pocket estimates in USD for General Dentistry, Cosmetic Dentistry, Dental Implants, Teeth Whitening, and Emergency Dental Care before your visit.</p>
+    </section>
+
+    <section class="workspace" aria-label="Interactive Dental Estimator">
+      <div class="card">
+        <h2 class="card-title">1. Configure Your Treatment Plan</h2>
+        <p class="card-subtitle">Select a service category, specific procedure, quantity, and payment method.</p>
+
+        <div class="field-group">
+          <div class="field-label">Service Category</div>
+          <div class="service-grid" id="serviceButtons">
+            <button type="button" class="choice-btn" data-service="general" aria-pressed="true">
+              <span class="choice-title">General Dentistry</span>
+              <span class="choice-meta">Exams, cleanings, fillings</span>
+            </button>
+            <button type="button" class="choice-btn" data-service="cosmetic" aria-pressed="false">
+              <span class="choice-title">Cosmetic Dentistry</span>
+              <span class="choice-meta">Veneers, bonding, crowns</span>
+            </button>
+            <button type="button" class="choice-btn" data-service="implants" aria-pressed="false">
+              <span class="choice-title">Dental Implants</span>
+              <span class="choice-meta">Single implant &amp; crown</span>
+            </button>
+            <button type="button" class="choice-btn" data-service="whitening" aria-pressed="false">
+              <span class="choice-title">Teeth Whitening</span>
+              <span class="choice-meta">In-office &amp; take-home</span>
+            </button>
+            <button type="button" class="choice-btn" data-service="emergency" aria-pressed="false">
+              <span class="choice-title">Emergency Dental Care</span>
+              <span class="choice-meta">Same-day relief &amp; repair</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="two-col field-group">
+          <div>
+            <label class="control-label" for="procedureSelect">Procedure</label>
+            <select id="procedureSelect" class="input-control" autocomplete="off"></select>
+          </div>
+          <div>
+            <label class="control-label" for="unitCount">Teeth / Sessions</label>
+            <div class="stepper">
+              <button type="button" class="stepper-btn" id="qtyMinus" aria-label="Decrease quantity">-</button>
+              <input type="number" id="unitCount" class="num" min="1" max="16" value="1" autocomplete="off">
+              <button type="button" class="stepper-btn" id="qtyPlus" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">Coverage Method</div>
+          <div class="segmented">
+            <button type="button" class="seg-btn" id="modePPO" aria-pressed="true">PPO Dental Insurance</button>
+            <button type="button" class="seg-btn" id="modeSelf" aria-pressed="false">Self-Pay (No Insurance)</button>
+          </div>
+
+          <div class="ppo-panel" id="ppoPanel">
+            <div class="two-col">
+              <div>
+                <label class="control-label" for="ppoTier">PPO Plan Tier</label>
+                <select id="ppoTier" class="input-control" autocomplete="off">
+                  <option value="standard">Standard PPO (80% Prev / 50% Major)</option>
+                  <option value="plus">Enhanced PPO (100% Prev / 60% Major)</option>
+                  <option value="basic">Basic PPO (70% Prev / 40% Major)</option>
+                </select>
+              </div>
+              <div>
+                <label class="control-label" for="deductibleLeft">Remaining Deductible (USD)</label>
+                <input type="number" id="deductibleLeft" class="input-control num" min="0" max="500" step="10" value="50" autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="summary-card" aria-label="Estimated Cost Summary">
+        <div class="estimate-hero">
+          <div class="estimate-kicker">Estimated Out-of-Pocket</div>
+          <div class="estimate-amount num" id="outOfPocket">$0</div>
+          <p class="estimate-note" id="estimateSummaryNote">Includes PPO coverage calculation for Nashville clinic rates.</p>
+        </div>
+
+        <ul class="breakdown-list">
+          <li>
+            <span class="breakdown-label">Standard Clinic Fee</span>
+            <span class="breakdown-val num" id="grossTotal">$0</span>
+          </li>
+          <li>
+            <span class="breakdown-label" id="discountRowLabel">PPO Insurance Coverage</span>
+            <span class="breakdown-val savings num" id="coverageAmount">-$0</span>
+          </li>
+          <li>
+            <span class="breakdown-label">Applied Deductible</span>
+            <span class="breakdown-val num" id="deductibleApplied">$0</span>
+          </li>
+          <li>
+            <span class="breakdown-label">Est. Monthly Financing (12 mo)</span>
+            <span class="breakdown-val num" id="monthlyPlan">$0/mo</span>
+          </li>
+        </ul>
+
+        <div class="booking-box">
+          <h3>Request Appointment &amp; Benefits Check</h3>
+          <form id="bookingForm" class="form-stack">
+            <div>
+              <label class="control-label" for="patientName">Full Name</label>
+              <input type="text" id="patientName" class="input-control" placeholder="Jordan Miller" required autocomplete="name">
+            </div>
+            <div class="two-col">
+              <div>
+                <label class="control-label" for="patientPhone">Phone Number</label>
+                <input type="tel" id="patientPhone" class="input-control" placeholder="(615) 555-0148" required autocomplete="tel">
+              </div>
+              <div>
+                <label class="control-label" for="patientEmail">Email Address</label>
+                <input type="email" id="patientEmail" class="input-control" placeholder="jordan@example.com" required autocomplete="email">
+              </div>
+            </div>
+            <div>
+              <label class="control-label" for="patientNotes">Preferred Day or Insurance Carrier</label>
+              <textarea id="patientNotes" class="input-control" rows="2" placeholder="Delta Dental PPO, Tuesday morning preferred" autocomplete="off"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Estimate &amp; Request Visit</button>
+          </form>
+          <div id="formStatus" class="form-status" hidden>
+            Request received for Music City Dental. Our Nashville coordinator will confirm your exact benefits and appointment time at +1-(615) 953-2469.
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-meta">
+        <strong>Music City Dental</strong> — Nashville, TN | General, Cosmetic, Implants, Whitening &amp; Emergency Care
+      </div>
+      <div class="footer-meta num">
+        Direct Line: +1-(615) 953-2469
+      </div>
+      <div class="footer-links-row">
+        <a href="https://www.musiccitydental.com" target="_blank" rel="noopener noreferrer">https://www.musiccitydental.com</a>
+        <a href="mailto:info@musiccitydental.com">info@musiccitydental.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const CATALOG = {
+        general: {
+          label: 'General Dentistry',
+          procedures: [
+            { id: 'exam-clean', name: 'Comprehensive Exam & Cleaning', fee: 215, tier: 'preventive' },
+            { id: 'filling', name: 'Tooth-Colored Composite Filling', fee: 265, tier: 'basic' },
+            { id: 'crown-gen', name: 'Porcelain Crown Restoration', fee: 1290, tier: 'major' }
+          ]
+        },
+        cosmetic: {
+          label: 'Cosmetic Dentistry',
+          procedures: [
+            { id: 'veneer', name: 'Custom Porcelain Veneer', fee: 1450, tier: 'cosmetic' },
+            { id: 'bonding', name: 'Cosmetic Dental Bonding', fee: 390, tier: 'cosmetic' },
+            { id: 'smile-design', name: 'Digital Smile Design Consult & Mockup', fee: 320, tier: 'cosmetic' }
+          ]
+        },
+        implants: {
+          label: 'Dental Implants',
+          procedures: [
+            { id: 'single-implant', name: 'Single Titanium Implant + Abutment + Crown', fee: 3950, tier: 'major' },
+            { id: 'implant-consult', name: '3D CBCT Scan & Implant Planning', fee: 280, tier: 'basic' }
+          ]
+        },
+        whitening: {
+          label: 'Teeth Whitening',
+          procedures: [
+            { id: 'in-office', name: 'In-Office LED Whitening Session', fee: 540, tier: 'cosmetic' },
+            { id: 'take-home', name: 'Custom Take-Home Whitening Trays', fee: 295, tier: 'cosmetic' }
+          ]
+        },
+        emergency: {
+          label: 'Emergency Dental Care',
+          procedures: [
+            { id: 'er-exam', name: 'Same-Day Emergency Exam & Digital X-Ray', fee: 145, tier: 'basic' },
+            { id: 'root-canal', name: 'Emergency Root Canal Therapy', fee: 1120, tier: 'major' },
+            { id: 'extraction', name: 'Simple Tooth Extraction', fee: 290, tier: 'basic' }
+          ]
+        }
+      };
+
+      const PPO_RATES = {
+        standard: { preventive: 0.80, basic: 0.70, major: 0.50, cosmetic: 0.00 },
+        plus: { preventive: 1.00, basic: 0.80, major: 0.60, cosmetic: 0.15 },
+        basic: { preventive: 0.70, basic: 0.55, major: 0.40, cosmetic: 0.00 }
+      };
+
+      let state = {
+        service: 'general',
+        coverageMode: 'ppo'
+      };
+
+      const serviceButtons = document.querySelectorAll('#serviceButtons .choice-btn');
+      const procedureSelect = document.getElementById('procedureSelect');
+      const unitCount = document.getElementById('unitCount');
+      const qtyMinus = document.getElementById('qtyMinus');
+      const qtyPlus = document.getElementById('qtyPlus');
+      const modePPO = document.getElementById('modePPO');
+      const modeSelf = document.getElementById('modeSelf');
+      const ppoPanel = document.getElementById('ppoPanel');
+      const ppoTier = document.getElementById('ppoTier');
+      const deductibleLeft = document.getElementById('deductibleLeft');
+
+      const outOfPocketEl = document.getElementById('outOfPocket');
+      const estimateSummaryNote = document.getElementById('estimateSummaryNote');
+      const grossTotalEl = document.getElementById('grossTotal');
+      const discountRowLabel = document.getElementById('discountRowLabel');
+      const coverageAmountEl = document.getElementById('coverageAmount');
+      const deductibleAppliedEl = document.getElementById('deductibleApplied');
+      const monthlyPlanEl = document.getElementById('monthlyPlan');
+
+      const bookingForm = document.getElementById('bookingForm');
+      const formStatus = document.getElementById('formStatus');
+
+      function formatUSD(amount) {
+        return '$' + Math.round(amount).toLocaleString('en-US');
+      }
+
+      function populateProcedures() {
+        const list = CATALOG[state.service].procedures;
+        procedureSelect.innerHTML = '';
+        list.forEach(function (item) {
+          const opt = document.createElement('option');
+          opt.value = item.id;
+          opt.textContent = item.name + ' (' + formatUSD(item.fee) + ')';
+          procedureSelect.appendChild(opt);
+        });
+      }
+
+      function getSelectedProcedure() {
+        const list = CATALOG[state.service].procedures;
+        return list.find(function (p) { return p.id === procedureSelect.value; }) || list[0];
+      }
+
+      function calculate() {
+        const proc = getSelectedProcedure();
+        const qty = Math.max(1, Math.min(16, parseInt(unitCount.value, 10) || 1));
+        unitCount.value = qty;
+
+        const gross = proc.fee * qty;
+        let covered = 0;
+        let appliedDeductible = 0;
+        let finalCost = gross;
+
+        if (state.coverageMode === 'ppo') {
+          const rates = PPO_RATES[ppoTier.value];
+          const rate = rates[proc.tier] || 0;
+          const rawDeductible = Math.max(0, Math.min(500, parseFloat(deductibleLeft.value) || 0));
+
+          if (proc.tier === 'preventive') {
+            appliedDeductible = 0;
+            covered = gross * rate;
+          } else if (rate > 0) {
+            appliedDeductible = Math.min(rawDeductible, gross);
+            const eligible = Math.max(0, gross - appliedDeductible);
+            covered = eligible * rate;
+          } else {
+            appliedDeductible = 0;
+            covered = 0;
+          }
+
+          finalCost = Math.max(0, gross - covered);
+          discountRowLabel.textContent = 'PPO Insurance Coverage';
+          estimateSummaryNote.textContent = rate > 0
+            ? 'Estimated with ' + Math.round(rate * 100) + '% PPO coverage for ' + proc.name + '.'
+            : 'Cosmetic procedures typically have 0% standard PPO coverage.';
+        } else {
+          covered = gross * 0.10;
+          appliedDeductible = 0;
+          finalCost = gross - covered;
+          discountRowLabel.textContent = 'Self-Pay Prompt Courtesy (10%)';
+          estimateSummaryNote.textContent = 'Includes 10% self-pay courtesy discount at Music City Dental.';
+        }
+
+        const monthly = finalCost / 12;
+
+        grossTotalEl.textContent = formatUSD(gross);
+        coverageAmountEl.textContent = '-' + formatUSD(covered);
+        deductibleAppliedEl.textContent = formatUSD(appliedDeductible);
+        outOfPocketEl.textContent = formatUSD(finalCost);
+        monthlyPlanEl.textContent = formatUSD(monthly) + '/mo';
+      }
+
+      serviceButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.service = btn.getAttribute('data-service');
+          serviceButtons.forEach(function (b) {
+            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+          });
+          populateProcedures();
+          calculate();
+        });
+      });
+
+      modePPO.addEventListener('click', function () {
+        state.coverageMode = 'ppo';
+        modePPO.setAttribute('aria-pressed', 'true');
+        modeSelf.setAttribute('aria-pressed', 'false');
+        ppoPanel.hidden = false;
+        calculate();
+      });
+
+      modeSelf.addEventListener('click', function () {
+        state.coverageMode = 'self';
+        modePPO.setAttribute('aria-pressed', 'false');
+        modeSelf.setAttribute('aria-pressed', 'true');
+        ppoPanel.hidden = true;
+        calculate();
+      });
+
+      qtyMinus.addEventListener('click', function () {
+        const current = parseInt(unitCount.value, 10) || 1;
+        if (current > 1) {
+          unitCount.value = current - 1;
+          calculate();
+        }
+      });
+
+      qtyPlus.addEventListener('click', function () {
+        const current = parseInt(unitCount.value, 10) || 1;
+        if (current < 16) {
+          unitCount.value = current + 1;
+          calculate();
+        }
+      });
+
+      procedureSelect.addEventListener('change', calculate);
+      unitCount.addEventListener('input', calculate);
+      ppoTier.addEventListener('change', calculate);
+      deductibleLeft.addEventListener('input', calculate);
+
+      bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        formStatus.hidden = false;
+        bookingForm.reset();
+      });
+
+      populateProcedures();
+      calculate();
+    })();
+  </script>
+</body>
+</html>
