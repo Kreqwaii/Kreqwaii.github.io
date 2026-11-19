@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Next-Gen Plumbing and Heating Ltd. in Winnipeg, MB. High-efficiency furnaces, hot water tanks, sump pumps, drain cleaning, and backflow preventers. Live CAD quote estimator.">
+  <title>Next-Gen Plumbing and Heating Ltd. | Winnipeg, MB</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f2942'/%3E%3Cpath d='M16 6l8 8v12h-5v-7h-6v7H8V14l8-8z' fill='%23c25e00'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-snow: #f7f8fa;
+      --bg-stone: #eef1f5;
+      --surface: #ffffff;
+      --ink-primary: #0f2942;
+      --ink-secondary: #3b4f66;
+      --ink-muted: #5c6f84;
+      --navy: #0f2942;
+      --navy-hover: #1a3b5c;
+      --copper: #b8560b;
+      --copper-light: #fdf3eb;
+      --border: #d8e0e8;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --shadow-sm: 0 2px 8px rgba(15, 41, 66, 0.05);
+      --shadow-md: 0 12px 32px rgba(15, 41, 66, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--bg-snow);
+      color: var(--ink-primary);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+      padding: 12px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink-primary);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      background-color: var(--navy);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--navy);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--copper);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      white-space: nowrap;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .header-cta:hover {
+      background-color: #9c4708;
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 56px 0 40px;
+      background: linear-gradient(180deg, var(--surface) 0%, var(--bg-snow) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--copper);
+      background-color: var(--copper-light);
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: var(--ink-secondary);
+      margin-bottom: 24px;
+      max-width: 560px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .badge-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--bg-stone);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .hero-card {
+      background-color: var(--navy);
+      color: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-card-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .contact-cell {
+      background-color: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+    }
+
+    .contact-cell-full {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #b7c8da;
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .contact-link-row {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      font-size: 12px;
+      color: #ffffff;
+      text-decoration: none;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .contact-link-row:hover {
+      text-decoration: underline;
+    }
+
+    /* Main Estimator Section */
+    .estimator-section {
+      padding: 56px 0;
+    }
+
+    .section-head {
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .section-head p {
+      color: var(--ink-secondary);
+      font-size: 15px;
+    }
+
+    .estimator-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .field-group {
+      margin-bottom: 24px;
+    }
+
+    .field-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .cat-btn {
+      appearance: none;
+      background-color: var(--bg-snow);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 12px;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .cat-btn:hover {
+      border-color: var(--navy);
+    }
+
+    .cat-btn.active {
+      background-color: var(--copper-light);
+      border-color: var(--copper);
+    }
+
+    .cat-title {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+
+    .cat-sub {
+      display: block;
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .range-wrap {
+      background-color: var(--bg-snow);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+
+    .range-slider {
+      width: 100%;
+      accent-color: var(--copper);
+      cursor: pointer;
+      height: 6px;
+    }
+
+    .range-scale {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 8px;
+    }
+
+    .toggle-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background-color: var(--bg-snow);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      cursor: pointer;
+    }
+
+    .toggle-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      display: block;
+    }
+
+    .toggle-desc {
+      font-size: 12px;
+      color: var(--ink-muted);
+      display: block;
+    }
+
+    .toggle-input {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--copper);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* Quote Summary & Form */
+    .quote-box {
+      background-color: var(--navy);
+      color: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 22px;
+      margin-bottom: 22px;
+    }
+
+    .quote-caption {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #b7c8da;
+      margin-bottom: 6px;
+    }
+
+    .quote-price {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .quote-meta {
+      font-size: 13px;
+      color: #d6e2ee;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .form-field input,
+    .form-field textarea {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background-color: var(--bg-snow);
+      color: var(--ink-primary);
+      width: 100%;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      outline: 2px solid var(--copper);
+      outline-offset: 1px;
+      background-color: var(--surface);
+    }
+
+    .submit-btn {
+      margin-top: 16px;
+      width: 100%;
+      background-color: var(--copper);
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 13px 20px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #9c4708;
+    }
+
+    .form-status {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      background-color: #e8f5ee;
+      color: #14532d;
+      display: none;
+    }
+
+    .form-status.visible {
+      display: block;
+    }
+
+    /* Services */
+    .services-section {
+      padding: 0 0 64px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .service-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .service-card p {
+      font-size: 13px;
+      color: var(--ink-secondary);
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--navy);
+      color: #d6e2ee;
+      padding: 28px 0;
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .footer-link {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      font-size: 12px;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .footer-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 860px) {
+      .hero-grid,
+      .estimator-layout {
+        grid-template-columns: 1fr;
+      }
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .category-grid,
+      .form-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-link-row,
+      .footer-link {
+        font-size: 10px;
+      }
+      .header-cta {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L4 9v11h5v-6h6v6h5V9l-8-7z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Next-Gen Plumbing and Heating Ltd.</div>
+          <div class="brand-sub">Winnipeg, MB | Furnaces, Hot Water Tanks &amp; Plumbing</div>
+        </div>
+      </a>
+      <a href="tel:2042927144" class="header-cta tabular-nums">Call 204-292-7144</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Winnipeg, Manitoba Heating &amp; Plumbing</span>
+          <h1>Reliable Furnaces, Hot Water Tanks &amp; Winter Plumbing</h1>
+          <p>Built for harsh Manitoba winters. Get an instant CAD estimate for high-efficiency furnace installations, hot water tank replacements, sump pump protection, and drain cleaning across Winnipeg.</p>
+          <div class="hero-badges">
+            <span class="badge-item">Licensed &amp; Insured in MB</span>
+            <span class="badge-item">268 Albany St, Winnipeg</span>
+            <span class="badge-item">Transparent CAD Pricing</span>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Company Contact Information">
+          <div class="hero-card-title">Direct Dispatch &amp; Office</div>
+          <div class="contact-grid">
+            <div class="contact-cell">
+              <div class="contact-label">Phone</div>
+              <a href="tel:2042927144" class="contact-value tabular-nums">204-292-7144</a>
+            </div>
+            <div class="contact-cell">
+              <div class="contact-label">Location</div>
+              <div class="contact-value">Winnipeg, MB R3J 2A8</div>
+            </div>
+            <div class="contact-cell contact-cell-full">
+              <div class="contact-label">Address</div>
+              <div class="contact-value">268 Albany St, Winnipeg, MB R3J 2A8</div>
+            </div>
+            <div class="contact-cell contact-cell-full">
+              <div class="contact-label">Website</div>
+              <a href="https://next-genplumbing.ca" target="_blank" rel="noopener noreferrer" class="contact-link-row">https://next-genplumbing.ca</a>
+            </div>
+            <div class="contact-cell contact-cell-full">
+              <div class="contact-label">Email</div>
+              <a href="mailto:info@next-genplumbing.ca" class="contact-link-row">info@next-genplumbing.ca</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="estimator-section" id="estimator">
+      <div class="container">
+        <div class="section-head">
+          <h2>Winnipeg Furnace, Hot Water Tank &amp; Winter Plumbing Quote Estimator</h2>
+          <p>Select your service category, adjust your home square footage, and toggle Manitoba Winter Priority for an instant CAD estimate.</p>
+        </div>
+
+        <div class="estimator-layout">
+          <div class="panel">
+            <div class="field-group">
+              <div class="field-label">1. Service Category</div>
+              <div class="category-grid" role="group" aria-label="Service Category">
+                <button type="button" class="cat-btn active" data-cat="furnace">
+                  <span class="cat-title">High-Efficiency Furnace</span>
+                  <span class="cat-sub">96%+ AFUE heating systems</span>
+                </button>
+                <button type="button" class="cat-btn" data-cat="tank">
+                  <span class="cat-title">Hot Water Tank</span>
+                  <span class="cat-sub">Gas, electric &amp; tankless</span>
+                </button>
+                <button type="button" class="cat-btn" data-cat="sump">
+                  <span class="cat-title">Sump Pump &amp; Backflow</span>
+                  <span class="cat-sub">Flood &amp; preventer protection</span>
+                </button>
+                <button type="button" class="cat-btn" data-cat="drain">
+                  <span class="cat-title">Drain Cleaning</span>
+                  <span class="cat-sub">Main line &amp; thaw service</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">
+                <span>2. Home Size (sq ft)</span>
+                <span class="tabular-nums" id="sqftDisplay">1,600 sq ft</span>
+              </div>
+              <div class="range-wrap">
+                <input type="range" id="sqftSlider" class="range-slider" min="800" max="4000" step="100" value="1600" autocomplete="off" aria-label="Home Size in square feet">
+                <div class="range-scale tabular-nums">
+                  <span>800 sq ft</span>
+                  <span>2,400 sq ft</span>
+                  <span>4,000 sq ft</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">3. Scheduling Priority</div>
+              <label class="toggle-card" for="winterPriority">
+                <span>
+                  <span class="toggle-title">Manitoba Winter Priority</span>
+                  <span class="toggle-desc">Same-day cold-weather dispatch &amp; freeze protection</span>
+                </span>
+                <input type="checkbox" id="winterPriority" class="toggle-input" autocomplete="off">
+              </label>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="quote-box">
+              <div class="quote-caption">Estimated Investment (CAD $)</div>
+              <div class="quote-price tabular-nums" id="quoteRange">$4,250 - $5,100 CAD</div>
+              <div class="quote-meta" id="quoteSummary">High-Efficiency Furnace | 1,600 sq ft | Standard Scheduling</div>
+            </div>
+
+            <form id="quoteForm">
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="custName">Full Name</label>
+                  <input type="text" id="custName" name="name" placeholder="Jordan Kowalski" autocomplete="name" required>
+                </div>
+                <div class="form-field">
+                  <label for="custPhone">Phone Number</label>
+                  <input type="tel" id="custPhone" name="tel" placeholder="204-555-0192" autocomplete="tel" required>
+                </div>
+                <div class="form-field full">
+                  <label for="custEmail">Email Address</label>
+                  <input type="email" id="custEmail" name="email" placeholder="jordan@example.ca" autocomplete="email" required>
+                </div>
+                <div class="form-field full">
+                  <label for="custAddress">Winnipeg Service Address</label>
+                  <input type="text" id="custAddress" name="address" placeholder="142 Portage Ave, Winnipeg, MB" autocomplete="street-address" required>
+                </div>
+              </div>
+              <button type="submit" class="submit-btn">Request Exact Winnipeg Quote</button>
+              <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Core Plumbing &amp; Heating Services</h2>
+          <p>Complete residential and light commercial mechanical care in Winnipeg, MB.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <h3>Hot Water Tanks</h3>
+            <p>Fast replacement and repair of gas and electric hot water tanks sized for Winnipeg households.</p>
+          </article>
+          <article class="service-card">
+            <h3>Drain Cleaning</h3>
+            <p>Rooter clearing, camera inspections, and winter drain thawing for backed-up lines.</p>
+          </article>
+          <article class="service-card">
+            <h3>Sump Pumps</h3>
+            <p>Primary and battery-backup sump pump installations to protect basements during spring melt.</p>
+          </article>
+          <article class="service-card">
+            <h3>Furnaces &amp; Home Heating</h3>
+            <p>High-efficiency furnace installations, seasonal tune-ups, and emergency no-heat repairs.</p>
+          </article>
+          <article class="service-card">
+            <h3>Back Flow Preventer</h3>
+            <p>Certified backflow preventer installation and annual testing to keep municipal water safe.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>Next-Gen Plumbing and Heating Ltd.</strong><br>
+        268 Albany St, Winnipeg, MB R3J 2A8 | Tel: <span class="tabular-nums">204-292-7144</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://next-genplumbing.ca" target="_blank" rel="noopener noreferrer" class="footer-link">https://next-genplumbing.ca</a>
+        <a href="mailto:info@next-genplumbing.ca" class="footer-link">info@next-genplumbing.ca</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const pricing = {
+        furnace: { label: 'High-Efficiency Furnace', base: 3600, perSqft: 0.95, spread: 0.18 },
+        tank: { label: 'Hot Water Tank', base: 1450, perSqft: 0.25, spread: 0.16 },
+        sump: { label: 'Sump Pump & Backflow', base: 1150, perSqft: 0.22, spread: 0.18 },
+        drain: { label: 'Drain Cleaning', base: 240, perSqft: 0.08, spread: 0.22 }
+      };
+
+      let activeCategory = 'furnace';
+      const catButtons = document.querySelectorAll('.cat-btn');
+      const sqftSlider = document.getElementById('sqftSlider');
+      const sqftDisplay = document.getElementById('sqftDisplay');
+      const winterPriority = document.getElementById('winterPriority');
+      const quoteRange = document.getElementById('quoteRange');
+      const quoteSummary = document.getElementById('quoteSummary');
+      const quoteForm = document.getElementById('quoteForm');
+      const formStatus = document.getElementById('formStatus');
+
+      function formatCAD(val) {
+        return '$' + Math.round(val / 10) * 10;
+      }
+
+      function updateEstimate() {
+        const sqft = parseInt(sqftSlider.value, 10);
+        const isPriority = winterPriority.checked;
+        const model = pricing[activeCategory];
+
+        sqftDisplay.textContent = sqft.toLocaleString('en-CA') + ' sq ft';
+
+        let low = model.base + sqft * model.perSqft;
+        if (isPriority) {
+          low += 180;
+        }
+        const high = low * (1 + model.spread);
+
+        quoteRange.textContent = formatCAD(low).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' - ' + formatCAD(high).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' CAD';
+        quoteSummary.textContent = model.label + ' | ' + sqft.toLocaleString('en-CA') + ' sq ft | ' + (isPriority ? 'Manitoba Winter Priority' : 'Standard Scheduling');
+      }
+
+      catButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          catButtons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          activeCategory = btn.getAttribute('data-cat');
+          updateEstimate();
+        });
+      });
+
+      sqftSlider.addEventListener('input', updateEstimate);
+      winterPriority.addEventListener('change', updateEstimate);
+
+      quoteForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('custName').value.trim();
+        formStatus.textContent = 'Request received for ' + name + '. Next-Gen Plumbing and Heating Ltd. will contact you shortly.';
+        formStatus.classList.add('visible');
+        quoteForm.reset();
+      });
+
+      updateEstimate();
+    })();
+  </script>
+</body>
+</html>

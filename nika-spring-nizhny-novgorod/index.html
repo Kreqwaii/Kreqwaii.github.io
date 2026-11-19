@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Клиника НИКА СПРИНГ в Нижнем Новгороде: многопрофильная медицина, стоматология, УЗИ-диагностика, лабораторные анализы и комплексные чекапы. Онлайн-калькулятор стоимости и запись на приём.">
+  <title>НИКА СПРИНГ — Многопрофильная клиника и стоматология | Нижний Новгород</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f766e'/%3E%3Cpath d='M16 7v18M7 16h18' stroke='%23ffffff' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6faf9;
+      --surface: #ffffff;
+      --surface-alt: #eef6f5;
+      --border: #d7e6e3;
+      --border-strong: #b6d1cc;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --accent: #0f766e;
+      --accent-hover: #0d5e58;
+      --accent-soft: #ccfbf1;
+      --accent-text: #115e59;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 10px 28px rgba(15, 118, 110, 0.08);
+      --radius: 14px;
+      --radius-sm: 10px;
+      --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background-color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #ffffff;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .header-phone {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-text);
+      text-decoration: none;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background-color: var(--surface);
+      color: var(--accent-text);
+      border-color: var(--border-strong);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--surface-alt);
+      border-color: var(--accent);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 48px 0 36px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background-color: var(--accent-soft);
+      color: var(--accent-text);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      width: fit-content;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(28px, 3.6vw, 42px);
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--text);
+    }
+
+    .hero-desc {
+      margin: 0;
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 60ch;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .stats-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .stat-item {
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .stat-value {
+      font-family: var(--font-mono);
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Services */
+    .section {
+      padding: 28px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .service-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .service-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background-color: var(--surface-alt);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-card h3 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Calculator */
+    .calc-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .calc-panel, .summary-panel {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .summary-panel {
+      position: sticky;
+      top: 90px;
+    }
+
+    .field-group {
+      margin-bottom: 22px;
+    }
+
+    .field-label {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .seg-btn {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background-color: var(--surface);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .seg-btn:hover {
+      border-color: var(--accent);
+      background-color: var(--surface-alt);
+    }
+
+    .seg-btn.active {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .seg-price {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+      opacity: 0.9;
+    }
+
+    .addons-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .addon-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .addon-item:hover {
+      background-color: var(--surface-alt);
+      border-color: var(--border-strong);
+    }
+
+    .addon-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .addon-left input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .addon-price {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-text);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .summary-title {
+      margin: 0 0 16px;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .summary-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--text-muted);
+    }
+
+    .summary-row strong {
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .total-box {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .total-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .total-value {
+      font-family: var(--font-mono);
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .booking-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-field label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .form-field input {
+      width: 100%;
+      padding: 11px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--text);
+      background-color: var(--surface);
+      transition: border-color 0.2s ease;
+    }
+
+    .form-field input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .form-status {
+      display: none;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-soft);
+      color: var(--accent-text);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .form-status.visible {
+      display: block;
+    }
+
+    /* Footer */
+    .site-footer {
+      margin-top: 40px;
+      background-color: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      font-size: 14px;
+    }
+
+    .footer-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .footer-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+
+    .footer-link-row {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--accent-text);
+      text-decoration: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .footer-link-row:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid, .calc-layout {
+        grid-template-columns: 1fr;
+      }
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .summary-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-phone {
+        display: none;
+      }
+      .hero-card, .calc-panel, .summary-panel {
+        padding: 20px;
+      }
+      .services-grid, .segmented, .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-link-row {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">НИКА СПРИНГ</span>
+          <span class="brand-sub">Клиника и стоматология · Нижний Новгород</span>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="tel:+78312601428" class="header-phone">+7 (831) 260-14-28</a>
+        <a href="#calculator" class="btn btn-primary">Рассчитать приём</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <div>
+            <span class="badge">Многопрофильная медицина · Нижний Новгород</span>
+            <h1>Точная диагностика, стоматология и комплексные чекапы в одном центре</h1>
+            <p class="hero-desc">
+              Клиника «НИКА СПРИНГ» объединяет профильных врачей, цифровую стоматологию, УЗИ-диагностику и собственную лабораторную базу. Рассчитайте ориентировочную стоимость приёма или чекапа онлайн и выберите удобное время визита.
+            </p>
+          </div>
+          <div class="hero-cta">
+            <a href="#calculator" class="btn btn-primary">Открыть калькулятор</a>
+            <a href="#services" class="btn btn-outline">Направления клиники</a>
+          </div>
+        </div>
+
+        <aside class="stats-card" aria-label="Ключевые показатели клиники">
+          <div class="stat-item">
+            <div class="stat-value">5 направлений</div>
+            <div class="stat-label">От стоматологии до комплексных чекапов</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">1 день</div>
+            <div class="stat-label">Прохождение базового и расширенного чекапа</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">0 ₽</div>
+            <div class="stat-label">Онлайн-расчёт и предварительная запись</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Основные направления</h2>
+            <p>Комплексный подход к диагностике и лечению для взрослых и детей</p>
+          </div>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 10c0-3 2-5 5-5s5 2 5 5c0 4-2 9-3 9s-1.5-3-2-3-1 3-2 3-3-5-3-9z"/>
+              </svg>
+            </div>
+            <h3>Стоматология</h3>
+            <p>Терапия, гигиена, цифровая диагностика и эстетическое восстановление.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="14" rx="2"/>
+                <path d="M8 21h8M12 18v3"/>
+              </svg>
+            </div>
+            <h3>Диагностика и УЗИ</h3>
+            <p>Ультразвуковые исследования экспертного класса и функциональные тесты.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 3h6M10 3v6l-4 8a2 2 0 0 0 1.8 3h8.4a2 2 0 0 0 1.8-3l-4-8V3"/>
+              </svg>
+            </div>
+            <h3>Лабораторные анализы</h3>
+            <p>Общеклинические, биохимические и гормональные панели с быстрым результатом.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
+                <path d="M5 20a7 7 0 0 1 14 0"/>
+              </svg>
+            </div>
+            <h3>Профильные врачи</h3>
+            <p>Приём терапевта, кардиолога, эндокринолога и узких специалистов.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 11l3 3L22 4"/>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+              </svg>
+            </div>
+            <h3>Комплексные чекапы</h3>
+            <p>Сбалансированные программы обследования организма за один визит.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculator" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Калькулятор приёма и чекапов</h2>
+            <p>Выберите направление, формат пакета и дополнительные исследования</p>
+          </div>
+        </div>
+
+        <div class="calc-layout">
+          <div class="calc-panel">
+            <div class="field-group">
+              <div class="field-label">1. Направление</div>
+              <div class="segmented" id="direction-group">
+                <button type="button" class="seg-btn active" data-dir="dental" data-price="2800">
+                  <span>Стоматология</span>
+                  <span class="seg-price">2 800 ₽</span>
+                </button>
+                <button type="button" class="seg-btn" data-dir="uzi" data-price="3200">
+                  <span>УЗИ и диагностика</span>
+                  <span class="seg-price">3 200 ₽</span>
+                </button>
+                <button type="button" class="seg-btn" data-dir="labs" data-price="2400">
+                  <span>Лабораторные анализы</span>
+                  <span class="seg-price">2 400 ₽</span>
+                </button>
+                <button type="button" class="seg-btn" data-dir="checkup" data-price="8900">
+                  <span>Комплексный чекап</span>
+                  <span class="seg-price">8 900 ₽</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">2. Пакет обслуживания</div>
+              <div class="segmented" id="package-group">
+                <button type="button" class="seg-btn active" data-pkg="basic" data-mult="1">
+                  <span>Базовый</span>
+                  <span class="seg-price">x1.0</span>
+                </button>
+                <button type="button" class="seg-btn" data-pkg="extended" data-mult="1.45">
+                  <span>Расширенный</span>
+                  <span class="seg-price">x1.45</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">3. Дополнительные исследования</div>
+              <div class="addons-list" id="addons-list">
+                <label class="addon-item">
+                  <span class="addon-left">
+                    <input type="checkbox" value="1800" data-name="Расширенная биохимия крови">
+                    <span>Расширенная биохимия крови</span>
+                  </span>
+                  <span class="addon-price">+ 1 800 ₽</span>
+                </label>
+                <label class="addon-item">
+                  <span class="addon-left">
+                    <input type="checkbox" value="2200" data-name="УЗИ щитовидной железы">
+                    <span>УЗИ щитовидной железы</span>
+                  </span>
+                  <span class="addon-price">+ 2 200 ₽</span>
+                </label>
+                <label class="addon-item">
+                  <span class="addon-left">
+                    <input type="checkbox" value="1500" data-name="ЭКГ с расшифровкой врача">
+                    <span>ЭКГ с расшифровкой врача</span>
+                  </span>
+                  <span class="addon-price">+ 1 500 ₽</span>
+                </label>
+                <label class="addon-item">
+                  <span class="addon-left">
+                    <input type="checkbox" value="2900" data-name="Прицельный 3D-снимок / консультация профильного врача">
+                    <span>Прицельный 3D-снимок / консультация профильного врача</span>
+                  </span>
+                  <span class="addon-price">+ 2 900 ₽</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <aside class="summary-panel">
+            <h3 class="summary-title">Предварительный расчёт</h3>
+            <div class="summary-rows">
+              <div class="summary-row">
+                <span>Направление</span>
+                <strong id="sum-dir">Стоматология</strong>
+              </div>
+              <div class="summary-row">
+                <span>Пакет</span>
+                <strong id="sum-pkg">Базовый</strong>
+              </div>
+              <div class="summary-row">
+                <span>Доп. исследования</span>
+                <strong id="sum-addons">0 ₽</strong>
+              </div>
+            </div>
+
+            <div class="total-box">
+              <span class="total-label">Итого ориентировочно</span>
+              <span class="total-value" id="sum-total">2 800 ₽</span>
+            </div>
+
+            <form class="booking-form" id="booking-form">
+              <div class="form-field">
+                <label for="patient-name">Ваше имя</label>
+                <input id="patient-name" name="name" type="text" placeholder="Анна Сергеевна" autocomplete="name" required>
+              </div>
+              <div class="form-field">
+                <label for="patient-phone">Телефон для связи</label>
+                <input id="patient-phone" name="phone" type="tel" placeholder="+7 (900) 000-00-00" autocomplete="tel" required>
+              </div>
+              <div class="form-field">
+                <label for="patient-email">Электронная почта</label>
+                <input id="patient-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email">
+              </div>
+              <button type="submit" class="btn btn-primary">Записаться на приём</button>
+              <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+            </form>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-item">
+        <span class="footer-label">Клиника</span>
+        <span>«НИКА СПРИНГ» · Нижний Новгород, Россия</span>
+      </div>
+      <div class="footer-item">
+        <span class="footer-label">Телефон регистратуры</span>
+        <span>+7 (831) 260-14-28</span>
+      </div>
+      <div class="footer-item">
+        <span class="footer-label">Направления</span>
+        <span>Стоматология, УЗИ, анализы, врачи, чекапы</span>
+      </div>
+      <a href="https://nika-nn.ru" target="_blank" rel="noopener noreferrer" class="footer-link-row">Официальный сайт: https://nika-nn.ru</a>
+      <a href="mailto:nika-spring@nika-nn.ru" class="footer-link-row">Электронная почта: nika-spring@nika-nn.ru</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const dirButtons = document.querySelectorAll('#direction-group .seg-btn');
+      const pkgButtons = document.querySelectorAll('#package-group .seg-btn');
+      const addonCheckboxes = document.querySelectorAll('#addons-list input[type="checkbox"]');
+
+      const sumDir = document.getElementById('sum-dir');
+      const sumPkg = document.getElementById('sum-pkg');
+      const sumAddons = document.getElementById('sum-addons');
+      const sumTotal = document.getElementById('sum-total');
+
+      const bookingForm = document.getElementById('booking-form');
+      const formStatus = document.getElementById('form-status');
+
+      let state = {
+        dirName: 'Стоматология',
+        basePrice: 2800,
+        pkgName: 'Базовый',
+        pkgMult: 1
+      };
+
+      function formatRub(num) {
+        return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
+      }
+
+      function recalculate() {
+        let addonsSum = 0;
+        addonCheckboxes.forEach(function (cb) {
+          if (cb.checked) {
+            addonsSum += Number(cb.value);
+          }
+        });
+
+        const total = state.basePrice * state.pkgMult + addonsSum;
+        sumDir.textContent = state.dirName;
+        sumPkg.textContent = state.pkgName;
+        sumAddons.textContent = formatRub(addonsSum);
+        sumTotal.textContent = formatRub(total);
+      }
+
+      dirButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          dirButtons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.dirName = btn.querySelector('span').textContent;
+          state.basePrice = Number(btn.getAttribute('data-price'));
+          recalculate();
+        });
+      });
+
+      pkgButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          pkgButtons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.pkgName = btn.querySelector('span').textContent;
+          state.pkgMult = Number(btn.getAttribute('data-mult'));
+          recalculate();
+        });
+      });
+
+      addonCheckboxes.forEach(function (cb) {
+        cb.addEventListener('change', recalculate);
+      });
+
+      bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('patient-name').value.trim();
+        formStatus.textContent = 'Заявка принята для ' + name + '. Администратор клиники «НИКА СПРИНГ» свяжется с вами в ближайшее время. Расчёт: ' + sumTotal.textContent + '.';
+        formStatus.classList.add('visible');
+        bookingForm.reset();
+        recalculate();
+      });
+
+      recalculate();
+    })();
+  </script>
+</body>
+</html>

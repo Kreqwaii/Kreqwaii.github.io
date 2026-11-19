@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Galleria of Smiles in Tulsa and Sand Springs, OK. Interactive Tulsa Cosmetic & Family Dental Treatment Planner with live USD estimates, PPO insurance, 12-month financing, and appointment booking." />
+  <title>Galleria of Smiles | Tulsa Cosmetic & Family Dental Treatment Planner</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f766e'/%3E%3Cpath d='M10 11c0-2.2 1.8-4 4-4h4c2.2 0 4 1.8 4 4 0 3.2-1.2 5.4-2.1 8.5-.5 1.8-1.1 3.5-2.1 3.5-.8 0-1.2-1.4-1.8-3.1-.6 1.7-1 3.1-1.8 3.1-1 0-1.6-1.7-2.1-3.5C11.2 16.4 10 14.2 10 11z' fill='%23faf8f5'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-cream: #faf8f5;
+      --bg-surface: #ffffff;
+      --bg-muted: #f1f5f4;
+      --ink-primary: #1e293b;
+      --ink-secondary: #475569;
+      --ink-muted: #64748b;
+      --teal-primary: #0f766e;
+      --teal-dark: #115e59;
+      --teal-soft: #ccfbf1;
+      --teal-tint: #f0fdfa;
+      --border-light: #e2e8f0;
+      --border-teal: #99f6e4;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 10px 25px -5px rgba(15, 118, 110, 0.08), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--ink-primary);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .brand-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      color: var(--ink-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(250, 248, 245, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: var(--teal-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--ink-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--teal-primary);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .header-cta:hover {
+      background-color: var(--teal-dark);
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 56px 0 40px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--teal-tint);
+      border: 1px solid var(--border-teal);
+      color: var(--teal-dark);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 4.2vw, 46px);
+      font-weight: 800;
+      line-height: 1.12;
+      margin-bottom: 16px;
+    }
+
+    .hero-lead {
+      font-size: 17px;
+      color: var(--ink-secondary);
+      margin: 0 0 24px;
+      max-width: 58ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--teal-primary);
+      color: #ffffff;
+      border: none;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 13px 22px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--teal-dark);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      border: 1px solid var(--border-light);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 13px 22px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--teal-primary);
+      background-color: var(--teal-tint);
+    }
+
+    .hero-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--teal-dark);
+    }
+
+    .stat-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .stat-box {
+      background-color: var(--bg-muted);
+      border-radius: var(--radius-md);
+      padding: 14px;
+    }
+
+    .stat-val {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--teal-primary);
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--ink-secondary);
+      margin-top: 4px;
+    }
+
+    /* Services */
+    .section {
+      padding: 36px 0;
+    }
+
+    .section-head {
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--ink-secondary);
+      font-size: 15px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .service-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .service-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background-color: var(--teal-tint);
+      color: var(--teal-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--ink-secondary);
+      flex: 1;
+    }
+
+    .service-price {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal-dark);
+    }
+
+    /* Planner */
+    .planner-wrap {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .planner-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .field-group {
+      margin-bottom: 20px;
+    }
+
+    .field-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 10px;
+    }
+
+    .pill-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .pill-btn {
+      text-align: left;
+      background-color: var(--bg-cream);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .pill-btn:hover {
+      border-color: var(--teal-primary);
+    }
+
+    .pill-btn.active {
+      background-color: var(--teal-tint);
+      border-color: var(--teal-primary);
+      box-shadow: 0 0 0 1px var(--teal-primary);
+    }
+
+    .pill-title {
+      display: block;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--ink-primary);
+    }
+
+    .pill-sub {
+      display: block;
+      font-size: 12px;
+      color: var(--ink-secondary);
+      margin-top: 2px;
+    }
+
+    .control-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .input-control, .select-control {
+      width: 100%;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--ink-primary);
+      background-color: var(--bg-cream);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 11px 12px;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .input-control:focus, .select-control:focus {
+      border-color: var(--teal-primary);
+    }
+
+    .range-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .range-slider {
+      flex: 1;
+      accent-color: var(--teal-primary);
+      cursor: pointer;
+    }
+
+    .range-badge {
+      min-width: 68px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 14px;
+      background-color: var(--teal-tint);
+      color: var(--teal-dark);
+      border: 1px solid var(--border-teal);
+      border-radius: var(--radius-sm);
+      padding: 6px 10px;
+    }
+
+    .slot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .slot-btn {
+      background-color: var(--bg-cream);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 9px 8px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      cursor: pointer;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .slot-btn.active {
+      background-color: var(--teal-primary);
+      border-color: var(--teal-primary);
+      color: #ffffff;
+    }
+
+    /* Summary Panel */
+    .summary-card {
+      background-color: var(--bg-muted);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 22px;
+    }
+
+    .summary-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+
+    .summary-head h3 {
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .summary-badge {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--teal-dark);
+      background-color: var(--teal-soft);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: var(--ink-secondary);
+      margin-bottom: 10px;
+    }
+
+    .summary-line strong {
+      color: var(--ink-primary);
+    }
+
+    .summary-total {
+      border-top: 1px solid var(--border-light);
+      padding-top: 14px;
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .total-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .total-amount {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--teal-primary);
+    }
+
+    .monthly-note {
+      font-size: 13px;
+      color: var(--teal-dark);
+      background-color: var(--teal-tint);
+      border: 1px solid var(--border-teal);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      margin: 14px 0 18px;
+    }
+
+    .booking-form {
+      display: grid;
+      gap: 10px;
+    }
+
+    .form-status {
+      display: none;
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--teal-tint);
+      border: 1px solid var(--border-teal);
+      color: var(--teal-dark);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .form-status.visible {
+      display: block;
+    }
+
+    /* Footer */
+    .site-footer {
+      margin-top: 40px;
+      border-top: 1px solid var(--border-light);
+      background-color: var(--bg-surface);
+      padding: 28px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .footer-meta {
+      font-size: 13px;
+      color: var(--ink-secondary);
+    }
+
+    .footer-link-row {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      font-size: 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .footer-link-row a {
+      color: var(--teal-primary);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .footer-link-row a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid, .planner-grid {
+        grid-template-columns: 1fr;
+      }
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .services-grid, .pill-grid, .control-row, .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .slot-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .planner-wrap {
+        padding: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-link-row {
+        font-size: 10px;
+      }
+      .header-cta {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M7 8.5C7 6.01 9.01 4 11.5 4h1C14.99 4 17 6.01 17 8.5c0 2.9-1.05 5.1-1.95 8.1-.45 1.5-.95 2.9-1.75 2.9-.7 0-1.05-1.2-1.3-2.5-.25 1.3-.6 2.5-1.3 2.5-.8 0-1.3-1.4-1.75-2.9C8.05 13.6 7 11.4 7 8.5Z" fill="#faf8f5"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Galleria of Smiles</div>
+          <div class="brand-sub">Tulsa &amp; Sand Springs, OK</div>
+        </div>
+      </a>
+      <a href="#planner" class="header-cta">Plan Treatment</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Tulsa Family, Cosmetic &amp; Restorative Dentistry</div>
+          <h1>Transparent dental care planning for Tulsa families</h1>
+          <p class="hero-lead">
+            Estimate your Family, Cosmetic, Preventive, or Restorative treatment in USD, compare PPO insurance and 12-month 0% APR financing, and reserve a convenient visit slot at our Sand Springs / Tulsa clinic.
+          </p>
+          <div class="hero-actions">
+            <a href="#planner" class="btn-primary">Open Treatment Planner</a>
+            <a href="tel:9184968010" class="btn-secondary">Call (918) 496-8010</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-title">Clinic Overview &amp; Patient Benefits</div>
+          <div class="stat-list">
+            <div class="stat-box">
+              <div class="stat-val tabular">0% APR</div>
+              <div class="stat-label">12-month financing option</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val tabular">PPO</div>
+              <div class="stat-label">Major dental plans accepted</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val tabular">4 Core</div>
+              <div class="stat-label">Dental care specialties</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val tabular">Same-Week</div>
+              <div class="stat-label">Consultation slots open</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="services-heading">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="services-heading">Comprehensive Dental Services</h2>
+          <p>Tailored care for every stage of oral health in Tulsa and Sand Springs, OK.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 21s-7-4.35-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.65-7 10-7 10"/>
+              </svg>
+            </div>
+            <h3>Family Dentistry</h3>
+            <p>Gentle exams, pediatric checkups, sealants, and comfort-first care for children, teens, and adults.</p>
+            <div class="service-price tabular">From $145 / visit</div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+              </svg>
+            </div>
+            <h3>Cosmetic Dentistry</h3>
+            <p>Porcelain veneers, professional whitening, and smile design crafted for natural aesthetics.</p>
+            <div class="service-price tabular">From $450 / unit</div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2l7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-4z"/>
+              </svg>
+            </div>
+            <h3>Preventive Dental Care</h3>
+            <p>Digital X-rays, periodontal screenings, and thorough cleanings to protect long-term enamel health.</p>
+            <div class="service-price tabular">From $120 / visit</div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="4" width="16" height="16" rx="3"/>
+                <path d="M9 12h6M12 9v6"/>
+              </svg>
+            </div>
+            <h3>Restorative Dentistry</h3>
+            <p>Tooth-colored fillings, ceramic crowns, bridges, and implant restorations built for durability.</p>
+            <div class="service-price tabular">From $980 / unit</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="planner" class="section" aria-labelledby="planner-heading">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="planner-heading">Tulsa Cosmetic &amp; Family Dental Treatment Planner</h2>
+          <p>Select your treatment category, number of units or visits, and payment preference for an instant USD estimate.</p>
+        </div>
+
+        <div class="planner-wrap">
+          <div class="planner-grid">
+            <div>
+              <div class="field-group">
+                <div class="field-label">1. Select Treatment Category</div>
+                <div class="pill-grid" role="group" aria-label="Treatment Category">
+                  <button type="button" class="pill-btn active" data-category="family" data-rate="165">
+                    <span class="pill-title">Family Dentistry</span>
+                    <span class="pill-sub">Exam, cleaning &amp; family care ($165/unit)</span>
+                  </button>
+                  <button type="button" class="pill-btn" data-category="cosmetic" data-rate="650">
+                    <span class="pill-title">Cosmetic Dentistry</span>
+                    <span class="pill-sub">Whitening &amp; veneer units ($650/unit)</span>
+                  </button>
+                  <button type="button" class="pill-btn" data-category="preventive" data-rate="135">
+                    <span class="pill-title">Preventive Dental Care</span>
+                    <span class="pill-sub">Hygiene &amp; digital imaging ($135/unit)</span>
+                  </button>
+                  <button type="button" class="pill-btn" data-category="restorative" data-rate="1150">
+                    <span class="pill-title">Restorative Dentistry</span>
+                    <span class="pill-sub">Crowns &amp; restorative units ($1,150/unit)</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <div class="field-label">2. Number of Units / Teeth / Visits</div>
+                <div class="range-wrap">
+                  <input id="unitRange" class="range-slider" type="range" min="1" max="12" value="2" autocomplete="off" aria-label="Number of units" />
+                  <div class="range-badge tabular" id="unitBadge">2 units</div>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <div class="field-label">3. Payment &amp; Coverage Option</div>
+                <div class="control-row">
+                  <select id="coverageSelect" class="select-control" autocomplete="off" aria-label="Payment and coverage option">
+                    <option value="ppo">PPO Insurance (Est. 40% coverage)</option>
+                    <option value="financing">12-Month 0% APR Financing</option>
+                    <option value="direct">Direct Self-Pay (5% courtesy)</option>
+                  </select>
+                  <input id="preferredDate" class="input-control" type="date" autocomplete="off" aria-label="Preferred appointment date" />
+                </div>
+              </div>
+
+              <div class="field-group">
+                <div class="field-label">4. Select Available Consultation Slot</div>
+                <div class="slot-grid" role="group" aria-label="Consultation time slot">
+                  <button type="button" class="slot-btn active" data-slot="09:00 AM">09:00 AM</button>
+                  <button type="button" class="slot-btn" data-slot="10:30 AM">10:30 AM</button>
+                  <button type="button" class="slot-btn" data-slot="01:15 PM">01:15 PM</button>
+                  <button type="button" class="slot-btn" data-slot="02:45 PM">02:45 PM</button>
+                  <button type="button" class="slot-btn" data-slot="04:00 PM">04:00 PM</button>
+                  <button type="button" class="slot-btn" data-slot="05:15 PM">05:15 PM</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">
+                <h3>Estimated Plan</h3>
+                <span class="summary-badge" id="summaryCategory">Family Dentistry</span>
+              </div>
+
+              <div class="summary-line">
+                <span>Base Treatment Value</span>
+                <strong class="tabular" id="baseTotal">$330</strong>
+              </div>
+              <div class="summary-line">
+                <span>Coverage / Courtesy Adjustment</span>
+                <strong class="tabular" id="discountAmount">-$132</strong>
+              </div>
+              <div class="summary-line">
+                <span>Selected Slot</span>
+                <strong class="tabular" id="summarySlot">09:00 AM</strong>
+              </div>
+
+              <div class="summary-total">
+                <span class="total-label">Estimated Out-of-Pocket</span>
+                <span class="total-amount tabular" id="netTotal">$198</span>
+              </div>
+
+              <div class="monthly-note tabular" id="monthlyNote">
+                Or $17/mo over 12 months with 0% APR financing
+              </div>
+
+              <form class="booking-form" id="bookingForm">
+                <div class="field-label">Request This Appointment</div>
+                <input id="patientName" class="input-control" type="text" placeholder="Full Name" required autocomplete="name" aria-label="Full Name" />
+                <input id="patientEmail" class="input-control" type="email" placeholder="Email Address" required autocomplete="email" aria-label="Email Address" />
+                <input id="patientPhone" class="input-control" type="tel" placeholder="Phone Number" required autocomplete="tel" aria-label="Phone Number" />
+                <button type="submit" class="btn-primary">Confirm Treatment Request</button>
+              </form>
+
+              <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-meta">
+        <strong>Galleria of Smiles</strong><br />
+        104 W 41st St, Sand Springs, OK 74063<br />
+        Phone: (918) 496-8010
+      </div>
+      <div class="footer-meta">
+        Family, Cosmetic, Preventive &amp; Restorative Dentistry<br />
+        Serving Tulsa &amp; Sand Springs, Oklahoma
+      </div>
+      <div class="footer-link-row">
+        Website: <a href="https://galleriaofsmiles.com" target="_blank" rel="noopener noreferrer">https://galleriaofsmiles.com</a>
+      </div>
+      <div class="footer-link-row">
+        Email: <a href="mailto:doc@galleriaofsmiles.com">doc@galleriaofsmiles.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const categoryButtons = document.querySelectorAll('.pill-btn');
+      const slotButtons = document.querySelectorAll('.slot-btn');
+      const unitRange = document.getElementById('unitRange');
+      const unitBadge = document.getElementById('unitBadge');
+      const coverageSelect = document.getElementById('coverageSelect');
+      const preferredDate = document.getElementById('preferredDate');
+
+      const summaryCategory = document.getElementById('summaryCategory');
+      const baseTotalEl = document.getElementById('baseTotal');
+      const discountAmountEl = document.getElementById('discountAmount');
+      const netTotalEl = document.getElementById('netTotal');
+      const monthlyNoteEl = document.getElementById('monthlyNote');
+      const summarySlotEl = document.getElementById('summarySlot');
+
+      const bookingForm = document.getElementById('bookingForm');
+      const formStatus = document.getElementById('formStatus');
+
+      const state = {
+        categoryLabel: 'Family Dentistry',
+        rate: 165,
+        units: 2,
+        coverage: 'ppo',
+        slot: '09:00 AM'
+      };
+
+      const today = new Date();
+      today.setDate(today.getDate() + 2);
+      preferredDate.value = today.toISOString().split('T')[0];
+
+      function formatUSD(val) {
+        return '$' + Math.round(val).toLocaleString('en-US');
+      }
+
+      function updatePlanner() {
+        const base = state.rate * state.units;
+        let discount = 0;
+
+        if (state.coverage === 'ppo') {
+          discount = base * 0.40;
+        } else if (state.coverage === 'direct') {
+          discount = base * 0.05;
+        }
+
+        const net = Math.max(0, base - discount);
+        const monthly = Math.ceil(net / 12);
+
+        unitBadge.textContent = state.units + (state.units === 1 ? ' unit' : ' units');
+        summaryCategory.textContent = state.categoryLabel;
+        baseTotalEl.textContent = formatUSD(base);
+        discountAmountEl.textContent = discount > 0 ? '-' + formatUSD(discount) : '$0';
+        netTotalEl.textContent = formatUSD(net);
+        summarySlotEl.textContent = state.slot;
+        monthlyNoteEl.textContent = 'Or ' + formatUSD(monthly) + '/mo over 12 months with 0% APR financing';
+      }
+
+      categoryButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          categoryButtons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.categoryLabel = btn.querySelector('.pill-title').textContent;
+          state.rate = Number(btn.getAttribute('data-rate'));
+          updatePlanner();
+        });
+      });
+
+      slotButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          slotButtons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.slot = btn.getAttribute('data-slot');
+          updatePlanner();
+        });
+      });
+
+      unitRange.addEventListener('input', function () {
+        state.units = Number(unitRange.value);
+        updatePlanner();
+      });
+
+      coverageSelect.addEventListener('change', function () {
+        state.coverage = coverageSelect.value;
+        updatePlanner();
+      });
+
+      bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('patientName').value.trim();
+        const dateVal = preferredDate.value || 'upcoming date';
+        formStatus.textContent = 'Request received for ' + name + ' (' + state.categoryLabel + ', ' + state.units + ' units, ' + dateVal + ' at ' + state.slot + '). Our Tulsa team will confirm via phone or email.';
+        formStatus.classList.add('visible');
+        bookingForm.reset();
+      });
+
+      updatePlanner();
+    })();
+  </script>
+</body>
+</html>
