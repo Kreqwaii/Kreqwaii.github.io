@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Carlton Dental Melbourne — Interactive Dental Fee and Private Health Fund HICAPS Rebate Estimator in AUD for Preventative, Restorative, Cosmetic, Whitening, and Emergency Dental Care.">
+  <title>Carlton Dental | Melbourne Dental Fee &amp; Health Fund Rebate Estimator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230D6E52'/%3E%3Cpath d='M10 10c0-2.2 1.8-4 4-4h4c2.2 0 4 1.8 4 4v3c0 2.4-1.2 4.6-2.2 6.8-.6 1.4-1 2.8-1.4 4.2-.2.8-1.3.8-1.5 0l-.9-3.6-.9 3.6c-.2.8-1.3.8-1.5 0-.4-1.4-.8-2.8-1.4-4.2C11.2 17.6 10 15.4 10 13v-3z' fill='%23FAF9F6'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #FAF9F6;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #F2F3F0;
+      --text-primary: #1A2022;
+      --text-secondary: #4B5558;
+      --text-muted: #6C7679;
+      --accent-emerald: #0D6E52;
+      --accent-emerald-hover: #0A5841;
+      --accent-emerald-soft: #E8F3EF;
+      --border-light: #E2E4E1;
+      --border-strong: #C9CECA;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-sm: 0 1px 3px rgba(26, 32, 34, 0.06);
+      --shadow-md: 0 6px 20px rgba(26, 32, 34, 0.07);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-emerald);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-subtle);
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      font-variant-numeric: tabular-nums;
+      transition: background-color 0.2s ease;
+    }
+
+    .phone-pill:hover {
+      background-color: #E5E8E4;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-emerald);
+      color: #FFFFFF;
+      border: 1px solid var(--accent-emerald);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-emerald-hover);
+      border-color: var(--accent-emerald-hover);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 36px 0 28px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background-color: var(--accent-emerald-soft);
+      color: var(--accent-emerald);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 3.6vw, 38px);
+      line-height: 1.18;
+      max-width: 780px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin: 0;
+      font-size: 16px;
+    }
+
+    /* Main Workspace Grid */
+    .workspace {
+      display: grid;
+      grid-template-columns: 1.35fr 0.95fr;
+      gap: 24px;
+      align-items: start;
+      padding-bottom: 48px;
+    }
+
+    .card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-header {
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .card-header h2 {
+      font-size: 19px;
+      margin-bottom: 4px;
+    }
+
+    .card-header p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .field-group {
+      margin-bottom: 22px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    label.input-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    /* Service & Fund Option Grids */
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .option-grid.funds {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .option-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
+      padding: 12px 14px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .option-btn:hover {
+      border-color: var(--border-strong);
+      background-color: var(--bg-subtle);
+    }
+
+    .option-btn.active {
+      border-color: var(--accent-emerald);
+      background-color: var(--accent-emerald-soft);
+    }
+
+    .option-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .option-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Select & Inputs */
+    select, input[type="text"], input[type="email"], input[type="tel"], textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 14px;
+      transition: border-color 0.2s ease;
+    }
+
+    select:focus, input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent-emerald);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* Summary Panel */
+    .summary-card {
+      position: sticky;
+      top: 84px;
+    }
+
+    .estimate-box {
+      background-color: var(--bg-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    .estimate-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 7px 0;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .estimate-row + .estimate-row {
+      border-top: 1px solid var(--border-light);
+    }
+
+    .estimate-val {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .estimate-val.rebate {
+      color: var(--accent-emerald);
+    }
+
+    .estimate-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-top: 12px;
+      margin-top: 6px;
+      border-top: 2px solid var(--border-strong);
+    }
+
+    .estimate-total-label {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text-primary);
+    }
+
+    .estimate-total-val {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 26px;
+      color: var(--accent-emerald);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ada-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 10px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .booking-form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .confirm-banner {
+      display: none;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background-color: var(--accent-emerald-soft);
+      color: var(--accent-emerald);
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 12px;
+    }
+
+    .confirm-banner.visible {
+      display: block;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border-light);
+      padding: 28px 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+
+    .footer-col h3 {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .footer-col p {
+      margin: 0 0 6px;
+      color: var(--text-muted);
+    }
+
+    .footer-links-row {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    a[href^="mailto:"],
+    a[href^="http"] {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 11px;
+      color: var(--accent-emerald);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a[href^="mailto:"]:hover,
+    a[href^="http"]:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+      .summary-card {
+        position: static;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .header-actions .phone-pill {
+        display: none;
+      }
+      .option-grid,
+      .option-grid.funds,
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M7 6.5C7 4.567 8.567 3 10.5 3h3C15.433 3 17 4.567 17 6.5v2.7c0 2.1-.95 4.1-1.85 6.05-.55 1.2-.9 2.45-1.25 3.75-.18.68-1.12.68-1.3 0L12 16.5l-.6 2.5c-.18.68-1.12.68-1.3 0-.35-1.3-.7-2.55-1.25-3.75C7.95 13.3 7 11.3 7 9.2V6.5z" fill="#FAF9F6"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Carlton Dental</div>
+          <div class="brand-sub">Melbourne VIC, Australia</div>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="tel:0393472033" class="phone-pill">03 9347 2033</a>
+        <a href="#booking-section" class="btn-primary">Book Appointment</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <section class="hero">
+      <div class="hero-badge">HICAPS Instant Claiming Available</div>
+      <h1>Melbourne Dental Fee &amp; Health Fund Rebate Estimator</h1>
+      <p>Estimate your treatment fee in AUD, preview your Private Health Fund HICAPS rebate, and see your expected out-of-pocket gap before visiting Carlton Dental.</p>
+    </section>
+
+    <section class="workspace">
+      <div class="card">
+        <div class="card-header">
+          <h2>1. Configure Treatment &amp; Health Cover</h2>
+          <p>Select a dental service category, specific procedure, and your Australian private health fund.</p>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">Dental Service Category</div>
+          <div class="option-grid" id="service-grid">
+            <button type="button" class="option-btn active" data-service="preventative">
+              <span class="option-title">Preventative Dentistry</span>
+              <span class="option-meta">Check-up, Scale &amp; Clean</span>
+            </button>
+            <button type="button" class="option-btn" data-service="restorative">
+              <span class="option-title">Restorative Dentistry</span>
+              <span class="option-meta">Fillings, Crowns &amp; Root Canal</span>
+            </button>
+            <button type="button" class="option-btn" data-service="cosmetic">
+              <span class="option-title">Cosmetic Dentistry</span>
+              <span class="option-meta">Veneers &amp; Smile Design</span>
+            </button>
+            <button type="button" class="option-btn" data-service="whitening">
+              <span class="option-title">Teeth Whitening</span>
+              <span class="option-meta">In-Chair &amp; Take-Home Kits</span>
+            </button>
+            <button type="button" class="option-btn" data-service="emergency">
+              <span class="option-title">Emergency Dental Care</span>
+              <span class="option-meta">Same-Day Pain Relief</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="input-label" for="procedure-select">Specific Procedure (ADA Item Reference)</label>
+          <select id="procedure-select" autocomplete="off"></select>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">Private Health Fund (HICAPS)</div>
+          <div class="option-grid funds" id="fund-grid">
+            <button type="button" class="option-btn active" data-fund="bupa">
+              <span class="option-title">Bupa</span>
+              <span class="option-meta">Members First</span>
+            </button>
+            <button type="button" class="option-btn" data-fund="medibank">
+              <span class="option-title">Medibank</span>
+              <span class="option-meta">Members Choice</span>
+            </button>
+            <button type="button" class="option-btn" data-fund="hcf">
+              <span class="option-title">HCF</span>
+              <span class="option-meta">More for Teeth</span>
+            </button>
+            <button type="button" class="option-btn" data-fund="nib">
+              <span class="option-title">NIB</span>
+              <span class="option-meta">First Choice</span>
+            </button>
+            <button type="button" class="option-btn" data-fund="none">
+              <span class="option-title">No Health Fund</span>
+              <span class="option-meta">Self-Pay Patient</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div>
+            <label class="input-label" for="tier-select">Extras Cover Tier</label>
+            <select id="tier-select" autocomplete="off">
+              <option value="basic">Basic Extras (~50% rebate)</option>
+              <option value="medium" selected>Medium Extras (~65% rebate)</option>
+              <option value="top">Top Extras (~80% rebate)</option>
+            </select>
+          </div>
+          <div>
+            <label class="input-label" for="patient-type">Patient Status</label>
+            <select id="patient-type" autocomplete="off">
+              <option value="new">New Patient</option>
+              <option value="returning">Returning Patient</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card summary-card" id="booking-section">
+        <div class="card-header">
+          <h2>2. Estimated Fee &amp; Gap Summary</h2>
+          <p>Figures in Australian Dollars (AUD) for Carlton Dental.</p>
+        </div>
+
+        <div class="estimate-box">
+          <div class="estimate-row">
+            <span>Selected Procedure</span>
+            <span class="estimate-val" id="sum-proc">Comprehensive Exam &amp; Clean</span>
+          </div>
+          <div class="estimate-row">
+            <span>Standard Practice Fee</span>
+            <span class="estimate-val" id="sum-fee">$245.00</span>
+          </div>
+          <div class="estimate-row">
+            <span>Est. HICAPS Rebate (<span id="sum-fund-name">Bupa</span>)</span>
+            <span class="estimate-val rebate" id="sum-rebate">-$159.25</span>
+          </div>
+          <div class="estimate-total">
+            <span class="estimate-total-label">Estimated Out-of-Pocket Gap</span>
+            <span class="estimate-total-val" id="sum-gap">$85.75</span>
+          </div>
+          <div class="ada-note" id="sum-ada">ADA Items: 011, 114, 121 | Subject to annual fund limits</div>
+        </div>
+
+        <form class="booking-form" id="booking-form">
+          <div>
+            <label class="input-label" for="patient-name">Full Name</label>
+            <input type="text" id="patient-name" name="name" placeholder="e.g. Sarah Mitchell" autocomplete="name" required>
+          </div>
+          <div class="form-row">
+            <div>
+              <label class="input-label" for="patient-phone">Phone Number</label>
+              <input type="tel" id="patient-phone" name="phone" placeholder="04XX XXX XXX" autocomplete="tel" required>
+            </div>
+            <div>
+              <label class="input-label" for="patient-email">Email Address</label>
+              <input type="email" id="patient-email" name="email" placeholder="name@example.com.au" autocomplete="email" required>
+            </div>
+          </div>
+          <div>
+            <label class="input-label" for="patient-notes">Preferred Day or Notes</label>
+            <textarea id="patient-notes" name="notes" rows="2" placeholder="Morning or afternoon preference, toothache details" autocomplete="off"></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Request Appointment with Estimate</button>
+          <div class="confirm-banner" id="confirm-banner">
+            Request received for Carlton Dental. Reception will confirm your appointment time via phone or email shortly.
+          </div>
+        </form>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h3>Carlton Dental</h3>
+        <p>Carlton, Melbourne VIC, Australia</p>
+        <p>Phone: 03 9347 2033</p>
+      </div>
+      <div class="footer-col">
+        <h3>Clinical Services</h3>
+        <p>Preventative, Restorative &amp; Cosmetic Dentistry</p>
+        <p>Teeth Whitening &amp; Emergency Dental Care</p>
+      </div>
+      <div class="footer-col">
+        <h3>HICAPS &amp; Rebates</h3>
+        <p>On-the-spot claiming for Bupa, Medibank, HCF, NIB and all major Australian health funds.</p>
+      </div>
+      <div class="footer-links-row">
+        <a href="https://carltondental.com.au" target="_blank" rel="noopener noreferrer">https://carltondental.com.au</a>
+        <a href="mailto:reception@carltondental.com.au">reception@carltondental.com.au</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const proceduresByService = {
+        preventative: [
+          { id: 'prev-checkup', name: 'Comprehensive Exam, Scale & Clean', fee: 245, ada: '011, 114, 121', rebateEligible: true },
+          { id: 'prev-xrays', name: 'Periodic Exam, Clean & 2x Bitewing X-Rays', fee: 315, ada: '012, 022, 114', rebateEligible: true },
+          { id: 'prev-mouthguard', name: 'Custom Fitted Sports Mouthguard', fee: 220, ada: '151', rebateEligible: true }
+        ],
+        restorative: [
+          { id: 'rest-filling', name: 'Tooth-Coloured Composite Filling (1-2 Surfaces)', fee: 260, ada: '531 / 532', rebateEligible: true },
+          { id: 'rest-crown', name: 'Porcelain / Ceramic Dental Crown', fee: 1680, ada: '613', rebateEligible: true },
+          { id: 'rest-endo', name: 'Root Canal Therapy (Single Canal)', fee: 950, ada: '415, 417', rebateEligible: true }
+        ],
+        cosmetic: [
+          { id: 'cosm-veneer', name: 'Porcelain Veneer (Per Tooth)', fee: 1550, ada: '556 / 578', rebateEligible: true },
+          { id: 'cosm-bonding', name: 'Composite Edge Bonding (Per Tooth)', fee: 380, ada: '526', rebateEligible: true },
+          { id: 'cosm-consult', name: 'Cosmetic Smile Design Consultation', fee: 110, ada: '014', rebateEligible: true }
+        ],
+        whitening: [
+          { id: 'whit-inchair', name: 'In-Chair Zoom Teeth Whitening', fee: 690, ada: '118', rebateEligible: false },
+          { id: 'whit-takehome', name: 'Custom Take-Home Whitening Kit', fee: 390, ada: '119', rebateEligible: false }
+        ],
+        emergency: [
+          { id: 'emer-exam', name: 'Emergency Consultation & X-Ray', fee: 145, ada: '013, 022', rebateEligible: true },
+          { id: 'emer-extract', name: 'Simple Tooth Extraction', fee: 295, ada: '311', rebateEligible: true },
+          { id: 'emer-dressing', name: 'Emergency Pain Relief & Sedative Dressing', fee: 195, ada: '916', rebateEligible: true }
+        ]
+      };
+
+      const fundMultipliers = {
+        bupa: { label: 'Bupa', factor: 1.0 },
+        medibank: { label: 'Medibank', factor: 0.98 },
+        hcf: { label: 'HCF', factor: 1.02 },
+        nib: { label: 'NIB', factor: 0.94 },
+        none: { label: 'No Fund', factor: 0 }
+      };
+
+      const tierRates = {
+        basic: 0.50,
+        medium: 0.65,
+        top: 0.80
+      };
+
+      let state = {
+        service: 'preventative',
+        fund: 'bupa'
+      };
+
+      const serviceGrid = document.getElementById('service-grid');
+      const fundGrid = document.getElementById('fund-grid');
+      const procSelect = document.getElementById('procedure-select');
+      const tierSelect = document.getElementById('tier-select');
+      const patientType = document.getElementById('patient-type');
+
+      const sumProc = document.getElementById('sum-proc');
+      const sumFee = document.getElementById('sum-fee');
+      const sumFundName = document.getElementById('sum-fund-name');
+      const sumRebate = document.getElementById('sum-rebate');
+      const sumGap = document.getElementById('sum-gap');
+      const sumAda = document.getElementById('sum-ada');
+
+      function formatAUD(val) {
+        return '$' + val.toFixed(2);
+      }
+
+      function populateProcedures() {
+        const list = proceduresByService[state.service];
+        procSelect.innerHTML = '';
+        list.forEach(function (item) {
+          const opt = document.createElement('option');
+          opt.value = item.id;
+          opt.textContent = item.name + ' (' + formatAUD(item.fee) + ')';
+          procSelect.appendChild(opt);
+        });
+      }
+
+      function updateEstimate() {
+        const list = proceduresByService[state.service];
+        const selected = list.find(function (p) { return p.id === procSelect.value; }) || list[0];
+        const fundInfo = fundMultipliers[state.fund];
+        const tierRate = tierRates[tierSelect.value];
+
+        let rebate = 0;
+        if (state.fund !== 'none' && selected.rebateEligible) {
+          rebate = selected.fee * tierRate * fundInfo.factor;
+          if (rebate > selected.fee) rebate = selected.fee;
+        }
+
+        const gap = Math.max(0, selected.fee - rebate);
+
+        sumProc.textContent = selected.name;
+        sumFee.textContent = formatAUD(selected.fee);
+        sumFundName.textContent = fundInfo.label;
+        sumRebate.textContent = rebate > 0 ? '-' + formatAUD(rebate) : '$0.00';
+        sumGap.textContent = formatAUD(gap);
+
+        const rebateNote = selected.rebateEligible
+          ? 'Subject to annual fund limits'
+          : 'Cosmetic whitening is typically not covered by extras';
+        sumAda.textContent = 'ADA Items: ' + selected.ada + ' | ' + rebateNote;
+      }
+
+      serviceGrid.addEventListener('click', function (e) {
+        const btn = e.target.closest('.option-btn');
+        if (!btn) return;
+        serviceGrid.querySelectorAll('.option-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        state.service = btn.getAttribute('data-service');
+        populateProcedures();
+        updateEstimate();
+      });
+
+      fundGrid.addEventListener('click', function (e) {
+        const btn = e.target.closest('.option-btn');
+        if (!btn) return;
+        fundGrid.querySelectorAll('.option-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        state.fund = btn.getAttribute('data-fund');
+        tierSelect.disabled = state.fund === 'none';
+        updateEstimate();
+      });
+
+      procSelect.addEventListener('change', updateEstimate);
+      tierSelect.addEventListener('change', updateEstimate);
+      patientType.addEventListener('change', updateEstimate);
+
+      const bookingForm = document.getElementById('booking-form');
+      const confirmBanner = document.getElementById('confirm-banner');
+      bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        confirmBanner.classList.add('visible');
+        bookingForm.reset();
+      });
+
+      populateProcedures();
+      updateEstimate();
+    })();
+  </script>
+</body>
+</html>

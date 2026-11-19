@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Health on Grange Physiotherapy in Adelaide, SA. Interactive Physiotherapy Care Plan and Private Health Rebate Estimator in AUD for neck, back, shoulder, hip, and sports rehabilitation.">
+  <title>Health on Grange Physiotherapy | Adelaide Care Plan &amp; Rebate Estimator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F6E6E'/%3E%3Cpath d='M16 7v18M7 16h18' stroke='%23FFFFFF' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #F5F9F8;
+      --bg-surface: #FFFFFF;
+      --bg-eucalyptus: #E8F2F0;
+      --bg-eucalyptus-soft: #F0F7F5;
+      --teal-primary: #0F6E6E;
+      --teal-dark: #0A5252;
+      --teal-light: #1A8A8A;
+      --text-main: #132626;
+      --text-muted: #4A6363;
+      --text-soft: #637D7D;
+      --border-subtle: #D5E4E1;
+      --border-strong: #B4CECA;
+      --shadow-card: 0 10px 30px rgba(15, 110, 110, 0.06);
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-sm: 8px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background-color: var(--teal-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 1.2;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background-color: var(--bg-eucalyptus);
+      color: var(--teal-dark);
+      font-weight: 600;
+      font-size: 13px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .phone-pill:hover {
+      background-color: var(--teal-primary);
+      color: #FFFFFF;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 44px 0 36px;
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background-color: var(--bg-eucalyptus);
+      color: var(--teal-dark);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .hero-lead {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin: 0 0 24px;
+      max-width: 580px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .metric-box {
+      background-color: var(--bg-eucalyptus-soft);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
+    }
+
+    .metric-val {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--teal-primary);
+      margin-bottom: 2px;
+    }
+
+    .metric-lbl {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .hero-card {
+      background-color: var(--bg-eucalyptus);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .hero-card h2 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .service-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .service-pill {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+    }
+
+    .hero-contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .contact-row-link {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: var(--teal-dark);
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 600;
+      white-space: nowrap;
+      word-break: normal;
+      overflow-x: auto;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .contact-row-link:hover {
+      border-color: var(--teal-primary);
+      background-color: var(--bg-eucalyptus-soft);
+    }
+
+    /* Main Workspace */
+    .workspace {
+      padding: 40px 0 56px;
+    }
+
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .panel-header {
+      margin-bottom: 22px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .panel-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .panel-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .field-group {
+      margin-bottom: 22px;
+    }
+
+    .field-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .option-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .choice-btn {
+      appearance: none;
+      background-color: var(--bg-page);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--text-main);
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .choice-btn:hover {
+      border-color: var(--teal-light);
+      background-color: var(--bg-eucalyptus-soft);
+    }
+
+    .choice-btn.active {
+      background-color: var(--bg-eucalyptus);
+      border-color: var(--teal-primary);
+      box-shadow: inset 0 0 0 1px var(--teal-primary);
+    }
+
+    .choice-title {
+      display: block;
+      font-weight: 600;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .choice-meta {
+      display: block;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Rebate Slider */
+    .range-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .range-val {
+      font-weight: 700;
+      color: var(--teal-primary);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--teal-primary);
+      cursor: pointer;
+    }
+
+    /* Summary Panel */
+    .summary-card {
+      background-color: var(--teal-dark);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      margin-bottom: 22px;
+    }
+
+    .summary-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .summary-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #A8D5D5;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .summary-amount {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #FFFFFF;
+    }
+
+    .summary-badge {
+      background-color: rgba(255, 255, 255, 0.14);
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .breakdown-list {
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      padding-top: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #D7ECEC;
+    }
+
+    .breakdown-row strong {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    /* Booking Form */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text-main);
+      background-color: var(--bg-surface);
+      transition: border-color 0.18s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--teal-primary);
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 14px;
+      padding: 13px 18px;
+      border: none;
+      border-radius: var(--radius-md);
+      background-color: var(--teal-primary);
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: var(--teal-dark);
+    }
+
+    .form-status {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-eucalyptus);
+      color: var(--teal-dark);
+      font-size: 13px;
+      font-weight: 500;
+      display: none;
+    }
+
+    .form-status.visible {
+      display: block;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      padding: 28px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .footer-info {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .workspace-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .option-grid,
+      .option-grid-3,
+      .form-grid,
+      .hero-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .panel {
+        padding: 20px;
+      }
+
+      .contact-row-link {
+        font-size: 9.5px;
+        padding: 8px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 4v16M4 12h16" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Health on Grange Physiotherapy</div>
+          <div class="brand-sub">Adelaide, South Australia</div>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="tel:+61884434613" class="phone-pill tabular-nums">(08) 8443 4613</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Adelaide Physiotherapy &amp; HICAPS Rebate Estimator</div>
+          <h1>Plan your recovery and estimate your out-of-pocket gap in AUD</h1>
+          <p class="hero-lead">
+            Select your primary pain area, consultation type, and Private Health or Medicare EPC pathway to calculate your estimated session fee, instant HICAPS rebate, and recommended care plan.
+          </p>
+          <div class="hero-metrics">
+            <div class="metric-box">
+              <div class="metric-val tabular-nums">HICAPS</div>
+              <div class="metric-lbl">On-the-spot claiming</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val tabular-nums">5 Areas</div>
+              <div class="metric-lbl">Targeted rehab pathways</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val tabular-nums">AUD $</div>
+              <div class="metric-lbl">Transparent gap estimate</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <h2>Clinical Services in Adelaide</h2>
+          <div class="service-pills">
+            <span class="service-pill">Neck Pain &amp; Headaches</span>
+            <span class="service-pill">Back Pain Physiotherapy</span>
+            <span class="service-pill">Shoulder Rehabilitation</span>
+            <span class="service-pill">Hip Pain Management</span>
+            <span class="service-pill">Sports Physiotherapy</span>
+          </div>
+          <div class="hero-contact-grid">
+            <a href="https://healthongrangephysiotherapy.com.au" target="_blank" rel="noopener noreferrer" class="contact-row-link">
+              https://healthongrangephysiotherapy.com.au
+            </a>
+            <a href="mailto:info@healthongrangephysiotherapy.com.au" class="contact-row-link">
+              info@healthongrangephysiotherapy.com.au
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="container workspace-grid">
+        <div class="panel">
+          <div class="panel-header">
+            <h2 class="panel-title">Physiotherapy Care Plan &amp; Rebate Estimator</h2>
+            <p class="panel-subtitle">Adjust your clinical parameters below to update your AUD fee breakdown.</p>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">1. Primary Pain or Rehabilitation Area</div>
+            <div class="option-grid" id="area-options">
+              <button type="button" class="choice-btn active" data-area="neck" data-sessions="4" data-note="Cervical mobilisation, postural correction, and headache relief">
+                <span class="choice-title">Neck Pain &amp; Headaches</span>
+                <span class="choice-meta">Typical plan: 4 sessions</span>
+              </button>
+              <button type="button" class="choice-btn" data-area="back" data-sessions="6" data-note="Lumbar stabilisation, manual therapy, and load management">
+                <span class="choice-title">Back Pain Physiotherapy</span>
+                <span class="choice-meta">Typical plan: 6 sessions</span>
+              </button>
+              <button type="button" class="choice-btn" data-area="shoulder" data-sessions="6" data-note="Rotator cuff strengthening and scapular control">
+                <span class="choice-title">Shoulder Rehabilitation</span>
+                <span class="choice-meta">Typical plan: 6 sessions</span>
+              </button>
+              <button type="button" class="choice-btn" data-area="hip" data-sessions="5" data-note="Hip joint mobility, gluteal loading, and gait retraining">
+                <span class="choice-title">Hip Pain Management</span>
+                <span class="choice-meta">Typical plan: 5 sessions</span>
+              </button>
+              <button type="button" class="choice-btn" data-area="sports" data-sessions="5" data-note="Return-to-sport biomechanics and progressive conditioning">
+                <span class="choice-title">Sports Physiotherapy</span>
+                <span class="choice-meta">Typical plan: 5 sessions</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">2. Consultation Type</div>
+            <div class="option-grid-3" id="session-options">
+              <button type="button" class="choice-btn active" data-session="initial" data-fee="115">
+                <span class="choice-title">Initial Assessment</span>
+                <span class="choice-meta tabular-nums">45 mins | $115 AUD</span>
+              </button>
+              <button type="button" class="choice-btn" data-session="followup" data-fee="95">
+                <span class="choice-title">Follow-up Consult</span>
+                <span class="choice-meta tabular-nums">30 mins | $95 AUD</span>
+              </button>
+              <button type="button" class="choice-btn" data-session="sports_rehab" data-fee="125">
+                <span class="choice-title">Sports Rehab</span>
+                <span class="choice-meta tabular-nums">45 mins | $125 AUD</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">3. Funding &amp; Rebate Pathway</div>
+            <div class="option-grid-3" id="funding-options">
+              <button type="button" class="choice-btn active" data-funding="hicaps" data-rebate="55">
+                <span class="choice-title">HICAPS Private</span>
+                <span class="choice-meta">Instant fund claim</span>
+              </button>
+              <button type="button" class="choice-btn" data-funding="medicare" data-rebate="60.35">
+                <span class="choice-title">Medicare EPC</span>
+                <span class="choice-meta">GP Care Plan</span>
+              </button>
+              <button type="button" class="choice-btn" data-funding="self" data-rebate="0">
+                <span class="choice-title">Self-Pay</span>
+                <span class="choice-meta">No rebate applied</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="field-group" id="hicaps-slider-group">
+            <div class="range-row">
+              <span>Estimated Private Health Rebate (HICAPS)</span>
+              <span class="range-val tabular-nums" id="rebate-display">$55.00 AUD</span>
+            </div>
+            <input type="range" id="rebate-slider" min="25" max="85" step="5" value="55" autocomplete="off">
+          </div>
+        </div>
+
+        <div>
+          <div class="summary-card">
+            <div class="summary-top">
+              <div>
+                <div class="summary-eyebrow">Estimated Out-of-Pocket Gap</div>
+                <div class="summary-amount tabular-nums" id="gap-amount">$60.00</div>
+              </div>
+              <div class="summary-badge tabular-nums" id="plan-badge">4-Session Plan</div>
+            </div>
+            <div class="breakdown-list">
+              <div class="breakdown-row">
+                <span>Consultation Fee</span>
+                <strong class="tabular-nums" id="fee-display">$115.00 AUD</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Estimated Rebate</span>
+                <strong class="tabular-nums" id="rebate-row-display">-$55.00 AUD</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Recommended Pathway</span>
+                <strong id="pathway-display">Neck Pain &amp; Headaches</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Estimated Plan Total (Gap)</span>
+                <strong class="tabular-nums" id="total-plan-display">$240.00 AUD</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <h2 class="panel-title">Request an Appointment</h2>
+              <p class="panel-subtitle">Adelaide clinic team will confirm your time and HICAPS eligibility.</p>
+            </div>
+            <form id="booking-form">
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="patient-name">Full Name</label>
+                  <input type="text" id="patient-name" name="name" class="form-input" placeholder="Alex Morgan" autocomplete="name" required>
+                </div>
+                <div class="form-field">
+                  <label for="patient-phone">Phone Number</label>
+                  <input type="tel" id="patient-phone" name="tel" class="form-input" placeholder="0412 345 678" autocomplete="tel" required>
+                </div>
+                <div class="form-field full">
+                  <label for="patient-email">Email Address</label>
+                  <input type="email" id="patient-email" name="email" class="form-input" placeholder="alex.morgan@example.com.au" autocomplete="email" required>
+                </div>
+                <div class="form-field full">
+                  <label for="preferred-time">Preferred Time Window</label>
+                  <select id="preferred-time" name="preferred-time" class="form-input" autocomplete="off">
+                    <option value="Morning (8:00 AM - 12:00 PM)">Morning (8:00 AM - 12:00 PM)</option>
+                    <option value="Afternoon (12:00 PM - 4:00 PM)">Afternoon (12:00 PM - 4:00 PM)</option>
+                    <option value="Late Afternoon (4:00 PM - 6:30 PM)">Late Afternoon (4:00 PM - 6:30 PM)</option>
+                  </select>
+                </div>
+                <div class="form-field full">
+                  <label for="clinical-notes">Brief Notes</label>
+                  <textarea id="clinical-notes" name="notes" rows="2" class="form-input" placeholder="Optional: private health fund name or injury details" autocomplete="off"></textarea>
+                </div>
+              </div>
+              <button type="submit" class="submit-btn">Send Booking Request</button>
+              <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-info">
+        <strong>Health on Grange Physiotherapy</strong> &middot; Adelaide, South Australia &middot; Phone: <span class="tabular-nums">(08) 8443 4613</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://healthongrangephysiotherapy.com.au" target="_blank" rel="noopener noreferrer" class="contact-row-link">
+          https://healthongrangephysiotherapy.com.au
+        </a>
+        <a href="mailto:info@healthongrangephysiotherapy.com.au" class="contact-row-link">
+          info@healthongrangephysiotherapy.com.au
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        areaLabel: 'Neck Pain & Headaches',
+        sessions: 4,
+        fee: 115,
+        funding: 'hicaps',
+        rebate: 55
+      };
+
+      const areaBtns = document.querySelectorAll('#area-options .choice-btn');
+      const sessionBtns = document.querySelectorAll('#session-options .choice-btn');
+      const fundingBtns = document.querySelectorAll('#funding-options .choice-btn');
+      const sliderGroup = document.getElementById('hicaps-slider-group');
+      const rebateSlider = document.getElementById('rebate-slider');
+
+      const gapAmountEl = document.getElementById('gap-amount');
+      const planBadgeEl = document.getElementById('plan-badge');
+      const feeDisplayEl = document.getElementById('fee-display');
+      const rebateRowEl = document.getElementById('rebate-row-display');
+      const rebateSliderDisplayEl = document.getElementById('rebate-display');
+      const pathwayDisplayEl = document.getElementById('pathway-display');
+      const totalPlanDisplayEl = document.getElementById('total-plan-display');
+
+      function formatAUD(val) {
+        return '$' + Math.max(0, val).toFixed(2);
+      }
+
+      function updateUI() {
+        const activeRebate = state.funding === 'hicaps'
+          ? parseFloat(rebateSlider.value)
+          : (state.funding === 'medicare' ? 60.35 : 0);
+
+        const gap = Math.max(0, state.fee - activeRebate);
+        const totalPlan = gap * state.sessions;
+
+        gapAmountEl.textContent = formatAUD(gap);
+        planBadgeEl.textContent = state.sessions + '-Session Plan';
+        feeDisplayEl.textContent = formatAUD(state.fee) + ' AUD';
+        rebateRowEl.textContent = '-' + formatAUD(activeRebate) + ' AUD';
+        rebateSliderDisplayEl.textContent = formatAUD(activeRebate) + ' AUD';
+        pathwayDisplayEl.textContent = state.areaLabel;
+        totalPlanDisplayEl.textContent = formatAUD(totalPlan) + ' AUD';
+
+        sliderGroup.style.display = state.funding === 'hicaps' ? 'block' : 'none';
+      }
+
+      areaBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          areaBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.areaLabel = btn.querySelector('.choice-title').textContent;
+          state.sessions = parseInt(btn.getAttribute('data-sessions'), 10);
+          updateUI();
+        });
+      });
+
+      sessionBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          sessionBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.fee = parseFloat(btn.getAttribute('data-fee'));
+          updateUI();
+        });
+      });
+
+      fundingBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          fundingBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.funding = btn.getAttribute('data-funding');
+          updateUI();
+        });
+      });
+
+      rebateSlider.addEventListener('input', updateUI);
+
+      const bookingForm = document.getElementById('booking-form');
+      const formStatus = document.getElementById('form-status');
+
+      bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('patient-name').value.trim();
+        formStatus.textContent = 'Thank you, ' + name + '. Your ' + state.areaLabel + ' enquiry has been prepared for Health on Grange Physiotherapy (Adelaide).';
+        formStatus.classList.add('visible');
+        bookingForm.reset();
+      });
+
+      updateUI();
+    })();
+  </script>
+</body>
+</html>

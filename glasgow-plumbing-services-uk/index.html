@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Glasgow Plumbing Services — Gas Safe heating engineers and emergency plumbers in Glasgow. Instant GBP cost estimator for boiler repairs, central heating, and leak detection.">
+  <title>Glasgow Plumbing Services | Boiler, Heating &amp; Emergency Plumbing Estimator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F2942'/%3E%3Cpath d='M16 6C16 6 9 13.5 9 19a7 7 0 0 0 14 0c0-5.5-7-13-7-13zm0 17.5a4.5 4.5 0 0 1-4.5-4.5c0-2.5 2.4-6 4.5-8.6 2.1 2.6 4.5 6.1 4.5 8.6a4.5 4.5 0 0 1-4.5 4.5z' fill='%23C86D44'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #F6F8FB;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #EDF2F7;
+      --navy-900: #0B1F33;
+      --navy-800: #0F2942;
+      --navy-700: #183D5E;
+      --copper-600: #B85D3B;
+      --copper-500: #C86D44;
+      --copper-100: #FBF0EB;
+      --text-primary: #0F2942;
+      --text-secondary: #475569;
+      --text-muted: #64748B;
+      --border-light: #DCE4EE;
+      --border-strong: #CBD5E1;
+      --success-bg: #ECFDF5;
+      --success-text: #065F46;
+      --success-border: #A7F3D0;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-sm: 0 1px 3px rgba(15, 41, 66, 0.06);
+      --shadow-md: 0 8px 24px rgba(15, 41, 66, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--navy-800);
+      color: #FFFFFF;
+      border-bottom: 3px solid var(--copper-500);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: #FFFFFF;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background-color: var(--navy-900);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: #CBD5E1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--copper-500);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 9px 14px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background-color 0.18s ease;
+    }
+
+    .header-cta:hover {
+      background-color: var(--copper-600);
+    }
+
+    /* Main Container */
+    .main-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 20px 56px;
+    }
+
+    /* Hero Banner */
+    .hero-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--copper-600);
+      background-color: var(--copper-100);
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    .hero-card h1 {
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 800;
+      color: var(--navy-800);
+      line-height: 1.18;
+      margin-bottom: 10px;
+    }
+
+    .hero-card p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 15px;
+      max-width: 60ch;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .trust-item {
+      background-color: var(--bg-page);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+    }
+
+    .trust-val {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy-800);
+    }
+
+    .trust-lbl {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Workspace Grid */
+    .workspace {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy-800);
+      margin-bottom: 4px;
+    }
+
+    .panel-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0 0 20px;
+    }
+
+    .field-group {
+      margin-bottom: 20px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy-800);
+      margin-bottom: 8px;
+    }
+
+    label.field-label {
+      cursor: pointer;
+    }
+
+    /* Option Buttons */
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .option-grid.three-col {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .opt-btn {
+      appearance: none;
+      background-color: var(--bg-page);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .opt-btn:hover {
+      border-color: var(--navy-700);
+      background-color: #FFFFFF;
+    }
+
+    .opt-btn[aria-pressed="true"] {
+      background-color: var(--navy-800);
+      border-color: var(--navy-800);
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .opt-sub {
+      display: block;
+      font-size: 11px;
+      opacity: 0.78;
+      margin-top: 2px;
+    }
+
+    /* Range & Select */
+    .range-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      accent-color: var(--copper-500);
+      cursor: pointer;
+    }
+
+    .range-badge {
+      min-width: 72px;
+      text-align: center;
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 6px 10px;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--navy-800);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text-primary);
+      background-color: #FFFFFF;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      transition: border-color 0.15s ease;
+    }
+
+    .form-control:focus {
+      outline: 2px solid rgba(200, 109, 68, 0.25);
+      border-color: var(--copper-500);
+    }
+
+    /* Estimate Summary Card */
+    .estimate-box {
+      background-color: var(--navy-800);
+      color: #FFFFFF;
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .estimate-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .estimate-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #CBD5E1;
+    }
+
+    .estimate-price {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .breakdown-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      color: #E2E8F0;
+    }
+
+    .breakdown-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    /* Booking Form */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .form-full {
+      grid-column: 1 / -1;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background-color: var(--copper-500);
+      color: #FFFFFF;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 12px 18px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.18s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: var(--copper-600);
+    }
+
+    .form-status {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--success-bg);
+      color: var(--success-text);
+      border: 1px solid var(--success-border);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .form-status.visible {
+      display: block;
+    }
+
+    /* Services & Contact Footer */
+    .services-strip {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .service-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 14px;
+    }
+
+    .service-card h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy-800);
+      margin-bottom: 4px;
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .site-footer {
+      margin-top: 28px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px 20px;
+      align-items: center;
+    }
+
+    .footer-meta {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .footer-full-link {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .footer-full-link a[href^="mailto:"],
+    .footer-full-link a[href^="http"] {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 11px;
+      color: var(--navy-700);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer-full-link a:hover {
+      text-decoration: underline;
+      color: var(--copper-600);
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero-card,
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+      .services-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .header-inner {
+        padding: 12px 14px;
+      }
+      .main-wrap {
+        padding: 18px 14px 40px;
+      }
+      .hero-card,
+      .panel {
+        padding: 18px;
+      }
+      .option-grid,
+      .option-grid.three-col,
+      .form-grid,
+      .services-strip,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .estimate-top {
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#estimator" class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2.5C12 2.5 6 9.2 6 14.2a6 6 0 0 0 12 0C18 9.2 12 2.5 12 2.5Z" stroke="#C86D44" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="12" cy="14.5" r="2.2" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Glasgow Plumbing Services</div>
+          <div class="brand-sub">Gas Safe Engineers &amp; Emergency Plumbers</div>
+        </div>
+      </a>
+      <a href="tel:01412950280" class="header-cta tabular">0141 295 0280</a>
+    </div>
+  </header>
+
+  <main class="main-wrap">
+    <section class="hero-card" aria-label="Overview">
+      <div>
+        <span class="eyebrow">Glasgow &amp; Greater Clyde</span>
+        <h1>Boiler, Heating &amp; Emergency Plumbing Cost Estimator</h1>
+        <p>Calculate an instant GBP guide price for boiler repairs, central heating installations, leak detection, and same-day emergency callouts across Glasgow.</p>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-val tabular">60 min</div>
+          <div class="trust-lbl">Emergency response target</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-val tabular">12 mo</div>
+          <div class="trust-lbl">Workmanship guarantee</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-val">Gas Safe</div>
+          <div class="trust-lbl">Certified heating engineers</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-val tabular">0%</div>
+          <div class="trust-lbl">Hidden callout surcharges</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="estimator" class="workspace" aria-label="Interactive Cost Estimator and Booking">
+      <!-- Left: Estimator Controls -->
+      <div class="panel">
+        <h2 class="panel-title">Configure Your Job</h2>
+        <p class="panel-desc">Select your service, boiler type, radiator count, and urgency for a transparent GBP estimate.</p>
+
+        <div class="field-group">
+          <div class="field-label">1. Select Service</div>
+          <div class="option-grid" role="group" aria-label="Service type">
+            <button type="button" class="opt-btn" data-service="emergency" aria-pressed="true">
+              Emergency Plumbing
+              <span class="opt-sub">Burst pipes, blockages, shutoffs</span>
+            </button>
+            <button type="button" class="opt-btn" data-service="boiler" aria-pressed="false">
+              Boiler Repairs &amp; Servicing
+              <span class="opt-sub">Diagnostics, parts, annual service</span>
+            </button>
+            <button type="button" class="opt-btn" data-service="heating" aria-pressed="false">
+              Central Heating Installation
+              <span class="opt-sub">Full system, pipework &amp; flush</span>
+            </button>
+            <button type="button" class="opt-btn" data-service="leak" aria-pressed="false">
+              Leak Detection &amp; Repair
+              <span class="opt-sub">Thermal &amp; acoustic tracing</span>
+            </button>
+            <button type="button" class="opt-btn" data-service="bathroom" aria-pressed="false">
+              Bathroom Plumbing
+              <span class="opt-sub">Showers, taps, traps &amp; wastes</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">2. Boiler Type</div>
+          <div class="option-grid three-col" role="group" aria-label="Boiler type">
+            <button type="button" class="opt-btn" data-boiler="combi" aria-pressed="true">
+              Combi
+              <span class="opt-sub">On-demand hot water</span>
+            </button>
+            <button type="button" class="opt-btn" data-boiler="system" aria-pressed="false">
+              System
+              <span class="opt-sub">Unvented cylinder</span>
+            </button>
+            <button type="button" class="opt-btn" data-boiler="regular" aria-pressed="false">
+              Regular
+              <span class="opt-sub">Open-vented tank</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="radiatorCount">3. Number of Radiators</label>
+          <div class="range-row">
+            <input type="range" id="radiatorCount" name="radiatorCount" min="1" max="16" value="6" autocomplete="off">
+            <span class="range-badge tabular" id="radiatorDisplay">6 rads</span>
+          </div>
+        </div>
+
+        <div class="field-group" style="margin-bottom: 0;">
+          <div class="field-label">4. Urgency</div>
+          <div class="option-grid" role="group" aria-label="Urgency">
+            <button type="button" class="opt-btn" data-urgency="standard" aria-pressed="true">
+              Standard
+              <span class="opt-sub">Next-day / scheduled slot</span>
+            </button>
+            <button type="button" class="opt-btn" data-urgency="same-day" aria-pressed="false">
+              Same-Day
+              <span class="opt-sub">Priority Glasgow dispatch</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Live Estimate & Booking -->
+      <div class="panel">
+        <div class="estimate-box" aria-live="polite">
+          <div class="estimate-top">
+            <span class="estimate-label">Estimated Guide Price (GBP)</span>
+            <span class="estimate-price tabular" id="estimateTotal">£120 – £165</span>
+          </div>
+          <ul class="breakdown-list">
+            <li><span>Selected Service</span><strong id="sumService">Emergency Plumbing</strong></li>
+            <li><span>Boiler System</span><strong id="sumBoiler">Combi</strong></li>
+            <li><span>Radiators</span><strong class="tabular" id="sumRads">6</strong></li>
+            <li><span>Dispatch</span><strong id="sumUrgency">Standard</strong></li>
+          </ul>
+        </div>
+
+        <h2 class="panel-title">Request Callback or Booking</h2>
+        <p class="panel-desc">Lock in your estimate. A Glasgow engineer will confirm availability by phone.</p>
+
+        <form id="bookingForm" class="form-grid" novalidate>
+          <div>
+            <label class="field-label" for="clientName">Full Name</label>
+            <input class="form-control" type="text" id="clientName" name="clientName" placeholder="e.g. Callum MacLeod" autocomplete="name" required>
+          </div>
+          <div>
+            <label class="field-label" for="clientPhone">Phone Number</label>
+            <input class="form-control tabular" type="tel" id="clientPhone" name="clientPhone" placeholder="0141 295 0280" autocomplete="tel" required>
+          </div>
+          <div>
+            <label class="field-label" for="clientEmail">Email Address</label>
+            <input class="form-control" type="email" id="clientEmail" name="clientEmail" placeholder="name@example.co.uk" autocomplete="email" required>
+          </div>
+          <div>
+            <label class="field-label" for="clientPostcode">Glasgow Postcode</label>
+            <input class="form-control" type="text" id="clientPostcode" name="clientPostcode" placeholder="G1 1AA" autocomplete="postal-code" required>
+          </div>
+          <div class="form-full">
+            <label class="field-label" for="jobNotes">Brief Job Details</label>
+            <textarea class="form-control" id="jobNotes" name="jobNotes" rows="2" placeholder="Describe the issue, boiler fault code, or preferred time" autocomplete="off"></textarea>
+          </div>
+          <div class="form-full">
+            <button type="submit" class="submit-btn">Send Estimate &amp; Request Callback</button>
+            <div id="formStatus" class="form-status" role="status">
+              Request logged for <span id="statusSummary"></span>. For immediate dispatch call <span class="tabular">0141 295 0280</span>.
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="services-strip" aria-label="Core Services">
+      <article class="service-card">
+        <h3>Emergency Plumbing</h3>
+        <p>Rapid response for burst pipes, leaking valves, and blocked drains across Glasgow.</p>
+      </article>
+      <article class="service-card">
+        <h3>Boiler Repairs &amp; Servicing</h3>
+        <p>Fault diagnostics, annual Gas Safe checks, and replacement parts for all major brands.</p>
+      </article>
+      <article class="service-card">
+        <h3>Central Heating Installation</h3>
+        <p>Full system design, radiator balancing, smart controls, and powerflushing.</p>
+      </article>
+      <article class="service-card">
+        <h3>Leak Detection &amp; Repair</h3>
+        <p>Non-invasive tracing for concealed pipework under floors and behind walls.</p>
+      </article>
+      <article class="service-card">
+        <h3>Bathroom Plumbing</h3>
+        <p>Mixer showers, thermostatic valves, cisterns, basins, and waste pipework.</p>
+      </article>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-meta">
+          <strong>Glasgow Plumbing Services</strong> — Glasgow, UK
+        </div>
+        <div class="footer-meta tabular">
+          Phone: 01412950280
+        </div>
+        <div class="footer-full-link">
+          <a href="mailto:info@glasgowplumbingservices.com">info@glasgowplumbingservices.com</a>
+          <a href="https://glasgowplumbingservices.com" target="_blank" rel="noopener noreferrer">https://glasgowplumbingservices.com</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      const state = {
+        service: 'emergency',
+        boiler: 'combi',
+        radiators: 6,
+        urgency: 'standard'
+      };
+
+      const serviceLabels = {
+        emergency: 'Emergency Plumbing',
+        boiler: 'Boiler Repairs & Servicing',
+        heating: 'Central Heating Installation',
+        leak: 'Leak Detection & Repair',
+        bathroom: 'Bathroom Plumbing'
+      };
+
+      const boilerLabels = {
+        combi: 'Combi',
+        system: 'System',
+        regular: 'Regular'
+      };
+
+      const baseRates = {
+        emergency: { min: 95, max: 140, perRad: 4 },
+        boiler: { min: 85, max: 130, perRad: 5 },
+        heating: { min: 1650, max: 2150, perRad: 115 },
+        leak: { min: 110, max: 165, perRad: 3 },
+        bathroom: { min: 120, max: 180, perRad: 0 }
+      };
+
+      const boilerMult = {
+        combi: 1.0,
+        system: 1.12,
+        regular: 1.18
+      };
+
+      const urgencyAdd = {
+        standard: { min: 0, max: 0 },
+        'same-day': { min: 45, max: 65 }
+      };
+
+      const radInput = document.getElementById('radiatorCount');
+      const radDisplay = document.getElementById('radiatorDisplay');
+      const estimateTotal = document.getElementById('estimateTotal');
+      const sumService = document.getElementById('sumService');
+      const sumBoiler = document.getElementById('sumBoiler');
+      const sumRads = document.getElementById('sumRads');
+      const sumUrgency = document.getElementById('sumUrgency');
+
+      function updateEstimate() {
+        const rate = baseRates[state.service];
+        const mult = boilerMult[state.boiler];
+        const urg = urgencyAdd[state.urgency];
+
+        const minPrice = Math.round((rate.min + state.radiators * rate.perRad) * mult + urg.min);
+        const maxPrice = Math.round((rate.max + state.radiators * rate.perRad) * mult + urg.max);
+
+        estimateTotal.textContent = '£' + minPrice.toLocaleString('en-GB') + ' – £' + maxPrice.toLocaleString('en-GB');
+        sumService.textContent = serviceLabels[state.service];
+        sumBoiler.textContent = boilerLabels[state.boiler];
+        sumRads.textContent = String(state.radiators);
+        sumUrgency.textContent = state.urgency === 'same-day' ? 'Same-Day' : 'Standard';
+      }
+
+      function bindGroup(attr, key) {
+        const buttons = document.querySelectorAll('[data-' + attr + ']');
+        buttons.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            buttons.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+            btn.setAttribute('aria-pressed', 'true');
+            state[key] = btn.getAttribute('data-' + attr);
+            updateEstimate();
+          });
+        });
+      }
+
+      bindGroup('service', 'service');
+      bindGroup('boiler', 'boiler');
+      bindGroup('urgency', 'urgency');
+
+      radInput.addEventListener('input', function () {
+        state.radiators = parseInt(radInput.value, 10);
+        radDisplay.textContent = state.radiators + (state.radiators === 1 ? ' rad' : ' rads');
+        updateEstimate();
+      });
+
+      const bookingForm = document.getElementById('bookingForm');
+      const formStatus = document.getElementById('formStatus');
+      const statusSummary = document.getElementById('statusSummary');
+
+      bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('clientName').value.trim() || 'your property';
+        statusSummary.textContent = name + ' (' + serviceLabels[state.service] + ', ' + estimateTotal.textContent + ')';
+        formStatus.classList.add('visible');
+      });
+
+      updateEstimate();
+    })();
+  </script>
+</body>
+</html>

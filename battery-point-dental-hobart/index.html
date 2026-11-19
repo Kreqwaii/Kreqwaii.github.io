@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Battery Point Dental Practice in Hobart, TAS. Interactive Hobart Family & Implant Dental Cost Estimator for General & Preventative Dentistry, Cosmetic Dentistry, Crowns & Bridges, Dental Implants, and Children's Dentistry with CDBS and HICAPS.">
+  <title>Battery Point Dental Practice | Hobart Family & Implant Dental Cost Estimator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23163A59'/%3E%3Cpath d='M11 9.5c-1.8 0-3 1.4-3 3.4 0 2.6 1.2 5.4 2.2 8.2.5 1.4 1.3 2.4 2.1 2.4.7 0 1.2-.8 1.6-2.1.4-1.3.9-2.1 2.1-2.1s1.7.8 2.1 2.1c.4 1.3.9 2.1 1.6 2.1.8 0 1.6-1 2.1-2.4 1-2.8 2.2-5.6 2.2-8.2 0-2-1.2-3.4-3-3.4-1.4 0-2.4.8-3.4 1.5-.9.6-2.3.6-3.2 0-1-.7-2-1.5-3.4-1.5z' fill='%23F7F4EE'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #F7F4EE;
+      --bg-surface: #FFFFFF;
+      --bg-sandstone: #EFE9DD;
+      --bg-sandstone-soft: #F3EFE6;
+      --tasman-blue: #163A59;
+      --tasman-blue-dark: #0E273D;
+      --tasman-blue-soft: #E8F0F6;
+      --tasman-teal: #246A73;
+      --text-main: #18222C;
+      --text-muted: #52616E;
+      --border-subtle: #DCD4C6;
+      --border-strong: #C5BA9F;
+      --success-bg: #E7F4EE;
+      --success-text: #165B3E;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      --shadow-card: 0 10px 30px rgba(22, 58, 89, 0.06);
+      --shadow-focus: 0 0 0 3px rgba(22, 58, 89, 0.18);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+      padding: 12px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--tasman-blue);
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: var(--tasman-blue);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--tasman-blue);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background-color: var(--tasman-blue-soft);
+      color: var(--tasman-blue);
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .phone-pill:hover {
+      background-color: var(--tasman-blue);
+      color: var(--bg-surface);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 40px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background-color: var(--bg-sandstone);
+      color: var(--tasman-blue);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(26px, 3.2vw, 38px);
+      line-height: 1.15;
+      color: var(--tasman-blue-dark);
+      margin-bottom: 14px;
+    }
+
+    .hero-copy p {
+      margin: 0 0 22px;
+      color: var(--text-muted);
+      font-size: 16px;
+      max-width: 60ch;
+    }
+
+    .service-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .service-pill {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--tasman-blue);
+      background-color: var(--bg-sandstone-soft);
+      border: 1px solid var(--border-subtle);
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+
+    .practice-card {
+      background-color: var(--tasman-blue);
+      color: var(--bg-surface);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .practice-card h2 {
+      font-size: 18px;
+      color: var(--bg-surface);
+      margin-bottom: 6px;
+    }
+
+    .practice-card p {
+      margin: 0;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .contact-item {
+      background-color: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      min-width: 0;
+    }
+
+    .contact-item.full-row {
+      grid-column: 1 / -1;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 3px;
+    }
+
+    .contact-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--bg-surface);
+    }
+
+    .contact-item a[href^="mailto:"],
+    .contact-item a[href^="http"] {
+      display: block;
+      color: var(--bg-surface);
+      text-decoration: none;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 10.5px;
+      font-weight: 600;
+    }
+
+    .contact-item a[href^="mailto:"]:hover,
+    .contact-item a[href^="http"]:hover {
+      text-decoration: underline;
+    }
+
+    /* Main Workspace */
+    .workspace {
+      padding: 8px 0 48px;
+    }
+
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .panel-header {
+      margin-bottom: 22px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .panel-header h2 {
+      font-size: 21px;
+      color: var(--tasman-blue-dark);
+      margin-bottom: 4px;
+    }
+
+    .panel-header p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .field-group {
+      margin-bottom: 22px;
+    }
+
+    .field-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--tasman-blue-dark);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .option-btn {
+      appearance: none;
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-sandstone-soft);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      text-align: left;
+      cursor: pointer;
+      color: var(--text-main);
+      font-family: inherit;
+      transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .option-btn:hover {
+      border-color: var(--tasman-blue);
+      background-color: var(--tasman-blue-soft);
+    }
+
+    .option-btn.active {
+      border-color: var(--tasman-blue);
+      background-color: var(--tasman-blue);
+      color: var(--bg-surface);
+    }
+
+    .option-title {
+      display: block;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .option-meta {
+      display: block;
+      font-size: 12px;
+      opacity: 0.85;
+    }
+
+    .scheme-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .input-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .input-wrap label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--tasman-blue-dark);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 14px;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--tasman-blue);
+      box-shadow: var(--shadow-focus);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 76px;
+    }
+
+    /* Summary & Booking */
+    .estimate-box {
+      background-color: var(--bg-sandstone-soft);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 22px;
+    }
+
+    .estimate-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .estimate-caption {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .estimate-total {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--tasman-blue);
+    }
+
+    .breakdown-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .breakdown-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text-main);
+    }
+
+    .breakdown-list li span:last-child {
+      font-weight: 700;
+    }
+
+    .rebate-badge {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      background-color: var(--success-bg);
+      color: var(--success-text);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 13px 18px;
+      border: none;
+      border-radius: var(--radius-md);
+      background-color: var(--tasman-blue);
+      color: var(--bg-surface);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: var(--tasman-blue-dark);
+    }
+
+    .status-banner {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--success-bg);
+      color: var(--success-text);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .status-banner.visible {
+      display: block;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border-subtle);
+      background-color: var(--bg-surface);
+      padding: 24px 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      color: var(--tasman-blue);
+      text-decoration: none;
+      font-weight: 600;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 10.5px;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero {
+        padding: 24px 0 20px;
+      }
+
+      .hero-copy,
+      .practice-card,
+      .panel {
+        padding: 20px;
+      }
+
+      .option-grid,
+      .scheme-grid,
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-pill {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+
+      .contact-item a[href^="mailto:"],
+      .contact-item a[href^="http"],
+      .footer-links a {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="https://www.batterypointdental.com.au" target="_blank" rel="noopener noreferrer">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
+            <path d="M11 9.5c-1.8 0-3 1.4-3 3.4 0 2.6 1.2 5.4 2.2 8.2.5 1.4 1.3 2.4 2.1 2.4.7 0 1.2-.8 1.6-2.1.4-1.3.9-2.1 2.1-2.1s1.7.8 2.1 2.1c.4 1.3.9 2.1 1.6 2.1.8 0 1.6-1 2.1-2.4 1-2.8 2.2-5.6 2.2-8.2 0-2-1.2-3.4-3-3.4-1.4 0-2.4.8-3.4 1.5-.9.6-2.3.6-3.2 0-1-.7-2-1.5-3.4-1.5z" fill="#F7F4EE"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Battery Point Dental Practice</div>
+          <div class="brand-sub">Hobart, Tasmania</div>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a class="phone-pill tabular" href="tel:0362241855">03 6224 1855</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Hobart Family &amp; Implant Dentistry</span>
+          <h1>Hobart Family &amp; Implant Dental Cost Estimator</h1>
+          <p>Plan your next dental visit in Battery Point with transparent Australian Dollar estimates. Compare General &amp; Preventative care, Cosmetic Dentistry, Crowns &amp; Bridges, Dental Implants, and Children's Dentistry across Self-Pay, HICAPS Health Funds, and CDBS.</p>
+          <div class="service-pills">
+            <span class="service-pill">General &amp; Preventative Dentistry</span>
+            <span class="service-pill">Cosmetic Dentistry</span>
+            <span class="service-pill">Crowns &amp; Bridges</span>
+            <span class="service-pill">Dental Implants</span>
+            <span class="service-pill">Children's Dentistry</span>
+          </div>
+        </div>
+
+        <aside class="practice-card">
+          <div>
+            <h2>Battery Point Dental Practice</h2>
+            <p>Serving Hobart families with gentle preventative care, restorative crowns, and implant dentistry.</p>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-item">
+              <div class="contact-label">Phone</div>
+              <div class="contact-value tabular">03 6224 1855</div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-label">Location</div>
+              <div class="contact-value">Hobart, TAS</div>
+            </div>
+            <div class="contact-item full-row">
+              <div class="contact-label">Email</div>
+              <a href="mailto:reception@batterypointdental.com.au">reception@batterypointdental.com.au</a>
+            </div>
+            <div class="contact-item full-row">
+              <div class="contact-label">Website</div>
+              <a href="https://www.batterypointdental.com.au" target="_blank" rel="noopener noreferrer">https://www.batterypointdental.com.au</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="container workspace-grid">
+        <div class="panel">
+          <div class="panel-header">
+            <h2>1. Select Treatment &amp; Cover</h2>
+            <p>Choose your dental service, number of units or teeth, and payment scheme.</p>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">Dental Service</div>
+            <div class="option-grid" id="service-options">
+              <button type="button" class="option-btn active" data-service="general" data-base="245" data-unit="245">
+                <span class="option-title">General &amp; Preventative</span>
+                <span class="option-meta tabular">Check-up, scale &amp; clean · AUD $245</span>
+              </button>
+              <button type="button" class="option-btn" data-service="cosmetic" data-base="690" data-unit="550">
+                <span class="option-title">Cosmetic Dentistry</span>
+                <span class="option-meta tabular">Whitening / veneers · from AUD $690</span>
+              </button>
+              <button type="button" class="option-btn" data-service="crowns" data-base="1750" data-unit="1750">
+                <span class="option-title">Crowns &amp; Bridges</span>
+                <span class="option-meta tabular">Ceramic crown · AUD $1,750</span>
+              </button>
+              <button type="button" class="option-btn" data-service="implants" data-base="4650" data-unit="4650">
+                <span class="option-title">Dental Implants</span>
+                <span class="option-meta tabular">Fixture &amp; crown · AUD $4,650</span>
+              </button>
+              <button type="button" class="option-btn" data-service="childrens" data-base="185" data-unit="185">
+                <span class="option-title">Children's Dentistry</span>
+                <span class="option-meta tabular">Kids exam &amp; clean · AUD $185</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">Payment &amp; Rebate Option</div>
+            <div class="scheme-grid" id="scheme-options">
+              <button type="button" class="option-btn active" data-scheme="self" data-rebate="0">
+                <span class="option-title">Self-Pay</span>
+                <span class="option-meta">Standard fee</span>
+              </button>
+              <button type="button" class="option-btn" data-scheme="hicaps" data-rebate="0.45">
+                <span class="option-title">Health Fund HICAPS</span>
+                <span class="option-meta">Est. 45% cover</span>
+              </button>
+              <button type="button" class="option-btn" data-scheme="cdbs" data-rebate="1.0">
+                <span class="option-title">Children's CDBS</span>
+                <span class="option-meta">Medicare eligible</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-wrap">
+              <label for="units-select">Teeth / Visits Count</label>
+              <select id="units-select" autocomplete="off">
+                <option value="1">1 unit / visit</option>
+                <option value="2">2 units / teeth</option>
+                <option value="3">3 units / teeth</option>
+                <option value="4">4 units / teeth</option>
+              </select>
+            </div>
+            <div class="input-wrap">
+              <label for="urgency-select">Appointment Timing</label>
+              <select id="urgency-select" autocomplete="off">
+                <option value="0">Standard Booking (AUD $0)</option>
+                <option value="85">Same-Day Emergency (+AUD $85)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h2>2. Estimate &amp; Appointment Request</h2>
+            <p>Review your estimated out-of-pocket fee in AUD and request a booking.</p>
+          </div>
+
+          <div class="estimate-box">
+            <div class="estimate-top">
+              <span class="estimate-caption">Estimated Out-of-Pocket</span>
+              <span class="estimate-total tabular" id="total-display">AUD $245</span>
+            </div>
+            <ul class="breakdown-list">
+              <li>
+                <span>Treatment Fee</span>
+                <span class="tabular" id="gross-display">AUD $245</span>
+              </li>
+              <li>
+                <span>Estimated Rebate / Cover</span>
+                <span class="tabular" id="rebate-display">-AUD $0</span>
+              </li>
+              <li>
+                <span>Urgency / Triage Fee</span>
+                <span class="tabular" id="urgency-display">AUD $0</span>
+              </li>
+            </ul>
+            <div class="rebate-badge" id="scheme-note">Standard Self-Pay estimate. On-the-spot HICAPS claiming available in clinic.</div>
+          </div>
+
+          <form id="booking-form">
+            <div class="form-row">
+              <div class="input-wrap">
+                <label for="patient-name">Full Name</label>
+                <input id="patient-name" name="name" type="text" placeholder="e.g. Claire Bennett" autocomplete="name" required>
+              </div>
+              <div class="input-wrap">
+                <label for="patient-phone">Phone Number</label>
+                <input id="patient-phone" name="tel" type="tel" placeholder="04XX XXX XXX" autocomplete="tel" required>
+              </div>
+            </div>
+            <div class="input-wrap">
+              <label for="patient-email">Email Address</label>
+              <input id="patient-email" name="email" type="email" placeholder="name@example.com.au" autocomplete="email" required>
+            </div>
+            <div class="input-wrap">
+              <label for="patient-notes">Clinical Notes or Preferred Day</label>
+              <textarea id="patient-notes" name="notes" placeholder="Preferred morning/afternoon time or health fund name" autocomplete="off"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Request Appointment Estimate</button>
+            <div class="status-banner" id="booking-status" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>Battery Point Dental Practice · Hobart, TAS · Estimates are indicative only and confirmed after clinical examination.</div>
+      <div class="footer-links">
+        <a href="mailto:reception@batterypointdental.com.au">reception@batterypointdental.com.au</a>
+        <a href="https://www.batterypointdental.com.au" target="_blank" rel="noopener noreferrer">https://www.batterypointdental.com.au</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        service: 'general',
+        basePrice: 245,
+        scheme: 'self',
+        rebateRate: 0,
+        units: 1,
+        urgency: 0
+      };
+
+      const serviceButtons = document.querySelectorAll('#service-options .option-btn');
+      const schemeButtons = document.querySelectorAll('#scheme-options .option-btn');
+      const unitsSelect = document.getElementById('units-select');
+      const urgencySelect = document.getElementById('urgency-select');
+      const totalDisplay = document.getElementById('total-display');
+      const grossDisplay = document.getElementById('gross-display');
+      const rebateDisplay = document.getElementById('rebate-display');
+      const urgencyDisplay = document.getElementById('urgency-display');
+      const schemeNote = document.getElementById('scheme-note');
+      const bookingForm = document.getElementById('booking-form');
+      const bookingStatus = document.getElementById('booking-status');
+
+      function formatAUD(amount) {
+        return 'AUD $' + Math.round(amount).toLocaleString('en-AU');
+      }
+
+      function updateEstimate() {
+        const gross = state.basePrice * state.units;
+        let rebate = 0;
+
+        if (state.scheme === 'hicaps') {
+          rebate = gross * state.rebateRate;
+          schemeNote.textContent = 'Estimated 45% HICAPS health fund rebate applied. Exact gap depends on your extras cover.';
+        } else if (state.scheme === 'cdbs') {
+          if (state.service === 'childrens' || state.service === 'general') {
+            rebate = Math.min(gross, 1095);
+            schemeNote.textContent = 'Medicare Child Dental Benefits Schedule (CDBS) covers eligible children up to AUD $1,095 over 2 years.';
+          } else {
+            rebate = 0;
+            schemeNote.textContent = 'CDBS applies to General and Children\'s Dentistry. Select General or Children\'s for CDBS cover.';
+          }
+        } else {
+          schemeNote.textContent = 'Standard Self-Pay estimate. On-the-spot HICAPS claiming available in clinic.';
+        }
+
+        const total = Math.max(0, gross - rebate + state.urgency);
+        grossDisplay.textContent = formatAUD(gross);
+        rebateDisplay.textContent = '-' + formatAUD(rebate);
+        urgencyDisplay.textContent = formatAUD(state.urgency);
+        totalDisplay.textContent = formatAUD(total);
+      }
+
+      serviceButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          serviceButtons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.service = btn.dataset.service;
+          state.basePrice = Number(btn.dataset.base);
+          updateEstimate();
+        });
+      });
+
+      schemeButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          schemeButtons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.scheme = btn.dataset.scheme;
+          state.rebateRate = Number(btn.dataset.rebate);
+          updateEstimate();
+        });
+      });
+
+      unitsSelect.addEventListener('change', function () {
+        state.units = Number(unitsSelect.value);
+        updateEstimate();
+      });
+
+      urgencySelect.addEventListener('change', function () {
+        state.urgency = Number(urgencySelect.value);
+        updateEstimate();
+      });
+
+      bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('patient-name').value.trim();
+        bookingStatus.textContent = 'Request prepared for ' + (name || 'Patient') + '. Reception at Battery Point Dental Practice (03 6224 1855) will confirm your ' + totalDisplay.textContent + ' estimate.';
+        bookingStatus.classList.add('visible');
+      });
+
+      updateEstimate();
+    })();
+  </script>
+</body>
+</html>
