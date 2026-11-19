@@ -1,0 +1,2151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Стоматологическая клиника «Крепкий орешек» в Омске (ул. Туполева, 2/1). Неотложная стоматологическая помощь, лечение кариеса и каналов, коронки из металлокерамики и диоксида циркония, бюгельное протезирование и имплантация. Онлайн-калькулятор и запись на прием.">
+  <title>Стоматологическая клиника «Крепкий орешек» — Омск, ул. Туполева, 2/1</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2315616D'/%3E%3Cpath d='M10.5 9.5C12.5 8 14.5 9 16 10.2C17.5 9 19.5 8 21.5 9.5C23.5 11 23.5 15 22 19.5C21 22.5 19.5 24 18.5 24C17.6 24 17.2 20.5 16 20.5C14.8 20.5 14.4 24 13.5 24C12.5 24 11 22.5 10 19.5C8.5 15 8.5 11 10.5 9.5Z' fill='%23FAF9F7'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #FAF9F7;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #F2EFEA;
+      --bg-accent-soft: #E8F3F5;
+      --ink-primary: #162026;
+      --ink-secondary: #4D5D66;
+      --ink-muted: #687882;
+      --accent: #15616D;
+      --accent-hover: #0F4C56;
+      --accent-ring: rgba(21, 97, 109, 0.22);
+      --border-hairline: #E3DED6;
+      --border-strong: #C9C2B6;
+      --danger: #B4382D;
+      --danger-soft: #FDF2F0;
+      --success: #166534;
+      --success-soft: #ECFDF3;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+      --shadow-card: 0 18px 44px -22px rgba(22, 32, 38, 0.14), 0 2px 8px rgba(22, 32, 38, 0.04);
+      --shadow-soft: 0 6px 20px -10px rgba(22, 32, 38, 0.09);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      max-width: 100%;
+      overflow-x: clip;
+    }
+
+    body {
+      margin: 0;
+      max-width: 100%;
+      overflow-x: clip;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .tnum {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(250, 249, 247, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 74px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--ink-primary);
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 11px;
+      background-color: var(--accent);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 23px;
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-meta {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
+    }
+
+    .header-nav {
+      display: none;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .header-nav a {
+      text-decoration: none;
+      color: var(--ink-secondary);
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.18s ease;
+    }
+
+    .header-nav a:hover,
+    .header-nav a:focus-visible {
+      color: var(--accent);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .header-phone {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-hairline);
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: border-color 0.18s ease, color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .header-phone:hover,
+    .header-phone:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .header-phone-text {
+      display: none;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 11px 18px;
+      border: 1px solid var(--accent);
+      border-radius: var(--radius-sm);
+      background-color: var(--accent);
+      color: #FFFFFF;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    .btn-primary:active {
+      transform: translateY(1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+      background-color: var(--bg-accent-soft);
+    }
+
+    /* Hero + Interactive Workspace */
+    .hero-section {
+      padding: 36px 0 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 32px;
+      align-items: start;
+    }
+
+    .hero-intro {
+      min-width: 0;
+    }
+
+    .eyebrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background-color: var(--bg-accent-soft);
+      border: 1px solid rgba(21, 97, 109, 0.18);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 18px;
+      max-width: 100%;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background-color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 54px);
+      font-weight: 600;
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+      margin: 0 0 16px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-lead {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink-secondary);
+      margin: 0 0 24px;
+      max-width: 560px;
+    }
+
+    .hero-facts {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .fact-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .fact-value {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--ink-primary);
+    }
+
+    .fact-desc {
+      font-size: 13px;
+      color: var(--ink-secondary);
+      line-height: 1.45;
+    }
+
+    .clinic-strip {
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .clinic-strip-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--ink-primary);
+    }
+
+    .clinic-strip-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
+    .clinic-strip a {
+      color: var(--ink-primary);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .clinic-strip a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    /* Interactive Calculator + Booking Panel */
+    .workspace-card {
+      min-width: 0;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .workspace-head {
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid var(--border-hairline);
+      background-color: #FFFFFF;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .workspace-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--ink-primary);
+      margin: 0;
+    }
+
+    .workspace-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background-color: var(--bg-subtle);
+      color: var(--ink-secondary);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .workspace-body {
+      padding: 22px 24px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+      margin-bottom: 10px;
+    }
+
+    /* Direction selector grid */
+    .direction-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .direction-btn {
+      width: 100%;
+      min-height: 58px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-hairline);
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      text-align: left;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 4px;
+      transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .direction-btn:hover {
+      border-color: var(--border-strong);
+      background-color: #FFFFFF;
+    }
+
+    .direction-btn[aria-pressed="true"] {
+      border-color: var(--accent);
+      background-color: var(--bg-accent-soft);
+      box-shadow: 0 0 0 3px var(--accent-ring);
+    }
+
+    .direction-name {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--ink-primary);
+    }
+
+    .direction-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--ink-secondary);
+    }
+
+    .direction-price {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* Slider + Diagnosis toggle */
+    .controls-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+    }
+
+    .slider-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .slider-label {
+      margin-bottom: 0;
+    }
+
+    .units-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: var(--accent);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .range-input {
+      width: 100%;
+      height: 8px;
+      margin: 6px 0 8px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .range-scale {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      padding: 0 2px;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .checkbox-input {
+      width: 20px;
+      height: 20px;
+      margin: 2px 0 0;
+      flex-shrink: 0;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .checkbox-label {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .checkbox-hint {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink-secondary);
+    }
+
+    /* Live Estimate Box */
+    .estimate-box {
+      border-radius: var(--radius-md);
+      background-color: #162026;
+      color: #FAF9F7;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .estimate-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(250, 249, 247, 0.14);
+    }
+
+    .estimate-kicker {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: rgba(250, 249, 247, 0.72);
+      margin-bottom: 4px;
+    }
+
+    .estimate-total {
+      font-family: var(--font-display);
+      font-size: 38px;
+      font-weight: 700;
+      line-height: 1;
+      color: #FFFFFF;
+    }
+
+    .estimate-duration {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background-color: rgba(21, 97, 109, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      font-size: 12px;
+      font-weight: 600;
+      color: #E8F3F5;
+    }
+
+    .stages-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .stage-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+      line-height: 1.4;
+      color: rgba(250, 249, 247, 0.88);
+    }
+
+    .stage-name {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .stage-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: #8FD0DA;
+      flex-shrink: 0;
+    }
+
+    .stage-price {
+      font-weight: 700;
+      color: #FFFFFF;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .estimate-footnote {
+      font-size: 12px;
+      color: rgba(250, 249, 247, 0.65);
+      margin: 0;
+    }
+
+    /* Scheduling + Form */
+    .schedule-block {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .date-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+      gap: 8px;
+    }
+
+    .slot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .pill-btn {
+      min-height: 44px;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-hairline);
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .pill-btn:hover {
+      border-color: var(--border-strong);
+      background-color: #FFFFFF;
+    }
+
+    .pill-btn[aria-pressed="true"] {
+      border-color: var(--accent);
+      background-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .pill-sub {
+      font-size: 11px;
+      font-weight: 500;
+      opacity: 0.78;
+    }
+
+    .booking-fields {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .input-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .text-input {
+      width: 100%;
+      min-height: 46px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: #FFFFFF;
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .text-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-ring);
+    }
+
+    .form-error {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--danger-soft);
+      border: 1px solid rgba(180, 56, 45, 0.28);
+      color: var(--danger);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .submit-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      min-height: 50px;
+      font-size: 15px;
+    }
+
+    .consent-note {
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    /* Instant Confirmation State */
+    .confirmation-card {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .confirmation-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      background-color: var(--success-soft);
+      border: 1px solid rgba(22, 101, 52, 0.22);
+      color: var(--ink-primary);
+    }
+
+    .confirmation-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background-color: var(--success);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .confirmation-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin: 0 0 4px;
+      color: var(--ink-primary);
+    }
+
+    .confirmation-sub {
+      font-size: 14px;
+      color: var(--ink-secondary);
+      margin: 0;
+    }
+
+    .summary-dl {
+      margin: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+    }
+
+    .summary-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-hairline);
+      font-size: 14px;
+    }
+
+    .summary-row:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .summary-dt {
+      color: var(--ink-secondary);
+      font-weight: 500;
+    }
+
+    .summary-dd {
+      margin: 0;
+      color: var(--ink-primary);
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .confirmation-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* Sections */
+    .section-block {
+      padding: 56px 0;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .section-header {
+      max-width: 680px;
+      margin-bottom: 30px;
+    }
+
+    .section-kicker {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4vw, 42px);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--ink-primary);
+      margin: 0 0 12px;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--ink-secondary);
+      margin: 0;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .service-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background-color: var(--bg-accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .service-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.18;
+      color: var(--ink-primary);
+      margin: 0 0 8px;
+    }
+
+    .service-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink-secondary);
+      margin: 0;
+    }
+
+    .service-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .service-price-hint {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    /* Approach Steps */
+    .approach-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .approach-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 22px;
+    }
+
+    .approach-num {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .approach-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin: 0 0 8px;
+    }
+
+    .approach-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink-secondary);
+      margin: 0;
+    }
+
+    /* Contacts Section */
+    .contacts-panel {
+      background-color: #162026;
+      color: #FAF9F7;
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 28px;
+    }
+
+    .contacts-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 600;
+      line-height: 1.12;
+      color: #FFFFFF;
+      margin: 0 0 10px;
+    }
+
+    .contacts-subtitle {
+      font-size: 15px;
+      color: rgba(250, 249, 247, 0.78);
+      margin: 0 0 22px;
+    }
+
+    .contact-list {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .contact-item {
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      background-color: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+    }
+
+    .contact-item-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #8FD0DA;
+      margin-bottom: 4px;
+    }
+
+    .contact-item-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: #FFFFFF;
+      word-break: break-word;
+    }
+
+    .contact-item-value a {
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+
+    .contact-item-value a:hover {
+      text-decoration: underline;
+      color: #8FD0DA;
+    }
+
+    .contacts-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn-light {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background-color: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .btn-light:hover,
+    .btn-light:focus-visible {
+      background-color: rgba(255, 255, 255, 0.16);
+      border-color: #8FD0DA;
+    }
+
+    .map-card {
+      background-color: #FAF9F7;
+      color: var(--ink-primary);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .map-graphic {
+      width: 100%;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border-hairline);
+      background-color: #F2EFEA;
+    }
+
+    .map-graphic svg {
+      display: block;
+      width: 100%;
+    }
+
+    .map-caption {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--ink-secondary);
+    }
+
+    /* Footer */
+    .site-footer {
+      padding: 28px 0 40px;
+      border-top: 1px solid var(--border-hairline);
+      font-size: 13px;
+      color: var(--ink-secondary);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      color: var(--ink-primary);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Responsive Breakpoints */
+    @media (min-width: 560px) {
+      .header-phone-text {
+        display: inline;
+      }
+
+      .hero-facts {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .direction-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .booking-fields {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contact-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 900px) {
+      .header-nav {
+        display: flex;
+      }
+
+      .approach-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .contacts-panel {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        padding: 36px;
+      }
+    }
+
+    @media (min-width: 1060px) {
+      .hero-section {
+        padding: 44px 0 64px;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+        gap: 36px;
+      }
+
+      .hero-intro {
+        position: sticky;
+        top: 98px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .brand-name {
+        font-size: 19px;
+      }
+
+      .brand-meta {
+        font-size: 11px;
+      }
+
+      .btn-primary {
+        padding: 10px 12px;
+        font-size: 13px;
+      }
+
+      .workspace-head,
+      .workspace-body {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .estimate-box {
+        padding: 16px;
+      }
+
+      .estimate-total {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M7.8 5.6C9.6 4.4 11.1 5.2 12 6.1C12.9 5.2 14.4 4.4 16.2 5.6C18.3 7 18.4 10.4 17 14.8C16 17.9 14.7 19.5 13.8 19.5C13 19.5 12.7 16.3 12 16.3C11.3 16.3 11 19.5 10.2 19.5C9.3 19.5 8 17.9 7 14.8C5.6 10.4 5.7 7 7.8 5.6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <span class="brand-name">Крепкий орешек</span>
+          <span class="brand-meta">Стоматология · Омск, Туполева, 2/1</span>
+        </span>
+      </a>
+
+      <nav class="header-nav" aria-label="Навигация по разделам">
+        <a href="#calculator">Калькулятор и запись</a>
+        <a href="#services">Услуги</a>
+        <a href="#approach">Как проходит прием</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:+73812999505" class="header-phone tnum" aria-label="Позвонить в клинику +7 (3812) 999-505">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 16.5V19.5C21 20.33 20.33 21 19.5 21C10.94 21 4 14.06 4 5.5C4 4.67 4.67 4 5.5 4H8.5C9.05 4 9.5 4.45 9.5 5C9.5 6.25 9.7 7.45 10.07 8.57C10.18 8.92 10.08 9.31 9.81 9.58L7.9 11.49C9.34 14.32 11.68 16.66 14.51 18.1L16.42 16.19C16.69 15.92 17.08 15.82 17.43 15.93C18.55 16.3 19.75 16.5 21 16.5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="header-phone-text">+7 (3812) 999-505</span>
+        </a>
+        <a href="#calculator" class="btn-primary">Записаться</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-intro">
+          <div class="eyebrow-pill">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>Частная клиника · Омск · По предварительной записи</span>
+          </div>
+
+          <h1 class="hero-title">
+            Спокойное лечение и <em>точное протезирование</em> зубов в Омске
+          </h1>
+
+          <p class="hero-lead">
+            Стоматологическая клиника «Крепкий орешек» принимает по предварительной записи на ул. Туполева, 2/1. Помогаем при острой боли, лечим кариес и корневые каналы, изготавливаем коронки из металлокерамики, диоксида циркония и протезы на имплантах.
+          </p>
+
+          <div class="hero-facts">
+            <div class="fact-card">
+              <div class="fact-value tnum">4 профиля</div>
+              <div class="fact-desc">Неотложная помощь, терапия, ортопедия и имплантация</div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-value tnum">100% ясно</div>
+              <div class="fact-desc">Поэтапный план и расчет стоимости до начала лечения</div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-value tnum">Без очередей</div>
+              <div class="fact-desc">Фиксированное время визита под вашу задачу</div>
+            </div>
+          </div>
+
+          <div class="clinic-strip">
+            <div class="clinic-strip-row">
+              <svg class="clinic-strip-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 21C15.5 17.4 19 14.18 19 10.2C19 6.22 15.87 3 12 3C8.13 3 5 6.22 5 10.2C5 14.18 8.5 17.4 12 21Z" stroke="currentColor" stroke-width="1.8"/>
+                <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+              <span><strong>Адрес:</strong> г. Омск, ул. Туполева, 2/1</span>
+            </div>
+            <div class="clinic-strip-row">
+              <svg class="clinic-strip-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M21 16.5V19.5C21 20.33 20.33 21 19.5 21C10.94 21 4 14.06 4 5.5C4 4.67 4.67 4 5.5 4H8.5C9.05 4 9.5 4.45 9.5 5C9.5 6.25 9.7 7.45 10.07 8.57C10.18 8.92 10.08 9.31 9.81 9.58L7.9 11.49C9.34 14.32 11.68 16.66 14.51 18.1L16.42 16.19C16.69 15.92 17.08 15.82 17.43 15.93C18.55 16.3 19.75 16.5 21 16.5Z" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+              <span><strong>Телефон:</strong> <a href="tel:+73812999505" class="tnum">+7 (3812) 999-505</a> · По предварительной записи</span>
+            </div>
+            <div class="clinic-strip-row">
+              <svg class="clinic-strip-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M4 7L12 13L20 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+              <span><strong>Почта:</strong> <a href="mailto:krepkiyoreshekstom@mail.ru">krepkiyoreshekstom@mail.ru</a></span>
+            </div>
+          </div>
+        </div>
+
+        <section id="calculator" class="workspace-card" aria-labelledby="calc-heading">
+          <div class="workspace-head">
+            <h2 id="calc-heading" class="workspace-title">Калькулятор и запись на прием</h2>
+            <span class="workspace-badge">Мгновенный расчет в ₽</span>
+          </div>
+
+          <div id="workspace-interactive" class="workspace-body">
+            <div>
+              <div class="field-label">1. Выберите направление лечения или протезирования</div>
+              <div class="direction-grid" id="direction-grid" role="group" aria-label="Направление лечения">
+                <button type="button" class="direction-btn" data-service="zirconia" aria-pressed="true">
+                  <span class="direction-name">Коронка из диоксида циркония</span>
+                  <span class="direction-meta">
+                    <span>Эстетика и прочность</span>
+                    <span class="direction-price tnum">24 000 ₽ / ед.</span>
+                  </span>
+                </button>
+                <button type="button" class="direction-btn" data-service="metal-ceramic" aria-pressed="false">
+                  <span class="direction-name">Металлокерамическая коронка</span>
+                  <span class="direction-meta">
+                    <span>Классическая ортопедия</span>
+                    <span class="direction-price tnum">14 500 ₽ / ед.</span>
+                  </span>
+                </button>
+                <button type="button" class="direction-btn" data-service="implant-crown" aria-pressed="false">
+                  <span class="direction-name">Коронка на импланте</span>
+                  <span class="direction-meta">
+                    <span>Ортопедия на имплантах</span>
+                    <span class="direction-price tnum">32 000 ₽ / ед.</span>
+                  </span>
+                </button>
+                <button type="button" class="direction-btn" data-service="bugel" aria-pressed="false">
+                  <span class="direction-name">Бюгельный протез</span>
+                  <span class="direction-meta">
+                    <span>Каркас и опоры</span>
+                    <span class="direction-price tnum">от 38 000 ₽</span>
+                  </span>
+                </button>
+                <button type="button" class="direction-btn" data-service="caries" aria-pressed="false">
+                  <span class="direction-name">Лечение кариеса</span>
+                  <span class="direction-meta">
+                    <span>Терапия и каналы</span>
+                    <span class="direction-price tnum">4 800 ₽ / ед.</span>
+                  </span>
+                </button>
+                <button type="button" class="direction-btn" data-service="emergency" aria-pressed="false">
+                  <span class="direction-name">Неотложная помощь</span>
+                  <span class="direction-meta">
+                    <span>Снятие острой боли</span>
+                    <span class="direction-price tnum">3 500 ₽ / ед.</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div class="controls-row">
+              <div>
+                <div class="slider-head">
+                  <label class="field-label slider-label" for="units-slider">2. Количество единиц</label>
+                  <span id="units-display" class="units-badge tnum">1 единица</span>
+                </div>
+                <input id="units-slider" class="range-input" type="range" min="1" max="6" step="1" value="1" autocomplete="off">
+                <div class="range-scale tnum" aria-hidden="true">
+                  <span>1</span>
+                  <span>2</span>
+                  <span>3</span>
+                  <span>4</span>
+                  <span>5</span>
+                  <span>6</span>
+                </div>
+              </div>
+
+              <div class="checkbox-row">
+                <input id="diag-toggle" class="checkbox-input" type="checkbox" checked autocomplete="off">
+                <label class="checkbox-label" for="diag-toggle">
+                  <span>Первичная консультация и прицельный снимок (+1 200 ₽)</span>
+                  <span class="checkbox-hint">Оценка корней и костной ткани перед началом работы</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="estimate-box" aria-live="polite">
+              <div class="estimate-top">
+                <div>
+                  <div class="estimate-kicker">Ориентировочная стоимость</div>
+                  <div id="estimate-total" class="estimate-total tnum">25 200 ₽</div>
+                </div>
+                <div id="estimate-duration" class="estimate-duration tnum">2–3 визита · 7–10 дней</div>
+              </div>
+
+              <ul id="stages-list" class="stages-list"></ul>
+
+              <p class="estimate-footnote">
+                Расчет является ориентировочным. Окончательная смета фиксируется врачом после осмотра и диагностики.
+              </p>
+            </div>
+
+            <form id="booking-form" class="schedule-block" novalidate>
+              <div>
+                <div class="field-label">3. Выберите день приема</div>
+                <div id="date-grid" class="date-grid" role="group" aria-label="День приема"></div>
+              </div>
+
+              <div>
+                <div class="field-label">4. Удобное время визита</div>
+                <div id="slot-grid" class="slot-grid" role="group" aria-label="Время визита">
+                  <button type="button" class="pill-btn tnum" data-slot="09:30" aria-pressed="true">09:30</button>
+                  <button type="button" class="pill-btn tnum" data-slot="11:00" aria-pressed="false">11:00</button>
+                  <button type="button" class="pill-btn tnum" data-slot="13:30" aria-pressed="false">13:30</button>
+                  <button type="button" class="pill-btn tnum" data-slot="15:30" aria-pressed="false">15:30</button>
+                  <button type="button" class="pill-btn tnum" data-slot="17:30" aria-pressed="false">17:30</button>
+                  <button type="button" class="pill-btn tnum" data-slot="19:00" aria-pressed="false">19:00</button>
+                </div>
+              </div>
+
+              <div class="booking-fields">
+                <div class="input-group">
+                  <label class="input-label" for="patient-name">Ваше имя</label>
+                  <input id="patient-name" name="name" type="text" class="text-input" placeholder="Например, Анна Соколова" autocomplete="name" required>
+                </div>
+                <div class="input-group">
+                  <label class="input-label" for="patient-phone">Телефон для связи</label>
+                  <input id="patient-phone" name="phone" type="tel" class="text-input tnum" placeholder="+7 (900) 000-00-00" autocomplete="tel" required>
+                </div>
+              </div>
+
+              <div id="form-error" class="form-error hidden" role="alert"></div>
+
+              <div class="submit-row">
+                <button type="submit" class="btn-primary submit-btn">Подтвердить онлайн-запись</button>
+                <p class="consent-note">
+                  Прием ведется по предварительной записи. Администратор клиники подтвердит бронь выбранного времени по телефону.
+                </p>
+              </div>
+            </form>
+          </div>
+
+          <div id="confirmation-panel" class="confirmation-card hidden" aria-live="polite">
+            <div class="confirmation-banner">
+              <div class="confirmation-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12.5L9.5 17L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="confirmation-title">Запись предварительно оформлена</h3>
+                <p id="confirm-ref" class="confirmation-sub tnum">Номер заявки: КО-4812</p>
+              </div>
+            </div>
+
+            <dl class="summary-dl">
+              <div class="summary-row">
+                <dt class="summary-dt">Направление</dt>
+                <dd id="confirm-service" class="summary-dd"></dd>
+              </div>
+              <div class="summary-row">
+                <dt class="summary-dt">Объем и диагностика</dt>
+                <dd id="confirm-scope" class="summary-dd tnum"></dd>
+              </div>
+              <div class="summary-row">
+                <dt class="summary-dt">Ориентировочная смета</dt>
+                <dd id="confirm-price" class="summary-dd tnum"></dd>
+              </div>
+              <div class="summary-row">
+                <dt class="summary-dt">Дата и время визита</dt>
+                <dd id="confirm-datetime" class="summary-dd tnum"></dd>
+              </div>
+              <div class="summary-row">
+                <dt class="summary-dt">Пациент и телефон</dt>
+                <dd id="confirm-patient" class="summary-dd tnum"></dd>
+              </div>
+              <div class="summary-row">
+                <dt class="summary-dt">Адрес клиники</dt>
+                <dd class="summary-dd">г. Омск, ул. Туполева, 2/1</dd>
+              </div>
+            </dl>
+
+            <div class="confirmation-actions">
+              <button type="button" id="reset-booking-btn" class="btn-primary">Изменить параметры или записать еще раз</button>
+              <a href="tel:+73812999505" class="btn-secondary tnum">Позвонить +7 (3812) 999-505</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="services" class="section-block">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Направления клиники</div>
+          <h2 class="section-title">Комплексная стоматологическая помощь в одном месте</h2>
+          <p class="section-desc">
+            Выполняем как срочные терапевтические вмешательства, так и многоэтапное ортопедическое восстановление зубного ряда.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-icon-wrap" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 4V20M4 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3 class="service-title">Неотложная стоматологическая помощь</h3>
+              <p class="service-text">
+                Быстрое облегчение острой зубной боли, помощь при пульпите, периодонтите, отеке или сколе коронки зуба. Обезболивание, обработка и временная изоляция в приоритетном окне записи.
+              </p>
+            </div>
+            <div class="service-footer">
+              <span class="service-price-hint tnum">от 3 500 ₽</span>
+              <button type="button" class="btn-secondary js-pick-service" data-target-service="emergency">Рассчитать</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon-wrap" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3L19 7V12.5C19 16.9 15.95 20.35 12 21.5C8.05 20.35 5 16.9 5 12.5V7L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M9.5 12.2L11.3 14L14.8 10.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3 class="service-title">Профилактика и лечение кариеса/каналов</h3>
+              <p class="service-text">
+                Бережное удаление пораженных тканей, механическая и медикаментозная обработка корневых каналов, пломбирование современными композитами и профилактическая гигиена.
+              </p>
+            </div>
+            <div class="service-footer">
+              <span class="service-price-hint tnum">от 4 800 ₽</span>
+              <button type="button" class="btn-secondary js-pick-service" data-target-service="caries">Рассчитать</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon-wrap" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M7.5 6.5C9.5 5 11 5.8 12 6.8C13 5.8 14.5 5 16.5 6.5C18.5 8 18.5 11.5 17 15.8C16 18.8 14.7 20 13.8 20C13 20 12.7 16.8 12 16.8C11.3 16.8 11 20 10.2 20C9.3 20 8 18.8 7 15.8C5.5 11.5 5.5 8 7.5 6.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3 class="service-title">Коронки из металлокерамики и диоксида циркония</h3>
+              <p class="service-text">
+                Восстановление разрушенных зубов прочными ортопедическими коронками с точным краевым прилеганием, естественным оттенком эмали и защитой опорного зуба от сколов.
+              </p>
+            </div>
+            <div class="service-footer">
+              <span class="service-price-hint tnum">от 14 500 ₽</span>
+              <button type="button" class="btn-secondary js-pick-service" data-target-service="zirconia">Рассчитать</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon-wrap" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <rect x="6" y="4" width="12" height="6" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M9.5 10V20M14.5 10V20M9.5 13.5H14.5M9.5 17H14.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3 class="service-title">Бюгельное протезирование и металлокерамика на имплантах</h3>
+              <p class="service-text">
+                Восстановление утраченных зубов с помощью надежных конструкций на литой дуге с минимальной нагрузкой на десну, а также несъемных коронок с опорой на имплантаты.
+              </p>
+            </div>
+            <div class="service-footer">
+              <span class="service-price-hint tnum">от 32 000 ₽</span>
+              <button type="button" class="btn-secondary js-pick-service" data-target-service="implant-crown">Рассчитать</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="approach" class="section-block">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Организация визита</div>
+          <h2 class="section-title">Предсказуемый порядок лечения от первого осмотра</h2>
+          <p class="section-desc">
+            Частный формат приема позволяет уделить достаточно времени диагностике и согласовать каждый этап без спешки.
+          </p>
+        </div>
+
+        <div class="approach-grid">
+          <div class="approach-card">
+            <span class="approach-num tnum">01</span>
+            <h3 class="approach-title">Прием по предварительной записи</h3>
+            <p class="approach-text">
+              Время врача бронируется заранее под вашу задачу — вы приходите к назначенному часу без длительного ожидания в коридоре.
+            </p>
+          </div>
+          <div class="approach-card">
+            <span class="approach-num tnum">02</span>
+            <h3 class="approach-title">Поэтапная смета заранее</h3>
+            <p class="approach-text">
+              До начала ортопедического или терапевтического этапа вы видите состав работ, сроки изготовления конструкций и стоимость каждого шага.
+            </p>
+          </div>
+          <div class="approach-card">
+            <span class="approach-num tnum">03</span>
+            <h3 class="approach-title">Единая ответственность команды</h3>
+            <p class="approach-text">
+              Терапевтическая подготовка, эндодонтия и протезирование согласованы между специалистами клиники для надежного долгосрочного результата.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts" class="section-block">
+      <div class="container">
+        <div class="contacts-panel">
+          <div>
+            <div class="section-kicker" style="color: #8FD0DA;">Контакты клиники</div>
+            <h2 class="contacts-title">Стоматологическая клиника «Крепкий орешек»</h2>
+            <p class="contacts-subtitle">
+              Частная клиника в Омске. Предварительная запись по телефону, электронной почте и через онлайн-форму выше.
+            </p>
+
+            <div class="contact-list">
+              <div class="contact-item">
+                <div class="contact-item-label">Адрес в Омске</div>
+                <div class="contact-item-value">г. Омск, ул. Туполева, 2/1</div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-item-label">Телефон записи</div>
+                <div class="contact-item-value tnum">
+                  <a href="tel:+73812999505">+7 (3812) 999-505</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-item-label">Электронная почта</div>
+                <div class="contact-item-value">
+                  <a href="mailto:krepkiyoreshekstom@mail.ru">krepkiyoreshekstom@mail.ru</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-item-label">Режим работы</div>
+                <div class="contact-item-value">По предварительной записи</div>
+              </div>
+            </div>
+
+            <div class="contacts-actions">
+              <a href="tel:+73812999505" class="btn-primary tnum">Позвонить в клинику</a>
+              <button type="button" id="copy-address-btn" class="btn-light">Скопировать адрес</button>
+              <a href="#calculator" class="btn-light">Перейти к калькулятору</a>
+            </div>
+          </div>
+
+          <div class="map-card">
+            <div class="map-graphic" aria-label="Схема расположения клиники по адресу г. Омск, ул. Туполева, 2/1">
+              <svg width="460" height="270" viewBox="0 0 460 270" fill="none">
+                <rect width="460" height="270" fill="#EFECE6"/>
+                <path d="M0 92H460" stroke="#FFFFFF" stroke-width="14"/>
+                <path d="M0 198H460" stroke="#FFFFFF" stroke-width="10"/>
+                <path d="M135 0V270" stroke="#FFFFFF" stroke-width="12"/>
+                <path d="M322 0V270" stroke="#FFFFFF" stroke-width="10"/>
+                <rect x="162" y="114" width="128" height="64" rx="10" fill="#E3DED6"/>
+                <rect x="208" y="128" width="52" height="32" rx="6" fill="#15616D"/>
+                <circle cx="234" cy="144" r="24" fill="#15616D" fill-opacity="0.16"/>
+                <circle cx="234" cy="144" r="6" fill="#FFFFFF"/>
+                <text x="16" y="84" fill="#4D5D66" font-family="Manrope, sans-serif" font-size="12" font-weight="600">ул. Туполева</text>
+                <text x="148" y="34" fill="#4D5D66" font-family="Manrope, sans-serif" font-size="11" font-weight="600">бул. Архитекторов</text>
+                <rect x="146" y="60" width="176" height="34" rx="8" fill="#162026"/>
+                <text x="234" y="81" text-anchor="middle" fill="#FFFFFF" font-family="Manrope, sans-serif" font-size="12" font-weight="700">ул. Туполева, 2/1 · «Крепкий орешек»</text>
+              </svg>
+            </div>
+            <div class="map-caption">
+              <span><strong>г. Омск</strong>, ул. Туполева, 2/1 (частная стоматологическая клиника)</span>
+              <span class="tnum">тел. +7 (3812) 999-505</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-top">
+        <div>
+          <strong>Стоматологическая клиника «Крепкий орешек»</strong> · г. Омск, ул. Туполева, 2/1 · Режим работы: по предварительной записи
+        </div>
+        <div class="footer-links">
+          <a href="tel:+73812999505" class="tnum">+7 (3812) 999-505</a>
+          <a href="mailto:krepkiyoreshekstom@mail.ru">krepkiyoreshekstom@mail.ru</a>
+        </div>
+      </div>
+      <div>
+        Расчет на странице носит информационный характер и не является публичной офертой. Имеются противопоказания, необходима консультация специалиста.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var CONSULTATION_PRICE = 1200;
+
+      var SERVICES = {
+        'zirconia': {
+          title: 'Коронка из диоксида циркония',
+          duration: '2–3 визита · 7–10 дней',
+          unitLabelType: 'unit',
+          calc: function (units) {
+            var prep = 5500 * units;
+            var lab = 13500 * units;
+            var fix = 5000 * units;
+            return {
+              subtotal: prep + lab + fix,
+              stages: [
+                { name: 'Препарирование зуба, снятие слепков и временная коронка', price: prep },
+                { name: 'Фрезеровка и индивидуализация диоксида циркония', price: lab },
+                { name: 'Примерка, контроль прикуса и постоянная фиксация', price: fix }
+              ]
+            };
+          }
+        },
+        'metal-ceramic': {
+          title: 'Металлокерамическая коронка',
+          duration: '2 визита · 5–7 дней',
+          unitLabelType: 'unit',
+          calc: function (units) {
+            var prep = 3500 * units;
+            var lab = 7800 * units;
+            var fix = 3200 * units;
+            return {
+              subtotal: prep + lab + fix,
+              stages: [
+                { name: 'Подготовка опоры, оттиски и временная защита', price: prep },
+                { name: 'Изготовление металлического каркаса и облицовка керамикой', price: lab },
+                { name: 'Припасовка и фиксация коронки на цемент', price: fix }
+              ]
+            };
+          }
+        },
+        'implant-crown': {
+          title: 'Коронка на импланте',
+          duration: '2–3 визита · 7–12 дней',
+          unitLabelType: 'unit',
+          calc: function (units) {
+            var abutment = 11000 * units;
+            var crown = 15500 * units;
+            var fix = 5500 * units;
+            return {
+              subtotal: abutment + crown + fix,
+              stages: [
+                { name: 'Снятие слепков с импланта и подбор абатмента', price: abutment },
+                { name: 'Лабораторное изготовление металлокерамической коронки', price: crown },
+                { name: 'Контроль контактов и фиксация коронки на имплант', price: fix }
+              ]
+            };
+          }
+        },
+        'bugel': {
+          title: 'Бюгельный протез',
+          duration: '3–4 визита · 10–14 дней',
+          unitLabelType: 'support',
+          calc: function (units) {
+            var impressions = 7000;
+            var frame = 21000;
+            var elements = 10000 * units;
+            return {
+              subtotal: impressions + frame + elements,
+              stages: [
+                { name: 'Функциональные оттиски и определение центральной окклюзии', price: impressions },
+                { name: 'Отливка цельнолитой бюгельной дуги и базиса', price: frame },
+                { name: 'Опорные коронки/кламмеры и сдача протеза (' + units + ' ед.)', price: elements }
+              ]
+            };
+          }
+        },
+        'caries': {
+          title: 'Лечение кариеса',
+          duration: '1 визит · 45–60 мин',
+          unitLabelType: 'unit',
+          calc: function (units) {
+            var prep = 1400 * units;
+            var filling = 2600 * units;
+            var polish = 800 * units;
+            return {
+              subtotal: prep + filling + polish,
+              stages: [
+                { name: 'Анестезия, изоляция и бережная обработка полости', price: prep },
+                { name: 'Реставрация анатомии светоотверждаемым композитом', price: filling },
+                { name: 'Шлифовка, полировка и проверка по прикусу', price: polish }
+              ]
+            };
+          }
+        },
+        'emergency': {
+          title: 'Неотложная помощь',
+          duration: 'Приоритетный прием',
+          unitLabelType: 'unit',
+          calc: function (units) {
+            var relief = 1300 * units;
+            var endo = 1400 * units;
+            var dressing = 800 * units;
+            return {
+              subtotal: relief + endo + dressing,
+              stages: [
+                { name: 'Осмотр, обезболивание и снятие острого симптома', price: relief },
+                { name: 'Антисептическая обработка и закладка препарата', price: endo },
+                { name: 'Временная герметичная повязка и план лечения', price: dressing }
+              ]
+            };
+          }
+        }
+      };
+
+      var state = {
+        serviceKey: 'zirconia',
+        units: 1,
+        includeConsultation: true,
+        dateLabel: '',
+        slot: '09:30'
+      };
+
+      var directionButtons = document.querySelectorAll('#direction-grid .direction-btn');
+      var unitsSlider = document.getElementById('units-slider');
+      var unitsDisplay = document.getElementById('units-display');
+      var diagToggle = document.getElementById('diag-toggle');
+      var estimateTotalEl = document.getElementById('estimate-total');
+      var estimateDurationEl = document.getElementById('estimate-duration');
+      var stagesListEl = document.getElementById('stages-list');
+      var dateGridEl = document.getElementById('date-grid');
+      var slotButtons = document.querySelectorAll('#slot-grid .pill-btn');
+      var bookingForm = document.getElementById('booking-form');
+      var patientNameInput = document.getElementById('patient-name');
+      var patientPhoneInput = document.getElementById('patient-phone');
+      var formErrorEl = document.getElementById('form-error');
+      var workspaceInteractiveEl = document.getElementById('workspace-interactive');
+      var confirmationPanelEl = document.getElementById('confirmation-panel');
+      var resetBookingBtn = document.getElementById('reset-booking-btn');
+      var copyAddressBtn = document.getElementById('copy-address-btn');
+      var pickServiceButtons = document.querySelectorAll('.js-pick-service');
+
+      function formatRub(num) {
+        return new Intl.NumberFormat('ru-RU').format(num) + ' ₽';
+      }
+
+      function formatUnitLabel(n) {
+        if (n === 1) {
+          return '1 единица';
+        }
+        if (n >= 2 && n <= 4) {
+          return n + ' единицы';
+        }
+        return n + ' единиц';
+      }
+
+      function buildDateOptions() {
+        var weekdays = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+        var months = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+        var today = new Date();
+        var fragment = document.createDocumentFragment();
+
+        for (var i = 0; i < 5; i += 1) {
+          var d = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
+          var mainText = '';
+          var subText = d.getDate() + ' ' + months[d.getMonth()];
+
+          if (i === 0) {
+            mainText = 'Сегодня';
+          } else if (i === 1) {
+            mainText = 'Завтра';
+          } else {
+            mainText = weekdays[d.getDay()];
+          }
+
+          var fullLabel = mainText + ' (' + subText + ')';
+          if (i === 0) {
+            state.dateLabel = fullLabel;
+          }
+
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'pill-btn tnum';
+          btn.setAttribute('data-date', fullLabel);
+          btn.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+
+          var mainSpan = document.createElement('span');
+          mainSpan.textContent = mainText;
+          var subSpan = document.createElement('span');
+          subSpan.className = 'pill-sub';
+          subSpan.textContent = subText;
+
+          btn.appendChild(mainSpan);
+          btn.appendChild(subSpan);
+
+          btn.addEventListener('click', (function (selectedLabel, targetBtn) {
+            return function () {
+              state.dateLabel = selectedLabel;
+              var allDateBtns = dateGridEl.querySelectorAll('.pill-btn');
+              for (var j = 0; j < allDateBtns.length; j += 1) {
+                allDateBtns[j].setAttribute('aria-pressed', allDateBtns[j] === targetBtn ? 'true' : 'false');
+              }
+            };
+          })(fullLabel, btn));
+
+          fragment.appendChild(btn);
+        }
+
+        dateGridEl.appendChild(fragment);
+      }
+
+      function renderCalculator() {
+        var service = SERVICES[state.serviceKey];
+        var result = service.calc(state.units);
+        var consultationFee = state.includeConsultation ? CONSULTATION_PRICE : 0;
+        var total = result.subtotal + consultationFee;
+
+        unitsDisplay.textContent = formatUnitLabel(state.units);
+        estimateTotalEl.textContent = formatRub(total);
+        estimateDurationEl.textContent = service.duration;
+
+        stagesListEl.innerHTML = '';
+
+        var stages = [];
+        if (state.includeConsultation) {
+          stages.push({
+            name: 'Первичная консультация и прицельный снимок',
+            price: CONSULTATION_PRICE
+          });
+        }
+        for (var i = 0; i < result.stages.length; i += 1) {
+          stages.push(result.stages[i]);
+        }
+
+        for (var k = 0; k < stages.length; k += 1) {
+          var li = document.createElement('li');
+          li.className = 'stage-item';
+
+          var nameWrap = document.createElement('span');
+          nameWrap.className = 'stage-name';
+
+          var numSpan = document.createElement('span');
+          numSpan.className = 'stage-num tnum';
+          numSpan.textContent = '0' + (k + 1);
+
+          var textSpan = document.createElement('span');
+          textSpan.textContent = stages[k].name;
+
+          nameWrap.appendChild(numSpan);
+          nameWrap.appendChild(textSpan);
+
+          var priceSpan = document.createElement('span');
+          priceSpan.className = 'stage-price tnum';
+          priceSpan.textContent = formatRub(stages[k].price);
+
+          li.appendChild(nameWrap);
+          li.appendChild(priceSpan);
+          stagesListEl.appendChild(li);
+        }
+      }
+
+      function setService(key) {
+        if (SERVICES[key] === undefined) {
+          return;
+        }
+        state.serviceKey = key;
+        for (var i = 0; i < directionButtons.length; i += 1) {
+          var btn = directionButtons[i];
+          var isActive = btn.getAttribute('data-service') === key;
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        }
+        renderCalculator();
+      }
+
+      for (var i = 0; i < directionButtons.length; i += 1) {
+        directionButtons[i].addEventListener('click', function () {
+          setService(this.getAttribute('data-service'));
+        });
+      }
+
+      unitsSlider.addEventListener('input', function () {
+        state.units = parseInt(this.value, 10) || 1;
+        renderCalculator();
+      });
+
+      diagToggle.addEventListener('change', function () {
+        state.includeConsultation = this.checked;
+        renderCalculator();
+      });
+
+      for (var s = 0; s < slotButtons.length; s += 1) {
+        slotButtons[s].addEventListener('click', function () {
+          state.slot = this.getAttribute('data-slot');
+          for (var j = 0; j < slotButtons.length; j += 1) {
+            slotButtons[j].setAttribute('aria-pressed', slotButtons[j] === this ? 'true' : 'false');
+          }
+        });
+      }
+
+      for (var p = 0; p < pickServiceButtons.length; p += 1) {
+        pickServiceButtons[p].addEventListener('click', function () {
+          var targetKey = this.getAttribute('data-target-service');
+          setService(targetKey);
+          confirmationPanelEl.classList.add('hidden');
+          workspaceInteractiveEl.classList.remove('hidden');
+          var calcSection = document.getElementById('calculator');
+          if (calcSection) {
+            calcSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      }
+
+      bookingForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        formErrorEl.classList.add('hidden');
+        formErrorEl.textContent = '';
+
+        var nameVal = patientNameInput.value.trim();
+        var phoneVal = patientPhoneInput.value.trim();
+        var phoneDigits = phoneVal.replace(/\D/g, '');
+
+        if (nameVal.length < 2) {
+          formErrorEl.textContent = 'Пожалуйста, укажите ваше имя для оформления записи.';
+          formErrorEl.classList.remove('hidden');
+          patientNameInput.focus();
+          return;
+        }
+
+        if (phoneDigits.length < 6) {
+          formErrorEl.textContent = 'Пожалуйста, укажите корректный номер телефона для связи.';
+          formErrorEl.classList.remove('hidden');
+          patientPhoneInput.focus();
+          return;
+        }
+
+        var service = SERVICES[state.serviceKey];
+        var result = service.calc(state.units);
+        var total = result.subtotal + (state.includeConsultation ? CONSULTATION_PRICE : 0);
+        var refNumber = 'КО-' + (1000 + Math.floor(Math.random() * 8999));
+
+        document.getElementById('confirm-ref').textContent = 'Номер заявки: ' + refNumber;
+        document.getElementById('confirm-service').textContent = service.title;
+        document.getElementById('confirm-scope').textContent =
+          formatUnitLabel(state.units) + (state.includeConsultation ? ' + консультация и снимок' : ' (без снимка)');
+        document.getElementById('confirm-price').textContent = formatRub(total);
+        document.getElementById('confirm-datetime').textContent = state.dateLabel + ', ' + state.slot;
+        document.getElementById('confirm-patient').textContent = nameVal + ' · ' + phoneVal;
+
+        workspaceInteractiveEl.classList.add('hidden');
+        confirmationPanelEl.classList.remove('hidden');
+      });
+
+      resetBookingBtn.addEventListener('click', function () {
+        confirmationPanelEl.classList.add('hidden');
+        workspaceInteractiveEl.classList.remove('hidden');
+      });
+
+      copyAddressBtn.addEventListener('click', function () {
+        var addressText = 'г. Омск, ул. Туполева, 2/1';
+        if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+          navigator.clipboard.writeText(addressText).then(function () {
+            copyAddressBtn.textContent = 'Адрес скопирован';
+            setTimeout(function () {
+              copyAddressBtn.textContent = 'Скопировать адрес';
+            }, 2400);
+          });
+        } else {
+          copyAddressBtn.textContent = addressText;
+        }
+      });
+
+      buildDateOptions();
+      renderCalculator();
+    }());
+  </script>
+</body>
+</html>

@@ -1,0 +1,3112 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Express Auto Repairs | Canberra ACT Logbook Servicing, Brakes &amp; Diagnostics</title>
+  <meta name="description" content="Express Auto Repairs is a private independent mechanical workshop in Canberra, ACT, Australia. Warranty-safe manufacturer logbook servicing, A/C regas and repair, auto electrical and ECU diagnostics, brakes, clutch, steering and suspension. Mon-Fri 7:30 AM - 5:30 PM. Call (02) 5104 0793.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' width='36' height='36' fill='none'%3E%3Crect width='36' height='36' rx='8' fill='%23181C20'/%3E%3Ccircle cx='18' cy='18' r='10.5' stroke='%23F8F9FA' stroke-width='2.4'/%3E%3Ccircle cx='18' cy='18' r='4.2' fill='%23C2591A' stroke='%23F8F9FA' stroke-width='1.5'/%3E%3Cpath d='M18 4V9M18 27V32M4 18H9M27 18H32' stroke='%231D4E6B' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8F9FA;
+      --bg-grid: #EAEEF2;
+      --surface: #FFFFFF;
+      --surface-subtle: #F1F4F7;
+      --surface-muted: #E6EBEF;
+      --ink: #181C20;
+      --ink-body: #343C45;
+      --ink-muted: #525D68;
+      --steel: #1D4E6B;
+      --steel-dark: #153A50;
+      --steel-soft: #E9F0F5;
+      --steel-border: #B8CCDA;
+      --ochre: #C2591A;
+      --ochre-btn: #AC4D14;
+      --ochre-btn-hover: #8F3F10;
+      --ochre-text: #96410F;
+      --ochre-soft: #FDF1EA;
+      --ochre-border: #E8C0A8;
+      --ok: #156947;
+      --ok-soft: #E9F5F0;
+      --ok-border: #ABD8C4;
+      --border: #D5DDE5;
+      --border-strong: #B9C4CF;
+      --shadow-sm: 0 2px 6px rgba(24, 28, 32, 0.04);
+      --shadow-md: 0 10px 26px rgba(24, 28, 32, 0.07);
+      --shadow-lg: 0 18px 40px rgba(24, 28, 32, 0.10);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+      --container: 1240px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      overflow-x: clip;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.58;
+      color: var(--ink);
+      background-color: var(--bg);
+      overflow-x: clip;
+    }
+
+    section[id],
+    div[id="estimator-booker"],
+    div[id="bay-confirmation"] {
+      scroll-margin-top: 86px;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--steel);
+      outline-offset: 2px;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 8px;
+      z-index: 999;
+      background: var(--steel);
+      color: #FFFFFF;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+    }
+
+    .skip-link:focus {
+      left: 16px;
+    }
+
+    /* Top utility strip */
+    .utility-bar {
+      background-color: var(--ink);
+      color: #E2E7EC;
+      font-size: 13px;
+      border-bottom: 1px solid #2A3138;
+    }
+
+    .utility-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 20px;
+      padding-block: 8px;
+    }
+
+    .utility-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 18px;
+      min-width: 0;
+    }
+
+    .utility-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #E2E7EC;
+    }
+
+    .utility-item a {
+      transition: color 160ms ease;
+    }
+
+    .utility-item a:hover {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+
+    .utility-sep {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--ochre);
+      flex-shrink: 0;
+    }
+
+    /* Sticky navigation header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background-color: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: var(--radius-sm);
+      background: var(--ink);
+      display: grid;
+      place-items: center;
+      border: 1px solid #2C333A;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 1.0625rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink-body);
+      padding-block: 6px;
+      position: relative;
+      transition: color 160ms ease;
+    }
+
+    .nav-link:hover {
+      color: var(--steel);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      line-height: 1.2;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease, transform 160ms ease;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background-color: var(--ochre-btn);
+      color: #FFFFFF;
+      border-color: var(--ochre-btn);
+      box-shadow: 0 2px 6px rgba(172, 77, 20, 0.22);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--ochre-btn-hover);
+      border-color: var(--ochre-btn-hover);
+    }
+
+    .btn-steel {
+      background-color: var(--steel);
+      color: #FFFFFF;
+      border-color: var(--steel);
+    }
+
+    .btn-steel:hover {
+      background-color: var(--steel-dark);
+      border-color: var(--steel-dark);
+    }
+
+    .btn-outline {
+      background-color: var(--surface);
+      color: var(--steel);
+      border-color: var(--steel-border);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--steel-soft);
+      border-color: var(--steel);
+    }
+
+    .btn-sm {
+      padding: 8px 14px;
+      font-size: 0.875rem;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border-radius: var(--radius-sm);
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      color: var(--ink);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background-color 160ms ease, border-color 160ms ease;
+    }
+
+    .mobile-menu-btn:hover {
+      background: var(--surface-muted);
+      border-color: var(--border-strong);
+    }
+
+    .mobile-drawer {
+      display: none;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 16px 24px 20px;
+    }
+
+    .mobile-drawer.is-open {
+      display: block;
+    }
+
+    .mobile-drawer-links {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .mobile-drawer-links a {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      color: var(--ink);
+      background: var(--surface-subtle);
+    }
+
+    .mobile-drawer-links a:hover {
+      background: var(--steel-soft);
+      color: var(--steel);
+    }
+
+    /* Hero section */
+    .hero {
+      position: relative;
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(to right, rgba(29, 78, 107, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(29, 78, 107, 0.045) 1px, transparent 1px);
+      background-size: 36px 36px;
+      border-bottom: 1px solid var(--border);
+      padding-block: 52px 58px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--steel-soft);
+      border: 1px solid var(--steel-border);
+      color: var(--steel);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ochre);
+      flex-shrink: 0;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 3.6vw, 3.125rem);
+      margin-bottom: 18px;
+    }
+
+    .hero-title .accent-word {
+      color: var(--steel);
+    }
+
+    .hero-lead {
+      font-size: 1.0625rem;
+      color: var(--ink-body);
+      max-width: 60ch;
+      margin: 0 0 26px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .metric-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .metric-val.steel {
+      color: var(--steel);
+    }
+
+    .metric-val.ochre {
+      color: var(--ochre-text);
+    }
+
+    .metric-label {
+      font-size: 0.8125rem;
+      color: var(--ink-muted);
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    /* Hero workshop docket panel */
+    .hero-panel {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+
+    .hero-panel-top {
+      background: var(--ink);
+      color: #FFFFFF;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 2px solid var(--ochre);
+    }
+
+    .hero-panel-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .hero-panel-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #F4F7FA;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      white-space: nowrap;
+    }
+
+    .hero-panel-body {
+      padding: 20px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .spec-rows {
+      display: grid;
+      gap: 10px;
+    }
+
+    .spec-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px 12px;
+      padding: 10px 12px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+    }
+
+    .spec-k {
+      color: var(--ink-muted);
+      font-weight: 600;
+    }
+
+    .spec-v {
+      color: var(--ink);
+      font-weight: 700;
+      text-align: right;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .quick-presets-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      margin-bottom: 8px;
+    }
+
+    .quick-preset-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .quick-preset-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+    }
+
+    .quick-preset-btn:hover {
+      border-color: var(--steel);
+      background: var(--steel-soft);
+    }
+
+    .quick-preset-name {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .quick-preset-price {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ochre-text);
+    }
+
+    /* Section framing */
+    .section {
+      padding-block: 64px;
+    }
+
+    .section-surface {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px 24px;
+      margin-bottom: 30px;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ochre-text);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: clamp(1.625rem, 2.6vw, 2.25rem);
+    }
+
+    .section-desc {
+      margin: 8px 0 0;
+      color: var(--ink-body);
+      max-width: 64ch;
+      font-size: 1rem;
+    }
+
+    .warranty-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--ok-soft);
+      border: 1px solid var(--ok-border);
+      color: var(--ok);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* Main interactive widget: Estimator + Workshop Bay Booker */
+    .workbench-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+      gap: 26px;
+      align-items: start;
+    }
+
+    .workbench-card {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 26px;
+    }
+
+    .workbench-step {
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .workbench-step:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .step-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: var(--radius-sm);
+      background: var(--ink);
+      color: #FFFFFF;
+    }
+
+    .step-heading {
+      font-size: 1.0625rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .step-hint {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+    }
+
+    /* Vehicle class cards */
+    .vehicle-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .choice-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      width: 100%;
+      padding: 14px 15px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .choice-card:hover {
+      border-color: var(--steel);
+      background: var(--surface-subtle);
+    }
+
+    .choice-card.is-selected {
+      border-color: var(--steel);
+      background: var(--steel-soft);
+      box-shadow: 0 0 0 1px var(--steel);
+    }
+
+    .choice-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .choice-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .choice-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: var(--surface-subtle);
+      color: var(--steel);
+      border: 1px solid var(--border);
+    }
+
+    .choice-card.is-selected .choice-tag {
+      background: var(--steel);
+      color: #FFFFFF;
+      border-color: var(--steel);
+    }
+
+    .choice-sub {
+      font-size: 0.8125rem;
+      color: var(--ink-muted);
+      line-height: 1.35;
+    }
+
+    /* Service selector grid */
+    .job-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .job-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 14px 15px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .job-card:hover {
+      border-color: var(--ochre);
+      background: var(--ochre-soft);
+    }
+
+    .job-card.is-selected {
+      border-color: var(--ochre-btn);
+      background: var(--ochre-soft);
+      box-shadow: 0 0 0 1px var(--ochre-btn);
+    }
+
+    .job-name {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .job-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .job-duration {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+    }
+
+    .job-from-price {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--ochre-text);
+    }
+
+    /* Optional add-ons */
+    .addon-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .addon-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface-subtle);
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 160ms ease, background-color 160ms ease;
+    }
+
+    .addon-btn:hover {
+      border-color: var(--steel);
+      background: var(--surface);
+    }
+
+    .addon-btn.is-active {
+      border-color: var(--steel);
+      background: var(--steel-soft);
+    }
+
+    .addon-left {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+    }
+
+    .addon-box {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1.5px solid var(--border-strong);
+      background: var(--surface);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: background-color 160ms ease, border-color 160ms ease;
+    }
+
+    .addon-btn.is-active .addon-box {
+      background: var(--steel);
+      border-color: var(--steel);
+      color: #FFFFFF;
+    }
+
+    .addon-name {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+
+    .addon-price {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--steel);
+      white-space: nowrap;
+    }
+
+    /* Dynamic included scope list */
+    .scope-panel {
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+
+    .scope-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .scope-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .scope-bay {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--steel);
+      background: var(--surface);
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--steel-border);
+    }
+
+    .scope-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .scope-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 0.875rem;
+      color: var(--ink-body);
+    }
+
+    .scope-check {
+      color: var(--ok);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Right panel: Live AUD Quote + Bay Booker */
+    .estimate-panel {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      position: sticky;
+      top: 90px;
+    }
+
+    .estimate-header {
+      background: var(--ink);
+      color: #FFFFFF;
+      padding: 20px 22px;
+      border-bottom: 2px solid var(--ochre);
+    }
+
+    .estimate-header-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .estimate-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #D2DCE6;
+    }
+
+    .stamp-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #173F30;
+      border: 1px solid #357A5F;
+      color: #D5F3E5;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .estimate-price-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .estimate-total {
+      font-family: var(--font-mono);
+      font-size: clamp(1.85rem, 2.8vw, 2.35rem);
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+
+    .estimate-aud-note {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: #C4CFD9;
+      text-align: right;
+    }
+
+    .estimate-summary-line {
+      margin-top: 10px;
+      font-size: 0.84rem;
+      color: #DCE4EC;
+    }
+
+    .estimate-body {
+      padding: 20px 22px 24px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .breakdown-table {
+      display: grid;
+      gap: 8px;
+      padding: 14px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+    }
+
+    .breakdown-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px 12px;
+      color: var(--ink-body);
+    }
+
+    .breakdown-row.is-total {
+      padding-top: 8px;
+      margin-top: 2px;
+      border-top: 1px solid var(--border-strong);
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .breakdown-val {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .warranty-note-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 13px;
+      border-radius: var(--radius-sm);
+      background: var(--ok-soft);
+      border: 1px solid var(--ok-border);
+      font-size: 0.8125rem;
+      color: #114C34;
+      line-height: 1.42;
+    }
+
+    /* Bay schedule selector */
+    .field-label {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .field-label-sub {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+    }
+
+    .day-pills {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .slot-pill {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding: 8px 4px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease;
+    }
+
+    .slot-pill:hover {
+      border-color: var(--steel);
+      background: var(--steel-soft);
+    }
+
+    .slot-pill.is-selected {
+      background: var(--steel);
+      border-color: var(--steel);
+      color: #FFFFFF;
+    }
+
+    .slot-day {
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .slot-date {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      opacity: 0.86;
+    }
+
+    .time-pills {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .time-btn {
+      padding: 8px 6px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      text-align: center;
+      transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease;
+    }
+
+    .time-btn:hover {
+      border-color: var(--ochre);
+      background: var(--ochre-soft);
+    }
+
+    .time-btn.is-selected {
+      background: var(--ochre-btn);
+      border-color: var(--ochre-btn);
+      color: #FFFFFF;
+    }
+
+    .booking-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .form-two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .input-ctrl {
+      width: 100%;
+      min-width: 0;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      font-size: 0.9rem;
+      color: var(--ink);
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .input-ctrl:focus {
+      outline: none;
+      border-color: var(--steel);
+      box-shadow: 0 0 0 3px rgba(29, 78, 107, 0.14);
+    }
+
+    .input-ctrl.is-error {
+      border-color: #B42318;
+      background: #FEF3F2;
+    }
+
+    .form-error-msg {
+      display: none;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background: #FEF3F2;
+      border: 1px solid #FECDCA;
+      color: #912018;
+      font-size: 0.8125rem;
+      font-weight: 600;
+    }
+
+    .form-error-msg.is-visible {
+      display: block;
+    }
+
+    .confirmation-box {
+      display: none;
+      padding: 18px;
+      border-radius: var(--radius-md);
+      background: var(--ok-soft);
+      border: 1.5px solid var(--ok-border);
+      gap: 12px;
+    }
+
+    .confirmation-box.is-visible {
+      display: grid;
+    }
+
+    .confirm-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .confirm-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #0E442E;
+    }
+
+    .confirm-code {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      border: 1px solid var(--ok-border);
+      color: var(--ok);
+    }
+
+    .confirm-docket {
+      display: grid;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--ok-border);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      font-size: 0.84rem;
+    }
+
+    .confirm-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 4px 10px;
+    }
+
+    .confirm-k {
+      color: var(--ink-muted);
+      font-weight: 600;
+    }
+
+    .confirm-v {
+      color: var(--ink);
+      font-weight: 700;
+      text-align: right;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    /* Services 4-card grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--steel-border);
+      box-shadow: var(--shadow-md);
+    }
+
+    .service-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: var(--steel-soft);
+      border: 1px solid var(--steel-border);
+      color: var(--steel);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .service-code {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      background: var(--surface-subtle);
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+
+    .service-title {
+      font-size: 1.1875rem;
+      margin-bottom: 8px;
+    }
+
+    .service-desc {
+      margin: 0 0 14px;
+      font-size: 0.9375rem;
+      color: var(--ink-body);
+    }
+
+    .service-bullets {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 7px;
+      font-size: 0.875rem;
+      color: var(--ink-body);
+    }
+
+    .service-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .bullet-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ochre);
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    .service-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .service-from {
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    /* Standards & Logbook Matrix */
+    .standards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .standard-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .standard-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--steel);
+      background: var(--steel-soft);
+      border: 1px solid var(--steel-border);
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .standard-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .standard-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--ink-body);
+    }
+
+    .matrix-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .matrix-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 20px;
+      background: var(--surface-subtle);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .matrix-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+    }
+
+    .rate-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+      font-size: 0.9rem;
+    }
+
+    .rate-table th,
+    .rate-table td {
+      padding: 13px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .rate-table th {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      background: var(--surface);
+    }
+
+    .rate-table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .rate-table tbody tr:hover {
+      background: var(--surface-subtle);
+    }
+
+    .rate-cell {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--steel);
+    }
+
+    /* FAQ Accordion */
+    .faq-list {
+      display: grid;
+      gap: 10px;
+      max-width: 920px;
+    }
+
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .faq-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 20px;
+      background: transparent;
+      border: 0;
+      text-align: left;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      cursor: pointer;
+      transition: background-color 160ms ease;
+    }
+
+    .faq-trigger:hover {
+      background: var(--surface-subtle);
+    }
+
+    .faq-icon {
+      flex-shrink: 0;
+      color: var(--steel);
+      transition: transform 180ms ease;
+    }
+
+    .faq-trigger[aria-expanded="true"] .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 20px 18px;
+      font-size: 0.9375rem;
+      color: var(--ink-body);
+    }
+
+    .faq-answer.is-open {
+      display: block;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--ink);
+      color: #DCE3EA;
+      padding-block: 48px 30px;
+      border-top: 2px solid var(--ochre);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #2A3138;
+    }
+
+    .footer-title {
+      font-size: 1.0625rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+    }
+
+    .footer-sub {
+      font-size: 0.875rem;
+      color: #B4C0CC;
+      margin: 0 0 14px;
+      max-width: 44ch;
+    }
+
+    .footer-heading {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #9FB0C0;
+      margin-bottom: 12px;
+    }
+
+    .footer-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 9px;
+      font-size: 0.875rem;
+    }
+
+    .footer-list a:hover {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      padding-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 20px;
+      font-size: 0.8125rem;
+      color: #9FB0C0;
+    }
+
+    /* Responsive breakpoints */
+    @media (max-width: 1060px) {
+      .hero-grid,
+      .workbench-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .estimate-panel {
+        position: static;
+      }
+
+      .standards-grid,
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        padding-inline: 16px;
+      }
+
+      .utility-bar {
+        font-size: 12px;
+      }
+
+      .header-inner {
+        min-height: 64px;
+        gap: 10px;
+      }
+
+      .header-phone-btn {
+        display: none;
+      }
+
+      .hero {
+        padding-block: 34px 40px;
+      }
+
+      .hero-metrics,
+      .vehicle-grid,
+      .job-grid,
+      .addon-grid,
+      .services-grid,
+      .standards-grid,
+      .footer-grid,
+      .form-two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .quick-preset-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .time-pills {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section {
+        padding-block: 44px;
+      }
+
+      .workbench-card {
+        padding: 18px 16px;
+      }
+
+      .estimate-header,
+      .estimate-body {
+        padding-inline: 16px;
+      }
+
+      .btn-sm-mobile {
+        padding: 9px 12px;
+        font-size: 0.84rem;
+      }
+
+      .spec-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .spec-v {
+        text-align: left;
+      }
+
+      .step-header {
+        flex-wrap: wrap;
+      }
+
+      .warranty-chip {
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#estimator-booker">Skip to Service Estimator and Bay Booker</a>
+
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="utility-group">
+        <span class="utility-item">
+          <span class="utility-sep" aria-hidden="true"></span>
+          <span>Express Auto Repairs · Private Independent Mechanical Workshop</span>
+        </span>
+        <span class="utility-item">Canberra, ACT, Australia</span>
+      </div>
+      <div class="utility-group tabular">
+        <span class="utility-item">Mon-Fri 7:30 AM – 5:30 PM</span>
+        <span class="utility-item"><a href="tel:+61251040793">(02) 5104 0793</a></span>
+        <span class="utility-item"><a href="mailto:service@expressautorepairs.com.au">service@expressautorepairs.com.au</a></span>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="8.2" stroke="#F8F9FA" stroke-width="2"/>
+            <circle cx="12" cy="12" r="3" fill="#C2591A" stroke="#F8F9FA" stroke-width="1.4"/>
+            <path d="M12 2V5.5M12 18.5V22M2 12H5.5M18.5 12H22" stroke="#7CB4D4" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Express Auto Repairs</span>
+          <span class="brand-sub">Canberra, ACT · Independent Workshop</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a class="nav-link" href="#estimator-booker">Estimator &amp; Booker</a>
+        <a class="nav-link" href="#services">Services</a>
+        <a class="nav-link" href="#standards">Warranty &amp; Rates</a>
+        <a class="nav-link" href="#faq">FAQ</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-outline btn-sm header-phone-btn tabular" href="tel:+61251040793">(02) 5104 0793</a>
+        <a class="btn btn-primary btn-sm btn-sm-mobile" href="#estimator-booker">Book Bay</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M3 5.5H17M3 10H17M3 14.5H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="mobile-drawer-links">
+        <a href="#estimator-booker">Logbook Estimator &amp; Bay Booker</a>
+        <a href="#services">Mechanical Services</a>
+        <a href="#standards">Warranty &amp; Rate Guide</a>
+        <a href="#faq">Canberra Driver FAQ</a>
+        <a href="#contact">Hours &amp; Workshop Contact</a>
+      </div>
+      <a class="btn btn-steel" style="width: 100%;" href="tel:+61251040793">Call Workshop: (02) 5104 0793</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow-pill">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>Private Independent Mechanical Workshop · Canberra, ACT, Australia</span>
+          </div>
+          <h1 class="hero-title">
+            Warranty-Safe <span class="accent-word">Logbook Servicing</span> &amp; Precision Mechanical Repairs.
+          </h1>
+          <p class="hero-lead">
+            Express Auto Repairs delivers manufacturer-spec logbook servicing, car air conditioning regas and leak repairs, auto electrical and ECU diagnostics, plus brake, clutch, steering and suspension work across Canberra. Price your service in AUD and reserve a workshop bay directly.
+          </p>
+          <div class="hero-cta-row">
+            <a class="btn btn-primary" href="#estimator-booker">Launch AUD Estimator &amp; Bay Booker</a>
+            <a class="btn btn-outline tabular" href="tel:+61251040793">Call (02) 5104 0793</a>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric-box">
+              <div class="metric-val steel tabular">100% ACCC</div>
+              <div class="metric-label">Warranty-Safe Logbook Stamp Compliance</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val ochre tabular">AUD GST Incl.</div>
+              <div class="metric-label">Upfront Itemized Parts &amp; Labour Quotes</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val tabular">Mon-Fri</div>
+              <div class="metric-label">7:30 AM – 5:30 PM Canberra Bay Hours</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Workshop live bay capabilities">
+          <div class="hero-panel-top">
+            <div class="hero-panel-title">Canberra Workshop Specification</div>
+            <span class="hero-panel-badge tabular">ACT · INDEPENDENT</span>
+          </div>
+          <div class="hero-panel-body">
+            <div class="spec-rows">
+              <div class="spec-row">
+                <span class="spec-k">Workshop Status</span>
+                <span class="spec-v">Private Independent Mechanical Workshop</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">Trading Hours</span>
+                <span class="spec-v tabular">Mon-Fri 7:30 AM – 5:30 PM</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">Direct Phone</span>
+                <span class="spec-v tabular">(02) 5104 0793</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">Service Desk Email</span>
+                <span class="spec-v">service@expressautorepairs.com.au</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="quick-presets-label">Load Popular Canberra Estimate</div>
+              <div class="quick-preset-grid">
+                <button class="quick-preset-btn" type="button" data-preset-vehicle="hatch" data-preset-job="minor-logbook">
+                  <span class="quick-preset-name">Hatch Minor Logbook</span>
+                  <span class="quick-preset-price tabular">From $275 AUD</span>
+                </button>
+                <button class="quick-preset-btn" type="button" data-preset-vehicle="suv" data-preset-job="brakes">
+                  <span class="quick-preset-name">SUV Brakes &amp; Rotors</span>
+                  <span class="quick-preset-price tabular">From $565 AUD</span>
+                </button>
+                <button class="quick-preset-btn" type="button" data-preset-vehicle="4wd" data-preset-job="major-logbook">
+                  <span class="quick-preset-name">4WD/Ute Major Logbook</span>
+                  <span class="quick-preset-price tabular">From $657 AUD</span>
+                </button>
+                <button class="quick-preset-btn" type="button" data-preset-vehicle="euro" data-preset-job="auto-elec">
+                  <span class="quick-preset-name">European ECU Fault Scan</span>
+                  <span class="quick-preset-price tabular">From $235 AUD</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="estimator-booker">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Interactive Workshop Tool</div>
+            <h2 class="section-title">Logbook Service &amp; Brake Repair Estimator + Workshop Bay Booker</h2>
+            <p class="section-desc">
+              Select your vehicle class and mechanical interval to generate an itemized AUD estimate with GST included, inspect your checklist, and book an available Canberra workshop bay.
+            </p>
+          </div>
+          <div class="warranty-chip">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 1.5L13.5 3.6V7.6C13.5 11.1 11.1 13.8 8 14.8C4.9 13.8 2.5 11.1 2.5 7.6V3.6L8 1.5Z" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M5.6 8.1L7.3 9.8L10.7 6.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Warranty-Safe Logbook Stamp</span>
+          </div>
+        </div>
+
+        <div class="workbench-grid">
+          <div class="workbench-card">
+            <div class="workbench-step">
+              <div class="step-header">
+                <div class="step-title-wrap">
+                  <span class="step-num tabular">01</span>
+                  <h3 class="step-heading">Select Vehicle Class</h3>
+                </div>
+                <span class="step-hint">OEM oil &amp; parts tier</span>
+              </div>
+              <div class="vehicle-grid" id="vehicleClassGroup" role="radiogroup" aria-label="Vehicle class">
+                <button class="choice-card is-selected" type="button" data-vehicle="hatch" role="radio" aria-checked="true">
+                  <span class="choice-top">
+                    <span class="choice-title">Hatch/Sedan</span>
+                    <span class="choice-tag tabular">1.0x Base</span>
+                  </span>
+                  <span class="choice-sub">Corolla, Mazda3, i30, Civic, Camry · 4.0–4.5L Synthetic</span>
+                </button>
+                <button class="choice-card" type="button" data-vehicle="suv" role="radio" aria-checked="false">
+                  <span class="choice-top">
+                    <span class="choice-title">Medium SUV</span>
+                    <span class="choice-tag tabular">1.16x Tier</span>
+                  </span>
+                  <span class="choice-sub">RAV4, CX-5, Forester, X-Trail, Tucson · 5.0L+ Spec</span>
+                </button>
+                <button class="choice-card" type="button" data-vehicle="4wd" role="radio" aria-checked="false">
+                  <span class="choice-top">
+                    <span class="choice-title">4WD/Ute</span>
+                    <span class="choice-tag tabular">1.34x HD</span>
+                  </span>
+                  <span class="choice-sub">Hilux, Ranger, D-Max, Prado, Triton · 7.5–9.5L DPF Oil</span>
+                </button>
+                <button class="choice-card" type="button" data-vehicle="euro" role="radio" aria-checked="false">
+                  <span class="choice-top">
+                    <span class="choice-title">European Vehicle</span>
+                    <span class="choice-tag tabular">1.42x OEM</span>
+                  </span>
+                  <span class="choice-sub">VW, Audi, BMW, Mercedes, Volvo · ACEA C3 / LL-04</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="workbench-step">
+              <div class="step-header">
+                <div class="step-title-wrap">
+                  <span class="step-num tabular">02</span>
+                  <h3 class="step-heading">Select Service Interval or Repair</h3>
+                </div>
+                <span class="step-hint">6 core workshop jobs</span>
+              </div>
+              <div class="job-grid" id="serviceJobGroup" role="radiogroup" aria-label="Service interval or repair scope">
+                <button class="job-card is-selected" type="button" data-job="minor-logbook" role="radio" aria-checked="true">
+                  <span class="job-name">Minor Logbook Service</span>
+                  <span class="job-meta-row">
+                    <span class="job-duration tabular">1.5 hrs bay</span>
+                    <span class="job-from-price tabular" data-job-price="minor-logbook">$275 AUD</span>
+                  </span>
+                </button>
+                <button class="job-card" type="button" data-job="major-logbook" role="radio" aria-checked="false">
+                  <span class="job-name">Major Logbook Service</span>
+                  <span class="job-meta-row">
+                    <span class="job-duration tabular">3.0 hrs bay</span>
+                    <span class="job-from-price tabular" data-job-price="major-logbook">$490 AUD</span>
+                  </span>
+                </button>
+                <button class="job-card" type="button" data-job="brakes" role="radio" aria-checked="false">
+                  <span class="job-name">Brake Pads &amp; Rotor Replacement</span>
+                  <span class="job-meta-row">
+                    <span class="job-duration tabular">2.0 hrs bay</span>
+                    <span class="job-from-price tabular" data-job-price="brakes">$485 AUD</span>
+                  </span>
+                </button>
+                <button class="job-card" type="button" data-job="ac-regas" role="radio" aria-checked="false">
+                  <span class="job-name">A/C Regas &amp; Leak Test</span>
+                  <span class="job-meta-row">
+                    <span class="job-duration tabular">1.5 hrs bay</span>
+                    <span class="job-from-price tabular" data-job-price="ac-regas">$235 AUD</span>
+                  </span>
+                </button>
+                <button class="job-card" type="button" data-job="auto-elec" role="radio" aria-checked="false">
+                  <span class="job-name">Auto Electrical Fault Scan</span>
+                  <span class="job-meta-row">
+                    <span class="job-duration tabular">1.25 hrs bay</span>
+                    <span class="job-from-price tabular" data-job-price="auto-elec">$180 AUD</span>
+                  </span>
+                </button>
+                <button class="job-card" type="button" data-job="clutch-susp" role="radio" aria-checked="false">
+                  <span class="job-name">Clutch &amp; Suspension Check</span>
+                  <span class="job-meta-row">
+                    <span class="job-duration tabular">1.5 hrs bay</span>
+                    <span class="job-from-price tabular" data-job-price="clutch-susp">$215 AUD</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div class="workbench-step">
+              <div class="step-header">
+                <div class="step-title-wrap">
+                  <span class="step-num tabular">03</span>
+                  <h3 class="step-heading">Optional Preventive Add-ons</h3>
+                </div>
+                <span class="step-hint">Combine on the same hoist</span>
+              </div>
+              <div class="addon-grid" id="addonGroup">
+                <button class="addon-btn" type="button" data-addon="brake-fluid" aria-pressed="false">
+                  <span class="addon-left">
+                    <span class="addon-box" aria-hidden="true"></span>
+                    <span class="addon-name">DOT 4 Brake Fluid Flush</span>
+                  </span>
+                  <span class="addon-price tabular">+$85</span>
+                </button>
+                <button class="addon-btn" type="button" data-addon="cabin-filter" aria-pressed="false">
+                  <span class="addon-left">
+                    <span class="addon-box" aria-hidden="true"></span>
+                    <span class="addon-name">Carbon Cabin Pollen Filter</span>
+                  </span>
+                  <span class="addon-price tabular">+$58</span>
+                </button>
+                <button class="addon-btn" type="button" data-addon="battery-test" aria-pressed="false">
+                  <span class="addon-left">
+                    <span class="addon-box" aria-hidden="true"></span>
+                    <span class="addon-name">AGM Battery &amp; Alternator Test</span>
+                  </span>
+                  <span class="addon-price tabular">+$35</span>
+                </button>
+                <button class="addon-btn" type="button" data-addon="wheel-align" aria-pressed="false">
+                  <span class="addon-left">
+                    <span class="addon-box" aria-hidden="true"></span>
+                    <span class="addon-name">4-Wheel Alignment Check</span>
+                  </span>
+                  <span class="addon-price tabular">+$95</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="workbench-step">
+              <div class="scope-panel">
+                <div class="scope-head">
+                  <span class="scope-title" id="scopeHeading">Included in Minor Logbook Service</span>
+                  <span class="scope-bay tabular" id="scopeBayBadge">Hoist Bay 02 · 1.5 hrs</span>
+                </div>
+                <ul class="scope-list" id="scopeChecklist"></ul>
+              </div>
+            </div>
+          </div>
+
+          <aside class="estimate-panel" aria-label="Live AUD quote and Canberra workshop bay booker">
+            <div class="estimate-header">
+              <div class="estimate-header-top">
+                <span class="estimate-tag">Live Canberra Workshop Quote</span>
+                <span class="stamp-pill">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M7 1.2L11.8 3V6.8C11.8 9.9 9.7 12.2 7 13C4.3 12.2 2.2 9.9 2.2 6.8V3L7 1.2Z" stroke="currentColor" stroke-width="1.4"/>
+                    <path d="M4.8 7.1L6.3 8.6L9.4 5.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Warranty-Safe Logbook Stamp</span>
+                </span>
+              </div>
+              <div class="estimate-price-row">
+                <div class="estimate-total tabular" id="liveTotalPrice">$275.00</div>
+                <div class="estimate-aud-note tabular">
+                  <div>AUD · GST Included</div>
+                  <div id="liveEstDuration">Est. 1.5 hrs</div>
+                </div>
+              </div>
+              <div class="estimate-summary-line" id="liveSummaryLine">
+                Hatch/Sedan · Minor Logbook Service
+              </div>
+            </div>
+
+            <div class="estimate-body">
+              <div class="breakdown-table" aria-label="Itemized AUD estimate breakdown">
+                <div class="breakdown-row">
+                  <span>Qualified Mechanic Labour</span>
+                  <span class="breakdown-val tabular" id="costLabour">$135.00</span>
+                </div>
+                <div class="breakdown-row">
+                  <span>OEM-Spec Parts &amp; Fluids</span>
+                  <span class="breakdown-val tabular" id="costParts">$115.00</span>
+                </div>
+                <div class="breakdown-row">
+                  <span>Workshop Consumables &amp; Disposal</span>
+                  <span class="breakdown-val tabular" id="costConsumables">$25.00</span>
+                </div>
+                <div class="breakdown-row" id="addonsRow" style="display: none;">
+                  <span>Selected Preventive Add-ons</span>
+                  <span class="breakdown-val tabular" id="costAddons">$0.00</span>
+                </div>
+                <div class="breakdown-row">
+                  <span>GST Component (10% Included)</span>
+                  <span class="breakdown-val tabular" id="costGst">$25.00</span>
+                </div>
+                <div class="breakdown-row is-total">
+                  <span>Estimated Workshop Total (AUD)</span>
+                  <span class="breakdown-val tabular" id="costTotal">$275.00</span>
+                </div>
+              </div>
+
+              <div class="warranty-note-box">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="flex-shrink: 0; margin-top: 1px;" aria-hidden="true">
+                  <circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M5.8 9.2L7.9 11.3L12.4 6.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>
+                  <strong>Warranty-Safe Logbook Stamp Included:</strong> Serviced to manufacturer schedule using OEM-specification parts and fluids, keeping your Australian statutory new-car warranty intact.
+                </span>
+              </div>
+
+              <div id="bayBookingFields">
+                <div style="margin-bottom: 14px;">
+                  <div class="field-label">
+                    <span>Choose Workshop Day</span>
+                    <span class="field-label-sub tabular">Mon-Fri 7:30 AM – 5:30 PM</span>
+                  </div>
+                  <div class="day-pills" id="daySlots" role="radiogroup" aria-label="Choose workshop day"></div>
+
+                  <div class="field-label">
+                    <span>Select Bay Drop-Off Time</span>
+                    <span class="field-label-sub tabular" id="selectedSlotBadge">Mon · 7:30 AM</span>
+                  </div>
+                  <div class="time-pills" id="timeSlots" role="radiogroup" aria-label="Select bay drop-off time">
+                    <button class="time-btn is-selected" type="button" data-time="7:30 AM" role="radio" aria-checked="true">7:30 AM</button>
+                    <button class="time-btn" type="button" data-time="9:30 AM" role="radio" aria-checked="false">9:30 AM</button>
+                    <button class="time-btn" type="button" data-time="11:30 AM" role="radio" aria-checked="false">11:30 AM</button>
+                    <button class="time-btn" type="button" data-time="1:30 PM" role="radio" aria-checked="false">1:30 PM</button>
+                    <button class="time-btn" type="button" data-time="3:30 PM" role="radio" aria-checked="false">3:30 PM</button>
+                    <button class="time-btn" type="button" data-time="8:00 AM" role="radio" aria-checked="false">8:00 AM</button>
+                  </div>
+                </div>
+
+                <form class="booking-form" id="bayBookingForm" novalidate>
+                  <div class="form-two-col">
+                    <div>
+                      <div class="field-label" id="lblDriverName">Driver Name</div>
+                      <input class="input-ctrl" id="driverName" name="driverName" type="text" autocomplete="name" placeholder="Liam O'Connor" aria-labelledby="lblDriverName" required>
+                    </div>
+                    <div>
+                      <div class="field-label" id="lblDriverPhone">Contact Phone</div>
+                      <input class="input-ctrl tabular" id="driverPhone" name="driverPhone" type="tel" autocomplete="tel" placeholder="0412 345 678" aria-labelledby="lblDriverPhone" required>
+                    </div>
+                  </div>
+
+                  <div class="form-two-col">
+                    <div>
+                      <div class="field-label" id="lblDriverEmail">Email Address</div>
+                      <input class="input-ctrl" id="driverEmail" name="driverEmail" type="email" autocomplete="email" placeholder="driver@canberra.au" aria-labelledby="lblDriverEmail" required>
+                    </div>
+                    <div>
+                      <div class="field-label" id="lblVehicleRego">Make, Model &amp; Rego</div>
+                      <input class="input-ctrl" id="vehicleRego" name="vehicleRego" type="text" autocomplete="off" placeholder="2021 RAV4 · YAB12C" aria-labelledby="lblVehicleRego" required>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="field-label" id="lblBayPriority">Bay Handling Preference</div>
+                    <select class="input-ctrl" id="bayPriority" name="bayPriority" autocomplete="off" aria-labelledby="lblBayPriority">
+                      <option value="Full-Day Drop-Off (Collect by 5:30 PM)">Full-Day Drop-Off (Collect by 5:30 PM)</option>
+                      <option value="Priority Morning Hoist (Call When Ready)">Priority Morning Hoist (Call When Ready)</option>
+                      <option value="Include Road Test &amp; Written Inspection Report">Include Road Test &amp; Written Inspection Report</option>
+                    </select>
+                  </div>
+
+                  <div class="form-error-msg" id="bookingErrorMsg" role="alert">
+                    Please enter your name, phone number, valid email address, and vehicle details to reserve a Canberra workshop bay.
+                  </div>
+
+                  <button class="btn btn-primary" type="submit" style="width: 100%; padding-block: 13px;">
+                    Confirm Workshop Bay Booking
+                  </button>
+                </form>
+              </div>
+
+              <div class="confirmation-box" id="bayConfirmation" aria-live="polite">
+                <div class="confirm-head">
+                  <div class="confirm-title">Canberra Workshop Bay Reserved</div>
+                  <span class="confirm-code tabular" id="confirmRef">EAR-ACT-4082</span>
+                </div>
+                <div class="confirm-docket">
+                  <div class="confirm-row">
+                    <span class="confirm-k">Driver &amp; Vehicle</span>
+                    <span class="confirm-v" id="confirmDriver">Liam O'Connor · 2021 RAV4</span>
+                  </div>
+                  <div class="confirm-row">
+                    <span class="confirm-k">Vehicle Class</span>
+                    <span class="confirm-v" id="confirmClass">Hatch/Sedan</span>
+                  </div>
+                  <div class="confirm-row">
+                    <span class="confirm-k">Booked Work</span>
+                    <span class="confirm-v" id="confirmJob">Minor Logbook Service</span>
+                  </div>
+                  <div class="confirm-row">
+                    <span class="confirm-k">Selected Bay Time</span>
+                    <span class="confirm-v tabular" id="confirmSlot">Mon · 7:30 AM</span>
+                  </div>
+                  <div class="confirm-row">
+                    <span class="confirm-k">Quoted Estimate (AUD)</span>
+                    <span class="confirm-v tabular" id="confirmPrice">$275.00 AUD</span>
+                  </div>
+                  <div class="confirm-row">
+                    <span class="confirm-k">Warranty Compliance</span>
+                    <span class="confirm-v" style="color: var(--ok);">Warranty-Safe Logbook Stamp</span>
+                  </div>
+                </div>
+                <div style="font-size: 0.8125rem; color: #114C34;">
+                  Booking summary prepared for Express Auto Repairs, Canberra, ACT, Australia. For immediate bay changes call <strong class="tabular">(02) 5104 0793</strong> or email <strong>service@expressautorepairs.com.au</strong>.
+                </div>
+                <button class="btn btn-outline btn-sm" id="editBookingBtn" type="button">Modify Booking or Quote</button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-surface" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Core Mechanical Capabilities</div>
+            <h2 class="section-title">Four Specialized Bays Under One Independent Roof</h2>
+            <p class="section-desc">
+              Every service is performed by qualified mechanics in Canberra using manufacturer-grade diagnostic tools, calibrated torque equipment, and OEM-equivalent parts.
+            </p>
+          </div>
+          <a class="btn btn-outline" href="#estimator-booker">Price Any Service in AUD</a>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-card-top">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect x="4" y="3.5" width="16" height="17" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M8 8.5H16M8 12.5H13.5M8 16.5H11.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <circle cx="16.2" cy="15.8" r="2.6" stroke="#C2591A" stroke-width="1.6"/>
+                  </svg>
+                </span>
+                <span class="service-code tabular">BAY 01 / 02 · LOGBOOK</span>
+              </div>
+              <h3 class="service-title">Manufacturer Logbook Servicing (warranty-safe)</h3>
+              <p class="service-desc">
+                Scheduled 10,000 km to 100,000+ km maintenance strictly aligned with your manufacturer book so your new-car statutory warranty stays protected.
+              </p>
+              <ul class="service-bullets">
+                <li><span class="bullet-dot" aria-hidden="true"></span><span>Exact viscosity full-synthetic engine oil and OEM-spec filters</span></li>
+                <li><span class="bullet-dot" aria-hidden="true"></span><span>48-point safety, cooling, fluid, belt and underbody check</span></li>
+                <li><span class="bullet-dot" aria-hidden="true"></span><span>Official Warranty-Safe Logbook Stamp and digital report</span></li>
+              </ul>
+            </div>
+            <div class="service-footer">
+              <span class="service-from tabular">From $275 AUD</span>
+              <button class="btn btn-outline btn-sm" type="button" data-select-service="minor-logbook">Estimate Logbook</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-top">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M12 5.5V18.5M6.4 8.7L17.6 15.3M17.6 8.7L6.4 15.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    <circle cx="12" cy="12" r="2.2" fill="#C2591A"/>
+                  </svg>
+                </span>
+                <span class="service-code tabular">BAY 04 · CLIMATE</span>
+              </div>
+              <h3 class="service-title">Car Air Conditioning Regas &amp; Repair</h3>
+              <p class="service-desc">
+                Built for freezing Canberra winter mornings and dry 38-degree summers: full refrigerant recovery, vacuum evacuation, nitrogen leak test, and compressor servicing.
+              </p>
+              <ul class="service-bullets">
+                <li><span class="bullet-dot" aria-hidden="true"></span><span>R134a and modern R1234yf evacuation, weigh-in charge &amp; PAG oil</span></li>
+                <li><span class="bullet-dot" aria-hidden="true"></span><span>UV dye and nitrogen pressure decay testing for O-rings and condensers</span></li>
+                <li><span class="bullet-dot" aria-hidden="true"></span><span>Vent temperature calibration, blower resistor &amp; TX valve diagnostics</span></li>
+              </ul>
+            </div>
+            <div class="service-footer">
+              <span class="service-from tabular">From $235 AUD</span>
+              <button class="btn btn-outline btn-sm" type="button" data-select-service="ac-regas">Estimate A/C Regas</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-top">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect x="3.5" y="6.5" width="17" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M7 12H9.4L11 9.5L13 14.5L14.6 12H17" stroke="#C2591A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="service-code tabular">BAY 04 · DIAGNOSTICS</span>
+              </div>
+              <h3 class="service-title">Auto Electrical &amp; ECU Diagnostics</h3>
+              <p class="service-desc">
+                Pinpoint check-engine lights, ABS/SRS warnings, CAN-bus communication faults, parasitic battery drains, starter motors, and smart alternators without guesswork.
+              </p>
+              <ul class="service-bullets">
+                <li><span class="bullet-dot" aria-hidden="true"></span><span>Bi-directional OEM-level ECU live data &amp; oscilloscope testing</span></li>
+                <li><span class="bullet-dot" aria-hidden="true"></span><span>AGM / EFB stop-start battery registration &amp; alternator ripple check</span></li>
+                <li><span class="bullet-dot" aria-hidden="true"></span><span>DPF sensor, ignition coil, fuel trim and wiring loom repairs</span></li>
+              </ul>
+            </div>
+            <div class="service-footer">
+              <span class="service-from tabular">From $180 AUD</span>
+              <button class="btn btn-outline btn-sm" type="button" data-select-service="auto-elec">Estimate Fault Scan</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-top">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/>
+                    <circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.6"/>
+                    <path d="M17.2 6.8L19.6 9.2" stroke="#C2591A" stroke-width="2.4" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <span class="service-code tabular">BAY 03 · CHASSIS</span>
+              </div>
+              <h3 class="service-title">Brakes, Clutch, Steering &amp; Suspension Repairs</h3>
+              <p class="service-desc">
+                Precision stopping and handling restoration with measured rotor runout, low-dust OEM-grade pads, hydraulic clutch servicing, control arms, and shock absorbers.
+              </p>
+              <ul class="service-bullets">
+                <li><span class="bullet-dot" aria-hidden="true"></span><span>Front and rear disc rotors, pads, caliper slides &amp; electronic park brake reset</span></li>
+                <li><span class="bullet-dot" aria-hidden="true"></span><span>Single and dual-mass flywheel clutch kits, slave cylinders &amp; hydraulics</span></li>
+                <li><span class="bullet-dot" aria-hidden="true"></span><span>Ball joints, steering racks, sway bar links, struts &amp; wheel bearings</span></li>
+              </ul>
+            </div>
+            <div class="service-footer">
+              <span class="service-from tabular">From $215 AUD</span>
+              <button class="btn btn-outline btn-sm" type="button" data-select-service="brakes">Estimate Brakes</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="standards">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Canberra Workshop Standards</div>
+            <h2 class="section-title">Independent Pricing Transparency &amp; Warranty Compliance</h2>
+            <p class="section-desc">
+              Under Australian Consumer Law (ACCC), you are never tied to a dealership service centre to protect your new-car warranty. Here is how our workshop keeps every service compliant and accountable.
+            </p>
+          </div>
+        </div>
+
+        <div class="standards-grid">
+          <div class="standard-card">
+            <span class="standard-badge">ACCC WARRANTY SAFE</span>
+            <h3>Full Manufacturer Schedule Compliance</h3>
+            <p>
+              We follow your vehicle make and model logbook checklist step by step, fit OEM-specification parts and fluids, and apply our official Warranty-Safe Logbook Stamp.
+            </p>
+          </div>
+          <div class="standard-card">
+            <span class="standard-badge">PRIOR AUTHORISATION</span>
+            <h3>Zero Unapproved Extra Charges</h3>
+            <p>
+              If our hoist inspection uncovers worn brake pads, weeping seals, or suspension bushes, we send measurements and an exact AUD quote before touching a single extra bolt.
+            </p>
+          </div>
+          <div class="standard-card">
+            <span class="standard-badge">ACT READY</span>
+            <h3>Single-Day Turnaround Built Around Canberra</h3>
+            <p>
+              Early drop-off starts at 7:30 AM Monday to Friday with collection up to 5:30 PM, allowing full commuter convenience without losing your vehicle for days.
+            </p>
+          </div>
+        </div>
+
+        <div class="matrix-wrap">
+          <div class="matrix-bar">
+            <div class="matrix-title">AUD Service &amp; Repair Guide Across Vehicle Classes (GST Included)</div>
+            <span class="warranty-chip">Warranty-Safe Logbook Stamp</span>
+          </div>
+          <div class="table-scroll">
+            <table class="rate-table">
+              <thead>
+                <tr>
+                  <th>Service / Repair Scope</th>
+                  <th>Hatch/Sedan</th>
+                  <th>Medium SUV</th>
+                  <th>4WD/Ute</th>
+                  <th>European Vehicle</th>
+                </tr>
+              </thead>
+              <tbody class="tabular">
+                <tr>
+                  <td><strong>Minor Logbook Service</strong></td>
+                  <td class="rate-cell">$275.00</td>
+                  <td class="rate-cell">$319.00</td>
+                  <td class="rate-cell">$369.00</td>
+                  <td class="rate-cell">$391.00</td>
+                </tr>
+                <tr>
+                  <td><strong>Major Logbook Service</strong></td>
+                  <td class="rate-cell">$490.00</td>
+                  <td class="rate-cell">$568.00</td>
+                  <td class="rate-cell">$657.00</td>
+                  <td class="rate-cell">$696.00</td>
+                </tr>
+                <tr>
+                  <td><strong>Brake Pads &amp; Rotor Replacement</strong></td>
+                  <td class="rate-cell">$485.00</td>
+                  <td class="rate-cell">$565.00</td>
+                  <td class="rate-cell">$650.00</td>
+                  <td class="rate-cell">$689.00</td>
+                </tr>
+                <tr>
+                  <td><strong>A/C Regas &amp; Leak Test</strong></td>
+                  <td class="rate-cell">$235.00</td>
+                  <td class="rate-cell">$250.00</td>
+                  <td class="rate-cell">$275.00</td>
+                  <td class="rate-cell">$295.00</td>
+                </tr>
+                <tr>
+                  <td><strong>Auto Electrical Fault Scan</strong></td>
+                  <td class="rate-cell">$180.00</td>
+                  <td class="rate-cell">$195.00</td>
+                  <td class="rate-cell">$215.00</td>
+                  <td class="rate-cell">$235.00</td>
+                </tr>
+                <tr>
+                  <td><strong>Clutch &amp; Suspension Check</strong></td>
+                  <td class="rate-cell">$215.00</td>
+                  <td class="rate-cell">$240.00</td>
+                  <td class="rate-cell">$275.00</td>
+                  <td class="rate-cell">$290.00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-surface" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Driver Questions</div>
+            <h2 class="section-title">Frequently Asked Questions in Canberra</h2>
+          </div>
+        </div>
+
+        <div class="faq-list" id="faqAccordion">
+          <div class="faq-item">
+            <button class="faq-trigger" type="button" aria-expanded="true" aria-controls="faq-a-1">
+              <span>Does servicing at Express Auto Repairs keep my new-car manufacturer warranty intact?</span>
+              <svg class="faq-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.8L9 11.3L13.5 6.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer is-open" id="faq-a-1">
+              Yes. Under Australian Consumer Law, independent workshops using qualified mechanics, OEM-specification fluids, and manufacturer-grade filters can carry out scheduled logbook servicing without voiding your factory warranty. Every logbook service includes our Warranty-Safe Logbook Stamp and itemized service record.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-a-2">
+              <span>What happens during an A/C Regas &amp; Leak Test?</span>
+              <svg class="faq-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.8L9 11.3L13.5 6.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-a-2">
+              We recover remaining refrigerant, pull a deep vacuum to remove moisture, pressure-test the system with nitrogen and UV dye to catch condenser or seal leaks early, replenish compressor oil, and charge to exact manufacturer gram weight before checking cabin vent temperatures.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-a-3">
+              <span>Are your AUD estimates inclusive of GST and parts?</span>
+              <svg class="faq-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.8L9 11.3L13.5 6.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-a-3">
+              Yes. All quotes generated in our estimator display full GST-inclusive AUD figures covering qualified mechanic labour, OEM-spec parts and lubricants, and workshop consumables. Specialty twin-turbo or high-capacity European engines are confirmed once your registration or VIN is verified.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-a-4">
+              <span>When can I drop off and pick up my car in Canberra?</span>
+              <svg class="faq-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.8L9 11.3L13.5 6.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-a-4">
+              Our Canberra workshop bays operate Mon-Fri 7:30 AM – 5:30 PM. Early 7:30 AM drop-off slots are available every weekday so you can head to work and collect your vehicle before 5:30 PM.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title">Express Auto Repairs</div>
+          <p class="footer-sub">
+            Private Independent Mechanical Workshop serving drivers across Canberra, ACT, Australia with warranty-safe logbook servicing, climate systems, diagnostics, and mechanical repairs.
+          </p>
+          <div class="stamp-pill">
+            <span>Warranty-Safe Logbook Stamp · Canberra, ACT</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Workshop Contact &amp; Hours</div>
+          <ul class="footer-list tabular">
+            <li>Address: Canberra, ACT, Australia</li>
+            <li>Phone: <a href="tel:+61251040793">(02) 5104 0793</a></li>
+            <li>Email: <a href="mailto:service@expressautorepairs.com.au">service@expressautorepairs.com.au</a></li>
+            <li>Hours: Mon-Fri 7:30 AM – 5:30 PM</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Core Services</div>
+          <ul class="footer-list">
+            <li><a href="#estimator-booker">Manufacturer Logbook Servicing (warranty-safe)</a></li>
+            <li><a href="#estimator-booker">Car Air Conditioning Regas &amp; Repair</a></li>
+            <li><a href="#estimator-booker">Auto Electrical &amp; ECU Diagnostics</a></li>
+            <li><a href="#estimator-booker">Brakes, Clutch, Steering &amp; Suspension Repairs</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>Express Auto Repairs · Private Independent Mechanical Workshop · Canberra, ACT, Australia</span>
+        <span class="tabular">Tel (02) 5104 0793 · Mon-Fri 7:30 AM – 5:30 PM</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      const VEHICLES = {
+        hatch: {
+          id: 'hatch',
+          label: 'Hatch/Sedan',
+          labourMult: 1.0,
+          partsMult: 1.0,
+          oilSpec: '4.0–4.5L Full Synthetic 5W-30'
+        },
+        suv: {
+          id: 'suv',
+          label: 'Medium SUV',
+          labourMult: 1.15,
+          partsMult: 1.18,
+          oilSpec: '5.0–5.8L Low-Ash Synthetic'
+        },
+        '4wd': {
+          id: '4wd',
+          label: '4WD/Ute',
+          labourMult: 1.32,
+          partsMult: 1.38,
+          oilSpec: '7.5–9.5L Heavy-Duty ACEA C2/C3'
+        },
+        euro: {
+          id: 'euro',
+          label: 'European Vehicle',
+          labourMult: 1.40,
+          partsMult: 1.46,
+          oilSpec: 'OEM Euro Approved VW 504 / LL-04'
+        }
+      };
+
+      const JOBS = {
+        'minor-logbook': {
+          id: 'minor-logbook',
+          label: 'Minor Logbook Service',
+          baseLabour: 135,
+          baseParts: 115,
+          consumables: 25,
+          duration: '1.5 hrs',
+          bay: 'Hoist Bay 02',
+          fixedByVehicle: { hatch: 275, suv: 319, '4wd': 369, euro: 391 },
+          checklist: [
+            'Drain engine oil and replace with manufacturer-spec synthetic lubricant',
+            'Fit OEM-equivalent spin-on or cartridge oil filter with fresh sump washer',
+            'Measure brake pad thickness, rotor lip wear, tyres and suspension joints',
+            'Top up coolant, washer, brake and steering fluids plus battery test',
+            'Road test vehicle and apply official Warranty-Safe Logbook Stamp'
+          ]
+        },
+        'major-logbook': {
+          id: 'major-logbook',
+          label: 'Major Logbook Service',
+          baseLabour: 240,
+          baseParts: 215,
+          consumables: 35,
+          duration: '3.0 hrs',
+          bay: 'Hoist Bay 01',
+          fixedByVehicle: { hatch: 490, suv: 568, '4wd': 657, euro: 696 },
+          checklist: [
+            'Full synthetic oil and OEM filter change plus air and cabin filter replacement',
+            'Spark plug or diesel fuel filter inspection/service per km interval',
+            'Brake fluid moisture test, cooling system pressure check and belt inspection',
+            'Driveline, differential, CV boot and steering rack wear verification',
+            'Full ECU health scan, road test and Warranty-Safe Logbook Stamp'
+          ]
+        },
+        brakes: {
+          id: 'brakes',
+          label: 'Brake Pads & Rotor Replacement',
+          baseLabour: 195,
+          baseParts: 265,
+          consumables: 25,
+          duration: '2.0 hrs',
+          bay: 'Brake Bay 03',
+          fixedByVehicle: { hatch: 485, suv: 565, '4wd': 650, euro: 689 },
+          checklist: [
+            'Remove worn brake pads and vented discs; inspect hub mating faces for rust',
+            'Fit OEM-grade high-carbon rotors and low-dust ceramic or ECE-R90 pads',
+            'Clean caliper brackets, lubricate guide pins and inspect brake hoses',
+            'Electronic parking brake service retraction and wheel nut torque calibration',
+            'Bedding-in road test and digital brake report for logbook history'
+          ]
+        },
+        'ac-regas': {
+          id: 'ac-regas',
+          label: 'A/C Regas & Leak Test',
+          baseLabour: 120,
+          baseParts: 95,
+          consumables: 20,
+          duration: '1.5 hrs',
+          bay: 'Climate Bay 04',
+          fixedByVehicle: { hatch: 235, suv: 250, '4wd': 275, euro: 295 },
+          checklist: [
+            'Recover existing refrigerant and evacuate moisture under deep vacuum',
+            'Perform oxygen-free nitrogen leak test across condenser, TX valve and O-rings',
+            'Inject UV leak tracer dye and measured PAG/POE compressor lubricant',
+            'Weigh-in fresh refrigerant charge to exact Canberra ambient spec',
+            'Verify vent outlet temperature drop and cooling fan cycling under load'
+          ]
+        },
+        'auto-elec': {
+          id: 'auto-elec',
+          label: 'Auto Electrical Fault Scan',
+          baseLabour: 145,
+          baseParts: 20,
+          consumables: 15,
+          duration: '1.25 hrs',
+          bay: 'Diagnostic Bay 04',
+          fixedByVehicle: { hatch: 180, suv: 195, '4wd': 215, euro: 235 },
+          checklist: [
+            'Full multi-module OBD-II and CAN-bus fault code interrogation',
+            'Live sensor waveform and oscilloscope check for misfire or ABS/SRS errors',
+            'Battery state-of-health conductance test and smart alternator ripple check',
+            'Parasitic overnight draw and relay/earth terminal integrity inspection',
+            'Written fault isolation report with exact repair breakdown prior to work'
+          ]
+        },
+        'clutch-susp': {
+          id: 'clutch-susp',
+          label: 'Clutch & Suspension Check',
+          baseLabour: 150,
+          baseParts: 45,
+          consumables: 20,
+          duration: '1.5 hrs',
+          bay: 'Chassis Bay 03',
+          fixedByVehicle: { hatch: 215, suv: 240, '4wd': 275, euro: 290 },
+          checklist: [
+            'Clutch bite point, release bearing noise and dual-mass flywheel vibration test',
+            'Master and slave cylinder hydraulic line bleed condition check',
+            'Shock absorber damping, strut mount, lower control arm bush & ball joint play check',
+            'Tie-rod end, steering rack boot and wheel bearing acoustic check on hoist',
+            'Road-feel diagnostic summary and itemized repair estimate in AUD'
+          ]
+        }
+      };
+
+      const ADDONS = {
+        'brake-fluid': { id: 'brake-fluid', label: 'DOT 4 Brake Fluid Flush', price: 85 },
+        'cabin-filter': { id: 'cabin-filter', label: 'Carbon Cabin Pollen Filter', price: 58 },
+        'battery-test': { id: 'battery-test', label: 'AGM Battery & Alternator Test', price: 35 },
+        'wheel-align': { id: 'wheel-align', label: '4-Wheel Alignment Check', price: 95 }
+      };
+
+      const WEEKDAYS = [
+        { key: 'Mon', day: 'Mon', date: 'Next Mon' },
+        { key: 'Tue', day: 'Tue', date: 'Next Tue' },
+        { key: 'Wed', day: 'Wed', date: 'Next Wed' },
+        { key: 'Thu', day: 'Thu', date: 'Next Thu' },
+        { key: 'Fri', day: 'Fri', date: 'Next Fri' }
+      ];
+
+      const state = {
+        vehicle: 'hatch',
+        job: 'minor-logbook',
+        addons: [],
+        day: 'Mon',
+        time: '7:30 AM'
+      };
+
+      function formatAud(amount) {
+        return '$' + amount.toFixed(2);
+      }
+
+      function computeBreakdown(vehicleId, jobId, addonIds) {
+        const job = JOBS[jobId];
+        const totalBase = job.fixedByVehicle[vehicleId];
+        const baseSum = job.baseLabour + job.baseParts + job.consumables;
+        const consumables = job.consumables;
+        const labour = Math.round(((totalBase - consumables) * (job.baseLabour / (baseSum - consumables))));
+        const parts = totalBase - consumables - labour;
+
+        let addonsTotal = 0;
+        for (let i = 0; i < addonIds.length; i += 1) {
+          const item = ADDONS[addonIds[i]];
+          if (item) {
+            addonsTotal += item.price;
+          }
+        }
+
+        const total = totalBase + addonsTotal;
+        const gst = Math.round((total / 11) * 100) / 100;
+
+        return {
+          labour: labour,
+          parts: parts,
+          consumables: consumables,
+          addonsTotal: addonsTotal,
+          gst: gst,
+          total: total
+        };
+      }
+
+      function buildUpcomingWeekdays() {
+        const container = document.getElementById('daySlots');
+        if (container === null) {
+          return;
+        }
+        const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const slots = [];
+        const cursor = new Date();
+
+        while (slots.length < 5) {
+          cursor.setDate(cursor.getDate() + 1);
+          const dow = cursor.getDay();
+          if (dow >= 1 && dow <= 5) {
+            const labelDay = dayNames[dow];
+            const labelDate = cursor.getDate() + ' ' + monthNames[cursor.getMonth()];
+            slots.push({ key: labelDay + ' ' + labelDate, day: labelDay, date: labelDate });
+          }
+        }
+
+        if (slots.length === 5) {
+          state.day = slots[0].key;
+          container.innerHTML = '';
+          for (let i = 0; i < slots.length; i += 1) {
+            const s = slots[i];
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = i === 0 ? 'slot-pill is-selected' : 'slot-pill';
+            btn.setAttribute('role', 'radio');
+            btn.setAttribute('aria-checked', i === 0 ? 'true' : 'false');
+            btn.setAttribute('data-day', s.key);
+            btn.innerHTML = '<span class="slot-day">' + s.day + '</span><span class="slot-date">' + s.date + '</span>';
+            btn.addEventListener('click', function () {
+              state.day = s.key;
+              syncSlotSelection();
+            });
+            container.appendChild(btn);
+          }
+        } else {
+          state.day = WEEKDAYS[0].day;
+        }
+      }
+
+      function syncSlotSelection() {
+        const dayBtns = document.querySelectorAll('#daySlots .slot-pill');
+        for (let i = 0; i < dayBtns.length; i += 1) {
+          const btn = dayBtns[i];
+          const isActive = btn.getAttribute('data-day') === state.day;
+          btn.classList.toggle('is-selected', isActive);
+          btn.setAttribute('aria-checked', isActive ? 'true' : 'false');
+        }
+
+        const timeBtns = document.querySelectorAll('#timeSlots .time-btn');
+        for (let j = 0; j < timeBtns.length; j += 1) {
+          const tBtn = timeBtns[j];
+          const isTimeActive = tBtn.getAttribute('data-time') === state.time;
+          tBtn.classList.toggle('is-selected', isTimeActive);
+          tBtn.setAttribute('aria-checked', isTimeActive ? 'true' : 'false');
+        }
+
+        const badge = document.getElementById('selectedSlotBadge');
+        if (badge) {
+          badge.textContent = state.day + ' · ' + state.time;
+        }
+      }
+
+      function renderScopeChecklist(job) {
+        const heading = document.getElementById('scopeHeading');
+        const bayBadge = document.getElementById('scopeBayBadge');
+        const list = document.getElementById('scopeChecklist');
+        const vehicle = VEHICLES[state.vehicle];
+
+        if (heading) {
+          heading.textContent = 'Included in ' + job.label + ' (' + vehicle.label + ')';
+        }
+        if (bayBadge) {
+          bayBadge.textContent = job.bay + ' · ' + job.duration;
+        }
+        if (list) {
+          list.innerHTML = '';
+          for (let i = 0; i < job.checklist.length; i += 1) {
+            const li = document.createElement('li');
+            li.innerHTML =
+              '<svg class="scope-check" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">' +
+              '<circle cx="8" cy="8" r="6.8" stroke="currentColor" stroke-width="1.4"/>' +
+              '<path d="M5.2 8.2L7.1 10.1L11 6.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+              '</svg>' +
+              '<span>' + job.checklist[i] + '</span>';
+            list.appendChild(li);
+          }
+        }
+      }
+
+      function renderUI() {
+        const vehicle = VEHICLES[state.vehicle];
+        const job = JOBS[state.job];
+        const quote = computeBreakdown(state.vehicle, state.job, state.addons);
+
+        const vehicleCards = document.querySelectorAll('#vehicleClassGroup .choice-card');
+        for (let i = 0; i < vehicleCards.length; i += 1) {
+          const vBtn = vehicleCards[i];
+          const active = vBtn.getAttribute('data-vehicle') === state.vehicle;
+          vBtn.classList.toggle('is-selected', active);
+          vBtn.setAttribute('aria-checked', active ? 'true' : 'false');
+        }
+
+        const jobCards = document.querySelectorAll('#serviceJobGroup .job-card');
+        for (let j = 0; j < jobCards.length; j += 1) {
+          const jBtn = jobCards[j];
+          const jId = jBtn.getAttribute('data-job');
+          const activeJob = jId === state.job;
+          jBtn.classList.toggle('is-selected', activeJob);
+          jBtn.setAttribute('aria-checked', activeJob ? 'true' : 'false');
+
+          const priceEl = jBtn.querySelector('[data-job-price]');
+          if (priceEl && JOBS[jId]) {
+            priceEl.textContent = '$' + JOBS[jId].fixedByVehicle[state.vehicle] + ' AUD';
+          }
+        }
+
+        const addonBtns = document.querySelectorAll('#addonGroup .addon-btn');
+        for (let k = 0; k < addonBtns.length; k += 1) {
+          const aBtn = addonBtns[k];
+          const aId = aBtn.getAttribute('data-addon');
+          const activeAddon = state.addons.indexOf(aId) >= 0;
+          aBtn.classList.toggle('is-active', activeAddon);
+          aBtn.setAttribute('aria-pressed', activeAddon ? 'true' : 'false');
+          const box = aBtn.querySelector('.addon-box');
+          if (box) {
+            box.innerHTML = activeAddon
+              ? '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 6.2L5 8.7L9.5 3.8" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+              : '';
+          }
+        }
+
+        document.getElementById('liveTotalPrice').textContent = formatAud(quote.total);
+        document.getElementById('liveEstDuration').textContent = 'Est. ' + job.duration + ' · ' + job.bay;
+        document.getElementById('liveSummaryLine').textContent = vehicle.label + ' · ' + job.label + ' (' + vehicle.oilSpec + ')';
+
+        document.getElementById('costLabour').textContent = formatAud(quote.labour);
+        document.getElementById('costParts').textContent = formatAud(quote.parts);
+        document.getElementById('costConsumables').textContent = formatAud(quote.consumables);
+        document.getElementById('costGst').textContent = formatAud(quote.gst);
+        document.getElementById('costTotal').textContent = formatAud(quote.total);
+
+        const addonsRow = document.getElementById('addonsRow');
+        if (quote.addonsTotal > 0) {
+          addonsRow.style.display = 'flex';
+          document.getElementById('costAddons').textContent = formatAud(quote.addonsTotal);
+        } else {
+          addonsRow.style.display = 'none';
+        }
+
+        renderScopeChecklist(job);
+        syncSlotSelection();
+      }
+
+      function bindEstimatorEvents() {
+        const vehicleCards = document.querySelectorAll('#vehicleClassGroup .choice-card');
+        for (let i = 0; i < vehicleCards.length; i += 1) {
+          vehicleCards[i].addEventListener('click', function () {
+            state.vehicle = this.getAttribute('data-vehicle');
+            renderUI();
+          });
+        }
+
+        const jobCards = document.querySelectorAll('#serviceJobGroup .job-card');
+        for (let j = 0; j < jobCards.length; j += 1) {
+          jobCards[j].addEventListener('click', function () {
+            state.job = this.getAttribute('data-job');
+            renderUI();
+          });
+        }
+
+        const addonBtns = document.querySelectorAll('#addonGroup .addon-btn');
+        for (let k = 0; k < addonBtns.length; k += 1) {
+          addonBtns[k].addEventListener('click', function () {
+            const id = this.getAttribute('data-addon');
+            const idx = state.addons.indexOf(id);
+            if (idx === -1) {
+              state.addons.push(id);
+            } else {
+              state.addons.splice(idx, 1);
+            }
+            renderUI();
+          });
+        }
+
+        const timeBtns = document.querySelectorAll('#timeSlots .time-btn');
+        for (let t = 0; t < timeBtns.length; t += 1) {
+          timeBtns[t].addEventListener('click', function () {
+            state.time = this.getAttribute('data-time');
+            syncSlotSelection();
+          });
+        }
+
+        const presetBtns = document.querySelectorAll('[data-preset-vehicle]');
+        for (let p = 0; p < presetBtns.length; p += 1) {
+          presetBtns[p].addEventListener('click', function () {
+            state.vehicle = this.getAttribute('data-preset-vehicle');
+            state.job = this.getAttribute('data-preset-job');
+            renderUI();
+            const target = document.getElementById('estimator-booker');
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+            }
+          });
+        }
+
+        const serviceJumpBtns = document.querySelectorAll('[data-select-service]');
+        for (let s = 0; s < serviceJumpBtns.length; s += 1) {
+          serviceJumpBtns[s].addEventListener('click', function () {
+            state.job = this.getAttribute('data-select-service');
+            renderUI();
+            const target = document.getElementById('estimator-booker');
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+            }
+          });
+        }
+      }
+
+      function bindBookingForm() {
+        const form = document.getElementById('bayBookingForm');
+        const fieldsWrap = document.getElementById('bayBookingFields');
+        const confirmBox = document.getElementById('bayConfirmation');
+        const errorBox = document.getElementById('bookingErrorMsg');
+        const editBtn = document.getElementById('editBookingBtn');
+
+        if (form === null) {
+          return;
+        }
+
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+
+          const nameInput = document.getElementById('driverName');
+          const phoneInput = document.getElementById('driverPhone');
+          const emailInput = document.getElementById('driverEmail');
+          const regoInput = document.getElementById('vehicleRego');
+
+          const inputs = [nameInput, phoneInput, emailInput, regoInput];
+          let hasError = false;
+
+          for (let i = 0; i < inputs.length; i += 1) {
+            const el = inputs[i];
+            const val = el.value.trim();
+            let invalid = val.length === 0;
+            if (el === emailInput && val.indexOf('@') === -1) {
+              invalid = true;
+            }
+            el.classList.toggle('is-error', invalid);
+            if (invalid) {
+              hasError = true;
+            }
+          }
+
+          if (hasError) {
+            errorBox.classList.add('is-visible');
+            return;
+          }
+
+          errorBox.classList.remove('is-visible');
+          const quote = computeBreakdown(state.vehicle, state.job, state.addons);
+          const randomDigits = Math.floor(1000 + Math.random() * 8999);
+
+          document.getElementById('confirmRef').textContent = 'EAR-ACT-' + randomDigits;
+          document.getElementById('confirmDriver').textContent = nameInput.value.trim() + ' · ' + regoInput.value.trim();
+          document.getElementById('confirmClass').textContent = VEHICLES[state.vehicle].label;
+          document.getElementById('confirmJob').textContent = JOBS[state.job].label + (state.addons.length > 0 ? ' + ' + state.addons.length + ' add-on' : '');
+          document.getElementById('confirmSlot').textContent = state.day + ' · ' + state.time;
+          document.getElementById('confirmPrice').textContent = formatAud(quote.total) + ' AUD';
+
+          fieldsWrap.style.display = 'none';
+          confirmBox.classList.add('is-visible');
+          confirmBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+
+        if (editBtn) {
+          editBtn.addEventListener('click', function () {
+            confirmBox.classList.remove('is-visible');
+            fieldsWrap.style.display = 'block';
+          });
+        }
+      }
+
+      function bindNavigationAndFaq() {
+        const menuBtn = document.getElementById('mobileMenuBtn');
+        const drawer = document.getElementById('mobileDrawer');
+        if (menuBtn && drawer) {
+          menuBtn.addEventListener('click', function () {
+            const open = menuBtn.getAttribute('aria-expanded') === 'true';
+            const nextState = open === false;
+            menuBtn.setAttribute('aria-expanded', nextState ? 'true' : 'false');
+            drawer.classList.toggle('is-open', nextState);
+          });
+
+          const drawerLinks = drawer.querySelectorAll('a');
+          for (let i = 0; i < drawerLinks.length; i += 1) {
+            drawerLinks[i].addEventListener('click', function () {
+              menuBtn.setAttribute('aria-expanded', 'false');
+              drawer.classList.remove('is-open');
+            });
+          }
+        }
+
+        const faqTriggers = document.querySelectorAll('#faqAccordion .faq-trigger');
+        for (let f = 0; f < faqTriggers.length; f += 1) {
+          faqTriggers[f].addEventListener('click', function () {
+            const isOpen = this.getAttribute('aria-expanded') === 'true';
+            const panelId = this.getAttribute('aria-controls');
+            const panel = document.getElementById(panelId);
+            const nextOpen = isOpen === false;
+            this.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
+            if (panel) {
+              panel.classList.toggle('is-open', nextOpen);
+            }
+          });
+        }
+      }
+
+      buildUpcomingWeekdays();
+      bindEstimatorEvents();
+      bindBookingForm();
+      bindNavigationAndFaq();
+      renderUI();
+    })();
+  </script>
+</body>
+</html>

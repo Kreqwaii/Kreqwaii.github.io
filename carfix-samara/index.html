@@ -1,0 +1,2929 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Автосервис Carfix — специализированный сервис KIA и Hyundai в Самаре. Онлайн-калькулятор ТО и ремонта, эндоскопия цилиндров G4KD/G4NA, запчасти в наличии, запись на подъемник.">
+  <title>Автосервис Carfix — специализированный сервис KIA и Hyundai в Самаре</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23151921'/%3E%3Cpath d='M8 21.5L13.5 10.5H18.5L24 21.5H20L18.8 18.8H13.2L12 21.5H8ZM14.3 15.9H17.7L16 12.2L14.3 15.9Z' fill='%23FFFFFF'/%3E%3Crect x='8' y='24' width='16' height='2.5' rx='1.25' fill='%23B91C1C'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #F7F8FA;
+      --bg-surface: #FFFFFF;
+      --bg-muted: #F1F5F9;
+      --bg-charcoal: #151921;
+      --bg-charcoal-2: #1E2430;
+      --text-primary: #151921;
+      --text-secondary: #334155;
+      --text-muted: #64748B;
+      --accent: #B91C1C;
+      --accent-hover: #991B1B;
+      --accent-tint: #FEF2F2;
+      --accent-border: #FECACA;
+      --border: #E2E8F0;
+      --border-strong: #CBD5E1;
+      --ok-bg: #ECFDF5;
+      --ok-text: #065F46;
+      --ok-border: #A7F3D0;
+      --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+      --shadow-sm: 0 1px 2px rgba(21, 25, 33, 0.05);
+      --shadow-md: 0 10px 30px -10px rgba(21, 25, 33, 0.09), 0 2px 8px -2px rgba(21, 25, 33, 0.04);
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 7px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: clip;
+      max-width: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-sans);
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
+      max-width: 100%;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: 68px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      color: var(--text-primary);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background-color: var(--bg-charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .brand-text {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+
+    .brand-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      background-color: var(--accent-tint);
+      border: 1px solid var(--accent-border);
+      padding: 1px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.03em;
+      flex-shrink: 0;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-shrink: 0;
+    }
+
+    .header-nav a {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.16s ease;
+    }
+
+    .header-nav a:hover {
+      color: var(--accent);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .hours-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background-color: var(--bg-muted);
+      border: 1px solid var(--border);
+      padding: 7px 11px;
+      border-radius: 8px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #10B981;
+      flex-shrink: 0;
+    }
+
+    .header-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #FFFFFF;
+      background-color: var(--bg-charcoal);
+      padding: 9px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      transition: background-color 0.16s ease;
+    }
+
+    .header-phone:hover {
+      background-color: var(--accent);
+    }
+
+    /* Hero + Engineering Grid */
+    .hero-section {
+      padding: 28px 0 42px;
+      background-color: var(--bg-page);
+      background-image:
+        linear-gradient(to right, rgba(203, 213, 225, 0.28) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(203, 213, 225, 0.28) 1px, transparent 1px);
+      background-size: 36px 36px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .hero-copy {
+      max-width: 740px;
+      min-width: 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background-color: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 5px 11px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 2px;
+      background-color: var(--accent);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(26px, 3.2vw, 38px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.028em;
+      color: var(--text-primary);
+    }
+
+    .hero-desc {
+      margin: 0;
+      font-size: 15.5px;
+      color: var(--text-secondary);
+      max-width: 660px;
+    }
+
+    .hero-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .fact-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background-color: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .fact-pill svg {
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* Main Workbench */
+    .workbench-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.38fr) minmax(0, 0.92fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      min-width: 0;
+    }
+
+    .panel-section {
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .panel-section:last-child {
+      border-bottom: none;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .step-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .step-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: #FFFFFF;
+      background-color: var(--bg-charcoal);
+      padding: 3px 8px;
+      border-radius: 5px;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+
+    .step-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .step-meta {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .field-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-switch {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .brand-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border);
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .brand-btn:hover {
+      border-color: var(--border-strong);
+      background-color: #FFFFFF;
+    }
+
+    .brand-btn[aria-pressed="true"] {
+      border-color: var(--accent);
+      background-color: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.09);
+    }
+
+    .brand-btn-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background-color: var(--bg-muted);
+      padding: 3px 7px;
+      border-radius: 5px;
+    }
+
+    .brand-btn[aria-pressed="true"] .brand-btn-tag {
+      color: var(--accent);
+      background-color: var(--accent-tint);
+    }
+
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .model-chip {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
+      padding: 10px 10px;
+      border-radius: 9px;
+      border: 1.5px solid var(--border);
+      background-color: #FFFFFF;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-sans);
+      min-width: 0;
+      transition: border-color 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .model-chip:hover {
+      border-color: var(--border-strong);
+      background-color: var(--bg-page);
+    }
+
+    .model-chip[aria-pressed="true"] {
+      border-color: var(--bg-charcoal);
+      background-color: var(--bg-charcoal);
+      color: #FFFFFF;
+    }
+
+    .model-name {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: inherit;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+
+    .model-engine {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+
+    .model-chip[aria-pressed="true"] .model-engine {
+      color: #CBD5E1;
+    }
+
+    .mileage-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .control-select,
+    .control-input {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 13px;
+      border-radius: 9px;
+      border: 1.5px solid var(--border-strong);
+      background-color: #FFFFFF;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .control-select:focus,
+    .control-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.12);
+    }
+
+    .mileage-hint {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 13px;
+      border-radius: 8px;
+      background-color: var(--bg-muted);
+      border: 1px solid var(--border);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .mileage-hint svg {
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* Works checklist */
+    .quick-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .link-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: border-color 0.16s ease, color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .link-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background-color: var(--accent-tint);
+    }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .work-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border);
+      background-color: #FFFFFF;
+      text-align: left;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      min-width: 0;
+      transition: border-color 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .work-card:hover {
+      border-color: var(--border-strong);
+      background-color: var(--bg-page);
+    }
+
+    .work-card[aria-checked="true"] {
+      border-color: var(--accent);
+      background-color: #FFFBFB;
+      box-shadow: 0 0 0 2px rgba(185, 28, 28, 0.08);
+    }
+
+    .work-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .work-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .work-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .work-desc {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .check-box {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border-strong);
+      background-color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: transparent;
+      transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .work-card[aria-checked="true"] .check-box {
+      border-color: var(--accent);
+      background-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .work-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border);
+      width: 100%;
+    }
+
+    .work-price {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .work-time {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Parts switcher */
+    .parts-switch {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .parts-card {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border);
+      background-color: var(--bg-page);
+      text-align: left;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: border-color 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .parts-card:hover {
+      border-color: var(--border-strong);
+      background-color: #FFFFFF;
+    }
+
+    .parts-card[aria-checked="true"] {
+      border-color: var(--bg-charcoal);
+      background-color: #FFFFFF;
+      box-shadow: 0 0 0 2px rgba(21, 25, 33, 0.08);
+    }
+
+    .parts-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .parts-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .parts-tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background-color: var(--ok-bg);
+      color: var(--ok-text);
+      border: 1px solid var(--ok-border);
+      flex-shrink: 0;
+    }
+
+    .parts-tag-neutral {
+      background-color: var(--bg-muted);
+      color: var(--text-secondary);
+      border-color: var(--border);
+    }
+
+    .parts-desc {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Right Console: Summary & Booking */
+    .console-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    @media (min-width: 980px) {
+      .console-card {
+        position: sticky;
+        top: 84px;
+      }
+    }
+
+    .console-head {
+      background-color: var(--bg-charcoal);
+      color: #FFFFFF;
+      padding: 18px 22px;
+    }
+
+    .console-head-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .console-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #94A3B8;
+    }
+
+    .console-bay-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #A7F3D0;
+      background-color: rgba(16, 185, 129, 0.14);
+      padding: 3px 8px;
+      border-radius: 5px;
+    }
+
+    .console-car {
+      font-size: 18px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.015em;
+    }
+
+    .console-car-sub {
+      font-size: 12.5px;
+      color: #CBD5E1;
+      margin-top: 2px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .console-body {
+      padding: 20px 22px;
+    }
+
+    .selected-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .selected-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .selected-item-name {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .selected-item-val {
+      color: var(--text-primary);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .empty-notice {
+      padding: 12px;
+      border-radius: 8px;
+      background-color: var(--accent-tint);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      font-size: 12.5px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .totals-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .total-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .total-line strong {
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .grand-total-box {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      background-color: var(--bg-muted);
+      border: 1px solid var(--border);
+      margin-bottom: 18px;
+    }
+
+    .grand-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .grand-sub {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-top: 2px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .grand-price {
+      font-size: 29px;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    /* Slot Picker */
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .day-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 8px 6px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      background-color: #FFFFFF;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .day-btn:hover {
+      border-color: var(--border-strong);
+    }
+
+    .day-btn[aria-pressed="true"] {
+      border-color: var(--bg-charcoal);
+      background-color: var(--bg-charcoal);
+      color: #FFFFFF;
+    }
+
+    .day-name {
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .day-date {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .day-btn[aria-pressed="true"] .day-date {
+      color: #CBD5E1;
+    }
+
+    .slots-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .slot-btn {
+      padding: 9px 6px;
+      border-radius: 7px;
+      border: 1.5px solid var(--border);
+      background-color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      cursor: pointer;
+      font-variant-numeric: tabular-nums;
+      transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .slot-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .slot-btn[aria-pressed="true"] {
+      border-color: var(--accent);
+      background-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .slot-btn:disabled {
+      background-color: var(--bg-muted);
+      border-color: var(--border);
+      color: #94A3B8;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+
+    .slot-note {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: -8px;
+      margin-bottom: 14px;
+    }
+
+    .form-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-bottom: 14px;
+    }
+
+    .form-error {
+      padding: 10px 12px;
+      border-radius: 8px;
+      background-color: var(--accent-tint);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      font-size: 12.5px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: none;
+    }
+
+    .form-error.visible {
+      display: block;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px 18px;
+      border: none;
+      border-radius: 10px;
+      background-color: var(--accent);
+      color: #FFFFFF;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      transition: background-color 0.16s ease, transform 0.12s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .submit-btn:active {
+      transform: translateY(1px);
+    }
+
+    .submit-legal {
+      margin: 10px 0 0;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Booking Confirmed View */
+    .confirm-box {
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .confirm-box.visible {
+      display: flex;
+    }
+
+    .confirm-banner {
+      padding: 14px 16px;
+      border-radius: 10px;
+      background-color: var(--ok-bg);
+      border: 1px solid var(--ok-border);
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+    }
+
+    .confirm-banner svg {
+      color: var(--ok-text);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .confirm-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--ok-text);
+      margin-bottom: 2px;
+    }
+
+    .confirm-code {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .ticket-table {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: var(--bg-page);
+    }
+
+    .ticket-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 13px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .ticket-row:last-child {
+      border-bottom: none;
+    }
+
+    .ticket-key {
+      color: var(--text-muted);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .ticket-val {
+      color: var(--text-primary);
+      font-weight: 700;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      min-width: 0;
+      overflow-wrap: break-word;
+    }
+
+    .confirm-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+    }
+
+    .secondary-btn {
+      padding: 11px 13px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border-strong);
+      background-color: #FFFFFF;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .secondary-btn:hover {
+      border-color: var(--bg-charcoal);
+      background-color: var(--bg-muted);
+    }
+
+    /* Sections */
+    .section {
+      padding: 56px 0;
+    }
+
+    .section-white {
+      background-color: #FFFFFF;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .section-sub {
+      margin: 0;
+      font-size: 14.5px;
+      color: var(--text-muted);
+      max-width: 480px;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background-color: var(--bg-page);
+      transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--border-strong);
+      background-color: #FFFFFF;
+      box-shadow: var(--shadow-md);
+    }
+
+    .service-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background-color: #FFFFFF;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .service-card h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.3;
+      color: var(--text-primary);
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .service-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--accent);
+      cursor: pointer;
+      transition: color 0.16s ease;
+    }
+
+    .service-cta:hover {
+      color: var(--accent-hover);
+    }
+
+    /* Reglament + Standards */
+    .reglament-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .reg-card {
+      background-color: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      box-shadow: var(--shadow-sm);
+      min-width: 0;
+    }
+
+    .reg-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .reg-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 13px 15px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background-color: var(--bg-page);
+      flex-wrap: wrap;
+    }
+
+    .reg-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+      flex: 1 1 240px;
+    }
+
+    .reg-km {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .reg-desc {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .reg-apply-btn {
+      padding: 8px 12px;
+      border-radius: 7px;
+      border: 1.5px solid var(--border-strong);
+      background-color: #FFFFFF;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .reg-apply-btn:hover {
+      border-color: var(--accent);
+      background-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .standards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .standard-item {
+      padding: 15px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background-color: var(--bg-page);
+    }
+
+    .standard-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 5px;
+    }
+
+    .standard-title {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .standard-badge {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      background-color: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 2px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .standard-text {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Contacts */
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .contact-card {
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      min-width: 0;
+    }
+
+    .contact-card-dark {
+      background-color: var(--bg-charcoal);
+      color: #FFFFFF;
+      border-color: var(--bg-charcoal);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .contact-items {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .contact-box {
+      background-color: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 14px;
+      min-width: 0;
+    }
+
+    .contact-lbl {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+
+    .contact-val {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-decoration: none;
+      word-break: break-word;
+      font-variant-numeric: tabular-nums;
+      display: block;
+    }
+
+    a.contact-val:hover {
+      color: var(--accent);
+    }
+
+    .copy-mini {
+      margin-top: 6px;
+      padding: 3px 8px;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+      background-color: var(--bg-muted);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .copy-mini:hover {
+      background-color: var(--bg-charcoal);
+      color: #FFFFFF;
+    }
+
+    .bay-specs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .bay-spec {
+      background-color: var(--bg-charcoal-2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9px;
+      padding: 12px 13px;
+    }
+
+    .bay-spec-num {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 3px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .bay-spec-txt {
+      font-size: 12px;
+      color: #CBD5E1;
+    }
+
+    .dark-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-red {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 9px;
+      background-color: var(--accent);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 800;
+      transition: background-color 0.16s ease;
+    }
+
+    .btn-red:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .btn-ghost-dark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 9px;
+      background-color: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .btn-ghost-dark:hover {
+      border-color: #FFFFFF;
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg-charcoal);
+      color: #CBD5E1;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 22px 0;
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .footer-links a {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer-links a:hover {
+      color: #FCA5A5;
+    }
+
+    /* Responsive Rules */
+    @media (max-width: 1080px) {
+      .hours-chip {
+        display: none;
+      }
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 979px) {
+      .workbench-grid,
+      .reglament-grid,
+      .contacts-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .header-nav {
+        display: none;
+      }
+      .model-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 14px;
+      }
+      .header-inner {
+        min-height: 60px;
+        gap: 8px;
+      }
+      .brand {
+        gap: 8px;
+      }
+      .brand-mark {
+        width: 32px;
+        height: 32px;
+      }
+      .brand-name {
+        font-size: 15px;
+      }
+      .brand-code {
+        display: none;
+      }
+      .brand-sub {
+        font-size: 11px;
+      }
+      .header-phone {
+        font-size: 12px;
+        padding: 8px 10px;
+        gap: 5px;
+      }
+      .hero-section {
+        padding: 20px 0 28px;
+      }
+      .panel-section {
+        padding: 16px;
+      }
+      .console-head,
+      .console-body {
+        padding: 16px;
+      }
+      .model-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .works-grid,
+      .parts-switch,
+      .services-grid,
+      .contact-items,
+      .bay-specs,
+      .confirm-actions {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .days-grid,
+      .slots-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .grand-price {
+        font-size: 24px;
+      }
+      .section {
+        padding: 38px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M5 17.5L10.2 6.5H13.8L19 17.5H15.8L14.7 14.9H9.3L8.2 17.5H5ZM10.3 12.5H13.7L12 8.7L10.3 12.5Z" fill="#FFFFFF"/>
+            <rect x="5" y="19.5" width="14" height="2" rx="1" fill="#B91C1C"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title-row">
+            <span class="brand-name">Автосервис Carfix</span>
+            <span class="brand-code">KIA / HYUNDAI</span>
+          </div>
+          <span class="brand-sub">Профильный сервис · г. Самара</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" aria-label="Разделы сайта">
+        <a href="#calculator">Калькулятор ТО</a>
+        <a href="#services">Услуги</a>
+        <a href="#reglament">Регламент и склад</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="hours-chip">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>Ежедневно 9:00 – 20:00</span>
+        </div>
+        <a href="tel:+78462294402" class="header-phone">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span>+7 (846) 229-44-02</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero-section" id="calculator">
+      <div class="container">
+        <div class="hero-top">
+          <div class="hero-copy">
+            <div class="eyebrow">
+              <span class="eyebrow-dot" aria-hidden="true"></span>
+              <span>Специализированный сервис KIA и Hyundai в Самаре</span>
+            </div>
+            <h1>Калькулятор ТО и ремонта KIA / Hyundai</h1>
+            <p class="hero-desc">
+              Выберите модель, пробег и перечень работ для точного расчета стоимости в рублях и времени на подъемнике. Запчасти в наличии на собственном складе, гарантия на работы и комплектующие.
+            </p>
+          </div>
+          <div class="hero-facts">
+            <div class="fact-pill">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              <span>Гарантия на работы и детали</span>
+            </div>
+            <div class="fact-pill">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+              <span>Запчасти в наличии</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="workbench-grid">
+          <div class="panel">
+            <div class="panel-section">
+              <div class="step-header">
+                <div class="step-title-group">
+                  <span class="step-badge">ШАГ 01</span>
+                  <h2 class="step-title">Модель KIA / Hyundai и пробег</h2>
+                </div>
+                <span class="step-meta" id="engineSpecMeta">Мотор: G4NA / G4KD</span>
+              </div>
+
+              <div class="field-label" id="lbl-brand">Марка автомобиля</div>
+              <div class="brand-switch" role="group" aria-labelledby="lbl-brand">
+                <button type="button" class="brand-btn" data-brand="KIA" aria-pressed="true">
+                  <span>KIA</span>
+                  <span class="brand-btn-tag">5 моделей</span>
+                </button>
+                <button type="button" class="brand-btn" data-brand="Hyundai" aria-pressed="false">
+                  <span>Hyundai</span>
+                  <span class="brand-btn-tag">5 моделей</span>
+                </button>
+              </div>
+
+              <div class="field-label" id="lbl-model">Популярная модель</div>
+              <div class="model-grid" id="modelGrid" role="group" aria-labelledby="lbl-model"></div>
+
+              <div class="mileage-row">
+                <div>
+                  <div class="field-label" id="lbl-mileage">Пробег (автоматический подбор регламента ТО)</div>
+                  <select id="mileageSelect" class="control-select tabular" aria-labelledby="lbl-mileage" autocomplete="off">
+                    <option value="15000">15 000 км — ТО-1 (базовое обслуживание)</option>
+                    <option value="30000">30 000 км — ТО-2 (масло, фильтры, диагностика подвески)</option>
+                    <option value="45000">45 000 км — ТО-3 (плановое ТО + проверка колодок)</option>
+                    <option value="60000" selected>60 000 км — ТО-4 (плановое ТО + масло АКПП + колодки)</option>
+                    <option value="75000">75 000 км — ТО-5 (плановое ТО + эндоскопия G4KD/G4NA)</option>
+                    <option value="90000">90 000+ км — Большое ТО (ТО + АКПП + ГРМ + эндоскопия)</option>
+                    <option value="custom">Выбрать работы вручную без привязки к пробегу</option>
+                  </select>
+                </div>
+                <div class="mileage-hint" id="mileageHint">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="16" x2="12" y2="12"/>
+                    <line x1="12" y1="8" x2="12.01" y2="8"/>
+                  </svg>
+                  <span id="mileageHintText">Для пробега 60 000 км отмечены: Плановое ТО, замена масла АКПП и замена колодок.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-section">
+              <div class="step-header">
+                <div class="step-title-group">
+                  <span class="step-badge">ШАГ 02</span>
+                  <h2 class="step-title">Перечень работ и диагностики</h2>
+                </div>
+                <div class="quick-actions">
+                  <span class="step-meta" id="worksCountMeta">Выбрано: 3</span>
+                  <button type="button" class="link-btn" id="btnOnlyTo">Только ТО</button>
+                  <button type="button" class="link-btn" id="btnClearWorks">Сбросить</button>
+                </div>
+              </div>
+
+              <div class="works-grid" id="worksGrid"></div>
+            </div>
+
+            <div class="panel-section">
+              <div class="step-header">
+                <div class="step-title-group">
+                  <span class="step-badge">ШАГ 03</span>
+                  <h2 class="step-title">Комплектующие и расходники</h2>
+                </div>
+                <span class="step-meta">Склад Carfix · Самара</span>
+              </div>
+
+              <div class="parts-switch" role="radiogroup" aria-label="Выбор запчастей">
+                <button type="button" class="parts-card" data-parts="carfix" role="radio" aria-checked="true">
+                  <div class="parts-head">
+                    <span class="parts-title">Запчасти Carfix в наличии</span>
+                    <span class="parts-tag">Гарантия на детали</span>
+                  </div>
+                  <span class="parts-desc">Оригинал Hyundai/KIA Mobis и проверенные аналоги (CTR, Sangsin, Mando, Mann) со склада сервиса.</span>
+                </button>
+                <button type="button" class="parts-card" data-parts="own" role="radio" aria-checked="false">
+                  <div class="parts-head">
+                    <span class="parts-title">Свои запчасти</span>
+                    <span class="parts-tag parts-tag-neutral">Только работы</span>
+                  </div>
+                  <span class="parts-desc">В смете рассчитывается только работа мастера на подъемнике. Гарантия действует на монтаж.</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="console-card" aria-label="Расчет стоимости и запись на подъемник">
+            <div class="console-head">
+              <div class="console-head-top">
+                <span class="console-kicker">Предварительный заказ-наряд</span>
+                <span class="console-bay-pill">
+                  <span class="status-dot" aria-hidden="true"></span>
+                  <span>Подъемники открыты</span>
+                </span>
+              </div>
+              <div class="console-car" id="summaryCarTitle">KIA Sportage</div>
+              <div class="console-car-sub" id="summaryCarSub">2.0 G4NA / G4KD · Пробег 60 000 км · Запчасти Carfix</div>
+            </div>
+
+            <div class="console-body">
+              <div id="bookingFormArea">
+                <div id="selectedListContainer"></div>
+
+                <div class="totals-grid">
+                  <div class="total-line">
+                    <span>Работы мастеров</span>
+                    <strong id="laborTotalVal">0 ₽</strong>
+                  </div>
+                  <div class="total-line">
+                    <span id="partsTotalLabel">Запчасти Carfix со склада</span>
+                    <strong id="partsTotalVal">0 ₽</strong>
+                  </div>
+                  <div class="total-line">
+                    <span>Время на подъемнике</span>
+                    <strong id="durationTotalVal">0 мин</strong>
+                  </div>
+                  <div class="total-line">
+                    <span>Гарантийные условия</span>
+                    <strong id="warrantyVal">Работы и комплектующие</strong>
+                  </div>
+                </div>
+
+                <div class="grand-total-box">
+                  <div>
+                    <div class="grand-label">Итого к оплате</div>
+                    <div class="grand-sub" id="grandSub">Фиксируется до заезда в бокс</div>
+                  </div>
+                  <div class="grand-price" id="grandTotalVal">0 ₽</div>
+                </div>
+
+                <div class="field-label" id="lbl-day">День записи на подъемник</div>
+                <div class="days-grid" id="daysGrid" role="group" aria-labelledby="lbl-day"></div>
+
+                <div class="field-label" id="lbl-slot">Время заезда (9:00 – 20:00)</div>
+                <div class="slots-grid" id="slotsGrid" role="group" aria-labelledby="lbl-slot"></div>
+                <div class="slot-note" id="slotNote">Выбран слот 12:00. Пост подготовлен под ваше авто.</div>
+
+                <form id="bookingForm" novalidate>
+                  <div class="form-fields">
+                    <div>
+                      <div class="field-label" id="lbl-name">Ваше имя</div>
+                      <input type="text" id="clientName" class="control-input" placeholder="Например, Дмитрий" autocomplete="name" aria-labelledby="lbl-name" required>
+                    </div>
+                    <div>
+                      <div class="field-label" id="lbl-phone">Телефон для подтверждения</div>
+                      <input type="tel" id="clientPhone" class="control-input tabular" placeholder="+7 (927) 000-00-00" autocomplete="tel" aria-labelledby="lbl-phone" required>
+                    </div>
+                    <div>
+                      <div class="field-label" id="lbl-plate">Госномер или комментарий (необязательно)</div>
+                      <input type="text" id="clientPlate" class="control-input" placeholder="К163АХ 163 / стук справа" autocomplete="off" aria-labelledby="lbl-plate">
+                    </div>
+                  </div>
+
+                  <div class="form-error" id="formError" role="alert"></div>
+
+                  <button type="submit" class="submit-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                      <line x1="16" y1="2" x2="16" y2="6"/>
+                      <line x1="8" y1="2" x2="8" y2="6"/>
+                      <line x1="3" y1="10" x2="21" y2="10"/>
+                      <path d="M9 16l2 2 4-4"/>
+                    </svg>
+                    <span>Забронировать подъемник</span>
+                  </button>
+                  <p class="submit-legal">
+                    Заявка фиксирует время на посту и наличие запчастей в Самаре без предоплаты.
+                  </p>
+                </form>
+              </div>
+
+              <div class="confirm-box" id="confirmBox" aria-live="polite">
+                <div class="confirm-banner">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                  <div>
+                    <div class="confirm-title">Запись на подъемник подтверждена</div>
+                    <div class="confirm-code" id="confirmCode">Талон CFX-163-4821</div>
+                  </div>
+                </div>
+
+                <div class="ticket-table" id="confirmTicket"></div>
+
+                <div class="confirm-actions">
+                  <button type="button" class="secondary-btn" id="btnCopyTicket">Скопировать талон</button>
+                  <button type="button" class="secondary-btn" id="btnEditBooking">Изменить запись</button>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Направления работы</div>
+            <h2>Услуги Автосервиса Carfix</h2>
+          </div>
+          <p class="section-sub">
+            Работаем строго по профилю KIA и Hyundai с опорой на заводские техкарты и складские запасы в Самаре.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-icon" aria-hidden="true">
+                <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="M12 7v5l3 3"/>
+                </svg>
+              </div>
+              <h3>Плановое ТО KIA и Hyundai</h3>
+              <p>
+                Замена моторного масла и всех фильтров, частичная и аппаратная замена масла АКПП, обновление тормозной жидкости и антифриза с отметкой интервала.
+              </p>
+            </div>
+            <button type="button" class="service-cta" data-preset="to">
+              <span>Рассчитать ТО в калькуляторе</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon" aria-hidden="true">
+                <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2"/>
+                  <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                  <circle cx="12" cy="14" r="3"/>
+                </svg>
+              </div>
+              <h3>Ремонт и эндоскопия двигателя</h3>
+              <p>
+                Видеоэндоскопия цилиндров G4KD, G4NA и G4FG с оценкой катализатора, замена цепи ГРМ, устранение стуков и капитальный ремонт силовых агрегатов.
+              </p>
+            </div>
+            <button type="button" class="service-cta" data-preset="engine">
+              <span>Выбрать эндоскопию или ГРМ</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon" aria-hidden="true">
+                <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.77 1.02 1.41 1.11H21a2 2 0 0 1 0 4h-.09c-.64.09-1.15.51-1.51 1.09z"/>
+                </svg>
+              </div>
+              <h3>Ремонт ходовой части и подвески</h3>
+              <p>
+                Дефектовка на подъемнике, замена стоек стабилизатора, шаровых опор, сайлентблоков, амортизаторов, ступичных узлов и тормозных колодок.
+              </p>
+            </div>
+            <button type="button" class="service-cta" data-preset="chassis">
+              <span>Выбрать диагностику и колодки</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon" aria-hidden="true">
+                <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
+              </div>
+              <h3>Подбор и установка запчастей</h3>
+              <p>
+                Наличие оригинальных запчастей Hyundai/KIA Mobis и проверенных аналогов (CTR, Sangsin, Mando) без переплаты за ожидание доставки.
+              </p>
+            </div>
+            <button type="button" class="service-cta" data-preset="parts">
+              <span>Рассчитать с деталями Carfix</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reglament">
+      <div class="container">
+        <div class="reglament-grid">
+          <div class="reg-card">
+            <div class="section-kicker">Сервисные интервалы</div>
+            <h2>Регламент KIA и Hyundai по пробегу</h2>
+            <div class="reg-list">
+              <div class="reg-row">
+                <div class="reg-info">
+                  <span class="reg-km">15 000 км · ТО-1</span>
+                  <span class="reg-desc">Масло ДВС, масляный, воздушный и салонный фильтры, осмотр подвески</span>
+                </div>
+                <button type="button" class="reg-apply-btn" data-reg-mileage="15000">Подставить</button>
+              </div>
+              <div class="reg-row">
+                <div class="reg-info">
+                  <span class="reg-km">30 000 км · ТО-2</span>
+                  <span class="reg-desc">Плановое ТО + детальная диагностика ходовой части и тормозной системы</span>
+                </div>
+                <button type="button" class="reg-apply-btn" data-reg-mileage="30000">Подставить</button>
+              </div>
+              <div class="reg-row">
+                <div class="reg-info">
+                  <span class="reg-km">60 000 км · ТО-4</span>
+                  <span class="reg-desc">Плановое ТО + замена масла АКПП SP-IV + обслуживание тормозных колодок</span>
+                </div>
+                <button type="button" class="reg-apply-btn" data-reg-mileage="60000">Подставить</button>
+              </div>
+              <div class="reg-row">
+                <div class="reg-info">
+                  <span class="reg-km">90 000+ км · Большое ТО</span>
+                  <span class="reg-desc">ТО + масло АКПП + эндоскопия цилиндров G4KD/G4NA + проверка и замена цепи ГРМ</span>
+                </div>
+                <button type="button" class="reg-apply-btn" data-reg-mileage="90000">Подставить</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="reg-card">
+            <div class="section-kicker">Стандарты Carfix</div>
+            <h2>Склад, диагностика и гарантия</h2>
+            <div class="standards-list">
+              <div class="standard-item">
+                <div class="standard-top">
+                  <span class="standard-title">Профильный сервис KIA и Hyundai</span>
+                  <span class="standard-badge">10 моделей в базе</span>
+                </div>
+                <p class="standard-text">
+                  Знаем конструктивные особенности двигателей G4FG, G4LC, G4KD, G4NA, коробок A6MF1/A6GF1 и полного привода корейских кроссоверов.
+                </p>
+              </div>
+              <div class="standard-item">
+                <div class="standard-top">
+                  <span class="standard-title">Запчасти в наличии в Самаре</span>
+                  <span class="standard-badge">Mobis / CTR / Mando</span>
+                </div>
+                <p class="standard-text">
+                  Расходники для ТО, ремкомплекты ГРМ, тормозные колодки и узлы подвески лежат на складе — машина не простаивает в ожидании заказа.
+                </p>
+              </div>
+              <div class="standard-item">
+                <div class="standard-top">
+                  <span class="standard-title">Гарантия на работы и комплектующие</span>
+                  <span class="standard-badge">Заказ-наряд</span>
+                </div>
+                <p class="standard-text">
+                  Стоимость согласуется до старта работ, снятые детали предоставляются по запросу, гарантийные обязательства закрепляются документально.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white" id="contacts">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Контакты и график работы</div>
+            <h2>Автосервис Carfix в Самаре</h2>
+          </div>
+          <p class="section-sub">
+            Принимаем автомобили KIA и Hyundai по предварительной записи на подъемник и по звонку каждый день.
+          </p>
+        </div>
+
+        <div class="contacts-grid">
+          <div class="contact-card">
+            <h3 style="margin: 0 0 6px; font-size: 19px; font-weight: 800;">Реквизиты и связь с мастером-приемщиком</h3>
+            <p style="margin: 0; font-size: 13.5px; color: var(--text-secondary);">
+              Специализированный сервис KIA и Hyundai в Самаре. Подбор деталей по VIN и точная консультация по работам.
+            </p>
+
+            <div class="contact-items">
+              <div class="contact-box">
+                <div class="contact-lbl">Город</div>
+                <div class="contact-val">г. Самара</div>
+              </div>
+              <div class="contact-box">
+                <div class="contact-lbl">График работы</div>
+                <div class="contact-val">Ежедневно 9:00 – 20:00</div>
+              </div>
+              <div class="contact-box">
+                <div class="contact-lbl">Телефон</div>
+                <a href="tel:+78462294402" class="contact-val">+7 (846) 229-44-02</a>
+                <button type="button" class="copy-mini" data-copy="+7 (846) 229-44-02">Скопировать номер</button>
+              </div>
+              <div class="contact-box">
+                <div class="contact-lbl">Электронная почта</div>
+                <a href="mailto:carfix163@yandex.ru" class="contact-val">carfix163@yandex.ru</a>
+                <button type="button" class="copy-mini" data-copy="carfix163@yandex.ru">Скопировать email</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-card contact-card-dark">
+            <div>
+              <div class="section-kicker" style="color: #FCA5A5;">Техническое оснащение</div>
+              <h3 style="margin: 0 0 16px; font-size: 20px; font-weight: 800; color: #FFFFFF;">
+                Подъемники, эндоскоп HD и склад деталей в одном месте
+              </h3>
+              <div class="bay-specs">
+                <div class="bay-spec">
+                  <div class="bay-spec-num">9:00 – 20:00</div>
+                  <div class="bay-spec-txt">Работаем без выходных</div>
+                </div>
+                <div class="bay-spec">
+                  <div class="bay-spec-num">G4KD / G4NA</div>
+                  <div class="bay-spec-txt">Эндоскопия с фотоотчетом</div>
+                </div>
+                <div class="bay-spec">
+                  <div class="bay-spec-num">В наличии</div>
+                  <div class="bay-spec-txt">Оригинал Mobis и аналоги</div>
+                </div>
+                <div class="bay-spec">
+                  <div class="bay-spec-num">Гарантия</div>
+                  <div class="bay-spec-txt">На работы и комплектующие</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dark-cta-row">
+              <a href="#calculator" class="btn-red">Перейти в калькулятор ТО</a>
+              <a href="tel:+78462294402" class="btn-ghost-dark">+7 (846) 229-44-02</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong style="color: #FFFFFF;">Автосервис Carfix</strong> — специализированный сервис KIA и Hyundai · г. Самара
+      </div>
+      <div class="footer-links">
+        <a href="tel:+78462294402">+7 (846) 229-44-02</a>
+        <a href="mailto:carfix163@yandex.ru">carfix163@yandex.ru</a>
+        <span>Ежедневно 9:00 – 20:00</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const MODELS = {
+        KIA: [
+          { id: 'rio', name: 'Rio', engine: '1.4 / 1.6 G4FG', tier: 'B' },
+          { id: 'ceed', name: 'Ceed', engine: '1.6 G4FG / T-GDI', tier: 'C' },
+          { id: 'sportage', name: 'Sportage', engine: '2.0 G4NA / G4KD', tier: 'SUV' },
+          { id: 'k5', name: 'K5', engine: '2.0 / 2.5 G4KM', tier: 'SUV' },
+          { id: 'sorento', name: 'Sorento', engine: '2.4 / 2.2 CRDi', tier: 'XL' }
+        ],
+        Hyundai: [
+          { id: 'solaris', name: 'Solaris', engine: '1.4 / 1.6 G4FG', tier: 'B' },
+          { id: 'creta', name: 'Creta', engine: '1.6 / 2.0 G4NA', tier: 'C' },
+          { id: 'elantra', name: 'Elantra', engine: '1.6 / 2.0 G4NA', tier: 'C' },
+          { id: 'tucson', name: 'Tucson', engine: '2.0 G4NA / CRDi', tier: 'SUV' },
+          { id: 'santafe', name: 'Santa Fe', engine: '2.4 / 2.2 CRDi', tier: 'XL' }
+        ]
+      };
+
+      const TIER_MULT = {
+        B: { labor: 1.0, parts: 1.0 },
+        C: { labor: 1.1, parts: 1.12 },
+        SUV: { labor: 1.2, parts: 1.24 },
+        XL: { labor: 1.35, parts: 1.4 }
+      };
+
+      const WORKS = [
+        {
+          id: 'to',
+          title: 'Плановое ТО (масло + фильтры)',
+          desc: 'Замена масла ДВС, масляного, воздушного и салонного фильтров, осмотр узлов.',
+          baseLabor: 1600,
+          baseParts: 4900,
+          minutes: 60
+        },
+        {
+          id: 'atf',
+          title: 'Замена масла АКПП',
+          desc: 'Замена трансмиссионной жидкости ATF SP-IV с контролем уровня по температуре.',
+          baseLabor: 2600,
+          baseParts: 6200,
+          minutes: 90
+        },
+        {
+          id: 'pads',
+          title: 'Замена передних / задних колодок',
+          desc: 'Замена комплекта тормозных колодок (ось), чистка и смазка направляющих.',
+          baseLabor: 1500,
+          baseParts: 2900,
+          minutes: 50
+        },
+        {
+          id: 'suspension',
+          title: 'Диагностика и ремонт подвески',
+          desc: 'Дефектовка ходовой на подъемнике и базовое обслуживание стоек стабилизатора.',
+          baseLabor: 2200,
+          baseParts: 2400,
+          minutes: 75
+        },
+        {
+          id: 'endoscopy',
+          title: 'Эндоскопия цилиндров G4KD / G4NA',
+          desc: 'Видеоосмотр цилиндров, поршней и катализатора HD-зондом с фотоотчетом.',
+          baseLabor: 2500,
+          baseParts: 0,
+          minutes: 60
+        },
+        {
+          id: 'timing',
+          title: 'Замена цепи ГРМ',
+          desc: 'Замена цепи, натяжителя, успокоителей, сальника и прокладки клапанной крышки.',
+          baseLabor: 11800,
+          baseParts: 12600,
+          minutes: 270
+        }
+      ];
+
+      const MILEAGE_PRESETS = {
+        '15000': {
+          works: ['to'],
+          hint: 'Для пробега 15 000 км (ТО-1) отмечено базовое плановое ТО: масло ДВС и фильтры.'
+        },
+        '30000': {
+          works: ['to', 'suspension'],
+          hint: 'Для пробега 30 000 км (ТО-2) отмечены плановое ТО и диагностика подвески.'
+        },
+        '45000': {
+          works: ['to', 'pads'],
+          hint: 'Для пробега 45 000 км (ТО-3) отмечены плановое ТО и проверка/замена тормозных колодок.'
+        },
+        '60000': {
+          works: ['to', 'atf', 'pads'],
+          hint: 'Для пробега 60 000 км отмечены: Плановое ТО, замена масла АКПП и замена колодок.'
+        },
+        '75000': {
+          works: ['to', 'endoscopy'],
+          hint: 'Для пробега 75 000 км отмечены плановое ТО и профилактическая эндоскопия цилиндров G4KD/G4NA.'
+        },
+        '90000': {
+          works: ['to', 'atf', 'endoscopy', 'timing'],
+          hint: 'Для пробега 90 000+ км отмечен расширенный комплекс: ТО, АКПП, эндоскопия цилиндров и замена цепи ГРМ.'
+        },
+        'custom': {
+          works: null,
+          hint: 'Ручной режим: отметьте нужные операции в списке работ ниже.'
+        }
+      };
+
+      const SLOTS = ['09:00', '10:30', '12:00', '14:00', '15:30', '17:00', '18:30'];
+
+      function buildDays() {
+        const months = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+        const weekdays = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+        const labels = ['Сегодня', 'Завтра'];
+        const list = [];
+        const base = new Date();
+        for (let i = 0; i < 4; i++) {
+          const d = new Date(base.getFullYear(), base.getMonth(), base.getDate() + i);
+          const dateText = d.getDate() + ' ' + months[d.getMonth()];
+          const dayName = i < 2 ? labels[i] : weekdays[d.getDay()];
+          list.push({
+            index: i,
+            name: dayName,
+            date: dateText,
+            fullLabel: dayName + ', ' + dateText,
+            busySlot: i === 0 ? '10:30' : ''
+          });
+        }
+        return list;
+      }
+
+      const DAYS = buildDays();
+
+      const state = {
+        brand: 'KIA',
+        modelId: 'sportage',
+        mileage: '60000',
+        selectedWorks: new Set(['to', 'atf', 'pads']),
+        partsMode: 'carfix',
+        dayIndex: 0,
+        slot: '12:00',
+        confirmed: false
+      };
+
+      const el = {
+        brandBtns: document.querySelectorAll('.brand-btn'),
+        modelGrid: document.getElementById('modelGrid'),
+        engineSpecMeta: document.getElementById('engineSpecMeta'),
+        mileageSelect: document.getElementById('mileageSelect'),
+        mileageHintText: document.getElementById('mileageHintText'),
+        worksGrid: document.getElementById('worksGrid'),
+        worksCountMeta: document.getElementById('worksCountMeta'),
+        btnOnlyTo: document.getElementById('btnOnlyTo'),
+        btnClearWorks: document.getElementById('btnClearWorks'),
+        partsBtns: document.querySelectorAll('.parts-card'),
+        summaryCarTitle: document.getElementById('summaryCarTitle'),
+        summaryCarSub: document.getElementById('summaryCarSub'),
+        selectedListContainer: document.getElementById('selectedListContainer'),
+        laborTotalVal: document.getElementById('laborTotalVal'),
+        partsTotalLabel: document.getElementById('partsTotalLabel'),
+        partsTotalVal: document.getElementById('partsTotalVal'),
+        durationTotalVal: document.getElementById('durationTotalVal'),
+        warrantyVal: document.getElementById('warrantyVal'),
+        grandSub: document.getElementById('grandSub'),
+        grandTotalVal: document.getElementById('grandTotalVal'),
+        daysGrid: document.getElementById('daysGrid'),
+        slotsGrid: document.getElementById('slotsGrid'),
+        slotNote: document.getElementById('slotNote'),
+        bookingForm: document.getElementById('bookingForm'),
+        bookingFormArea: document.getElementById('bookingFormArea'),
+        confirmBox: document.getElementById('confirmBox'),
+        confirmCode: document.getElementById('confirmCode'),
+        confirmTicket: document.getElementById('confirmTicket'),
+        formError: document.getElementById('formError'),
+        clientName: document.getElementById('clientName'),
+        clientPhone: document.getElementById('clientPhone'),
+        clientPlate: document.getElementById('clientPlate'),
+        btnCopyTicket: document.getElementById('btnCopyTicket'),
+        btnEditBooking: document.getElementById('btnEditBooking')
+      };
+
+      function round100(val) {
+        return Math.round(val / 100) * 100;
+      }
+
+      function formatRub(val) {
+        return val.toLocaleString('ru-RU') + ' ₽';
+      }
+
+      function formatMinutes(mins) {
+        if (mins === 0) return '0 мин';
+        const h = Math.floor(mins / 60);
+        const m = mins % 60;
+        if (h === 0) return m + ' мин';
+        if (m === 0) return h + ' ч';
+        return h + ' ч ' + m + ' мин';
+      }
+
+      function getActiveModel() {
+        const list = MODELS[state.brand];
+        const found = list.find(function (m) { return m.id === state.modelId; });
+        return found || list[0];
+      }
+
+      function calcWorkCost(work, tier) {
+        const mult = TIER_MULT[tier];
+        const labor = round100(work.baseLabor * mult.labor);
+        const parts = work.baseParts === 0 ? 0 : round100(work.baseParts * mult.parts);
+        return {
+          labor: labor,
+          parts: state.partsMode === 'carfix' ? parts : 0,
+          partsFull: parts,
+          total: labor + (state.partsMode === 'carfix' ? parts : 0)
+        };
+      }
+
+      function renderBrands() {
+        el.brandBtns.forEach(function (btn) {
+          const active = btn.getAttribute('data-brand') === state.brand;
+          btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+      }
+
+      function renderModels() {
+        const list = MODELS[state.brand];
+        const activeModel = getActiveModel();
+        state.modelId = activeModel.id;
+
+        el.modelGrid.innerHTML = '';
+        list.forEach(function (model) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'model-chip';
+          btn.setAttribute('aria-pressed', model.id === state.modelId ? 'true' : 'false');
+          btn.innerHTML =
+            '<span class="model-name">' + model.name + '</span>' +
+            '<span class="model-engine">' + model.engine + '</span>';
+          btn.addEventListener('click', function () {
+            state.modelId = model.id;
+            renderAll();
+          });
+          el.modelGrid.appendChild(btn);
+        });
+
+        el.engineSpecMeta.textContent = 'Мотор: ' + activeModel.engine;
+      }
+
+      function renderWorks() {
+        const activeModel = getActiveModel();
+        el.worksGrid.innerHTML = '';
+
+        WORKS.forEach(function (work) {
+          const checked = state.selectedWorks.has(work.id);
+          const cost = calcWorkCost(work, activeModel.tier);
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'work-card';
+          btn.setAttribute('role', 'checkbox');
+          btn.setAttribute('aria-checked', checked ? 'true' : 'false');
+
+          const partsTag = work.baseParts === 0
+            ? 'Диагностика'
+            : (state.partsMode === 'carfix' ? 'С деталями' : 'Только работа');
+
+          btn.innerHTML =
+            '<div class="work-top">' +
+              '<div class="work-title-wrap">' +
+                '<span class="work-title">' + work.title + '</span>' +
+                '<span class="work-desc">' + work.desc + '</span>' +
+              '</div>' +
+              '<span class="check-box" aria-hidden="true">' +
+                '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
+                  '<polyline points="20 6 9 17 4 12"/>' +
+                '</svg>' +
+              '</span>' +
+            '</div>' +
+            '<div class="work-bottom">' +
+              '<span class="work-price">' + formatRub(cost.total) + '</span>' +
+              '<span class="work-time">' + formatMinutes(work.minutes) + ' · ' + partsTag + '</span>' +
+            '</div>';
+
+          btn.addEventListener('click', function () {
+            if (state.selectedWorks.has(work.id)) {
+              state.selectedWorks.delete(work.id);
+            } else {
+              state.selectedWorks.add(work.id);
+            }
+            state.mileage = 'custom';
+            el.mileageSelect.value = 'custom';
+            el.mileageHintText.textContent = MILEAGE_PRESETS.custom.hint;
+            hideError();
+            renderAll();
+          });
+
+          el.worksGrid.appendChild(btn);
+        });
+
+        el.worksCountMeta.textContent = 'Выбрано: ' + state.selectedWorks.size;
+      }
+
+      function renderParts() {
+        el.partsBtns.forEach(function (btn) {
+          const active = btn.getAttribute('data-parts') === state.partsMode;
+          btn.setAttribute('aria-checked', active ? 'true' : 'false');
+        });
+      }
+
+      function computeTotals() {
+        const activeModel = getActiveModel();
+        let laborSum = 0;
+        let partsSum = 0;
+        let minutesSum = 0;
+        const items = [];
+
+        WORKS.forEach(function (work) {
+          if (state.selectedWorks.has(work.id)) {
+            const cost = calcWorkCost(work, activeModel.tier);
+            laborSum += cost.labor;
+            partsSum += cost.parts;
+            minutesSum += work.minutes;
+            items.push({
+              id: work.id,
+              title: work.title,
+              total: cost.total,
+              labor: cost.labor,
+              parts: cost.parts,
+              minutes: work.minutes
+            });
+          }
+        });
+
+        return {
+          items: items,
+          laborSum: laborSum,
+          partsSum: partsSum,
+          totalSum: laborSum + partsSum,
+          minutesSum: minutesSum
+        };
+      }
+
+      function renderSummary() {
+        const activeModel = getActiveModel();
+        const totals = computeTotals();
+        const mileageLabel = state.mileage === 'custom'
+          ? 'Индивидуальный набор'
+          : 'Пробег ' + Number(state.mileage).toLocaleString('ru-RU') + ' км';
+        const partsModeText = state.partsMode === 'carfix' ? 'Запчасти Carfix' : 'Свои запчасти';
+
+        el.summaryCarTitle.textContent = state.brand + ' ' + activeModel.name;
+        el.summaryCarSub.textContent = activeModel.engine + ' · ' + mileageLabel + ' · ' + partsModeText;
+
+        if (totals.items.length === 0) {
+          el.selectedListContainer.innerHTML =
+            '<div class="empty-notice">Выберите хотя бы одну работу слева для расчета сметы и времени на посту.</div>';
+        } else {
+          let html = '<div class="selected-list">';
+          totals.items.forEach(function (item) {
+            html +=
+              '<div class="selected-item">' +
+                '<span class="selected-item-name">' + item.title + '</span>' +
+                '<span class="selected-item-val">' + formatRub(item.total) + '</span>' +
+              '</div>';
+          });
+          html += '</div>';
+          el.selectedListContainer.innerHTML = html;
+        }
+
+        el.laborTotalVal.textContent = formatRub(totals.laborSum);
+        el.partsTotalLabel.textContent = state.partsMode === 'carfix'
+          ? 'Запчасти Carfix со склада'
+          : 'Комплектующие клиента';
+        el.partsTotalVal.textContent = state.partsMode === 'carfix'
+          ? formatRub(totals.partsSum)
+          : '0 ₽';
+        el.durationTotalVal.textContent = formatMinutes(totals.minutesSum);
+        el.warrantyVal.textContent = state.partsMode === 'carfix'
+          ? 'Работы и комплектующие'
+          : 'Выполненные работы';
+        el.grandTotalVal.textContent = formatRub(totals.totalSum);
+        el.grandSub.textContent = state.partsMode === 'carfix'
+          ? 'С учетом запчастей в наличии'
+          : 'Только стоимость работ мастера';
+      }
+
+      function renderDaysAndSlots() {
+        const totals = computeTotals();
+        el.daysGrid.innerHTML = '';
+
+        DAYS.forEach(function (day) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'day-btn';
+          btn.setAttribute('aria-pressed', day.index === state.dayIndex ? 'true' : 'false');
+          btn.innerHTML =
+            '<span class="day-name">' + day.name + '</span>' +
+            '<span class="day-date">' + day.date + '</span>';
+          btn.addEventListener('click', function () {
+            state.dayIndex = day.index;
+            if (DAYS[state.dayIndex].busySlot === state.slot) {
+              state.slot = '12:00';
+            }
+            renderDaysAndSlots();
+          });
+          el.daysGrid.appendChild(btn);
+        });
+
+        const currentDay = DAYS[state.dayIndex];
+        el.slotsGrid.innerHTML = '';
+
+        SLOTS.forEach(function (slotTime) {
+          const isBusy = currentDay.busySlot === slotTime;
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'slot-btn';
+          btn.textContent = slotTime;
+          if (isBusy) {
+            btn.disabled = true;
+            btn.title = 'Слот занят';
+          }
+          btn.setAttribute('aria-pressed', (isBusy === false && state.slot === slotTime) ? 'true' : 'false');
+          btn.addEventListener('click', function () {
+            if (isBusy) return;
+            state.slot = slotTime;
+            renderDaysAndSlots();
+          });
+          el.slotsGrid.appendChild(btn);
+        });
+
+        let note = 'Выбрано: ' + currentDay.fullLabel + ', заезд в ' + state.slot + '.';
+        if (totals.minutesSum >= 240 && (state.slot === '17:00' || state.slot === '18:30')) {
+          note = 'Для сложных работ (' + formatMinutes(totals.minutesSum) + ') рекомендуем заезд до 15:30.';
+        }
+        el.slotNote.textContent = note;
+      }
+
+      function showError(msg) {
+        el.formError.textContent = msg;
+        el.formError.classList.add('visible');
+      }
+
+      function hideError() {
+        el.formError.textContent = '';
+        el.formError.classList.remove('visible');
+      }
+
+      function buildConfirmationTicket(bookingData) {
+        const rows = [
+          ['Автомобиль', bookingData.car],
+          ['Дата и время', bookingData.day + ' в ' + bookingData.slot],
+          ['Работы', bookingData.worksText],
+          ['Комплектующие', bookingData.partsText],
+          ['Время на посту', bookingData.duration],
+          ['Предварительная смета', bookingData.total],
+          ['Клиент', bookingData.name + ' · ' + bookingData.phone],
+          ['Адрес сервиса', 'г. Самара · Ежедневно 9:00 – 20:00']
+        ];
+        if (bookingData.plate) {
+          rows.splice(1, 0, ['Госномер / заметка', bookingData.plate]);
+        }
+
+        el.confirmCode.textContent = 'Талон ' + bookingData.code;
+        el.confirmTicket.innerHTML = rows.map(function (r) {
+          return (
+            '<div class="ticket-row">' +
+              '<span class="ticket-key">' + r[0] + '</span>' +
+              '<span class="ticket-val">' + r[1] + '</span>' +
+            '</div>'
+          );
+        }).join('');
+
+        el.confirmBox.dataset.copyText =
+          'Автосервис Carfix (г. Самара) — Запись подтверждена\n' +
+          'Талон: ' + bookingData.code + '\n' +
+          rows.map(function (r) { return r[0] + ': ' + r[1]; }).join('\n') +
+          '\nТелефон сервиса: +7 (846) 229-44-02';
+      }
+
+      function renderAll() {
+        renderBrands();
+        renderModels();
+        renderWorks();
+        renderParts();
+        renderSummary();
+        renderDaysAndSlots();
+      }
+
+      // Brand click handlers
+      el.brandBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const nextBrand = btn.getAttribute('data-brand');
+          if (nextBrand === state.brand) return;
+          state.brand = nextBrand;
+          state.modelId = MODELS[nextBrand][0].id;
+          renderAll();
+        });
+      });
+
+      // Mileage dropdown
+      el.mileageSelect.addEventListener('change', function () {
+        const val = el.mileageSelect.value;
+        state.mileage = val;
+        const preset = MILEAGE_PRESETS[val];
+        if (preset && Array.isArray(preset.works)) {
+          state.selectedWorks = new Set(preset.works);
+        }
+        el.mileageHintText.textContent = preset ? preset.hint : '';
+        hideError();
+        renderAll();
+      });
+
+      // Quick actions
+      el.btnOnlyTo.addEventListener('click', function () {
+        state.selectedWorks = new Set(['to']);
+        state.mileage = '15000';
+        el.mileageSelect.value = '15000';
+        el.mileageHintText.textContent = MILEAGE_PRESETS['15000'].hint;
+        hideError();
+        renderAll();
+      });
+
+      el.btnClearWorks.addEventListener('click', function () {
+        state.selectedWorks.clear();
+        state.mileage = 'custom';
+        el.mileageSelect.value = 'custom';
+        el.mileageHintText.textContent = MILEAGE_PRESETS.custom.hint;
+        renderAll();
+      });
+
+      // Parts switchers
+      el.partsBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.partsMode = btn.getAttribute('data-parts');
+          renderAll();
+        });
+      });
+
+      // Booking form submission
+      el.bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        hideError();
+
+        const totals = computeTotals();
+        if (totals.items.length === 0) {
+          showError('Выберите хотя бы одну услугу в калькуляторе перед отправкой записи.');
+          return;
+        }
+
+        const nameVal = el.clientName.value.trim();
+        const phoneVal = el.clientPhone.value.trim();
+        const digitsCount = phoneVal.replace(/\D/g, '').length;
+
+        if (nameVal.length < 2) {
+          showError('Укажите ваше имя для оформления заказ-наряда.');
+          el.clientName.focus();
+          return;
+        }
+
+        if (digitsCount < 10) {
+          showError('Укажите корректный номер телефона (минимум 10 цифр).');
+          el.clientPhone.focus();
+          return;
+        }
+
+        const activeModel = getActiveModel();
+        const currentDay = DAYS[state.dayIndex];
+        const randomNum = Math.floor(1000 + Math.random() * 9000);
+        const bookingData = {
+          code: 'CFX-163-' + randomNum,
+          car: state.brand + ' ' + activeModel.name + ' (' + activeModel.engine + ')',
+          day: currentDay.fullLabel,
+          slot: state.slot,
+          worksText: totals.items.map(function (i) { return i.title; }).join(', '),
+          partsText: state.partsMode === 'carfix' ? 'Запчасти Carfix в наличии' : 'Свои запчасти',
+          duration: formatMinutes(totals.minutesSum),
+          total: formatRub(totals.totalSum),
+          name: nameVal,
+          phone: phoneVal,
+          plate: el.clientPlate.value.trim()
+        };
+
+        buildConfirmationTicket(bookingData);
+        el.bookingFormArea.style.display = 'none';
+        el.confirmBox.classList.add('visible');
+        state.confirmed = true;
+      });
+
+      el.btnEditBooking.addEventListener('click', function () {
+        el.confirmBox.classList.remove('visible');
+        el.bookingFormArea.style.display = 'block';
+        state.confirmed = false;
+      });
+
+      el.btnCopyTicket.addEventListener('click', function () {
+        const text = el.confirmBox.dataset.copyText || '';
+        if (navigator.clipboard && text) {
+          navigator.clipboard.writeText(text).then(function () {
+            el.btnCopyTicket.textContent = 'Талон скопирован';
+            setTimeout(function () {
+              el.btnCopyTicket.textContent = 'Скопировать талон';
+            }, 2200);
+          });
+        }
+      });
+
+      // Service card preset jump buttons
+      document.querySelectorAll('[data-preset]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const preset = btn.getAttribute('data-preset');
+          if (preset === 'to') {
+            state.selectedWorks = new Set(['to', 'atf']);
+            state.mileage = 'custom';
+            el.mileageSelect.value = 'custom';
+          } else if (preset === 'engine') {
+            state.selectedWorks = new Set(['endoscopy', 'timing']);
+            state.mileage = 'custom';
+            el.mileageSelect.value = 'custom';
+          } else if (preset === 'chassis') {
+            state.selectedWorks = new Set(['suspension', 'pads']);
+            state.mileage = 'custom';
+            el.mileageSelect.value = 'custom';
+          } else if (preset === 'parts') {
+            state.partsMode = 'carfix';
+            if (state.selectedWorks.size === 0) {
+              state.selectedWorks = new Set(['to']);
+            }
+          }
+          el.mileageHintText.textContent = 'Набор работ загружен в калькулятор из каталога услуг.';
+          if (state.confirmed) {
+            el.confirmBox.classList.remove('visible');
+            el.bookingFormArea.style.display = 'block';
+            state.confirmed = false;
+          }
+          renderAll();
+          document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      // Reglament quick load buttons
+      document.querySelectorAll('[data-reg-mileage]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const km = btn.getAttribute('data-reg-mileage');
+          const preset = MILEAGE_PRESETS[km];
+          state.mileage = km;
+          el.mileageSelect.value = km;
+          if (preset && Array.isArray(preset.works)) {
+            state.selectedWorks = new Set(preset.works);
+            el.mileageHintText.textContent = preset.hint;
+          }
+          if (state.confirmed) {
+            el.confirmBox.classList.remove('visible');
+            el.bookingFormArea.style.display = 'block';
+            state.confirmed = false;
+          }
+          renderAll();
+          document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      // Copy contact details
+      document.querySelectorAll('[data-copy]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const val = btn.getAttribute('data-copy');
+          const orig = btn.textContent;
+          if (navigator.clipboard && val) {
+            navigator.clipboard.writeText(val).then(function () {
+              btn.textContent = 'Скопировано';
+              setTimeout(function () {
+                btn.textContent = orig;
+              }, 1800);
+            });
+          }
+        });
+      });
+
+      renderAll();
+    })();
+  </script>
+</body>
+</html>
