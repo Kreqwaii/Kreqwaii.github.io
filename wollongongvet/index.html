@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wollongong Vet — New-Pet Wellness, Desexing & Dental Booking Estimator for dogs and cats in Wollongong, NSW, Australia.">
+  <title>Wollongong Vet | New-Pet Wellness, Desexing &amp; Dental Booking Estimator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232D5A47'/%3E%3Cpath d='M16 8v16M8 16h16' stroke='%23F7F4EE' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #F7F4EE;
+      --bg-card: #FFFFFF;
+      --bg-muted: #EFEAE0;
+      --bg-eucalyptus-soft: #E6EFEA;
+      --text-primary: #1A2821;
+      --text-secondary: #4E5F55;
+      --text-muted: #6C7D73;
+      --accent: #2D5A47;
+      --accent-hover: #224637;
+      --accent-light: #3E785F;
+      --border: #DDD5C7;
+      --border-strong: #C9BFAE;
+      --sand-accent: #C79F63;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      --shadow-sm: 0 1px 3px rgba(26, 40, 33, 0.06);
+      --shadow-md: 0 8px 24px rgba(26, 40, 33, 0.06);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .brand-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      background-color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background-color: var(--bg-eucalyptus-soft);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 13px;
+      text-decoration: none;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      transition: background-color 0.2s ease;
+    }
+
+    .phone-pill:hover {
+      background-color: #D7E5DD;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 32px 0 24px;
+    }
+
+    .hero-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background-color: var(--bg-eucalyptus-soft);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: clamp(24px, 3.2vw, 34px);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 15px;
+      max-width: 58ch;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .stat-box {
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+    }
+
+    .stat-value {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Main Workspace */
+    .workspace {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      padding-bottom: 40px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel-header {
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .panel-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .panel-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .field-group {
+      margin-bottom: 20px;
+    }
+
+    .field-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    /* Segmented Species & Weight */
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .seg-btn {
+      appearance: none;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .seg-btn:hover {
+      border-color: var(--accent);
+    }
+
+    .seg-btn.active {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .seg-badge {
+      font-size: 11px;
+      font-weight: 600;
+      opacity: 0.85;
+    }
+
+    .weight-row {
+      display: grid;
+      grid-template-columns: 1fr 120px;
+      gap: 12px;
+      align-items: center;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+      height: 6px;
+    }
+
+    .input-control, .select-control, .textarea-control {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-card);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 14px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .input-control:focus, .select-control:focus, .textarea-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(45, 90, 71, 0.14);
+    }
+
+    .weight-number-wrap {
+      position: relative;
+    }
+
+    .weight-unit {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .weight-number-wrap .input-control {
+      padding-right: 32px;
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+    }
+
+    /* Service Cards */
+    .services-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .service-item {
+      border: 1px solid var(--border);
+      background-color: var(--bg-page);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .service-item:hover {
+      border-color: var(--accent-light);
+    }
+
+    .service-item.selected {
+      background-color: var(--bg-eucalyptus-soft);
+      border-color: var(--accent);
+    }
+
+    .service-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .service-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      border: 2px solid var(--border-strong);
+      background-color: var(--bg-card);
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-item.selected .service-check {
+      background-color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .service-name {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+
+    .service-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .service-price {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--accent);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Summary & Booking */
+    .summary-card {
+      position: sticky;
+      top: 84px;
+    }
+
+    .estimate-box {
+      background-color: var(--bg-eucalyptus-soft);
+      border: 1px solid #C6DCD0;
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    .estimate-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .estimate-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+
+    .estimate-total {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .estimate-note {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .breakdown-list {
+      margin: 14px 0 0;
+      padding: 12px 0 0;
+      border-top: 1px solid #C6DCD0;
+      list-style: none;
+      display: grid;
+      gap: 6px;
+    }
+
+    .breakdown-list li {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--text-primary);
+    }
+
+    .breakdown-list li span:last-child {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-full {
+      grid-column: 1 / -1;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 13px 18px;
+      border: none;
+      border-radius: var(--radius-md);
+      background-color: var(--accent);
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .booking-confirm {
+      display: none;
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-eucalyptus-soft);
+      border: 1px solid var(--accent);
+      font-size: 13px;
+      color: var(--text-primary);
+    }
+
+    .booking-confirm.visible {
+      display: block;
+    }
+
+    /* Clinic Info & Footer */
+    .clinic-section {
+      padding-bottom: 48px;
+    }
+
+    .clinic-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .info-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .info-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .info-card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .contact-links-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .contact-link-full {
+      grid-column: 1 / -1;
+      display: inline-block;
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 11px;
+    }
+
+    .contact-link-full:hover {
+      text-decoration: underline;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background-color: var(--bg-card);
+      padding: 20px 0;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    @media (max-width: 960px) {
+      .hero-card,
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-card {
+        position: static;
+      }
+
+      .clinic-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        padding: 0 14px;
+      }
+
+      .hero-card,
+      .panel {
+        padding: 18px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .weight-row {
+        grid-template-columns: 1fr 100px;
+      }
+
+      .phone-pill {
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#estimator">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 5v14M5 12h14" stroke="#F7F4EE" stroke-width="2.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Wollongong Vet</div>
+          <div class="brand-sub">Wollongong, NSW, Australia</div>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a class="phone-pill" href="tel:0242636888">(02) 4263 6888</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <div>
+          <span class="eyebrow">Illawarra Veterinary Care</span>
+          <h1>New-Pet Wellness, Desexing &amp; Dental Booking Estimator</h1>
+          <p>
+            Calculate transparent AUD estimates for your dog or cat based on weight and selected veterinary services, then request a preferred appointment slot with our Wollongong clinic.
+          </p>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-box">
+            <div class="stat-value num">AUD $</div>
+            <div class="stat-label">Transparent fee guide</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value num">5</div>
+            <div class="stat-label">Core clinical services</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">Dog / Cat</div>
+            <div class="stat-label">Tailored by weight</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value num">(02) 4263 6888</div>
+            <div class="stat-label">Direct clinic reception</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace" id="estimator">
+      <div class="panel">
+        <div class="panel-header">
+          <h2 class="panel-title">1. Pet Profile &amp; Clinical Services</h2>
+          <p class="panel-subtitle">Select species, current weight, and one or more care items to build your estimate.</p>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">Species</div>
+          <div class="segmented" role="group" aria-label="Pet species">
+            <button type="button" class="seg-btn active" data-species="dog" id="btn-dog">
+              <span>Dog</span>
+              <span class="seg-badge">Canine</span>
+            </button>
+            <button type="button" class="seg-btn" data-species="cat" id="btn-cat">
+              <span>Cat</span>
+              <span class="seg-badge">Feline</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">Pet Weight (kg)</div>
+          <div class="weight-row">
+            <input type="range" id="weight-range" min="1" max="60" value="14" step="1" autocomplete="off" aria-label="Pet weight slider in kilograms">
+            <div class="weight-number-wrap">
+              <input type="number" id="weight-input" class="input-control" min="1" max="60" value="14" autocomplete="off" aria-label="Pet weight in kilograms">
+              <span class="weight-unit">kg</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">Select Services</div>
+          <div class="services-list" id="services-list">
+            <div class="service-item selected" data-service="consult" role="checkbox" aria-checked="true" tabindex="0">
+              <div class="service-left">
+                <div class="service-check" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2.5 6.2L4.8 8.5L9.5 3.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="service-name">Small Animal Consultation</div>
+                  <div class="service-desc">Comprehensive nose-to-tail physical exam and care plan.</div>
+                </div>
+              </div>
+              <div class="service-price num" data-price="consult">$92</div>
+            </div>
+
+            <div class="service-item" data-service="vax" role="checkbox" aria-checked="false" tabindex="0">
+              <div class="service-left">
+                <div class="service-check" aria-hidden="true"></div>
+                <div>
+                  <div class="service-name">Vaccinations &amp; Microchipping</div>
+                  <div class="service-desc">Core annual or puppy/kitten booster plus NSW microchip registration.</div>
+                </div>
+              </div>
+              <div class="service-price num" data-price="vax">$165</div>
+            </div>
+
+            <div class="service-item" data-service="desex" role="checkbox" aria-checked="false" tabindex="0">
+              <div class="service-left">
+                <div class="service-check" aria-hidden="true"></div>
+                <div>
+                  <div class="service-name">Desexing &amp; Soft Tissue Surgery</div>
+                  <div class="service-desc">Weight-adjusted general anaesthesia, monitoring, and pain relief.</div>
+                </div>
+              </div>
+              <div class="service-price num" data-price="desex">$340</div>
+            </div>
+
+            <div class="service-item" data-service="dental" role="checkbox" aria-checked="false" tabindex="0">
+              <div class="service-left">
+                <div class="service-check" aria-hidden="true"></div>
+                <div>
+                  <div class="service-name">Pet Dental Care (Scale &amp; Polish)</div>
+                  <div class="service-desc">Ultrasonic scaling, polishing, and full oral chart under anaesthesia.</div>
+                </div>
+              </div>
+              <div class="service-price num" data-price="dental">$420</div>
+            </div>
+
+            <div class="service-item" data-service="senior" role="checkbox" aria-checked="false" tabindex="0">
+              <div class="service-left">
+                <div class="service-check" aria-hidden="true"></div>
+                <div>
+                  <div class="service-name">Senior Pet Wellness Check-up</div>
+                  <div class="service-desc">Extended consultation with baseline bloods and mobility review.</div>
+                </div>
+              </div>
+              <div class="service-price num" data-price="senior">$235</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel summary-card">
+        <div class="panel-header">
+          <h2 class="panel-title">2. Estimated Fee &amp; Booking</h2>
+          <p class="panel-subtitle">All prices are indicative estimates in Australian Dollars (AUD).</p>
+        </div>
+
+        <div class="estimate-box">
+          <div class="estimate-top">
+            <span class="estimate-label">Estimated Total</span>
+            <span class="estimate-total num" id="total-aud">AUD $92</span>
+          </div>
+          <div class="estimate-note" id="estimate-meta">Dog, 14 kg — 1 service selected</div>
+          <ul class="breakdown-list" id="breakdown-list"></ul>
+        </div>
+
+        <form id="booking-form" novalidate>
+          <div class="form-grid">
+            <div>
+              <div class="field-label">Owner Name</div>
+              <input type="text" id="owner-name" class="input-control" placeholder="Alex Taylor" autocomplete="name" required>
+            </div>
+            <div>
+              <div class="field-label">Phone Number</div>
+              <input type="tel" id="owner-phone" class="input-control" placeholder="0412 345 678" autocomplete="tel" required>
+            </div>
+            <div class="form-full">
+              <div class="field-label">Email Address</div>
+              <input type="email" id="owner-email" class="input-control" placeholder="alex.taylor@example.com.au" autocomplete="email" required>
+            </div>
+            <div>
+              <div class="field-label">Pet Name</div>
+              <input type="text" id="pet-name" class="input-control" placeholder="Banjo" autocomplete="off" required>
+            </div>
+            <div>
+              <div class="field-label">Preferred Day</div>
+              <select id="preferred-day" class="select-control" autocomplete="off">
+                <option value="Next available weekday">Next available weekday</option>
+                <option value="Monday morning">Monday morning</option>
+                <option value="Wednesday afternoon">Wednesday afternoon</option>
+                <option value="Saturday morning">Saturday morning</option>
+              </select>
+            </div>
+            <div class="form-full">
+              <div class="field-label">Clinical Notes</div>
+              <textarea id="clinical-notes" class="textarea-control" rows="2" placeholder="Age, breed, or any specific symptoms" autocomplete="off"></textarea>
+            </div>
+            <div class="form-full">
+              <button type="submit" class="btn-primary">Request Booking at Wollongong Vet</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="booking-confirm" id="booking-confirm" role="status" aria-live="polite"></div>
+      </aside>
+    </section>
+
+    <section class="clinic-section">
+      <div class="clinic-grid">
+        <div class="info-card">
+          <h3>Core Services</h3>
+          <p>Small Animal Consultations, Vaccinations &amp; Microchipping, Soft Tissue Surgery, Pet Dental Care, Senior Pet Wellness.</p>
+        </div>
+        <div class="info-card">
+          <h3>Location &amp; Reception</h3>
+          <p>Wollongong, NSW, Australia. Call (02) 4263 6888 for urgent triage or surgical admissions.</p>
+        </div>
+        <div class="info-card">
+          <h3>Direct Clinic Links</h3>
+          <p>Reach our reception desk or visit our main clinic portal.</p>
+          <div class="contact-links-grid">
+            <a class="contact-link-full" href="mailto:reception@wollongongvet.com.au">reception@wollongongvet.com.au</a>
+            <a class="contact-link-full" href="https://www.wollongongvet.com.au" target="_blank" rel="noopener noreferrer">https://www.wollongongvet.com.au</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Wollongong Vet — Wollongong, NSW, Australia</span>
+      <span class="num">Phone: (02) 4263 6888</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        species: 'dog',
+        weight: 14,
+        selected: new Set(['consult'])
+      };
+
+      const labels = {
+        consult: 'Small Animal Consultation',
+        vax: 'Vaccinations & Microchipping',
+        desex: 'Desexing & Soft Tissue Surgery',
+        dental: 'Pet Dental Care',
+        senior: 'Senior Pet Wellness'
+      };
+
+      const btnDog = document.getElementById('btn-dog');
+      const btnCat = document.getElementById('btn-cat');
+      const weightRange = document.getElementById('weight-range');
+      const weightInput = document.getElementById('weight-input');
+      const serviceItems = document.querySelectorAll('.service-item');
+      const totalAudEl = document.getElementById('total-aud');
+      const estimateMetaEl = document.getElementById('estimate-meta');
+      const breakdownListEl = document.getElementById('breakdown-list');
+      const bookingForm = document.getElementById('booking-form');
+      const bookingConfirm = document.getElementById('booking-confirm');
+
+      function computePrices(species, weight) {
+        const isDog = species === 'dog';
+        const weightTier = weight <= 10 ? 0 : weight <= 25 ? 55 : weight <= 40 ? 110 : 165;
+
+        return {
+          consult: 92,
+          vax: isDog ? 165 : 150,
+          desex: (isDog ? 285 : 220) + (isDog ? weightTier : 0),
+          dental: (isDog ? 365 : 310) + (isDog ? Math.round(weightTier * 0.7) : 0),
+          senior: isDog ? 235 : 215
+        };
+      }
+
+      function render() {
+        const prices = computePrices(state.species, state.weight);
+        let total = 0;
+        breakdownListEl.innerHTML = '';
+
+        serviceItems.forEach((item) => {
+          const key = item.getAttribute('data-service');
+          const price = prices[key];
+          const priceEl = item.querySelector('[data-price]');
+          if (priceEl) {
+            priceEl.textContent = '$' + price;
+          }
+
+          const isSelected = state.selected.has(key);
+          item.classList.toggle('selected', isSelected);
+          item.setAttribute('aria-checked', isSelected ? 'true' : 'false');
+
+          const checkEl = item.querySelector('.service-check');
+          if (checkEl) {
+            checkEl.innerHTML = isSelected
+              ? '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2L4.8 8.5L9.5 3.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+              : '';
+          }
+
+          if (isSelected) {
+            total += price;
+            const li = document.createElement('li');
+            const nameSpan = document.createElement('span');
+            nameSpan.textContent = labels[key];
+            const valSpan = document.createElement('span');
+            valSpan.textContent = 'AUD $' + price;
+            li.appendChild(nameSpan);
+            li.appendChild(valSpan);
+            breakdownListEl.appendChild(li);
+          }
+        });
+
+        totalAudEl.textContent = 'AUD $' + total;
+        const count = state.selected.size;
+        const speciesLabel = state.species === 'dog' ? 'Dog' : 'Cat';
+        estimateMetaEl.textContent = speciesLabel + ', ' + state.weight + ' kg — ' + count + (count === 1 ? ' service selected' : ' services selected');
+      }
+
+      function setSpecies(species) {
+        state.species = species;
+        btnDog.classList.toggle('active', species === 'dog');
+        btnCat.classList.toggle('active', species === 'cat');
+        if (species === 'cat' && state.weight > 12) {
+          state.weight = 5;
+          weightRange.value = 5;
+          weightInput.value = 5;
+        } else if (species === 'dog' && state.weight < 6) {
+          state.weight = 14;
+          weightRange.value = 14;
+          weightInput.value = 14;
+        }
+        render();
+      }
+
+      btnDog.addEventListener('click', () => setSpecies('dog'));
+      btnCat.addEventListener('click', () => setSpecies('cat'));
+
+      weightRange.addEventListener('input', (e) => {
+        state.weight = Number(e.target.value);
+        weightInput.value = state.weight;
+        render();
+      });
+
+      weightInput.addEventListener('input', (e) => {
+        let val = Number(e.target.value);
+        if (Number.isNaN(val) || val < 1) val = 1;
+        if (val > 60) val = 60;
+        state.weight = val;
+        weightRange.value = val;
+        render();
+      });
+
+      serviceItems.forEach((item) => {
+        const toggle = () => {
+          const key = item.getAttribute('data-service');
+          if (state.selected.has(key)) {
+            if (state.selected.size > 1) {
+              state.selected.delete(key);
+            }
+          } else {
+            state.selected.add(key);
+          }
+          render();
+        };
+        item.addEventListener('click', toggle);
+        item.addEventListener('keydown', (e) => {
+          if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            toggle();
+          }
+        });
+      });
+
+      bookingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const owner = document.getElementById('owner-name').value.trim() || 'Pet Owner';
+        const pet = document.getElementById('pet-name').value.trim() || 'your pet';
+        const day = document.getElementById('preferred-day').value;
+        const total = totalAudEl.textContent;
+        bookingConfirm.textContent = 'Booking request logged for ' + owner + ' (' + pet + ', ' + total + ') for ' + day + '. Our reception team at (02) 4263 6888 will confirm your appointment.';
+        bookingConfirm.classList.add('visible');
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>

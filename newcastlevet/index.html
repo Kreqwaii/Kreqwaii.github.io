@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Newcastle Vet in Newcastle, NSW. Interactive Pet Vaccination, Dental and Wellness Care Cost Estimator in AUD with direct appointment booking.">
+  <title>Newcastle Vet | Pet Care Cost Estimator &amp; Clinic Stand</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230D7377'/%3E%3Cpath d='M16 8v16M8 16h16' stroke='%23FAF7F2' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-sand: #FAF7F2;
+      --bg-sand-alt: #F2ECE1;
+      --surface: #FFFFFF;
+      --teal: #0D7377;
+      --teal-dark: #095255;
+      --teal-soft: #E6F2F2;
+      --ink: #182426;
+      --ink-muted: #526366;
+      --border: #DFD8CC;
+      --border-strong: #C8BFB0;
+      --accent-warm: #B86B35;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-sm: 8px;
+      --shadow-card: 0 8px 24px rgba(24, 36, 38, 0.06);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-sand);
+      color: var(--ink);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 68px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background-color: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .phone-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--teal-soft);
+      color: var(--teal-dark);
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 0.2s ease;
+    }
+
+    .phone-link:hover {
+      background-color: #D4E9EA;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 36px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+      background-color: var(--teal-soft);
+      padding: 5px 11px;
+      border-radius: 999px;
+      width: fit-content;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(26px, 3.2vw, 36px);
+      line-height: 1.15;
+      font-weight: 800;
+    }
+
+    .hero-lead {
+      margin: 0;
+      color: var(--ink-muted);
+      font-size: 15px;
+      max-width: 58ch;
+    }
+
+    .service-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .service-pill {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink);
+      background-color: var(--bg-sand);
+      border: 1px solid var(--border);
+      padding: 6px 11px;
+      border-radius: 999px;
+    }
+
+    .clinic-card {
+      background-color: var(--teal-dark);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .clinic-card h2 {
+      color: #FFFFFF;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .clinic-card p {
+      margin: 0;
+      color: #D7E9EA;
+      font-size: 14px;
+    }
+
+    .clinic-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .clinic-meta-item {
+      background-color: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      min-width: 0;
+    }
+
+    .clinic-meta-item.full-row {
+      grid-column: 1 / -1;
+    }
+
+    .clinic-meta-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #B4D7D9;
+      margin-bottom: 4px;
+    }
+
+    .clinic-meta-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+
+    .clinic-meta-item a[href^="mailto:"],
+    .clinic-meta-item a[href^="http"] {
+      display: block;
+      grid-column: 1 / -1;
+      color: #FFFFFF;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 11px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Main Workspace */
+    .workspace {
+      padding: 8px 0 48px;
+    }
+
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .panel-header {
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .panel-header h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .panel-header p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    .field-group {
+      margin-bottom: 20px;
+    }
+
+    .field-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .segmented-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .segmented-grid.cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .seg-btn {
+      appearance: none;
+      background-color: var(--bg-sand);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 11px 12px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .seg-btn:hover {
+      border-color: var(--teal);
+    }
+
+    .seg-btn.active {
+      background-color: var(--teal);
+      border-color: var(--teal);
+      color: #FFFFFF;
+    }
+
+    .seg-sub {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      opacity: 0.82;
+      margin-top: 2px;
+    }
+
+    /* Service Checkboxes */
+    .service-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .service-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 14px;
+      background-color: var(--bg-sand);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .service-option:hover {
+      border-color: var(--teal);
+    }
+
+    .service-option.selected {
+      background-color: var(--teal-soft);
+      border-color: var(--teal);
+    }
+
+    .service-option-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .service-check {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--teal);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .service-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .service-desc {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .service-price {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--teal-dark);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Summary & Booking */
+    .estimate-box {
+      background-color: var(--bg-sand-alt);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    .estimate-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .estimate-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .estimate-total {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--teal-dark);
+    }
+
+    .breakdown-list {
+      border-top: 1px solid var(--border-strong);
+      padding-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--ink);
+    }
+
+    .breakdown-note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .text-input,
+    .select-input,
+    .textarea-input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--surface);
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--ink);
+      transition: border-color 0.18s ease;
+    }
+
+    .text-input:focus,
+    .select-input:focus,
+    .textarea-input:focus {
+      outline: none;
+      border-color: var(--teal);
+    }
+
+    .textarea-input {
+      resize: vertical;
+      min-height: 76px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 14px;
+      padding: 13px 18px;
+      border: none;
+      border-radius: var(--radius-md);
+      background-color: var(--teal);
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.18s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: var(--teal-dark);
+    }
+
+    .booking-status {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--teal-soft);
+      color: var(--teal-dark);
+      font-size: 13px;
+      font-weight: 600;
+      display: none;
+    }
+
+    .booking-status.visible {
+      display: block;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background-color: var(--surface);
+      padding: 20px 0;
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+      justify-items: end;
+    }
+
+    .footer-links a[href^="mailto:"],
+    .footer-links a[href^="http"] {
+      grid-column: 1 / -1;
+      color: var(--teal-dark);
+      text-decoration: none;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 11px;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 14px;
+      }
+
+      .hero-copy,
+      .clinic-card,
+      .panel {
+        padding: 18px;
+      }
+
+      .clinic-meta-grid,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .segmented-grid.cols-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-link span {
+        display: none;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links {
+        justify-items: start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="#top" class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M12 5v14M5 12h14" stroke="#FAF7F2" stroke-width="2.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <div class="brand-name">Newcastle Vet</div>
+            <div class="brand-sub">Newcastle, NSW, Australia</div>
+          </div>
+        </a>
+        <div class="header-actions">
+          <a href="tel:+61249514222" class="phone-link tabular" aria-label="Call Newcastle Vet on (02) 4951 4222">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>(02) 4951 4222</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div>
+              <div class="eyebrow">Newcastle, NSW Veterinary Clinic</div>
+              <h1>Pet Vaccination, Dental &amp; Wellness Care Cost Estimator</h1>
+              <p class="hero-lead">
+                Plan your companion's next visit with transparent Australian Dollar (AUD) estimates across consultations, vaccinations, dental cleaning, surgical care, diagnostic imaging, and parasite prevention.
+              </p>
+            </div>
+            <div class="service-pills" aria-label="Core veterinary services">
+              <span class="service-pill">Pet Consultations &amp; Vaccinations</span>
+              <span class="service-pill">Veterinary Surgery</span>
+              <span class="service-pill">Pet Dentistry</span>
+              <span class="service-pill">Diagnostic Imaging</span>
+              <span class="service-pill">Preventative Parasite Care</span>
+            </div>
+          </div>
+
+          <aside class="clinic-card" aria-label="Clinic contact details">
+            <div>
+              <h2>Newcastle Vet Clinic Desk</h2>
+              <p>Direct local care for dogs and cats across Newcastle and the Hunter region.</p>
+            </div>
+            <div class="clinic-meta-grid">
+              <div class="clinic-meta-item">
+                <div class="clinic-meta-label">Phone</div>
+                <div class="clinic-meta-value tabular">(02) 4951 4222</div>
+              </div>
+              <div class="clinic-meta-item">
+                <div class="clinic-meta-label">Location</div>
+                <div class="clinic-meta-value">Newcastle, NSW</div>
+              </div>
+              <div class="clinic-meta-item full-row">
+                <div class="clinic-meta-label">Reception Email</div>
+                <a href="mailto:reception@newcastlevet.com.au">reception@newcastlevet.com.au</a>
+              </div>
+              <div class="clinic-meta-item full-row">
+                <div class="clinic-meta-label">Clinic Website</div>
+                <a href="https://www.newcastlevet.com.au" target="_blank" rel="noopener noreferrer">https://www.newcastlevet.com.au</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="container">
+        <div class="workspace-grid">
+          <!-- Left: Estimator Controls -->
+          <div class="panel">
+            <div class="panel-header">
+              <h2>1. Configure Pet &amp; Care Plan</h2>
+              <p>Select species, life stage, and the veterinary services you would like estimated in AUD.</p>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">Pet Species</div>
+              <div class="segmented-grid" role="group" aria-label="Pet Species">
+                <button type="button" class="seg-btn active" data-species="dog">
+                  Dog
+                  <span class="seg-sub">Canine care protocols</span>
+                </button>
+                <button type="button" class="seg-btn" data-species="cat">
+                  Cat
+                  <span class="seg-sub">Feline care protocols</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">Life Stage</div>
+              <div class="segmented-grid cols-3" role="group" aria-label="Life Stage">
+                <button type="button" class="seg-btn" data-stage="junior">
+                  Puppy / Kitten
+                  <span class="seg-sub">Under 12 months</span>
+                </button>
+                <button type="button" class="seg-btn active" data-stage="adult">
+                  Adult
+                  <span class="seg-sub">1 to 7 years</span>
+                </button>
+                <button type="button" class="seg-btn" data-stage="senior">
+                  Senior
+                  <span class="seg-sub">7+ years</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">Select Veterinary Services</div>
+              <div class="service-list" id="serviceList">
+                <div class="service-option selected" data-service="consult">
+                  <div class="service-option-left">
+                    <input class="service-check" type="checkbox" checked autocomplete="off" aria-label="Pet Consultation">
+                    <div>
+                      <div class="service-title">Pet Consultation</div>
+                      <div class="service-desc">Comprehensive nose-to-tail physical exam and wellness review.</div>
+                    </div>
+                  </div>
+                  <div class="service-price tabular" data-price-for="consult">$88 AUD</div>
+                </div>
+
+                <div class="service-option selected" data-service="vaccination">
+                  <div class="service-option-left">
+                    <input class="service-check" type="checkbox" checked autocomplete="off" aria-label="Vaccinations">
+                    <div>
+                      <div class="service-title">Vaccinations</div>
+                      <div class="service-desc">Core annual or juvenile immunisation schedule.</div>
+                    </div>
+                  </div>
+                  <div class="service-price tabular" data-price-for="vaccination">$115 AUD</div>
+                </div>
+
+                <div class="service-option" data-service="dental">
+                  <div class="service-option-left">
+                    <input class="service-check" type="checkbox" autocomplete="off" aria-label="Pet Dentistry and Scale">
+                    <div>
+                      <div class="service-title">Pet Dentistry (Scale &amp; Polish)</div>
+                      <div class="service-desc">Ultrasonic dental cleaning, oral charting, and enamel polish.</div>
+                    </div>
+                  </div>
+                  <div class="service-price tabular" data-price-for="dental">$420 AUD</div>
+                </div>
+
+                <div class="service-option" data-service="surgery">
+                  <div class="service-option-left">
+                    <input class="service-check" type="checkbox" autocomplete="off" aria-label="Veterinary Surgery Assessment">
+                    <div>
+                      <div class="service-title">Veterinary Surgery (Minor Procedure)</div>
+                      <div class="service-desc">Soft-tissue or desexing baseline with peri-operative monitoring.</div>
+                    </div>
+                  </div>
+                  <div class="service-price tabular" data-price-for="surgery">$360 AUD</div>
+                </div>
+
+                <div class="service-option" data-service="imaging">
+                  <div class="service-option-left">
+                    <input class="service-check" type="checkbox" autocomplete="off" aria-label="Diagnostic Imaging">
+                    <div>
+                      <div class="service-title">Diagnostic Imaging</div>
+                      <div class="service-desc">Digital radiography or targeted ultrasound screening.</div>
+                    </div>
+                  </div>
+                  <div class="service-price tabular" data-price-for="imaging">$245 AUD</div>
+                </div>
+
+                <div class="service-option" data-service="parasite">
+                  <div class="service-option-left">
+                    <input class="service-check" type="checkbox" autocomplete="off" aria-label="Preventative Parasite Care">
+                    <div>
+                      <div class="service-title">Preventative Parasite Care</div>
+                      <div class="service-desc">3-month paralysis tick, flea, heartworm, and intestinal worm cover.</div>
+                    </div>
+                  </div>
+                  <div class="service-price tabular" data-price-for="parasite">$78 AUD</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Live Estimate & Booking -->
+          <div class="panel">
+            <div class="panel-header">
+              <h2>2. Estimate Summary &amp; Appointment Request</h2>
+              <p>Review your itemised AUD estimate and request a booking with Newcastle Vet.</p>
+            </div>
+
+            <div class="estimate-box" aria-live="polite">
+              <div class="estimate-top">
+                <div class="estimate-label">Estimated Total (AUD)</div>
+                <div class="estimate-total tabular" id="totalAmount">$203 AUD</div>
+              </div>
+              <div class="breakdown-list" id="breakdownList"></div>
+              <div class="breakdown-note">
+                Guide estimate in Australian Dollars including GST. Final treatment fees are confirmed after clinical examination.
+              </div>
+            </div>
+
+            <form id="bookingForm" novalidate>
+              <div class="form-grid">
+                <div class="form-field">
+                  <div class="field-label">Owner Full Name</div>
+                  <input class="text-input" type="text" id="ownerName" name="ownerName" autocomplete="name" placeholder="e.g. Sarah Mitchell" aria-label="Owner Full Name" required>
+                </div>
+                <div class="form-field">
+                  <div class="field-label">Phone Number</div>
+                  <input class="text-input tabular" type="tel" id="ownerPhone" name="ownerPhone" autocomplete="tel" placeholder="(02) 4900 0000" aria-label="Phone Number" required>
+                </div>
+                <div class="form-field">
+                  <div class="field-label">Email Address</div>
+                  <input class="text-input" type="email" id="ownerEmail" name="ownerEmail" autocomplete="email" placeholder="you@example.com.au" aria-label="Email Address" required>
+                </div>
+                <div class="form-field">
+                  <div class="field-label">Pet Name</div>
+                  <input class="text-input" type="text" id="petName" name="petName" autocomplete="off" placeholder="e.g. Cooper" aria-label="Pet Name" required>
+                </div>
+                <div class="form-field">
+                  <div class="field-label">Preferred Time Window</div>
+                  <select class="select-input" id="timeWindow" name="timeWindow" autocomplete="off" aria-label="Preferred Time Window">
+                    <option value="Morning (8:30 AM - 12:00 PM)">Morning (8:30 AM - 12:00 PM)</option>
+                    <option value="Afternoon (12:00 PM - 4:00 PM)">Afternoon (12:00 PM - 4:00 PM)</option>
+                    <option value="Late Afternoon (4:00 PM - 6:00 PM)">Late Afternoon (4:00 PM - 6:00 PM)</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <div class="field-label">Preferred Day</div>
+                  <input class="text-input" type="date" id="preferredDate" name="preferredDate" autocomplete="off" aria-label="Preferred Day">
+                </div>
+                <div class="form-field full">
+                  <div class="field-label">Clinical Notes or Questions</div>
+                  <textarea class="textarea-input" id="visitNotes" name="visitNotes" autocomplete="off" placeholder="Share any symptoms, vaccination history, or dental concerns." aria-label="Clinical Notes or Questions"></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="submit-btn">Request Appointment with Estimate</button>
+              <div class="booking-status" id="bookingStatus" role="status"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>Newcastle Vet &middot; Newcastle, NSW, Australia &middot; Phone: <span class="tabular">(02) 4951 4222</span></div>
+        <div class="footer-links">
+          <a href="mailto:reception@newcastlevet.com.au">reception@newcastlevet.com.au</a>
+          <a href="https://www.newcastlevet.com.au" target="_blank" rel="noopener noreferrer">https://www.newcastlevet.com.au</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const pricingMatrix = {
+        dog: {
+          junior: { consult: 85, vaccination: 125, dental: 360, surgery: 340, imaging: 230, parasite: 72 },
+          adult:  { consult: 88, vaccination: 115, dental: 420, surgery: 360, imaging: 245, parasite: 78 },
+          senior: { consult: 95, vaccination: 115, dental: 495, surgery: 410, imaging: 275, parasite: 82 }
+        },
+        cat: {
+          junior: { consult: 82, vaccination: 110, dental: 330, surgery: 295, imaging: 215, parasite: 64 },
+          adult:  { consult: 85, vaccination: 105, dental: 380, surgery: 315, imaging: 225, parasite: 68 },
+          senior: { consult: 92, vaccination: 105, dental: 445, surgery: 365, imaging: 255, parasite: 72 }
+        }
+      };
+
+      const serviceLabels = {
+        consult: 'Pet Consultation',
+        vaccination: 'Vaccinations',
+        dental: 'Pet Dentistry (Scale & Polish)',
+        surgery: 'Veterinary Surgery (Minor Procedure)',
+        imaging: 'Diagnostic Imaging',
+        parasite: 'Preventative Parasite Care'
+      };
+
+      const state = {
+        species: 'dog',
+        stage: 'adult',
+        selected: new Set(['consult', 'vaccination'])
+      };
+
+      const speciesButtons = document.querySelectorAll('[data-species]');
+      const stageButtons = document.querySelectorAll('[data-stage]');
+      const serviceOptions = document.querySelectorAll('.service-option');
+      const totalEl = document.getElementById('totalAmount');
+      const breakdownEl = document.getElementById('breakdownList');
+      const bookingForm = document.getElementById('bookingForm');
+      const bookingStatus = document.getElementById('bookingStatus');
+
+      function formatAud(amount) {
+        return '$' + amount.toLocaleString('en-AU') + ' AUD';
+      }
+
+      function renderPrices() {
+        const prices = pricingMatrix[state.species][state.stage];
+
+        serviceOptions.forEach(function (option) {
+          const key = option.getAttribute('data-service');
+          const priceEl = option.querySelector('[data-price-for="' + key + '"]');
+          const checkbox = option.querySelector('.service-check');
+          const isSelected = state.selected.has(key);
+
+          if (priceEl && prices[key] !== undefined) {
+            priceEl.textContent = formatAud(prices[key]);
+          }
+          if (checkbox) {
+            checkbox.checked = isSelected;
+          }
+          option.classList.toggle('selected', isSelected);
+        });
+
+        let total = 0;
+        breakdownEl.innerHTML = '';
+
+        if (state.selected.size === 0) {
+          const emptyRow = document.createElement('div');
+          emptyRow.className = 'breakdown-row';
+          emptyRow.textContent = 'Select at least one service to calculate an estimate.';
+          breakdownEl.appendChild(emptyRow);
+        } else {
+          state.selected.forEach(function (key) {
+            const itemPrice = prices[key] || 0;
+            total += itemPrice;
+            const row = document.createElement('div');
+            row.className = 'breakdown-row';
+
+            const nameSpan = document.createElement('span');
+            nameSpan.textContent = serviceLabels[key];
+
+            const priceSpan = document.createElement('span');
+            priceSpan.className = 'tabular';
+            priceSpan.textContent = formatAud(itemPrice);
+
+            row.appendChild(nameSpan);
+            row.appendChild(priceSpan);
+            breakdownEl.appendChild(row);
+          });
+        }
+
+        totalEl.textContent = formatAud(total);
+      }
+
+      speciesButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.species = btn.getAttribute('data-species');
+          speciesButtons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          renderPrices();
+        });
+      });
+
+      stageButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.stage = btn.getAttribute('data-stage');
+          stageButtons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          renderPrices();
+        });
+      });
+
+      serviceOptions.forEach(function (option) {
+        const key = option.getAttribute('data-service');
+        const checkbox = option.querySelector('.service-check');
+
+        option.addEventListener('click', function (e) {
+          if (e.target !== checkbox) {
+            checkbox.checked = !checkbox.checked;
+          }
+          if (checkbox.checked) {
+            state.selected.add(key);
+          } else {
+            state.selected.delete(key);
+          }
+          renderPrices();
+        });
+      });
+
+      bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const ownerName = document.getElementById('ownerName').value.trim();
+        const ownerPhone = document.getElementById('ownerPhone').value.trim();
+        const ownerEmail = document.getElementById('ownerEmail').value.trim();
+        const petName = document.getElementById('petName').value.trim();
+        const timeWindow = document.getElementById('timeWindow').value;
+
+        if (!ownerName || !ownerPhone || !ownerEmail || !petName) {
+          bookingStatus.textContent = 'Please complete your name, phone number, email address, and pet name.';
+          bookingStatus.classList.add('visible');
+          return;
+        }
+
+        const totalText = totalEl.textContent;
+        bookingStatus.textContent = 'Request prepared for ' + petName + ' (' + state.species + ', ' + totalText + '). Newcastle Vet reception will confirm your ' + timeWindow + ' slot shortly, or call (02) 4951 4222.';
+        bookingStatus.classList.add('visible');
+      });
+
+      renderPrices();
+    })();
+  </script>
+</body>
+</html>

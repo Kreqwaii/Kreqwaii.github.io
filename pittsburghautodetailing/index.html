@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pittsburgh Auto Detailing — Instant Auto Detailing, Ceramic Coating, Paint Correction, and PPF Package Configurator for Pittsburgh, PA.">
+  <title>Pittsburgh Auto Detailing | Instant Package Configurator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23181A1F'/%3E%3Cpath d='M7 21l4-9h10l4 9' stroke='%23D98A16' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='11' cy='21' r='2' fill='%23D98A16'/%3E%3Ccircle cx='21' cy='21' r='2' fill='%23D98A16'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #F6F7F9;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #EEF0F4;
+      --bg-graphite: #181A1F;
+      --text-primary: #181A1F;
+      --text-secondary: #4B525E;
+      --text-muted: #6C7482;
+      --accent-amber: #D98A16;
+      --accent-amber-dark: #B56F0B;
+      --accent-amber-soft: #FEF5E7;
+      --border-light: #E2E5EB;
+      --border-strong: #CBD1DC;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-card: 0 2px 12px rgba(24, 26, 31, 0.05);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .brand-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 68px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      background-color: var(--bg-graphite);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .phone-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background-color: var(--bg-graphite);
+      color: #FFFFFF;
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 13px;
+      white-space: nowrap;
+      transition: background-color 0.18s ease;
+    }
+
+    .phone-link:hover {
+      background-color: var(--accent-amber-dark);
+    }
+
+    /* Hero */
+    .hero {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-light);
+      padding: 36px 0 32px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 4px 10px;
+      background-color: var(--accent-amber-soft);
+      color: var(--accent-amber-dark);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      line-height: 1.18;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 15px;
+      max-width: 600px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .metric-card {
+      background-color: var(--bg-page);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .metric-value {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Main Layout */
+    .main-section {
+      padding: 28px 0 48px;
+    }
+
+    .configurator-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .panel + .panel {
+      margin-top: 20px;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .panel-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .step-badge {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background-color: var(--bg-subtle);
+      padding: 3px 9px;
+      border-radius: 4px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    /* Option Grids */
+    .option-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .option-card {
+      text-align: left;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+      font-family: inherit;
+    }
+
+    .option-card:hover {
+      border-color: var(--accent-amber);
+    }
+
+    .option-card.active {
+      border-color: var(--accent-amber);
+      background-color: var(--accent-amber-soft);
+      box-shadow: inset 0 0 0 1px var(--accent-amber);
+    }
+
+    .option-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .option-price {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-amber-dark);
+    }
+
+    .option-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* Add-on Toggles */
+    .addon-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .addon-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+      text-align: left;
+      padding: 12px 14px;
+      background-color: var(--bg-page);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .addon-btn.active {
+      background-color: var(--accent-amber-soft);
+      border-color: var(--accent-amber);
+    }
+
+    .addon-info {
+      min-width: 0;
+    }
+
+    .addon-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .addon-note {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .addon-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .addon-cost {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .addon-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 1px solid var(--border-strong);
+      background-color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .addon-btn.active .addon-check {
+      background-color: var(--accent-amber);
+      border-color: var(--accent-amber);
+    }
+
+    /* Summary & Form */
+    .summary-box {
+      background-color: var(--bg-graphite);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+
+    .summary-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      margin-bottom: 14px;
+    }
+
+    .summary-label {
+      font-size: 13px;
+      color: #CBD1DC;
+      font-weight: 500;
+    }
+
+    .summary-total {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--accent-amber);
+    }
+
+    .summary-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: #E2E5EB;
+    }
+
+    .summary-line span:last-child {
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+
+    .summary-meta {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #CBD1DC;
+    }
+
+    /* Form Controls */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-full {
+      grid-column: 1 / -1;
+    }
+
+    .input-control {
+      width: 100%;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text-primary);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      transition: border-color 0.16s ease;
+    }
+
+    .input-control:focus {
+      outline: none;
+      border-color: var(--accent-amber);
+    }
+
+    textarea.input-control {
+      resize: vertical;
+      min-height: 76px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 14px;
+      padding: 12px 18px;
+      background-color: var(--accent-amber);
+      color: #181A1F;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.16s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #E89923;
+    }
+
+    .form-status {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-amber-soft);
+      color: var(--text-primary);
+      font-size: 13px;
+      font-weight: 500;
+      display: none;
+    }
+
+    .form-status.visible {
+      display: block;
+    }
+
+    /* Contact & Footer */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .contact-item {
+      background-color: var(--bg-page);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+    }
+
+    .contact-item-full {
+      grid-column: 1 / -1;
+    }
+
+    .contact-k {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .contact-v {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    a[href^="mailto:"],
+    a[href^="http"] {
+      display: block;
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 10.5px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a[href^="mailto:"]:hover,
+    a[href^="http"]:hover {
+      color: var(--accent-amber-dark);
+    }
+
+    .site-footer {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border-light);
+      padding: 20px 0;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .configurator-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 14px;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      .option-grid-4,
+      .form-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-link {
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+
+      a[href^="mailto:"],
+      a[href^="http"] {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M4 15l3-6h10l3 6" stroke="#D98A16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="7.5" cy="15.5" r="1.8" fill="#D98A16"/>
+            <circle cx="16.5" cy="15.5" r="1.8" fill="#D98A16"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Pittsburgh Auto Detailing</div>
+          <div class="brand-sub">Pittsburgh, PA · Studio &amp; Protection</div>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="tel:+14124151411" class="phone-link tabular-nums">(412) 415-1411</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Pittsburgh, Pennsylvania</span>
+        <h1>Instant Auto Detailing &amp; Ceramic Coating Package Configurator</h1>
+        <p>Configure your vehicle class, protection tier, and Pennsylvania winter salt defense in seconds. Transparent USD studio pricing for Interior &amp; Exterior Detailing, Ceramic Coating, Paint Correction, PPF, and Headlight Restoration.</p>
+      </div>
+      <div class="hero-metrics">
+        <div class="metric-card">
+          <div class="metric-value tabular-nums">5 Core Services</div>
+          <div class="metric-label">Detailing, Ceramic, Correction, PPF, Headlights</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value tabular-nums">PA Salt Shield</div>
+          <div class="metric-label">Undercarriage &amp; brine corrosion defense</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value tabular-nums">9H Ceramic</div>
+          <div class="metric-label">Multi-year hydrophobic clearcoat bond</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value tabular-nums">Instant Quote</div>
+          <div class="metric-label">Live USD estimate &amp; bay scheduling</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="main-section">
+    <div class="container configurator-grid">
+      <div>
+        <div class="panel">
+          <div class="panel-header">
+            <h2 class="panel-title">1. Vehicle Class</h2>
+            <span class="step-badge">Size Multiplier</span>
+          </div>
+          <div class="field-label">Select vehicle body style</div>
+          <div class="option-grid-4" id="vehicle-options">
+            <button type="button" class="option-card active" data-vehicle="sedan" data-mult="1.00" data-label="Coupe / Sedan">
+              <div class="option-title"><span>Coupe / Sedan</span><span class="option-price tabular-nums">1.00x</span></div>
+              <div class="option-desc">Standard 2-door or 4-door passenger car</div>
+            </button>
+            <button type="button" class="option-card" data-vehicle="suv" data-mult="1.18" data-label="Midsize SUV / Crossover">
+              <div class="option-title"><span>Midsize SUV / Crossover</span><span class="option-price tabular-nums">1.18x</span></div>
+              <div class="option-desc">2-row crossovers, wagons, compact SUVs</div>
+            </button>
+            <button type="button" class="option-card" data-vehicle="truck" data-mult="1.32" data-label="Full-Size SUV / Truck">
+              <div class="option-title"><span>Full-Size SUV / Truck</span><span class="option-price tabular-nums">1.32x</span></div>
+              <div class="option-desc">3-row SUVs, crew cab pickups, vans</div>
+            </button>
+            <button type="button" class="option-card" data-vehicle="exotic" data-mult="1.45" data-label="Exotic / Collector">
+              <div class="option-title"><span>Exotic / Collector</span><span class="option-price tabular-nums">1.45x</span></div>
+              <div class="option-desc">Custom paint, classic, or track-prepped</div>
+            </button>
+          </div>
+
+          <div class="panel-header">
+            <h2 class="panel-title">2. Primary Service Package</h2>
+            <span class="step-badge">Base USD</span>
+          </div>
+          <div class="field-label">Choose core studio treatment</div>
+          <div class="option-grid-4" id="package-options">
+            <button type="button" class="option-card active" data-pkg="detailing" data-base="295" data-hours="4–5 hrs" data-label="Interior & Exterior Detailing">
+              <div class="option-title"><span>Interior &amp; Exterior Detailing</span><span class="option-price tabular-nums">$295</span></div>
+              <div class="option-desc">Deep steam, leather conditioning, clay &amp; sealant</div>
+            </button>
+            <button type="button" class="option-card" data-pkg="ceramic" data-base="890" data-hours="1–2 days" data-label="Ceramic Coating (5-Year)">
+              <div class="option-title"><span>Ceramic Coating</span><span class="option-price tabular-nums">$890</span></div>
+              <div class="option-desc">Single-stage polish + 9H ceramic clearcoat</div>
+            </button>
+            <button type="button" class="option-card" data-pkg="correction" data-base="650" data-hours="1 day" data-label="Multi-Stage Paint Correction">
+              <div class="option-title"><span>Paint Correction</span><span class="option-price tabular-nums">$650</span></div>
+              <div class="option-desc">Swirl, oxidation &amp; light scratch removal</div>
+            </button>
+            <button type="button" class="option-card" data-pkg="ppf" data-base="1450" data-hours="2–3 days" data-label="Paint Protection Film (Front)">
+              <div class="option-title"><span>Paint Protection Film</span><span class="option-price tabular-nums">$1,450</span></div>
+              <div class="option-desc">Self-healing urethane film on high-impact front</div>
+            </button>
+          </div>
+
+          <div class="panel-header">
+            <h2 class="panel-title">3. Add-On Protection</h2>
+            <span class="step-badge">Optional</span>
+          </div>
+          <div class="field-label">Select specialized Pennsylvania &amp; optical upgrades</div>
+          <div class="addon-list" id="addon-options">
+            <button type="button" class="addon-btn" data-addon="headlights" data-price="115" data-label="Headlight Restoration">
+              <div class="addon-info">
+                <div class="addon-name">Headlight Restoration</div>
+                <div class="addon-note">Wet-sand, optical polish &amp; UV clearcoat seal</div>
+              </div>
+              <div class="addon-right">
+                <span class="addon-cost tabular-nums">+$115</span>
+                <span class="addon-check" aria-hidden="true">✓</span>
+              </div>
+            </button>
+
+            <button type="button" class="addon-btn" data-addon="salt" data-price="165" data-label="PA Winter Salt &amp; Undercarriage Shield">
+              <div class="addon-info">
+                <div class="addon-name">Pennsylvania Winter Salt &amp; Undercarriage Shield</div>
+                <div class="addon-note">Salt-neutralizing flush, wheel-well &amp; chassis barrier</div>
+              </div>
+              <div class="addon-right">
+                <span class="addon-cost tabular-nums">+$165</span>
+                <span class="addon-check" aria-hidden="true">✓</span>
+              </div>
+            </button>
+
+            <button type="button" class="addon-btn" data-addon="glass" data-price="95" data-label="Hydrophobic Glass &amp; Wheel Sealant">
+              <div class="addon-info">
+                <div class="addon-name">Hydrophobic Glass &amp; Wheel Face Sealant</div>
+                <div class="addon-note">Rain-repellent windshield + brake-dust release</div>
+              </div>
+              <div class="addon-right">
+                <span class="addon-cost tabular-nums">+$95</span>
+                <span class="addon-check" aria-hidden="true">✓</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="summary-box">
+          <div class="summary-top">
+            <div>
+              <div class="summary-label">Estimated Studio Total (USD)</div>
+              <div class="summary-label" id="summary-vehicle-label">Coupe / Sedan</div>
+            </div>
+            <div class="summary-total tabular-nums" id="total-price">$295</div>
+          </div>
+          <div class="summary-lines" id="summary-lines">
+            <div class="summary-line">
+              <span>Interior &amp; Exterior Detailing</span>
+              <span class="tabular-nums">$295</span>
+            </div>
+          </div>
+          <div class="summary-meta">
+            <span>Estimated Bay Time</span>
+            <span class="tabular-nums" id="summary-hours">4–5 hrs</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h2 class="panel-title">Request Bay Appointment</h2>
+            <span class="step-badge">Direct Studio</span>
+          </div>
+          <form id="quote-form">
+            <div class="form-grid">
+              <div>
+                <div class="field-label">Full Name</div>
+                <input type="text" class="input-control" name="name" autocomplete="name" placeholder="Jordan Miller" required>
+              </div>
+              <div>
+                <div class="field-label">Phone Number</div>
+                <input type="tel" class="input-control" name="phone" autocomplete="tel" placeholder="(412) 555-0192" required>
+              </div>
+              <div class="form-full">
+                <div class="field-label">Email Address</div>
+                <input type="email" class="input-control" name="email" autocomplete="email" placeholder="name@example.com" required>
+              </div>
+              <div class="form-full">
+                <div class="field-label">Vehicle Year, Make &amp; Model</div>
+                <input type="text" class="input-control" name="vehicle_model" autocomplete="off" placeholder="2023 Porsche Macan S" required>
+              </div>
+              <div class="form-full">
+                <div class="field-label">Preferred Drop-Off Window</div>
+                <select class="input-control" name="drop_off" autocomplete="off">
+                  <option value="This Week (Morning)">This Week (Morning)</option>
+                  <option value="Next Week (Morning)">Next Week (Morning)</option>
+                  <option value="Weekend Slot">Weekend Slot</option>
+                  <option value="Flexible / Call Me">Flexible / Call Me</option>
+                </select>
+              </div>
+              <div class="form-full">
+                <div class="field-label">Notes (Paint condition, salt buildup, fleet inquiry)</div>
+                <textarea class="input-control" name="notes" autocomplete="off" placeholder="Optional details about your vehicle"></textarea>
+              </div>
+            </div>
+            <button type="submit" class="submit-btn">Lock In Estimate &amp; Request Slot</button>
+            <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+          </form>
+
+          <div class="contact-grid">
+            <div class="contact-item">
+              <div class="contact-k">Phone</div>
+              <a href="tel:+14124151411" class="contact-v tabular-nums">(412) 415-1411</a>
+            </div>
+            <div class="contact-item">
+              <div class="contact-k">Location</div>
+              <div class="contact-v">Pittsburgh, PA</div>
+            </div>
+            <div class="contact-item contact-item-full">
+              <div class="contact-k">Email</div>
+              <a href="mailto:jamil@pittsburghautodetailing.com">jamil@pittsburghautodetailing.com</a>
+            </div>
+            <div class="contact-item contact-item-full">
+              <div class="contact-k">Website</div>
+              <a href="https://www.pittsburghautodetailing.com" target="_blank" rel="noopener noreferrer">https://www.pittsburghautodetailing.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>Pittsburgh Auto Detailing · Pittsburgh, PA, USA</div>
+      <div>Interior &amp; Exterior Detailing · Ceramic Coating · Paint Correction · PPF · Headlight Restoration</div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        vehicleLabel: 'Coupe / Sedan',
+        vehicleMult: 1.00,
+        pkgLabel: 'Interior & Exterior Detailing',
+        pkgBase: 295,
+        pkgHours: '4–5 hrs',
+        addons: new Map()
+      };
+
+      const vehicleButtons = document.querySelectorAll('#vehicle-options .option-card');
+      const packageButtons = document.querySelectorAll('#package-options .option-card');
+      const addonButtons = document.querySelectorAll('#addon-options .addon-btn');
+
+      const totalEl = document.getElementById('total-price');
+      const vehicleLabelEl = document.getElementById('summary-vehicle-label');
+      const linesEl = document.getElementById('summary-lines');
+      const hoursEl = document.getElementById('summary-hours');
+      const form = document.getElementById('quote-form');
+      const statusEl = document.getElementById('form-status');
+
+      function formatUSD(amount) {
+        return '$' + Math.round(amount).toLocaleString('en-US');
+      }
+
+      function renderSummary() {
+        const baseAdjusted = Math.round(state.pkgBase * state.vehicleMult);
+        let total = baseAdjusted;
+
+        const rows = [
+          `<div class="summary-line"><span>${state.pkgLabel}</span><span class="tabular-nums">${formatUSD(baseAdjusted)}</span></div>`
+        ];
+
+        state.addons.forEach((addon) => {
+          total += addon.price;
+          rows.push(
+            `<div class="summary-line"><span>${addon.label}</span><span class="tabular-nums">+${formatUSD(addon.price)}</span></div>`
+          );
+        });
+
+        vehicleLabelEl.textContent = state.vehicleLabel;
+        linesEl.innerHTML = rows.join('');
+        totalEl.textContent = formatUSD(total);
+        hoursEl.textContent = state.pkgHours;
+      }
+
+      vehicleButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          vehicleButtons.forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.vehicleMult = parseFloat(btn.dataset.mult);
+          state.vehicleLabel = btn.dataset.label;
+          renderSummary();
+        });
+      });
+
+      packageButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          packageButtons.forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.pkgBase = parseFloat(btn.dataset.base);
+          state.pkgLabel = btn.dataset.label;
+          state.pkgHours = btn.dataset.hours;
+          renderSummary();
+        });
+      });
+
+      addonButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const key = btn.dataset.addon;
+          if (state.addons.has(key)) {
+            state.addons.delete(key);
+            btn.classList.remove('active');
+          } else {
+            state.addons.set(key, {
+              label: btn.dataset.label,
+              price: parseFloat(btn.dataset.price)
+            });
+            btn.classList.add('active');
+          }
+          renderSummary();
+        });
+      });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        const name = (data.get('name') || '').toString().trim();
+        const model = (data.get('vehicle_model') || '').toString().trim();
+        const total = totalEl.textContent;
+        statusEl.textContent = `Request prepared for ${name} (${model}) — ${total} estimate. Call (412) 415-1411 or email jamil@pittsburghautodetailing.com to confirm your bay.`;
+        statusEl.classList.add('visible');
+      });
+
+      renderSummary();
+    })();
+  </script>
+</body>
+</html>

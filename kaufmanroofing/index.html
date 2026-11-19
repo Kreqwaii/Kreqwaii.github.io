@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kaufman Roofing — Minneapolis Roof Replacement &amp; Storm-Damage Estimate Calculator. Residential, Commercial, Storm Repair, Inspections &amp; Gutters in MN.">
+  <title>Kaufman Roofing | Minneapolis Roof Replacement &amp; Storm-Damage Calculator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231E293B'/%3E%3Cpath d='M4 18L16 7l12 11h-3v8H7v-8H4z' fill='%23B45309'/%3E%3Cpath d='M13 26v-6h6v6' fill='%23F8FAFC'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --surface-muted: #F1F5F9;
+      --slate-900: #0F172A;
+      --slate-800: #1E293B;
+      --slate-600: #475569;
+      --slate-500: #64748B;
+      --border: #E2E8F0;
+      --cedar: #B45309;
+      --cedar-dark: #92400E;
+      --cedar-soft: #FEF3C7;
+      --cedar-tint: #FFFBEB;
+      --success: #15803D;
+      --success-bg: #DCFCE7;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--slate-900);
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Header */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background: var(--slate-800);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--slate-900);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--slate-500);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background: var(--surface-muted);
+      color: var(--slate-800);
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 0.15s ease;
+    }
+
+    .phone-pill:hover {
+      background: var(--border);
+    }
+
+    /* Main Layout */
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 28px 20px 64px;
+    }
+
+    .hero-band {
+      margin-bottom: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--cedar-tint);
+      border: 1px solid #FDE68A;
+      color: var(--cedar-dark);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 3.4vw, 38px);
+      font-weight: 800;
+      color: var(--slate-900);
+      line-height: 1.15;
+      max-width: 720px;
+    }
+
+    .hero-desc {
+      margin: 10px 0 0;
+      color: var(--slate-600);
+      font-size: 15px;
+      max-width: 660px;
+    }
+
+    .services-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .service-chip {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--slate-800);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 5px 11px;
+      border-radius: 6px;
+    }
+
+    /* Calculator Grid */
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.95fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 24px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 4px;
+    }
+
+    .card-subtitle {
+      font-size: 13px;
+      color: var(--slate-500);
+      margin: 0 0 20px;
+    }
+
+    .field-group {
+      margin-bottom: 22px;
+    }
+
+    .field-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--slate-800);
+      margin-bottom: 8px;
+    }
+
+    .field-value-badge {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cedar-dark);
+      background: var(--cedar-tint);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    /* Range & Area */
+    .range-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--cedar);
+      cursor: pointer;
+      height: 6px;
+    }
+
+    .range-ticks {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--slate-500);
+    }
+
+    /* Option Buttons */
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .option-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .opt-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--slate-800);
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .opt-btn:hover {
+      border-color: var(--slate-500);
+    }
+
+    .opt-btn.active {
+      border-color: var(--cedar);
+      background: var(--cedar-tint);
+      box-shadow: inset 0 0 0 1px var(--cedar);
+    }
+
+    .opt-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--slate-900);
+    }
+
+    .opt-meta {
+      font-size: 12px;
+      color: var(--slate-500);
+    }
+
+    /* Toggle rows */
+    .toggle-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .toggle-row:hover {
+      border-color: var(--slate-500);
+    }
+
+    .toggle-row.active {
+      border-color: var(--cedar);
+      background: var(--cedar-tint);
+    }
+
+    .toggle-info {
+      min-width: 0;
+    }
+
+    .toggle-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--slate-900);
+    }
+
+    .toggle-desc {
+      font-size: 12px;
+      color: var(--slate-500);
+    }
+
+    .toggle-price {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--slate-800);
+      white-space: nowrap;
+    }
+
+    /* Estimate Summary Card */
+    .summary-card {
+      background: var(--slate-800);
+      color: #FFFFFF;
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+      position: sticky;
+      top: 84px;
+    }
+
+    .summary-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #FCD34D;
+      margin-bottom: 6px;
+    }
+
+    .summary-total {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(28px, 3vw, 36px);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .summary-range {
+      font-size: 13px;
+      color: #CBD5E1;
+      margin-bottom: 20px;
+    }
+
+    .breakdown {
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 14px 0;
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 13px;
+      color: #E2E8F0;
+    }
+
+    .breakdown-row strong {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .insurance-note {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      font-size: 12px;
+      color: #E2E8F0;
+      margin-bottom: 20px;
+    }
+
+    /* Lead Form */
+    .lead-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #CBD5E1;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(15, 23, 42, 0.65);
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: #94A3B8;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: #F59E0B;
+    }
+
+    .submit-btn {
+      grid-column: 1 / -1;
+      margin-top: 4px;
+      padding: 13px 18px;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: var(--cedar);
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+
+    .submit-btn:hover {
+      background: var(--cedar-dark);
+    }
+
+    .form-status {
+      grid-column: 1 / -1;
+      display: none;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--success-bg);
+      color: var(--success);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .form-status.visible {
+      display: block;
+    }
+
+    /* Footer */
+    .site-footer {
+      max-width: 1240px;
+      margin: 36px auto 0;
+      padding: 20px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px 24px;
+      font-size: 13px;
+      color: var(--slate-600);
+    }
+
+    .footer-links-row {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-links-row a[href^="mailto:"],
+    .footer-links-row a[href^="http"] {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 12px;
+      color: var(--slate-800);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .footer-links-row a:hover {
+      color: var(--cedar);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 960px) {
+      .calc-grid {
+        grid-template-columns: 1fr;
+      }
+      .summary-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .option-grid {
+        grid-template-columns: 1fr;
+      }
+      .option-grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .lead-form {
+        grid-template-columns: 1fr;
+      }
+      .header-inner {
+        padding: 12px 16px;
+      }
+      .phone-pill span {
+        display: none;
+      }
+      .container {
+        padding: 20px 16px 48px;
+      }
+      .card, .summary-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Kaufman Roofing Home">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M3 13L12 5l9 8h-2.5v7h-13v-7H3z" fill="#B45309"/>
+            <path d="M9.5 20v-5h5v5" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Kaufman Roofing</div>
+          <div class="brand-sub">Minneapolis, MN &bull; Residential &amp; Commercial</div>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a class="phone-pill tabular" href="tel:6127220965" aria-label="Call Kaufman Roofing at 612-722-0965">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span>612-722-0965</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <section class="hero-band">
+      <div>
+        <div class="hero-badge">Twin Cities &amp; Minneapolis Metro</div>
+        <h1 class="hero-title">Minneapolis Roof Replacement &amp; Storm-Damage Estimate Calculator</h1>
+        <p class="hero-desc">
+          Calculate an instant project range in USD tailored to Minnesota snow loads, ice-dam protection, and hail-claim documentation.
+        </p>
+        <div class="services-strip" aria-label="Core Services">
+          <span class="service-chip">Residential Roof Replacement</span>
+          <span class="service-chip">Commercial Roofing</span>
+          <span class="service-chip">Storm Damage Repair</span>
+          <span class="service-chip">Roof Inspections</span>
+          <span class="service-chip">Gutter Installation</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="calc-grid" aria-label="Roof Estimate Calculator">
+      <div class="card">
+        <h2 class="card-title">Project Specifications</h2>
+        <p class="card-subtitle">Adjust roof footprint, material system, and Minnesota winter protection options.</p>
+
+        <div class="field-group">
+          <div class="field-label">
+            <span>Roof Area (sq ft)</span>
+            <span class="field-value-badge tabular" id="areaDisplay">2,200 sq ft</span>
+          </div>
+          <div class="range-wrap">
+            <input type="range" id="areaRange" min="1000" max="6000" step="100" value="2200" autocomplete="off" aria-label="Roof Area in square feet">
+            <div class="range-ticks tabular">
+              <span>1,000 sq ft</span>
+              <span>3,500 sq ft</span>
+              <span>6,000 sq ft</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">
+            <span>Roofing Material System</span>
+          </div>
+          <div class="option-grid" id="materialGroup">
+            <button type="button" class="opt-btn active" data-material="shingle" data-rate="5.4">
+              <span class="opt-title">Architectural Shingle</span>
+              <span class="opt-meta tabular">$5.40 / sq ft</span>
+            </button>
+            <button type="button" class="opt-btn" data-material="metal" data-rate="9.8">
+              <span class="opt-title">Standing Seam Metal</span>
+              <span class="opt-meta tabular">$9.80 / sq ft</span>
+            </button>
+            <button type="button" class="opt-btn" data-material="epdm" data-rate="7.6">
+              <span class="opt-title">Flat EPDM Membrane</span>
+              <span class="opt-meta tabular">$7.60 / sq ft</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">
+            <span>Project Scope &amp; Pitch</span>
+          </div>
+          <div class="option-grid-2" id="scopeGroup">
+            <button type="button" class="opt-btn active" data-scope="replacement" data-mult="1.0">
+              <span class="opt-title">Full Roof Replacement</span>
+              <span class="opt-meta">Tear-off, underlayment &amp; ridge vent</span>
+            </button>
+            <button type="button" class="opt-btn" data-scope="storm" data-mult="1.12">
+              <span class="opt-title">Storm / Hail Damage Repair</span>
+              <span class="opt-meta">Includes Xactimate &amp; adjuster packet</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">
+            <span>Minnesota Winter &amp; Drainage Add-ons</span>
+          </div>
+          <div class="toggle-list">
+            <div class="toggle-row active" id="iceDamToggle" role="button" tabindex="0" aria-pressed="true">
+              <div class="toggle-info">
+                <div class="toggle-name">MN Ice-Dam Shield &amp; Heated Eaves</div>
+                <div class="toggle-desc">6 ft Ice &amp; Water barrier + attic ventilation balance</div>
+              </div>
+              <div class="toggle-price tabular">+$1,250</div>
+            </div>
+            <div class="toggle-row" id="gutterToggle" role="button" tabindex="0" aria-pressed="false">
+              <div class="toggle-info">
+                <div class="toggle-name">Seamless Gutter Installation</div>
+                <div class="toggle-desc">5-inch aluminum gutters &amp; oversized downspouts</div>
+              </div>
+              <div class="toggle-price tabular">+$1,650</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="summary-card" aria-label="Instant Estimate Summary">
+        <div class="summary-eyebrow">Estimated Project Investment</div>
+        <div class="summary-total tabular" id="totalEstimate">$13,130</div>
+        <div class="summary-range tabular" id="rangeEstimate">Typical Minneapolis range: $12,080 – $14,180</div>
+
+        <div class="breakdown">
+          <div class="breakdown-row">
+            <span>Base Roofing (<span id="sumArea" class="tabular">2,200</span> sq ft)</span>
+            <strong class="tabular" id="sumBase">$11,880</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Scope &amp; Storm Documentation</span>
+            <strong class="tabular" id="sumScope">$0</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>MN Ice-Dam Shield</span>
+            <strong class="tabular" id="sumIce">$1,250</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Seamless Gutters</span>
+            <strong class="tabular" id="sumGutter">$0</strong>
+          </div>
+        </div>
+
+        <div class="insurance-note">
+          Need an insurance inspection? Kaufman Roofing provides photo-documented hail &amp; wind assessments for Twin Cities homeowners and commercial properties.
+        </div>
+
+        <form class="lead-form" id="estimateForm">
+          <div class="form-field">
+            <label for="leadName">Full Name</label>
+            <input id="leadName" name="name" type="text" placeholder="Jordan Miller" autocomplete="name" required>
+          </div>
+          <div class="form-field">
+            <label for="leadPhone">Phone Number</label>
+            <input id="leadPhone" name="phone" type="tel" placeholder="612-555-0148" autocomplete="tel" required>
+          </div>
+          <div class="form-field full">
+            <label for="leadEmail">Email Address</label>
+            <input id="leadEmail" name="email" type="email" placeholder="jordan@example.com" autocomplete="email" required>
+          </div>
+          <div class="form-field full">
+            <label for="leadService">Primary Service</label>
+            <select id="leadService" name="service" autocomplete="off">
+              <option value="Residential Roof Replacement">Residential Roof Replacement</option>
+              <option value="Commercial Roofing">Commercial Roofing</option>
+              <option value="Storm Damage Repair">Storm Damage Repair</option>
+              <option value="Roof Inspections">Roof Inspections</option>
+              <option value="Gutter Installation">Gutter Installation</option>
+            </select>
+          </div>
+          <div class="form-field full">
+            <label for="leadNotes">Property Address or Notes</label>
+            <textarea id="leadNotes" name="notes" rows="2" placeholder="Minneapolis ZIP, hail date, or roof access notes" autocomplete="street-address"></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Request Written Inspection &amp; Quote</button>
+          <div class="form-status" id="formStatus" role="status">
+            Request logged for Kaufman Roofing. Call 612-722-0965 for same-day storm dispatch.
+          </div>
+        </form>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>Kaufman Roofing</strong> &mdash; Minneapolis, MN, USA. Licensed &amp; insured residential and commercial roofing contractor.
+    </div>
+    <div>
+      Services: Residential Roof Replacement, Commercial Roofing, Storm Damage Repair, Roof Inspections, Gutter Installation.
+    </div>
+    <div class="footer-links-row">
+      <a href="https://www.kaufmanroofing.com" target="_blank" rel="noopener noreferrer">https://www.kaufmanroofing.com</a>
+      <a href="mailto:info@kaufmanroofing.com">info@kaufmanroofing.com</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        area: 2200,
+        rate: 5.4,
+        scopeMult: 1.0,
+        iceDam: true,
+        gutters: false
+      };
+
+      const areaRange = document.getElementById('areaRange');
+      const areaDisplay = document.getElementById('areaDisplay');
+      const sumArea = document.getElementById('sumArea');
+      const sumBase = document.getElementById('sumBase');
+      const sumScope = document.getElementById('sumScope');
+      const sumIce = document.getElementById('sumIce');
+      const sumGutter = document.getElementById('sumGutter');
+      const totalEstimate = document.getElementById('totalEstimate');
+      const rangeEstimate = document.getElementById('rangeEstimate');
+
+      const fmt = (n) => '$' + Math.round(n).toLocaleString('en-US');
+
+      function update() {
+        const base = state.area * state.rate;
+        const scopeExtra = base * (state.scopeMult - 1);
+        const iceCost = state.iceDam ? 1250 : 0;
+        const gutterCost = state.gutters ? 1650 : 0;
+        const total = base + scopeExtra + iceCost + gutterCost;
+        const low = total * 0.92;
+        const high = total * 1.08;
+
+        areaDisplay.textContent = state.area.toLocaleString('en-US') + ' sq ft';
+        sumArea.textContent = state.area.toLocaleString('en-US');
+        sumBase.textContent = fmt(base);
+        sumScope.textContent = fmt(scopeExtra);
+        sumIce.textContent = fmt(iceCost);
+        sumGutter.textContent = fmt(gutterCost);
+        totalEstimate.textContent = fmt(total);
+        rangeEstimate.textContent = 'Typical Minneapolis range: ' + fmt(low) + ' – ' + fmt(high);
+      }
+
+      areaRange.addEventListener('input', function () {
+        state.area = Number(this.value);
+        update();
+      });
+
+      document.querySelectorAll('#materialGroup .opt-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('#materialGroup .opt-btn').forEach((b) => b.classList.remove('active'));
+          this.classList.add('active');
+          state.rate = Number(this.dataset.rate);
+          update();
+        });
+      });
+
+      document.querySelectorAll('#scopeGroup .opt-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('#scopeGroup .opt-btn').forEach((b) => b.classList.remove('active'));
+          this.classList.add('active');
+          state.scopeMult = Number(this.dataset.mult);
+          update();
+        });
+      });
+
+      function bindToggle(id, key) {
+        const el = document.getElementById(id);
+        const toggle = () => {
+          state[key] = !state[key];
+          el.classList.toggle('active', state[key]);
+          el.setAttribute('aria-pressed', String(state[key]));
+          update();
+        };
+        el.addEventListener('click', toggle);
+        el.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggle();
+          }
+        });
+      }
+
+      bindToggle('iceDamToggle', 'iceDam');
+      bindToggle('gutterToggle', 'gutters');
+
+      document.getElementById('estimateForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        document.getElementById('formStatus').classList.add('visible');
+      });
+
+      update();
+    })();
+  </script>
+</body>
+</html>
