@@ -1,0 +1,2739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Paul M. Sandvick, DDS &amp; Associates provides family dentistry in Milwaukee, WI. Estimate dental treatment costs in USD, review insurance tiers, and request an appointment online.">
+  <title>Paul M. Sandvick, DDS &amp; Associates | Family Dentistry Milwaukee, WI</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2313524A'/%3E%3Cpath d='M11.5 8.5C8.9 8.5 7 10.6 7 13.4c0 2.6.9 5.3 1.8 8 .5 1.6 1.1 2.6 2.1 2.6 1 0 1.5-1.3 2.1-3.2.5-1.6 1.3-2.5 3-2.5s2.5.9 3 2.5c.6 1.9 1.1 3.2 2.1 3.2 1 0 1.6-1 2.1-2.6.9-2.7 1.8-5.4 1.8-8 0-2.8-1.9-4.9-4.5-4.9-1.5 0-2.8.6-3.7 1.2-.5.3-1.1.3-1.6 0-.9-.6-2.2-1.2-3.7-1.2z' fill='%23FFFFFF'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #F8F9F8;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #F1F4F2;
+      --bg-accent-soft: #E9F2F0;
+      --bg-accent-hover: #DCEBE8;
+      --ink-primary: #17211F;
+      --ink-secondary: #485955;
+      --ink-muted: #657571;
+      --accent: #13524A;
+      --accent-strong: #0D3D37;
+      --accent-mid: #1D6E64;
+      --border: #DCE3E0;
+      --border-strong: #C2CEC9;
+      --status-good-bg: #EAF4F0;
+      --status-good-ink: #114D43;
+      --status-warn-bg: #FAF4E8;
+      --status-warn-ink: #6D4E16;
+      --shadow-card: 0 1px 2px rgba(19, 34, 31, 0.04), 0 8px 24px rgba(19, 34, 31, 0.04);
+      --shadow-sticky: 0 12px 32px rgba(19, 34, 31, 0.07);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --font-sans: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      line-height: 1.55;
+      font-size: 16px;
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0;
+      color: var(--ink-primary);
+      font-weight: 500;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent-strong);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .contact-nowrap {
+      white-space: nowrap;
+      word-break: normal;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(248, 249, 248, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 74px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--ink-primary);
+    }
+
+    .brand:hover {
+      text-decoration: none;
+      color: var(--ink-primary);
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 0.98rem;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+    }
+
+    .brand-sub {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      line-height: 1.25;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .header-nav a {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      text-decoration: none;
+      transition: color 0.18s ease;
+    }
+
+    .header-nav a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      line-height: 1.2;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn:hover {
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-strong);
+      border-color: var(--accent-strong);
+      color: #FFFFFF;
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-subtle);
+      border-color: var(--accent);
+      color: var(--accent-strong);
+    }
+
+    .btn-ghost {
+      background-color: transparent;
+      color: var(--ink-secondary);
+      border-color: transparent;
+      padding: 8px 12px;
+    }
+
+    .btn-ghost:hover {
+      background-color: var(--bg-subtle);
+      color: var(--ink-primary);
+    }
+
+    .btn-sm {
+      padding: 8px 14px;
+      font-size: 0.85rem;
+    }
+
+    /* Hero */
+    .hero {
+      padding-top: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--bg-canvas);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
+      gap: 40px;
+      align-items: start;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background-color: var(--bg-accent-soft);
+      color: var(--accent-strong);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      margin-bottom: 18px;
+    }
+
+    .kicker-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4.4vw, 3.65rem);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+      margin-bottom: 18px;
+    }
+
+    .hero-lead {
+      font-size: 1.06rem;
+      color: var(--ink-secondary);
+      max-width: 60ch;
+      margin-bottom: 26px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .hero-pillars {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .pillar-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--ink-primary);
+    }
+
+    .pillar-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background-color: var(--bg-accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .practice-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .practice-card-head {
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .practice-card-eyebrow {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .practice-card-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      line-height: 1.15;
+    }
+
+    .practice-facts {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .fact-row {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .fact-label {
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+    }
+
+    .fact-value {
+      font-size: 0.95rem;
+      color: var(--ink-primary);
+      font-weight: 500;
+    }
+
+    .fact-value a {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .practice-note {
+      padding: 12px 14px;
+      background-color: var(--bg-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
+      color: var(--ink-secondary);
+      line-height: 1.45;
+    }
+
+    /* Section chrome */
+    .section {
+      padding-top: 56px;
+      padding-bottom: 56px;
+    }
+
+    .section-alt {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .section-eyebrow {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.9rem, 3vw, 2.55rem);
+      line-height: 1.12;
+      letter-spacing: -0.015em;
+    }
+
+    .section-subtitle {
+      font-size: 0.98rem;
+      color: var(--ink-secondary);
+      max-width: 58ch;
+      margin-top: 8px;
+    }
+
+    /* Calculator Workbench */
+    .calc-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.32fr) minmax(0, 0.95fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .panel + .panel {
+      margin-top: 20px;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .step-badge-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      color: #FFFFFF;
+      font-size: 0.84rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-title {
+      font-size: 1.12rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .config-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .config-block-full {
+      grid-column: 1 / -1;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      margin-bottom: 8px;
+    }
+
+    .field-hint {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .segmented-group {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .choice-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: 3px;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .choice-btn:hover {
+      background-color: var(--bg-subtle);
+      border-color: var(--accent);
+    }
+
+    .choice-btn[aria-pressed="true"] {
+      background-color: var(--bg-accent-soft);
+      border-color: var(--accent);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+
+    .choice-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .choice-desc {
+      font-size: 0.78rem;
+      color: var(--ink-secondary);
+      line-height: 1.35;
+    }
+
+    .preset-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      padding-top: 16px;
+      margin-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .preset-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      margin-right: 4px;
+    }
+
+    .preset-btn {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-canvas);
+      color: var(--ink-secondary);
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .preset-btn:hover {
+      background-color: var(--bg-accent-soft);
+      border-color: var(--accent);
+      color: var(--accent-strong);
+    }
+
+    /* Filter tabs */
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .filter-tab {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-canvas);
+      color: var(--ink-secondary);
+      font-size: 0.84rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .filter-tab:hover {
+      border-color: var(--accent);
+      color: var(--ink-primary);
+    }
+
+    .filter-tab[aria-selected="true"] {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    /* Treatment catalog items */
+    .treatment-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .treatment-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background-color: var(--bg-surface);
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .treatment-card.is-selected {
+      border-color: var(--accent);
+      background-color: #F6FAF9;
+      box-shadow: inset 0 0 0 1px rgba(19, 82, 74, 0.2);
+    }
+
+    .treatment-info {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .treatment-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 0.73rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .tag-service {
+      background-color: var(--bg-subtle);
+      color: var(--ink-secondary);
+    }
+
+    .tag-benefit {
+      background-color: var(--bg-accent-soft);
+      color: var(--accent-strong);
+    }
+
+    .treatment-name {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      margin-bottom: 4px;
+    }
+
+    .treatment-desc {
+      font-size: 0.84rem;
+      color: var(--ink-secondary);
+      line-height: 1.4;
+    }
+
+    .treatment-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .treatment-price {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      text-align: right;
+    }
+
+    .treatment-unit {
+      font-size: 0.76rem;
+      font-weight: 400;
+      color: var(--ink-muted);
+    }
+
+    .stepper {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      background-color: var(--bg-surface);
+      padding: 2px;
+      gap: 4px;
+    }
+
+    .stepper-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: none;
+      background-color: var(--bg-subtle);
+      color: var(--ink-primary);
+      font-size: 1rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .stepper-btn:hover:not(:disabled) {
+      background-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .stepper-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .stepper-count {
+      min-width: 28px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    /* Sticky Right Column */
+    .sticky-column {
+      position: sticky;
+      top: 94px;
+    }
+
+    .summary-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sticky);
+    }
+
+    .summary-top {
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .summary-eyebrow {
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .summary-total {
+      font-family: var(--font-serif);
+      font-size: clamp(2.1rem, 3.2vw, 2.7rem);
+      line-height: 1.05;
+      color: var(--ink-primary);
+      margin-bottom: 6px;
+    }
+
+    .summary-caption {
+      font-size: 0.84rem;
+      color: var(--ink-secondary);
+    }
+
+    .summary-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .metric-box {
+      padding: 12px;
+      background-color: var(--bg-subtle);
+      border-radius: var(--radius-sm);
+    }
+
+    .metric-label {
+      font-size: 0.74rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      margin-bottom: 3px;
+    }
+
+    .metric-value {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .metric-value.is-savings {
+      color: var(--accent-strong);
+    }
+
+    .itemized-wrap {
+      margin-bottom: 18px;
+    }
+
+    .itemized-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .itemized-title {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .itemized-list {
+      display: grid;
+      gap: 8px;
+      max-height: 250px;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+
+    .itemized-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border);
+      font-size: 0.84rem;
+    }
+
+    .itemized-name {
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .itemized-sub {
+      font-size: 0.77rem;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .itemized-amount {
+      font-weight: 600;
+      color: var(--ink-primary);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .empty-state {
+      padding: 18px;
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius-md);
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--ink-secondary);
+      background-color: var(--bg-canvas);
+    }
+
+    .summary-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .summary-actions .btn {
+      flex: 1 1 auto;
+    }
+
+    .copy-feedback {
+      min-height: 20px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--status-good-ink);
+      margin-bottom: 10px;
+    }
+
+    .estimate-disclaimer {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      line-height: 1.45;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Form Controls */
+    .form-card {
+      margin-top: 20px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .form-title {
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+
+    .form-sub {
+      font-size: 0.88rem;
+      color: var(--ink-secondary);
+      margin-bottom: 18px;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      margin-bottom: 6px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      font-size: 0.92rem;
+      line-height: 1.4;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .form-control:hover {
+      border-color: var(--accent);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(19, 82, 74, 0.14);
+    }
+
+    .form-control.has-error {
+      border-color: #9A3B2B;
+    }
+
+    .field-error {
+      font-size: 0.78rem;
+      color: #8A2C1D;
+      margin-top: 4px;
+      min-height: 16px;
+    }
+
+    .request-preview {
+      padding: 12px 14px;
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .request-preview strong {
+      color: var(--ink-primary);
+    }
+
+    .form-submit-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .mailto-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.83rem;
+      color: var(--ink-secondary);
+      padding-top: 8px;
+    }
+
+    .confirmation-box {
+      display: none;
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--status-good-bg);
+      border: 1px solid #B8D8D0;
+      color: var(--status-good-ink);
+      font-size: 0.88rem;
+      line-height: 1.5;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .confirmation-box.is-visible {
+      display: block;
+    }
+
+    .confirmation-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .service-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background-color: var(--bg-accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .service-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      line-height: 1.18;
+      margin-bottom: 8px;
+    }
+
+    .service-desc {
+      font-size: 0.93rem;
+      color: var(--ink-secondary);
+      margin-bottom: 12px;
+    }
+
+    .service-bullets {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--ink-secondary);
+      font-size: 0.86rem;
+      display: grid;
+      gap: 4px;
+    }
+
+    /* Contact & FAQ */
+    .visit-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .visit-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .visit-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .visit-item {
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .visit-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+    }
+
+    .faq-item summary {
+      font-weight: 600;
+      font-size: 0.96rem;
+      color: var(--ink-primary);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-body {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background-color: var(--bg-surface);
+      padding-top: 32px;
+      padding-bottom: 36px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .footer-meta {
+      font-size: 0.86rem;
+      color: var(--ink-secondary);
+      display: grid;
+      gap: 4px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 0.88rem;
+    }
+
+    .footer-note {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1040px) {
+      .hero-grid,
+      .calc-layout,
+      .visit-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .sticky-column {
+        position: static;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .header-nav {
+        display: none;
+      }
+
+      .config-grid,
+      .services-grid,
+      .form-row-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .header-inner {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .hero {
+        padding-top: 30px;
+        padding-bottom: 34px;
+      }
+
+      .hero-pillars,
+      .segmented-group,
+      .summary-metrics {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .treatment-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .treatment-controls {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 8px;
+        border-top: 1px solid var(--border);
+      }
+
+      .treatment-price {
+        text-align: left;
+      }
+
+      .panel,
+      .summary-card,
+      .form-card,
+      .practice-card,
+      .visit-card,
+      .service-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.5 8.5C8.9 8.5 7 10.6 7 13.4c0 2.6.9 5.3 1.8 8 .5 1.6 1.1 2.6 2.1 2.6 1 0 1.5-1.3 2.1-3.2.5-1.6 1.3-2.5 3-2.5s2.5.9 3 2.5c.6 1.9 1.1 3.2 2.1 3.2 1 0 1.6-1 2.1-2.6.9-2.7 1.8-5.4 1.8-8 0-2.8-1.9-4.9-4.5-4.9-1.5 0-2.8.6-3.7 1.2-.5.3-1.1.3-1.6 0-.9-.6-2.2-1.2-3.7-1.2z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Paul M. Sandvick, DDS &amp; Associates</span>
+          <span class="brand-sub">Family Dentistry · Milwaukee, WI</span>
+        </span>
+      </a>
+
+      <nav class="header-nav" aria-label="Primary navigation">
+        <a href="#calculator">Cost Calculator</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Milwaukee Office</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:+1-414-962-4100" class="btn btn-secondary btn-sm contact-nowrap tabular">+1-414-962-4100</a>
+        <a href="#calculator" class="btn btn-primary btn-sm">Estimate Care</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="kicker">
+            <span class="kicker-dot" aria-hidden="true"></span>
+            <span>6070 N Port Washington Rd, Milwaukee, WI</span>
+          </div>
+          <h1 class="hero-title">Clear dental care planning for Milwaukee families.</h1>
+          <p class="hero-lead">
+            Explore transparent USD fee ranges for preventive, cosmetic, restorative, and emergency dental care at Paul M. Sandvick, DDS &amp; Associates. Build an itemized estimate, preview typical insurance coverage tiers, and submit an appointment request directly to our front desk.
+          </p>
+          <div class="hero-cta-row">
+            <a href="#calculator" class="btn btn-primary">Launch Cost Calculator</a>
+            <a href="#appointment-form-section" class="btn btn-secondary">Request an Appointment</a>
+          </div>
+          <div class="hero-pillars" aria-label="Core clinical services">
+            <div class="pillar-chip">
+              <span class="pillar-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </span>
+              <span>General &amp; Preventive Dentistry</span>
+            </div>
+            <div class="pillar-chip">
+              <span class="pillar-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              </span>
+              <span>Cosmetic Dentistry &amp; Whitening</span>
+            </div>
+            <div class="pillar-chip">
+              <span class="pillar-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="8" width="18" height="8" rx="2"/>
+                  <path d="M7 8V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/>
+                  <path d="M9 16v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4"/>
+                </svg>
+              </span>
+              <span>Dental Implants &amp; Crowns</span>
+            </div>
+            <div class="pillar-chip">
+              <span class="pillar-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </span>
+              <span>Emergency Dental Care</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="practice-card" aria-label="Practice contact summary">
+          <div class="practice-card-head">
+            <div class="practice-card-eyebrow">Milwaukee Patient Desk</div>
+            <h2 class="practice-card-title">Paul M. Sandvick, DDS &amp; Associates</h2>
+          </div>
+          <div class="practice-facts">
+            <div class="fact-row">
+              <span class="fact-label">Office Address</span>
+              <span class="fact-value">6070 N Port Washington Rd, Milwaukee, WI</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-label">Direct Phone</span>
+              <span class="fact-value">
+                <a href="tel:+1-414-962-4100" class="contact-nowrap tabular">+1-414-962-4100</a>
+              </span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-label">Patient Email</span>
+              <span class="fact-value">
+                <a href="mailto:info@sandvickdds.com" class="contact-nowrap">info@sandvickdds.com</a>
+              </span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-label">Practice Website</span>
+              <span class="fact-value">
+                <a href="https://www.sandvickdds.com" target="_blank" rel="noopener noreferrer">https://www.sandvickdds.com</a>
+              </span>
+            </div>
+          </div>
+          <div class="practice-note">
+            All online estimates display USD planning ranges for Greater Milwaukee patients. Our team verifies exact PPO benefits and prepares a written treatment plan prior to care.
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="calculator" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">Interactive Planning Tool</div>
+            <h2 class="section-title">Dental Treatment Cost Calculator &amp; Appointment Request</h2>
+            <p class="section-subtitle">
+              Choose your patient status, insurance coverage tier, and desired procedures with tooth or unit counts to see an itemized USD fee and out-of-pocket estimate.
+            </p>
+          </div>
+        </div>
+
+        <div class="calc-layout">
+          <div>
+            <!-- Step 1 -->
+            <div class="panel">
+              <div class="step-header">
+                <div class="step-badge-wrap">
+                  <span class="step-num" aria-hidden="true">1</span>
+                  <h3 class="step-title">Patient Status &amp; Coverage Tier</h3>
+                </div>
+              </div>
+
+              <div class="config-grid">
+                <div>
+                  <div class="field-label" id="patient-status-label">Patient Status</div>
+                  <div class="segmented-group" role="radiogroup" aria-labelledby="patient-status-label">
+                    <button type="button" class="choice-btn" data-status="new" aria-pressed="true">
+                      <span class="choice-title">New Patient</span>
+                      <span class="choice-desc">First visit exam &amp; baseline planning</span>
+                    </button>
+                    <button type="button" class="choice-btn" data-status="returning" aria-pressed="false">
+                      <span class="choice-title">Returning Patient</span>
+                      <span class="choice-desc">Established chart &amp; recall care</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="deductible-select" class="field-label">
+                    Remaining Annual Deductible
+                    <span class="field-hint">Applies to basic and major PPO procedures</span>
+                  </label>
+                  <select id="deductible-select" class="form-control" autocomplete="off">
+                    <option value="0">$0 Remaining (Deductible Met or Self-Pay)</option>
+                    <option value="50" selected>$50 Individual Annual Deductible</option>
+                    <option value="100">$100 Family / Higher Plan Deductible</option>
+                  </select>
+                </div>
+
+                <div class="config-block-full">
+                  <div class="field-label" id="insurance-tier-label">
+                    Insurance Coverage Tier
+                    <span class="field-hint">Select a coverage model to estimate insurer contribution vs. patient out-of-pocket</span>
+                  </div>
+                  <div class="segmented-group" role="radiogroup" aria-labelledby="insurance-tier-label">
+                    <button type="button" class="choice-btn" data-tier="self" aria-pressed="false">
+                      <span class="choice-title">No Insurance (Self-Pay)</span>
+                      <span class="choice-desc">Direct practice fee range · 0% carrier offset</span>
+                    </button>
+                    <button type="button" class="choice-btn" data-tier="ppo-standard" aria-pressed="true">
+                      <span class="choice-title">Standard PPO Dental Plan</span>
+                      <span class="choice-desc">Illustrative 100% Preventive · 80% Basic · 50% Major</span>
+                    </button>
+                    <button type="button" class="choice-btn" data-tier="ppo-enhanced" aria-pressed="false">
+                      <span class="choice-title">Enhanced PPO Dental Plan</span>
+                      <span class="choice-desc">Illustrative 100% Preventive · 85% Basic · 60% Major</span>
+                    </button>
+                    <button type="button" class="choice-btn" data-tier="preventive-plan" aria-pressed="false">
+                      <span class="choice-title">In-Office Preventive Discount</span>
+                      <span class="choice-desc">Illustrative 15% savings across non-insured care</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="preset-strip" aria-label="Quick treatment scenarios">
+                <span class="preset-label">Quick Scenarios:</span>
+                <button type="button" class="preset-btn" data-preset="new-checkup">New Patient Checkup</button>
+                <button type="button" class="preset-btn" data-preset="whitening">Whitening &amp; Bonding</button>
+                <button type="button" class="preset-btn" data-preset="crown-implant">Crown &amp; Exam</button>
+                <button type="button" class="preset-btn" data-preset="emergency">Urgent Toothache Visit</button>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="panel">
+              <div class="step-header">
+                <div class="step-badge-wrap">
+                  <span class="step-num" aria-hidden="true">2</span>
+                  <h3 class="step-title">Select Treatments &amp; Tooth / Unit Count</h3>
+                </div>
+                <button type="button" id="reset-treatments-btn" class="btn btn-ghost btn-sm">Clear All</button>
+              </div>
+
+              <div class="filter-tabs" role="tablist" aria-label="Filter dental services">
+                <button type="button" class="filter-tab" role="tab" data-category="all" aria-selected="true">All Procedures</button>
+                <button type="button" class="filter-tab" role="tab" data-category="preventive" aria-selected="false">General &amp; Preventive</button>
+                <button type="button" class="filter-tab" role="tab" data-category="cosmetic" aria-selected="false">Cosmetic &amp; Whitening</button>
+                <button type="button" class="filter-tab" role="tab" data-category="implants" aria-selected="false">Implants &amp; Crowns</button>
+                <button type="button" class="filter-tab" role="tab" data-category="emergency" aria-selected="false">Emergency Care</button>
+              </div>
+
+              <div id="treatment-catalog" class="treatment-list" aria-live="polite"></div>
+            </div>
+          </div>
+
+          <!-- Right Sticky Summary + Form -->
+          <div class="sticky-column">
+            <aside class="summary-card" aria-label="Live USD treatment cost estimate">
+              <div class="summary-top">
+                <div class="summary-eyebrow">Estimated Out-of-Pocket Range (USD)</div>
+                <div id="summary-oop-total" class="summary-total tabular">$0</div>
+                <div id="summary-profile-line" class="summary-caption">New Patient · Standard PPO Dental Plan</div>
+              </div>
+
+              <div class="summary-metrics">
+                <div class="metric-box">
+                  <div class="metric-label">Gross Fee Range</div>
+                  <div id="summary-gross" class="metric-value tabular">$0</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-label">Est. Plan Benefit</div>
+                  <div id="summary-coverage" class="metric-value is-savings tabular">-$0</div>
+                </div>
+              </div>
+
+              <div class="itemized-wrap">
+                <div class="itemized-head">
+                  <span class="itemized-title">Itemized Breakdown</span>
+                  <span id="summary-count" class="field-hint tabular">0 items selected</span>
+                </div>
+                <div id="itemized-container" class="itemized-list"></div>
+              </div>
+
+              <div class="summary-actions">
+                <button type="button" id="copy-estimate-btn" class="btn btn-secondary btn-sm">Copy Estimate</button>
+                <a id="quick-mailto-btn" href="mailto:info@sandvickdds.com" class="btn btn-primary btn-sm contact-nowrap">Email Estimate</a>
+              </div>
+              <div id="copy-feedback" class="copy-feedback" role="status" aria-live="polite"></div>
+
+              <p class="estimate-disclaimer">
+                Estimates reflect typical Milwaukee fee ranges and illustrative benefit tiers. Final pricing depends on clinical examination, radiographs, and verified plan benefits at Paul M. Sandvick, DDS &amp; Associates.
+              </p>
+            </aside>
+
+            <section id="appointment-form-section" class="form-card" aria-labelledby="appointment-form-heading">
+              <h3 id="appointment-form-heading" class="form-title">Patient Appointment Request</h3>
+              <p class="form-sub">
+                Attach your itemized estimate and preferred time window to message our Milwaukee scheduling team.
+              </p>
+
+              <form id="appointment-form" class="form-grid" novalidate>
+                <div class="form-group">
+                  <label for="patient-name">Full Name</label>
+                  <input type="text" id="patient-name" name="name" class="form-control" autocomplete="name" placeholder="Jordan Miller" required>
+                  <div id="error-name" class="field-error" aria-live="polite"></div>
+                </div>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label for="patient-phone">Phone Number</label>
+                    <input type="tel" id="patient-phone" name="tel" class="form-control tabular" autocomplete="tel" placeholder="+1-414-555-0148" required>
+                    <div id="error-phone" class="field-error" aria-live="polite"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="patient-email">Email Address</label>
+                    <input type="email" id="patient-email" name="email" class="form-control" autocomplete="email" placeholder="jordan@example.com" required>
+                    <div id="error-email" class="field-error" aria-live="polite"></div>
+                  </div>
+                </div>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label for="preferred-time">Preferred Time Window</label>
+                    <select id="preferred-time" name="preferred_time" class="form-control" autocomplete="off">
+                      <option value="Morning (8:00 AM - 11:30 AM)">Morning (8:00 AM - 11:30 AM)</option>
+                      <option value="Midday (11:30 AM - 2:00 PM)">Midday (11:30 AM - 2:00 PM)</option>
+                      <option value="Afternoon (2:00 PM - 5:00 PM)">Afternoon (2:00 PM - 5:00 PM)</option>
+                      <option value="First Available Urgent Slot">First Available Urgent Slot</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="insurance-carrier">Insurance Carrier (Optional)</label>
+                    <input type="text" id="insurance-carrier" name="insurance_carrier" class="form-control" autocomplete="off" placeholder="Delta Dental PPO or Self-Pay">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="patient-notes">Clinical Notes or Questions (Optional)</label>
+                  <textarea id="patient-notes" name="notes" class="form-control" rows="3" placeholder="Share preferred days, specific tooth concerns, or comfort preferences."></textarea>
+                </div>
+
+                <div id="form-summary-preview" class="request-preview"></div>
+
+                <div class="form-submit-row">
+                  <button type="submit" class="btn btn-primary">Prepare Appointment Request</button>
+                  <div class="mailto-row">
+                    <span>Direct desk email:</span>
+                    <a id="form-direct-mailto" href="mailto:info@sandvickdds.com" class="contact-nowrap">info@sandvickdds.com</a>
+                  </div>
+                </div>
+              </form>
+
+              <div id="form-confirmation" class="confirmation-box" role="status" aria-live="polite">
+                <div><strong>Appointment request summary is ready.</strong></div>
+                <div id="confirmation-details"></div>
+                <div class="confirmation-actions">
+                  <a id="confirmation-mailto-link" href="mailto:info@sandvickdds.com" class="btn btn-primary btn-sm contact-nowrap">Open Email to info@sandvickdds.com</a>
+                  <button type="button" id="copy-full-request-btn" class="btn btn-secondary btn-sm">Copy Full Request</button>
+                </div>
+                <div id="copy-full-feedback" class="copy-feedback" role="status" aria-live="polite"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">Clinical Care Scope</div>
+            <h2 class="section-title">Comprehensive Dentistry Under One Roof</h2>
+            <p class="section-subtitle">
+              Every service category in our Milwaukee practice pairs calm clinical communication with upfront cost transparency.
+            </p>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="m9 12 2 2 4-4"/>
+                </svg>
+              </div>
+              <h3 class="service-title">General &amp; Preventive Dentistry</h3>
+              <p class="service-desc">
+                Routine dental cleanings, comprehensive exams, low-dose digital imaging, periodontal maintenance, and conservative tooth-colored restorations for patients of all ages.
+              </p>
+              <ul class="service-bullets">
+                <li>Comprehensive new-patient evaluations and digital X-rays</li>
+                <li>Preventive cleanings and gum health therapy</li>
+                <li>Mercury-free composite fillings</li>
+              </ul>
+            </div>
+            <div>
+              <button type="button" class="btn btn-secondary btn-sm jump-category-btn" data-jump-category="preventive">Estimate Preventive Care</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              </div>
+              <h3 class="service-title">Cosmetic Dentistry &amp; Whitening</h3>
+              <p class="service-desc">
+                Natural-looking aesthetic improvements tailored to facial harmony, enamel shade, and long-term bite stability without over-preparation.
+              </p>
+              <ul class="service-bullets">
+                <li>In-office whitening and custom take-home trays</li>
+                <li>Conservative edge bonding for chips and gaps</li>
+                <li>Custom-shaded porcelain veneers</li>
+              </ul>
+            </div>
+            <div>
+              <button type="button" class="btn btn-secondary btn-sm jump-category-btn" data-jump-category="cosmetic">Estimate Cosmetic Care</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="8" width="18" height="8" rx="2"/>
+                  <path d="M7 8V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/>
+                  <path d="M9 16v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4"/>
+                </svg>
+              </div>
+              <h3 class="service-title">Dental Implants &amp; Crowns</h3>
+              <p class="service-desc">
+                Durable restorative solutions engineered to restore chewing strength, replace missing teeth, and protect structurally compromised enamel.
+              </p>
+              <ul class="service-bullets">
+                <li>Full-coverage porcelain and zirconia crowns</li>
+                <li>Single dental implants with custom abutments and crowns</li>
+                <li>Endodontic root canal care and fixed bridges</li>
+              </ul>
+            </div>
+            <div>
+              <button type="button" class="btn btn-secondary btn-sm jump-category-btn" data-jump-category="implants">Estimate Implants &amp; Crowns</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <h3 class="service-title">Emergency Dental Care</h3>
+              <p class="service-desc">
+                Prompt evaluation and targeted stabilization for sudden toothaches, fractured teeth, lost crowns, or swelling in the Greater Milwaukee area.
+              </p>
+              <ul class="service-bullets">
+                <li>Focused diagnostic exam and urgent digital imaging</li>
+                <li>Temporary re-cementation and comfort smoothing</li>
+                <li>Gentle extractions when a tooth cannot be saved</li>
+              </ul>
+            </div>
+            <div>
+              <button type="button" class="btn btn-secondary btn-sm jump-category-btn" data-jump-category="emergency">Estimate Emergency Care</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">Milwaukee Practice Information</div>
+            <h2 class="section-title">Visit Us on Port Washington Road</h2>
+            <p class="section-subtitle">
+              Serving Milwaukee and North Shore families with practical scheduling, clear pretreatment estimates, and responsive support.
+            </p>
+          </div>
+        </div>
+
+        <div class="visit-grid">
+          <div class="visit-card">
+            <h3 class="practice-card-title">Paul M. Sandvick, DDS &amp; Associates</h3>
+            <div class="visit-list">
+              <div class="visit-item">
+                <div class="fact-label">Address</div>
+                <div class="fact-value">6070 N Port Washington Rd, Milwaukee, WI</div>
+              </div>
+              <div class="visit-item">
+                <div class="fact-label">Telephone</div>
+                <div class="fact-value">
+                  <a href="tel:+1-414-962-4100" class="contact-nowrap tabular">+1-414-962-4100</a>
+                </div>
+              </div>
+              <div class="visit-item">
+                <div class="fact-label">Email</div>
+                <div class="fact-value">
+                  <a href="mailto:info@sandvickdds.com" class="contact-nowrap">info@sandvickdds.com</a>
+                </div>
+              </div>
+              <div class="visit-item">
+                <div class="fact-label">Official Website</div>
+                <div class="fact-value">
+                  <a href="https://www.sandvickdds.com" target="_blank" rel="noopener noreferrer">https://www.sandvickdds.com</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-list" aria-label="Frequently asked billing and scheduling questions">
+            <details class="faq-item" open>
+              <summary>How accurate is the Dental Treatment Cost Calculator?</summary>
+              <div class="faq-body">
+                The calculator uses typical Greater Milwaukee fee ranges for preventive, cosmetic, restorative, and emergency care. Because dental plans vary in annual maximums, waiting periods, and specific procedure codes, your final written estimate is confirmed after an in-office exam and direct carrier verification.
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>Do you help verify dental insurance coverage before treatment?</summary>
+              <div class="faq-body">
+                Yes. Share your insurance carrier name in the Appointment Request Form or by calling <a href="tel:+1-414-962-4100" class="contact-nowrap tabular">+1-414-962-4100</a>. Our front desk reviews remaining annual benefits and deductibles so you understand expected out-of-pocket costs beforehand.
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>What is included in a typical new patient visit?</summary>
+              <div class="faq-body">
+                New patient appointments typically combine a comprehensive oral exam, digital diagnostic X-rays, gum health screening, and a preventive cleaning when appropriate, followed by a clear conversation about any recommended priorities.
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>How do I request urgent care for a sudden toothache or broken tooth?</summary>
+              <div class="faq-body">
+                Select Emergency Care in the calculator or choose the Urgent Toothache preset, pick the First Available Urgent Slot in the request form, or call <a href="tel:+1-414-962-4100" class="contact-nowrap tabular">+1-414-962-4100</a> directly for priority scheduling assistance.
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-meta">
+          <strong>Paul M. Sandvick, DDS &amp; Associates</strong>
+          <span>6070 N Port Washington Rd, Milwaukee, WI</span>
+        </div>
+        <div class="footer-links">
+          <a href="tel:+1-414-962-4100" class="contact-nowrap tabular">+1-414-962-4100</a>
+          <a href="mailto:info@sandvickdds.com" class="contact-nowrap">info@sandvickdds.com</a>
+          <a href="https://www.sandvickdds.com" target="_blank" rel="noopener noreferrer">https://www.sandvickdds.com</a>
+        </div>
+      </div>
+      <div class="footer-note">
+        Online calculator estimates are provided in USD for treatment planning convenience and do not constitute a clinical diagnosis or binding insurance guarantee.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var TREATMENTS = [
+        {
+          id: 'new-exam-xray',
+          name: 'Comprehensive New Patient Exam & Digital X-Rays',
+          category: 'preventive',
+          categoryLabel: 'General & Preventive',
+          benefitClass: 'preventive',
+          benefitTag: 'Preventive',
+          unitSingular: 'visit',
+          unitPlural: 'visits',
+          minFee: 195,
+          maxFee: 285,
+          maxQty: 1,
+          desc: 'Complete oral health evaluation, periodontal charting, and low-radiation diagnostic imaging.'
+        },
+        {
+          id: 'routine-cleaning',
+          name: 'Routine Prophylaxis Cleaning & Periodic Exam',
+          category: 'preventive',
+          categoryLabel: 'General & Preventive',
+          benefitClass: 'preventive',
+          benefitTag: 'Preventive',
+          unitSingular: 'visit',
+          unitPlural: 'visits',
+          minFee: 135,
+          maxFee: 185,
+          maxQty: 2,
+          desc: 'Gentle plaque and tartar removal, polishing, and dentist checkup for healthy gums.'
+        },
+        {
+          id: 'deep-cleaning',
+          name: 'Periodontal Scaling & Root Planing',
+          category: 'preventive',
+          categoryLabel: 'General & Preventive',
+          benefitClass: 'basic',
+          benefitTag: 'Basic',
+          unitSingular: 'quadrant',
+          unitPlural: 'quadrants',
+          minFee: 260,
+          maxFee: 340,
+          maxQty: 4,
+          desc: 'Targeted deep gum cleaning below the gumline priced per quadrant of the mouth.'
+        },
+        {
+          id: 'composite-filling',
+          name: 'Tooth-Colored Composite Filling',
+          category: 'preventive',
+          categoryLabel: 'General & Preventive',
+          benefitClass: 'basic',
+          benefitTag: 'Basic',
+          unitSingular: 'tooth',
+          unitPlural: 'teeth',
+          minFee: 210,
+          maxFee: 360,
+          maxQty: 8,
+          desc: 'Shade-matched resin restoration for cavities or worn biting surfaces.'
+        },
+        {
+          id: 'office-whitening',
+          name: 'In-Office Professional Teeth Whitening',
+          category: 'cosmetic',
+          categoryLabel: 'Cosmetic & Whitening',
+          benefitClass: 'cosmetic',
+          benefitTag: 'Cosmetic',
+          unitSingular: 'session',
+          unitPlural: 'sessions',
+          minFee: 450,
+          maxFee: 650,
+          maxQty: 1,
+          desc: 'Single-visit clinical brightening with gum isolation and desensitizing care.'
+        },
+        {
+          id: 'take-home-whitening',
+          name: 'Custom Take-Home Whitening Trays',
+          category: 'cosmetic',
+          categoryLabel: 'Cosmetic & Whitening',
+          benefitClass: 'cosmetic',
+          benefitTag: 'Cosmetic',
+          unitSingular: 'set',
+          unitPlural: 'sets',
+          minFee: 240,
+          maxFee: 340,
+          maxQty: 2,
+          desc: 'Precision-fitted upper and lower whitening trays with clinical-grade gel.'
+        },
+        {
+          id: 'cosmetic-bonding',
+          name: 'Cosmetic Dental Bonding',
+          category: 'cosmetic',
+          categoryLabel: 'Cosmetic & Whitening',
+          benefitClass: 'cosmetic',
+          benefitTag: 'Cosmetic',
+          unitSingular: 'tooth',
+          unitPlural: 'teeth',
+          minFee: 320,
+          maxFee: 520,
+          maxQty: 8,
+          desc: 'Conservative composite sculpting to repair chipped edges or close small gaps.'
+        },
+        {
+          id: 'porcelain-veneer',
+          name: 'Porcelain Veneer Restoration',
+          category: 'cosmetic',
+          categoryLabel: 'Cosmetic & Whitening',
+          benefitClass: 'cosmetic',
+          benefitTag: 'Cosmetic',
+          unitSingular: 'tooth',
+          unitPlural: 'teeth',
+          minFee: 1150,
+          maxFee: 1650,
+          maxQty: 10,
+          desc: 'Custom laboratory-crafted ceramic facing designed for lasting color and contour.'
+        },
+        {
+          id: 'dental-crown',
+          name: 'Porcelain / Zirconia Dental Crown',
+          category: 'implants',
+          categoryLabel: 'Implants & Crowns',
+          benefitClass: 'major',
+          benefitTag: 'Major',
+          unitSingular: 'tooth',
+          unitPlural: 'teeth',
+          minFee: 1250,
+          maxFee: 1680,
+          maxQty: 6,
+          desc: 'Full-coverage custom crown protecting cracked, heavily filled, or root-treated teeth.'
+        },
+        {
+          id: 'single-implant',
+          name: 'Single Dental Implant (Fixture, Abutment & Crown)',
+          category: 'implants',
+          categoryLabel: 'Implants & Crowns',
+          benefitClass: 'major',
+          benefitTag: 'Major',
+          unitSingular: 'implant',
+          unitPlural: 'implants',
+          minFee: 3600,
+          maxFee: 4950,
+          maxQty: 4,
+          desc: 'Complete single-tooth replacement phase range from implant placement through final crown.'
+        },
+        {
+          id: 'root-canal',
+          name: 'Root Canal Therapy (Endodontic Care)',
+          category: 'implants',
+          categoryLabel: 'Implants & Crowns',
+          benefitClass: 'basic',
+          benefitTag: 'Basic / Major',
+          unitSingular: 'tooth',
+          unitPlural: 'teeth',
+          minFee: 890,
+          maxFee: 1390,
+          maxQty: 4,
+          desc: 'Comfortable nerve therapy to relieve infection and preserve your natural tooth.'
+        },
+        {
+          id: 'dental-bridge',
+          name: 'Fixed Dental Bridge (Per Unit)',
+          category: 'implants',
+          categoryLabel: 'Implants & Crowns',
+          benefitClass: 'major',
+          benefitTag: 'Major',
+          unitSingular: 'unit',
+          unitPlural: 'units',
+          minFee: 1150,
+          maxFee: 1550,
+          maxQty: 6,
+          desc: 'Multi-unit ceramic bridge spanning one or more missing teeth.'
+        },
+        {
+          id: 'emergency-exam',
+          name: 'Same-Day Emergency Evaluation & Focused X-Ray',
+          category: 'emergency',
+          categoryLabel: 'Emergency Care',
+          benefitClass: 'basic',
+          benefitTag: 'Basic / Urgent',
+          unitSingular: 'visit',
+          unitPlural: 'visits',
+          minFee: 110,
+          maxFee: 165,
+          maxQty: 1,
+          desc: 'Problem-focused diagnostic exam and digital image for acute pain or breakage.'
+        },
+        {
+          id: 'simple-extraction',
+          name: 'Simple Tooth Extraction',
+          category: 'emergency',
+          categoryLabel: 'Emergency Care',
+          benefitClass: 'basic',
+          benefitTag: 'Basic',
+          unitSingular: 'tooth',
+          unitPlural: 'teeth',
+          minFee: 220,
+          maxFee: 360,
+          maxQty: 4,
+          desc: 'Gentle non-surgical tooth removal with local comfort numbing.'
+        },
+        {
+          id: 'crown-recement',
+          name: 'Crown Re-Cementation or Temporary Stabilization',
+          category: 'emergency',
+          categoryLabel: 'Emergency Care',
+          benefitClass: 'basic',
+          benefitTag: 'Basic',
+          unitSingular: 'tooth',
+          unitPlural: 'teeth',
+          minFee: 140,
+          maxFee: 220,
+          maxQty: 4,
+          desc: 'Cleaning and re-seating of a loose crown or smoothing of a sharp enamel edge.'
+        }
+      ];
+
+      var TIERS = {
+        'self': {
+          label: 'No Insurance (Self-Pay)',
+          rates: { preventive: 0, basic: 0, major: 0, cosmetic: 0 },
+          applyDeductible: false
+        },
+        'ppo-standard': {
+          label: 'Standard PPO Dental Plan',
+          rates: { preventive: 1.0, basic: 0.8, major: 0.5, cosmetic: 0 },
+          applyDeductible: true
+        },
+        'ppo-enhanced': {
+          label: 'Enhanced PPO Dental Plan',
+          rates: { preventive: 1.0, basic: 0.85, major: 0.6, cosmetic: 0 },
+          applyDeductible: true
+        },
+        'preventive-plan': {
+          label: 'In-Office Preventive Discount',
+          rates: { preventive: 0.15, basic: 0.15, major: 0.15, cosmetic: 0.15 },
+          applyDeductible: false
+        }
+      };
+
+      var PRESETS = {
+        'new-checkup': {
+          status: 'new',
+          quantities: { 'new-exam-xray': 1, 'routine-cleaning': 1 }
+        },
+        'whitening': {
+          status: 'returning',
+          quantities: { 'office-whitening': 1, 'cosmetic-bonding': 2 }
+        },
+        'crown-implant': {
+          status: 'returning',
+          quantities: { 'routine-cleaning': 1, 'dental-crown': 1 }
+        },
+        'emergency': {
+          status: 'new',
+          quantities: { 'emergency-exam': 1, 'crown-recement': 1 }
+        }
+      };
+
+      var state = {
+        patientStatus: 'new',
+        insuranceTier: 'ppo-standard',
+        deductible: 50,
+        activeCategory: 'all',
+        quantities: {
+          'new-exam-xray': 1,
+          'routine-cleaning': 1
+        }
+      };
+
+      var dom = {
+        statusButtons: document.querySelectorAll('[data-status]'),
+        tierButtons: document.querySelectorAll('[data-tier]'),
+        deductibleSelect: document.getElementById('deductible-select'),
+        presetButtons: document.querySelectorAll('[data-preset]'),
+        filterTabs: document.querySelectorAll('[data-category]'),
+        jumpButtons: document.querySelectorAll('[data-jump-category]'),
+        catalog: document.getElementById('treatment-catalog'),
+        resetBtn: document.getElementById('reset-treatments-btn'),
+        summaryOop: document.getElementById('summary-oop-total'),
+        summaryProfile: document.getElementById('summary-profile-line'),
+        summaryGross: document.getElementById('summary-gross'),
+        summaryCoverage: document.getElementById('summary-coverage'),
+        summaryCount: document.getElementById('summary-count'),
+        itemizedContainer: document.getElementById('itemized-container'),
+        copyEstimateBtn: document.getElementById('copy-estimate-btn'),
+        copyFeedback: document.getElementById('copy-feedback'),
+        quickMailtoBtn: document.getElementById('quick-mailto-btn'),
+        form: document.getElementById('appointment-form'),
+        inputName: document.getElementById('patient-name'),
+        inputPhone: document.getElementById('patient-phone'),
+        inputEmail: document.getElementById('patient-email'),
+        inputTime: document.getElementById('preferred-time'),
+        inputCarrier: document.getElementById('insurance-carrier'),
+        inputNotes: document.getElementById('patient-notes'),
+        errorName: document.getElementById('error-name'),
+        errorPhone: document.getElementById('error-phone'),
+        errorEmail: document.getElementById('error-email'),
+        formPreview: document.getElementById('form-summary-preview'),
+        formDirectMailto: document.getElementById('form-direct-mailto'),
+        confirmationBox: document.getElementById('form-confirmation'),
+        confirmationDetails: document.getElementById('confirmation-details'),
+        confirmationMailto: document.getElementById('confirmation-mailto-link'),
+        copyFullRequestBtn: document.getElementById('copy-full-request-btn'),
+        copyFullFeedback: document.getElementById('copy-full-feedback')
+      };
+
+      function formatCurrency(amount) {
+        return '$' + Math.round(amount).toLocaleString('en-US');
+      }
+
+      function formatRange(minVal, maxVal) {
+        if (Math.round(minVal) === Math.round(maxVal)) {
+          return formatCurrency(minVal);
+        }
+        return formatCurrency(minVal) + ' – ' + formatCurrency(maxVal);
+      }
+
+      function getCoverageHint(item) {
+        var tier = TIERS[state.insuranceTier];
+        var pct = Math.round((tier.rates[item.benefitClass] || 0) * 100);
+        if (state.insuranceTier === 'self') {
+          return 'Self-Pay Fee';
+        }
+        if (state.insuranceTier === 'preventive-plan') {
+          return 'Est. 15% Plan Savings';
+        }
+        if (pct === 0) {
+          return 'Elective (0% PPO)';
+        }
+        return 'Illustrative ' + pct + '% PPO';
+      }
+
+      function computeEstimate() {
+        var tier = TIERS[state.insuranceTier];
+        var selected = [];
+        var grossMin = 0;
+        var grossMax = 0;
+        var preventiveBenefitMin = 0;
+        var preventiveBenefitMax = 0;
+        var nonPrevBenefitMin = 0;
+        var nonPrevBenefitMax = 0;
+        var hasDeductibleApplicable = false;
+        var totalUnits = 0;
+
+        TREATMENTS.forEach(function (item) {
+          var qty = state.quantities[item.id] || 0;
+          if (qty <= 0) return;
+
+          var lineMin = item.minFee * qty;
+          var lineMax = item.maxFee * qty;
+          var rate = tier.rates[item.benefitClass] || 0;
+          var lineBenefitMin = lineMin * rate;
+          var lineBenefitMax = lineMax * rate;
+
+          if (item.benefitClass === 'basic' || item.benefitClass === 'major') {
+            nonPrevBenefitMin += lineBenefitMin;
+            nonPrevBenefitMax += lineBenefitMax;
+            if (tier.applyDeductible) {
+              hasDeductibleApplicable = true;
+            }
+          } else {
+            preventiveBenefitMin += lineBenefitMin;
+            preventiveBenefitMax += lineBenefitMax;
+          }
+
+          grossMin += lineMin;
+          grossMax += lineMax;
+          totalUnits += qty;
+
+          selected.push({
+            item: item,
+            qty: qty,
+            lineMin: lineMin,
+            lineMax: lineMax,
+            oopMin: Math.max(0, lineMin - lineBenefitMin),
+            oopMax: Math.max(0, lineMax - lineBenefitMax),
+            ratePct: Math.round(rate * 100)
+          });
+        });
+
+        var deductibleImpactMin = (tier.applyDeductible && hasDeductibleApplicable)
+          ? Math.min(state.deductible, nonPrevBenefitMin)
+          : 0;
+        var deductibleImpactMax = (tier.applyDeductible && hasDeductibleApplicable)
+          ? Math.min(state.deductible, nonPrevBenefitMax)
+          : 0;
+
+        var effectiveBenefitMin = preventiveBenefitMin + Math.max(0, nonPrevBenefitMin - deductibleImpactMin);
+        var effectiveBenefitMax = preventiveBenefitMax + Math.max(0, nonPrevBenefitMax - deductibleImpactMax);
+
+        var oopMin = Math.max(0, grossMin - effectiveBenefitMin);
+        var oopMax = Math.max(0, grossMax - effectiveBenefitMax);
+
+        return {
+          selected: selected,
+          totalUnits: totalUnits,
+          grossMin: grossMin,
+          grossMax: grossMax,
+          benefitMin: effectiveBenefitMin,
+          benefitMax: effectiveBenefitMax,
+          deductibleImpactMin: deductibleImpactMin,
+          deductibleImpactMax: deductibleImpactMax,
+          oopMin: oopMin,
+          oopMax: oopMax,
+          tierLabel: tier.label,
+          statusLabel: state.patientStatus === 'new' ? 'New Patient' : 'Returning Patient'
+        };
+      }
+
+      function buildEstimatePlainText(includeForm) {
+        var est = computeEstimate();
+        var lines = [
+          'Paul M. Sandvick, DDS & Associates — Dental Care Estimate (USD)',
+          '6070 N Port Washington Rd, Milwaukee, WI | +1-414-962-4100 | info@sandvickdds.com',
+          '',
+          'Patient Status: ' + est.statusLabel,
+          'Coverage Tier: ' + est.tierLabel
+        ];
+
+        if (est.deductibleImpactMax > 0) {
+          lines.push('Deductible Adjustment Applied: ' + formatRange(est.deductibleImpactMin, est.deductibleImpactMax));
+        }
+
+        lines.push('');
+        lines.push('Selected Procedures:');
+
+        if (est.selected.length === 0) {
+          lines.push('- General consultation / custom request (no specific procedure selected)');
+        } else {
+          est.selected.forEach(function (entry) {
+            var unitWord = entry.qty === 1 ? entry.item.unitSingular : entry.item.unitPlural;
+            lines.push(
+              '- ' + entry.item.name + ' (' + entry.qty + ' ' + unitWord + '): Gross ' +
+              formatRange(entry.lineMin, entry.lineMax) +
+              ' | Est. Patient Share ' + formatRange(entry.oopMin, entry.oopMax)
+            );
+          });
+        }
+
+        lines.push('');
+        lines.push('Gross Clinic Fee Range: ' + formatRange(est.grossMin, est.grossMax));
+        lines.push('Estimated Plan Benefit / Discount: ' + formatRange(est.benefitMin, est.benefitMax));
+        lines.push('Estimated Out-of-Pocket Range: ' + formatRange(est.oopMin, est.oopMax));
+
+        if (includeForm) {
+          var nameVal = dom.inputName.value.trim() || 'Not provided';
+          var phoneVal = dom.inputPhone.value.trim() || 'Not provided';
+          var emailVal = dom.inputEmail.value.trim() || 'Not provided';
+          var timeVal = dom.inputTime.value;
+          var carrierVal = dom.inputCarrier.value.trim() || 'Not specified';
+          var notesVal = dom.inputNotes.value.trim() || 'None';
+
+          lines.push('');
+          lines.push('Appointment Request Details:');
+          lines.push('Full Name: ' + nameVal);
+          lines.push('Phone: ' + phoneVal);
+          lines.push('Email: ' + emailVal);
+          lines.push('Preferred Window: ' + timeVal);
+          lines.push('Insurance Carrier: ' + carrierVal);
+          lines.push('Clinical Notes: ' + notesVal);
+        }
+
+        return lines.join('\n');
+      }
+
+      function buildMailtoHref(includeForm) {
+        var est = computeEstimate();
+        var subject = includeForm
+          ? 'Appointment Request (' + est.statusLabel + ') - Paul M. Sandvick, DDS & Associates'
+          : 'Dental Care Cost Estimate (' + formatRange(est.oopMin, est.oopMax) + ')';
+        var body = buildEstimatePlainText(includeForm);
+        return 'mailto:info@sandvickdds.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      }
+
+      function renderCatalog() {
+        var filtered = TREATMENTS.filter(function (item) {
+          return state.activeCategory === 'all' || item.category === state.activeCategory;
+        });
+
+        dom.catalog.innerHTML = '';
+
+        filtered.forEach(function (item) {
+          var qty = state.quantities[item.id] || 0;
+          var card = document.createElement('div');
+          card.className = 'treatment-card' + (qty > 0 ? ' is-selected' : '');
+
+          var info = document.createElement('div');
+          info.className = 'treatment-info';
+
+          var meta = document.createElement('div');
+          meta.className = 'treatment-meta';
+
+          var catTag = document.createElement('span');
+          catTag.className = 'tag tag-service';
+          catTag.textContent = item.categoryLabel;
+
+          var benTag = document.createElement('span');
+          benTag.className = 'tag tag-benefit';
+          benTag.textContent = getCoverageHint(item);
+
+          meta.appendChild(catTag);
+          meta.appendChild(benTag);
+
+          var title = document.createElement('div');
+          title.className = 'treatment-name';
+          title.textContent = item.name;
+
+          var desc = document.createElement('div');
+          desc.className = 'treatment-desc';
+          desc.textContent = item.desc;
+
+          info.appendChild(meta);
+          info.appendChild(title);
+          info.appendChild(desc);
+
+          var controls = document.createElement('div');
+          controls.className = 'treatment-controls';
+
+          var priceWrap = document.createElement('div');
+          priceWrap.className = 'treatment-price tabular';
+          priceWrap.textContent = formatRange(item.minFee, item.maxFee) + ' ';
+
+          var unitSpan = document.createElement('span');
+          unitSpan.className = 'treatment-unit';
+          unitSpan.textContent = '/ ' + item.unitSingular;
+          priceWrap.appendChild(unitSpan);
+
+          var stepper = document.createElement('div');
+          stepper.className = 'stepper';
+
+          var minusBtn = document.createElement('button');
+          minusBtn.type = 'button';
+          minusBtn.className = 'stepper-btn';
+          minusBtn.textContent = '−';
+          minusBtn.disabled = qty <= 0;
+          minusBtn.setAttribute('aria-label', 'Decrease quantity for ' + item.name);
+          minusBtn.addEventListener('click', function () {
+            updateQuantity(item.id, -1);
+          });
+
+          var countEl = document.createElement('span');
+          countEl.className = 'stepper-count tabular';
+          countEl.textContent = String(qty);
+          countEl.setAttribute('aria-label', qty + ' selected for ' + item.name);
+
+          var plusBtn = document.createElement('button');
+          plusBtn.type = 'button';
+          plusBtn.className = 'stepper-btn';
+          plusBtn.textContent = '+';
+          plusBtn.disabled = qty >= item.maxQty;
+          plusBtn.setAttribute('aria-label', 'Increase quantity for ' + item.name);
+          plusBtn.addEventListener('click', function () {
+            updateQuantity(item.id, 1);
+          });
+
+          stepper.appendChild(minusBtn);
+          stepper.appendChild(countEl);
+          stepper.appendChild(plusBtn);
+
+          controls.appendChild(priceWrap);
+          controls.appendChild(stepper);
+
+          card.appendChild(info);
+          card.appendChild(controls);
+          dom.catalog.appendChild(card);
+        });
+      }
+
+      function renderSummary() {
+        var est = computeEstimate();
+
+        dom.summaryOop.textContent = formatRange(est.oopMin, est.oopMax);
+        dom.summaryProfile.textContent = est.statusLabel + ' · ' + est.tierLabel;
+        dom.summaryGross.textContent = formatRange(est.grossMin, est.grossMax);
+        dom.summaryCoverage.textContent = '-' + formatRange(est.benefitMin, est.benefitMax);
+
+        var countLabel = est.selected.length + (est.selected.length === 1 ? ' procedure' : ' procedures');
+        if (est.totalUnits > 0) {
+          countLabel += ' (' + est.totalUnits + (est.totalUnits === 1 ? ' unit)' : ' units)');
+        }
+        dom.summaryCount.textContent = countLabel;
+
+        dom.itemizedContainer.innerHTML = '';
+
+        if (est.selected.length === 0) {
+          var empty = document.createElement('div');
+          empty.className = 'empty-state';
+          empty.textContent = 'Select one or more procedures on the left to calculate an itemized USD fee and out-of-pocket range.';
+          dom.itemizedContainer.appendChild(empty);
+        } else {
+          est.selected.forEach(function (entry) {
+            var row = document.createElement('div');
+            row.className = 'itemized-row';
+
+            var left = document.createElement('div');
+            var nameEl = document.createElement('div');
+            nameEl.className = 'itemized-name';
+            nameEl.textContent = entry.item.name;
+
+            var subEl = document.createElement('div');
+            subEl.className = 'itemized-sub tabular';
+            var unitWord = entry.qty === 1 ? entry.item.unitSingular : entry.item.unitPlural;
+            subEl.textContent = entry.qty + ' ' + unitWord + ' · Gross ' + formatRange(entry.lineMin, entry.lineMax);
+
+            left.appendChild(nameEl);
+            left.appendChild(subEl);
+
+            var right = document.createElement('div');
+            right.className = 'itemized-amount tabular';
+            right.textContent = formatRange(entry.oopMin, entry.oopMax);
+
+            row.appendChild(left);
+            row.appendChild(right);
+            dom.itemizedContainer.appendChild(row);
+          });
+
+          if (est.deductibleImpactMax > 0) {
+            var dedRow = document.createElement('div');
+            dedRow.className = 'itemized-row';
+
+            var dedLeft = document.createElement('div');
+            var dedName = document.createElement('div');
+            dedName.className = 'itemized-name';
+            dedName.textContent = 'Annual Deductible Adjustment';
+            var dedSub = document.createElement('div');
+            dedSub.className = 'itemized-sub';
+            dedSub.textContent = 'Applied toward Basic & Major PPO coverage';
+            dedLeft.appendChild(dedName);
+            dedLeft.appendChild(dedSub);
+
+            var dedRight = document.createElement('div');
+            dedRight.className = 'itemized-amount tabular';
+            dedRight.textContent = '+' + formatRange(est.deductibleImpactMin, est.deductibleImpactMax);
+
+            dedRow.appendChild(dedLeft);
+            dedRow.appendChild(dedRight);
+            dom.itemizedContainer.appendChild(dedRow);
+          }
+        }
+
+        dom.quickMailtoBtn.href = buildMailtoHref(false);
+        dom.formDirectMailto.href = buildMailtoHref(true);
+
+        var procedureSummary = est.selected.length > 0
+          ? est.selected.map(function (s) { return s.qty + 'x ' + s.item.name; }).join(', ')
+          : 'General consultation';
+
+        dom.formPreview.innerHTML = '';
+        var pLine1 = document.createElement('div');
+        var strongLabel = document.createElement('strong');
+        strongLabel.textContent = 'Attached Estimate: ';
+        pLine1.appendChild(strongLabel);
+        pLine1.appendChild(document.createTextNode(
+          est.statusLabel + ' · ' + est.tierLabel + ' · Out-of-Pocket ' + formatRange(est.oopMin, est.oopMax)
+        ));
+
+        var pLine2 = document.createElement('div');
+        pLine2.textContent = 'Selected Care: ' + procedureSummary;
+        dom.formPreview.appendChild(pLine1);
+        dom.formPreview.appendChild(pLine2);
+      }
+
+      function syncControlsUI() {
+        dom.statusButtons.forEach(function (btn) {
+          btn.setAttribute('aria-pressed', btn.getAttribute('data-status') === state.patientStatus ? 'true' : 'false');
+        });
+        dom.tierButtons.forEach(function (btn) {
+          btn.setAttribute('aria-pressed', btn.getAttribute('data-tier') === state.insuranceTier ? 'true' : 'false');
+        });
+        dom.filterTabs.forEach(function (tab) {
+          tab.setAttribute('aria-selected', tab.getAttribute('data-category') === state.activeCategory ? 'true' : 'false');
+        });
+        var tier = TIERS[state.insuranceTier];
+        dom.deductibleSelect.disabled = !tier.applyDeductible;
+      }
+
+      function updateAll() {
+        syncControlsUI();
+        renderCatalog();
+        renderSummary();
+      }
+
+      function updateQuantity(id, delta) {
+        var item = TREATMENTS.find(function (t) { return t.id === id; });
+        if (!item) return;
+        var current = state.quantities[id] || 0;
+        var next = Math.max(0, Math.min(item.maxQty, current + delta));
+        if (next === 0) {
+          delete state.quantities[id];
+        } else {
+          state.quantities[id] = next;
+        }
+        dom.copyFeedback.textContent = '';
+        updateAll();
+      }
+
+      function copyTextWithFeedback(text, targetEl, msg) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            targetEl.textContent = msg;
+          }).catch(function () {
+            fallbackCopy(text, targetEl, msg);
+          });
+        } else {
+          fallbackCopy(text, targetEl, msg);
+        }
+      }
+
+      function fallbackCopy(text, targetEl, msg) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          targetEl.textContent = msg;
+        } catch (err) {
+          targetEl.textContent = 'Clipboard access unavailable in this browser.';
+        }
+        document.body.removeChild(ta);
+      }
+
+      // Event Listeners
+      dom.statusButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.patientStatus = btn.getAttribute('data-status');
+          updateAll();
+        });
+      });
+
+      dom.tierButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.insuranceTier = btn.getAttribute('data-tier');
+          updateAll();
+        });
+      });
+
+      dom.deductibleSelect.addEventListener('change', function () {
+        state.deductible = parseInt(dom.deductibleSelect.value, 10) || 0;
+        updateAll();
+      });
+
+      dom.filterTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          state.activeCategory = tab.getAttribute('data-category');
+          updateAll();
+        });
+      });
+
+      dom.presetButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var key = btn.getAttribute('data-preset');
+          var preset = PRESETS[key];
+          if (!preset) return;
+          state.patientStatus = preset.status;
+          state.activeCategory = 'all';
+          state.quantities = Object.assign({}, preset.quantities);
+          dom.copyFeedback.textContent = '';
+          updateAll();
+        });
+      });
+
+      dom.jumpButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.activeCategory = btn.getAttribute('data-jump-category') || 'all';
+          updateAll();
+          var calcEl = document.getElementById('calculator');
+          if (calcEl) {
+            calcEl.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      dom.resetBtn.addEventListener('click', function () {
+        state.quantities = {};
+        dom.copyFeedback.textContent = '';
+        updateAll();
+      });
+
+      dom.copyEstimateBtn.addEventListener('click', function () {
+        var text = buildEstimatePlainText(false);
+        copyTextWithFeedback(text, dom.copyFeedback, 'Itemized estimate copied to clipboard.');
+      });
+
+      [dom.inputName, dom.inputPhone, dom.inputEmail, dom.inputTime, dom.inputCarrier, dom.inputNotes].forEach(function (el) {
+        el.addEventListener('input', function () {
+          dom.formDirectMailto.href = buildMailtoHref(true);
+        });
+        el.addEventListener('change', function () {
+          dom.formDirectMailto.href = buildMailtoHref(true);
+        });
+      });
+
+      function clearErrors() {
+        dom.errorName.textContent = '';
+        dom.errorPhone.textContent = '';
+        dom.errorEmail.textContent = '';
+        dom.inputName.classList.remove('has-error');
+        dom.inputPhone.classList.remove('has-error');
+        dom.inputEmail.classList.remove('has-error');
+      }
+
+      dom.form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        clearErrors();
+
+        var nameVal = dom.inputName.value.trim();
+        var phoneVal = dom.inputPhone.value.trim();
+        var emailVal = dom.inputEmail.value.trim();
+        var valid = true;
+
+        if (nameVal.length < 2) {
+          dom.errorName.textContent = 'Please enter your full name.';
+          dom.inputName.classList.add('has-error');
+          valid = false;
+        }
+
+        if (phoneVal.replace(/\D/g, '').length < 7) {
+          dom.errorPhone.textContent = 'Please enter a valid contact phone number.';
+          dom.inputPhone.classList.add('has-error');
+          valid = false;
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+          dom.errorEmail.textContent = 'Please enter a valid email address.';
+          dom.inputEmail.classList.add('has-error');
+          valid = false;
+        }
+
+        if (!valid) {
+          return;
+        }
+
+        var est = computeEstimate();
+        dom.confirmationDetails.textContent =
+          'Prepared for ' + nameVal + ' (' + est.statusLabel + ', ' + est.tierLabel + ') with estimated out-of-pocket range ' +
+          formatRange(est.oopMin, est.oopMax) + '. Use the email button below to send directly to info@sandvickdds.com.';
+        dom.confirmationMailto.href = buildMailtoHref(true);
+        dom.confirmationBox.classList.add('is-visible');
+      });
+
+      dom.copyFullRequestBtn.addEventListener('click', function () {
+        var text = buildEstimatePlainText(true);
+        copyTextWithFeedback(text, dom.copyFullFeedback, 'Full appointment request copied to clipboard.');
+      });
+
+      updateAll();
+    })();
+  </script>
+</body>
+</html>

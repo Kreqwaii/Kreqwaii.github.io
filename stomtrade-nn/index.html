@@ -1,0 +1,2865 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Стоматология Стомтрейд — Калькулятор стоимости лечения зубов и запись на приём, Нижний Новгород</title>
+  <meta name="description" content="Стоматология Стомтрейд (Нижний Новгород, ул. Ванеева, 205). Интерактивный калькулятор стоимости лечения кариеса, имплантации, профгигиены и хирургии в рублях с детализацией и формой записи.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B6E65'/%3E%3Cpath d='M22 19c-4 0-7 3.2-7 7.5 0 4.8 2.1 8.8 3.5 14.3.9 3.6 2 8.2 4.6 8.2 2.2 0 3.2-3.5 4.7-7.2 1.2-3 2.3-4.6 4.2-4.6s3 1.6 4.2 4.6c1.5 3.7 2.5 7.2 4.7 7.2 2.6 0 3.7-4.6 4.6-8.2 1.4-5.5 3.5-9.5 3.5-14.3 0-4.3-3-7.5-7-7.5-3.2 0-5.8 1.8-10 1.8S25.2 19 22 19Z' fill='none' stroke='%23FFFFFF' stroke-width='3.2' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #F7F9FA;
+      --bg-card: #FFFFFF;
+      --bg-subtle: #EFF4F4;
+      --bg-accent-soft: #E6F3F1;
+      --bg-sand: #F5F2EA;
+      --border-light: #D7E2E4;
+      --border-medium: #BCCCD0;
+      --border-accent: #9ECBC6;
+      --text-main: #142326;
+      --text-secondary: #3E5559;
+      --text-muted: #4B6165;
+      --accent: #0B6E65;
+      --accent-hover: #085750;
+      --accent-deep: #06453F;
+      --sand-text: #594B2B;
+      --sand-border: #DDD4BE;
+      --danger-bg: #FDF2F2;
+      --danger-border: #E5B4B4;
+      --danger-text: #8B2626;
+      --success-bg: #E8F5F1;
+      --success-border: #A3D1C7;
+      --success-text: #074C44;
+      --shadow-xs: 0 1px 2px rgba(20, 35, 38, 0.04);
+      --shadow-sm: 0 4px 14px rgba(20, 35, 38, 0.05);
+      --shadow-md: 0 10px 28px rgba(20, 35, 38, 0.07);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-serif: 'PT Serif', Georgia, serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      max-width: 100%;
+      overflow-x: clip;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--text-main);
+      background-color: var(--bg-page);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      max-width: 100%;
+      overflow-x: clip;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0;
+      font-family: var(--font-serif);
+      color: var(--text-main);
+      font-weight: 700;
+      line-height: 1.22;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+    }
+
+    a[href^="mailto:"],
+    a[href^="tel:"] {
+      white-space: nowrap;
+      word-break: normal;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -60px;
+      z-index: 200;
+      padding: 10px 16px;
+      background-color: var(--accent);
+      color: #FFFFFF;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      transition: top 0.15s ease;
+    }
+
+    .skip-link:focus {
+      top: 12px;
+      color: #FFFFFF;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Utility bar */
+    .utility-bar {
+      background-color: var(--bg-subtle);
+      border-bottom: 1px solid var(--border-light);
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+
+    .utility-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px 20px;
+      padding: 9px 0;
+      flex-wrap: wrap;
+    }
+
+    .utility-address {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .utility-address svg,
+    .utility-contacts svg {
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+
+    .utility-contacts {
+      display: flex;
+      align-items: center;
+      gap: 8px 18px;
+      flex-wrap: wrap;
+    }
+
+    .utility-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .utility-link:hover {
+      color: var(--accent);
+    }
+
+    /* Site Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      color: var(--text-main);
+    }
+
+    .brand:hover {
+      color: var(--text-main);
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 19px;
+      line-height: 1.15;
+      color: var(--text-main);
+      overflow-wrap: break-word;
+    }
+
+    .brand-sub {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-link {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 6px 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 14.5px;
+      font-weight: 700;
+      line-height: 1.25;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-align: center;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+      color: #FFFFFF;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-outline {
+      background-color: var(--bg-card);
+      border-color: var(--border-medium);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background-color: var(--bg-accent-soft);
+    }
+
+    .btn-soft {
+      background-color: var(--bg-accent-soft);
+      border-color: var(--border-accent);
+      color: var(--accent-deep);
+    }
+
+    .btn-soft:hover {
+      background-color: #D7ECE9;
+      border-color: var(--accent);
+      color: var(--accent-deep);
+    }
+
+    .btn-sm {
+      padding: 8px 14px;
+      font-size: 13.5px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 44px 0 40px;
+      border-bottom: 1px solid var(--border-light);
+      background-color: var(--bg-card);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+      gap: 32px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background-color: var(--bg-accent-soft);
+      border: 1px solid var(--border-accent);
+      color: var(--accent-deep);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 3.6vw, 42px);
+      letter-spacing: -0.015em;
+      margin-bottom: 16px;
+    }
+
+    .hero-lead {
+      font-size: 16.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      max-width: 62ch;
+      margin-bottom: 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .hero-metrics {
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric-card {
+      background-color: var(--bg-page);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .metric-card dt {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .metric-card dd {
+      margin: 0;
+      font-size: 15.5px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .hero-dossier {
+      background-color: var(--bg-page);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .dossier-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .dossier-tag {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent-deep);
+      background-color: var(--bg-accent-soft);
+      border: 1px solid var(--border-accent);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .dossier-site {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .hero-dossier h2 {
+      font-size: 21px;
+      margin-bottom: 16px;
+    }
+
+    .dossier-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .dossier-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+    }
+
+    .dossier-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background-color: var(--bg-accent-soft);
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .dossier-list strong {
+      display: block;
+      font-size: 14.5px;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+
+    .dossier-list span {
+      display: block;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* Section scaffold */
+    .section {
+      padding: 48px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .section-kicker {
+      font-size: 12.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: clamp(24px, 2.8vw, 32px);
+    }
+
+    .section-desc {
+      max-width: 56ch;
+      color: var(--text-secondary);
+      font-size: 15px;
+      margin-top: 8px;
+    }
+
+    /* Services grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: var(--shadow-xs);
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--border-accent);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .service-icon-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: var(--bg-accent-soft);
+      border: 1px solid var(--border-accent);
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .service-card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .service-footer {
+      padding-top: 12px;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .service-range {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--accent-deep);
+    }
+
+    /* Calculator Workspace */
+    .calc-section {
+      background-color: var(--bg-subtle);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .calc-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .calc-panel,
+    .summary-panel,
+    .booking-panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-sm);
+      min-width: 0;
+    }
+
+    .calc-step {
+      padding-bottom: 22px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .calc-step:last-of-type {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .step-header .field-label {
+      margin-bottom: 0;
+    }
+
+    .step-badge {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-deep);
+      background-color: var(--bg-accent-soft);
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-accent);
+    }
+
+    .direction-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .dir-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .dir-btn:hover {
+      border-color: var(--accent);
+      background-color: var(--bg-card);
+    }
+
+    .dir-btn[aria-pressed="true"] {
+      background-color: var(--bg-accent-soft);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .dir-btn-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.3;
+    }
+
+    .dir-btn[aria-pressed="true"] .dir-btn-title {
+      color: var(--accent-deep);
+    }
+
+    .dir-btn-meta {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Select & inputs */
+    .control-select,
+    .control-input,
+    .control-textarea {
+      width: 100%;
+      padding: 11px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-medium);
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      font-size: 15px;
+      line-height: 1.4;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .control-select:focus,
+    .control-input:focus,
+    .control-textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(11, 110, 101, 0.14);
+    }
+
+    .procedure-cards {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .proc-item-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light);
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .proc-item-btn:hover {
+      border-color: var(--border-accent);
+      background-color: var(--bg-card);
+    }
+
+    .proc-item-btn[aria-pressed="true"] {
+      background-color: var(--bg-accent-soft);
+      border-color: var(--accent);
+    }
+
+    .proc-item-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      min-width: 0;
+    }
+
+    .proc-item-price {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--accent-deep);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Quantity stepper & presets */
+    .qty-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .stepper {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-card);
+      overflow: hidden;
+    }
+
+    .stepper-btn {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .stepper-btn:hover:not(:disabled) {
+      background-color: var(--bg-accent-soft);
+      color: var(--accent-deep);
+    }
+
+    .stepper-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .stepper-input {
+      width: 64px;
+      height: 42px;
+      border: 0;
+      border-left: 1px solid var(--border-light);
+      border-right: 1px solid var(--border-light);
+      text-align: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text-main);
+      background-color: var(--bg-card);
+      -moz-appearance: textfield;
+    }
+
+    .stepper-input::-webkit-inner-spin-button,
+    .stepper-input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .qty-presets {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .preset-btn {
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light);
+      background-color: var(--bg-page);
+      color: var(--text-secondary);
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .preset-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent-deep);
+    }
+
+    .preset-btn[aria-pressed="true"] {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .unit-caption {
+      margin-top: 8px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+
+    /* Extra options checkboxes */
+    .extras-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .extra-option {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+      background-color: var(--bg-page);
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .extra-option:hover {
+      border-color: var(--border-accent);
+      background-color: var(--bg-card);
+    }
+
+    .extra-option.is-checked {
+      background-color: var(--bg-accent-soft);
+      border-color: var(--accent);
+    }
+
+    .extra-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .extra-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      margin: 2px 0 0;
+      border-radius: 5px;
+      border: 1.5px solid var(--border-medium);
+      background-color: var(--bg-card);
+      flex-shrink: 0;
+      cursor: pointer;
+      position: relative;
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .extra-checkbox:checked {
+      background-color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .extra-checkbox:checked::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 2px;
+      width: 5px;
+      height: 10px;
+      border: solid #FFFFFF;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .extra-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .extra-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .extra-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .extra-price {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--accent-deep);
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .calc-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .reset-link-btn {
+      background: transparent;
+      border: 1px solid var(--border-medium);
+      color: var(--text-secondary);
+      padding: 8px 13px;
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.16s ease, color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .reset-link-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent-deep);
+      background-color: var(--bg-page);
+    }
+
+    /* Sticky Summary Panel */
+    .summary-panel {
+      position: sticky;
+      top: 86px;
+    }
+
+    .summary-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .summary-title {
+      font-size: 20px;
+    }
+
+    .currency-pill {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: var(--bg-sand);
+      border: 1px solid var(--sand-border);
+      color: var(--sand-text);
+    }
+
+    .total-box {
+      background-color: var(--bg-accent-soft);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .total-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-deep);
+      margin-bottom: 6px;
+    }
+
+    .total-range {
+      font-family: var(--font-sans);
+      font-size: clamp(26px, 3vw, 33px);
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .total-sub {
+      margin-top: 8px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    .breakdown-heading {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .breakdown-list {
+      list-style: none;
+      margin: 0 0 16px;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .breakdown-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .breakdown-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .breakdown-name {
+      color: var(--text-main);
+      font-weight: 600;
+      min-width: 0;
+    }
+
+    .breakdown-meta {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .breakdown-cost {
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .summary-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .status-toast {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      font-weight: 600;
+      display: none;
+    }
+
+    .status-toast.is-visible {
+      display: block;
+    }
+
+    .status-toast.is-success {
+      background-color: var(--success-bg);
+      border: 1px solid var(--success-border);
+      color: var(--success-text);
+    }
+
+    .status-toast.is-error {
+      background-color: var(--danger-bg);
+      border: 1px solid var(--danger-border);
+      color: var(--danger-text);
+    }
+
+    .summary-note {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-light);
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Booking Form Panel */
+    .booking-panel {
+      margin-top: 24px;
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .form-fields-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .form-field-full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .attached-plan-box {
+      background-color: var(--bg-page);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .attached-plan-title {
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+
+    .attached-plan-preview {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      white-space: pre-line;
+      line-height: 1.55;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .direct-channels {
+      display: grid;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .channel-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 10px 12px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+    }
+
+    .channel-label {
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .channel-value {
+      font-weight: 700;
+      color: var(--accent-deep);
+    }
+
+    .booking-result {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--success-bg);
+      border: 1px solid var(--success-border);
+      color: var(--success-text);
+      display: none;
+    }
+
+    .booking-result.is-visible {
+      display: block;
+    }
+
+    .booking-result-title {
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .booking-result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    /* Process & FAQ */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .process-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .process-num {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--accent-deep);
+      background-color: var(--bg-accent-soft);
+      border: 1px solid var(--border-accent);
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .process-card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .process-card p {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .faq-item {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+    }
+
+    .faq-item summary {
+      font-weight: 700;
+      font-size: 15.5px;
+      color: var(--text-main);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-plus {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: transform 0.18s ease;
+    }
+
+    .faq-item[open] .faq-plus {
+      transform: rotate(45deg);
+    }
+
+    .faq-item p {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-light);
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg-card);
+      border-top: 1px solid var(--border-light);
+      padding: 40px 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);
+      gap: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .footer-title {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    .footer-desc {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      max-width: 44ch;
+    }
+
+    .footer-heading {
+      font-size: 13.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .footer-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+      font-size: 14.5px;
+      color: var(--text-secondary);
+    }
+
+    .footer-bottom {
+      padding-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px 20px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Responsive breakpoints */
+    @media (max-width: 1024px) {
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-grid,
+      .calc-layout,
+      .booking-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .main-nav {
+        display: none;
+      }
+
+      .process-grid,
+      .faq-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .utility-inner {
+        padding: 8px 0;
+        gap: 6px 12px;
+      }
+
+      .header-inner {
+        padding: 11px 0;
+        gap: 10px;
+      }
+
+      .brand {
+        gap: 10px;
+      }
+
+      .brand-name {
+        font-size: 16px;
+      }
+
+      .brand-sub {
+        font-size: 11.5px;
+      }
+
+      .header-phone-btn {
+        display: none;
+      }
+
+      .hero {
+        padding: 28px 0 30px;
+      }
+
+      .hero-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid,
+      .direction-grid,
+      .form-fields-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 36px 0;
+      }
+
+      .calc-panel,
+      .summary-panel,
+      .booking-panel,
+      .hero-dossier {
+        padding: 18px;
+      }
+
+      .proc-item-btn,
+      .extra-option {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .form-actions .btn,
+      .hero-actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#calculator">Перейти к калькулятору стоимости</a>
+
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="utility-address">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 21s-6-5.4-6-10a6 6 0 1 1 12 0c0 4.6-6 10-6 10Z"/>
+          <circle cx="12" cy="11" r="2.2"/>
+        </svg>
+        <span>ул. Ванеева, 205, Нижний Новгород</span>
+      </div>
+      <div class="utility-contacts">
+        <a class="utility-link" href="mailto:stomtrade@mail.ru">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="m3 7 9 6 9-6"/>
+          </svg>
+          <span>stomtrade@mail.ru</span>
+        </a>
+        <a class="utility-link tabular-nums" href="tel:+79200107249">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.4 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7A2 2 0 0 1 22 16.9Z"/>
+          </svg>
+          <span>+7-920-010-72-49</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="Стоматология Стомтрейд — главная страница">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="10" fill="#0B6E65"/>
+            <path d="M13.5 12.5c-2.6 0-4.5 2.1-4.5 5 0 3.2 1.4 5.8 2.3 9.3.6 2.3 1.3 5.2 3 5.2 1.4 0 2.1-2.3 3.1-4.8.8-1.9 1.5-3 2.6-3s1.8 1.1 2.6 3c1 2.5 1.7 4.8 3.1 4.8 1.7 0 2.4-2.9 3-5.2.9-3.5 2.3-6.1 2.3-9.3 0-2.9-1.9-5-4.5-5-2.1 0-3.8 1.2-6.5 1.2s-4.4-1.2-6.5-1.2Z" stroke="#FFFFFF" stroke-width="2.1" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Стоматология Стомтрейд</span>
+          <span class="brand-sub">Частная стоматология · Нижний Новгород</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Навигация по разделам">
+        <a href="#services" class="nav-link">Направления</a>
+        <a href="#calculator" class="nav-link">Калькулятор</a>
+        <a href="#appointment" class="nav-link">Запись на приём</a>
+        <a href="#process" class="nav-link">Вопросы</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:+79200107249" class="btn btn-outline btn-sm header-phone-btn tabular-nums">+7-920-010-72-49</a>
+        <a href="#calculator" class="btn btn-primary btn-sm">Калькулятор</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>ул. Ванеева, 205 · Нижний Новгород</span>
+          </div>
+          <h1>Прозрачный расчёт стоимости лечения зубов и удобная запись в Стомтрейд</h1>
+          <p class="hero-lead">
+            Частная клиника «Стоматология Стомтрейд» помогает спланировать лечение до визита к врачу. Выберите нужное направление, укажите количество зубов или единиц, добавьте диагностику КТ, анестезию или профгигиену — калькулятор сразу покажет ориентировочный диапазон в рублях с подробной расшифровкой.
+          </p>
+          <div class="hero-actions">
+            <a href="#calculator" class="btn btn-primary">
+              <span>Рассчитать стоимость лечения</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14"/>
+                <path d="m13 6 6 6-6 6"/>
+              </svg>
+            </a>
+            <a href="tel:+79200107249" class="btn btn-outline tabular-nums">Позвонить: +7-920-010-72-49</a>
+          </div>
+
+          <dl class="hero-metrics" aria-label="Ключевые ориентиры клиники">
+            <div class="metric-card">
+              <dt>Направления лечения</dt>
+              <dd class="tabular-nums">4 клинических профиля</dd>
+            </div>
+            <div class="metric-card">
+              <dt>Расчёт сметы</dt>
+              <dd class="tabular-nums">Онлайн в RUB</dd>
+            </div>
+            <div class="metric-card">
+              <dt>Адрес приёма</dt>
+              <dd>ул. Ванеева, 205</dd>
+            </div>
+          </dl>
+        </div>
+
+        <aside class="hero-dossier" aria-label="Информация о клинике и записи">
+          <div class="dossier-top">
+            <span class="dossier-tag">Клинический ориентир</span>
+            <a href="https://stomtrade.com" target="_blank" rel="noopener noreferrer" class="dossier-site">stomtrade.com</a>
+          </div>
+          <h2>Что удобно сделать на этой странице</h2>
+          <ul class="dossier-list">
+            <li>
+              <span class="dossier-icon" aria-hidden="true">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="3" width="16" height="18" rx="2"/>
+                  <path d="M8 7h8"/>
+                  <path d="M8 11h2"/>
+                  <path d="M14 11h2"/>
+                  <path d="M8 15h2"/>
+                  <path d="M14 15h2"/>
+                </svg>
+              </span>
+              <div>
+                <strong>Собрать смету по этапам</strong>
+                <span>Отдельно рассчитывается основная процедура, диагностика и сопутствующие опции.</span>
+              </div>
+            </li>
+            <li>
+              <span class="dossier-icon" aria-hidden="true">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 12l2 2 4-4"/>
+                  <circle cx="12" cy="12" r="9"/>
+                </svg>
+              </span>
+              <div>
+                <strong>Скопировать или отправить расчёт</strong>
+                <span>Сформированный план можно перенести в буфер обмена или отправить на stomtrade@mail.ru.</span>
+              </div>
+            </li>
+            <li>
+              <span class="dossier-icon" aria-hidden="true">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/>
+                  <path d="M16 2v4"/>
+                  <path d="M8 2v4"/>
+                  <path d="M3 10h18"/>
+                </svg>
+              </span>
+              <div>
+                <strong>Записаться без лишних звонков</strong>
+                <span>Оставьте контактные данные и выберите удобное время визита с прикреплённым расчётом.</span>
+              </div>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Клинические профили</div>
+            <h2 class="section-title">Услуги клиники «Стоматология Стомтрейд»</h2>
+            <p class="section-desc">Выберите направление лечения, чтобы сразу перейти к подбору процедуры и точному расчёту в калькуляторе.</p>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-icon-wrap" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22c4-4 6-7.5 6-12a6 6 0 1 0-12 0c0 4.5 2 8 6 12Z"/>
+                  <path d="M9 10h6"/>
+                  <path d="M12 7v6"/>
+                </svg>
+              </div>
+              <h3>Лечение кариеса и пульпита</h3>
+              <p>Восстановление твёрдых тканей зуба композитными материалами, лечение глубокого кариеса и пломбирование корневых каналов при пульпите.</p>
+            </div>
+            <div class="service-footer">
+              <div class="service-range tabular-nums">от 4 500 ₽ за зуб</div>
+              <button type="button" class="btn btn-soft btn-sm js-jump-dir" data-dir="therapy">Рассчитать терапию</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon-wrap" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 5h10"/>
+                  <path d="M9 5v4a3 3 0 0 0 6 0V5"/>
+                  <path d="M10 12h4"/>
+                  <path d="M10 16h4"/>
+                  <path d="M11 20h2"/>
+                </svg>
+              </div>
+              <h3>Имплантация и протезирование зубов</h3>
+              <p>Установка дентальных имплантатов, коронки из металлокерамики и диоксида циркония, керамические виниры и восстановление жевательной функции.</p>
+            </div>
+            <div class="service-footer">
+              <div class="service-range tabular-nums">от 14 500 ₽ за единицу</div>
+              <button type="button" class="btn btn-soft btn-sm js-jump-dir" data-dir="implant">Рассчитать протезирование</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon-wrap" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3v3"/>
+                  <path d="M12 18v3"/>
+                  <path d="M4.9 4.9 7 7"/>
+                  <path d="M17 17l2.1 2.1"/>
+                  <path d="M3 12h3"/>
+                  <path d="M18 12h3"/>
+                  <circle cx="12" cy="12" r="4"/>
+                </svg>
+              </div>
+              <h3>Профессиональная гигиена и отбеливание</h3>
+              <p>Удаление наддесневого и поддесневого камня ультразвуком, чистка Air Flow, полировка эмали, реминерализация и клиническое отбеливание.</p>
+            </div>
+            <div class="service-footer">
+              <div class="service-range tabular-nums">от 1 900 ₽ за этап</div>
+              <button type="button" class="btn btn-soft btn-sm js-jump-dir" data-dir="hygiene">Рассчитать гигиену</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon-wrap" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.5 4.5 19.5 9.5"/>
+                  <path d="M5 19l9.5-9.5"/>
+                  <path d="M12 7l5 5"/>
+                  <path d="M4 20h6"/>
+                </svg>
+              </div>
+              <h3>Удаление зубов и хирургия</h3>
+              <p>Бережное простое и сложное удаление зубов, работа с ретинированными зубами мудрости, кюретаж и подготовка костной ткани к имплантации.</p>
+            </div>
+            <div class="service-footer">
+              <div class="service-range tabular-nums">от 2 800 ₽ за процедуру</div>
+              <button type="button" class="btn btn-soft btn-sm js-jump-dir" data-dir="surgery">Рассчитать хирургию</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section calc-section" id="calculator">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Онлайн-смета в рублях</div>
+            <h2 class="section-title">Калькулятор стоимости лечения зубов</h2>
+            <p class="section-desc">Настройте направление, конкретную процедуру, объём работы и диагностические опции. Детализация и диапазон стоимости обновляются мгновенно.</p>
+          </div>
+        </div>
+
+        <div class="calc-layout">
+          <div class="calc-panel">
+            <div class="calc-step">
+              <div class="step-header">
+                <div class="field-label" id="directionGroupLabel">1. Направление лечения</div>
+                <span class="step-badge">Шаг 1 из 4</span>
+              </div>
+              <div class="direction-grid" role="group" aria-labelledby="directionGroupLabel" id="directionButtons">
+                <button type="button" class="dir-btn" data-dir="therapy" aria-pressed="true">
+                  <span class="dir-btn-title">Лечение кариеса и пульпита</span>
+                  <span class="dir-btn-meta tabular-nums">от 4 500 ₽ / зуб</span>
+                </button>
+                <button type="button" class="dir-btn" data-dir="implant" aria-pressed="false">
+                  <span class="dir-btn-title">Имплантация и протезирование зубов</span>
+                  <span class="dir-btn-meta tabular-nums">от 14 500 ₽ / ед.</span>
+                </button>
+                <button type="button" class="dir-btn" data-dir="hygiene" aria-pressed="false">
+                  <span class="dir-btn-title">Профессиональная гигиена и отбеливание</span>
+                  <span class="dir-btn-meta tabular-nums">от 1 900 ₽ / этап</span>
+                </button>
+                <button type="button" class="dir-btn" data-dir="surgery" aria-pressed="false">
+                  <span class="dir-btn-title">Удаление зубов и хирургия</span>
+                  <span class="dir-btn-meta tabular-nums">от 2 800 ₽ / зуб</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="calc-step">
+              <div class="step-header">
+                <label class="field-label" for="procedureSelect">2. Вид процедуры</label>
+                <span class="step-badge">Шаг 2 из 4</span>
+              </div>
+              <select id="procedureSelect" name="procedure" class="control-select" autocomplete="off"></select>
+              <div class="procedure-cards" id="procedureCards" role="group" aria-label="Быстрый выбор процедуры"></div>
+            </div>
+
+            <div class="calc-step">
+              <div class="step-header">
+                <div class="field-label" id="qtyGroupLabel">3. Количество зубов / единиц</div>
+                <span class="step-badge">Шаг 3 из 4</span>
+              </div>
+              <div class="qty-row">
+                <div class="stepper">
+                  <button type="button" class="stepper-btn" id="qtyMinus" aria-label="Уменьшить количество">-</button>
+                  <input type="number" id="unitCount" name="unitCount" class="stepper-input tabular-nums" min="1" max="16" value="1" autocomplete="off" aria-labelledby="qtyGroupLabel">
+                  <button type="button" class="stepper-btn" id="qtyPlus" aria-label="Увеличить количество">+</button>
+                </div>
+                <div class="qty-presets" role="group" aria-label="Быстрый выбор количества" id="qtyPresets">
+                  <button type="button" class="preset-btn tabular-nums" data-qty="1" aria-pressed="true">1</button>
+                  <button type="button" class="preset-btn tabular-nums" data-qty="2" aria-pressed="false">2</button>
+                  <button type="button" class="preset-btn tabular-nums" data-qty="3" aria-pressed="false">3</button>
+                  <button type="button" class="preset-btn tabular-nums" data-qty="4" aria-pressed="false">4</button>
+                  <button type="button" class="preset-btn tabular-nums" data-qty="6" aria-pressed="false">6</button>
+                </div>
+              </div>
+              <p class="unit-caption tabular-nums" id="unitCaption">Расчёт ведётся за 1 зуб.</p>
+            </div>
+
+            <div class="calc-step">
+              <div class="step-header">
+                <div class="field-label" id="extrasGroupLabel">4. Диагностика и дополнительные опции</div>
+                <span class="step-badge">Шаг 4 из 4</span>
+              </div>
+              <div class="extras-list" role="group" aria-labelledby="extrasGroupLabel">
+                <label class="extra-option" for="optConsult">
+                  <span class="extra-left">
+                    <input type="checkbox" id="optConsult" name="optConsult" class="extra-checkbox" value="consult" autocomplete="off" checked>
+                    <span class="extra-text">
+                      <span class="extra-title">Первичный осмотр врача и план лечения</span>
+                      <span class="extra-desc">Сбор анамнеза, осмотр полости рта и составление сметы</span>
+                    </span>
+                  </span>
+                  <span class="extra-price tabular-nums">800 – 1 200 ₽</span>
+                </label>
+
+                <label class="extra-option" for="optCt">
+                  <span class="extra-left">
+                    <input type="checkbox" id="optCt" name="optCt" class="extra-checkbox" value="ct" autocomplete="off">
+                    <span class="extra-text">
+                      <span class="extra-title">Диагностика КТ (3D-томография)</span>
+                      <span class="extra-desc">Объёмная оценка корней, каналов и костной ткани перед лечением</span>
+                    </span>
+                  </span>
+                  <span class="extra-price tabular-nums">2 900 – 3 800 ₽</span>
+                </label>
+
+                <label class="extra-option" for="optAnesthesia">
+                  <span class="extra-left">
+                    <input type="checkbox" id="optAnesthesia" name="optAnesthesia" class="extra-checkbox" value="anesthesia" autocomplete="off" checked>
+                    <span class="extra-text">
+                      <span class="extra-title">Местная анестезия и изоляция коффердамом</span>
+                      <span class="extra-desc">Обезболивание и защита рабочего поля на приём</span>
+                    </span>
+                  </span>
+                  <span class="extra-price tabular-nums">900 – 1 400 ₽</span>
+                </label>
+
+                <label class="extra-option" for="optXray">
+                  <span class="extra-left">
+                    <input type="checkbox" id="optXray" name="optXray" class="extra-checkbox" value="xray" autocomplete="off">
+                    <span class="extra-text">
+                      <span class="extra-title">Прицельный рентген-снимок</span>
+                      <span class="extra-desc">Контрольный цифровой снимок выбранного зуба</span>
+                    </span>
+                  </span>
+                  <span class="extra-price tabular-nums">600 – 950 ₽</span>
+                </label>
+
+                <label class="extra-option" for="optHygiene">
+                  <span class="extra-left">
+                    <input type="checkbox" id="optHygiene" name="optHygiene" class="extra-checkbox" value="hygiene" autocomplete="off">
+                    <span class="extra-text">
+                      <span class="extra-title">Профгигиена перед основным лечением</span>
+                      <span class="extra-desc">Ультразвук и Air Flow для точного подбора оттенка и чистой адгезии</span>
+                    </span>
+                  </span>
+                  <span class="extra-price tabular-nums">4 900 – 6 800 ₽</span>
+                </label>
+              </div>
+
+              <div class="calc-toolbar">
+                <button type="button" class="reset-link-btn" id="resetCalcBtn">Сбросить параметры расчёта</button>
+                <span class="unit-caption">Все суммы указаны в российских рублях (RUB).</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="summary-panel" aria-label="Итоговый расчёт стоимости">
+            <div class="summary-header">
+              <h3 class="summary-title">Детализация сметы</h3>
+              <span class="currency-pill">RUB · Ориентир</span>
+            </div>
+
+            <div class="total-box" aria-live="polite">
+              <div class="total-label">Ориентировочный диапазон стоимости</div>
+              <div class="total-range tabular-nums" id="totalRangeDisplay">6 200 – 9 400 ₽</div>
+              <div class="total-sub" id="totalSummaryMeta">Лечение кариеса и пульпита · 1 зуб</div>
+            </div>
+
+            <div class="breakdown-heading">Состав расчёта</div>
+            <ul class="breakdown-list" id="breakdownList"></ul>
+
+            <div class="summary-actions">
+              <a href="#appointment" class="btn btn-primary" id="toBookingBtn">Записаться с этим расчётом</a>
+              <button type="button" class="btn btn-outline" id="copySummaryBtn">Скопировать расчёт</button>
+              <a href="mailto:stomtrade@mail.ru" class="btn btn-soft" id="summaryMailtoLink">Отправить на stomtrade@mail.ru</a>
+            </div>
+
+            <div class="status-toast" id="copyToast" role="status" aria-live="polite"></div>
+
+            <p class="summary-note">
+              Диапазон отражает различия в объёме вмешательства, материалах и клинической картине. Окончательный план лечения согласовывается врачом после осмотра в клинике по адресу ул. Ванеева, 205.
+            </p>
+          </aside>
+        </div>
+
+        <div class="booking-panel" id="appointment">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Онлайн-запись в клинику</div>
+              <h3 class="section-title">Форма записи на приём в Стоматология Стомтрейд</h3>
+              <p class="section-desc">Заполните контактные данные — параметры вашего расчёта автоматически прикрепятся к заявке.</p>
+            </div>
+          </div>
+
+          <div class="booking-grid">
+            <form id="bookingForm" novalidate>
+              <div class="form-fields-grid">
+                <div class="form-field">
+                  <label for="patientName">Ваше имя</label>
+                  <input type="text" id="patientName" name="name" class="control-input" autocomplete="name" required placeholder="Например, Ольга Сергеевна">
+                </div>
+
+                <div class="form-field">
+                  <label for="patientPhone">Телефон для связи</label>
+                  <input type="tel" id="patientPhone" name="tel" class="control-input tabular-nums" autocomplete="tel" required placeholder="+7 (920) 000-00-00">
+                </div>
+
+                <div class="form-field">
+                  <label for="patientEmail">Электронная почта (по желанию)</label>
+                  <input type="email" id="patientEmail" name="email" class="control-input" autocomplete="email" placeholder="name@example.ru">
+                </div>
+
+                <div class="form-field">
+                  <label for="visitTime">Удобное время визита</label>
+                  <select id="visitTime" name="visitTime" class="control-select" autocomplete="off">
+                    <option value="Любое удобное время">Любое удобное время</option>
+                    <option value="Утро (09:00 – 12:00)">Утро (09:00 – 12:00)</option>
+                    <option value="День (12:00 – 16:00)">День (12:00 – 16:00)</option>
+                    <option value="Вечер (16:00 – 20:00)">Вечер (16:00 – 20:00)</option>
+                  </select>
+                </div>
+
+                <div class="form-field form-field-full">
+                  <label for="patientComment">Комментарий или пожелания (по желанию)</label>
+                  <textarea id="patientComment" name="comment" class="control-textarea" rows="3" autocomplete="off" placeholder="Укажите интересующий зуб, жалобы или удобные дни недели"></textarea>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Подготовить заявку на приём</button>
+                <button type="button" class="btn btn-outline" id="copyApplicationBtn">Скопировать расчёт и заявку</button>
+              </div>
+
+              <div class="status-toast" id="formToast" role="status" aria-live="polite"></div>
+
+              <div class="booking-result" id="bookingResult" aria-live="polite">
+                <div class="booking-result-title">Заявка с расчётом подготовлена</div>
+                <p id="bookingResultText">Нажмите на кнопку ниже, чтобы отправить обращение через почтовый клиент на stomtrade@mail.ru, или позвоните администратору клиники.</p>
+                <div class="booking-result-actions">
+                  <a href="mailto:stomtrade@mail.ru" class="btn btn-primary btn-sm" id="resultMailtoBtn">Написать на stomtrade@mail.ru</a>
+                  <a href="tel:+79200107249" class="btn btn-outline btn-sm tabular-nums">+7-920-010-72-49</a>
+                </div>
+              </div>
+            </form>
+
+            <div class="attached-plan-box">
+              <h4 class="attached-plan-title">Прикреплённый расчёт</h4>
+              <div class="attached-plan-preview tabular-nums" id="attachedPlanPreview"></div>
+
+              <div class="direct-channels">
+                <div class="channel-row">
+                  <span class="channel-label">Почта клиники</span>
+                  <a href="mailto:stomtrade@mail.ru" class="channel-value" id="directEmailLink">stomtrade@mail.ru</a>
+                </div>
+                <div class="channel-row">
+                  <span class="channel-label">Телефон записи</span>
+                  <a href="tel:+79200107249" class="channel-value tabular-nums">+7-920-010-72-49</a>
+                </div>
+                <div class="channel-row">
+                  <span class="channel-label">Адрес в Нижнем Новгороде</span>
+                  <span class="channel-value">ул. Ванеева, 205</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Порядок работы</div>
+            <h2 class="section-title">Как проходит планирование лечения</h2>
+          </div>
+        </div>
+
+        <div class="process-grid">
+          <article class="process-card">
+            <span class="process-num tabular-nums">Этап 01</span>
+            <h3>Предварительная смета</h3>
+            <p>Вы выбираете направление, вид процедуры и опции диагностики на сайте, чтобы заранее понимать ориентир бюджета в рублях.</p>
+          </article>
+          <article class="process-card">
+            <span class="process-num tabular-nums">Этап 02</span>
+            <h3>Очный осмотр на ул. Ванеева, 205</h3>
+            <p>Врач осматривает полость рта, при необходимости направляет на прицельный снимок или КТ и уточняет объём лечения.</p>
+          </article>
+          <article class="process-card">
+            <span class="process-num tabular-nums">Этап 03</span>
+            <h3>Фиксация плана и лечение</h3>
+            <p>До начала манипуляций вы получаете понятную последовательность визитов и итоговую стоимость с учётом выбранных материалов.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Частые вопросы</div>
+            <h2 class="section-title">Ответы перед визитом</h2>
+          </div>
+        </div>
+
+        <div class="faq-grid">
+          <details class="faq-item">
+            <summary>
+              <span>Почему стоимость в калькуляторе указана диапазоном</span>
+              <span class="faq-plus" aria-hidden="true">+</span>
+            </summary>
+            <p>Итоговая сумма зависит от глубины поражения тканей, числа корневых каналов, выбранного вида коронки или имплантационной системы. Диапазон помогает оценить бюджет заранее без скрытых позиций.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span>Нужна ли компьютерная томография перед каждым приёмом</span>
+              <span class="faq-plus" aria-hidden="true">+</span>
+            </summary>
+            <p>Не всегда. Для лечения поверхностного кариеса или профгигиены КТ обычно не требуется, а при планировании имплантации, сложного удаления или лечения каналов 3D-снимок даёт врачу точную картину.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span>Зачем добавлять профгигиену перед лечением или отбеливанием</span>
+              <span class="faq-plus" aria-hidden="true">+</span>
+            </summary>
+            <p>Удаление налёта и зубного камня снижает микробную нагрузку в зоне лечения, помогает точно подобрать цвет пломбы или коронки и улучшает результат отбеливания.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span>Как быстрее записаться на срочный приём</span>
+              <span class="faq-plus" aria-hidden="true">+</span>
+            </summary>
+            <p>При острой боли лучше сразу позвонить по телефону +7-920-010-72-49 или отправить расчёт на stomtrade@mail.ru с пометкой о срочности.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title">Стоматология Стомтрейд</div>
+          <p class="footer-desc">
+            Частная стоматология в Нижнем Новгороде: терапия, имплантация и протезирование, профессиональная гигиена и хирургия.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-heading">Контакты</div>
+          <ul class="footer-list">
+            <li>Адрес: ул. Ванеева, 205, Нижний Новгород</li>
+            <li>Телефон: <a class="tabular-nums" href="tel:+79200107249">+7-920-010-72-49</a></li>
+            <li>Email: <a href="mailto:stomtrade@mail.ru">stomtrade@mail.ru</a></li>
+            <li>Сайт: <a href="https://stomtrade.com" target="_blank" rel="noopener noreferrer">https://stomtrade.com</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Навигация</div>
+          <ul class="footer-list">
+            <li><a href="#services">Услуги клиники</a></li>
+            <li><a href="#calculator">Калькулятор стоимости</a></li>
+            <li><a href="#appointment">Форма записи на приём</a></li>
+            <li><a href="#process">Порядок планирования</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>Стоматология Стомтрейд · ул. Ванеева, 205, Нижний Новгород</span>
+        <span>Онлайн-расчёт носит справочный характер и уточняется на очной консультации врача.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var CATALOG = {
+        therapy: {
+          title: 'Лечение кариеса и пульпита',
+          shortLabel: 'Терапия',
+          procedures: [
+            {
+              id: 'caries-std',
+              name: 'Лечение поверхностного и среднего кариеса',
+              unitForms: ['зуб', 'зуба', 'зубов'],
+              min: 4500,
+              max: 6800
+            },
+            {
+              id: 'caries-deep',
+              name: 'Лечение глубокого кариеса с восстановлением',
+              unitForms: ['зуб', 'зуба', 'зубов'],
+              min: 6500,
+              max: 9200
+            },
+            {
+              id: 'pulpitis-12',
+              name: 'Лечение пульпита (1–2 корневых канала)',
+              unitForms: ['зуб', 'зуба', 'зубов'],
+              min: 11500,
+              max: 16500
+            },
+            {
+              id: 'pulpitis-3',
+              name: 'Лечение пульпита (3 и более канала)',
+              unitForms: ['зуб', 'зуба', 'зубов'],
+              min: 16500,
+              max: 23500
+            },
+            {
+              id: 'restoration-front',
+              name: 'Эстетическая реставрация фронтального зуба',
+              unitForms: ['зуб', 'зуба', 'зубов'],
+              min: 8500,
+              max: 13000
+            }
+          ]
+        },
+        implant: {
+          title: 'Имплантация и протезирование зубов',
+          shortLabel: 'Имплантация и ортопедия',
+          procedures: [
+            {
+              id: 'crown-metal',
+              name: 'Металлокерамическая коронка',
+              unitForms: ['единица', 'единицы', 'единиц'],
+              min: 14500,
+              max: 20500
+            },
+            {
+              id: 'crown-zircon',
+              name: 'Коронка из диоксида циркония',
+              unitForms: ['единица', 'единицы', 'единиц'],
+              min: 22000,
+              max: 31000
+            },
+            {
+              id: 'implant-surg',
+              name: 'Установка дентального имплантата (хирургический этап)',
+              unitForms: ['имплантат', 'имплантата', 'имплантатов'],
+              min: 26000,
+              max: 42000
+            },
+            {
+              id: 'implant-full',
+              name: 'Имплантация под ключ (имплантат и коронка)',
+              unitForms: ['единица', 'единицы', 'единиц'],
+              min: 48000,
+              max: 72000
+            },
+            {
+              id: 'veneer-ceramic',
+              name: 'Керамический винир или накладка',
+              unitForms: ['единица', 'единицы', 'единиц'],
+              min: 25000,
+              max: 36000
+            }
+          ]
+        },
+        hygiene: {
+          title: 'Профессиональная гигиена и отбеливание',
+          shortLabel: 'Гигиена и эстетика',
+          procedures: [
+            {
+              id: 'hygiene-complex',
+              name: 'Комплексная профгигиена (ультразвук и Air Flow)',
+              unitForms: ['курс', 'курса', 'курсов'],
+              min: 4900,
+              max: 6800
+            },
+            {
+              id: 'hygiene-jaw',
+              name: 'Ультразвуковое удаление зубного камня',
+              unitForms: ['челюсть', 'челюсти', 'челюстей'],
+              min: 2400,
+              max: 3400
+            },
+            {
+              id: 'whitening',
+              name: 'Клиническое отбеливание эмали',
+              unitForms: ['курс', 'курса', 'курсов'],
+              min: 15500,
+              max: 23500
+            },
+            {
+              id: 'remineralization',
+              name: 'Глубокое фторирование и реминерализация эмали',
+              unitForms: ['челюсть', 'челюсти', 'челюстей'],
+              min: 1900,
+              max: 2900
+            }
+          ]
+        },
+        surgery: {
+          title: 'Удаление зубов и хирургия',
+          shortLabel: 'Хирургия',
+          procedures: [
+            {
+              id: 'extract-simple',
+              name: 'Простое удаление зуба',
+              unitForms: ['зуб', 'зуба', 'зубов'],
+              min: 3200,
+              max: 4800
+            },
+            {
+              id: 'extract-complex',
+              name: 'Сложное удаление многокорневого зуба',
+              unitForms: ['зуб', 'зуба', 'зубов'],
+              min: 5200,
+              max: 7800
+            },
+            {
+              id: 'extract-wisdom',
+              name: 'Удаление зуба мудрости (сложный доступ)',
+              unitForms: ['зуб', 'зуба', 'зубов'],
+              min: 7500,
+              max: 13500
+            },
+            {
+              id: 'pericoronitis',
+              name: 'Иссечение капюшона или хирургическая обработка лунки',
+              unitForms: ['область', 'области', 'областей'],
+              min: 2800,
+              max: 4500
+            },
+            {
+              id: 'bone-graft',
+              name: 'Костная пластика или синус-лифтинг',
+              unitForms: ['зона', 'зоны', 'зон'],
+              min: 18000,
+              max: 32000
+            }
+          ]
+        }
+      };
+
+      var EXTRAS = [
+        {
+          id: 'optConsult',
+          key: 'consult',
+          name: 'Первичный осмотр врача и план лечения',
+          note: 'разово за визит',
+          min: 800,
+          max: 1200
+        },
+        {
+          id: 'optCt',
+          key: 'ct',
+          name: 'Диагностика КТ (3D-томография)',
+          note: 'разово за исследование',
+          min: 2900,
+          max: 3800
+        },
+        {
+          id: 'optAnesthesia',
+          key: 'anesthesia',
+          name: 'Местная анестезия и коффердам',
+          note: 'разово за приём',
+          min: 900,
+          max: 1400
+        },
+        {
+          id: 'optXray',
+          key: 'xray',
+          name: 'Прицельный рентген-снимок',
+          note: 'за снимок',
+          min: 600,
+          max: 950
+        },
+        {
+          id: 'optHygiene',
+          key: 'hygiene',
+          name: 'Профгигиена перед основным лечением',
+          note: 'комплекс до лечения',
+          min: 4900,
+          max: 6800
+        }
+      ];
+
+      var state = {
+        dir: 'therapy',
+        procId: 'caries-std',
+        qty: 1,
+        extras: {
+          consult: true,
+          ct: false,
+          anesthesia: true,
+          xray: false,
+          hygiene: false
+        }
+      };
+
+      var els = {
+        directionButtons: document.getElementById('directionButtons'),
+        procedureSelect: document.getElementById('procedureSelect'),
+        procedureCards: document.getElementById('procedureCards'),
+        unitCount: document.getElementById('unitCount'),
+        qtyMinus: document.getElementById('qtyMinus'),
+        qtyPlus: document.getElementById('qtyPlus'),
+        qtyPresets: document.getElementById('qtyPresets'),
+        unitCaption: document.getElementById('unitCaption'),
+        resetCalcBtn: document.getElementById('resetCalcBtn'),
+        totalRangeDisplay: document.getElementById('totalRangeDisplay'),
+        totalSummaryMeta: document.getElementById('totalSummaryMeta'),
+        breakdownList: document.getElementById('breakdownList'),
+        copySummaryBtn: document.getElementById('copySummaryBtn'),
+        summaryMailtoLink: document.getElementById('summaryMailtoLink'),
+        copyToast: document.getElementById('copyToast'),
+        attachedPlanPreview: document.getElementById('attachedPlanPreview'),
+        bookingForm: document.getElementById('bookingForm'),
+        patientName: document.getElementById('patientName'),
+        patientPhone: document.getElementById('patientPhone'),
+        patientEmail: document.getElementById('patientEmail'),
+        visitTime: document.getElementById('visitTime'),
+        patientComment: document.getElementById('patientComment'),
+        copyApplicationBtn: document.getElementById('copyApplicationBtn'),
+        formToast: document.getElementById('formToast'),
+        bookingResult: document.getElementById('bookingResult'),
+        resultMailtoBtn: document.getElementById('resultMailtoBtn'),
+        directEmailLink: document.getElementById('directEmailLink'),
+        toBookingBtn: document.getElementById('toBookingBtn')
+      };
+
+      function declOfNum(n, forms) {
+        var num = Math.abs(n) % 100;
+        var num1 = num % 10;
+        if (num > 10 && num < 20) return forms[2];
+        if (num1 > 1 && num1 < 5) return forms[1];
+        if (num1 === 1) return forms[0];
+        return forms[2];
+      }
+
+      function formatRub(val) {
+        return Math.round(val).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+      }
+
+      function formatRange(minVal, maxVal) {
+        return formatRub(minVal) + ' – ' + formatRub(maxVal) + ' ₽';
+      }
+
+      function getCurrentDirection() {
+        return CATALOG[state.dir] || CATALOG.therapy;
+      }
+
+      function getCurrentProcedure() {
+        var dirObj = getCurrentDirection();
+        for (var i = 0; i < dirObj.procedures.length; i++) {
+          if (dirObj.procedures[i].id === state.procId) {
+            return dirObj.procedures[i];
+          }
+        }
+        return dirObj.procedures[0];
+      }
+
+      function calculateTotals() {
+        var dirObj = getCurrentDirection();
+        var proc = getCurrentProcedure();
+        var qty = state.qty;
+        var baseMin = proc.min * qty;
+        var baseMax = proc.max * qty;
+
+        var totalMin = baseMin;
+        var totalMax = baseMax;
+        var selectedExtras = [];
+
+        for (var i = 0; i < EXTRAS.length; i++) {
+          var ext = EXTRAS[i];
+          if (state.extras[ext.key]) {
+            totalMin += ext.min;
+            totalMax += ext.max;
+            selectedExtras.push(ext);
+          }
+        }
+
+        return {
+          dirObj: dirObj,
+          proc: proc,
+          qty: qty,
+          baseMin: baseMin,
+          baseMax: baseMax,
+          selectedExtras: selectedExtras,
+          totalMin: totalMin,
+          totalMax: totalMax
+        };
+      }
+
+      function buildSummaryText(includeContact) {
+        var calc = calculateTotals();
+        var unitWord = declOfNum(calc.qty, calc.proc.unitForms);
+        var lines = [
+          'Расчёт стоимости лечения — Стоматология Стомтрейд (Нижний Новгород, ул. Ванеева, 205)',
+          'Направление: ' + calc.dirObj.title,
+          'Процедура: ' + calc.proc.name,
+          'Объём: ' + calc.qty + ' ' + unitWord + ' (' + formatRange(calc.baseMin, calc.baseMax) + ')'
+        ];
+
+        if (calc.selectedExtras.length > 0) {
+          lines.push('Дополнительные опции:');
+          for (var i = 0; i < calc.selectedExtras.length; i++) {
+            var ext = calc.selectedExtras[i];
+            lines.push('- ' + ext.name + ': ' + formatRange(ext.min, ext.max));
+          }
+        } else {
+          lines.push('Дополнительные опции: не выбраны');
+        }
+
+        lines.push('Итоговый ориентир: ' + formatRange(calc.totalMin, calc.totalMax));
+
+        if (includeContact) {
+          var nameVal = els.patientName.value.trim();
+          var phoneVal = els.patientPhone.value.trim();
+          var emailVal = els.patientEmail.value.trim();
+          var timeVal = els.visitTime.value;
+          var commentVal = els.patientComment.value.trim();
+
+          lines.push('');
+          lines.push('Контактные данные для записи:');
+          if (nameVal) lines.push('Имя: ' + nameVal);
+          if (phoneVal) lines.push('Телефон: ' + phoneVal);
+          if (emailVal) lines.push('Email: ' + emailVal);
+          lines.push('Удобное время: ' + timeVal);
+          if (commentVal) lines.push('Комментарий: ' + commentVal);
+        }
+
+        return lines.join('\n');
+      }
+
+      function buildMailtoHref(includeContact) {
+        var calc = calculateTotals();
+        var subject = 'Заявка на приём и расчёт лечения — Стоматология Стомтрейд (' + calc.dirObj.shortLabel + ')';
+        var body = buildSummaryText(includeContact);
+        return 'mailto:stomtrade@mail.ru?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      }
+
+      function renderDirections() {
+        var btns = els.directionButtons.querySelectorAll('.dir-btn');
+        for (var i = 0; i < btns.length; i++) {
+          var isMatch = btns[i].getAttribute('data-dir') === state.dir;
+          btns[i].setAttribute('aria-pressed', isMatch ? 'true' : 'false');
+        }
+      }
+
+      function renderProcedures() {
+        var dirObj = getCurrentDirection();
+        var proc = getCurrentProcedure();
+        state.procId = proc.id;
+
+        els.procedureSelect.innerHTML = '';
+        els.procedureCards.innerHTML = '';
+
+        for (var i = 0; i < dirObj.procedures.length; i++) {
+          var item = dirObj.procedures[i];
+          var opt = document.createElement('option');
+          opt.value = item.id;
+          opt.textContent = item.name + ' (' + formatRange(item.min, item.max) + ' / ' + item.unitForms[0] + ')';
+          if (item.id === state.procId) {
+            opt.selected = true;
+          }
+          els.procedureSelect.appendChild(opt);
+
+          var cardBtn = document.createElement('button');
+          cardBtn.type = 'button';
+          cardBtn.className = 'proc-item-btn';
+          cardBtn.setAttribute('data-proc-id', item.id);
+          cardBtn.setAttribute('aria-pressed', item.id === state.procId ? 'true' : 'false');
+
+          var nameSpan = document.createElement('span');
+          nameSpan.className = 'proc-item-name';
+          nameSpan.textContent = item.name;
+
+          var priceSpan = document.createElement('span');
+          priceSpan.className = 'proc-item-price tabular-nums';
+          priceSpan.textContent = formatRange(item.min, item.max);
+
+          cardBtn.appendChild(nameSpan);
+          cardBtn.appendChild(priceSpan);
+          els.procedureCards.appendChild(cardBtn);
+        }
+      }
+
+      function renderQty() {
+        var proc = getCurrentProcedure();
+        var unitWord = declOfNum(state.qty, proc.unitForms);
+        els.unitCount.value = state.qty;
+        els.qtyMinus.disabled = state.qty <= 1;
+        els.qtyPlus.disabled = state.qty >= 16;
+        els.unitCaption.textContent = 'Расчёт ведётся за ' + state.qty + ' ' + unitWord + '.';
+
+        var presets = els.qtyPresets.querySelectorAll('.preset-btn');
+        for (var i = 0; i < presets.length; i++) {
+          var val = parseInt(presets[i].getAttribute('data-qty'), 10);
+          presets[i].setAttribute('aria-pressed', val === state.qty ? 'true' : 'false');
+        }
+      }
+
+      function renderExtras() {
+        for (var i = 0; i < EXTRAS.length; i++) {
+          var ext = EXTRAS[i];
+          var cb = document.getElementById(ext.id);
+          if (cb) {
+            cb.checked = !!state.extras[ext.key];
+            var parentLabel = cb.closest('.extra-option');
+            if (parentLabel) {
+              if (cb.checked) {
+                parentLabel.classList.add('is-checked');
+              } else {
+                parentLabel.classList.remove('is-checked');
+              }
+            }
+          }
+        }
+      }
+
+      function renderSummary() {
+        var calc = calculateTotals();
+        var unitWord = declOfNum(calc.qty, calc.proc.unitForms);
+
+        els.totalRangeDisplay.textContent = formatRange(calc.totalMin, calc.totalMax);
+        els.totalSummaryMeta.textContent = calc.dirObj.title + ' · ' + calc.qty + ' ' + unitWord;
+
+        els.breakdownList.innerHTML = '';
+
+        var mainLi = document.createElement('li');
+        mainLi.className = 'breakdown-item';
+        var mainLeft = document.createElement('div');
+        mainLeft.className = 'breakdown-name';
+        mainLeft.textContent = calc.proc.name;
+        var mainMeta = document.createElement('span');
+        mainMeta.className = 'breakdown-meta tabular-nums';
+        mainMeta.textContent = calc.qty + ' ' + unitWord + ' × ' + formatRange(calc.proc.min, calc.proc.max);
+        mainLeft.appendChild(mainMeta);
+        var mainRight = document.createElement('div');
+        mainRight.className = 'breakdown-cost tabular-nums';
+        mainRight.textContent = formatRange(calc.baseMin, calc.baseMax);
+        mainLi.appendChild(mainLeft);
+        mainLi.appendChild(mainRight);
+        els.breakdownList.appendChild(mainLi);
+
+        for (var i = 0; i < calc.selectedExtras.length; i++) {
+          var ext = calc.selectedExtras[i];
+          var li = document.createElement('li');
+          li.className = 'breakdown-item';
+
+          var left = document.createElement('div');
+          left.className = 'breakdown-name';
+          left.textContent = ext.name;
+          var meta = document.createElement('span');
+          meta.className = 'breakdown-meta';
+          meta.textContent = ext.note;
+          left.appendChild(meta);
+
+          var right = document.createElement('div');
+          right.className = 'breakdown-cost tabular-nums';
+          right.textContent = formatRange(ext.min, ext.max);
+
+          li.appendChild(left);
+          li.appendChild(right);
+          els.breakdownList.appendChild(li);
+        }
+
+        els.attachedPlanPreview.textContent = buildSummaryText(false);
+        var mailHref = buildMailtoHref(true);
+        els.summaryMailtoLink.setAttribute('href', buildMailtoHref(false));
+        els.resultMailtoBtn.setAttribute('href', mailHref);
+        els.directEmailLink.setAttribute('href', mailHref);
+      }
+
+      function renderAll() {
+        renderDirections();
+        renderProcedures();
+        renderQty();
+        renderExtras();
+        renderSummary();
+      }
+
+      function showToast(el, message, isError) {
+        el.textContent = message;
+        el.className = 'status-toast is-visible ' + (isError ? 'is-error' : 'is-success');
+      }
+
+      function hideToast(el) {
+        el.textContent = '';
+        el.className = 'status-toast';
+      }
+
+      function copyTextToClipboard(text, callback) {
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function () {
+            callback(true);
+          }, function () {
+            fallbackCopy(text, callback);
+          });
+        } else {
+          fallbackCopy(text, callback);
+        }
+      }
+
+      function fallbackCopy(text, callback) {
+        try {
+          var textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.setAttribute('readonly', '');
+          textarea.style.position = 'fixed';
+          textarea.style.left = '-9999px';
+          document.body.appendChild(textarea);
+          textarea.select();
+          var ok = document.execCommand('copy');
+          document.body.removeChild(textarea);
+          callback(!!ok);
+        } catch (err) {
+          callback(false);
+        }
+      }
+
+      function setDirection(dirKey) {
+        if (!CATALOG[dirKey]) return;
+        state.dir = dirKey;
+        state.procId = CATALOG[dirKey].procedures[0].id;
+        renderAll();
+      }
+
+      function setQty(val) {
+        var num = parseInt(val, 10);
+        if (isNaN(num)) num = 1;
+        if (num < 1) num = 1;
+        if (num > 16) num = 16;
+        state.qty = num;
+        renderQty();
+        renderSummary();
+      }
+
+      // Event bindings
+      els.directionButtons.addEventListener('click', function (e) {
+        var btn = e.target.closest('.dir-btn');
+        if (!btn) return;
+        setDirection(btn.getAttribute('data-dir'));
+      });
+
+      els.procedureSelect.addEventListener('change', function () {
+        state.procId = els.procedureSelect.value;
+        renderProcedures();
+        renderQty();
+        renderSummary();
+      });
+
+      els.procedureCards.addEventListener('click', function (e) {
+        var btn = e.target.closest('.proc-item-btn');
+        if (!btn) return;
+        state.procId = btn.getAttribute('data-proc-id');
+        renderProcedures();
+        renderQty();
+        renderSummary();
+      });
+
+      els.qtyMinus.addEventListener('click', function () {
+        setQty(state.qty - 1);
+      });
+
+      els.qtyPlus.addEventListener('click', function () {
+        setQty(state.qty + 1);
+      });
+
+      els.unitCount.addEventListener('input', function () {
+        var raw = els.unitCount.value;
+        if (raw === '') return;
+        setQty(raw);
+      });
+
+      els.unitCount.addEventListener('blur', function () {
+        setQty(els.unitCount.value);
+      });
+
+      els.qtyPresets.addEventListener('click', function (e) {
+        var btn = e.target.closest('.preset-btn');
+        if (!btn) return;
+        setQty(btn.getAttribute('data-qty'));
+      });
+
+      for (var i = 0; i < EXTRAS.length; i++) {
+        (function (ext) {
+          var cb = document.getElementById(ext.id);
+          if (!cb) return;
+          cb.addEventListener('change', function () {
+            state.extras[ext.key] = cb.checked;
+            renderExtras();
+            renderSummary();
+          });
+        })(EXTRAS[i]);
+      }
+
+      els.resetCalcBtn.addEventListener('click', function () {
+        state.dir = 'therapy';
+        state.procId = 'caries-std';
+        state.qty = 1;
+        state.extras = {
+          consult: true,
+          ct: false,
+          anesthesia: true,
+          xray: false,
+          hygiene: false
+        };
+        hideToast(els.copyToast);
+        renderAll();
+      });
+
+      var jumpButtons = document.querySelectorAll('.js-jump-dir');
+      for (var j = 0; j < jumpButtons.length; j++) {
+        jumpButtons[j].addEventListener('click', function () {
+          var targetDir = this.getAttribute('data-dir');
+          setDirection(targetDir);
+          var calcEl = document.getElementById('calculator');
+          if (calcEl) {
+            calcEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      }
+
+      els.copySummaryBtn.addEventListener('click', function () {
+        var text = buildSummaryText(false);
+        copyTextToClipboard(text, function (ok) {
+          if (ok) {
+            showToast(els.copyToast, 'Предварительный расчёт скопирован в буфер обмена.', false);
+          } else {
+            showToast(els.copyToast, 'Не удалось скопировать автоматически. Выделите текст расчёта в форме записи ниже.', true);
+          }
+        });
+      });
+
+      els.toBookingBtn.addEventListener('click', function () {
+        setTimeout(function () {
+          if (els.patientName) {
+            els.patientName.focus();
+          }
+        }, 350);
+      });
+
+      function syncDynamicMailto() {
+        var href = buildMailtoHref(true);
+        els.resultMailtoBtn.setAttribute('href', href);
+        els.directEmailLink.setAttribute('href', href);
+      }
+
+      els.patientName.addEventListener('input', syncDynamicMailto);
+      els.patientPhone.addEventListener('input', syncDynamicMailto);
+      els.patientEmail.addEventListener('input', syncDynamicMailto);
+      els.visitTime.addEventListener('change', syncDynamicMailto);
+      els.patientComment.addEventListener('input', syncDynamicMailto);
+
+      function validateBookingFields() {
+        var nameVal = els.patientName.value.trim();
+        var phoneVal = els.patientPhone.value.trim();
+        var digitsCount = phoneVal.replace(/\D/g, '').length;
+
+        if (nameVal.length < 2) {
+          showToast(els.formToast, 'Укажите ваше имя для оформления заявки на приём.', true);
+          els.patientName.focus();
+          return false;
+        }
+
+        if (digitsCount < 7) {
+          showToast(els.formToast, 'Введите корректный номер телефона для обратной связи.', true);
+          els.patientPhone.focus();
+          return false;
+        }
+
+        var emailVal = els.patientEmail.value.trim();
+        if (emailVal && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+          showToast(els.formToast, 'Проверьте формат адреса электронной почты.', true);
+          els.patientEmail.focus();
+          return false;
+        }
+
+        return true;
+      }
+
+      els.copyApplicationBtn.addEventListener('click', function () {
+        var fullText = buildSummaryText(true);
+        copyTextToClipboard(fullText, function (ok) {
+          if (ok) {
+            showToast(els.formToast, 'Расчёт и данные заявки скопированы в буфер обмена.', false);
+          } else {
+            showToast(els.formToast, 'Скопируйте расчёт вручную из блока справа.', true);
+          }
+        });
+      });
+
+      els.bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        hideToast(els.formToast);
+
+        if (!validateBookingFields()) {
+          els.bookingResult.classList.remove('is-visible');
+          return;
+        }
+
+        syncDynamicMailto();
+        els.bookingResult.classList.add('is-visible');
+        showToast(els.formToast, 'Заявка с детальным расчётом готова к отправке на stomtrade@mail.ru.', false);
+      });
+
+      renderAll();
+    })();
+  </script>
+</body>
+</html>

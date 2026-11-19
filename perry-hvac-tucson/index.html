@@ -1,0 +1,2398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perry Heating, Cooling and Plumbing | Tucson HVAC &amp; Plumbing Service Quote Calculator</title>
+  <meta name="description" content="Calculate an itemized USD estimate and schedule technician dispatch with Perry Heating, Cooling and Plumbing in Tucson, AZ. AC repair, heating service, plumbing, and 24/7 emergency HVAC dispatch.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64'%3E%3Crect width='64' height='64' rx='14' fill='%23A63B1B'/%3E%3Cpath d='M32 14L14 28h6v20h24V28h6L32 14z' fill='none' stroke='%23F7F5F2' stroke-width='3.5' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='35' r='6' fill='none' stroke='%23F7F5F2' stroke-width='3'/%3E%3Cpath d='M32 26v3M32 41v3M23 35h3M38 35h3' stroke='%23F7F5F2' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #F7F5F2;
+      --bg-surface: #FFFFFF;
+      --bg-muted: #EFECE6;
+      --bg-accent-soft: #F9EFEA;
+      --bg-steel-soft: #EDF3F6;
+      --text-primary: #1B1917;
+      --text-secondary: #544E47;
+      --text-tertiary: #6C655D;
+      --border: #DDD6CB;
+      --border-strong: #C3B9AA;
+      --accent: #A63B1B;
+      --accent-hover: #892F14;
+      --steel: #1E445A;
+      --steel-hover: #153344;
+      --success: #1E5A3E;
+      --success-bg: #EBF5F0;
+      --success-border: #BBDAC9;
+      --error: #9B241B;
+      --error-bg: #FCEEEB;
+      --error-border: #E8C0BA;
+      --shadow-sm: 0 1px 2px rgba(27, 25, 23, 0.05);
+      --shadow-md: 0 6px 20px rgba(27, 25, 23, 0.06);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --font-sans: 'Outfit', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --font-serif: 'Newsreader', Georgia, serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.55;
+      overflow-x: clip;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    .num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .contact-link {
+      white-space: nowrap;
+      word-break: normal;
+      text-decoration: none;
+    }
+
+    .contact-link:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(247, 245, 242, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 74px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      background-color: var(--accent);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-name {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .brand-meta {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.3;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-shrink: 0;
+    }
+
+    .header-nav a {
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.16s ease;
+    }
+
+    .header-nav a:hover {
+      color: var(--accent);
+    }
+
+    .header-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      font-variant-numeric: tabular-nums;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .phone-pill:hover {
+      border-color: var(--accent);
+      background-color: var(--bg-accent-soft);
+      text-decoration: none;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      font-weight: 600;
+      font-size: 0.95rem;
+      line-height: 1.25;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .btn:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--steel);
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-muted);
+      border-color: var(--text-secondary);
+    }
+
+    .btn-steel {
+      background-color: var(--steel);
+      color: #FFFFFF;
+      border-color: var(--steel);
+    }
+
+    .btn-steel:hover {
+      background-color: var(--steel-hover);
+      border-color: var(--steel-hover);
+    }
+
+    .btn-sm {
+      padding: 8px 14px;
+      font-size: 0.875rem;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 48px 0 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+      gap: 32px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--steel);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-family: var(--font-serif);
+      font-size: clamp(2.1rem, 4.1vw, 3.2rem);
+      font-weight: 500;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .hero-lead {
+      margin: 0 0 26px;
+      font-size: 1.08rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      max-width: 58ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .metric-value {
+      display: block;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.25;
+      margin-bottom: 2px;
+    }
+
+    .metric-label {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.35;
+    }
+
+    /* Hero Side Card */
+    .dispatch-board {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .board-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .board-title {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 1.28rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .board-subtitle {
+      margin: 4px 0 0;
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+    }
+
+    .board-badge {
+      padding: 4px 10px;
+      border-radius: 6px;
+      background-color: var(--bg-steel-soft);
+      border: 1px solid #C8D8E2;
+      color: var(--steel);
+      font-size: 0.76rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .board-list {
+      list-style: none;
+      margin: 0 0 18px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .board-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-page);
+    }
+
+    .board-item-title {
+      display: block;
+      font-weight: 600;
+      font-size: 0.94rem;
+      color: var(--text-primary);
+    }
+
+    .board-item-desc {
+      display: block;
+      font-size: 0.83rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .board-item-tag {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      padding-top: 2px;
+    }
+
+    .board-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+    }
+
+    .board-footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .board-footer a {
+      color: var(--steel);
+      font-weight: 600;
+    }
+
+    /* Section Headers */
+    .section {
+      padding: 56px 0;
+    }
+
+    .section-alt {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 30px;
+    }
+
+    .section-kicker {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      font-family: var(--font-serif);
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
+      font-weight: 500;
+      line-height: 1.18;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+    }
+
+    .section-desc {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Calculator & Dispatch Workspace */
+    .calc-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel-step {
+      padding-bottom: 22px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .panel-step:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    .field-label,
+    label.field-label {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .field-hint {
+      display: block;
+      font-size: 0.83rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    /* Service Category Grid */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .choice-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      width: 100%;
+      padding: 13px 14px;
+      text-align: left;
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .choice-btn:hover {
+      border-color: var(--border-strong);
+      background-color: #F2EEE8;
+    }
+
+    .choice-btn[aria-checked="true"] {
+      background-color: var(--bg-accent-soft);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .choice-title {
+      font-weight: 600;
+      font-size: 0.94rem;
+      line-height: 1.3;
+      color: var(--text-primary);
+    }
+
+    .choice-sub {
+      font-size: 0.81rem;
+      color: var(--text-secondary);
+      line-height: 1.35;
+    }
+
+    /* Form Controls */
+    select.control,
+    input.control,
+    textarea.control {
+      width: 100%;
+      padding: 11px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      line-height: 1.4;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    select.control:hover,
+    input.control:hover,
+    textarea.control:hover {
+      border-color: var(--text-secondary);
+    }
+
+    select.control:focus,
+    input.control:focus,
+    textarea.control:focus {
+      border-color: var(--steel);
+      box-shadow: 0 0 0 3px rgba(30, 68, 90, 0.12);
+      outline: none;
+    }
+
+    /* Sq Ft Slider + Tier */
+    .sqft-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .sqft-readout {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .range-wrap {
+      margin-bottom: 14px;
+    }
+
+    input[type="range"].sqft-slider {
+      width: 100%;
+      height: 8px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      margin: 6px 0;
+    }
+
+    .range-scale {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: var(--text-tertiary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .tier-btn {
+      padding: 9px 8px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .tier-btn:hover {
+      border-color: var(--border-strong);
+    }
+
+    .tier-btn[aria-checked="true"] {
+      background-color: var(--steel);
+      border-color: var(--steel);
+      color: #FFFFFF;
+    }
+
+    .tonnage-note {
+      margin: 10px 0 0;
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-steel-soft);
+      border: 1px solid #C8D8E2;
+      color: var(--steel);
+      font-size: 0.84rem;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Age & Urgency Two Column */
+    .split-fields {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .urgency-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .urgency-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-size: 0.87rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .urgency-btn:hover {
+      border-color: var(--border-strong);
+    }
+
+    .urgency-btn[aria-checked="true"] {
+      background-color: var(--bg-accent-soft);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+      font-weight: 600;
+    }
+
+    .urgency-fee {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    /* Add-On Checkboxes (Visible native checkbox inside label) */
+    .addon-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .addon-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 13px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-page);
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .addon-item:hover {
+      border-color: var(--border-strong);
+      background-color: #F3EFE9;
+    }
+
+    .addon-item.is-checked {
+      background-color: var(--bg-accent-soft);
+      border-color: var(--accent);
+    }
+
+    .addon-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .addon-checkbox {
+      width: 18px;
+      height: 18px;
+      margin: 2px 0 0;
+      flex-shrink: 0;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .addon-name {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .addon-desc {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+      line-height: 1.35;
+    }
+
+    .addon-price {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--steel);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      padding-top: 1px;
+    }
+
+    /* Right Estimate & Dispatch Column */
+    .estimate-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .quote-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .quote-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .quote-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--steel);
+      margin-bottom: 4px;
+    }
+
+    .quote-total-price {
+      font-family: var(--font-serif);
+      font-size: 2.35rem;
+      font-weight: 600;
+      line-height: 1.05;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .quote-range {
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+      margin-top: 4px;
+    }
+
+    .ref-pill {
+      padding: 5px 10px;
+      border-radius: 6px;
+      background-color: var(--bg-muted);
+      border: 1px solid var(--border);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .line-items {
+      list-style: none;
+      margin: 0 0 16px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .line-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .line-item-name {
+      min-width: 0;
+    }
+
+    .line-item-amount {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .quote-divider {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 14px 0;
+    }
+
+    .quote-disclaimer {
+      margin: 0 0 16px;
+      font-size: 0.81rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    .summary-box-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .summary-box-title {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .summary-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .quote-summary-pre {
+      margin: 0;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background-color: var(--bg-page);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: var(--text-primary);
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Dispatch Form */
+    .dispatch-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .dispatch-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .direct-mail-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 11px 13px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+    }
+
+    .direct-mail-row a {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .form-feedback {
+      margin-top: 14px;
+      padding: 13px 15px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .form-feedback.is-visible {
+      display: block;
+    }
+
+    .form-feedback.is-error {
+      background-color: var(--error-bg);
+      border-color: var(--error-border);
+      color: var(--error);
+    }
+
+    .form-feedback.is-success {
+      background-color: var(--success-bg);
+      border-color: var(--success-border);
+      color: var(--success);
+    }
+
+    .feedback-links {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      background-color: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+    }
+
+    .service-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .service-card h3 {
+      margin: 0 0 8px;
+      font-family: var(--font-serif);
+      font-size: 1.24rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.25;
+    }
+
+    .service-card p {
+      margin: 0 0 12px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .service-bullets {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    /* Coverage & Contact Section */
+    .coverage-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .zone-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+
+    .zone-table th,
+    .zone-table td {
+      padding: 11px 10px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .zone-table th {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-tertiary);
+      font-weight: 600;
+    }
+
+    .zone-table td:last-child {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      color: var(--steel);
+      white-space: nowrap;
+    }
+
+    .zone-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .contact-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .contact-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-row:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .contact-key {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-tertiary);
+    }
+
+    .contact-val {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .contact-val a {
+      color: var(--accent);
+    }
+
+    .contact-val a[href^="https"] {
+      overflow-wrap: anywhere;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg-muted);
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .footer-brand strong {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .footer-links a {
+      color: var(--steel);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .calc-grid,
+      .coverage-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .header-nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .header-inner {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px 0;
+      }
+
+      .brand-name {
+        font-size: 1.02rem;
+      }
+
+      .header-cta-group {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .header-cta-group .btn {
+        flex: 1 1 auto;
+        padding: 9px 12px;
+        font-size: 0.86rem;
+        white-space: nowrap;
+      }
+
+      .hero {
+        padding: 30px 0;
+      }
+
+      .hero-metrics {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .section {
+        padding: 40px 0;
+      }
+
+      .panel,
+      .quote-card,
+      .dispatch-board,
+      .contact-card {
+        padding: 18px;
+      }
+
+      .cat-grid,
+      .split-fields,
+      .dispatch-form-grid,
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .tier-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .quote-top {
+        flex-direction: column;
+      }
+
+      .zone-table th,
+      .zone-table td {
+        padding: 9px 6px;
+        font-size: 0.84rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Perry Heating, Cooling and Plumbing Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 10.5L12 3l9 7.5" />
+            <path d="M5.5 9.5V20h13V9.5" />
+            <circle cx="12" cy="14.5" r="2.75" />
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <span class="brand-name">Perry Heating, Cooling and Plumbing</span>
+          <span class="brand-meta">4040 E 29th St, Tucson, AZ 85711</span>
+        </span>
+      </a>
+
+      <nav class="header-nav" aria-label="Primary Navigation">
+        <a href="#calculator">Quote Calculator</a>
+        <a href="#services">Services</a>
+        <a href="#coverage">Tucson Coverage</a>
+        <a href="#dispatch">Dispatch Form</a>
+      </nav>
+
+      <div class="header-cta-group">
+        <a class="phone-pill contact-link num" href="tel:+15206452889">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          <span>+1-520-645-2889</span>
+        </a>
+        <a class="btn btn-primary btn-sm" href="#calculator">Estimate &amp; Dispatch</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">
+            <span class="status-dot" aria-hidden="true"></span>
+            Tucson Metro Dispatch · 4040 E 29th St
+          </span>
+          <h1>Transparent HVAC &amp; Plumbing Quotes Built for Tucson Homes</h1>
+          <p class="hero-lead">
+            Price AC repairs, high-efficiency cooling installs, furnace service, plumbing diagnostics, and 24/7 emergency dispatch in USD before a truck rolls. Review an itemized estimate and send your dispatch summary straight to our Tucson operations desk.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#calculator">Open Service Quote Calculator</a>
+            <a class="btn btn-secondary contact-link num" href="tel:+15206452889">Call +1-520-645-2889</a>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric-card">
+              <span class="metric-value">24/7</span>
+              <span class="metric-label">Emergency HVAC &amp; Leak Dispatch</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">45–90 min</span>
+              <span class="metric-label">Typical Tucson Metro Arrival</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">Flat-Rate USD</span>
+              <span class="metric-label">Written Approval Prior to Work</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="dispatch-board" aria-label="Tucson Service Capabilities">
+          <div class="board-header">
+            <div>
+              <h2 class="board-title">Tucson Dispatch Desk</h2>
+              <p class="board-subtitle">Perry Heating, Cooling and Plumbing</p>
+            </div>
+            <span class="board-badge">AZ 85711 Hub</span>
+          </div>
+          <ul class="board-list">
+            <li class="board-item">
+              <div>
+                <span class="board-item-title">AC Repair &amp; Installation</span>
+                <span class="board-item-desc">High-ambient condensers, coils, capacitors, SEER2 sizing</span>
+              </div>
+              <span class="board-item-tag">From $165</span>
+            </li>
+            <li class="board-item">
+              <div>
+                <span class="board-item-title">Heating &amp; Furnace Service</span>
+                <span class="board-item-desc">Gas burners, igniters, heat pump reversing valves</span>
+              </div>
+              <span class="board-item-tag">From $145</span>
+            </li>
+            <li class="board-item">
+              <div>
+                <span class="board-item-title">Plumbing &amp; Drain Cleaning</span>
+                <span class="board-item-desc">Main drain clearing, water heaters, slab leak repair</span>
+              </div>
+              <span class="board-item-tag">From $215</span>
+            </li>
+            <li class="board-item">
+              <div>
+                <span class="board-item-title">24/7 Emergency HVAC Dispatch</span>
+                <span class="board-item-desc">Priority thermal recovery and active leak shutoff</span>
+              </div>
+              <span class="board-item-tag">Priority</span>
+            </li>
+          </ul>
+          <div class="board-footer">
+            <div class="board-footer-row">
+              <span>Dispatch Email:</span>
+              <a class="contact-link" href="mailto:info@justcallperry.com">info@justcallperry.com</a>
+            </div>
+            <div class="board-footer-row">
+              <span>Official Website:</span>
+              <a href="https://perryheatingandcooling.com" target="_blank" rel="noopener noreferrer">perryheatingandcooling.com</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="calculator" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Interactive Estimating Tool</span>
+          <h2 class="section-title">HVAC &amp; Plumbing Service Quote Calculator &amp; Dispatch</h2>
+          <p class="section-desc">
+            Select your service category, conditioned square footage, equipment age, and dispatch window to generate a live itemized USD estimate and dispatch packet.
+          </p>
+        </div>
+
+        <div class="calc-grid">
+          <!-- Left Configurator -->
+          <div class="panel" aria-label="Service Quote Configuration">
+            <div class="panel-step">
+              <div class="field-label" id="service-cat-label">
+                1. Service Category
+                <span class="field-hint">Choose the primary system or trade needed at your property</span>
+              </div>
+              <div class="cat-grid" role="radiogroup" aria-labelledby="service-cat-label" id="category-group">
+                <button type="button" class="choice-btn" role="radio" aria-checked="true" data-category="ac">
+                  <span class="choice-title">AC Repair &amp; Installation</span>
+                  <span class="choice-sub">Cooling diagnostics, airflow &amp; SEER2 units</span>
+                </button>
+                <button type="button" class="choice-btn" role="radio" aria-checked="false" data-category="heating">
+                  <span class="choice-title">Heating &amp; Furnace Service</span>
+                  <span class="choice-sub">Gas furnaces, igniters &amp; heat pumps</span>
+                </button>
+                <button type="button" class="choice-btn" role="radio" aria-checked="false" data-category="plumbing">
+                  <span class="choice-title">Plumbing &amp; Drain Cleaning</span>
+                  <span class="choice-sub">Drains, water heaters &amp; pipe leaks</span>
+                </button>
+                <button type="button" class="choice-btn" role="radio" aria-checked="false" data-category="emergency">
+                  <span class="choice-title">24/7 Emergency HVAC Dispatch</span>
+                  <span class="choice-sub">Urgent cooling loss, safety or leak call</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="panel-step">
+              <label class="field-label" for="job-scope">
+                2. Scope of Work
+                <span class="field-hint">Specific repair, inspection, or replacement scope</span>
+              </label>
+              <select id="job-scope" class="control" autocomplete="off"></select>
+            </div>
+
+            <div class="panel-step">
+              <div class="sqft-header">
+                <label class="field-label" for="home-sqft" style="margin-bottom: 0;">
+                  3. Conditioned Home Size (Sq Ft)
+                </label>
+                <span class="sqft-readout num" id="sqft-display">1,800 sq ft</span>
+              </div>
+              <div class="range-wrap">
+                <input type="range" id="home-sqft" class="sqft-slider" min="800" max="4800" step="100" value="1800" autocomplete="off">
+                <div class="range-scale">
+                  <span>800 sq ft</span>
+                  <span>2,000 sq ft</span>
+                  <span>3,400 sq ft</span>
+                  <span>4,800 sq ft</span>
+                </div>
+              </div>
+              <div class="field-label" id="tier-group-label" style="font-size: 0.84rem; margin-bottom: 8px;">
+                Quick Home Size Tier
+              </div>
+              <div class="tier-grid" role="radiogroup" aria-labelledby="tier-group-label" id="tier-group">
+                <button type="button" class="tier-btn" role="radio" aria-checked="false" data-tier="1200">Under 1,400</button>
+                <button type="button" class="tier-btn" role="radio" aria-checked="true" data-tier="1800">1,400–2,400</button>
+                <button type="button" class="tier-btn" role="radio" aria-checked="false" data-tier="2900">2,400–3,400</button>
+                <button type="button" class="tier-btn" role="radio" aria-checked="false" data-tier="3900">3,400+ sq ft</button>
+              </div>
+              <p class="tonnage-note" id="tonnage-note">
+                Estimated Tucson Cooling Load: 3.5 Ton Equipment Class
+              </p>
+            </div>
+
+            <div class="panel-step">
+              <div class="split-fields">
+                <div>
+                  <label class="field-label" for="system-age">
+                    4. System or Pipe Age
+                    <span class="field-hint">Impacts part access and safety testing</span>
+                  </label>
+                  <select id="system-age" class="control" autocomplete="off">
+                    <option value="0">0–4 Years (Recent Installation)</option>
+                    <option value="0.08" selected>5–10 Years (Mid-Life Service)</option>
+                    <option value="0.16">11–15 Years (Aging Components)</option>
+                    <option value="0.24">16+ Years (Legacy System)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <div class="field-label" id="urgency-group-label">
+                    5. Dispatch Urgency
+                    <span class="field-hint">Select preferred arrival window</span>
+                  </div>
+                  <div class="urgency-stack" role="radiogroup" aria-labelledby="urgency-group-label" id="urgency-group">
+                    <button type="button" class="urgency-btn" role="radio" aria-checked="true" data-urgency="standard" data-fee="0">
+                      <span>Standard (24–48 hr)</span>
+                      <span class="urgency-fee">+$0</span>
+                    </button>
+                    <button type="button" class="urgency-btn" role="radio" aria-checked="false" data-urgency="priority" data-fee="45">
+                      <span>Next-Day Priority</span>
+                      <span class="urgency-fee">+$45</span>
+                    </button>
+                    <button type="button" class="urgency-btn" role="radio" aria-checked="false" data-urgency="emergency" data-fee="115">
+                      <span>Same-Day / 24-7 Dispatch</span>
+                      <span class="urgency-fee">+$115</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-step">
+              <div class="field-label">
+                6. Optional Tucson Preventive Add-Ons
+                <span class="field-hint">Bundle additional checks during the same technician visit</span>
+              </div>
+              <div class="addon-list" id="addon-list">
+                <label class="addon-item">
+                  <span class="addon-left">
+                    <input type="checkbox" class="addon-checkbox" value="125" data-label="Condenser Coil Wash &amp; Monsoon Dust Flush" autocomplete="off">
+                    <span>
+                      <span class="addon-name">Condenser Coil Wash &amp; Monsoon Dust Flush</span>
+                      <span class="addon-desc">Removes packed desert dust and caliche grit lowering head pressure</span>
+                    </span>
+                  </span>
+                  <span class="addon-price">+$125</span>
+                </label>
+
+                <label class="addon-item">
+                  <span class="addon-left">
+                    <input type="checkbox" class="addon-checkbox" value="195" data-label="Smart Thermostat Setup &amp; Stage Calibration" autocomplete="off">
+                    <span>
+                      <span class="addon-name">Smart Thermostat Setup &amp; Stage Calibration</span>
+                      <span class="addon-desc">Installation and heat-pump or two-stage cooling wiring check</span>
+                    </span>
+                  </span>
+                  <span class="addon-price">+$195</span>
+                </label>
+
+                <label class="addon-item">
+                  <span class="addon-left">
+                    <input type="checkbox" class="addon-checkbox" value="140" data-label="Hard-Water Mineral Descaling Flush" autocomplete="off">
+                    <span>
+                      <span class="addon-name">Hard-Water Mineral Descaling Flush</span>
+                      <span class="addon-desc">Clears Tucson calcium buildup from tank or tankless water heaters</span>
+                    </span>
+                  </span>
+                  <span class="addon-price">+$140</span>
+                </label>
+
+                <label class="addon-item">
+                  <span class="addon-left">
+                    <input type="checkbox" class="addon-checkbox" value="110" data-label="Duct Static Pressure &amp; Airflow Audit" autocomplete="off">
+                    <span>
+                      <span class="addon-name">Duct Static Pressure &amp; Airflow Audit</span>
+                      <span class="addon-desc">Pinpoints hot west-facing rooms and return air bottlenecks</span>
+                    </span>
+                  </span>
+                  <span class="addon-price">+$110</span>
+                </label>
+
+                <label class="addon-item">
+                  <span class="addon-left">
+                    <input type="checkbox" class="addon-checkbox" value="219" data-label="Two-Visit Seasonal Maintenance Agreement" autocomplete="off">
+                    <span>
+                      <span class="addon-name">Two-Visit Seasonal Maintenance Agreement</span>
+                      <span class="addon-desc">Pre-summer cooling tune-up plus pre-winter heating safety check</span>
+                    </span>
+                  </span>
+                  <span class="addon-price">+$219</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Estimate + Dispatch Form -->
+          <div class="estimate-column">
+            <div class="quote-card" aria-live="polite">
+              <div class="quote-top">
+                <div>
+                  <span class="quote-label">Estimated Service Total (USD)</span>
+                  <div class="quote-total-price num" id="quote-total">$235</div>
+                  <div class="quote-range num" id="quote-range">Typical Field Range: $220 – $260 USD</div>
+                </div>
+                <span class="ref-pill num" id="quote-ref">REF PHCP-4812</span>
+              </div>
+
+              <ul class="line-items" id="line-items"></ul>
+
+              <hr class="quote-divider">
+              <p class="quote-disclaimer">
+                Includes standard Tucson diagnostic dispatch review. Final flat-rate USD pricing is confirmed in writing on site before any repair or installation begins.
+              </p>
+
+              <div class="summary-box-header">
+                <span class="summary-box-title">Copyable Quote Summary</span>
+                <div class="summary-actions">
+                  <button type="button" class="btn btn-secondary btn-sm" id="copy-quote-btn">Copy Quote Summary</button>
+                  <button type="button" class="btn btn-secondary btn-sm" id="reset-calc-btn">Reset</button>
+                </div>
+              </div>
+              <pre class="quote-summary-pre" id="quote-summary-text"></pre>
+            </div>
+
+            <div class="quote-card" id="dispatch">
+              <div class="board-header" style="margin-bottom: 16px;">
+                <div>
+                  <h3 class="board-title">Technician Dispatch Request</h3>
+                  <p class="board-subtitle">Attach your live estimate and dispatch to Tucson operations</p>
+                </div>
+                <span class="board-badge">Same-Day Desk</span>
+              </div>
+
+              <form id="dispatch-form" novalidate>
+                <div class="dispatch-form-grid">
+                  <div class="form-field">
+                    <label for="client-name">Full Name</label>
+                    <input type="text" id="client-name" name="name" class="control" autocomplete="name" required placeholder="Carlos Mendoza">
+                  </div>
+
+                  <div class="form-field">
+                    <label for="client-phone">Phone Number</label>
+                    <input type="tel" id="client-phone" name="tel" class="control num" autocomplete="tel" required placeholder="(520) 555-0192">
+                  </div>
+
+                  <div class="form-field full">
+                    <label for="client-email">Email Address</label>
+                    <input type="email" id="client-email" name="email" class="control" autocomplete="email" required placeholder="resident@example.com">
+                  </div>
+
+                  <div class="form-field full">
+                    <label for="client-address">Tucson Service Street Address</label>
+                    <input type="text" id="client-address" name="street-address" class="control" autocomplete="street-address" required placeholder="4040 E 29th St, Tucson, AZ 85711">
+                  </div>
+
+                  <div class="form-field full">
+                    <label for="client-notes">Symptoms, Unit Location or Access Notes</label>
+                    <textarea id="client-notes" name="notes" class="control" autocomplete="off" rows="3" placeholder="Example: Thermostat set to 74 F, supply air warm, side gate unlocked."></textarea>
+                  </div>
+                </div>
+
+                <div class="dispatch-actions">
+                  <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    Prepare Dispatch Request &amp; Email Quote
+                  </button>
+                  <div class="direct-mail-row">
+                    <span>Direct email with quote attached:</span>
+                    <a id="direct-mailto-link" class="contact-link" href="mailto:info@justcallperry.com">info@justcallperry.com</a>
+                  </div>
+                </div>
+
+                <div id="form-feedback" class="form-feedback" role="status" aria-live="polite"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Licensed Tucson Trades</span>
+          <h2 class="section-title">Four Core Divisions Serving Pima County</h2>
+          <p class="section-desc">
+            Every Perry Heating, Cooling and Plumbing service vehicle carries common desert-duty capacitors, motors, burners, valves, and drain equipment to complete repairs on the first visit.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07" />
+                </svg>
+              </div>
+              <h3>AC Repair &amp; Installation</h3>
+              <p>Engineered for 110 F Tucson afternoons, rooftop package units, split systems, and high-efficiency heat pumps.</p>
+              <ul class="service-bullets">
+                <li>Capacitor, contactor &amp; compressor diagnostics</li>
+                <li>Refrigerant leak detection &amp; recharge</li>
+                <li>Manual J load-matched SEER2 installations</li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm load-cat-btn" data-load-cat="ac">Load AC in Calculator</button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2c2 3.5 5 6 5 10a5 5 0 1 1-10 0c0-2.5 1.2-4.7 3-6.5.3 1.8 1.3 3 2.5 3.5-.5-2-.5-4.5-.5-7z" />
+                </svg>
+              </div>
+              <h3>Heating &amp; Furnace Service</h3>
+              <p>Safe winter desert heating diagnostics for natural gas furnaces, dual-fuel systems, and electric air handlers.</p>
+              <ul class="service-bullets">
+                <li>Heat exchanger &amp; carbon monoxide inspection</li>
+                <li>Hot-surface igniter &amp; gas valve service</li>
+                <li>Heat pump defrost &amp; reversing valve repair</li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm load-cat-btn" data-load-cat="heating">Load Heating in Calculator</button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+                </svg>
+              </div>
+              <h3>Plumbing &amp; Drain Cleaning</h3>
+              <p>Full-service residential plumbing built to manage Tucson hard-water scale, tree-root intrusions, and slab lines.</p>
+              <ul class="service-bullets">
+                <li>Main sewer clearing &amp; video camera locating</li>
+                <li>Standard &amp; tankless water heater service</li>
+                <li>Slab leak detection &amp; PEX repiping</li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm load-cat-btn" data-load-cat="plumbing">Load Plumbing in Calculator</button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 7v5l3 2" />
+                </svg>
+              </div>
+              <h3>24/7 Emergency HVAC Dispatch</h3>
+              <p>Round-the-clock response when extreme heat, electrical tripouts, furnace faults, or active pipe leaks require urgent action.</p>
+              <ul class="service-bullets">
+                <li>Direct live dispatch at +1-520-645-2889</li>
+                <li>After-hours &amp; weekend stabilization</li>
+                <li>Upfront emergency triage pricing</li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm load-cat-btn" data-load-cat="emergency">Load Emergency in Calculator</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="coverage" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Southern Arizona Service Radius</span>
+          <h2 class="section-title">Dispatch Windows from 4040 E 29th St</h2>
+          <p class="section-desc">
+            Central Tucson positioning near Alvernon and 29th Street allows rapid deployment across Midtown, Foothills, Eastside, and Greater Pima County corridors.
+          </p>
+        </div>
+
+        <div class="coverage-grid">
+          <div class="panel">
+            <h3 class="board-title" style="margin-bottom: 14px;">Typical Neighborhood Arrival Windows</h3>
+            <table class="zone-table">
+              <thead>
+                <tr>
+                  <th>Tucson Corridor</th>
+                  <th>Primary Service Focus</th>
+                  <th>Window</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Midtown, Sam Hughes &amp; Reid Park</td>
+                  <td>Split AC, older copper drains &amp; furnaces</td>
+                  <td>35–55 min</td>
+                </tr>
+                <tr>
+                  <td>Eastside, Rita Ranch &amp; Vail</td>
+                  <td>High-efficiency cooling &amp; water heaters</td>
+                  <td>40–65 min</td>
+                </tr>
+                <tr>
+                  <td>Catalina Foothills &amp; Tanque Verde</td>
+                  <td>Multi-zone heat pumps &amp; static balance</td>
+                  <td>45–75 min</td>
+                </tr>
+                <tr>
+                  <td>Oro Valley, Casas Adobes &amp; Marana</td>
+                  <td>Coil wash, duct sealing &amp; slab leaks</td>
+                  <td>55–85 min</td>
+                </tr>
+                <tr>
+                  <td>South Tucson, Drexel Heights &amp; Sahuarita</td>
+                  <td>24/7 emergency AC &amp; main drain clearing</td>
+                  <td>50–80 min</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="contact-card">
+            <div>
+              <h3 class="board-title" style="margin-bottom: 18px;">Verified Dispatch Contact Details</h3>
+              <div class="contact-rows">
+                <div class="contact-row">
+                  <span class="contact-key">Company Name</span>
+                  <span class="contact-val">Perry Heating, Cooling and Plumbing</span>
+                </div>
+                <div class="contact-row">
+                  <span class="contact-key">Tucson Office Address</span>
+                  <span class="contact-val">4040 E 29th St, Tucson, AZ 85711</span>
+                </div>
+                <div class="contact-row">
+                  <span class="contact-key">24/7 Dispatch Phone</span>
+                  <span class="contact-val">
+                    <a class="contact-link num" href="tel:+15206452889">+1-520-645-2889</a>
+                  </span>
+                </div>
+                <div class="contact-row">
+                  <span class="contact-key">Service &amp; Quote Email</span>
+                  <span class="contact-val">
+                    <a class="contact-link" href="mailto:info@justcallperry.com">info@justcallperry.com</a>
+                  </span>
+                </div>
+                <div class="contact-row">
+                  <span class="contact-key">Official Website</span>
+                  <span class="contact-val">
+                    <a href="https://perryheatingandcooling.com" target="_blank" rel="noopener noreferrer">https://perryheatingandcooling.com</a>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-actions" style="margin-bottom: 0;">
+              <a class="btn btn-steel contact-link num" href="tel:+15206452889">Call Tucson Dispatch</a>
+              <a class="btn btn-secondary" href="#calculator">Configure New Quote</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <strong>Perry Heating, Cooling and Plumbing</strong>
+        <span>4040 E 29th St, Tucson, AZ 85711 · AC Repair &amp; Installation · Heating &amp; Furnace Service · Plumbing &amp; Drain Cleaning · 24/7 Emergency HVAC Dispatch</span>
+      </div>
+      <div class="footer-links">
+        <a class="contact-link num" href="tel:+15206452889">+1-520-645-2889</a>
+        <a class="contact-link" href="mailto:info@justcallperry.com">info@justcallperry.com</a>
+        <a href="https://perryheatingandcooling.com" target="_blank" rel="noopener noreferrer">perryheatingandcooling.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var CATALOG = {
+        ac: {
+          label: 'AC Repair & Installation',
+          scopes: [
+            { id: 'ac-diag', name: 'AC Diagnostic & Capacitor / Contactor Service', base: 165, sqftRate: 0.04, note: 'Includes full amperage draw, refrigerant subcooling check, and capacitor test' },
+            { id: 'ac-ref', name: 'Refrigerant Recharge & Coil Leak Check', base: 310, sqftRate: 0.07, note: 'Includes electronic leak sweep and pressure balancing' },
+            { id: 'ac-motor', name: 'Blower Motor or Condenser Fan Replacement', base: 545, sqftRate: 0.09, note: 'OEM-grade motor, run capacitor, and blade balance calibration' },
+            { id: 'ac-install', name: 'High-Efficiency SEER2 AC System Installation', base: 6450, sqftRate: 1.35, note: 'Full condenser, coil, pad, disconnect, and Tucson load startup' }
+          ]
+        },
+        heating: {
+          label: 'Heating & Furnace Service',
+          scopes: [
+            { id: 'heat-tune', name: 'Furnace Safety Inspection & Burner Calibration', base: 145, sqftRate: 0.03, note: 'Includes CO check, limit switch test, and flame sensor cleaning' },
+            { id: 'heat-igniter', name: 'Igniter, Flame Sensor or Gas Valve Repair', base: 290, sqftRate: 0.05, note: 'Restores reliable ignition cycle and manifold gas pressure' },
+            { id: 'heat-valve', name: 'Heat Pump Reversing Valve & Defrost Service', base: 475, sqftRate: 0.09, note: 'Resolves stuck cooling-to-heating changeover and winter defrost' },
+            { id: 'heat-install', name: 'Complete Furnace or Heat Pump Unit Replacement', base: 5300, sqftRate: 1.15, note: 'Includes plenum transition, flue inspection, and safety commissioning' }
+          ]
+        },
+        plumbing: {
+          label: 'Plumbing & Drain Cleaning',
+          scopes: [
+            { id: 'plumb-drain', name: 'Main Line Drain Clearing & Camera Inspection', base: 215, sqftRate: 0.04, note: 'Clears kitchen, bath, or main sewer stoppages with line inspection' },
+            { id: 'plumb-wh-service', name: 'Water Heater Flush, Anode & Valve Service', base: 245, sqftRate: 0.03, note: 'Removes hard-water mineral sediment and tests T&P safety valve' },
+            { id: 'plumb-wh-install', name: 'Tankless or 50-Gal Water Heater Installation', base: 1890, sqftRate: 0.22, note: 'Includes expansion tank, shutoff valve, and haul-away' },
+            { id: 'plumb-slab', name: 'Slab Leak Detection & Spot Pipe Repair', base: 695, sqftRate: 0.11, note: 'Acoustic locating and targeted copper or PEX line restoration' }
+          ]
+        },
+        emergency: {
+          label: '24/7 Emergency HVAC Dispatch',
+          scopes: [
+            { id: 'emg-cool', name: 'Emergency No-Cooling Stabilization (High Heat)', base: 255, sqftRate: 0.05, note: 'Priority dispatch for interior temperatures rising above safe comfort' },
+            { id: 'emg-heat', name: 'Urgent Furnace Shutdown & Safety Inspection', base: 240, sqftRate: 0.04, note: 'Immediate fault isolation, limit check, and gas shutoff review' },
+            { id: 'emg-leak', name: 'Active Pipe Leak Shutoff & Emergency Repair', base: 335, sqftRate: 0.06, note: 'Rapid leak isolation, line clamping, and pressure restoration' },
+            { id: 'emg-multi', name: 'Multi-Zone or Light Commercial Priority Dispatch', base: 430, sqftRate: 0.10, note: 'Priority triage for split multi-unit or light commercial equipment' }
+          ]
+        }
+      };
+
+      var state = {
+        category: 'ac',
+        scopeId: 'ac-diag',
+        sqft: 1800,
+        ageFactor: 0.08,
+        urgency: 'standard',
+        urgencyLabel: 'Standard (24–48 hr)',
+        urgencyFee: 0,
+        refId: 'PHCP-' + String(Math.floor(1000 + Math.random() * 8999))
+      };
+
+      var categoryGroup = document.getElementById('category-group');
+      var scopeSelect = document.getElementById('job-scope');
+      var sqftSlider = document.getElementById('home-sqft');
+      var sqftDisplay = document.getElementById('sqft-display');
+      var tierGroup = document.getElementById('tier-group');
+      var tonnageNote = document.getElementById('tonnage-note');
+      var ageSelect = document.getElementById('system-age');
+      var urgencyGroup = document.getElementById('urgency-group');
+      var addonCheckboxes = Array.prototype.slice.call(document.querySelectorAll('.addon-checkbox'));
+
+      var quoteTotalEl = document.getElementById('quote-total');
+      var quoteRangeEl = document.getElementById('quote-range');
+      var quoteRefEl = document.getElementById('quote-ref');
+      var lineItemsEl = document.getElementById('line-items');
+      var summaryPreEl = document.getElementById('quote-summary-text');
+      var copyBtn = document.getElementById('copy-quote-btn');
+      var resetBtn = document.getElementById('reset-calc-btn');
+      var directMailLink = document.getElementById('direct-mailto-link');
+
+      var dispatchForm = document.getElementById('dispatch-form');
+      var clientNameInput = document.getElementById('client-name');
+      var clientPhoneInput = document.getElementById('client-phone');
+      var clientEmailInput = document.getElementById('client-email');
+      var clientAddressInput = document.getElementById('client-address');
+      var clientNotesInput = document.getElementById('client-notes');
+      var formFeedbackEl = document.getElementById('form-feedback');
+
+      quoteRefEl.textContent = 'REF ' + state.refId;
+
+      function formatUSD(amount) {
+        return '$' + Math.round(amount).toLocaleString('en-US');
+      }
+
+      function formatNumber(val) {
+        return Number(val).toLocaleString('en-US');
+      }
+
+      function roundTo5(val) {
+        return Math.round(val / 5) * 5;
+      }
+
+      function getRecommendedTonnage(sqft) {
+        if (sqft <= 1200) return '2.0–2.5 Ton Cooling Load';
+        if (sqft <= 1700) return '3.0 Ton Cooling Load';
+        if (sqft <= 2300) return '3.5 Ton Cooling Load';
+        if (sqft <= 3000) return '4.0–4.5 Ton Cooling Load';
+        if (sqft <= 3800) return '5.0 Ton Cooling Load';
+        return 'Multi-Zone 6.0+ Ton Cooling Load';
+      }
+
+      function populateScopes(catKey) {
+        var cat = CATALOG[catKey];
+        scopeSelect.innerHTML = '';
+        cat.scopes.forEach(function (item) {
+          var opt = document.createElement('option');
+          opt.value = item.id;
+          opt.textContent = item.name + ' (' + formatUSD(item.base) + ' base)';
+          scopeSelect.appendChild(opt);
+        });
+        state.scopeId = cat.scopes[0].id;
+        scopeSelect.value = state.scopeId;
+      }
+
+      function syncCategoryButtons() {
+        var btns = categoryGroup.querySelectorAll('.choice-btn');
+        btns.forEach(function (btn) {
+          btn.setAttribute('aria-checked', btn.dataset.category === state.category ? 'true' : 'false');
+        });
+      }
+
+      function syncTierButtons() {
+        var sq = state.sqft;
+        var activeTier = '1800';
+        if (sq < 1400) activeTier = '1200';
+        else if (sq <= 2400) activeTier = '1800';
+        else if (sq <= 3400) activeTier = '2900';
+        else activeTier = '3900';
+
+        var btns = tierGroup.querySelectorAll('.tier-btn');
+        btns.forEach(function (btn) {
+          btn.setAttribute('aria-checked', btn.dataset.tier === activeTier ? 'true' : 'false');
+        });
+      }
+
+      function syncUrgencyButtons() {
+        var btns = urgencyGroup.querySelectorAll('.urgency-btn');
+        btns.forEach(function (btn) {
+          btn.setAttribute('aria-checked', btn.dataset.urgency === state.urgency ? 'true' : 'false');
+        });
+      }
+
+      function getCurrentScope() {
+        var scopes = CATALOG[state.category].scopes;
+        for (var i = 0; i < scopes.length; i++) {
+          if (scopes[i].id === state.scopeId) return scopes[i];
+        }
+        return scopes[0];
+      }
+
+      function buildQuoteData() {
+        var categoryObj = CATALOG[state.category];
+        var scopeObj = getCurrentScope();
+        var excessSqft = Math.max(0, state.sqft - 1200);
+        var sizeAdjustment = roundTo5(excessSqft * scopeObj.sqftRate);
+        var subtotalBeforeAge = scopeObj.base + sizeAdjustment;
+        var ageAdjustment = roundTo5(subtotalBeforeAge * state.ageFactor);
+        var urgencyFee = state.urgencyFee;
+
+        var selectedAddons = [];
+        var addonsTotal = 0;
+        addonCheckboxes.forEach(function (cb) {
+          var parentLabel = cb.closest('.addon-item');
+          if (cb.checked) {
+            var price = Number(cb.value);
+            addonsTotal += price;
+            selectedAddons.push({ label: cb.dataset.label, price: price });
+            if (parentLabel) parentLabel.classList.add('is-checked');
+          } else {
+            if (parentLabel) parentLabel.classList.remove('is-checked');
+          }
+        });
+
+        var total = subtotalBeforeAge + ageAdjustment + urgencyFee + addonsTotal;
+        var lowRange = roundTo5(total * 0.94);
+        var highRange = roundTo5(total * 1.1);
+
+        var lines = [
+          { name: scopeObj.name, amount: scopeObj.base },
+          { name: 'Conditioned Home Scale (' + formatNumber(state.sqft) + ' sq ft)', amount: sizeAdjustment }
+        ];
+
+        if (ageAdjustment > 0) {
+          var ageText = ageSelect.options[ageSelect.selectedIndex].text.split(' (')[0];
+          lines.push({ name: 'Equipment Age Factor (' + ageText + ')', amount: ageAdjustment });
+        } else {
+          lines.push({ name: 'Equipment Age Factor (0–4 Years)', amount: 0 });
+        }
+
+        if (urgencyFee > 0) {
+          lines.push({ name: 'Dispatch Window (' + state.urgencyLabel + ')', amount: urgencyFee });
+        }
+
+        selectedAddons.forEach(function (addon) {
+          lines.push({ name: 'Add-On: ' + addon.label, amount: addon.price });
+        });
+
+        return {
+          categoryLabel: categoryObj.label,
+          scopeObj: scopeObj,
+          lines: lines,
+          selectedAddons: selectedAddons,
+          total: total,
+          lowRange: lowRange,
+          highRange: highRange
+        };
+      }
+
+      function buildPlainSummary(quote) {
+        var ageText = ageSelect.options[ageSelect.selectedIndex].text;
+        var addonText = quote.selectedAddons.length > 0
+          ? quote.selectedAddons.map(function (a) { return a.label + ' (+' + formatUSD(a.price) + ')'; }).join('; ')
+          : 'None selected';
+
+        var lines = [
+          'PERRY HEATING, COOLING AND PLUMBING - TUCSON SERVICE QUOTE',
+          'Reference: ' + state.refId,
+          'Office: 4040 E 29th St, Tucson, AZ 85711 | Phone: +1-520-645-2889',
+          '------------------------------------------------------------',
+          'Category: ' + quote.categoryLabel,
+          'Scope: ' + quote.scopeObj.name,
+          'Home Size: ' + formatNumber(state.sqft) + ' sq ft (' + getRecommendedTonnage(state.sqft) + ')',
+          'Equipment Age: ' + ageText,
+          'Dispatch Timing: ' + state.urgencyLabel + ' (+' + formatUSD(state.urgencyFee) + ')',
+          'Add-Ons: ' + addonText,
+          'Estimated Total: ' + formatUSD(quote.total) + ' USD (Field Range: ' + formatUSD(quote.lowRange) + ' - ' + formatUSD(quote.highRange) + ' USD)'
+        ];
+
+        var cName = clientNameInput.value.trim();
+        var cPhone = clientPhoneInput.value.trim();
+        var cEmail = clientEmailInput.value.trim();
+        var cAddress = clientAddressInput.value.trim();
+        var cNotes = clientNotesInput.value.trim();
+
+        if (cName || cPhone || cEmail || cAddress || cNotes) {
+          lines.push('------------------------------------------------------------');
+          if (cName) lines.push('Customer: ' + cName);
+          if (cPhone) lines.push('Phone: ' + cPhone);
+          if (cEmail) lines.push('Email: ' + cEmail);
+          if (cAddress) lines.push('Service Address: ' + cAddress);
+          if (cNotes) lines.push('Notes: ' + cNotes);
+        }
+
+        return lines.join('\n');
+      }
+
+      function buildMailtoHref(quote, plainSummary) {
+        var subject = 'Service Quote & Dispatch Request (' + state.refId + ') - ' + quote.categoryLabel;
+        return 'mailto:info@justcallperry.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(plainSummary);
+      }
+
+      function render() {
+        sqftDisplay.textContent = formatNumber(state.sqft) + ' sq ft';
+        tonnageNote.textContent = 'Estimated Tucson Sizing Benchmark: ' + getRecommendedTonnage(state.sqft);
+
+        var quote = buildQuoteData();
+        quoteTotalEl.textContent = formatUSD(quote.total);
+        quoteRangeEl.textContent = 'Typical Field Range: ' + formatUSD(quote.lowRange) + ' – ' + formatUSD(quote.highRange) + ' USD';
+
+        lineItemsEl.innerHTML = '';
+        quote.lines.forEach(function (item) {
+          var li = document.createElement('li');
+          li.className = 'line-item';
+
+          var nameSpan = document.createElement('span');
+          nameSpan.className = 'line-item-name';
+          nameSpan.textContent = item.name;
+
+          var amountSpan = document.createElement('span');
+          amountSpan.className = 'line-item-amount';
+          amountSpan.textContent = formatUSD(item.amount);
+
+          li.appendChild(nameSpan);
+          li.appendChild(amountSpan);
+          lineItemsEl.appendChild(li);
+        });
+
+        var plainSummary = buildPlainSummary(quote);
+        summaryPreEl.textContent = plainSummary;
+        directMailLink.href = buildMailtoHref(quote, plainSummary);
+      }
+
+      function setCategory(catKey, autoEmergency) {
+        if (!CATALOG[catKey]) return;
+        state.category = catKey;
+        syncCategoryButtons();
+        populateScopes(catKey);
+        if (autoEmergency && catKey === 'emergency') {
+          state.urgency = 'emergency';
+          state.urgencyLabel = 'Same-Day / 24-7 Dispatch';
+          state.urgencyFee = 115;
+          syncUrgencyButtons();
+        }
+        render();
+      }
+
+      // Event Listeners
+      categoryGroup.addEventListener('click', function (e) {
+        var btn = e.target.closest('.choice-btn');
+        if (!btn) return;
+        setCategory(btn.dataset.category, true);
+      });
+
+      scopeSelect.addEventListener('change', function () {
+        state.scopeId = scopeSelect.value;
+        render();
+      });
+
+      sqftSlider.addEventListener('input', function () {
+        state.sqft = Number(sqftSlider.value);
+        syncTierButtons();
+        render();
+      });
+
+      tierGroup.addEventListener('click', function (e) {
+        var btn = e.target.closest('.tier-btn');
+        if (!btn) return;
+        state.sqft = Number(btn.dataset.tier);
+        sqftSlider.value = String(state.sqft);
+        syncTierButtons();
+        render();
+      });
+
+      ageSelect.addEventListener('change', function () {
+        state.ageFactor = Number(ageSelect.value);
+        render();
+      });
+
+      urgencyGroup.addEventListener('click', function (e) {
+        var btn = e.target.closest('.urgency-btn');
+        if (!btn) return;
+        state.urgency = btn.dataset.urgency;
+        state.urgencyFee = Number(btn.dataset.fee);
+        state.urgencyLabel = btn.querySelector('span').textContent;
+        syncUrgencyButtons();
+        render();
+      });
+
+      addonCheckboxes.forEach(function (cb) {
+        cb.addEventListener('change', render);
+      });
+
+      [clientNameInput, clientPhoneInput, clientEmailInput, clientAddressInput, clientNotesInput].forEach(function (input) {
+        input.addEventListener('input', render);
+      });
+
+      copyBtn.addEventListener('click', function () {
+        var text = summaryPreEl.textContent;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            copyBtn.textContent = 'Copied to Clipboard';
+            setTimeout(function () {
+              copyBtn.textContent = 'Copy Quote Summary';
+            }, 2200);
+          }).catch(function () {
+            fallbackCopy(text);
+          });
+        } else {
+          fallbackCopy(text);
+        }
+      });
+
+      function fallbackCopy(text) {
+        var helper = document.createElement('textarea');
+        helper.value = text;
+        helper.setAttribute('readonly', '');
+        helper.style.position = 'fixed';
+        helper.style.left = '-9999px';
+        document.body.appendChild(helper);
+        helper.select();
+        try {
+          document.execCommand('copy');
+          copyBtn.textContent = 'Copied to Clipboard';
+          setTimeout(function () {
+            copyBtn.textContent = 'Copy Quote Summary';
+          }, 2200);
+        } catch (err) {
+          copyBtn.textContent = 'Select Summary Text';
+        }
+        document.body.removeChild(helper);
+      }
+
+      resetBtn.addEventListener('click', function () {
+        state.category = 'ac';
+        state.sqft = 1800;
+        sqftSlider.value = '1800';
+        ageSelect.value = '0.08';
+        state.ageFactor = 0.08;
+        state.urgency = 'standard';
+        state.urgencyLabel = 'Standard (24–48 hr)';
+        state.urgencyFee = 0;
+
+        addonCheckboxes.forEach(function (cb) {
+          cb.checked = false;
+        });
+
+        syncCategoryButtons();
+        populateScopes('ac');
+        syncTierButtons();
+        syncUrgencyButtons();
+        formFeedbackEl.className = 'form-feedback';
+        formFeedbackEl.innerHTML = '';
+        render();
+      });
+
+      document.querySelectorAll('.load-cat-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var targetCat = btn.dataset.loadCat;
+          setCategory(targetCat, true);
+          var calcSection = document.getElementById('calculator');
+          if (calcSection) {
+            calcSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+          setTimeout(function () {
+            scopeSelect.focus();
+          }, 350);
+        });
+      });
+
+      dispatchForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var cName = clientNameInput.value.trim();
+        var cPhone = clientPhoneInput.value.trim();
+        var cEmail = clientEmailInput.value.trim();
+        var cAddress = clientAddressInput.value.trim();
+
+        var missing = [];
+        if (!cName) missing.push('Full Name');
+        if (!cPhone) missing.push('Phone Number');
+        if (!cEmail || cEmail.indexOf('@') === -1) missing.push('Valid Email Address');
+        if (!cAddress) missing.push('Tucson Service Street Address');
+
+        if (missing.length > 0) {
+          formFeedbackEl.className = 'form-feedback is-visible is-error';
+          formFeedbackEl.textContent = 'Please complete the required dispatch fields before sending: ' + missing.join(', ') + '.';
+          return;
+        }
+
+        render();
+        var quote = buildQuoteData();
+        var summaryText = buildPlainSummary(quote);
+        var mailHref = buildMailtoHref(quote, summaryText);
+
+        formFeedbackEl.className = 'form-feedback is-visible is-success';
+        formFeedbackEl.innerHTML = '';
+
+        var statusLine = document.createElement('div');
+        statusLine.textContent = 'Dispatch packet ' + state.refId + ' is ready for ' + cName + ' (' + formatUSD(quote.total) + ' USD estimated). Send via your email client or call Tucson dispatch directly.';
+        formFeedbackEl.appendChild(statusLine);
+
+        var linkWrap = document.createElement('div');
+        linkWrap.className = 'feedback-links';
+
+        var emailBtn = document.createElement('a');
+        emailBtn.className = 'btn btn-primary btn-sm contact-link';
+        emailBtn.href = mailHref;
+        emailBtn.textContent = 'Open Email to info@justcallperry.com';
+
+        var callBtn = document.createElement('a');
+        callBtn.className = 'btn btn-secondary btn-sm contact-link num';
+        callBtn.href = 'tel:+15206452889';
+        callBtn.textContent = 'Call +1-520-645-2889';
+
+        linkWrap.appendChild(emailBtn);
+        linkWrap.appendChild(callBtn);
+        formFeedbackEl.appendChild(linkWrap);
+      });
+
+      // Initialize default calculator state
+      populateScopes(state.category);
+      syncCategoryButtons();
+      syncTierButtons();
+      syncUrgencyButtons();
+      render();
+    })();
+  </script>
+</body>
+</html>

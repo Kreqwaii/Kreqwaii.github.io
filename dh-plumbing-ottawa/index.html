@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DH Plumbing & Heating in Ottawa, ON. Calculate a live CAD job estimate for 24/7 emergency plumbing, drain cleaning, water heater installation, and hydronic boiler service, and send a direct dispatch request.">
+  <title>DH Plumbing & Heating | Ottawa CAD Job Estimator & 24/7 Dispatch</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F2D4A'/%3E%3Cpath d='M8 22V10h5v4h6v-4h5v12h-5v-4h-6v4H8z' fill='%23FFFFFF'/%3E%3Ccircle cx='24' cy='8' r='3' fill='%23C24E1A'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #F6F8FA;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #EEF2F6;
+      --bg-tint-blue: #EDF3F8;
+      --bg-tint-copper: #FDF3EE;
+      --border-default: #D0D7DE;
+      --border-strong: #94A3B8;
+      --border-blue: #1B4965;
+      --border-copper: #C24E1A;
+      --ink-primary: #0F172A;
+      --ink-secondary: #334155;
+      --ink-muted: #475569;
+      --brand-blue: #0F2D4A;
+      --brand-blue-hover: #173F66;
+      --accent-copper: #B54512;
+      --accent-copper-hover: #94360C;
+      --accent-copper-ink: #8A320A;
+      --status-ok-bg: #ECFDF5;
+      --status-ok-border: #10B981;
+      --status-ok-ink: #065F46;
+      --status-err-bg: #FEF2F2;
+      --status-err-border: #DC2626;
+      --status-err-ink: #991B1B;
+      --font-sans: 'Outfit', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --font-serif: 'Source Serif 4', ui-serif, Georgia, serif;
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 10px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      max-width: 100%;
+      overflow-x: clip;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      max-width: 100%;
+      overflow-x: clip;
+    }
+
+    a {
+      color: var(--brand-blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    a[href^="mailto:"],
+    a[href^="tel:"] {
+      white-space: nowrap;
+      word-break: normal;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent-copper);
+      outline-offset: 2px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Top Utility Header */
+    .site-header {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-default);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--ink-primary);
+    }
+
+    .brand:hover {
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: var(--brand-blue);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--brand-blue);
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--brand-blue);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .brand-meta {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .header-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--brand-blue);
+      font-variant-numeric: tabular-nums;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .header-pill:hover {
+      text-decoration: none;
+      border-color: var(--brand-blue);
+      background-color: var(--bg-tint-blue);
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background-color: var(--accent-copper);
+      border: 1px solid var(--accent-copper);
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .header-cta:hover {
+      text-decoration: none;
+      background-color: var(--accent-copper-hover);
+      border-color: var(--accent-copper-hover);
+    }
+
+    /* Hero / Intro Utility Strip */
+    .hero-section {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-default);
+      padding: 32px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      background-color: var(--bg-tint-copper);
+      border: 1px solid #F1C9B7;
+      border-radius: var(--radius-sm);
+      color: var(--accent-copper-ink);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 3vw, 2.45rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--brand-blue);
+      margin: 0 0 12px;
+    }
+
+    .hero-subtitle {
+      margin: 0 0 18px;
+      color: var(--ink-secondary);
+      font-size: 1.02rem;
+      max-width: 62ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background-color: var(--brand-blue);
+      color: #FFFFFF;
+      border: 1px solid var(--brand-blue);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--brand-blue-hover);
+      border-color: var(--brand-blue-hover);
+      text-decoration: none;
+    }
+
+    .btn-copper {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background-color: var(--accent-copper);
+      color: #FFFFFF;
+      border: 1px solid var(--accent-copper);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-copper:hover {
+      background-color: var(--accent-copper-hover);
+      border-color: var(--accent-copper-hover);
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background-color: var(--bg-surface);
+      color: var(--brand-blue);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--brand-blue);
+      background-color: var(--bg-tint-blue);
+      text-decoration: none;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .spec-card {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+    }
+
+    .spec-label {
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .spec-value {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--brand-blue);
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 2px;
+    }
+
+    .spec-note {
+      font-size: 0.82rem;
+      color: var(--ink-secondary);
+      line-height: 1.35;
+    }
+
+    /* Section Layout */
+    .main-section {
+      padding: 28px 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--brand-blue);
+      margin: 0;
+      line-height: 1.25;
+    }
+
+    .section-sub {
+      margin: 4px 0 0;
+      color: var(--ink-muted);
+      font-size: 0.92rem;
+    }
+
+    /* Services Overview */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .service-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      transition: border-color 0.15s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--border-strong);
+    }
+
+    .service-card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .service-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-tint-blue);
+      border: 1px solid #C8D9E8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brand-blue);
+      flex-shrink: 0;
+    }
+
+    .service-card h3 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--brand-blue);
+      line-height: 1.25;
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 0.87rem;
+      color: var(--ink-secondary);
+      line-height: 1.45;
+    }
+
+    .service-select-btn {
+      width: 100%;
+      padding: 7px 10px;
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--brand-blue);
+      cursor: pointer;
+      text-align: center;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .service-select-btn:hover {
+      border-color: var(--brand-blue);
+      background-color: var(--bg-tint-blue);
+    }
+
+    /* Core Estimator + Dispatch Workspace */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+
+    .panel-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border-default);
+      flex-wrap: wrap;
+    }
+
+    .panel-title {
+      font-family: var(--font-serif);
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: var(--brand-blue);
+      margin: 0;
+    }
+
+    .panel-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: var(--radius-sm);
+      font-size: 0.76rem;
+      font-weight: 600;
+      background-color: var(--bg-tint-blue);
+      border: 1px solid #C8D9E8;
+      color: var(--brand-blue);
+    }
+
+    .panel-tag.is-urgent {
+      background-color: var(--bg-tint-copper);
+      border-color: #F1C9B7;
+      color: var(--accent-copper-ink);
+    }
+
+    /* Field Groups & Controls */
+    .field-group {
+      margin-bottom: 20px;
+    }
+
+    .field-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--brand-blue);
+      margin-bottom: 8px;
+    }
+
+    .field-hint {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .choice-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .choice-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .choice-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
+      width: 100%;
+      padding: 11px 12px;
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      text-align: left;
+      cursor: pointer;
+      color: var(--ink-primary);
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .choice-btn:hover {
+      border-color: var(--border-strong);
+      background-color: var(--bg-surface);
+    }
+
+    .choice-btn[aria-pressed="true"] {
+      background-color: var(--bg-tint-blue);
+      border-color: var(--brand-blue);
+      box-shadow: inset 0 0 0 1px var(--brand-blue);
+    }
+
+    .choice-btn.urgency-emergency[aria-pressed="true"] {
+      background-color: var(--bg-tint-copper);
+      border-color: var(--accent-copper);
+      box-shadow: inset 0 0 0 1px var(--accent-copper);
+    }
+
+    .choice-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--brand-blue);
+      line-height: 1.25;
+    }
+
+    .choice-btn.urgency-emergency[aria-pressed="true"] .choice-title {
+      color: var(--accent-copper-ink);
+    }
+
+    .choice-meta {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.3;
+    }
+
+    /* Add-on Inspection Toggle Cards */
+    .addon-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .addon-btn {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      width: 100%;
+      padding: 11px 12px;
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .addon-btn:hover {
+      border-color: var(--border-strong);
+      background-color: var(--bg-surface);
+    }
+
+    .addon-btn[aria-pressed="true"] {
+      background-color: var(--bg-tint-blue);
+      border-color: var(--brand-blue);
+      box-shadow: inset 0 0 0 1px var(--brand-blue);
+    }
+
+    .addon-check-box {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: #FFFFFF;
+    }
+
+    .addon-btn[aria-pressed="true"] .addon-check-box {
+      background-color: var(--brand-blue);
+      border-color: var(--brand-blue);
+    }
+
+    .addon-btn[aria-pressed="false"] .addon-check-box svg {
+      opacity: 0;
+    }
+
+    .addon-body {
+      min-width: 0;
+    }
+
+    .addon-name {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      line-height: 1.25;
+    }
+
+    .addon-price {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent-copper-ink);
+      font-variant-numeric: tabular-nums;
+      margin-top: 2px;
+    }
+
+    /* Native Inputs & Selects */
+    .input-control,
+    .select-control,
+    .textarea-control {
+      width: 100%;
+      padding: 10px 12px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 0.94rem;
+      color: var(--ink-primary);
+      line-height: 1.4;
+      transition: border-color 0.15s ease;
+    }
+
+    .input-control:hover,
+    .select-control:hover,
+    .textarea-control:hover {
+      border-color: var(--border-strong);
+    }
+
+    .input-control:focus,
+    .select-control:focus,
+    .textarea-control:focus {
+      outline: 2px solid var(--accent-copper);
+      outline-offset: 1px;
+      border-color: var(--accent-copper);
+    }
+
+    .textarea-control {
+      min-height: 82px;
+      resize: vertical;
+    }
+
+    /* Live Quote Summary */
+    .quote-hero-box {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .quote-caption {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .quote-total-range {
+      font-family: var(--font-serif);
+      font-size: clamp(1.65rem, 2.6vw, 2.05rem);
+      font-weight: 700;
+      color: var(--brand-blue);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+
+    .quote-sub-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      font-size: 0.84rem;
+      color: var(--ink-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .itemized-list {
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .itemized-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border-default);
+      background-color: var(--bg-surface);
+      font-size: 0.88rem;
+    }
+
+    .itemized-row:last-child {
+      border-bottom: none;
+    }
+
+    .itemized-row.row-total {
+      background-color: var(--bg-tint-blue);
+      font-weight: 700;
+      color: var(--brand-blue);
+    }
+
+    .itemized-row.row-hst {
+      background-color: var(--bg-canvas);
+      font-size: 0.84rem;
+      color: var(--ink-secondary);
+    }
+
+    .item-desc {
+      min-width: 0;
+    }
+
+    .item-desc-sub {
+      display: block;
+      font-size: 0.77rem;
+      color: var(--ink-muted);
+      font-weight: 400;
+    }
+
+    .item-amount {
+      flex-shrink: 0;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--ink-primary);
+      text-align: right;
+    }
+
+    .quote-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .quote-actions .btn-secondary {
+      flex: 1 1 160px;
+      font-size: 0.86rem;
+      padding: 8px 12px;
+    }
+
+    /* Dispatch Form */
+    .urgent-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 10px 12px;
+      background-color: var(--bg-tint-copper);
+      border: 1px solid #F1C9B7;
+      border-radius: var(--radius-sm);
+      margin-bottom: 16px;
+      font-size: 0.86rem;
+      color: var(--accent-copper-ink);
+    }
+
+    .urgent-strip a {
+      font-weight: 700;
+      color: var(--accent-copper-ink);
+      text-decoration: underline;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .form-field {
+      margin-bottom: 12px;
+    }
+
+    .form-field label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--brand-blue);
+      margin-bottom: 5px;
+    }
+
+    .req-mark {
+      color: var(--accent-copper-ink);
+      font-weight: 700;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .form-actions > * {
+      flex: 1 1 auto;
+    }
+
+    .status-box {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      line-height: 1.45;
+      display: none;
+    }
+
+    .status-box.is-visible {
+      display: block;
+    }
+
+    .status-box.is-success {
+      background-color: var(--status-ok-bg);
+      border: 1px solid var(--status-ok-border);
+      color: var(--status-ok-ink);
+    }
+
+    .status-box.is-error {
+      background-color: var(--status-err-bg);
+      border: 1px solid var(--status-err-border);
+      color: var(--status-err-ink);
+    }
+
+    .packet-preview {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.78rem;
+      color: var(--ink-primary);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* Ottawa Standards & Coverage Section */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .info-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .info-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--brand-blue);
+      margin: 0 0 10px;
+    }
+
+    .info-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--ink-secondary);
+      font-size: 0.91rem;
+    }
+
+    .info-list li + li {
+      margin-top: 7px;
+    }
+
+    .zone-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .zone-tag {
+      padding: 4px 10px;
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink-secondary);
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border-default);
+      padding: 24px 0 30px;
+      margin-top: 12px;
+    }
+
+    .footer-grid {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-family: var(--font-serif);
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--brand-blue);
+      margin: 0 0 4px;
+    }
+
+    .footer-meta {
+      margin: 0;
+      font-size: 0.86rem;
+      color: var(--ink-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      align-items: center;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-default);
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1020px) {
+      .hero-grid,
+      .workspace-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        padding: 0 14px;
+      }
+
+      .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+
+      .header-actions {
+        width: 100%;
+      }
+
+      .header-pill,
+      .header-cta {
+        font-size: 0.83rem;
+        padding: 7px 10px;
+      }
+
+      .services-grid,
+      .spec-grid,
+      .choice-grid-4,
+      .choice-grid-3,
+      .addon-grid,
+      .form-grid-2,
+      .info-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .panel-card {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 18V6H9V10H15V6H19V18H15V13H9V18H5Z" fill="#FFFFFF"/>
+            <circle cx="19" cy="5" r="2.2" fill="#E06D3B"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">DH Plumbing &amp; Heating</span>
+          <span class="brand-meta">Ottawa, ON · Plumbing, Drains &amp; Hydronic Systems</span>
+        </span>
+      </a>
+
+      <nav class="header-actions" aria-label="Primary Contact and Navigation">
+        <a href="tel:+16132828094" class="header-pill">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span>+1-613-282-8094</span>
+        </a>
+        <a href="mailto:dhall@dhplumbing.ca" class="header-pill">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+          <span>dhall@dhplumbing.ca</span>
+        </a>
+        <a href="#estimator-workspace" class="header-cta">Job Estimator &amp; Dispatch</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Ottawa, ON · 24/7 Emergency &amp; Hydronic Heating</div>
+          <h1 class="hero-title">Ottawa Plumbing &amp; Heating Job Estimator and Dispatch</h1>
+          <p class="hero-subtitle">
+            Build a transparent Canadian Dollar (CAD) estimate for urgent leaks, drain clearing, water heater upgrades, or hydronic boiler service in Ottawa, ON, then transmit your dispatch summary directly to DH Plumbing &amp; Heating.
+          </p>
+          <div class="hero-actions">
+            <a href="#estimator-workspace" class="btn-copper">Launch CAD Estimator</a>
+            <a href="#dispatch-form-card" class="btn-primary">Open Dispatch Form</a>
+            <a href="https://dhplumbing.ca" target="_blank" rel="noopener noreferrer" class="btn-secondary">Visit dhplumbing.ca</a>
+          </div>
+        </div>
+
+        <div class="spec-grid" aria-label="Service Specifications">
+          <div class="spec-card">
+            <div class="spec-label">Emergency Response</div>
+            <div class="spec-value">24/7 On-Call</div>
+            <div class="spec-note">Rapid shut-off, burst pipe, and sump pump dispatch across Ottawa.</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-label">Pricing Currency</div>
+            <div class="spec-value">CAD Min–Max</div>
+            <div class="spec-note">Itemized scope ranges shown pre-tax (13% Ontario HST calculated).</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-label">Core Trade Scope</div>
+            <div class="spec-value">Plumbing &amp; Hydronics</div>
+            <div class="spec-note">Water heaters, boilers, radiant zones, and main sewer clearing.</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-label">Direct Dispatch Line</div>
+            <div class="spec-value">+1-613-282-8094</div>
+            <div class="spec-note">Speak directly with DH Plumbing &amp; Heating in Ottawa, ON.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-section" aria-labelledby="services-heading">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 id="services-heading" class="section-title">Core Ottawa Plumbing &amp; Heating Services</h2>
+            <p class="section-sub">Select any service below to load its scope options directly into the CAD estimator.</p>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-card-top">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2v6"/><path d="M12 22v-6"/><path d="M4.93 4.93l4.24 4.24"/><path d="M14.83 14.83l4.24 4.24"/><path d="M2 12h6"/><path d="M16 12h6"/><path d="M4.93 19.07l4.24-4.24"/><path d="M14.83 9.17l4.24-4.24"/>
+                  </svg>
+                </span>
+                <h3>24/7 Emergency Plumbing</h3>
+              </div>
+              <p>Immediate isolation and repair for burst winter lines, leaking shut-off valves, active water leaks, and failed basement sump pumps.</p>
+            </div>
+            <button type="button" class="service-select-btn" data-jump-service="emergency" data-jump-urgency="emergency">Estimate Emergency Job</button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-top">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 6h16"/><path d="M6 6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6"/><path d="M10 11v3"/><path d="M14 11v3"/>
+                  </svg>
+                </span>
+                <h3>Drain Cleaning &amp; Pipe Repair</h3>
+              </div>
+              <p>Main sewer augering, camera inspection, hydro-jetting, root clearing, and copper or PEX water line section replacement.</p>
+            </div>
+            <button type="button" class="service-select-btn" data-jump-service="drain">Estimate Drain &amp; Pipe</button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-top">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="6" y="3" width="12" height="18" rx="2"/><path d="M10 7h4"/><path d="M12 11v4"/><circle cx="12" cy="17" r="1"/>
+                  </svg>
+                </span>
+                <h3>Water Heater Installation</h3>
+              </div>
+              <p>High-efficiency tankless water heaters, power-vented and direct-vent gas storage tanks, expansion tanks, and mixing valves.</p>
+            </div>
+            <button type="button" class="service-select-btn" data-jump-service="water-heater">Estimate Water Heater</button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-top">
+                <span class="service-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7h18"/><path d="M3 17h18"/><path d="M7 7v10"/><path d="M12 7v10"/><path d="M17 7v10"/>
+                  </svg>
+                </span>
+                <h3>Hydronic Heating &amp; Boilers</h3>
+              </div>
+              <p>Condensing boiler installations, circulator pumps, zone valves, radiant floor balancing, and annual combustion diagnostics.</p>
+            </div>
+            <button type="button" class="service-select-btn" data-jump-service="hydronic">Estimate Hydronic Boiler</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="estimator-workspace" class="main-section" aria-labelledby="estimator-heading">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 id="estimator-heading" class="section-title">Plumbing &amp; Heating Job Estimator (CAD) &amp; Dispatch</h2>
+            <p class="section-sub">Configure service scope, Ottawa property type, urgency, and inspection add-ons for a live itemized range.</p>
+          </div>
+        </div>
+
+        <div class="workspace-grid">
+          <!-- Left Column: Job Configuration -->
+          <div class="panel-card">
+            <div class="panel-head">
+              <h3 class="panel-title">Job Parameters</h3>
+              <span class="panel-tag">All Pricing in CAD</span>
+            </div>
+
+            <div class="field-group" role="group" aria-labelledby="lbl-service">
+              <div id="lbl-service" class="field-label">
+                1. Service Type
+                <span class="field-hint">Choose the primary plumbing or heating trade discipline</span>
+              </div>
+              <div class="choice-grid-4">
+                <button type="button" class="choice-btn" data-service="emergency" aria-pressed="true">
+                  <span class="choice-title">Emergency</span>
+                  <span class="choice-meta">24/7 Emergency Plumbing</span>
+                </button>
+                <button type="button" class="choice-btn" data-service="drain" aria-pressed="false">
+                  <span class="choice-title">Drain &amp; Pipe</span>
+                  <span class="choice-meta">Drain Cleaning &amp; Pipe Repair</span>
+                </button>
+                <button type="button" class="choice-btn" data-service="water-heater" aria-pressed="false">
+                  <span class="choice-title">Water Heater</span>
+                  <span class="choice-meta">Water Heater Installation</span>
+                </button>
+                <button type="button" class="choice-btn" data-service="hydronic" aria-pressed="false">
+                  <span class="choice-title">Hydronic Boiler</span>
+                  <span class="choice-meta">Hydronic Heating &amp; Boilers</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="scope-select" class="field-label">
+                2. Specific Work Scope
+                <span class="field-hint">Updates automatically to match the selected service category</span>
+              </label>
+              <select id="scope-select" class="select-control" autocomplete="off"></select>
+            </div>
+
+            <div class="field-group" role="group" aria-labelledby="lbl-property">
+              <div id="lbl-property" class="field-label">
+                3. Property Type
+                <span class="field-hint">Accounts for mechanical access, risers, and isolation complexity</span>
+              </div>
+              <div class="choice-grid-4">
+                <button type="button" class="choice-btn" data-property="detached" aria-pressed="true">
+                  <span class="choice-title">Detached</span>
+                  <span class="choice-meta">Standard single-home layout</span>
+                </button>
+                <button type="button" class="choice-btn" data-property="townhome" aria-pressed="false">
+                  <span class="choice-title">Townhome</span>
+                  <span class="choice-meta">+5% routing allowance</span>
+                </button>
+                <button type="button" class="choice-btn" data-property="condo" aria-pressed="false">
+                  <span class="choice-title">Condo</span>
+                  <span class="choice-meta">+15% riser &amp; strata rules</span>
+                </button>
+                <button type="button" class="choice-btn" data-property="commercial" aria-pressed="false">
+                  <span class="choice-title">Commercial</span>
+                  <span class="choice-meta">+28% commercial code spec</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group" role="group" aria-labelledby="lbl-urgency">
+              <div id="lbl-urgency" class="field-label">
+                4. Urgency &amp; Dispatch Window
+                <span class="field-hint">Select Standard scheduling, Same-Day, or 24-7 Emergency callout</span>
+              </div>
+              <div class="choice-grid-3">
+                <button type="button" class="choice-btn" data-urgency="standard" aria-pressed="false">
+                  <span class="choice-title">Standard</span>
+                  <span class="choice-meta">Mon–Fri scheduled (+$0)</span>
+                </button>
+                <button type="button" class="choice-btn" data-urgency="same-day" aria-pressed="false">
+                  <span class="choice-title">Same-Day</span>
+                  <span class="choice-meta">Priority window (+$115–$165)</span>
+                </button>
+                <button type="button" class="choice-btn urgency-emergency" data-urgency="emergency" aria-pressed="true">
+                  <span class="choice-title">24-7 Emergency</span>
+                  <span class="choice-meta">Immediate callout (+$225–$325)</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group" role="group" aria-labelledby="lbl-addons">
+              <div id="lbl-addons" class="field-label">
+                5. Add-On Inspections &amp; Diagnostics
+                <span class="field-hint">Optional diagnostic tests to verify root cause before work begins</span>
+              </div>
+              <div class="addon-grid">
+                <button type="button" class="addon-btn" data-addon="camera" aria-pressed="false">
+                  <span class="addon-check-box" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </span>
+                  <span class="addon-body">
+                    <span class="addon-name">Sewer Camera Scope &amp; Locate</span>
+                    <span class="addon-price">+$165 – $240 CAD</span>
+                  </span>
+                </button>
+
+                <button type="button" class="addon-btn" data-addon="thermal" aria-pressed="false">
+                  <span class="addon-check-box" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </span>
+                  <span class="addon-body">
+                    <span class="addon-name">Thermal Leak &amp; Freeze Trace</span>
+                    <span class="addon-price">+$110 – $175 CAD</span>
+                  </span>
+                </button>
+
+                <button type="button" class="addon-btn" data-addon="backwater" aria-pressed="false">
+                  <span class="addon-check-box" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </span>
+                  <span class="addon-body">
+                    <span class="addon-name">Backwater Valve &amp; Sump Audit</span>
+                    <span class="addon-price">+$85 – $140 CAD</span>
+                  </span>
+                </button>
+
+                <button type="button" class="addon-btn" data-addon="combustion" aria-pressed="false">
+                  <span class="addon-check-box" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </span>
+                  <span class="addon-body">
+                    <span class="addon-name">Combustion &amp; Hydronic Pressure Test</span>
+                    <span class="addon-price">+$120 – $185 CAD</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="access-select" class="field-label">
+                6. Mechanical &amp; Shut-Off Access
+                <span class="field-hint">Factor in crawlspace, condo shutdown, or frozen exterior access</span>
+              </label>
+              <select id="access-select" class="select-control" autocomplete="off">
+                <option value="clear">Clear Basement / Utility Room Access (+$0 CAD)</option>
+                <option value="tight">Tight Crawlspace / Drywall Access Required (+$95 – $190 CAD)</option>
+                <option value="strata">Condo Riser / Building Isolation Coordination (+$110 – $210 CAD)</option>
+                <option value="winter">Winter Exterior / Frozen Line Thawing Access (+$140 – $280 CAD)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Right Column: Live Itemized Quote + Emergency Dispatch Form -->
+          <div class="panel-stack">
+            <div class="panel-card" aria-live="polite">
+              <div class="panel-head">
+                <h3 class="panel-title">Live CAD Estimate</h3>
+                <span id="quote-urgency-tag" class="panel-tag is-urgent">24-7 Emergency</span>
+              </div>
+
+              <div class="quote-hero-box">
+                <div class="quote-caption">Estimated Pre-Tax Range (CAD)</div>
+                <div id="quote-total-range" class="quote-total-range">$645 – $1,305 CAD</div>
+                <div class="quote-sub-meta">
+                  <span id="quote-service-summary">24/7 Emergency Plumbing · Detached</span>
+                  <span id="quote-eta-summary">Dispatch ETA: 60–90 min</span>
+                </div>
+              </div>
+
+              <div id="itemized-list" class="itemized-list" aria-label="Itemized Quote Breakdown"></div>
+
+              <div class="quote-actions">
+                <button type="button" id="copy-quote-btn" class="btn-secondary">Copy CAD Estimate</button>
+                <button type="button" id="reset-estimator-btn" class="btn-secondary">Reset Estimator</button>
+              </div>
+            </div>
+
+            <div id="dispatch-form-card" class="panel-card">
+              <div class="panel-head">
+                <h3 class="panel-title">Emergency &amp; Service Dispatch Form</h3>
+                <span class="panel-tag">Ottawa, ON</span>
+              </div>
+
+              <div class="urgent-strip">
+                <span>Active flooding or gas smell — call immediately:</span>
+                <a href="tel:+16132828094">+1-613-282-8094</a>
+              </div>
+
+              <form id="dispatch-form" novalidate>
+                <div class="form-grid-2">
+                  <div class="form-field">
+                    <label for="cust-name">Full Name <span class="req-mark">*</span></label>
+                    <input id="cust-name" name="name" type="text" class="input-control" autocomplete="name" placeholder="Jordan Tremblay" required>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="cust-phone">Phone Number <span class="req-mark">*</span></label>
+                    <input id="cust-phone" name="tel" type="tel" class="input-control" autocomplete="tel" placeholder="+1-613-555-0148" required>
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-field">
+                    <label for="cust-email">Email Address <span class="req-mark">*</span></label>
+                    <input id="cust-email" name="email" type="email" class="input-control" autocomplete="email" placeholder="name@example.ca" required>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="cust-area">Ottawa Sector</label>
+                    <select id="cust-area" name="area" class="select-control" autocomplete="off">
+                      <option value="Central Ottawa / Glebe / Westboro">Central Ottawa / Glebe / Westboro</option>
+                      <option value="Kanata / Stittsville">Kanata / Stittsville</option>
+                      <option value="Nepean / Alta Vista">Nepean / Alta Vista</option>
+                      <option value="Barrhaven / Riverside South">Barrhaven / Riverside South</option>
+                      <option value="Orleans / Gloucester / Vanier">Orleans / Gloucester / Vanier</option>
+                      <option value="Rural Ottawa / Greely / Manotick">Rural Ottawa / Greely / Manotick</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-field">
+                  <label for="cust-address">Service Street Address</label>
+                  <input id="cust-address" name="street-address" type="text" class="input-control" autocomplete="street-address" placeholder="148 Wellington St, Ottawa, ON">
+                </div>
+
+                <div class="form-field">
+                  <label for="cust-notes">Symptoms, Shut-Off Status &amp; Equipment Notes</label>
+                  <textarea id="cust-notes" name="notes" class="textarea-control" autocomplete="off" placeholder="Describe active leak location, boiler error code, main shut-off status, or basement access details."></textarea>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn-copper">Prepare Dispatch Request</button>
+                  <a id="direct-mailto" href="mailto:dhall@dhplumbing.ca" class="btn-primary">Email dhall@dhplumbing.ca</a>
+                  <button type="button" id="copy-dispatch-btn" class="btn-secondary">Copy Full Summary</button>
+                </div>
+
+                <div id="form-status" class="status-box" role="status" aria-live="polite"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-section" aria-labelledby="ottawa-standards-heading">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 id="ottawa-standards-heading" class="section-title">Ottawa Field Standards &amp; Dispatch Coverage</h2>
+            <p class="section-sub">How DH Plumbing &amp; Heating scopes cold-climate residential and light commercial work across Ottawa, ON.</p>
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>What Influences Final On-Site Pricing</h3>
+            <ul class="info-list">
+              <li>Exact pipe material, diameter, and concealed framing or finished ceiling restoration scope.</li>
+              <li>Ontario Building Code and TSSA gas-fitting venting clearances for replacement water heaters and boilers.</li>
+              <li>Whether a City of Ottawa main shut-off curb stop isolation or condo riser shutdown notice is required.</li>
+              <li>Pre-tax CAD ranges above cover typical Ottawa diagnostic, labour, and standard fitting allowances; specialty equipment parts are confirmed prior to installation.</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>Ottawa Communities Served</h3>
+            <p style="margin: 0 0 10px; font-size: 0.91rem; color: var(--ink-secondary);">
+              Mobile service trucks operate across urban, suburban, and surrounding Ottawa, ON districts for scheduled installations and 24/7 emergencies.
+            </p>
+            <div class="zone-tags">
+              <span class="zone-tag">Centretown &amp; Glebe</span>
+              <span class="zone-tag">Westboro &amp; Hintonburg</span>
+              <span class="zone-tag">Kanata &amp; Stittsville</span>
+              <span class="zone-tag">Nepean &amp; Bells Corners</span>
+              <span class="zone-tag">Barrhaven &amp; Manotick</span>
+              <span class="zone-tag">Alta Vista &amp; Hunt Club</span>
+              <span class="zone-tag">Orleans &amp; Beacon Hill</span>
+              <span class="zone-tag">Vanier &amp; Rockcliffe</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand">DH Plumbing &amp; Heating</p>
+          <p class="footer-meta">Ottawa, ON · 24/7 Emergency Plumbing, Drains, Water Heaters &amp; Hydronic Boilers</p>
+        </div>
+        <div class="footer-links">
+          <a href="tel:+16132828094">+1-613-282-8094</a>
+          <a href="mailto:dhall@dhplumbing.ca">dhall@dhplumbing.ca</a>
+          <a href="https://dhplumbing.ca" target="_blank" rel="noopener noreferrer">https://dhplumbing.ca</a>
+        </div>
+      </div>
+      <div class="footer-note">
+        <span>Estimates are provided in Canadian Dollars (CAD) prior to 13% Ontario HST and confirmed on-site prior to work authorization.</span>
+        <span>DH Plumbing &amp; Heating · Ottawa, ON</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var SERVICE_DATA = {
+        emergency: {
+          label: '24/7 Emergency Plumbing',
+          shortLabel: 'Emergency',
+          scopes: [
+            { id: 'burst-pipe', label: 'Burst or Frozen Pipe Repair', min: 420, max: 980, eta: '60–90 min dispatch' },
+            { id: 'main-shutoff', label: 'Main Water Shut-Off Valve Replacement', min: 360, max: 640, eta: '60–90 min dispatch' },
+            { id: 'sump-failure', label: 'Sump Pump & Battery Backup Failure', min: 480, max: 1150, eta: '60–90 min dispatch' },
+            { id: 'sewer-backup', label: 'Active Sewer or Basement Drain Backup', min: 390, max: 860, eta: '60–90 min dispatch' }
+          ]
+        },
+        drain: {
+          label: 'Drain Cleaning & Pipe Repair',
+          shortLabel: 'Drain & Pipe',
+          scopes: [
+            { id: 'main-auger', label: 'Main Sewer Line Snaking & Clearing', min: 285, max: 540, eta: 'Same / Next-Day' },
+            { id: 'fixture-drain', label: 'Kitchen, Bath or Floor Drain Clearing', min: 195, max: 360, eta: 'Same / Next-Day' },
+            { id: 'hydro-jet', label: 'High-Pressure Hydro-Jetting & Scale Removal', min: 550, max: 1100, eta: 'Scheduled window' },
+            { id: 'pipe-section', label: 'Copper or PEX Section Repipe & Leak Repair', min: 380, max: 920, eta: 'Scheduled window' }
+          ]
+        },
+        'water-heater': {
+          label: 'Water Heater Installation',
+          shortLabel: 'Water Heater',
+          scopes: [
+            { id: 'tankless-install', label: 'High-Efficiency Tankless Gas Installation', min: 3400, max: 5200, eta: '1-Day Installation' },
+            { id: 'power-vent-tank', label: 'Power-Vented Gas Tank (40–60 Gal) Install', min: 1850, max: 2750, eta: 'Same / Next-Day' },
+            { id: 'direct-vent-tank', label: 'Direct-Vent Gas Tank Replacement', min: 1550, max: 2300, eta: 'Same / Next-Day' },
+            { id: 'heater-service', label: 'Mixing Valve, Expansion Tank & Anode Service', min: 340, max: 680, eta: 'Scheduled window' }
+          ]
+        },
+        hydronic: {
+          label: 'Hydronic Heating & Boilers',
+          shortLabel: 'Hydronic Boiler',
+          scopes: [
+            { id: 'boiler-install', label: 'Condensing Combi or Heating Boiler Install', min: 6200, max: 10800, eta: '1–2 Day Install' },
+            { id: 'zone-circulator', label: 'Hydronic Zone Valve & Circulator Pump Repair', min: 440, max: 890, eta: 'Same / Next-Day' },
+            { id: 'radiant-balance', label: 'Radiant Floor Manifold Purge & Air Elimination', min: 380, max: 760, eta: 'Scheduled window' },
+            { id: 'boiler-tuneup', label: 'Annual Boiler Combustion Tune-Up & Glycol Check', min: 245, max: 420, eta: 'Scheduled window' }
+          ]
+        }
+      };
+
+      var PROPERTY_DATA = {
+        detached: { label: 'Detached', factor: 0 },
+        townhome: { label: 'Townhome', factor: 0.05 },
+        condo: { label: 'Condo', factor: 0.15 },
+        commercial: { label: 'Commercial', factor: 0.28 }
+      };
+
+      var URGENCY_DATA = {
+        standard: { label: 'Standard', min: 0, max: 0, etaOverride: '' },
+        'same-day': { label: 'Same-Day', min: 115, max: 165, etaOverride: 'Same-Day Priority' },
+        emergency: { label: '24-7 Emergency', min: 225, max: 325, etaOverride: 'Immediate 24/7 Dispatch' }
+      };
+
+      var ADDON_DATA = {
+        camera: { label: 'Sewer Camera Scope & Locate', min: 165, max: 240 },
+        thermal: { label: 'Thermal Leak & Freeze Trace', min: 110, max: 175 },
+        backwater: { label: 'Backwater Valve & Sump Audit', min: 85, max: 140 },
+        combustion: { label: 'Combustion & Hydronic Pressure Test', min: 120, max: 185 }
+      };
+
+      var ACCESS_DATA = {
+        clear: { label: 'Clear Basement / Utility Room Access', min: 0, max: 0 },
+        tight: { label: 'Tight Crawlspace / Drywall Access Required', min: 95, max: 190 },
+        strata: { label: 'Condo Riser / Building Isolation Coordination', min: 110, max: 210 },
+        winter: { label: 'Winter Exterior / Frozen Line Thawing Access', min: 140, max: 280 }
+      };
+
+      var state = {
+        service: 'emergency',
+        scopeId: 'burst-pipe',
+        property: 'detached',
+        urgency: 'emergency',
+        addons: new Set(),
+        access: 'clear'
+      };
+
+      var serviceBtns = document.querySelectorAll('[data-service]');
+      var propertyBtns = document.querySelectorAll('[data-property]');
+      var urgencyBtns = document.querySelectorAll('[data-urgency]');
+      var addonBtns = document.querySelectorAll('[data-addon]');
+      var jumpBtns = document.querySelectorAll('[data-jump-service]');
+
+      var scopeSelect = document.getElementById('scope-select');
+      var accessSelect = document.getElementById('access-select');
+      var quoteUrgencyTag = document.getElementById('quote-urgency-tag');
+      var quoteTotalRange = document.getElementById('quote-total-range');
+      var quoteServiceSummary = document.getElementById('quote-service-summary');
+      var quoteEtaSummary = document.getElementById('quote-eta-summary');
+      var itemizedList = document.getElementById('itemized-list');
+
+      var copyQuoteBtn = document.getElementById('copy-quote-btn');
+      var resetEstimatorBtn = document.getElementById('reset-estimator-btn');
+
+      var dispatchForm = document.getElementById('dispatch-form');
+      var custName = document.getElementById('cust-name');
+      var custPhone = document.getElementById('cust-phone');
+      var custEmail = document.getElementById('cust-email');
+      var custArea = document.getElementById('cust-area');
+      var custAddress = document.getElementById('cust-address');
+      var custNotes = document.getElementById('cust-notes');
+      var directMailto = document.getElementById('direct-mailto');
+      var copyDispatchBtn = document.getElementById('copy-dispatch-btn');
+      var formStatus = document.getElementById('form-status');
+
+      function formatCAD(val) {
+        return '$' + Math.round(val).toLocaleString('en-CA');
+      }
+
+      function formatRange(minVal, maxVal) {
+        if (minVal === maxVal) {
+          return formatCAD(minVal) + ' CAD';
+        }
+        return formatCAD(minVal) + ' – ' + formatCAD(maxVal) + ' CAD';
+      }
+
+      function populateScopeSelect() {
+        var serviceObj = SERVICE_DATA[state.service];
+        scopeSelect.innerHTML = '';
+        var validFound = false;
+        serviceObj.scopes.forEach(function (item) {
+          var opt = document.createElement('option');
+          opt.value = item.id;
+          opt.textContent = item.label + ' (' + formatRange(item.min, item.max) + ')';
+          if (item.id === state.scopeId) {
+            opt.selected = true;
+            validFound = true;
+          }
+          scopeSelect.appendChild(opt);
+        });
+        if (validFound === false && serviceObj.scopes.length > 0) {
+          state.scopeId = serviceObj.scopes[0].id;
+          scopeSelect.value = state.scopeId;
+        }
+      }
+
+      function getCurrentScope() {
+        var scopes = SERVICE_DATA[state.service].scopes;
+        for (var i = 0; i < scopes.length; i += 1) {
+          if (scopes[i].id === state.scopeId) {
+            return scopes[i];
+          }
+        }
+        return scopes[0];
+      }
+
+      function computeQuote() {
+        var serviceObj = SERVICE_DATA[state.service];
+        var scopeObj = getCurrentScope();
+        var propObj = PROPERTY_DATA[state.property];
+        var urgObj = URGENCY_DATA[state.urgency];
+        var accObj = ACCESS_DATA[state.access];
+
+        var propMin = Math.round(scopeObj.min * propObj.factor);
+        var propMax = Math.round(scopeObj.max * propObj.factor);
+
+        var items = [
+          {
+            title: scopeObj.label,
+            sub: serviceObj.label + ' base labour & diagnostic allowance',
+            min: scopeObj.min,
+            max: scopeObj.max
+          },
+          {
+            title: 'Property Complexity (' + propObj.label + ')',
+            sub: propObj.factor === 0 ? 'Standard single-home access' : '+' + Math.round(propObj.factor * 100) + '% routing & isolation factor',
+            min: propMin,
+            max: propMax
+          },
+          {
+            title: 'Dispatch Priority (' + urgObj.label + ')',
+            sub: urgObj.min === 0 ? 'Scheduled weekday service window' : 'Priority callout dispatch fee',
+            min: urgObj.min,
+            max: urgObj.max
+          }
+        ];
+
+        if (accObj.min > 0) {
+          items.push({
+            title: 'Access Condition',
+            sub: accObj.label,
+            min: accObj.min,
+            max: accObj.max
+          });
+        }
+
+        state.addons.forEach(function (addonKey) {
+          var addon = ADDON_DATA[addonKey];
+          if (addon) {
+            items.push({
+              title: 'Inspection: ' + addon.label,
+              sub: 'Optional diagnostic add-on',
+              min: addon.min,
+              max: addon.max
+            });
+          }
+        });
+
+        var totalMin = 0;
+        var totalMax = 0;
+        items.forEach(function (row) {
+          totalMin += row.min;
+          totalMax += row.max;
+        });
+
+        var hstMin = Math.round(totalMin * 1.13);
+        var hstMax = Math.round(totalMax * 1.13);
+        var etaLabel = urgObj.etaOverride ? urgObj.etaOverride : scopeObj.eta;
+
+        return {
+          serviceLabel: serviceObj.label,
+          scopeLabel: scopeObj.label,
+          propertyLabel: propObj.label,
+          urgencyLabel: urgObj.label,
+          accessLabel: accObj.label,
+          etaLabel: etaLabel,
+          items: items,
+          totalMin: totalMin,
+          totalMax: totalMax,
+          hstMin: hstMin,
+          hstMax: hstMax
+        };
+      }
+
+      function buildSummaryText(includeCustomer) {
+        var q = computeQuote();
+        var lines = [
+          'DH Plumbing & Heating — Ottawa, ON Job Estimate & Dispatch Summary',
+          'Phone: +1-613-282-8094 | Email: dhall@dhplumbing.ca | Web: https://dhplumbing.ca',
+          '------------------------------------------------------------',
+          'Service Type: ' + q.serviceLabel,
+          'Work Scope: ' + q.scopeLabel,
+          'Property Type: ' + q.propertyLabel,
+          'Dispatch Priority: ' + q.urgencyLabel + ' (' + q.etaLabel + ')',
+          'Access Condition: ' + q.accessLabel,
+          '',
+          'Itemized Range (CAD):'
+        ];
+
+        q.items.forEach(function (it) {
+          lines.push(' - ' + it.title + ': ' + formatRange(it.min, it.max));
+        });
+
+        lines.push('------------------------------------------------------------');
+        lines.push('Estimated Pre-Tax Total: ' + formatRange(q.totalMin, q.totalMax));
+        lines.push('Estimated Total w/ 13% ON HST: ' + formatRange(q.hstMin, q.hstMax));
+
+        if (includeCustomer) {
+          lines.push('');
+          lines.push('Customer & Dispatch Details:');
+          lines.push('Name: ' + (custName.value.trim() || 'Not provided'));
+          lines.push('Phone: ' + (custPhone.value.trim() || 'Not provided'));
+          lines.push('Email: ' + (custEmail.value.trim() || 'Not provided'));
+          lines.push('Ottawa Sector: ' + custArea.value);
+          lines.push('Street Address: ' + (custAddress.value.trim() || 'Not provided'));
+          lines.push('Notes: ' + (custNotes.value.trim() || 'None'));
+        }
+
+        return lines.join('\n');
+      }
+
+      function updateMailtoHref() {
+        var q = computeQuote();
+        var subject = '[Dispatch Request] ' + q.serviceLabel + ' - ' + q.urgencyLabel + ' (' + formatRange(q.totalMin, q.totalMax) + ')';
+        var body = buildSummaryText(true);
+        directMailto.href = 'mailto:dhall@dhplumbing.ca?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      }
+
+      function renderUI() {
+        serviceBtns.forEach(function (btn) {
+          btn.setAttribute('aria-pressed', btn.getAttribute('data-service') === state.service ? 'true' : 'false');
+        });
+        propertyBtns.forEach(function (btn) {
+          btn.setAttribute('aria-pressed', btn.getAttribute('data-property') === state.property ? 'true' : 'false');
+        });
+        urgencyBtns.forEach(function (btn) {
+          btn.setAttribute('aria-pressed', btn.getAttribute('data-urgency') === state.urgency ? 'true' : 'false');
+        });
+        addonBtns.forEach(function (btn) {
+          btn.setAttribute('aria-pressed', state.addons.has(btn.getAttribute('data-addon')) ? 'true' : 'false');
+        });
+
+        accessSelect.value = state.access;
+
+        var q = computeQuote();
+        quoteUrgencyTag.textContent = q.urgencyLabel;
+        if (state.urgency === 'emergency') {
+          quoteUrgencyTag.classList.add('is-urgent');
+        } else {
+          quoteUrgencyTag.classList.remove('is-urgent');
+        }
+
+        quoteTotalRange.textContent = formatRange(q.totalMin, q.totalMax);
+        quoteServiceSummary.textContent = q.serviceLabel + ' · ' + q.propertyLabel;
+        quoteEtaSummary.textContent = 'Dispatch ETA: ' + q.etaLabel;
+
+        itemizedList.innerHTML = '';
+        q.items.forEach(function (row) {
+          var div = document.createElement('div');
+          div.className = 'itemized-row';
+
+          var desc = document.createElement('div');
+          desc.className = 'item-desc';
+          desc.textContent = row.title;
+
+          var sub = document.createElement('span');
+          sub.className = 'item-desc-sub';
+          sub.textContent = row.sub;
+          desc.appendChild(sub);
+
+          var amt = document.createElement('div');
+          amt.className = 'item-amount';
+          amt.textContent = formatRange(row.min, row.max);
+
+          div.appendChild(desc);
+          div.appendChild(amt);
+          itemizedList.appendChild(div);
+        });
+
+        var totalRow = document.createElement('div');
+        totalRow.className = 'itemized-row row-total';
+        var totalDesc = document.createElement('div');
+        totalDesc.className = 'item-desc';
+        totalDesc.textContent = 'Estimated Subtotal (Pre-Tax CAD)';
+        var totalAmt = document.createElement('div');
+        totalAmt.className = 'item-amount';
+        totalAmt.textContent = formatRange(q.totalMin, q.totalMax);
+        totalRow.appendChild(totalDesc);
+        totalRow.appendChild(totalAmt);
+        itemizedList.appendChild(totalRow);
+
+        var hstRow = document.createElement('div');
+        hstRow.className = 'itemized-row row-hst';
+        var hstDesc = document.createElement('div');
+        hstDesc.className = 'item-desc';
+        hstDesc.textContent = 'Estimated Total Including 13% Ontario HST';
+        var hstAmt = document.createElement('div');
+        hstAmt.className = 'item-amount';
+        hstAmt.textContent = formatRange(q.hstMin, q.hstMax);
+        hstRow.appendChild(hstDesc);
+        hstRow.appendChild(hstAmt);
+        itemizedList.appendChild(hstRow);
+
+        updateMailtoHref();
+      }
+
+      function copyTextToClipboard(text, btn, defaultLabel, successLabel) {
+        function markCopied() {
+          btn.textContent = successLabel;
+          window.setTimeout(function () {
+            btn.textContent = defaultLabel;
+          }, 2400);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(markCopied).catch(function () {
+            fallbackCopy(text);
+            markCopied();
+          });
+        } else {
+          fallbackCopy(text);
+          markCopied();
+        }
+      }
+
+      function fallbackCopy(text) {
+        var helper = document.createElement('textarea');
+        helper.value = text;
+        helper.setAttribute('readonly', '');
+        helper.style.position = 'fixed';
+        helper.style.left = '-9999px';
+        document.body.appendChild(helper);
+        helper.select();
+        try {
+          document.execCommand('copy');
+        } catch (err) {
+          // Ignore clipboard restrictions
+        }
+        document.body.removeChild(helper);
+      }
+
+      serviceBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.service = btn.getAttribute('data-service');
+          populateScopeSelect();
+          renderUI();
+        });
+      });
+
+      propertyBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.property = btn.getAttribute('data-property');
+          renderUI();
+        });
+      });
+
+      urgencyBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.urgency = btn.getAttribute('data-urgency');
+          renderUI();
+        });
+      });
+
+      addonBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var key = btn.getAttribute('data-addon');
+          if (state.addons.has(key)) {
+            state.addons.delete(key);
+          } else {
+            state.addons.add(key);
+          }
+          renderUI();
+        });
+      });
+
+      jumpBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var targetService = btn.getAttribute('data-jump-service');
+          var targetUrgency = btn.getAttribute('data-jump-urgency');
+          state.service = targetService;
+          if (targetUrgency) {
+            state.urgency = targetUrgency;
+          } else if (targetService !== 'emergency' && state.urgency === 'emergency') {
+            state.urgency = 'standard';
+          }
+          populateScopeSelect();
+          renderUI();
+          document.getElementById('estimator-workspace').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      scopeSelect.addEventListener('change', function () {
+        state.scopeId = scopeSelect.value;
+        renderUI();
+      });
+
+      accessSelect.addEventListener('change', function () {
+        state.access = accessSelect.value;
+        renderUI();
+      });
+
+      copyQuoteBtn.addEventListener('click', function () {
+        copyTextToClipboard(buildSummaryText(false), copyQuoteBtn, 'Copy CAD Estimate', 'Copied CAD Estimate');
+      });
+
+      resetEstimatorBtn.addEventListener('click', function () {
+        state.service = 'emergency';
+        state.scopeId = 'burst-pipe';
+        state.property = 'detached';
+        state.urgency = 'emergency';
+        state.addons.clear();
+        state.access = 'clear';
+        populateScopeSelect();
+        renderUI();
+      });
+
+      [custName, custPhone, custEmail, custArea, custAddress, custNotes].forEach(function (el) {
+        el.addEventListener('input', updateMailtoHref);
+        el.addEventListener('change', updateMailtoHref);
+      });
+
+      copyDispatchBtn.addEventListener('click', function () {
+        copyTextToClipboard(buildSummaryText(true), copyDispatchBtn, 'Copy Full Summary', 'Copied Full Summary');
+      });
+
+      dispatchForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        updateMailtoHref();
+
+        var nameVal = custName.value.trim();
+        var phoneVal = custPhone.value.trim();
+        var emailVal = custEmail.value.trim();
+        var errors = [];
+
+        if (nameVal.length < 2) {
+          errors.push('full name');
+        }
+        if (phoneVal.length < 7) {
+          errors.push('phone number');
+        }
+        if (emailVal.indexOf('@') === -1 || emailVal.indexOf('.') === -1) {
+          errors.push('valid email address');
+        }
+
+        if (errors.length > 0) {
+          formStatus.className = 'status-box is-visible is-error';
+          formStatus.textContent = 'Please provide your ' + errors.join(', ') + ' before preparing the dispatch packet.';
+          return;
+        }
+
+        var packet = buildSummaryText(true);
+        formStatus.className = 'status-box is-visible is-success';
+        formStatus.innerHTML = '';
+
+        var headline = document.createElement('strong');
+        headline.textContent = 'Dispatch packet prepared for ' + nameVal + '. ';
+        formStatus.appendChild(headline);
+
+        var note = document.createElement('span');
+        note.textContent = 'Click "Email dhall@dhplumbing.ca" above to open your mail app with this full packet, or call +1-613-282-8094 for immediate live dispatch.';
+        formStatus.appendChild(note);
+
+        var pre = document.createElement('div');
+        pre.className = 'packet-preview';
+        pre.textContent = packet;
+        formStatus.appendChild(pre);
+      });
+
+      populateScopeSelect();
+      renderUI();
+    }());
+  </script>
+</body>
+</html>
