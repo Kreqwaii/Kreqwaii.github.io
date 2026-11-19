@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Geelong Vet — Private veterinary clinic in Geelong, VIC offering preventive wellness, pet dental care, surgery, and in-house diagnostics. Estimate visit costs in AUD.">
+  <title>Geelong Vet — Private Veterinary Clinic | Geelong, VIC</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232A5C4A'/%3E%3Cpath d='M16 7v18M7 16h18' stroke='%23FAF8F4' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #FAF8F4;
+      --bg-surface: #FFFFFF;
+      --bg-sand: #F2ECE1;
+      --bg-eucalyptus-tint: #EAF2EE;
+      --text-primary: #1D2421;
+      --text-secondary: #4A5751;
+      --text-muted: #66756E;
+      --accent: #2A5C4A;
+      --accent-hover: #21493B;
+      --accent-soft: #D7E6DF;
+      --border: #E2DBD0;
+      --border-strong: #C9BFA9;
+      --shadow-sm: 0 2px 8px rgba(29, 36, 33, 0.05);
+      --shadow-md: 0 10px 28px rgba(29, 36, 33, 0.08);
+      --radius-md: 12px;
+      --radius-lg: 18px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Manrope', sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Source Serif 4', serif;
+      margin: 0 0 0.6rem;
+      line-height: 1.2;
+      color: var(--text-primary);
+    }
+
+    p {
+      margin: 0 0 1rem;
+      color: var(--text-secondary);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(250, 248, 244, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--accent);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: 'Source Serif 4', serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      line-height: 1.15;
+      color: var(--text-primary);
+    }
+
+    .brand-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .phone-link {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-variant-numeric: tabular-nums;
+      display: none;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 10px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-sand);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 52px 0 44px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--bg-page) 0%, var(--bg-sand) 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--bg-eucalyptus-tint);
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 2.95rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .hero-lead {
+      font-size: 1.06rem;
+      max-width: 58ch;
+      margin-bottom: 24px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .metric-val {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .metric-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-card-title {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .clinic-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .clinic-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.9rem;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .clinic-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .clinic-list span:first-child {
+      color: var(--text-muted);
+    }
+
+    .clinic-list span:last-child {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+
+    /* Sections */
+    .section {
+      padding: 56px 0;
+    }
+
+    .section-header {
+      max-width: 640px;
+      margin-bottom: 32px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.65rem, 3vw, 2.2rem);
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .service-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--bg-eucalyptus-tint);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+    }
+
+    .service-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      font-size: 0.92rem;
+      margin: 0;
+    }
+
+    /* Interactive Estimator */
+    .estimator-section {
+      background: var(--bg-sand);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .estimator-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .estimator-panel,
+    .summary-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .field-group {
+      margin-bottom: 20px;
+    }
+
+    .field-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-label {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .segmented-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .segmented-grid.cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .choice-btn {
+      appearance: none;
+      background: var(--bg-page);
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .choice-btn:hover {
+      background: var(--bg-eucalyptus-tint);
+    }
+
+    .choice-btn[aria-pressed="true"] {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .form-select,
+    .form-input {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-page);
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.94rem;
+      color: var(--text-primary);
+    }
+
+    .form-select:focus,
+    .form-input:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+    }
+
+    .estimate-box {
+      background: var(--bg-eucalyptus-tint);
+      border: 1px solid var(--accent-soft);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    .estimate-caption {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .estimate-range {
+      font-family: 'Source Serif 4', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.35rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.15;
+    }
+
+    .estimate-note {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin: 6px 0 0;
+    }
+
+    .summary-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .summary-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.9rem;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .summary-list span:first-child {
+      color: var(--text-muted);
+    }
+
+    .summary-list span:last-child {
+      font-weight: 600;
+      color: var(--text-primary);
+      text-align: right;
+    }
+
+    .request-form {
+      display: grid;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .request-status {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--bg-eucalyptus-tint);
+      padding: 10px 12px;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .request-status.visible {
+      display: block;
+    }
+
+    /* Footer & Contact */
+    .site-footer {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .contact-item {
+      background: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .contact-item-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-item-value {
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* LINK CLIPPING GUARD */
+    a[href^="mailto:"],
+    a[href^="http"] {
+      grid-column: 1 / -1;
+      display: inline-block;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 12.5px;
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    a[href^="mailto:"]:hover,
+    a[href^="http"]:hover {
+      text-decoration: underline;
+    }
+
+    .footer-meta {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    @media (min-width: 768px) {
+      .phone-link {
+        display: inline-block;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1.25fr 0.85fr;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .estimator-layout {
+        grid-template-columns: 1.05fr 0.95fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+
+      .contact-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      a[href^="mailto:"],
+      a[href^="http"] {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FAF8F4" stroke-width="2.5" stroke-linecap="round">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Geelong Vet</span>
+          <span class="brand-sub">Private Veterinary Clinic · Geelong, VIC</span>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="tel:0352411796" class="phone-link">(03) 5241 1796</a>
+        <a href="#estimator" class="btn btn-primary">Estimate Visit Cost</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Geelong, Victoria · Private Veterinary Care</span>
+          <h1>Calm, thorough veterinary care for Geelong dogs and cats.</h1>
+          <p class="hero-lead">From annual wellness checks and dental scale-and-polish procedures to soft tissue surgery and in-house diagnostics, our Geelong clinic provides transparent treatment plans in AUD.</p>
+          <div class="hero-cta-row">
+            <a href="#estimator" class="btn btn-primary">Open Cost Estimator</a>
+            <a href="#services" class="btn btn-secondary">Explore Services</a>
+          </div>
+          <div class="hero-metrics">
+            <div>
+              <div class="metric-val">Same-Day</div>
+              <div class="metric-label">In-house bloodwork</div>
+            </div>
+            <div>
+              <div class="metric-val">AUD $</div>
+              <div class="metric-label">Upfront fee ranges</div>
+            </div>
+            <div>
+              <div class="metric-val">Mon–Sat</div>
+              <div class="metric-label">Geelong appointments</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Clinic overview">
+          <div class="hero-card-title">Geelong Clinic Details</div>
+          <p style="font-size: 0.9rem; margin-bottom: 0;">Independent private practice serving Belmont, Newtown, Highton, and Greater Geelong.</p>
+          <ul class="clinic-list">
+            <li><span>Phone</span><span>(03) 5241 1796</span></li>
+            <li><span>Consult Hours</span><span>Mon–Fri 8:00am – 6:00pm</span></li>
+            <li><span>Saturday</span><span>8:30am – 1:00pm</span></li>
+            <li><span>Location</span><span>Geelong, VIC 3220</span></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Core Veterinary Services</h2>
+          <p>Evidence-based medicine, gentle handling, and clear communication at every stage of your pet's life.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9z"/>
+              </svg>
+            </div>
+            <h3>Preventive Wellness &amp; Vaccinations</h3>
+            <p>Tailored puppy, kitten, adult, and senior health checks, C5 and F3 vaccinations, parasite prevention, and nutrition reviews.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 4c2 0 3 1.5 5 1.5S15 4 17 4c2.5 0 4 2 4 5 0 4-2.5 11-4.5 11-1.5 0-2-3-4.5-3s-3 3-4.5 3C5.5 20 3 13 3 9c0-3 1.5-5 4-5z"/>
+              </svg>
+            </div>
+            <h3>Pet Dental Care</h3>
+            <p>Ultrasonic dental scale and polish, full-mouth dental radiography, periodontal assessment, and gentle extractions under monitored anaesthesia.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v18M3 12h18"/>
+              </svg>
+            </div>
+            <h3>Soft Tissue &amp; Orthopaedic Surgery</h3>
+            <p>Desexing, lump removals, wound repair, and orthopaedic procedures supported by dedicated anaesthetic monitoring and pain relief.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="14" rx="2"/>
+                <path d="M8 20h8M12 18v2"/>
+              </svg>
+            </div>
+            <h3>In-House Diagnostics &amp; Imaging</h3>
+            <p>Same-day haematology, biochemistry, urinalysis, digital X-ray, and abdominal ultrasound for fast, accurate answers.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="estimator" class="section estimator-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Geelong Pet Wellness &amp; Visit Cost Estimator</h2>
+          <p>Select your pet's profile and service track to view an indicative AUD fee range and prepare an appointment request.</p>
+        </div>
+
+        <div class="estimator-layout">
+          <div class="estimator-panel">
+            <div class="field-group">
+              <div class="field-label">1. Species</div>
+              <div class="segmented-grid" role="group" aria-label="Species">
+                <button type="button" class="choice-btn" data-group="species" data-value="Dog" aria-pressed="true">Dog</button>
+                <button type="button" class="choice-btn" data-group="species" data-value="Cat" aria-pressed="false">Cat</button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">2. Age Stage</div>
+              <div class="segmented-grid cols-3" role="group" aria-label="Age stage">
+                <button type="button" class="choice-btn" data-group="age" data-value="Puppy-Kitten" aria-pressed="false">Puppy / Kitten</button>
+                <button type="button" class="choice-btn" data-group="age" data-value="Adult" aria-pressed="true">Adult</button>
+                <button type="button" class="choice-btn" data-group="age" data-value="Senior" aria-pressed="false">Senior</button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">3. Weight Tier</div>
+              <div class="segmented-grid cols-3" role="group" aria-label="Weight tier">
+                <button type="button" class="choice-btn" data-group="weight" data-value="Under 10 kg" aria-pressed="false">Under 10 kg</button>
+                <button type="button" class="choice-btn" data-group="weight" data-value="10–25 kg" aria-pressed="true">10–25 kg</button>
+                <button type="button" class="choice-btn" data-group="weight" data-value="Over 25 kg" aria-pressed="false">Over 25 kg</button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="service-track">4. Service Track</label>
+              <select id="service-track" class="form-select" autocomplete="off">
+                <option value="Annual Check & Vaccine">Annual Check &amp; Vaccine</option>
+                <option value="Pet Dental Scale & Polish">Pet Dental Scale &amp; Polish</option>
+                <option value="Diagnostics & Bloodwork">Diagnostics &amp; Bloodwork</option>
+                <option value="Desexing & Surgery">Desexing &amp; Surgery</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="summary-panel">
+            <div class="estimate-box">
+              <div class="estimate-caption">Estimated Visit Range (AUD)</div>
+              <div id="estimate-range" class="estimate-range">$115 – $155 AUD</div>
+              <p id="estimate-note" class="estimate-note">Includes full physical examination and core annual vaccination.</p>
+            </div>
+
+            <ul class="summary-list" aria-label="Selected estimate summary">
+              <li><span>Species</span><span id="sum-species">Dog</span></li>
+              <li><span>Age Stage</span><span id="sum-age">Adult</span></li>
+              <li><span>Weight Tier</span><span id="sum-weight">10–25 kg</span></li>
+              <li><span>Service Track</span><span id="sum-track">Annual Check &amp; Vaccine</span></li>
+            </ul>
+
+            <form id="appointment-form" class="request-form">
+              <div class="field-label" style="margin-bottom: 0;">Appointment Request Summary</div>
+              <input id="owner-name" class="form-input" type="text" placeholder="Your full name" autocomplete="name" required>
+              <input id="owner-phone" class="form-input" type="tel" placeholder="Phone number (e.g. 0412 345 678)" autocomplete="tel" required>
+              <button type="submit" class="btn btn-primary">Prepare Appointment Request</button>
+              <div id="request-status" class="request-status" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 8px;">Geelong Vet</h3>
+          <p style="font-size: 0.92rem; max-width: 44ch;">Private veterinary care in Geelong, VIC. Preventive wellness, pet dental care, surgery, and in-house diagnostics.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-item">
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-value">(03) 5241 1796</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-label">Location</div>
+            <div class="contact-item-value">Geelong, VIC, Australia</div>
+          </div>
+          <div class="contact-item" style="grid-column: 1 / -1;">
+            <div class="contact-item-label">Email</div>
+            <a href="mailto:hello@geelongvet.com.au">hello@geelongvet.com.au</a>
+          </div>
+          <div class="contact-item" style="grid-column: 1 / -1;">
+            <div class="contact-item-label">Website</div>
+            <a href="https://geelongvet.com.au" target="_blank" rel="noopener noreferrer">geelongvet.com.au</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-meta">
+        <span>Geelong Vet · Private Veterinary Clinic</span>
+        <span>All estimates in Australian Dollars (AUD)</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        species: 'Dog',
+        age: 'Adult',
+        weight: '10–25 kg',
+        track: 'Annual Check & Vaccine'
+      };
+
+      const baseRates = {
+        'Annual Check & Vaccine': {
+          min: 115,
+          max: 155,
+          note: 'Includes full physical examination and core annual vaccination.'
+        },
+        'Pet Dental Scale & Polish': {
+          min: 390,
+          max: 560,
+          note: 'Includes day-stay, general anaesthesia, ultrasonic scale, and polish.'
+        },
+        'Diagnostics & Bloodwork': {
+          min: 195,
+          max: 340,
+          note: 'Includes consultation plus in-house haematology and biochemistry panel.'
+        },
+        'Desexing & Surgery': {
+          min: 320,
+          max: 540,
+          note: 'Includes pre-anaesthetic check, surgery, monitoring, and pain relief.'
+        }
+      };
+
+      const speciesOffset = { Dog: 0, Cat: -20 };
+      const ageOffset = { 'Puppy-Kitten': -15, Adult: 0, Senior: 35 };
+      const weightOffset = { 'Under 10 kg': -20, '10–25 kg': 0, 'Over 25 kg': 55 };
+
+      const rangeEl = document.getElementById('estimate-range');
+      const noteEl = document.getElementById('estimate-note');
+      const sumSpecies = document.getElementById('sum-species');
+      const sumAge = document.getElementById('sum-age');
+      const sumWeight = document.getElementById('sum-weight');
+      const sumTrack = document.getElementById('sum-track');
+      const trackSelect = document.getElementById('service-track');
+      const form = document.getElementById('appointment-form');
+      const statusEl = document.getElementById('request-status');
+
+      function updateEstimate() {
+        const base = baseRates[state.track];
+        const offset = speciesOffset[state.species] + ageOffset[state.age] + weightOffset[state.weight];
+        const min = Math.max(85, base.min + offset);
+        const max = Math.max(min + 35, base.max + offset);
+
+        rangeEl.textContent = '$' + min + ' – $' + max + ' AUD';
+        noteEl.textContent = base.note;
+        sumSpecies.textContent = state.species;
+        sumAge.textContent = state.age;
+        sumWeight.textContent = state.weight;
+        sumTrack.textContent = state.track;
+      }
+
+      document.querySelectorAll('.choice-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const group = btn.getAttribute('data-group');
+          const value = btn.getAttribute('data-value');
+          state[group] = value;
+
+          document.querySelectorAll('.choice-btn[data-group="' + group + '"]').forEach(function (other) {
+            other.setAttribute('aria-pressed', other === btn ? 'true' : 'false');
+          });
+
+          updateEstimate();
+        });
+      });
+
+      trackSelect.addEventListener('change', function () {
+        state.track = trackSelect.value;
+        updateEstimate();
+      });
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const name = document.getElementById('owner-name').value.trim();
+        const phone = document.getElementById('owner-phone').value.trim();
+        if (!name || !phone) return;
+
+        statusEl.textContent = 'Request prepared for ' + name + ' (' + phone + '): ' + state.species + ', ' + state.age + ', ' + state.weight + ' — ' + state.track + ' (' + rangeEl.textContent + '). Call (03) 5241 1796 to confirm.';
+        statusEl.classList.add('visible');
+      });
+
+      updateEstimate();
+    })();
+  </script>
+</body>
+</html>

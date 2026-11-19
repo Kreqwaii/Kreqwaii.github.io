@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Сантехник МСК — замена труб водоснабжения, монтаж систем отопления, разводка канализации и аварийный выезд сантехника в Москве. Онлайн-калькулятор сметы.">
+  <title>Сантехник МСК — Инженерная сантехника и отопление в Москве</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230E1B2E'/%3E%3Cpath d='M9 10h14v4H13v8H9V10z' fill='%23C89B4F'/%3E%3Ccircle cx='21' cy='21' r='3' fill='%23F7F8FA'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-chalk: #F7F8FA;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #EEF1F5;
+      --navy: #0E1B2E;
+      --navy-muted: #2B3D54;
+      --text-main: #111C2D;
+      --text-muted: #526176;
+      --brass: #9E732F;
+      --brass-bright: #C89B4F;
+      --brass-bg: #FAF5EC;
+      --border: #D9E0E8;
+      --border-strong: #B8C4D4;
+      --success: #166534;
+      --success-bg: #ECFDF3;
+      --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
+      --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+      --radius: 6px;
+      --shadow-sm: 0 1px 2px rgba(14, 27, 46, 0.05);
+      --shadow-md: 0 8px 24px rgba(14, 27, 46, 0.07);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background-color: var(--bg-chalk);
+      color: var(--text-main);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 68px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--navy);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      background-color: var(--navy);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-nav {
+      display: none;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .header-nav a {
+      text-decoration: none;
+      color: var(--navy-muted);
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.15s ease;
+    }
+
+    .header-nav a:hover {
+      color: var(--brass);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .phone-link {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--navy);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--navy);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--navy-muted);
+    }
+
+    .btn-brass {
+      background-color: var(--brass);
+      color: #FFFFFF;
+    }
+
+    .btn-brass:hover {
+      background-color: #876024;
+    }
+
+    .btn-outline {
+      background-color: var(--bg-surface);
+      color: var(--navy);
+      border-color: var(--border-strong);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--navy);
+      background-color: var(--bg-subtle);
+    }
+
+    .header-cta {
+      display: none;
+    }
+
+    @media (min-width: 860px) {
+      .header-nav {
+        display: flex;
+      }
+      .header-cta {
+        display: inline-flex;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      padding: 44px 0 36px;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--bg-surface);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (min-width: 920px) {
+      .hero {
+        padding: 60px 0 52px;
+      }
+      .hero-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 48px;
+      }
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--brass);
+      background-color: var(--brass-bg);
+      padding: 5px 10px;
+      border-radius: 4px;
+      border: 1px solid #E8D7B9;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      line-height: 1.14;
+      letter-spacing: -0.025em;
+      color: var(--navy);
+    }
+
+    .hero-desc {
+      margin: 0 0 24px;
+      font-size: 16.5px;
+      color: var(--text-muted);
+      max-width: 58ch;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .metric-val {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .metric-label {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .spec-card {
+      background-color: var(--bg-chalk);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .spec-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .spec-card-title {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .spec-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--success);
+      background-color: var(--success-bg);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .spec-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .spec-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .spec-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .spec-key {
+      color: var(--text-muted);
+    }
+
+    .spec-val {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      color: var(--navy);
+      text-align: right;
+    }
+
+    /* Sections */
+    .section {
+      padding: 52px 0;
+    }
+
+    .section-header {
+      margin-bottom: 28px;
+    }
+
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brass);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+    }
+
+    .section-sub {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 15.5px;
+      max-width: 62ch;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 640px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .services-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .service-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .service-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brass);
+      margin-bottom: 10px;
+    }
+
+    .service-title {
+      margin: 0 0 8px;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+
+    .service-desc {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .service-price {
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    /* Calculator */
+    .calc-section {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .calc-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (min-width: 960px) {
+      .calc-layout {
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 32px;
+      }
+    }
+
+    .calc-panel {
+      background-color: var(--bg-chalk);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .field-group {
+      margin-bottom: 22px;
+    }
+
+    .field-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .field-hint {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .segmented-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    @media (min-width: 600px) {
+      .segmented-grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .segmented-grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .seg-btn {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      padding: 11px 12px;
+      text-align: left;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      color: var(--text-main);
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .seg-btn:hover {
+      border-color: var(--navy);
+    }
+
+    .seg-btn.active {
+      background-color: var(--navy);
+      border-color: var(--navy);
+      color: #FFFFFF;
+    }
+
+    .seg-title {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .seg-sub {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      margin-top: 4px;
+      opacity: 0.78;
+    }
+
+    .range-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      accent-color: var(--navy);
+      cursor: pointer;
+    }
+
+    .range-badge {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--navy);
+      min-width: 72px;
+      text-align: right;
+    }
+
+    /* Summary & Form */
+    .summary-card {
+      background-color: var(--navy);
+      color: #FFFFFF;
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .summary-top {
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .summary-kicker {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--brass-bright);
+      margin-bottom: 6px;
+    }
+
+    .summary-total {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: clamp(28px, 3.5vw, 36px);
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    .summary-breakdown {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 20px;
+      font-size: 13.5px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .breakdown-val {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      color: #FFFFFF;
+      text-align: right;
+    }
+
+    .order-form {
+      display: grid;
+      gap: 12px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .form-row {
+      display: grid;
+      gap: 6px;
+    }
+
+    .form-row label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background-color: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      font-family: var(--font-sans);
+      font-size: 14px;
+    }
+
+    .form-input::placeholder {
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .form-input:focus {
+      outline: 2px solid var(--brass-bright);
+      outline-offset: 1px;
+    }
+
+    .form-status {
+      display: none;
+      padding: 12px;
+      border-radius: var(--radius);
+      background-color: rgba(22, 101, 52, 0.35);
+      border: 1px solid #4ADE80;
+      font-size: 13.5px;
+      color: #ECFDF3;
+    }
+
+    .form-status.visible {
+      display: block;
+    }
+
+    /* Footer & Contact */
+    .site-footer {
+      background-color: var(--bg-chalk);
+      padding: 40px 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .footer-block-title {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .footer-text {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: var(--navy);
+    }
+
+    /* LINK CLIPPING GUARD */
+    .full-width-link-row {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .full-width-link-row a[href^="mailto:"],
+    .full-width-link-row a[href^="http"] {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      color: var(--navy);
+      text-decoration: none;
+      white-space: nowrap;
+      word-break: normal;
+      border-bottom: 1px solid var(--border-strong);
+      padding-bottom: 2px;
+    }
+
+    .full-width-link-row a[href^="mailto:"]:hover,
+    .full-width-link-row a[href^="http"]:hover {
+      color: var(--brass);
+      border-bottom-color: var(--brass);
+    }
+
+    @media (min-width: 768px) {
+      .full-width-link-row a[href^="mailto:"],
+      .full-width-link-row a[href^="http"] {
+        font-size: 13px;
+      }
+    }
+
+    .footer-copy {
+      grid-column: 1 / -1;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      padding-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M5 6h14v4H9v8H5V6z" fill="#C89B4F"/>
+            <circle cx="17" cy="17" r="3" fill="#F7F8FA"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Сантехник МСК</span>
+          <span class="brand-sub">МОСКВА И МО · 24/7</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" aria-label="Навигация">
+        <a href="#services">Услуги</a>
+        <a href="#calculator">Калькулятор сметы</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:+79773380101" class="phone-link">+7 (977) 338-01-01</a>
+        <a href="#calculator" class="btn btn-primary header-cta">Рассчитать смету</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Инженерная сантехника · Москва</div>
+          <h1>Замена труб, монтаж отопления и аварийный выезд по Москве</h1>
+          <p class="hero-desc">
+            Проектируем и собираем надежные узлы водоснабжения, коллекторные шкафы и системы отопления. Работаем с полипропиленом, сшитым полиэтиленом Rehau и медью с опрессовкой под давлением.
+          </p>
+          <div class="hero-cta-row">
+            <a href="#calculator" class="btn btn-brass">Открыть калькулятор сметы</a>
+            <a href="tel:+79773380101" class="btn btn-outline">Вызвать мастера срочно</a>
+          </div>
+          <div class="hero-metrics">
+            <div>
+              <div class="metric-val">45 мин</div>
+              <div class="metric-label">Аварийный выезд по МСК</div>
+            </div>
+            <div>
+              <div class="metric-val">5 лет</div>
+              <div class="metric-label">Гарантия по договору</div>
+            </div>
+            <div>
+              <div class="metric-val">10 бар</div>
+              <div class="metric-label">Опрессовка каждого узла</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="spec-card" aria-label="Технический регламент">
+          <div class="spec-card-header">
+            <span class="spec-card-title">Регламент работ</span>
+            <span class="spec-badge">В наличии на складе</span>
+          </div>
+          <ul class="spec-list">
+            <li class="spec-item">
+              <span class="spec-key">Трубы водоснабжения</span>
+              <span class="spec-val">Rehau Rautitan / PPR / Медь</span>
+            </li>
+            <li class="spec-item">
+              <span class="spec-key">Запорная арматура</span>
+              <span class="spec-val">Oventrop / Bugatti / Far</span>
+            </li>
+            <li class="spec-item">
+              <span class="spec-key">Защита от протечек</span>
+              <span class="spec-val">Нептун / Gidrolock</span>
+            </li>
+            <li class="spec-item">
+              <span class="spec-key">Выезд и диагностика</span>
+              <span class="spec-val">0 ₽ при заказе работ</span>
+            </li>
+            <li class="spec-item">
+              <span class="spec-key">Оплата</span>
+              <span class="spec-val">Наличные / Карта / Счет</span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Направления</div>
+          <h2>Основные сантехнические услуги</h2>
+          <p class="section-sub">Фиксированная стоимость по прайсу до начала работ. Без скрытых доплат за расходники.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-num">01 / ВОДОСНАБЖЕНИЕ</div>
+              <h3 class="service-title">Замена труб водоснабжения</h3>
+              <p class="service-desc">Разводка холодной и горячей воды от стояков, монтаж фильтров тонкой очистки и редукторов давления.</p>
+            </div>
+            <div class="service-price">
+              <span>От точки</span>
+              <span>от 2 500 ₽</span>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-num">02 / ОТОПЛЕНИЕ</div>
+              <h3 class="service-title">Монтаж систем отопления</h3>
+              <p class="service-desc">Замена радиаторов, обвязка котлов, прокладка теплых полов и балансировка коллекторных групп.</p>
+            </div>
+            <div class="service-price">
+              <span>За радиатор</span>
+              <span>от 4 800 ₽</span>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-num">03 / КАНАЛИЗАЦИЯ</div>
+              <h3 class="service-title">Разводка канализации</h3>
+              <p class="service-desc">Замена чугунных и старых пластиковых труб на бесшумные системы с соблюдением нормативного уклона.</p>
+            </div>
+            <div class="service-price">
+              <span>За узел</span>
+              <span>от 1 900 ₽</span>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-num">04 / 24 ЧАСА</div>
+              <h3 class="service-title">Аварийный выезд сантехника</h3>
+              <p class="service-desc">Оперативное устранение протечек, прорывов труб, замена шаровых кранов и прочистка засоров в Москве.</p>
+            </div>
+            <div class="service-price">
+              <span>Выезд 45 мин</span>
+              <span>от 2 000 ₽</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculator" class="section calc-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Онлайн-расчет</div>
+          <h2>Калькулятор сметы замены труб и отопления</h2>
+          <p class="section-sub">Выберите параметры объекта для получения ориентировочной сметы в рублях и вызовите мастера.</p>
+        </div>
+
+        <div class="calc-layout">
+          <div class="calc-panel">
+            <div class="field-group">
+              <div class="field-label">
+                <span>1. Тип работ</span>
+                <span class="field-hint">Базовый тариф</span>
+              </div>
+              <div class="segmented-grid segmented-grid-4" role="group" aria-label="Тип работ">
+                <button type="button" class="seg-btn active" data-group="workType" data-value="piping">
+                  <span class="seg-title">Разводка труб</span>
+                  <span class="seg-sub">2 500 ₽/точка</span>
+                </button>
+                <button type="button" class="seg-btn" data-group="workType" data-value="collector">
+                  <span class="seg-title">Коллекторный узел</span>
+                  <span class="seg-sub">14 500 ₽ база</span>
+                </button>
+                <button type="button" class="seg-btn" data-group="workType" data-value="radiators">
+                  <span class="seg-title">Замена радиаторов</span>
+                  <span class="seg-sub">4 800 ₽/шт</span>
+                </button>
+                <button type="button" class="seg-btn" data-group="workType" data-value="emergency">
+                  <span class="seg-title">Аварийный выезд</span>
+                  <span class="seg-sub">3 200 ₽ база</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">
+                <span>2. Количество точек подключения</span>
+                <span class="field-hint">От 1 до 20 точек</span>
+              </div>
+              <div class="range-row">
+                <input type="range" id="pointsRange" min="1" max="20" value="6" aria-label="Количество точек подключения">
+                <span class="range-badge" id="pointsValue">6 шт.</span>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">
+                <span>3. Материал труб</span>
+                <span class="field-hint">Коэффициент монтажа</span>
+              </div>
+              <div class="segmented-grid segmented-grid-3" role="group" aria-label="Материал труб">
+                <button type="button" class="seg-btn active" data-group="material" data-value="ppr">
+                  <span class="seg-title">Полипропилен</span>
+                  <span class="seg-sub">x1.0 · Стандарт</span>
+                </button>
+                <button type="button" class="seg-btn" data-group="material" data-value="rehau">
+                  <span class="seg-title">Сшитый п/э Rehau</span>
+                  <span class="seg-sub">x1.35 · Премиум</span>
+                </button>
+                <button type="button" class="seg-btn" data-group="material" data-value="copper">
+                  <span class="seg-title">Медь под пайку</span>
+                  <span class="seg-sub">x1.65 · Люкс</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">
+                <span>4. Срочность выезда</span>
+                <span class="field-hint">Москва и ближайшая МО</span>
+              </div>
+              <div class="segmented-grid segmented-grid-3" role="group" aria-label="Срочность выезда">
+                <button type="button" class="seg-btn active" data-group="urgency" data-value="planned">
+                  <span class="seg-title">Плановый выезд</span>
+                  <span class="seg-sub">На завтра · +0%</span>
+                </button>
+                <button type="button" class="seg-btn" data-group="urgency" data-value="today">
+                  <span class="seg-title">Срочно сегодня</span>
+                  <span class="seg-sub">В течение 3 ч · +15%</span>
+                </button>
+                <button type="button" class="seg-btn" data-group="urgency" data-value="night">
+                  <span class="seg-title">Аварийный 24/7</span>
+                  <span class="seg-sub">За 45 мин · +30%</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="summary-card" aria-label="Живая смета и вызов мастера">
+            <div class="summary-top">
+              <div class="summary-kicker">Предварительная смета</div>
+              <div class="summary-total" id="totalPrice">15 000 ₽</div>
+            </div>
+
+            <div class="summary-breakdown">
+              <div class="breakdown-row">
+                <span>Тип работ</span>
+                <span class="breakdown-val" id="summaryWork">Разводка труб</span>
+              </div>
+              <div class="breakdown-row">
+                <span>Точек подключения</span>
+                <span class="breakdown-val" id="summaryPoints">6 шт.</span>
+              </div>
+              <div class="breakdown-row">
+                <span>Материал труб</span>
+                <span class="breakdown-val" id="summaryMaterial">Полипропилен</span>
+              </div>
+              <div class="breakdown-row">
+                <span>Срочность</span>
+                <span class="breakdown-val" id="summaryUrgency">Плановый выезд</span>
+              </div>
+            </div>
+
+            <form class="order-form" id="callMasterForm">
+              <div class="form-row">
+                <label for="clientName">Ваше имя</label>
+                <input type="text" id="clientName" name="name" class="form-input" placeholder="Алексей" autocomplete="name" required>
+              </div>
+              <div class="form-row">
+                <label for="clientPhone">Телефон для связи</label>
+                <input type="tel" id="clientPhone" name="phone" class="form-input" placeholder="+7 (999) 000-00-00" autocomplete="tel" required>
+              </div>
+              <button type="submit" class="btn btn-brass">Вызвать мастера по смете</button>
+              <div class="form-status" id="formStatus" role="status">
+                Заявка принята. Инженер свяжется с вами в течение 10 минут для подтверждения сметы.
+              </div>
+            </form>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contacts" class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-block-title">Сантехник МСК</div>
+        <p class="footer-text">Москва и Московская область, выезд бригад ежедневно 24/7.</p>
+        <p class="footer-text mono">+7 (977) 338-01-01</p>
+      </div>
+      <div>
+        <div class="footer-block-title">Режим работы</div>
+        <p class="footer-text">Плановый монтаж: 08:00 — 22:00</p>
+        <p class="footer-text">Аварийная служба: круглосуточно</p>
+      </div>
+
+      <div class="full-width-link-row">
+        <a href="mailto:info@santehnik-msk.ru">info@santehnik-msk.ru</a>
+        <a href="https://www.santehnik-msk.ru" target="_blank" rel="noopener noreferrer">https://www.santehnik-msk.ru</a>
+      </div>
+
+      <div class="footer-copy">
+        © 2025 Сантехник МСК. Инженерная сантехника и отопление в Москве.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        workType: 'piping',
+        points: 6,
+        material: 'ppr',
+        urgency: 'planned'
+      };
+
+      const workConfig = {
+        piping: { label: 'Разводка труб', base: 0, perPoint: 2500 },
+        collector: { label: 'Коллекторный узел', base: 14500, perPoint: 1600 },
+        radiators: { label: 'Замена радиаторов', base: 0, perPoint: 4800 },
+        emergency: { label: 'Аварийный выезд', base: 3200, perPoint: 1200 }
+      };
+
+      const materialConfig = {
+        ppr: { label: 'Полипропилен', mult: 1.0 },
+        rehau: { label: 'Сшитый п/э Rehau', mult: 1.35 },
+        copper: { label: 'Медь под пайку', mult: 1.65 }
+      };
+
+      const urgencyConfig = {
+        planned: { label: 'Плановый выезд', mult: 1.0 },
+        today: { label: 'Срочно сегодня', mult: 1.15 },
+        night: { label: 'Аварийный 24/7', mult: 1.3 }
+      };
+
+      const pointsRange = document.getElementById('pointsRange');
+      const pointsValue = document.getElementById('pointsValue');
+      const totalPriceEl = document.getElementById('totalPrice');
+      const summaryWorkEl = document.getElementById('summaryWork');
+      const summaryPointsEl = document.getElementById('summaryPoints');
+      const summaryMaterialEl = document.getElementById('summaryMaterial');
+      const summaryUrgencyEl = document.getElementById('summaryUrgency');
+      const form = document.getElementById('callMasterForm');
+      const formStatus = document.getElementById('formStatus');
+
+      function formatRub(num) {
+        return Math.round(num / 100) * 100;
+      }
+
+      function render() {
+        const work = workConfig[state.workType];
+        const mat = materialConfig[state.material];
+        const urg = urgencyConfig[state.urgency];
+
+        const raw = (work.base + work.perPoint * state.points) * mat.mult * urg.mult;
+        const total = formatRub(raw);
+
+        pointsValue.textContent = state.points + ' шт.';
+        totalPriceEl.textContent = total.toLocaleString('ru-RU') + ' ₽';
+        summaryWorkEl.textContent = work.label;
+        summaryPointsEl.textContent = state.points + ' шт.';
+        summaryMaterialEl.textContent = mat.label;
+        summaryUrgencyEl.textContent = urg.label;
+      }
+
+      document.querySelectorAll('.seg-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const group = btn.getAttribute('data-group');
+          const value = btn.getAttribute('data-value');
+          state[group] = value;
+
+          document.querySelectorAll('.seg-btn[data-group="' + group + '"]').forEach(function (item) {
+            item.classList.remove('active');
+          });
+          btn.classList.add('active');
+          render();
+        });
+      });
+
+      pointsRange.addEventListener('input', function () {
+        state.points = Number(pointsRange.value);
+        render();
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        formStatus.classList.add('visible');
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>

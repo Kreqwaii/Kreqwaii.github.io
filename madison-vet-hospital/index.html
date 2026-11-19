@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Madison Veterinary Hospital in Madison, AL — Private veterinary care, wellness exams, vaccinations, pet dental care, surgery, and diagnostic imaging with interactive visit estimator.">
+  <title>Madison Veterinary Hospital | Private Veterinary Care in Madison, AL</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232F5D50'/%3E%3Cpath d='M16 7v18M7 16h18' stroke='%23FAF7F2' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-ivory: #FAF7F2;
+      --bg-cream: #F3EDE2;
+      --surface: #FFFFFF;
+      --surface-muted: #F7F3EB;
+      --ink-primary: #1F2A26;
+      --ink-secondary: #4D5B55;
+      --ink-muted: #6C7A73;
+      --eucalyptus: #2F5D50;
+      --eucalyptus-dark: #23473D;
+      --eucalyptus-soft: #E5EFEA;
+      --cedar: #A45D3B;
+      --cedar-soft: #F6EAE3;
+      --border-subtle: #E2DACD;
+      --border-strong: #C9BFAE;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --shadow-card: 0 4px 20px rgba(31, 42, 38, 0.05);
+      --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background-color: var(--bg-ivory);
+      color: var(--ink-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-serif);
+      color: var(--ink-primary);
+      margin: 0 0 0.6rem;
+      line-height: 1.2;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0 0 1rem;
+      color: var(--ink-secondary);
+    }
+
+    a {
+      color: var(--eucalyptus);
+      text-decoration: none;
+      transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    a:hover {
+      color: var(--eucalyptus-dark);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 0 28px;
+      }
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(250, 247, 242, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background-color: var(--eucalyptus);
+      color: #FAF7F2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-loc {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: none;
+      gap: 20px;
+      margin-right: 8px;
+    }
+
+    @media (min-width: 900px) {
+      .nav-links {
+        display: flex;
+      }
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink-secondary);
+    }
+
+    .nav-links a:hover {
+      color: var(--eucalyptus);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--eucalyptus);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--eucalyptus-dark);
+      color: #FFFFFF;
+    }
+
+    .btn-outline {
+      background-color: var(--surface);
+      border-color: var(--border-strong);
+      color: var(--ink-primary);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--eucalyptus);
+      color: var(--eucalyptus);
+    }
+
+    .btn-cedar {
+      background-color: var(--cedar);
+      color: #FFFFFF;
+    }
+
+    .btn-cedar:hover {
+      background-color: #8C4D30;
+      color: #FFFFFF;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 48px 0 40px;
+      background: linear-gradient(180deg, var(--bg-ivory) 0%, var(--bg-cream) 100%);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 44px;
+      }
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background-color: var(--eucalyptus-soft);
+      color: var(--eucalyptus-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 2.95rem);
+      letter-spacing: -0.015em;
+      margin-bottom: 16px;
+    }
+
+    .hero-lead {
+      font-size: 1.06rem;
+      max-width: 56ch;
+      margin-bottom: 24px;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .metric-val {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .metric-lbl {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+    }
+
+    .hero-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero-card h2 {
+      font-size: 1.25rem;
+      margin-bottom: 14px;
+    }
+
+    .clinic-facts {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .fact-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.92rem;
+    }
+
+    .fact-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .fact-label {
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    .fact-value {
+      color: var(--ink-primary);
+      font-weight: 600;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Sections */
+    .section {
+      padding: 56px 0;
+    }
+
+    .section-alt {
+      background-color: var(--bg-cream);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .section-header {
+      max-width: 640px;
+      margin-bottom: 32px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.6rem, 3vw, 2.15rem);
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    @media (min-width: 680px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .services-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .service-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: var(--eucalyptus-soft);
+      color: var(--eucalyptus);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-card h3 {
+      font-size: 1.12rem;
+      margin-bottom: 2px;
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+
+    /* Interactive Tool */
+    .tool-shell {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (min-width: 960px) {
+      .tool-shell {
+        grid-template-columns: 1.15fr 0.85fr;
+      }
+    }
+
+    .panel {
+      background-color: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .field-group {
+      margin-bottom: 20px;
+    }
+
+    .field-label {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .segmented-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .seg-btn {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface-muted);
+      color: var(--ink-secondary);
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .seg-btn.active {
+      background-color: var(--eucalyptus);
+      border-color: var(--eucalyptus);
+      color: #FFFFFF;
+    }
+
+    .bundle-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .bundle-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--surface-muted);
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-sans);
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .bundle-item.active {
+      border-color: var(--eucalyptus);
+      background-color: var(--eucalyptus-soft);
+    }
+
+    .bundle-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+      display: block;
+    }
+
+    .bundle-desc {
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      display: block;
+    }
+
+    .bundle-price {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--eucalyptus-dark);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    /* Output Summary */
+    .estimate-banner {
+      background-color: var(--eucalyptus-soft);
+      border: 1px solid #C5DDD2;
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .estimate-kicker {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--eucalyptus-dark);
+      margin-bottom: 4px;
+    }
+
+    .estimate-range {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .estimate-note {
+      font-size: 0.82rem;
+      color: var(--ink-secondary);
+      margin-top: 4px;
+      margin-bottom: 0;
+    }
+
+    .reminder-box {
+      background-color: var(--cedar-soft);
+      border: 1px solid #E5CBBF;
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .reminder-box h3 {
+      font-size: 1rem;
+      color: #7A3E24;
+      margin-bottom: 8px;
+    }
+
+    .reminder-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 0.86rem;
+      color: var(--ink-primary);
+    }
+
+    .reminder-list li {
+      margin-bottom: 5px;
+    }
+
+    /* Intake Form */
+    .intake-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 520px) {
+      .intake-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--ink-primary);
+    }
+
+    .form-control:focus {
+      outline: 2px solid var(--eucalyptus);
+      outline-offset: 1px;
+      border-color: var(--eucalyptus);
+    }
+
+    .full-span {
+      grid-column: 1 / -1;
+    }
+
+    .intake-status {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--eucalyptus-soft);
+      color: var(--eucalyptus-dark);
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .intake-status.visible {
+      display: block;
+    }
+
+    /* Contact & Footer */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    @media (min-width: 640px) {
+      .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .contact-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .contact-card-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-card-value {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* LINK CLIPPING GUARD */
+    .link-row {
+      grid-column: 1 / -1;
+      background-color: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    a[href^="mailto:"],
+    a[href^="http"] {
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--eucalyptus);
+    }
+
+    @media (min-width: 768px) {
+      a[href^="mailto:"],
+      a[href^="http"] {
+        font-size: 13px;
+      }
+    }
+
+    .site-footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      background-color: var(--bg-ivory);
+      font-size: 0.84rem;
+      color: var(--ink-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+        </span>
+        <div class="brand-text">
+          <span class="brand-name">Madison Veterinary Hospital</span>
+          <span class="brand-loc">Madison, AL</span>
+        </div>
+      </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#estimator">Wellness &amp; Estimate</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a href="tel:2568379171" class="btn btn-outline">(256) 837-9171</a>
+        <a href="#estimator" class="btn btn-primary">Plan Visit</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Private Veterinary Practice &bull; Madison, Alabama</div>
+          <h1>Calm, evidence-based care for dogs and cats in Madison.</h1>
+          <p class="hero-lead">
+            From nose-to-tail wellness exams and Alabama-specific heartworm prevention to digital radiography, dentistry, and soft-tissue surgery, our team delivers clear guidance and transparent visit estimates.
+          </p>
+          <div class="hero-cta">
+            <a href="#estimator" class="btn btn-primary">Calculate Visit Estimate</a>
+            <a href="#services" class="btn btn-outline">Explore Clinical Services</a>
+          </div>
+          <div class="hero-metrics">
+            <div>
+              <div class="metric-val">4 Core</div>
+              <div class="metric-lbl">Clinical Departments</div>
+            </div>
+            <div>
+              <div class="metric-val">12-Mo</div>
+              <div class="metric-lbl">AL Heartworm Coverage</div>
+            </div>
+            <div>
+              <div class="metric-val">Same-Day</div>
+              <div class="metric-lbl">In-House Lab Results</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Hospital Quick Facts">
+          <h2>Hospital Overview</h2>
+          <div class="clinic-facts">
+            <div class="fact-row">
+              <span class="fact-label">Location</span>
+              <span class="fact-value">Madison, AL, USA</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-label">Patients</span>
+              <span class="fact-value">Canine &amp; Feline</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-label">Phone</span>
+              <span class="fact-value">(256) 837-9171</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-label">Hours</span>
+              <span class="fact-value">Mon&ndash;Fri 7:30 AM &ndash; 5:30 PM</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-label">Saturday</span>
+              <span class="fact-value">8:00 AM &ndash; 12:00 PM</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Comprehensive Veterinary Services</h2>
+          <p>Structured preventive medicine, diagnostics, and surgical care tailored to North Alabama pets.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+              </svg>
+            </div>
+            <h3>Wellness Exams &amp; Vaccinations</h3>
+            <p>Annual and biannual physical exams, core immunizations, and year-round heartworm, flea, and tick protocols.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 4c-1.5 0-3 1.2-3 3.5 0 2.7 1.2 5.4 2.1 8.1.5 1.5 1.3 4.4 2.6 4.4 1.1 0 1.4-2.2 2.3-3.4.4-.5.6-.6 1-.6s.6.1 1 .6c.9 1.2 1.2 3.4 2.3 3.4 1.3 0 2.1-2.9 2.6-4.4.9-2.7 2.1-5.4 2.1-8.1C20 5.2 18.5 4 17 4c-1.8 0-3.1 1.1-5 1.1S8.8 4 7 4Z"/>
+              </svg>
+            </div>
+            <h3>Pet Dental Care</h3>
+            <p>Ultrasonic scaling, polishing, full-mouth dental radiographs, and periodontal extractions under monitored anesthesia.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v20M2 12h20"/>
+              </svg>
+            </div>
+            <h3>Veterinary Surgery</h3>
+            <p>Spay and neuter procedures, soft-tissue mass removals, and dedicated multi-parameter anesthesia monitoring.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="16" rx="2"/>
+                <path d="M7 12h3l2-4 2 8 2-4h1"/>
+              </svg>
+            </div>
+            <h3>Diagnostic Imaging &amp; Lab</h3>
+            <p>Digital X-ray, abdominal ultrasound, and in-house blood chemistry, CBC, urinalysis, and parasite screening.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="estimator" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>Pet Wellness Reminder Scheduler &amp; Visit Estimator</h2>
+          <p>Select your pet&rsquo;s profile, North Alabama parasite risk level, and care bundle for a transparent USD estimate and vaccination schedule.</p>
+        </div>
+
+        <div class="tool-shell">
+          <div class="panel">
+            <div class="field-group">
+              <div class="field-label">1. Species</div>
+              <div class="segmented" role="group" aria-label="Species">
+                <button type="button" class="seg-btn active" data-species="dog">Dog</button>
+                <button type="button" class="seg-btn" data-species="cat">Cat</button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">2. Life Stage</div>
+              <div class="segmented-3" role="group" aria-label="Life Stage">
+                <button type="button" class="seg-btn" data-stage="puppy">Puppy / Kitten</button>
+                <button type="button" class="seg-btn active" data-stage="adult">Adult (1&ndash;7 yrs)</button>
+                <button type="button" class="seg-btn" data-stage="senior">Senior (7+ yrs)</button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">3. Alabama Heartworm &amp; Flea Climate Risk</div>
+              <div class="segmented-3" role="group" aria-label="Alabama Climate Risk">
+                <button type="button" class="seg-btn" data-climate="indoor">Mostly Indoor</button>
+                <button type="button" class="seg-btn active" data-climate="yard">Suburban Yard</button>
+                <button type="button" class="seg-btn" data-climate="trail">Trail / Wooded</button>
+              </div>
+            </div>
+
+            <div class="field-group" style="margin-bottom: 0;">
+              <div class="field-label">4. Service Bundle</div>
+              <div class="bundle-list" role="group" aria-label="Service Bundle">
+                <button type="button" class="bundle-item active" data-bundle="wellness">
+                  <div>
+                    <span class="bundle-title">Wellness Exam &amp; Core Vaccines</span>
+                    <span class="bundle-desc">Physical exam, core boosters, heartworm/fecal screen</span>
+                  </div>
+                  <span class="bundle-price">$115 &ndash; $165</span>
+                </button>
+                <button type="button" class="bundle-item" data-bundle="dental">
+                  <div>
+                    <span class="bundle-title">Comprehensive Pet Dental Care</span>
+                    <span class="bundle-desc">Pre-anesthetic lab, scaling, polishing, dental X-rays</span>
+                  </div>
+                  <span class="bundle-price">$340 &ndash; $520</span>
+                </button>
+                <button type="button" class="bundle-item" data-bundle="surgery">
+                  <div>
+                    <span class="bundle-title">Routine Veterinary Surgery</span>
+                    <span class="bundle-desc">Pre-op bloodwork, anesthesia, procedure, pain control</span>
+                  </div>
+                  <span class="bundle-price">$280 &ndash; $490</span>
+                </button>
+                <button type="button" class="bundle-item" data-bundle="diagnostics">
+                  <div>
+                    <span class="bundle-title">Diagnostic Imaging &amp; Lab Panel</span>
+                    <span class="bundle-desc">CBC/chemistry panel, urinalysis, 2-view digital X-ray</span>
+                  </div>
+                  <span class="bundle-price">$220 &ndash; $360</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="estimate-banner">
+              <div class="estimate-kicker">Estimated Visit Range (USD)</div>
+              <div class="estimate-range" id="estimateOutput">$130 &ndash; $185</div>
+              <p class="estimate-note" id="estimateBreakdown">Adult Dog &bull; Suburban Yard &bull; Wellness Exam &amp; Core Vaccines</p>
+            </div>
+
+            <div class="reminder-box">
+              <h3>Recommended Reminder Schedule</h3>
+              <ul class="reminder-list" id="reminderList">
+                <li>Annual comprehensive wellness exam &amp; Rabies/DHPP booster</li>
+                <li>12-month Alabama heartworm &amp; flea/tick preventive refill</li>
+                <li>Annual heartworm antigen test &amp; fecal parasite screen</li>
+              </ul>
+            </div>
+
+            <form id="intakeForm" novalidate>
+              <div class="field-label">Request Appointment Intake</div>
+              <div class="intake-grid">
+                <div>
+                  <input type="text" class="form-control" id="ownerName" name="ownerName" placeholder="Your Full Name" autocomplete="name" required>
+                </div>
+                <div>
+                  <input type="tel" class="form-control" id="ownerPhone" name="ownerPhone" placeholder="Phone (256) 555-0192" autocomplete="tel" required>
+                </div>
+                <div>
+                  <input type="email" class="form-control" id="ownerEmail" name="ownerEmail" placeholder="Email Address" autocomplete="email" required>
+                </div>
+                <div>
+                  <input type="text" class="form-control" id="petName" name="petName" placeholder="Pet Name" autocomplete="off" required>
+                </div>
+                <div class="full-span">
+                  <button type="submit" class="btn btn-cedar" style="width: 100%;">Submit Visit Request</button>
+                </div>
+              </div>
+              <div class="intake-status" id="intakeStatus" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Contact Madison Veterinary Hospital</h2>
+          <p>Reach our front desk for same-week wellness appointments, dental consultations, or prescription refills.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-card-label">Phone</div>
+            <div class="contact-card-value">(256) 837-9171</div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card-label">Location</div>
+            <div class="contact-card-value">Madison, AL, USA</div>
+          </div>
+          <div class="link-row">
+            <a href="mailto:info@madisonvet.com">info@madisonvet.com</a>
+            <a href="https://www.madisonvet.com" target="_blank" rel="noopener noreferrer">https://www.madisonvet.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>&copy; 2026 Madison Veterinary Hospital &bull; Madison, AL</span>
+      <span>Private Veterinary Practice &bull; USD ($)</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        species: 'dog',
+        stage: 'adult',
+        climate: 'yard',
+        bundle: 'wellness'
+      };
+
+      const bundleBase = {
+        wellness: { label: 'Wellness Exam & Core Vaccines', min: 115, max: 165 },
+        dental: { label: 'Comprehensive Pet Dental Care', min: 340, max: 520 },
+        surgery: { label: 'Routine Veterinary Surgery', min: 280, max: 490 },
+        diagnostics: { label: 'Diagnostic Imaging & Lab Panel', min: 220, max: 360 }
+      };
+
+      const stageAdd = {
+        puppy: { label: 'Puppy / Kitten', min: 20, max: 35 },
+        adult: { label: 'Adult (1–7 yrs)', min: 0, max: 0 },
+        senior: { label: 'Senior (7+ yrs)', min: 45, max: 75 }
+      };
+
+      const climateAdd = {
+        indoor: { label: 'Mostly Indoor', min: 0, max: 0 },
+        yard: { label: 'Suburban Yard', min: 15, max: 20 },
+        trail: { label: 'Trail / Wooded', min: 30, max: 45 }
+      };
+
+      const estimateOutput = document.getElementById('estimateOutput');
+      const estimateBreakdown = document.getElementById('estimateBreakdown');
+      const reminderList = document.getElementById('reminderList');
+
+      function updateUI() {
+        const b = bundleBase[state.bundle];
+        const s = stageAdd[state.stage];
+        const c = climateAdd[state.climate];
+        const speciesFactor = state.species === 'cat' ? 0.92 : 1;
+
+        const minTotal = Math.round((b.min + s.min + c.min) * speciesFactor);
+        const maxTotal = Math.round((b.max + s.max + c.max) * speciesFactor);
+
+        estimateOutput.textContent = '$' + minTotal + ' \u2013 $' + maxTotal;
+        estimateBreakdown.textContent =
+          (state.species === 'dog' ? 'Dog' : 'Cat') + ' \u2022 ' +
+          s.label + ' \u2022 ' +
+          c.label + ' \u2022 ' +
+          b.label;
+
+        const reminders = [];
+        if (state.stage === 'puppy') {
+          reminders.push('Booster series every 3\u20134 weeks until 16 weeks of age');
+        } else if (state.stage === 'senior') {
+          reminders.push('Biannual senior wellness exam & baseline blood chemistry');
+        } else {
+          reminders.push('Annual comprehensive wellness exam & core vaccine booster');
+        }
+
+        if (state.climate === 'trail') {
+          reminders.push('Year-round heartworm, flea, tick & Leptospirosis protection');
+        } else if (state.climate === 'yard') {
+          reminders.push('12-month Alabama heartworm & flea/tick preventive refill');
+        } else {
+          reminders.push('Year-round heartworm & indoor flea prevention check');
+        }
+
+        if (state.bundle === 'dental') {
+          reminders.push('Annual dental grading & home oral hygiene follow-up');
+        } else {
+          reminders.push('Annual heartworm antigen test & fecal parasite screen');
+        }
+
+        reminderList.innerHTML = reminders.map(function (item) {
+          return '<li>' + item + '</li>';
+        }).join('');
+      }
+
+      document.querySelectorAll('[data-species]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('[data-species]').forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.species = btn.getAttribute('data-species');
+          updateUI();
+        });
+      });
+
+      document.querySelectorAll('[data-stage]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('[data-stage]').forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.stage = btn.getAttribute('data-stage');
+          updateUI();
+        });
+      });
+
+      document.querySelectorAll('[data-climate]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('[data-climate]').forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.climate = btn.getAttribute('data-climate');
+          updateUI();
+        });
+      });
+
+      document.querySelectorAll('[data-bundle]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('[data-bundle]').forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.bundle = btn.getAttribute('data-bundle');
+          updateUI();
+        });
+      });
+
+      const intakeForm = document.getElementById('intakeForm');
+      const intakeStatus = document.getElementById('intakeStatus');
+
+      intakeForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const ownerName = document.getElementById('ownerName').value.trim();
+        const petName = document.getElementById('petName').value.trim();
+        if (!ownerName || !petName) {
+          intakeStatus.textContent = 'Please enter your name and your pet\u2019s name to submit.';
+          intakeStatus.classList.add('visible');
+          return;
+        }
+        intakeStatus.textContent =
+          'Request received for ' + petName + ' (' + ownerName + '). Estimated range: ' +
+          estimateOutput.textContent + '. Our Madison desk will confirm by phone.';
+        intakeStatus.classList.add('visible');
+        intakeForm.reset();
+      });
+
+      updateUI();
+    })();
+  </script>
+</body>
+</html>
