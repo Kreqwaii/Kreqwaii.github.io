@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Charlotte Plumbing provides 24/7 emergency plumbing repair, water heater installation, drain cleaning, and commercial plumbing services in Charlotte, NC.">
+  <title>Charlotte Plumbing | 24/7 Plumbing &amp; Water Heater Services in Charlotte, NC</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f2439'/%3E%3Cpath d='M16 6c-4 5.5-7 9.2-7 13a7 7 0 0 0 14 0c0-3.8-3-7.5-7-13z' fill='%23c4642d'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f8fa;
+      --surface: #ffffff;
+      --surface-alt: #eef2f6;
+      --navy: #0f2439;
+      --navy-mid: #1b3856;
+      --copper: #b85d28;
+      --copper-hover: #9c4c1e;
+      --copper-soft: #fdf2ec;
+      --text: #16222f;
+      --text-muted: #4b5c6e;
+      --border: #d8e0e8;
+      --success: #1b6e42;
+      --success-bg: #ebf7f0;
+      --radius: 10px;
+      --shadow-sm: 0 2px 8px rgba(15, 36, 57, 0.06);
+      --shadow-md: 0 10px 28px rgba(15, 36, 57, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--navy);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--navy);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .header-phone {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--navy);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: 8px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .btn-primary {
+      background: var(--copper);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--copper-hover);
+    }
+
+    .btn-outline {
+      background: var(--surface);
+      color: var(--navy);
+      border-color: var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--navy);
+    }
+
+    /* Hero */
+    .hero {
+      background: var(--navy);
+      color: #ffffff;
+      padding: 56px 0 64px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #f3d2be;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      color: #ffffff;
+      font-size: clamp(1.9rem, 3.6vw, 2.85rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      color: #cfdbe6;
+      font-size: 1.05rem;
+      margin: 0 0 26px;
+      max-width: 560px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-card {
+      background: var(--navy-mid);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .stat-box {
+      background: rgba(15, 36, 57, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .stat-val {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: #b7c8d9;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* Sections */
+    .section {
+      padding: 64px 0;
+    }
+
+    .section-header {
+      margin-bottom: 32px;
+      max-width: 680px;
+    }
+
+    .section-kicker {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--copper);
+      margin-bottom: 8px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.5rem, 2.6vw, 2.05rem);
+      margin-bottom: 10px;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--text-muted);
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .service-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background: var(--copper-soft);
+      color: var(--copper);
+      display: grid;
+      place-items: center;
+    }
+
+    .service-card h3 {
+      font-size: 1.05rem;
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Diagnostic & Estimate Calculator */
+    .calc-section {
+      background: var(--surface-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .calc-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .calc-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .field-group {
+      margin-bottom: 22px;
+    }
+
+    .field-label {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--navy);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .option-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .opt-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .opt-btn:hover {
+      border-color: var(--navy);
+    }
+
+    .opt-btn.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: #ffffff;
+    }
+
+    .opt-sub {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 400;
+      opacity: 0.82;
+      margin-top: 3px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .input-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .input-wrap label {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .input-control {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.92rem;
+      color: var(--text);
+      background: var(--surface);
+    }
+
+    .input-control:focus {
+      outline: 2px solid var(--copper);
+      outline-offset: 1px;
+    }
+
+    /* Estimate Summary Card */
+    .estimate-card {
+      background: var(--navy);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .estimate-card h3 {
+      color: #ffffff;
+      font-size: 1.15rem;
+      margin-bottom: 16px;
+    }
+
+    .estimate-price-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .estimate-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #b7c8d9;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .estimate-amount {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .estimate-meta {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 20px;
+      font-size: 0.88rem;
+    }
+
+    .meta-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .meta-key {
+      color: #b7c8d9;
+    }
+
+    .meta-val {
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .dispatch-status {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: var(--success-bg);
+      color: var(--success);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .dispatch-status.visible {
+      display: block;
+    }
+
+    /* Contact & Footer */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .contact-item-full {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .contact-value {
+      font-weight: 600;
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    a[href^="mailto:"],
+    a[href^="http"] {
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 11.5px;
+      color: var(--copper);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    a[href^="mailto:"]:hover,
+    a[href^="http"]:hover {
+      text-decoration: underline;
+    }
+
+    .site-footer {
+      background: var(--navy);
+      color: #b7c8d9;
+      padding: 24px 0;
+      font-size: 0.85rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .calc-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .services-grid,
+      .option-grid,
+      .option-grid-3,
+      .form-row,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header-phone {
+        display: none;
+      }
+    }
+
+    @media (max-width: 420px) {
+      a[href^="mailto:"],
+      a[href^="http"] {
+        font-size: 11px;
+      }
+
+      .hero {
+        padding: 40px 0 48px;
+      }
+
+      .section {
+        padding: 44px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Charlotte Plumbing</span>
+          <span class="brand-sub">Charlotte, NC</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a href="tel:7046844664" class="header-phone tabular">(704) 684-4664</a>
+        <a href="#calculator" class="btn btn-primary">Instant Estimate</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-badge">24/7 Licensed Plumbing &amp; Water Heater Dispatch</div>
+          <h1>Reliable Plumbing &amp; Emergency Repair in Charlotte, NC</h1>
+          <p>Fast residential and commercial diagnostics, upfront pricing in USD, and same-day dispatch across Mecklenburg County.</p>
+          <div class="hero-cta-row">
+            <a href="#calculator" class="btn btn-primary">Calculate Service Estimate</a>
+            <a href="tel:7046844664" class="btn btn-outline">Call (704) 684-4664</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-stats">
+            <div class="stat-box">
+              <span class="stat-val tabular">45 min</span>
+              <span class="stat-label">Avg. 24/7 Emergency ETA</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-val tabular">$89</span>
+              <span class="stat-label">Standard Diagnostic Fee</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-val tabular">100%</span>
+              <span class="stat-label">Upfront Written Quotes</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-val tabular">24/7</span>
+              <span class="stat-label">Nights &amp; Weekends</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Core Capabilities</div>
+          <h2>Complete Plumbing Solutions</h2>
+          <p>Equipped service trucks stocked for rapid single-visit repairs and installations.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+              </svg>
+            </div>
+            <h3>Emergency Plumbing Repair</h3>
+            <p>Burst pipes, active slab leaks, main shutoff failures, and urgent fixture replacements.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <h3>Water Heater Installation</h3>
+            <p>Tank and tankless gas or electric water heater replacement, expansion tanks, and recirculation.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 8v8M8 12h8"></path>
+              </svg>
+            </div>
+            <h3>Drain Cleaning &amp; Sewer Line</h3>
+            <p>Hydro-jetting, camera inspections, root intrusion clearing, and main sewer line repair.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                <path d="M9 3v18M15 3v18M3 9h18M3 15h18"></path>
+              </svg>
+            </div>
+            <h3>Commercial Plumbing Services</h3>
+            <p>Backflow testing, grease trap lines, multi-unit repiping, and scheduled preventive maintenance.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section calc-section" id="calculator">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Interactive Diagnostic Tool</div>
+          <h2>Emergency Plumbing Diagnostic &amp; Instant Service Estimate Calculator</h2>
+          <p>Select your issue, urgency, property type, and system age to view an estimated USD range and dispatch window.</p>
+        </div>
+
+        <div class="calc-layout">
+          <div class="calc-panel">
+            <div class="field-group">
+              <div class="field-label">1. Plumbing Issue Type</div>
+              <div class="option-grid" id="issue-options">
+                <button type="button" class="opt-btn active" data-issue="leak" data-min="195" data-max="420">
+                  Burst Pipe / Active Leak
+                  <span class="opt-sub">Emergency shutoff &amp; pipe repair</span>
+                </button>
+                <button type="button" class="opt-btn" data-issue="heater" data-min="320" data-max="1450">
+                  Water Heater Issue
+                  <span class="opt-sub">No hot water, pilot, or replacement</span>
+                </button>
+                <button type="button" class="opt-btn" data-issue="drain" data-min="165" data-max="390">
+                  Drain / Sewer Backup
+                  <span class="opt-sub">Clogged main line or hydro-jet</span>
+                </button>
+                <button type="button" class="opt-btn" data-issue="commercial" data-min="280" data-max="890">
+                  Commercial System
+                  <span class="opt-sub">Backflow, commercial line, or valve</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">2. Dispatch Urgency</div>
+              <div class="option-grid-3" id="urgency-options">
+                <button type="button" class="opt-btn active" data-urgency="24/7" data-mult="1.25" data-eta="45 - 60 mins">
+                  24/7 Emergency
+                  <span class="opt-sub">Immediate dispatch</span>
+                </button>
+                <button type="button" class="opt-btn" data-urgency="same-day" data-mult="1.10" data-eta="2 - 4 hours">
+                  Same-Day
+                  <span class="opt-sub">Priority window</span>
+                </button>
+                <button type="button" class="opt-btn" data-urgency="standard" data-mult="1.00" data-eta="Next business day">
+                  Standard
+                  <span class="opt-sub">Scheduled visit</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">3. Property Type &amp; System Age</div>
+              <div class="form-row">
+                <div class="input-wrap">
+                  <label for="property-type">Property Type</label>
+                  <select id="property-type" class="input-control" autocomplete="off">
+                    <option value="residential" data-mult="1.00">Residential Home / Condo</option>
+                    <option value="commercial" data-mult="1.30">Commercial / Retail / Office</option>
+                  </select>
+                </div>
+                <div class="input-wrap">
+                  <label for="system-age">Pipe / Water Heater Age</label>
+                  <select id="system-age" class="input-control" autocomplete="off">
+                    <option value="under-5" data-add="0">Under 5 years</option>
+                    <option value="5-12" data-add="65">5 to 12 years</option>
+                    <option value="over-12" data-add="140">Over 12 years</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <form id="dispatch-form">
+              <div class="field-label">4. Request Dispatch</div>
+              <div class="form-row">
+                <div class="input-wrap">
+                  <label for="cust-name">Full Name</label>
+                  <input id="cust-name" type="text" class="input-control" placeholder="Alex Morgan" autocomplete="name" required>
+                </div>
+                <div class="input-wrap">
+                  <label for="cust-phone">Phone Number</label>
+                  <input id="cust-phone" type="tel" class="input-control" placeholder="(704) 555-0192" autocomplete="tel" required>
+                </div>
+              </div>
+              <div class="input-wrap">
+                <label for="cust-address">Service Address (Charlotte, NC)</label>
+                <input id="cust-address" type="text" class="input-control" placeholder="1234 South Blvd, Charlotte, NC" autocomplete="street-address" required>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Request Dispatch &amp; Lock Estimate</button>
+              <div id="dispatch-status" class="dispatch-status" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+
+          <aside class="estimate-card">
+            <h3>Instant Service Estimate</h3>
+            <div class="estimate-price-box">
+              <span class="estimate-label">Estimated Range (USD)</span>
+              <span class="estimate-amount tabular" id="est-range">$244 - $525</span>
+            </div>
+            <div class="estimate-meta">
+              <div class="meta-line">
+                <span class="meta-key">Dispatch ETA</span>
+                <span class="meta-val tabular" id="est-eta">45 - 60 mins</span>
+              </div>
+              <div class="meta-line">
+                <span class="meta-key">Diagnostic Fee</span>
+                <span class="meta-val tabular">$89 (Waived w/ Repair)</span>
+              </div>
+              <div class="meta-line">
+                <span class="meta-key">Service Area</span>
+                <span class="meta-val">Charlotte, NC</span>
+              </div>
+            </div>
+            <p style="font-size: 0.82rem; color: #b7c8d9; margin: 0;">Final pricing is confirmed on-site before work begins. No hidden overtime surprises.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Direct Contact</div>
+          <h2>Charlotte Plumbing Dispatch Desk</h2>
+          <p>Reach our local team directly by phone, email, or online.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <span class="contact-label">Phone</span>
+            <a href="tel:7046844664" class="contact-value tabular">(704) 684-4664</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Location</span>
+            <span class="contact-value">Charlotte, NC, USA</span>
+          </div>
+          <div class="contact-item-full">
+            <span class="contact-label">Email</span>
+            <a href="mailto:damion@charlotteplumbing.com">damion@charlotteplumbing.com</a>
+          </div>
+          <div class="contact-item-full">
+            <span class="contact-label">Official Website</span>
+            <a href="https://www.charlotteplumbing.com/" target="_blank" rel="noopener noreferrer">https://www.charlotteplumbing.com/</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Charlotte Plumbing &middot; Charlotte, NC, USA</span>
+      <span class="tabular">24/7 Dispatch: (704) 684-4664</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const issueBtns = document.querySelectorAll('#issue-options .opt-btn');
+      const urgencyBtns = document.querySelectorAll('#urgency-options .opt-btn');
+      const propertySelect = document.getElementById('property-type');
+      const ageSelect = document.getElementById('system-age');
+      const estRangeEl = document.getElementById('est-range');
+      const estEtaEl = document.getElementById('est-eta');
+      const dispatchForm = document.getElementById('dispatch-form');
+      const dispatchStatus = document.getElementById('dispatch-status');
+
+      let state = {
+        min: 195,
+        max: 420,
+        urgencyMult: 1.25,
+        eta: '45 - 60 mins'
+      };
+
+      function updateEstimate() {
+        const propOpt = propertySelect.options[propertySelect.selectedIndex];
+        const ageOpt = ageSelect.options[ageSelect.selectedIndex];
+        const propMult = parseFloat(propOpt.getAttribute('data-mult')) || 1;
+        const ageAdd = parseInt(ageOpt.getAttribute('data-add'), 10) || 0;
+
+        const low = Math.round((state.min * state.urgencyMult * propMult) + ageAdd);
+        const high = Math.round((state.max * state.urgencyMult * propMult) + ageAdd);
+
+        estRangeEl.textContent = '$' + low.toLocaleString('en-US') + ' - $' + high.toLocaleString('en-US');
+        estEtaEl.textContent = state.eta;
+      }
+
+      issueBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          issueBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.min = parseInt(btn.getAttribute('data-min'), 10);
+          state.max = parseInt(btn.getAttribute('data-max'), 10);
+          updateEstimate();
+        });
+      });
+
+      urgencyBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          urgencyBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.urgencyMult = parseFloat(btn.getAttribute('data-mult'));
+          state.eta = btn.getAttribute('data-eta');
+          updateEstimate();
+        });
+      });
+
+      propertySelect.addEventListener('change', updateEstimate);
+      ageSelect.addEventListener('change', updateEstimate);
+
+      dispatchForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('cust-name').value.trim();
+        dispatchStatus.textContent = 'Dispatch request received for ' + (name || 'your property') + '. Estimated arrival: ' + state.eta + '. Call (704) 684-4664 for immediate updates.';
+        dispatchStatus.classList.add('visible');
+      });
+
+      updateEstimate();
+    })();
+  </script>
+</body>
+</html>

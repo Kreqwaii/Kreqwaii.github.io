@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="San Diego Solar — Residential &amp; Commercial Solar Installation, Battery Storage, and System Maintenance in San Diego, CA. Estimate your SDG&amp;E savings and 30% ITC.">
+  <title>San Diego Solar | Solar Savings &amp; System Size Estimator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231C1E21'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23D97706'/%3E%3Cpath d='M16 4v4M16 24v4M4 16h4M24 16h4M7.5 7.5l2.8 2.8M21.7 21.7l2.8 2.8M24.5 7.5l-2.8 2.8M10.3 21.7l-2.8 2.8' stroke='%23F59E0B' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #FAF8F5;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #F3EFE8;
+      --bg-graphite: #1C1E21;
+      --text-primary: #181A1D;
+      --text-secondary: #4B515A;
+      --text-muted: #6C737E;
+      --accent-amber: #D97706;
+      --accent-amber-hover: #B45309;
+      --accent-amber-soft: #FEF3C7;
+      --accent-gold: #F59E0B;
+      --border-light: #E6E0D6;
+      --border-strong: #D1C9BC;
+      --success-text: #15803D;
+      --success-bg: #DCFCE7;
+      --shadow-sm: 0 2px 8px rgba(24, 26, 29, 0.04);
+      --shadow-md: 0 10px 30px rgba(24, 26, 29, 0.07);
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --font-display: 'Plus Jakarta Sans', 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', 'IBM Plex Sans', sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(250, 248, 245, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-primary);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--bg-graphite);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 17px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-loc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .header-phone {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text-primary);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: var(--bg-subtle);
+      white-space: nowrap;
+      transition: background-color 0.2s ease;
+    }
+
+    .header-phone:hover {
+      background: var(--border-light);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent-amber);
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-amber-hover);
+    }
+
+    .btn-primary:active {
+      transform: translateY(1px);
+    }
+
+    @media (max-width: 600px) {
+      .header-phone {
+        display: none;
+      }
+      .btn-primary {
+        padding: 9px 14px;
+        font-size: 13px;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      padding: 48px 0 36px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-amber-soft);
+      color: var(--accent-amber-hover);
+      font-weight: 600;
+      font-size: 12.5px;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(30px, 4.2vw, 46px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin: 0 0 16px;
+      color: var(--text-primary);
+    }
+
+    .hero-lead {
+      font-size: 17px;
+      color: var(--text-secondary);
+      margin: 0 0 24px;
+      max-width: 560px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 540px;
+    }
+
+    .stat-chip {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat-val {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .stat-lbl {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .hero-card {
+      background: var(--bg-graphite);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-card-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 18px;
+      margin: 0 0 8px;
+    }
+
+    .hero-card-sub {
+      font-size: 14px;
+      color: #CBD2D9;
+      margin: 0 0 20px;
+    }
+
+    .hero-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .hero-checklist li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: #F3F4F6;
+    }
+
+    .check-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--accent-gold);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        padding: 32px 0 24px;
+      }
+    }
+
+    /* Estimator Section */
+    .estimator-section {
+      padding: 24px 0 56px;
+    }
+
+    .section-head {
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(24px, 3vw, 32px);
+      letter-spacing: -0.02em;
+      margin: 0 0 6px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 15.5px;
+    }
+
+    .estimator-shell {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .control-group {
+      margin-bottom: 22px;
+    }
+
+    .control-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .control-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .field-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .control-header .field-label {
+      margin-bottom: 0;
+    }
+
+    .bill-badge {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--accent-amber-hover);
+      background: var(--accent-amber-soft);
+      padding: 4px 12px;
+      border-radius: 8px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent-amber);
+      height: 8px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    .range-scale {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .btn-group {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .btn-group-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .choice-btn {
+      padding: 11px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-page);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 13.5px;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .choice-btn:hover {
+      border-color: var(--accent-amber);
+    }
+
+    .choice-btn.active {
+      background: var(--bg-graphite);
+      color: #FFFFFF;
+      border-color: var(--bg-graphite);
+    }
+
+    .battery-note {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    /* Results Panel */
+    .results-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .results-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: 18px;
+    }
+
+    .results-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .itc-pill {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--success-text);
+      background: var(--success-bg);
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .metric-box {
+      background: var(--bg-page);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 14px;
+    }
+
+    .metric-box.highlight {
+      background: var(--accent-amber-soft);
+      border-color: #FCD34D;
+    }
+
+    .metric-lbl {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .metric-val {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .metric-sub {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* Quote Form */
+    .quote-form {
+      border-top: 1px solid var(--border-light);
+      padding-top: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .quote-form-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15px;
+      margin: 0;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 9px;
+      border: 1px solid var(--border-strong);
+      background: #FFFFFF;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 14px;
+      transition: border-color 0.15s ease;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: var(--accent-amber);
+    }
+
+    .form-status {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--success-text);
+      background: var(--success-bg);
+      padding: 10px 12px;
+      border-radius: 9px;
+      display: none;
+    }
+
+    .form-status.visible {
+      display: block;
+    }
+
+    @media (max-width: 920px) {
+      .estimator-shell {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .form-row-2 {
+        grid-template-columns: 1fr;
+      }
+      .btn-group {
+        grid-template-columns: 1fr;
+      }
+      .panel, .results-panel {
+        padding: 20px;
+      }
+    }
+
+    /* Services */
+    .services-section {
+      padding: 36px 0 56px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--accent-amber-soft);
+      color: var(--accent-amber-hover);
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+    }
+
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 16px;
+      margin: 0 0 8px;
+    }
+
+    .service-card p {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    @media (max-width: 960px) {
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Footer & Contact */
+    .site-footer {
+      background: var(--bg-graphite);
+      color: #E5E7EB;
+      padding: 40px 0 32px;
+      margin-top: 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 18px;
+      color: #FFFFFF;
+      margin: 0 0 8px;
+    }
+
+    .footer-desc {
+      font-size: 14px;
+      color: #9CA3AF;
+      margin: 0;
+      max-width: 420px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .contact-item {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+
+    .contact-item.full-row {
+      grid-column: 1 / -1;
+    }
+
+    .contact-lbl {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #9CA3AF;
+      margin-bottom: 3px;
+    }
+
+    .contact-val {
+      font-size: 13px;
+      color: #FFFFFF;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    a[href^="mailto:"],
+    a[href^="http"] {
+      display: inline-block;
+      font-size: 12px;
+      white-space: nowrap;
+      word-break: normal;
+      color: #FCD34D;
+      text-decoration: none;
+    }
+
+    a[href^="mailto:"]:hover,
+    a[href^="http"]:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 780px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 420px) {
+      a[href^="mailto:"],
+      a[href^="http"] {
+        font-size: 11.5px;
+      }
+    }
+
+    .footer-bottom {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 12.5px;
+      color: #9CA3AF;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="4.5" fill="#F59E0B"/>
+            <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">San Diego Solar</span>
+          <span class="brand-loc">San Diego, CA</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a href="tel:+16195140095" class="header-phone tabular">(619) 514-0095</a>
+        <a href="#estimator" class="btn-primary">Estimate Savings</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">San Diego, CA &middot; NEM 3.0 &amp; SDG&amp;E Ready</div>
+          <h1>Cut Your SDG&amp;E Bill with Custom Solar &amp; Battery Storage</h1>
+          <p class="hero-lead">
+            Engineered for San Diego sunshine. Calculate your ideal solar array size, 30% Federal ITC credit, and payback timeline in seconds.
+          </p>
+          <div class="hero-stats">
+            <div class="stat-chip">
+              <div class="stat-val tabular">30%</div>
+              <div class="stat-lbl">Federal ITC Credit</div>
+            </div>
+            <div class="stat-chip">
+              <div class="stat-val tabular">25 yr</div>
+              <div class="stat-lbl">Panel Warranty</div>
+            </div>
+            <div class="stat-chip">
+              <div class="stat-val tabular">$0</div>
+              <div class="stat-lbl">Down Options</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="San Diego Solar Highlights">
+          <h2 class="hero-card-title">Why San Diego Homeowners Switch</h2>
+          <p class="hero-card-sub">Built for high SDG&amp;E peak rates and coastal-to-inland microclimates.</p>
+          <ul class="hero-checklist">
+            <li>
+              <span class="check-dot" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8.5L6.5 12L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>Residential &amp; Commercial Tier-1 Panels</span>
+            </li>
+            <li>
+              <span class="check-dot" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8.5L6.5 12L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>Whole-Home Backup Battery Integration</span>
+            </li>
+            <li>
+              <span class="check-dot" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8.5L6.5 12L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>Full Permitting, HOA &amp; SDG&amp;E Interconnection</span>
+            </li>
+          </ul>
+          <a href="#estimator" class="btn-primary" style="width: 100%;">Launch Solar Estimator</a>
+        </aside>
+      </div>
+    </section>
+
+    <section id="estimator" class="estimator-section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Interactive Solar Savings &amp; System Size Estimator</h2>
+          <p>Adjust your average monthly SDG&amp;E bill, roof type, and battery preference for an instant estimate.</p>
+        </div>
+
+        <div class="estimator-shell">
+          <div class="panel">
+            <div class="control-group">
+              <div class="control-header">
+                <div class="field-label">Average Monthly SDG&amp;E Bill</div>
+                <div class="bill-badge tabular" id="billDisplay">$320/mo</div>
+              </div>
+              <input type="range" id="billRange" min="120" max="950" step="10" value="320" aria-label="Average Monthly SDG&E Bill" autocomplete="off">
+              <div class="range-scale tabular">
+                <span>$120/mo</span>
+                <span>$535/mo</span>
+                <span>$950/mo</span>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="field-label">Roof Type</div>
+              <div class="btn-group" id="roofGroup" role="group" aria-label="Roof Type">
+                <button type="button" class="choice-btn active" data-roof="shingle">Composition Shingle</button>
+                <button type="button" class="choice-btn" data-roof="tile">Spanish / Clay Tile</button>
+                <button type="button" class="choice-btn" data-roof="flat">Flat / Commercial</button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="field-label">Battery Storage (NEM 3.0 Optimization)</div>
+              <div class="btn-group-2" id="batteryGroup" role="group" aria-label="Battery Storage">
+                <button type="button" class="choice-btn active" data-battery="yes">Include Solar Battery</button>
+                <button type="button" class="choice-btn" data-battery="no">Solar Panels Only</button>
+              </div>
+              <div class="battery-note" id="batteryNote">
+                Battery storage maximizes evening peak-rate savings under SDG&amp;E NEM 3.0.
+              </div>
+            </div>
+          </div>
+
+          <div class="results-panel">
+            <div class="results-top">
+              <h3 class="results-title">Estimated System &amp; Savings</h3>
+              <span class="itc-pill tabular">30% Federal ITC Applied</span>
+            </div>
+
+            <div class="metrics-grid">
+              <div class="metric-box highlight">
+                <div class="metric-lbl">Recommended System</div>
+                <div class="metric-val tabular" id="resKw">7.6 kW</div>
+                <div class="metric-sub tabular" id="resPanels">19 high-efficiency panels</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-lbl">Est. Annual Savings</div>
+                <div class="metric-val tabular" id="resAnnual">$3,530</div>
+                <div class="metric-sub">Based on SDG&amp;E rates</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-lbl">30% Federal ITC Credit</div>
+                <div class="metric-val tabular" id="resItc">$9,660</div>
+                <div class="metric-sub tabular" id="resNetCost">Net est: $22,540</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-lbl">Est. Payback Period</div>
+                <div class="metric-val tabular" id="resPayback">6.4 yrs</div>
+                <div class="metric-sub">25-yr net savings: <span class="tabular" id="res25Yr">$65,710</span></div>
+              </div>
+            </div>
+
+            <form class="quote-form" id="quoteForm">
+              <h4 class="quote-form-title">Request Your Instant Custom Quote</h4>
+              <div class="form-row-2">
+                <input type="text" class="input-field" id="qName" name="name" placeholder="Full Name" required autocomplete="name">
+                <input type="tel" class="input-field" id="qPhone" name="phone" placeholder="Phone Number" required autocomplete="tel">
+              </div>
+              <div class="form-row-2">
+                <input type="email" class="input-field" id="qEmail" name="email" placeholder="Email Address" required autocomplete="email">
+                <input type="text" class="input-field" id="qZip" name="postal-code" placeholder="San Diego ZIP Code" required autocomplete="postal-code">
+              </div>
+              <button type="submit" class="btn-primary" style="width: 100%;">Get Instant Quote &amp; Roof Assessment</button>
+              <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Complete Solar Services in San Diego</h2>
+          <p>From residential rooftops to commercial arrays and long-term system care.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Residential Solar Installation</h3>
+            <p>Custom-designed rooftop systems engineered for maximum output and clean curb appeal.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M3 10h18M9 4v16M15 4v16" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+            </div>
+            <h3>Commercial Solar Systems</h3>
+            <p>High-capacity flat-roof and carport solar arrays that lower operating costs and lock in ROI.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <rect x="6" y="4" width="12" height="17" rx="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M10 2h4M12 9v5M10 11.5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Solar Battery Storage</h3>
+            <p>Store daytime solar energy for peak evening rates and reliable whole-home backup power.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Solar System Maintenance</h3>
+            <p>Performance diagnostics, inverter service, panel cleaning, and system health inspections.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">San Diego Solar</div>
+          <p class="footer-desc">
+            Serving homeowners and businesses across San Diego, CA with high-efficiency solar, battery storage, and dedicated maintenance.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-item">
+            <div class="contact-lbl">Phone</div>
+            <a href="tel:+16195140095" class="contact-val tabular">(619) 514-0095</a>
+          </div>
+          <div class="contact-item">
+            <div class="contact-lbl">Location</div>
+            <div class="contact-val">San Diego, CA, USA</div>
+          </div>
+          <div class="contact-item full-row">
+            <div class="contact-lbl">Email</div>
+            <a href="mailto:info@sandiegosolar.com">info@sandiegosolar.com</a>
+          </div>
+          <div class="contact-item full-row">
+            <div class="contact-lbl">Website</div>
+            <a href="https://www.sandiegosolar.com/" target="_blank" rel="noopener noreferrer">https://www.sandiegosolar.com/</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 San Diego Solar. All rights reserved.</span>
+        <span>Estimates are for planning purposes and depend on roof shading and SDG&amp;E rate schedules.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var billRange = document.getElementById('billRange');
+      var billDisplay = document.getElementById('billDisplay');
+      var roofButtons = document.querySelectorAll('#roofGroup .choice-btn');
+      var batteryButtons = document.querySelectorAll('#batteryGroup .choice-btn');
+      var batteryNote = document.getElementById('batteryNote');
+
+      var resKw = document.getElementById('resKw');
+      var resPanels = document.getElementById('resPanels');
+      var resAnnual = document.getElementById('resAnnual');
+      var resItc = document.getElementById('resItc');
+      var resNetCost = document.getElementById('resNetCost');
+      var resPayback = document.getElementById('resPayback');
+      var res25Yr = document.getElementById('res25Yr');
+
+      var quoteForm = document.getElementById('quoteForm');
+      var formStatus = document.getElementById('formStatus');
+
+      var state = {
+        bill: 320,
+        roof: 'shingle',
+        battery: 'yes'
+      };
+
+      var roofFactor = {
+        shingle: 1.0,
+        tile: 1.06,
+        flat: 1.04
+      };
+
+      function fmtCurrency(num) {
+        return '$' + Math.round(num).toLocaleString('en-US');
+      }
+
+      function calculate() {
+        var bill = state.bill;
+        var kw = Math.max(3.2, Math.round((bill / 42) * 10) / 10);
+        var panels = Math.max(8, Math.round((kw * 1000) / 400));
+        var baseCostPerWatt = 2.95 * roofFactor[state.roof];
+        var solarCost = kw * 1000 * baseCostPerWatt;
+        var batteryCost = state.battery === 'yes' ? 11500 : 0;
+        var grossCost = solarCost + batteryCost;
+        var itc = grossCost * 0.30;
+        var netCost = grossCost - itc;
+
+        var offsetRate = state.battery === 'yes' ? 0.92 : 0.74;
+        var annualSavings = bill * 12 * offsetRate;
+        var payback = netCost / annualSavings;
+        var savings25Yr = Math.max(0, (annualSavings * 25) - netCost);
+
+        billDisplay.textContent = fmtCurrency(bill) + '/mo';
+        resKw.textContent = kw.toFixed(1) + ' kW';
+        resPanels.textContent = panels + ' high-efficiency panels';
+        resAnnual.textContent = fmtCurrency(annualSavings);
+        resItc.textContent = fmtCurrency(itc);
+        resNetCost.textContent = 'Net est: ' + fmtCurrency(netCost);
+        resPayback.textContent = payback.toFixed(1) + ' yrs';
+        res25Yr.textContent = fmtCurrency(savings25Yr);
+      }
+
+      billRange.addEventListener('input', function () {
+        state.bill = Number(billRange.value);
+        calculate();
+      });
+
+      roofButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          roofButtons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.roof = btn.getAttribute('data-roof');
+          calculate();
+        });
+      });
+
+      batteryButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          batteryButtons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.battery = btn.getAttribute('data-battery');
+          batteryNote.textContent = state.battery === 'yes'
+            ? 'Battery storage maximizes evening peak-rate savings under SDG&E NEM 3.0.'
+            : 'Panels-only configuration lowers upfront cost with daytime solar offset.';
+          calculate();
+        });
+      });
+
+      quoteForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = document.getElementById('qName').value.trim();
+        formStatus.textContent = 'Thank you, ' + (name || 'homeowner') + '. Your ' + resKw.textContent + ' solar estimate has been received. A San Diego Solar specialist will contact you shortly.';
+        formStatus.classList.add('visible');
+        quoteForm.reset();
+      });
+
+      calculate();
+    })();
+  </script>
+</body>
+</html>
