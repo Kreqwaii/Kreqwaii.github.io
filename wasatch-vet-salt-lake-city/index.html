@@ -1,0 +1,2468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wasatch Veterinary is a private veterinary practice in Salt Lake City, UT providing mobile and in-clinic exams, vaccinations, surgery, and herd health diagnostics Mon–Sat.">
+  <title>Wasatch Veterinary | Private Veterinary Practice in Salt Lake City, UT</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64'%3E%3Crect width='64' height='64' rx='14' fill='%231d4434'/%3E%3Cpath d='M10 46 L24 24 L33 36 L42 20 L54 46 Z' fill='none' stroke='%23f6f2ea' stroke-width='3' stroke-linejoin='round'/%3E%3Cpath d='M32 11 v12 M26 17 h12' stroke='%23d97757' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #f6f2ea;
+      --bg-surface: #fbf8f3;
+      --bg-sand: #ece4d6;
+      --bg-sage: #eaf0eb;
+      --bg-terracotta-soft: #f5e6df;
+      --ink-primary: #1e2420;
+      --ink-secondary: #48524b;
+      --ink-muted: #667069;
+      --pine: #1d4434;
+      --pine-dark: #143125;
+      --pine-mid: #2a5b46;
+      --terracotta: #b85435;
+      --terracotta-dark: #943f25;
+      --border-subtle: rgba(29, 68, 52, 0.14);
+      --border-strong: rgba(29, 68, 52, 0.28);
+      --shadow-card: 0 10px 28px rgba(30, 36, 32, 0.06);
+      --shadow-elevated: 0 18px 42px rgba(29, 68, 52, 0.10);
+      --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+      --font-sans: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(246, 242, 234, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 76px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      background-color: var(--pine);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--ink-primary);
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--terracotta-dark);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .header-nav a {
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      transition: color 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .header-nav a:hover,
+    .header-nav a:focus-visible {
+      color: var(--pine);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--pine);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .phone-pill:hover,
+    .phone-pill:focus-visible {
+      border-color: var(--pine);
+      background-color: var(--bg-sage);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--pine);
+      background-color: var(--pine);
+      color: #fbf8f3;
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background-color: var(--pine-dark);
+      border-color: var(--pine-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--terracotta);
+      background-color: transparent;
+      color: var(--terracotta-dark);
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:focus-visible {
+      background-color: var(--bg-terracotta-soft);
+      color: var(--terracotta-dark);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      padding: 58px 0 64px;
+      border-bottom: 1px solid var(--border-subtle);
+      overflow: hidden;
+    }
+
+    .hero-contour {
+      position: absolute;
+      top: 0;
+      right: -80px;
+      width: 680px;
+      height: 520px;
+      opacity: 0.24;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+      gap: 44px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 13px;
+      border-radius: 999px;
+      background-color: var(--bg-sage);
+      border: 1px solid rgba(29, 68, 52, 0.18);
+      color: var(--pine);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--terracotta);
+      flex-shrink: 0;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-family: var(--font-serif);
+      font-size: clamp(2.15rem, 4.1vw, 3.35rem);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+    }
+
+    .hero-lead {
+      margin: 0 0 28px;
+      font-size: 1.08rem;
+      line-height: 1.65;
+      color: var(--ink-secondary);
+      max-width: 58ch;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .hero-meta-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .meta-item {
+      min-width: 0;
+    }
+
+    .meta-kicker {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      margin-bottom: 3px;
+    }
+
+    .meta-value {
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .hero-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-elevated);
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .hero-card-title {
+      font-family: var(--font-serif);
+      font-size: 1.32rem;
+      font-weight: 500;
+      color: var(--ink-primary);
+      margin: 0;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background-color: var(--bg-terracotta-soft);
+      color: var(--terracotta-dark);
+      font-size: 0.78rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .practice-facts {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .fact-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .fact-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background-color: var(--bg-sage);
+      color: var(--pine);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .fact-label {
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+    }
+
+    .fact-text {
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .hero-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.86rem;
+      color: var(--ink-secondary);
+    }
+
+    .email-link {
+      color: var(--pine);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      white-space: nowrap;
+      word-break: normal;
+    }
+
+    .email-link:hover,
+    .email-link:focus-visible {
+      color: var(--terracotta-dark);
+    }
+
+    /* Section Shell */
+    .section {
+      padding: 68px 0;
+    }
+
+    .section-alt {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--terracotta-dark);
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 3vw, 2.4rem);
+      font-weight: 500;
+      line-height: 1.16;
+      letter-spacing: -0.015em;
+      color: var(--ink-primary);
+    }
+
+    .section-desc {
+      margin: 0;
+      max-width: 52ch;
+      color: var(--ink-secondary);
+      font-size: 0.98rem;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-top: 3px solid var(--pine);
+      border-radius: var(--radius-md);
+      padding: 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .service-card:nth-child(even) {
+      border-top-color: var(--terracotta);
+    }
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-elevated);
+    }
+
+    .service-icon-wrap {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background-color: var(--bg-sage);
+      color: var(--pine);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-card:nth-child(even) .service-icon-wrap {
+      background-color: var(--bg-terracotta-soft);
+      color: var(--terracotta-dark);
+    }
+
+    .service-card h3 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 1.24rem;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--ink-primary);
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+      flex-grow: 1;
+    }
+
+    .service-tag {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--ink-secondary);
+    }
+
+    /* Interactive Estimator & Scheduler */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .panel-summary {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-elevated);
+      position: sticky;
+      top: 96px;
+    }
+
+    .step-block {
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .step-block:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--pine);
+      margin-bottom: 8px;
+    }
+
+    .step-header .field-label {
+      margin-bottom: 0;
+    }
+
+    .step-hint {
+      font-size: 0.84rem;
+      color: var(--ink-muted);
+    }
+
+    /* Segmented Toggle */
+    .format-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .choice-card-btn {
+      text-align: left;
+      padding: 15px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .choice-card-btn:hover {
+      border-color: var(--pine);
+    }
+
+    .choice-card-btn.is-active {
+      background-color: var(--pine);
+      border-color: var(--pine);
+      color: #fbf8f3;
+      box-shadow: 0 6px 16px rgba(29, 68, 52, 0.22);
+    }
+
+    .choice-card-title {
+      font-weight: 700;
+      font-size: 0.96rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .choice-card-sub {
+      font-size: 0.82rem;
+      opacity: 0.86;
+      line-height: 1.4;
+    }
+
+    .choice-price-pill {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background-color: rgba(29, 68, 52, 0.10);
+      color: var(--pine);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .choice-card-btn.is-active .choice-price-pill {
+      background-color: rgba(251, 248, 243, 0.20);
+      color: #fbf8f3;
+    }
+
+    /* Species Tabs */
+    .species-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .species-btn {
+      padding: 12px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .species-btn:hover {
+      border-color: var(--terracotta);
+    }
+
+    .species-btn.is-active {
+      background-color: var(--terracotta);
+      border-color: var(--terracotta);
+      color: #fbf8f3;
+    }
+
+    .inline-controls-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .control-box label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      margin-bottom: 6px;
+    }
+
+    .input-control,
+    .select-control,
+    .textarea-control {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      font-size: 0.93rem;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .input-control:focus,
+    .select-control:focus,
+    .textarea-control:focus {
+      outline: none;
+      border-color: var(--pine);
+      box-shadow: 0 0 0 3px rgba(29, 68, 52, 0.14);
+    }
+
+    .select-control:disabled {
+      background-color: var(--bg-sand);
+      color: var(--ink-muted);
+      cursor: not-allowed;
+    }
+
+    /* Checkboxes Group */
+    .checklist-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .text-link-btn {
+      background: none;
+      border: none;
+      padding: 4px 0;
+      color: var(--terracotta-dark);
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
+    .text-link-btn:hover {
+      color: var(--pine);
+    }
+
+    .service-group {
+      margin-bottom: 18px;
+    }
+
+    .service-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .service-group-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      margin-bottom: 8px;
+    }
+
+    .checklist-items {
+      display: grid;
+      gap: 8px;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-surface);
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .check-row.is-checked {
+      border-color: var(--pine);
+      background-color: var(--bg-sage);
+    }
+
+    .check-row input[type="checkbox"] {
+      width: 19px;
+      height: 19px;
+      margin: 2px 0 0;
+      accent-color: var(--pine);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .check-row-label {
+      flex: 1;
+      min-width: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .check-name {
+      display: block;
+      font-weight: 600;
+      font-size: 0.93rem;
+      color: var(--ink-primary);
+      line-height: 1.3;
+    }
+
+    .check-note {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      margin-top: 2px;
+      line-height: 1.35;
+    }
+
+    .check-price {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--pine);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Mon-Sat Day & Slot Selector */
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .day-btn {
+      padding: 10px 6px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .day-btn:hover {
+      border-color: var(--pine);
+    }
+
+    .day-btn.is-active {
+      background-color: var(--pine);
+      border-color: var(--pine);
+      color: #fbf8f3;
+    }
+
+    .day-abbr {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .day-date {
+      font-size: 0.82rem;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+      opacity: 0.9;
+    }
+
+    .slots-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .slot-btn {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      font-size: 0.86rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .slot-btn:hover {
+      border-color: var(--terracotta);
+    }
+
+    .slot-btn.is-active {
+      background-color: var(--terracotta);
+      border-color: var(--terracotta);
+      color: #fbf8f3;
+    }
+
+    /* Live Ledger & Form */
+    .ledger-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .ledger-title {
+      font-family: var(--font-serif);
+      font-size: 1.42rem;
+      font-weight: 500;
+      margin: 0;
+      color: var(--ink-primary);
+    }
+
+    .ledger-badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--pine);
+      background-color: var(--bg-sage);
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .ledger-meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .summary-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink-secondary);
+    }
+
+    .ledger-lines {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 16px;
+      max-height: 250px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .ledger-line {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--ink-secondary);
+    }
+
+    .ledger-line-name {
+      min-width: 0;
+    }
+
+    .ledger-line-amount {
+      font-weight: 600;
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .ledger-total-box {
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      background-color: var(--pine);
+      color: #fbf8f3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .total-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.88;
+    }
+
+    .total-sub {
+      font-size: 0.78rem;
+      opacity: 0.8;
+    }
+
+    .total-usd {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .estimate-disclaimer {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      margin: 0 0 22px;
+      line-height: 1.45;
+    }
+
+    /* Booking Form */
+    .booking-form-fields {
+      display: grid;
+      gap: 12px;
+    }
+
+    .form-two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .form-field label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      margin-bottom: 5px;
+    }
+
+    .submit-booking-btn {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--terracotta);
+      background-color: var(--terracotta);
+      color: #fbf8f3;
+      font-size: 0.96rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .submit-booking-btn:hover,
+    .submit-booking-btn:focus-visible {
+      background-color: var(--terracotta-dark);
+      transform: translateY(-1px);
+    }
+
+    .form-error {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-terracotta-soft);
+      border: 1px solid var(--terracotta);
+      color: var(--terracotta-dark);
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
+    .confirmation-card {
+      padding: 20px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-sage);
+      border: 1px solid var(--pine);
+    }
+
+    .confirmation-title {
+      font-family: var(--font-serif);
+      font-size: 1.32rem;
+      font-weight: 600;
+      color: var(--pine-dark);
+      margin: 0 0 8px;
+    }
+
+    .confirmation-details {
+      display: grid;
+      gap: 6px;
+      margin: 14px 0 18px;
+      font-size: 0.88rem;
+      color: var(--ink-primary);
+    }
+
+    .confirmation-details div {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px dashed rgba(29, 68, 52, 0.22);
+      padding-bottom: 5px;
+    }
+
+    .confirmation-details span:last-child {
+      font-weight: 600;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Comparison Section */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .compare-card {
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-surface);
+    }
+
+    .compare-card.mobile-card {
+      background-color: var(--bg-sage);
+      border-color: rgba(29, 68, 52, 0.24);
+    }
+
+    .compare-card h3 {
+      margin: 0 0 10px;
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 500;
+      color: var(--ink-primary);
+    }
+
+    .compare-card p {
+      margin: 0 0 18px;
+      color: var(--ink-secondary);
+      font-size: 0.94rem;
+    }
+
+    .compare-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .compare-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.92rem;
+      color: var(--ink-primary);
+    }
+
+    .list-bullet {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: var(--pine);
+      color: #fbf8f3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .compare-card:not(.mobile-card) .list-bullet {
+      background-color: var(--terracotta);
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--pine-dark);
+      color: #f4efe6;
+      padding: 52px 0 36px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) repeat(2, minmax(0, 0.85fr));
+      gap: 32px;
+      padding-bottom: 34px;
+      border-bottom: 1px solid rgba(244, 239, 230, 0.16);
+    }
+
+    .footer-title {
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      font-weight: 500;
+      margin: 0 0 6px;
+      color: #fbf8f3;
+    }
+
+    .footer-subtitle {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #e4977d;
+      margin-bottom: 14px;
+    }
+
+    .footer-note {
+      margin: 0;
+      font-size: 0.92rem;
+      color: rgba(244, 239, 230, 0.82);
+      max-width: 44ch;
+      line-height: 1.6;
+    }
+
+    .footer-col-heading {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: rgba(244, 239, 230, 0.65);
+      margin: 0 0 12px;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 9px;
+      font-size: 0.93rem;
+    }
+
+    .footer-links a {
+      color: #fbf8f3;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-links .email-link {
+      color: #fbf8f3;
+    }
+
+    .footer-bottom {
+      padding-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.84rem;
+      color: rgba(244, 239, 230, 0.72);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1060px) {
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .workspace-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .panel-summary {
+        position: static;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .header-nav {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
+      }
+
+      .compare-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 26px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .header-inner {
+        gap: 10px;
+      }
+
+      .phone-pill {
+        display: none;
+      }
+
+      .btn-primary.header-cta {
+        padding: 9px 14px;
+        font-size: 0.84rem;
+      }
+
+      .hero {
+        padding: 36px 0 46px;
+      }
+
+      .hero-meta-strip {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+      }
+
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .section {
+        padding: 48px 0;
+      }
+
+      .panel,
+      .panel-summary,
+      .hero-card,
+      .compare-card {
+        padding: 20px 16px;
+      }
+
+      .format-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .species-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .inline-controls-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .days-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .slots-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .form-two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="#top" class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M3 19L8.5 9.5L12.5 14.5L16 8L21 19H3Z" stroke="#fbf8f3" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M12 2.5V7.5M9.5 5H14.5" stroke="#e4977d" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="brand-text">
+            <span class="brand-name">Wasatch Veterinary</span>
+            <span class="brand-sub">Private Veterinary Practice</span>
+          </span>
+        </a>
+
+        <nav class="header-nav" aria-label="Primary navigation">
+          <a href="#services">Services</a>
+          <a href="#estimator-scheduler">Estimator &amp; Booking</a>
+          <a href="#care-models">Mobile vs. Clinic</a>
+          <a href="#practice-contact">Practice Info</a>
+        </nav>
+
+        <div class="header-actions">
+          <a href="tel:+18016628092" class="phone-pill">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>(801) 662-8092</span>
+          </a>
+          <a href="#estimator-scheduler" class="btn-primary header-cta">Estimate &amp; Book</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <svg class="hero-contour" width="680" height="520" viewBox="0 0 680 520" fill="none" aria-hidden="true">
+        <path d="M80 420C140 310 210 280 280 210C350 140 420 60 540 90C620 110 660 220 640 340C620 460 490 500 350 490C210 480 40 490 80 420Z" stroke="#1d4434" stroke-width="1.2"/>
+        <path d="M130 400C180 320 235 290 295 230C355 170 420 105 510 130C575 148 605 235 585 330C565 425 460 455 340 450C220 445 95 450 130 400Z" stroke="#b85435" stroke-width="1.2"/>
+        <path d="M185 380C225 325 270 300 315 255C360 210 415 160 480 175C530 187 550 250 535 320C520 390 435 415 340 410C245 405 155 415 185 380Z" stroke="#1d4434" stroke-width="1.2"/>
+      </svg>
+
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot" aria-hidden="true"></span>
+              <span>Salt Lake City, UT &middot; Mon–Sat Appointments</span>
+            </div>
+            <h1>Compassionate Care for Companion Pets, Equine &amp; Livestock</h1>
+            <p class="hero-lead">
+              Wasatch Veterinary is an independent Private Veterinary Practice serving Salt Lake City, UT and surrounding Wasatch Front properties. From calm in-clinic diagnostics and surgery to fully equipped mobile farm and home visits, we deliver continuity of veterinary medicine across every stage of animal life.
+            </p>
+            <div class="hero-cta-row">
+              <a href="#estimator-scheduler" class="btn-primary">Launch Cost Estimator &amp; Scheduler</a>
+              <a href="tel:+18016628092" class="btn-secondary">Call (801) 662-8092</a>
+            </div>
+
+            <div class="hero-meta-strip">
+              <div class="meta-item">
+                <div class="meta-kicker">Practice Status</div>
+                <div class="meta-value">Private Veterinary Practice</div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-kicker">Location</div>
+                <div class="meta-value">Salt Lake City, UT</div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-kicker">Weekly Hours</div>
+                <div class="meta-value">Mon–Sat</div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="Wasatch Veterinary practice snapshot">
+            <div class="hero-card-header">
+              <h2 class="hero-card-title">Practice Snapshot</h2>
+              <span class="status-badge">In-Clinic &amp; Mobile</span>
+            </div>
+            <div class="practice-facts">
+              <div class="fact-row">
+                <div class="fact-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 21s-7-4.35-7-10a7 7 0 0 1 14 0c0 5.65-7 10-7 10z" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="12" cy="11" r="2.5" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="fact-label">Service Territory</div>
+                  <div class="fact-text">Salt Lake City, UT &amp; Nearby Foothills</div>
+                </div>
+              </div>
+              <div class="fact-row">
+                <div class="fact-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                    <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="fact-label">Scheduling Window</div>
+                  <div class="fact-text">Mon–Sat Clinic &amp; Farm Route Dispatch</div>
+                </div>
+              </div>
+              <div class="fact-row">
+                <div class="fact-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="fact-label">Patients Treated</div>
+                  <div class="fact-text">Dogs, Cats, Equine &amp; Large Animals</div>
+                </div>
+              </div>
+            </div>
+            <div class="hero-card-footer">
+              <span>Direct Desk:</span>
+              <a class="email-link" href="mailto:info@wasatchveterinary.com">info@wasatchveterinary.com</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Clinical Capabilities</div>
+            <h2>Veterinary Services Under One Practice</h2>
+          </div>
+          <p class="section-desc">
+            Whether your dog needs preventive vaccines, your cat requires diagnostics, or your horses need seasonal herd care, our team coordinates treatment seamlessly.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon-wrap" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M4 17V7a2 2 0 0 1 2-2h11l3 4v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <circle cx="8.5" cy="19" r="2" fill="currentColor"/>
+                <circle cx="16.5" cy="19" r="2" fill="currentColor"/>
+                <path d="M10 9v4M8 11h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Mobile &amp; In-Clinic Veterinary Exams</h3>
+            <p>
+              Thorough wellness physicals, lameness and orthopedic evaluations, senior mobility screenings, and pre-purchase exams performed at our clinic or directly at your home or barn.
+            </p>
+            <span class="service-tag">Home, Barn &amp; Clinic</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon-wrap" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="m18 2 4 4M17 7l3-3M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5M9 11l4 4M10 18l-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Vaccinations &amp; Preventive Care</h3>
+            <p>
+              Core and Wasatch-region immunizations tailored by lifestyle, parasite testing and prevention, microchipping, and seasonal equine and small-animal wellness schedules.
+            </p>
+            <span class="service-tag">Cold-Chain Protected</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon-wrap" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Large &amp; Small Animal Surgery</h3>
+            <p>
+              Soft-tissue procedures, dental extractions, mass removals, wound repair, and field castrations supported by dedicated anesthesia monitoring and pain management protocols.
+            </p>
+            <span class="service-tag">Monitored Recovery</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon-wrap" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M3 12h4l3-7 4 14 3-7h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Diagnostics &amp; Herd Health</h3>
+            <p>
+              In-house chemistry and CBC blood panels, digital radiography, portable ultrasound, Coggins EIA testing, fecal egg counts, and structured multi-animal herd plans.
+            </p>
+            <span class="service-tag">Rapid Lab Turnaround</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="estimator-scheduler" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Interactive Planning Tool</div>
+            <h2>Veterinary Visit &amp; Vaccination Cost Estimator + Scheduler</h2>
+          </div>
+          <p class="section-desc">
+            Select your visit format, patient species, procedures, and preferred Mon–Sat slot to review an itemized USD estimate and request an appointment.
+          </p>
+        </div>
+
+        <div class="workspace-grid">
+          <div class="panel">
+            <!-- Step 1: Format -->
+            <div class="step-block">
+              <div class="step-header">
+                <div class="field-label">1. Select Visit Format</div>
+                <span class="step-hint">Salt Lake City clinic or mobile veterinary dispatch</span>
+              </div>
+              <div class="format-grid" id="format-selector">
+                <button type="button" class="choice-card-btn is-active" data-format="clinic" aria-pressed="true">
+                  <span class="choice-card-title">
+                    <span>In-Clinic Visit</span>
+                    <span class="choice-price-pill">+$0.00</span>
+                  </span>
+                  <span class="choice-card-sub">Full diagnostic suite, surgery prep &amp; calm exam rooms in Salt Lake City, UT</span>
+                </button>
+                <button type="button" class="choice-card-btn" data-format="mobile" aria-pressed="false">
+                  <span class="choice-card-title">
+                    <span>Mobile Farm-Home Visit</span>
+                    <span class="choice-price-pill" id="mobile-fee-badge">+$65.00</span>
+                  </span>
+                  <span class="choice-card-sub">On-site veterinary unit for low-stress home care, barns &amp; ranches</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 2: Species & Quantity -->
+            <div class="step-block">
+              <div class="step-header">
+                <div class="field-label">2. Patient Species &amp; Head Count</div>
+                <span class="step-hint">Updates services and vaccine pricing automatically</span>
+              </div>
+              <div class="species-grid" id="species-selector">
+                <button type="button" class="species-btn is-active" data-species="dog" aria-pressed="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M10 5.5 7 3v4L4 10v4l3 1v5h3v-4h4v4h3v-6l3-3V6l-3 2-3-2.5H10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Dog</span>
+                </button>
+                <button type="button" class="species-btn" data-species="cat" aria-pressed="false">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 4l3 3h8l3-3v8a7 7 0 0 1-14 0V4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                    <circle cx="9.5" cy="11.5" r="1" fill="currentColor"/>
+                    <circle cx="14.5" cy="11.5" r="1" fill="currentColor"/>
+                  </svg>
+                  <span>Cat</span>
+                </button>
+                <button type="button" class="species-btn" data-species="equine" aria-pressed="false">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M18 4l-4 2-4-2-2 5-3 5 3 2 2-3 2 7h4l1-5 3-3V8l-2-4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Equine-Large Animal</span>
+                </button>
+              </div>
+
+              <div class="inline-controls-grid">
+                <div class="control-box">
+                  <label for="patient-count">Number of Animals Evaluated</label>
+                  <select id="patient-count" class="select-control" autocomplete="off">
+                    <option value="1">1 Animal (Single Patient)</option>
+                    <option value="2">2 Animals (Multi-Pet / Pair)</option>
+                    <option value="3">3 Animals</option>
+                    <option value="4">4 Animals (Small Herd / Group)</option>
+                    <option value="5">5 Animals (Herd Rate)</option>
+                  </select>
+                </div>
+                <div class="control-box">
+                  <label for="distance-zone">Service Distance Zone</label>
+                  <select id="distance-zone" class="select-control" autocomplete="off" disabled>
+                    <option value="0">Salt Lake City Clinic (No Travel Fee)</option>
+                    <option value="0">Salt Lake Valley Metro (0–15 mi, Base Call)</option>
+                    <option value="30">Wasatch Foothills &amp; Outlying (15–30 mi, +$30)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Checkboxes -->
+            <div class="step-block">
+              <div class="checklist-toolbar">
+                <div class="field-label" style="margin-bottom:0;">3. Exams, Vaccinations &amp; Diagnostics</div>
+                <button type="button" class="text-link-btn" id="reset-services-btn">Reset to Standard Exam</button>
+              </div>
+              <div id="services-checklist"></div>
+            </div>
+
+            <!-- Step 4: Mon-Sat Slot -->
+            <div class="step-block">
+              <div class="step-header">
+                <div class="field-label">4. Choose Mon–Sat Slot</div>
+                <span class="step-hint" id="route-hint">Clinic appointment windows</span>
+              </div>
+              <div class="days-grid" id="days-selector"></div>
+              <div class="slots-grid" id="slots-selector"></div>
+            </div>
+          </div>
+
+          <!-- Right Panel: Live Estimate + Request Form -->
+          <aside class="panel-summary" aria-label="Estimate summary and appointment request">
+            <div class="ledger-header">
+              <h3 class="ledger-title">Visit Cost Breakdown</h3>
+              <span class="ledger-badge" id="ledger-species-badge">Dog</span>
+            </div>
+
+            <div class="ledger-meta-pills">
+              <span class="summary-pill" id="pill-format">In-Clinic Visit</span>
+              <span class="summary-pill" id="pill-count">1 Animal</span>
+              <span class="summary-pill" id="pill-slot">Mon &middot; 08:30 AM</span>
+            </div>
+
+            <div class="ledger-lines" id="ledger-lines"></div>
+
+            <div class="ledger-total-box">
+              <div>
+                <div class="total-label">Estimated Total (USD)</div>
+                <div class="total-sub">Transparent pre-visit projection</div>
+              </div>
+              <div class="total-usd" id="total-usd">$68.00</div>
+            </div>
+
+            <p class="estimate-disclaimer">
+              Estimates reflect standard clinical base rates in USD. Sedation, surgical consumables, or prescription medications dispensed on-site are quoted prior to administration.
+            </p>
+
+            <div id="booking-container">
+              <form id="booking-form" class="booking-form-fields" novalidate>
+                <div class="field-label" style="margin-bottom:2px;">Complete Appointment Request</div>
+                <div class="form-two-col">
+                  <div class="form-field">
+                    <label for="owner-name">Owner / Manager Name</label>
+                    <input id="owner-name" class="input-control" type="text" autocomplete="name" placeholder="Jordan Taylor" required>
+                  </div>
+                  <div class="form-field">
+                    <label for="owner-phone">Phone Number</label>
+                    <input id="owner-phone" class="input-control" type="tel" autocomplete="tel" placeholder="(801) 555-0148" required>
+                  </div>
+                </div>
+
+                <div class="form-two-col">
+                  <div class="form-field">
+                    <label for="owner-email">Email Address</label>
+                    <input id="owner-email" class="input-control" type="email" autocomplete="email" placeholder="name@example.com" required>
+                  </div>
+                  <div class="form-field">
+                    <label for="animal-name">Patient Name(s) &amp; Breed</label>
+                    <input id="animal-name" class="input-control" type="text" autocomplete="off" placeholder="e.g. Copper, Quarter Horse" required>
+                  </div>
+                </div>
+
+                <div class="form-field">
+                  <label for="visit-address" id="address-label">Address / Barn Location (Required for Mobile Visits)</label>
+                  <input id="visit-address" class="input-control" type="text" autocomplete="street-address" placeholder="Salt Lake City street or stable address">
+                </div>
+
+                <div class="form-field">
+                  <label for="clinical-notes">Symptoms, Vaccine History or Herd Notes</label>
+                  <textarea id="clinical-notes" class="textarea-control" rows="2" autocomplete="off" placeholder="Optional notes for the attending veterinarian"></textarea>
+                </div>
+
+                <div id="form-error-box" class="form-error" hidden></div>
+
+                <button type="submit" class="submit-booking-btn" id="submit-booking-btn">
+                  Request Mon–Sat Appointment
+                </button>
+              </form>
+
+              <div id="confirmation-view" class="confirmation-card" hidden>
+                <h4 class="confirmation-title">Appointment Request Logged</h4>
+                <p style="margin:0; font-size:0.88rem; color:var(--ink-secondary);">
+                  Wasatch Veterinary has recorded your estimated care plan and requested Mon–Sat window. Our scheduling coordinator confirms all clinic and mobile routes by phone or email.
+                </p>
+                <div class="confirmation-details" id="confirmation-details"></div>
+                <button type="button" class="btn-primary" id="new-estimate-btn" style="width:100%;">
+                  Start Another Estimate
+                </button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="care-models" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Two Ways We Practice</div>
+            <h2>Tailored Logistics for Small Pets &amp; Large Animals</h2>
+          </div>
+          <p class="section-desc">
+            Choose calm, low-stress mobile care on your property or visit our Salt Lake City veterinary clinic for advanced surgical and imaging support.
+          </p>
+        </div>
+
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h3>In-Clinic Care &middot; Salt Lake City, UT</h3>
+            <p>
+              Ideal for soft-tissue surgery, comprehensive dental extractions, multi-view digital radiographs, and hospitalized diagnostics requiring dedicated monitoring.
+            </p>
+            <ul class="compare-list">
+              <li>
+                <span class="list-bullet" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span>Zero mobile dispatch fee with scheduled Mon–Sat appointment blocks</span>
+              </li>
+              <li>
+                <span class="list-bullet" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span>Sterile surgical suite with continuous pulse-ox, capnography, and thermal support</span>
+              </li>
+              <li>
+                <span class="list-bullet" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span>Same-visit in-house hematology, blood chemistry, and diagnostic imaging</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="compare-card mobile-card">
+            <h3>Mobile Farm &amp; Home Unit</h3>
+            <p>
+              Designed for anxious companion pets, multi-animal households, equine barns, and backyard herds where transporting patients adds stress or logistical difficulty.
+            </p>
+            <ul class="compare-list">
+              <li>
+                <span class="list-bullet" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span>Single per-trip call fee covers multiple pets or herd animals at one address</span>
+              </li>
+              <li>
+                <span class="list-bullet" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span>Temperature-monitored vaccines, portable ultrasound, dental power float, and field kits</span>
+              </li>
+              <li>
+                <span class="list-bullet" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span>Coordinated Mon–Sat route windows across Salt Lake City and neighboring foothills</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="practice-contact" class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h2 class="footer-title">Wasatch Veterinary</h2>
+          <div class="footer-subtitle">Private Veterinary Practice</div>
+          <p class="footer-note">
+            Providing Mobile &amp; In-Clinic Veterinary Exams, Vaccinations &amp; Preventive Care, Large &amp; Small Animal Surgery, and Diagnostics &amp; Herd Health across Salt Lake City, UT.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-heading">Direct Contact</div>
+          <div class="footer-links">
+            <div>Salt Lake City, UT</div>
+            <a href="tel:+18016628092">(801) 662-8092</a>
+            <a class="email-link" href="mailto:info@wasatchveterinary.com">info@wasatchveterinary.com</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-heading">Practice Hours &amp; Scope</div>
+          <div class="footer-links">
+            <div>Hours: Mon–Sat</div>
+            <div>Dogs, Cats &amp; Equine-Large Animal</div>
+            <a href="#estimator-scheduler">Estimate Visit &amp; Schedule Slot</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>Wasatch Veterinary &middot; Private Veterinary Practice &middot; Salt Lake City, UT</span>
+        <span>Mon–Sat &middot; (801) 662-8092</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const SERVICE_CATALOG = {
+        dog: {
+          label: 'Dog',
+          mobileBaseFee: 65,
+          groups: [
+            {
+              title: 'Examinations',
+              items: [
+                { id: 'dog-exam-wellness', name: 'Comprehensive Physical Exam', note: 'Nose-to-tail exam, weight & vitals check', price: 68, defaultChecked: true },
+                { id: 'dog-exam-senior', name: 'Senior / Lameness Focused Exam', note: 'Orthopedic joint evaluation & mobility plan', price: 88, defaultChecked: false },
+                { id: 'dog-exam-recheck', name: 'Recheck / Follow-Up Exam', note: 'Established patient progress review', price: 48, defaultChecked: false }
+              ]
+            },
+            {
+              title: 'Vaccinations & Preventive Care',
+              items: [
+                { id: 'dog-vax-rabies', name: 'Rabies Vaccine (1-Yr / 3-Yr)', note: 'Utah municipal compliance certificate', price: 32, defaultChecked: false },
+                { id: 'dog-vax-dhpp', name: 'DHPP Core Combination Vaccine', note: 'Distemper, adenovirus, parainfluenza, parvovirus', price: 36, defaultChecked: false },
+                { id: 'dog-vax-bordetella', name: 'Bordetella Intranasal Vaccine', note: 'Recommended for boarding, trails & daycare', price: 34, defaultChecked: false },
+                { id: 'dog-vax-lepto', name: 'Leptospirosis Vaccine', note: 'Protection for canyon creeks & standing water', price: 38, defaultChecked: false },
+                { id: 'dog-vax-rattlesnake', name: 'Foothills Rattlesnake / Lyme Add-On', note: 'Seasonal trail exposure immunization', price: 44, defaultChecked: false }
+              ]
+            },
+            {
+              title: 'Diagnostics & Minor Procedures',
+              items: [
+                { id: 'dog-diag-4dx', name: 'Heartworm & Tick 4Dx Screen', note: 'Rapid in-clinic or mobile blood screening', price: 52, defaultChecked: false },
+                { id: 'dog-diag-blood', name: 'Wellness CBC & Chemistry Panel', note: 'Organ function, electrolytes & red/white cell count', price: 135, defaultChecked: false },
+                { id: 'dog-diag-fecal', name: 'Fecal Parasite Float & Giardia', note: 'Intestinal parasite microscopy', price: 42, defaultChecked: false },
+                { id: 'dog-diag-xray', name: 'Digital Radiography (2 Views)', note: 'High-resolution chest or orthopedic X-rays', price: 175, defaultChecked: false },
+                { id: 'dog-proc-chip', name: 'Microchip Implantation & Registry', note: 'ISO 15-digit universal pet transponder', price: 48, defaultChecked: false }
+              ]
+            }
+          ]
+        },
+        cat: {
+          label: 'Cat',
+          mobileBaseFee: 65,
+          groups: [
+            {
+              title: 'Examinations',
+              items: [
+                { id: 'cat-exam-wellness', name: 'Feline Wellness Physical Exam', note: 'Low-stress exam tailored for indoor & outdoor cats', price: 64, defaultChecked: true },
+                { id: 'cat-exam-senior', name: 'Geriatric Feline Mobility & Thyroid Eval', note: 'Joint pain, weight & heart murmur assessment', price: 84, defaultChecked: false },
+                { id: 'cat-exam-recheck', name: 'Recheck Consultation', note: 'Follow-up after medical or surgical treatment', price: 45, defaultChecked: false }
+              ]
+            },
+            {
+              title: 'Vaccinations & Preventive Care',
+              items: [
+                { id: 'cat-vax-rabies', name: 'Feline Rabies (Non-Adjuvanted)', note: 'Gentle formulation for cats', price: 38, defaultChecked: false },
+                { id: 'cat-vax-fvrcp', name: 'FVRCP Core Vaccine', note: 'Feline viral rhinotracheitis, calicivirus, panleukopenia', price: 34, defaultChecked: false },
+                { id: 'cat-vax-felv', name: 'FeLV Feline Leukemia Vaccine', note: 'Recommended for kittens & outdoor access', price: 40, defaultChecked: false }
+              ]
+            },
+            {
+              title: 'Diagnostics & Minor Procedures',
+              items: [
+                { id: 'cat-diag-combo', name: 'FeLV / FIV Rapid Blood Test', note: 'Quick baseline viral status screen', price: 54, defaultChecked: false },
+                { id: 'cat-diag-senior', name: 'Senior Bloodwork + Total T4', note: 'Kidney, liver, CBC & thyroid hormone panel', price: 145, defaultChecked: false },
+                { id: 'cat-diag-urine', name: 'Urinalysis & Cystocentesis', note: 'Bladder, crystal & kidney concentration screen', price: 68, defaultChecked: false },
+                { id: 'cat-diag-xray', name: 'Digital Radiography (2 Views)', note: 'Thoracic or abdominal diagnostic imaging', price: 165, defaultChecked: false },
+                { id: 'cat-proc-chip', name: 'Microchip Implantation', note: 'Universal ISO identification chip', price: 48, defaultChecked: false }
+              ]
+            }
+          ]
+        },
+        equine: {
+          label: 'Equine-Large Animal',
+          mobileBaseFee: 85,
+          groups: [
+            {
+              title: 'Examinations & Herd Consults',
+              items: [
+                { id: 'eq-exam-physical', name: 'Equine / Large Animal Physical Exam', note: 'Cardiopulmonary, GI auscultation & baseline vitals', price: 85, defaultChecked: true },
+                { id: 'eq-exam-soundness', name: 'Pre-Purchase Soundness & Flexion Exam', note: 'Gait, hoof tester & flexion evaluation', price: 225, defaultChecked: false },
+                { id: 'eq-exam-herd', name: 'Herd Health & Biosecurity Consult', note: 'Vaccination calendar & nutrition protocol review', price: 110, defaultChecked: false }
+              ]
+            },
+            {
+              title: 'Vaccinations & Preventive Care',
+              items: [
+                { id: 'eq-vax-ewt', name: 'EWT + West Nile Combination', note: 'Eastern/Western Encephalomyelitis, Tetanus, WNV', price: 62, defaultChecked: false },
+                { id: 'eq-vax-flu', name: 'Equine Influenza & Rhino (EHV-1/4)', note: 'Essential for boarded, trail & show horses', price: 56, defaultChecked: false },
+                { id: 'eq-vax-rabies', name: 'Large Animal Rabies Vaccine', note: 'Annual core immunization', price: 38, defaultChecked: false },
+                { id: 'eq-vax-strangles', name: 'Strangles Intranasal Vaccine', note: 'Streptococcus equi prevention', price: 54, defaultChecked: false }
+              ]
+            },
+            {
+              title: 'Diagnostics, Dentistry & Field Procedures',
+              items: [
+                { id: 'eq-proc-float', name: 'Power Dental Float & Standing Sedation', note: 'Oral speculum exam & balanced occlusal floating', price: 195, defaultChecked: false },
+                { id: 'eq-diag-coggins', name: 'Coggins EIA Lab Certificate', note: 'Digital official interstate equine health test', price: 58, defaultChecked: false },
+                { id: 'eq-diag-fec', name: 'Quantitative Fecal Egg Count', note: 'Targeted deworming resistance check', price: 44, defaultChecked: false },
+                { id: 'eq-diag-us', name: 'Portable Tendon / Reproductive Ultrasound', note: 'On-site musculoskeletal or breeding scan', price: 160, defaultChecked: false },
+                { id: 'eq-proc-laceration', name: 'Field Wound & Minor Surgery Assessment', note: 'Debridement, suturing evaluation & bandaging plan', price: 145, defaultChecked: false }
+              ]
+            }
+          ]
+        }
+      };
+
+      const SLOT_TEMPLATES = {
+        clinic: {
+          weekday: ['08:30 AM', '10:00 AM', '11:30 AM', '01:30 PM', '03:00 PM', '04:30 PM'],
+          saturday: ['08:30 AM', '10:00 AM', '11:30 AM', '01:00 PM']
+        },
+        mobile: {
+          weekday: [
+            '08:00 AM – 10:00 AM (Morning Route)',
+            '10:30 AM – 12:30 PM (Midday Route)',
+            '01:30 PM – 03:30 PM (Afternoon Route)',
+            '03:30 PM – 05:30 PM (Late Day Route)'
+          ],
+          saturday: [
+            '08:30 AM – 10:30 AM (Sat Morning Route)',
+            '11:00 AM – 01:00 PM (Sat Midday Route)'
+          ]
+        }
+      };
+
+      function buildMonSatDates() {
+        const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const results = [];
+        const cursor = new Date();
+        cursor.setHours(12, 0, 0, 0);
+
+        while (results.length < 6) {
+          const dow = cursor.getDay();
+          if (dow >= 1 && dow <= 6) {
+            results.push({
+              abbr: dayNames[dow],
+              dateLabel: monthNames[cursor.getMonth()] + ' ' + cursor.getDate(),
+              isSaturday: dow === 6
+            });
+          }
+          cursor.setDate(cursor.getDate() + 1);
+        }
+
+        const order = { Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+        results.sort(function (a, b) {
+          return order[a.abbr] - order[b.abbr];
+        });
+        return results;
+      }
+
+      const monSatDays = buildMonSatDates();
+
+      const state = {
+        format: 'clinic',
+        species: 'dog',
+        patientCount: 1,
+        zoneFee: 0,
+        selectedIds: new Set(['dog-exam-wellness']),
+        selectedDayIdx: 0,
+        selectedSlot: SLOT_TEMPLATES.clinic.weekday[0]
+      };
+
+      // DOM elements
+      const formatButtons = document.querySelectorAll('#format-selector .choice-card-btn');
+      const speciesButtons = document.querySelectorAll('#species-selector .species-btn');
+      const mobileFeeBadge = document.getElementById('mobile-fee-badge');
+      const patientCountSelect = document.getElementById('patient-count');
+      const distanceZoneSelect = document.getElementById('distance-zone');
+      const checklistEl = document.getElementById('services-checklist');
+      const resetServicesBtn = document.getElementById('reset-services-btn');
+      const daysSelectorEl = document.getElementById('days-selector');
+      const slotsSelectorEl = document.getElementById('slots-selector');
+      const routeHintEl = document.getElementById('route-hint');
+
+      const ledgerSpeciesBadge = document.getElementById('ledger-species-badge');
+      const pillFormat = document.getElementById('pill-format');
+      const pillCount = document.getElementById('pill-count');
+      const pillSlot = document.getElementById('pill-slot');
+      const ledgerLinesEl = document.getElementById('ledger-lines');
+      const totalUsdEl = document.getElementById('total-usd');
+
+      const visitAddressInput = document.getElementById('visit-address');
+      const addressLabel = document.getElementById('address-label');
+      const bookingForm = document.getElementById('booking-form');
+      const formErrorBox = document.getElementById('form-error-box');
+      const confirmationView = document.getElementById('confirmation-view');
+      const confirmationDetails = document.getElementById('confirmation-details');
+      const newEstimateBtn = document.getElementById('new-estimate-btn');
+
+      function formatUSD(amount) {
+        return '$' + amount.toFixed(2);
+      }
+
+      function renderChecklist() {
+        const speciesData = SERVICE_CATALOG[state.species];
+        checklistEl.innerHTML = '';
+
+        speciesData.groups.forEach(function (group) {
+          const groupDiv = document.createElement('div');
+          groupDiv.className = 'service-group';
+
+          const titleEl = document.createElement('div');
+          titleEl.className = 'service-group-title';
+          titleEl.textContent = group.title;
+          groupDiv.appendChild(titleEl);
+
+          const listDiv = document.createElement('div');
+          listDiv.className = 'checklist-items';
+
+          group.items.forEach(function (item) {
+            const checked = state.selectedIds.has(item.id);
+            const row = document.createElement('div');
+            row.className = 'check-row' + (checked ? ' is-checked' : '');
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = 'chk-' + item.id;
+            checkbox.checked = checked;
+            checkbox.setAttribute('autocomplete', 'off');
+
+            const label = document.createElement('label');
+            label.className = 'check-row-label';
+            label.setAttribute('for', checkbox.id);
+
+            const textWrap = document.createElement('span');
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'check-name';
+            nameSpan.textContent = item.name;
+            const noteSpan = document.createElement('span');
+            noteSpan.className = 'check-note';
+            noteSpan.textContent = item.note;
+            textWrap.appendChild(nameSpan);
+            textWrap.appendChild(noteSpan);
+
+            const priceSpan = document.createElement('span');
+            priceSpan.className = 'check-price';
+            priceSpan.textContent = formatUSD(item.price);
+
+            label.appendChild(textWrap);
+            label.appendChild(priceSpan);
+
+            checkbox.addEventListener('change', function () {
+              if (checkbox.checked) {
+                state.selectedIds.add(item.id);
+                row.classList.add('is-checked');
+              } else {
+                state.selectedIds.delete(item.id);
+                row.classList.remove('is-checked');
+              }
+              updateLedger();
+            });
+
+            row.appendChild(checkbox);
+            row.appendChild(label);
+            listDiv.appendChild(row);
+          });
+
+          groupDiv.appendChild(listDiv);
+          checklistEl.appendChild(groupDiv);
+        });
+      }
+
+      function renderDays() {
+        daysSelectorEl.innerHTML = '';
+        monSatDays.forEach(function (dayObj, index) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'day-btn' + (index === state.selectedDayIdx ? ' is-active' : '');
+          btn.setAttribute('aria-pressed', index === state.selectedDayIdx ? 'true' : 'false');
+
+          const abbr = document.createElement('span');
+          abbr.className = 'day-abbr';
+          abbr.textContent = dayObj.abbr;
+
+          const dateSpan = document.createElement('span');
+          dateSpan.className = 'day-date';
+          dateSpan.textContent = dayObj.dateLabel;
+
+          btn.appendChild(abbr);
+          btn.appendChild(dateSpan);
+
+          btn.addEventListener('click', function () {
+            state.selectedDayIdx = index;
+            renderDays();
+            renderSlots();
+            updateLedger();
+          });
+
+          daysSelectorEl.appendChild(btn);
+        });
+      }
+
+      function renderSlots() {
+        const dayObj = monSatDays[state.selectedDayIdx];
+        const bucket = dayObj.isSaturday ? 'saturday' : 'weekday';
+        const availableSlots = SLOT_TEMPLATES[state.format][bucket];
+
+        if (availableSlots.indexOf(state.selectedSlot) === -1) {
+          state.selectedSlot = availableSlots[0];
+        }
+
+        routeHintEl.textContent = state.format === 'mobile'
+          ? (dayObj.isSaturday ? 'Saturday mobile farm-home dispatch routes' : 'Mobile unit arrival window')
+          : (dayObj.isSaturday ? 'Saturday Salt Lake City clinic hours' : 'Salt Lake City clinic appointment times');
+
+        slotsSelectorEl.innerHTML = '';
+        availableSlots.forEach(function (slotText) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          const isActive = slotText === state.selectedSlot;
+          btn.className = 'slot-btn' + (isActive ? ' is-active' : '');
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+          btn.textContent = slotText;
+
+          btn.addEventListener('click', function () {
+            state.selectedSlot = slotText;
+            renderSlots();
+            updateLedger();
+          });
+
+          slotsSelectorEl.appendChild(btn);
+        });
+      }
+
+      function syncFormatControls() {
+        const speciesData = SERVICE_CATALOG[state.species];
+        mobileFeeBadge.textContent = '+' + formatUSD(speciesData.mobileBaseFee);
+
+        if (state.format === 'clinic') {
+          distanceZoneSelect.disabled = true;
+          distanceZoneSelect.selectedIndex = 0;
+          state.zoneFee = 0;
+          addressLabel.textContent = 'Client City / Neighborhood (Optional for In-Clinic)';
+          visitAddressInput.required = false;
+        } else {
+          distanceZoneSelect.disabled = false;
+          if (distanceZoneSelect.selectedIndex === 0) {
+            distanceZoneSelect.selectedIndex = 1;
+          }
+          state.zoneFee = Number(distanceZoneSelect.value) || 0;
+          addressLabel.textContent = 'Service Address / Barn Location (Required for Mobile Visit)';
+          visitAddressInput.required = true;
+        }
+      }
+
+      function calculateEstimate() {
+        const speciesData = SERVICE_CATALOG[state.species];
+        const lines = [];
+        let total = 0;
+
+        if (state.format === 'mobile') {
+          lines.push({
+            label: 'Mobile Farm-Home Dispatch (' + speciesData.label + ')',
+            amount: speciesData.mobileBaseFee
+          });
+          total += speciesData.mobileBaseFee;
+
+          if (state.zoneFee > 0) {
+            lines.push({
+              label: 'Outlying Foothills Mileage Adjustment (15–30 mi)',
+              amount: state.zoneFee
+            });
+            total += state.zoneFee;
+          }
+        } else {
+          lines.push({
+            label: 'In-Clinic Appointment Allocation (Salt Lake City)',
+            amount: 0
+          });
+        }
+
+        const qty = state.patientCount;
+        speciesData.groups.forEach(function (group) {
+          group.items.forEach(function (item) {
+            if (state.selectedIds.has(item.id)) {
+              const lineTotal = item.price * qty;
+              const qtySuffix = qty > 1 ? ' × ' + qty : '';
+              lines.push({
+                label: item.name + qtySuffix,
+                amount: lineTotal
+              });
+              total += lineTotal;
+            }
+          });
+        });
+
+        return { lines: lines, total: total };
+      }
+
+      function updateLedger() {
+        const speciesData = SERVICE_CATALOG[state.species];
+        const dayObj = monSatDays[state.selectedDayIdx];
+        const estimate = calculateEstimate();
+
+        ledgerSpeciesBadge.textContent = speciesData.label;
+        pillFormat.textContent = state.format === 'mobile' ? 'Mobile Farm-Home Visit' : 'In-Clinic Visit';
+        pillCount.textContent = state.patientCount === 1 ? '1 Animal' : state.patientCount + ' Animals';
+        pillSlot.textContent = dayObj.abbr + ' (' + dayObj.dateLabel + ') · ' + state.selectedSlot.split(' (')[0];
+
+        ledgerLinesEl.innerHTML = '';
+        estimate.lines.forEach(function (line) {
+          const row = document.createElement('div');
+          row.className = 'ledger-line';
+
+          const nameEl = document.createElement('span');
+          nameEl.className = 'ledger-line-name';
+          nameEl.textContent = line.label;
+
+          const amtEl = document.createElement('span');
+          amtEl.className = 'ledger-line-amount';
+          amtEl.textContent = formatUSD(line.amount);
+
+          row.appendChild(nameEl);
+          row.appendChild(amtEl);
+          ledgerLinesEl.appendChild(row);
+        });
+
+        totalUsdEl.textContent = formatUSD(estimate.total);
+      }
+
+      function setDefaultServicesForSpecies(speciesKey) {
+        state.selectedIds.clear();
+        const groups = SERVICE_CATALOG[speciesKey].groups;
+        groups.forEach(function (g) {
+          g.items.forEach(function (item) {
+            if (item.defaultChecked) {
+              state.selectedIds.add(item.id);
+            }
+          });
+        });
+      }
+
+      // Event Listeners
+      formatButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.format = btn.getAttribute('data-format');
+          formatButtons.forEach(function (b) {
+            const active = b === btn;
+            b.classList.toggle('is-active', active);
+            b.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+          syncFormatControls();
+          renderSlots();
+          updateLedger();
+        });
+      });
+
+      speciesButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const nextSpecies = btn.getAttribute('data-species');
+          if (nextSpecies === state.species) return;
+          state.species = nextSpecies;
+          speciesButtons.forEach(function (b) {
+            const active = b === btn;
+            b.classList.toggle('is-active', active);
+            b.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+          setDefaultServicesForSpecies(nextSpecies);
+          syncFormatControls();
+          renderChecklist();
+          updateLedger();
+        });
+      });
+
+      patientCountSelect.addEventListener('change', function () {
+        state.patientCount = Number(patientCountSelect.value) || 1;
+        updateLedger();
+      });
+
+      distanceZoneSelect.addEventListener('change', function () {
+        state.zoneFee = Number(distanceZoneSelect.value) || 0;
+        updateLedger();
+      });
+
+      resetServicesBtn.addEventListener('click', function () {
+        setDefaultServicesForSpecies(state.species);
+        renderChecklist();
+        updateLedger();
+      });
+
+      bookingForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        formErrorBox.hidden = true;
+        formErrorBox.textContent = '';
+
+        const ownerName = document.getElementById('owner-name').value.trim();
+        const ownerPhone = document.getElementById('owner-phone').value.trim();
+        const ownerEmail = document.getElementById('owner-email').value.trim();
+        const animalName = document.getElementById('animal-name').value.trim();
+        const visitAddress = visitAddressInput.value.trim();
+
+        if (!ownerName || !ownerPhone || !ownerEmail || !animalName) {
+          formErrorBox.textContent = 'Please complete your name, phone number, email address, and patient name before submitting.';
+          formErrorBox.hidden = false;
+          return;
+        }
+
+        if (state.format === 'mobile' && !visitAddress) {
+          formErrorBox.textContent = 'Please enter a street, ranch, or stable address for a Mobile Farm-Home Visit.';
+          formErrorBox.hidden = false;
+          visitAddressInput.focus();
+          return;
+        }
+
+        const estimate = calculateEstimate();
+        const dayObj = monSatDays[state.selectedDayIdx];
+        const refNumber = 'WV-' + Math.floor(100000 + Math.random() * 900000);
+
+        const summaryRows = [
+          ['Reference ID', refNumber],
+          ['Client', ownerName],
+          ['Patient(s)', animalName + ' (' + SERVICE_CATALOG[state.species].label + ', Qty ' + state.patientCount + ')'],
+          ['Visit Format', state.format === 'mobile' ? 'Mobile Farm-Home Visit' : 'In-Clinic Visit'],
+          ['Requested Slot', dayObj.abbr + ' ' + dayObj.dateLabel + ', ' + state.selectedSlot],
+          ['Estimated Total', formatUSD(estimate.total)],
+          ['Practice Contact', '(801) 662-8092']
+        ];
+
+        confirmationDetails.innerHTML = '';
+        summaryRows.forEach(function (pair) {
+          const row = document.createElement('div');
+          const k = document.createElement('span');
+          k.textContent = pair[0];
+          const v = document.createElement('span');
+          v.textContent = pair[1];
+          row.appendChild(k);
+          row.appendChild(v);
+          confirmationDetails.appendChild(row);
+        });
+
+        bookingForm.hidden = true;
+        confirmationView.hidden = false;
+      });
+
+      newEstimateBtn.addEventListener('click', function () {
+        confirmationView.hidden = true;
+        bookingForm.hidden = false;
+      });
+
+      // Initialize
+      syncFormatControls();
+      renderChecklist();
+      renderDays();
+      renderSlots();
+      updateLedger();
+    })();
+  </script>
+</body>
+</html>

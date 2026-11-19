@@ -1,0 +1,2641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evans Automotive Repair Inc. is a private independent auto repair shop at 3440 Morse Rd, Columbus, OH 43231. Engine diagnostics, brake service, preventative maintenance, transmission and electrical repair Mon–Fri.">
+  <title>Evans Automotive Repair Inc. | Independent Auto Repair Shop — Columbus, OH</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64'%3E%3Crect width='64' height='64' rx='10' fill='%23112236'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23C66A10' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%23F4F6F8'/%3E%3Cpath d='M32 8v8M32 48v8M8 32h8M48 32h8' stroke='%23F4F6F8' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #F4F6F8;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #EAEFF4;
+      --bg-ink: #112236;
+      --bg-ink-soft: #1B324D;
+      --bg-ink-deep: #0B1726;
+      --text-primary: #0F1D2E;
+      --text-secondary: #3E4F63;
+      --text-muted: #5A6B7F;
+      --text-on-ink: #F4F7FA;
+      --text-on-ink-muted: #B6C4D4;
+      --accent-amber: #C66A10;
+      --accent-amber-hover: #A95709;
+      --accent-amber-bright: #E58525;
+      --accent-amber-soft: #FDF3E7;
+      --border-hairline: #D3DCE6;
+      --border-strong: #B4C2D2;
+      --success-text: #14532D;
+      --success-bg: #ECFDF3;
+      --success-border: #86EFAC;
+      --error-text: #991B1B;
+      --error-bg: #FEF2F2;
+      --error-border: #FCA5A5;
+      --font-display: 'Space Grotesk', 'IBM Plex Sans', sans-serif;
+      --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-card: 0 2px 10px rgba(17, 34, 54, 0.05);
+      --shadow-elevated: 0 12px 30px rgba(17, 34, 54, 0.08);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.55;
+      overflow-x: clip;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+      flex-shrink: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a[href^="mailto:"] {
+      white-space: nowrap;
+      word-break: normal;
+    }
+
+    button,
+    input,
+    select {
+      font-family: inherit;
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+      font-family: var(--font-mono);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1220px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: var(--bg-ink);
+      color: var(--text-on-ink);
+      padding: 10px 16px;
+      z-index: 1000;
+    }
+
+    .skip-link:focus {
+      left: 12px;
+      top: 12px;
+    }
+
+    /* Top Engineering Telemetry Strip */
+    .utility-bar {
+      background-color: var(--bg-ink-deep);
+      color: var(--text-on-ink-muted);
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .utility-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 20px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    .utility-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 18px;
+      min-width: 0;
+    }
+
+    .utility-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .utility-item strong {
+      color: var(--text-on-ink);
+      font-weight: 600;
+    }
+
+    .utility-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent-amber-bright);
+      flex-shrink: 0;
+    }
+
+    .utility-link {
+      color: var(--text-on-ink);
+      font-weight: 500;
+      transition: color 150ms ease;
+    }
+
+    .utility-link:hover {
+      color: var(--accent-amber-bright);
+    }
+
+    /* Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background-color: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid var(--bg-ink-soft);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      overflow-wrap: break-word;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: color 150ms ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-amber);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-amber);
+      color: #FFFFFF;
+      border-color: var(--accent-amber);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-amber-hover);
+      border-color: var(--accent-amber-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-surface);
+      color: var(--bg-ink);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-subtle);
+      border-color: var(--bg-ink);
+    }
+
+    .btn-dark {
+      background-color: var(--bg-ink);
+      color: var(--text-on-ink);
+      border-color: var(--bg-ink);
+    }
+
+    .btn-dark:hover {
+      background-color: var(--bg-ink-soft);
+    }
+
+    .btn-sm {
+      padding: 7px 12px;
+      font-size: 13px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding-top: 52px;
+      padding-bottom: 56px;
+      background-image:
+        linear-gradient(to right, rgba(17, 34, 54, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(17, 34, 54, 0.035) 1px, transparent 1px);
+      background-size: 36px 36px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+      gap: 36px;
+      align-items: stretch;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--bg-ink);
+      margin-bottom: 18px;
+    }
+
+    .hero-eyebrow-badge {
+      background-color: var(--accent-amber-soft);
+      color: var(--accent-amber-hover);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4.2vw, 48px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: var(--bg-ink);
+      margin: 0 0 18px 0;
+    }
+
+    .hero-lead {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin: 0 0 26px 0;
+      max-width: 600px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric-box {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-top: 2px solid var(--bg-ink);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      min-width: 0;
+    }
+
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--bg-ink);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Hero Bay Sheet Card */
+    .bay-sheet {
+      background-color: var(--bg-ink);
+      color: var(--text-on-ink);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-elevated);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-top: 4px solid var(--accent-amber);
+      min-width: 0;
+    }
+
+    .bay-sheet-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      margin-bottom: 18px;
+    }
+
+    .bay-sheet-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-amber-bright);
+      margin-bottom: 4px;
+    }
+
+    .bay-sheet-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0;
+      color: #FFFFFF;
+    }
+
+    .bay-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .bay-spec-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .bay-spec-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+    }
+
+    .bay-spec-name {
+      color: var(--text-on-ink);
+      font-weight: 500;
+      min-width: 0;
+    }
+
+    .bay-spec-code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent-amber-bright);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .bay-sheet-foot {
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-on-ink-muted);
+    }
+
+    .bay-sheet-foot-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    /* Section Commons */
+    .section {
+      padding-top: 64px;
+      padding-bottom: 64px;
+    }
+
+    .section-alt {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border-hairline);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent-amber-hover);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(25px, 3vw, 34px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--bg-ink);
+      margin: 0;
+    }
+
+    .section-desc {
+      max-width: 560px;
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      min-width: 0;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--bg-ink);
+      box-shadow: var(--shadow-elevated);
+    }
+
+    .service-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .service-icon-wrap {
+      width: 46px;
+      height: 46px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-hairline);
+      color: var(--bg-ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .service-code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-amber-hover);
+      background-color: var(--accent-amber-soft);
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .service-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--bg-ink);
+      margin: 0 0 8px 0;
+    }
+
+    .service-copy {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      margin: 0 0 14px 0;
+    }
+
+    .service-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 12px;
+      font-size: 13px;
+      color: var(--text-primary);
+    }
+
+    .service-bullets li {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .bullet-pip {
+      width: 6px;
+      height: 6px;
+      background-color: var(--accent-amber);
+      border-radius: 1px;
+      flex-shrink: 0;
+    }
+
+    .service-card-foot {
+      padding-top: 14px;
+      border-top: 1px solid var(--border-hairline);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .service-meta {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    /* Interactive Estimator + Booker */
+    .workbench-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-card);
+      min-width: 0;
+    }
+
+    .step-block {
+      margin-bottom: 26px;
+    }
+
+    .step-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-label {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: var(--bg-ink);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .field-hint {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    /* Vehicle Class Selector */
+    .vehicle-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .vehicle-btn {
+      appearance: none;
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      padding: 12px 10px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+      transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    .vehicle-btn:hover {
+      border-color: var(--bg-ink);
+      background-color: var(--bg-surface);
+    }
+
+    .vehicle-btn[aria-pressed="true"] {
+      background-color: var(--bg-ink);
+      border-color: var(--bg-ink);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(17, 34, 54, 0.16);
+    }
+
+    .vehicle-btn-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: inherit;
+    }
+
+    .vehicle-btn-sub {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    .vehicle-btn[aria-pressed="true"] .vehicle-btn-sub {
+      color: var(--text-on-ink-muted);
+    }
+
+    .vehicle-btn-mult {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent-amber-hover);
+      margin-top: 2px;
+    }
+
+    .vehicle-btn[aria-pressed="true"] .vehicle-btn-mult {
+      color: var(--accent-amber-bright);
+    }
+
+    /* Quick Presets */
+    .preset-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .preset-btn {
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-hairline);
+      color: var(--bg-ink);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 150ms ease, border-color 150ms ease;
+    }
+
+    .preset-btn:hover {
+      background-color: var(--accent-amber-soft);
+      border-color: var(--accent-amber);
+    }
+
+    /* Operations Checklist */
+    .ops-group {
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .ops-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .ops-group-head {
+      background-color: var(--bg-subtle);
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border-hairline);
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--bg-ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .ops-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--border-hairline);
+      background-color: var(--bg-surface);
+      transition: background-color 140ms ease;
+    }
+
+    .ops-row:last-child {
+      border-bottom: none;
+    }
+
+    .ops-row.is-selected {
+      background-color: #FFFBF5;
+    }
+
+    .ops-check-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .ops-checkbox {
+      width: 18px;
+      height: 18px;
+      margin: 2px 0 0 0;
+      accent-color: var(--accent-amber);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .ops-label {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .ops-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.35;
+    }
+
+    .ops-detail {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .ops-price-col {
+      text-align: right;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+    }
+
+    .ops-usd {
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--bg-ink);
+    }
+
+    .ops-hrs {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    /* Right Pane: Live Quote Readout + Bay Booker */
+    .sticky-quote-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      min-width: 0;
+    }
+
+    .quote-readout {
+      background-color: var(--bg-ink);
+      color: var(--text-on-ink);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      border-top: 4px solid var(--accent-amber);
+      box-shadow: var(--shadow-elevated);
+    }
+
+    .quote-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .quote-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0;
+      color: #FFFFFF;
+    }
+
+    .quote-tier-badge {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: rgba(229, 133, 37, 0.18);
+      color: var(--accent-amber-bright);
+      border: 1px solid rgba(229, 133, 37, 0.35);
+      white-space: nowrap;
+    }
+
+    .quote-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .quote-stat {
+      background-color: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+    }
+
+    .quote-stat-label {
+      font-size: 11.5px;
+      color: var(--text-on-ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .quote-stat-val {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+
+    .quote-total-box {
+      background-color: var(--bg-ink-deep);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .quote-total-label {
+      font-size: 13px;
+      color: var(--text-on-ink-muted);
+    }
+
+    .quote-total-sub {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent-amber-bright);
+      margin-top: 2px;
+    }
+
+    .quote-total-usd {
+      font-family: var(--font-mono);
+      font-size: 28px;
+      font-weight: 600;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+    }
+
+    .quote-selected-list {
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 12px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 12.5px;
+    }
+
+    .quote-selected-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--text-on-ink-muted);
+    }
+
+    .quote-selected-item span:first-child {
+      min-width: 0;
+      overflow-wrap: break-word;
+    }
+
+    .quote-note {
+      font-size: 12px;
+      color: var(--text-on-ink-muted);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    /* Mon-Fri Bay Booker Card */
+    .booker-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      min-width: 0;
+    }
+
+    .day-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .day-btn {
+      appearance: none;
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      padding: 10px 6px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+
+    .day-btn:hover {
+      border-color: var(--bg-ink);
+    }
+
+    .day-btn[aria-pressed="true"] {
+      background-color: var(--accent-amber);
+      border-color: var(--accent-amber);
+      color: #FFFFFF;
+    }
+
+    .day-btn-name {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .day-btn-bays {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-muted);
+    }
+
+    .day-btn[aria-pressed="true"] .day-btn-bays {
+      color: #FFF7ED;
+    }
+
+    .slot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .slot-btn {
+      appearance: none;
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      padding: 9px 8px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+
+    .slot-btn:hover {
+      border-color: var(--bg-ink);
+    }
+
+    .slot-btn[aria-pressed="true"] {
+      background-color: var(--bg-ink);
+      border-color: var(--bg-ink);
+      color: #FFFFFF;
+    }
+
+    .slot-time {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    .slot-name {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .slot-btn[aria-pressed="true"] .slot-name {
+      color: var(--text-on-ink-muted);
+    }
+
+    /* Form Controls */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-width: 0;
+    }
+
+    .form-field-full {
+      grid-column: 1 / -1;
+    }
+
+    .input-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--bg-ink);
+    }
+
+    .form-input,
+    .form-select {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 14px;
+      color: var(--text-primary);
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      transition: border-color 150ms ease, background-color 150ms ease;
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      outline: 2px solid var(--accent-amber);
+      outline-offset: 1px;
+      background-color: var(--bg-surface);
+      border-color: var(--accent-amber);
+    }
+
+    .form-alert {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      margin-bottom: 12px;
+      display: none;
+    }
+
+    .form-alert.is-visible {
+      display: block;
+    }
+
+    .form-alert-error {
+      background-color: var(--error-bg);
+      border: 1px solid var(--error-border);
+      color: var(--error-text);
+    }
+
+    /* Confirmation Sheet */
+    .confirmation-card {
+      display: none;
+      background-color: var(--success-bg);
+      border: 1px solid var(--success-border);
+      border-top: 4px solid var(--success-text);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-top: 4px;
+    }
+
+    .confirmation-card.is-visible {
+      display: block;
+    }
+
+    .confirm-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--success-border);
+    }
+
+    .confirm-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--success-text);
+      margin-bottom: 3px;
+    }
+
+    .confirm-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--bg-ink);
+      margin: 0;
+    }
+
+    .confirm-ref {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 600;
+      background-color: #FFFFFF;
+      border: 1px solid var(--success-border);
+      color: var(--success-text);
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+
+    .confirm-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 14px;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    .confirm-cell-label {
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    .confirm-cell-val {
+      font-weight: 600;
+      color: var(--text-primary);
+      overflow-wrap: break-word;
+    }
+
+    .confirm-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    /* Location & Independent Shop Section */
+    .location-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .standards-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .standard-item {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+
+    .standard-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-amber-hover);
+      margin-bottom: 6px;
+    }
+
+    .standard-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--bg-ink);
+      margin: 0 0 6px 0;
+    }
+
+    .standard-copy {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    .dispatch-card {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .dispatch-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .dispatch-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-hairline);
+      font-size: 14px;
+    }
+
+    .dispatch-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .dispatch-key {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .dispatch-val {
+      font-weight: 600;
+      color: var(--bg-ink);
+      text-align: right;
+    }
+
+    .map-frame {
+      background-color: #FFFFFF;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .map-caption {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg-ink-deep);
+      color: var(--text-on-ink-muted);
+      padding-top: 36px;
+      padding-bottom: 36px;
+      font-size: 13.5px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .footer-brand {
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .footer-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 24px;
+      align-items: center;
+    }
+
+    .footer-links a {
+      color: var(--text-on-ink);
+      font-weight: 500;
+      transition: color 150ms ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-amber-bright);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .workbench-grid,
+      .location-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .services-grid,
+      .standards-list {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .vehicle-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .slot-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .utility-bar {
+        font-size: 12px;
+      }
+
+      .header-inner {
+        gap: 10px;
+      }
+
+      .brand-name {
+        font-size: 15px;
+      }
+
+      .brand-sub {
+        font-size: 11px;
+      }
+
+      .header-phone-btn {
+        display: none;
+      }
+
+      .hero-section {
+        padding-top: 32px;
+        padding-bottom: 36px;
+      }
+
+      .hero-metrics {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .service-bullets {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .panel-card,
+      .booker-card,
+      .quote-readout,
+      .bay-sheet,
+      .dispatch-card {
+        padding: 18px;
+      }
+
+      .day-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .form-grid,
+      .confirm-grid,
+      .quote-metrics-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .dispatch-val {
+        text-align: left;
+      }
+
+      .ops-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+      }
+
+      .ops-price-col {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#estimator-section">Skip to Cost Estimator</a>
+
+  <!-- Top Utility Bar -->
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="utility-group">
+        <span class="utility-item">
+          <span class="utility-dot" aria-hidden="true"></span>
+          <strong>Private Independent Auto Repair Shop</strong>
+        </span>
+        <span class="utility-item">3440 Morse Rd, Columbus, OH 43231</span>
+      </div>
+      <div class="utility-group">
+        <span class="utility-item"><strong>Hours:</strong> Mon–Fri</span>
+        <a class="utility-link" href="tel:+16144717535">(614) 471-7535</a>
+        <a class="utility-link" href="mailto:evansauto@evansauto.com">evansauto@evansauto.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Navigation Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Evans Automotive Repair Inc. Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="8.5" stroke="#E58525" stroke-width="2"></circle>
+            <circle cx="12" cy="12" r="3" fill="#F4F7FA"></circle>
+            <path d="M12 2V5M12 19V22M2 12H5M19 12H22" stroke="#F4F7FA" stroke-width="1.8" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Evans Automotive Repair Inc.</span>
+          <span class="brand-sub">Columbus, OH · Independent Shop</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#services">Services</a>
+        <a href="#estimator-section">Cost Estimator</a>
+        <a href="#bay-booker-panel">Bay Booking</a>
+        <a href="#shop-location">Location</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-secondary btn-sm header-phone-btn" href="tel:+16144717535">(614) 471-7535</a>
+        <a class="btn btn-primary btn-sm" href="#estimator-section">Book Service Bay</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-eyebrow">
+            <span class="hero-eyebrow-badge">COLUMBUS, OH</span>
+            <span>Private Independent Auto Repair Shop</span>
+          </div>
+          <h1 class="hero-title">Precision Diagnostics &amp; Mechanical Care on Morse Rd.</h1>
+          <p class="hero-lead">
+            Evans Automotive Repair Inc. delivers factory-accurate diagnostics, brake and suspension engineering, preventative maintenance, and electrical troubleshooting without dealership overhead. Calculate parts, labor, and bay hours online before scheduling your Mon–Fri service bay.
+          </p>
+          <div class="hero-cta-row">
+            <a class="btn btn-primary" href="#estimator-section">Launch Cost Estimator &amp; Bay Booker</a>
+            <a class="btn btn-secondary" href="tel:+16144717535">Call (614) 471-7535</a>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric-box">
+              <div class="metric-val tabular-nums">Mon–Fri</div>
+              <div class="metric-label">Dedicated Weekday Bays</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val tabular-nums">4 Core</div>
+              <div class="metric-label">Mechanical Disciplines</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val tabular-nums">3440</div>
+              <div class="metric-label">Morse Rd, Columbus, OH 43231</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="bay-sheet" aria-label="Service Bay Capabilities">
+          <div>
+            <div class="bay-sheet-head">
+              <div>
+                <div class="bay-sheet-kicker">INDEPENDENT SHOP TELEMETRY</div>
+                <h2 class="bay-sheet-title">Bay Inspection Dispatch Sheet</h2>
+              </div>
+              <span class="bay-status-pill">
+                <span class="utility-dot" aria-hidden="true"></span>
+                <span>Mon–Fri Active</span>
+              </span>
+            </div>
+
+            <div class="bay-spec-list">
+              <div class="bay-spec-row">
+                <span class="bay-spec-name">Engine Diagnostics &amp; Repair</span>
+                <span class="bay-spec-code">BAY-01 · OBD-II</span>
+              </div>
+              <div class="bay-spec-row">
+                <span class="bay-spec-name">Brake Service &amp; Suspension</span>
+                <span class="bay-spec-code">BAY-02 · TORQUE</span>
+              </div>
+              <div class="bay-spec-row">
+                <span class="bay-spec-name">Oil Change &amp; Preventative Maintenance</span>
+                <span class="bay-spec-code">BAY-03 · OEM FLUIDS</span>
+              </div>
+              <div class="bay-spec-row">
+                <span class="bay-spec-name">Transmission &amp; Electrical Repair</span>
+                <span class="bay-spec-code">BAY-04 · LOAD TEST</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bay-sheet-foot">
+            <div class="bay-sheet-foot-row">
+              <span>Shop Address</span>
+              <strong style="color: #FFFFFF;">3440 Morse Rd, Columbus, OH 43231</strong>
+            </div>
+            <div class="bay-sheet-foot-row">
+              <span>Service Desk Email</span>
+              <a class="utility-link" href="mailto:evansauto@evansauto.com">evansauto@evansauto.com</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Core Mechanical Services -->
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-tag">CORE MECHANICAL CAPABILITIES</div>
+            <h2 class="section-title">Four Specialized Service Disciplines</h2>
+          </div>
+          <p class="section-desc">
+            Every repair starts with verifiable root-cause testing and transparent parts-and-labor documentation across European, Japanese, Domestic, and SUV-Truck vehicles.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <div class="service-card-top">
+                <span class="service-icon-wrap" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="7" width="18" height="11" rx="2" stroke="currentColor" stroke-width="1.8"></rect>
+                    <path d="M8 7V4M16 7V4M7 12H10L11.5 9.5L13 14.5L14.5 12H17" stroke="#C66A10" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </span>
+                <span class="service-code">BAY-01</span>
+              </div>
+              <h3 class="service-title">Engine Diagnostics &amp; Repair</h3>
+              <p class="service-copy">
+                Pinpoint fault isolation for check-engine warnings, misfires, cooling pressure loss, fuel delivery issues, and timing components before replacing any hardware.
+              </p>
+              <ul class="service-bullets">
+                <li><span class="bullet-pip" aria-hidden="true"></span><span>Fault-code &amp; live sensor telemetry</span></li>
+                <li><span class="bullet-pip" aria-hidden="true"></span><span>Ignition coils &amp; spark plugs</span></li>
+                <li><span class="bullet-pip" aria-hidden="true"></span><span>Cooling &amp; thermostat systems</span></li>
+                <li><span class="bullet-pip" aria-hidden="true"></span><span>Fuel &amp; intake smoke testing</span></li>
+              </ul>
+            </div>
+            <div class="service-card-foot">
+              <span class="service-meta">Est. Bay Time: 1.2 – 3.5 hrs</span>
+              <button class="btn btn-secondary btn-sm js-preset-jump" type="button" data-preset="engine">Estimate Engine Work</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-top">
+                <span class="service-icon-wrap" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"></circle>
+                    <circle cx="12" cy="12" r="3" stroke="#C66A10" stroke-width="1.8"></circle>
+                    <path d="M16.5 4.5C19 6.2 20.5 9 20.5 12" stroke="#C66A10" stroke-width="2.2" stroke-linecap="round"></path>
+                  </svg>
+                </span>
+                <span class="service-code">BAY-02</span>
+              </div>
+              <h3 class="service-title">Brake Service &amp; Suspension</h3>
+              <p class="service-copy">
+                Precision stopping hardware and chassis stability repairs built for Ohio winter road salt, potholes, and heavy commuter mileage.
+              </p>
+              <ul class="service-bullets">
+                <li><span class="bullet-pip" aria-hidden="true"></span><span>Ceramic pads &amp; coated rotors</span></li>
+                <li><span class="bullet-pip" aria-hidden="true"></span><span>Hydraulic fluid pressure bleed</span></li>
+                <li><span class="bullet-pip" aria-hidden="true"></span><span>Struts, shocks &amp; control arms</span></li>
+                <li><span class="bullet-pip" aria-hidden="true"></span><span>Wheel bearings &amp; tie rods</span></li>
+              </ul>
+            </div>
+            <div class="service-card-foot">
+              <span class="service-meta">Est. Bay Time: 1.5 – 3.0 hrs</span>
+              <button class="btn btn-secondary btn-sm js-preset-jump" type="button" data-preset="brakes">Estimate Brake &amp; Chassis</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-top">
+                <span class="service-icon-wrap" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3.5C12 3.5 6.5 10.2 6.5 14.5C6.5 17.5 9 20 12 20C15 20 17.5 17.5 17.5 14.5C17.5 10.2 12 3.5 12 3.5Z" stroke="currentColor" stroke-width="1.8"></path>
+                    <path d="M10 15.5C10.4 16.5 11.2 17.2 12.4 17.3" stroke="#C66A10" stroke-width="1.8" stroke-linecap="round"></path>
+                  </svg>
+                </span>
+                <span class="service-code">BAY-03</span>
+              </div>
+              <h3 class="service-title">Oil Change &amp; Preventative Maintenance</h3>
+              <p class="service-copy">
+                Factory-spec synthetic oil intervals paired with a documented 40-point underbody and belt inspection to prevent roadside breakdowns.
+              </p>
+              <ul class="service-bullets">
+                <li><span class="bullet-pip" aria-hidden="true"></span><span>Full-synthetic OEM grade oil</span></li>
+                <li><span class="bullet-pip" aria-hidden="true"></span><span>40-point digital bay checklist</span></li>
+                <li><span class="bullet-pip" aria-hidden="true"></span><span>Drive belts &amp; filter replacements</span></li>
+                <li><span class="bullet-pip" aria-hidden="true"></span><span>Fluid top-off &amp; battery health</span></li>
+              </ul>
+            </div>
+            <div class="service-card-foot">
+              <span class="service-meta">Est. Bay Time: 0.6 – 1.4 hrs</span>
+              <button class="btn btn-secondary btn-sm js-preset-jump" type="button" data-preset="preventative">Estimate Maintenance</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="service-card-top">
+                <span class="service-icon-wrap" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <rect x="4" y="6" width="16" height="13" rx="2" stroke="currentColor" stroke-width="1.8"></rect>
+                    <path d="M8 6V4M16 6V4M12.5 9.5L10.5 13H13.5L11.5 16.5" stroke="#C66A10" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </span>
+                <span class="service-code">BAY-04</span>
+              </div>
+              <h3 class="service-title">Transmission &amp; Electrical Repair</h3>
+              <p class="service-copy">
+                Driveline fluid exchanges, shift-solenoid diagnostics, charging system overhauls, starter replacements, and parasitic battery drain tracing.
+              </p>
+              <ul class="service-bullets">
+                <li><span class="bullet-pip" aria-hidden="true"></span><span>Transmission fluid &amp; pan filter</span></li>
+                <li><span class="bullet-pip" aria-hidden="true"></span><span>Alternator &amp; starter testing</span></li>
+                <li><span class="bullet-pip" aria-hidden="true"></span><span>Parasitic draw &amp; ground checks</span></li>
+                <li><span class="bullet-pip" aria-hidden="true"></span><span>Sensor &amp; harness restoration</span></li>
+              </ul>
+            </div>
+            <div class="service-card-foot">
+              <span class="service-meta">Est. Bay Time: 1.1 – 2.5 hrs</span>
+              <button class="btn btn-secondary btn-sm js-preset-jump" type="button" data-preset="electrical">Estimate Driveline &amp; Elec</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Estimator + Mon-Fri Service Bay Booker -->
+    <section id="estimator-section" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-tag">LIVE SHOP CALCULATOR &amp; SCHEDULING</div>
+            <h2 class="section-title">Auto Repair Cost Estimator (USD) &amp; Mon–Fri Service Bay Booker</h2>
+          </div>
+          <p class="section-desc">
+            Select your vehicle platform and needed work to inspect itemized parts, labor, and shop bay hours, then reserve your weekday drop-off slot.
+          </p>
+        </div>
+
+        <div class="workbench-grid">
+          <!-- Left Column: Vehicle Tier + Checklist -->
+          <div class="panel-card">
+            <div class="step-block">
+              <div class="field-label">
+                <span>01 · Select Vehicle Class / Platform</span>
+                <span class="field-hint">Calibrates parts &amp; labor factors</span>
+              </div>
+              <div class="vehicle-grid" role="group" aria-label="Vehicle Class Selection">
+                <button class="vehicle-btn" type="button" data-tier="european" aria-pressed="false">
+                  <span class="vehicle-btn-title">European</span>
+                  <span class="vehicle-btn-sub">BMW, Audi, VW, Volvo, Mercedes</span>
+                  <span class="vehicle-btn-mult tabular-nums">1.28x calibration</span>
+                </button>
+                <button class="vehicle-btn" type="button" data-tier="japanese" aria-pressed="true">
+                  <span class="vehicle-btn-title">Japanese</span>
+                  <span class="vehicle-btn-sub">Honda, Toyota, Subaru, Mazda</span>
+                  <span class="vehicle-btn-mult tabular-nums">1.00x baseline</span>
+                </button>
+                <button class="vehicle-btn" type="button" data-tier="domestic" aria-pressed="false">
+                  <span class="vehicle-btn-title">Domestic</span>
+                  <span class="vehicle-btn-sub">Ford, Chevy, GMC, Dodge</span>
+                  <span class="vehicle-btn-mult tabular-nums">0.96x standard</span>
+                </button>
+                <button class="vehicle-btn" type="button" data-tier="suv-truck" aria-pressed="false">
+                  <span class="vehicle-btn-title">SUV-Truck</span>
+                  <span class="vehicle-btn-sub">4WD, Pickup, Full-Size SUV</span>
+                  <span class="vehicle-btn-mult tabular-nums">1.18x heavy-duty</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="step-block">
+              <div class="field-label">
+                <span>02 · Select Operations &amp; Maintenance Items</span>
+                <span class="field-hint">Instant USD &amp; bay-hour totals</span>
+              </div>
+
+              <div class="preset-bar">
+                <button class="preset-btn js-preset-btn" type="button" data-preset="preventative">Preventative Bundle</button>
+                <button class="preset-btn js-preset-btn" type="button" data-preset="brakes">Front &amp; Rear Brake Overhaul</button>
+                <button class="preset-btn js-preset-btn" type="button" data-preset="engine">Engine Diagnostic + Tune-Up</button>
+                <button class="preset-btn js-preset-btn" type="button" data-preset="clear">Clear All</button>
+              </div>
+
+              <div id="operations-container">
+                <!-- Group 1: Engine Diagnostics & Repair -->
+                <div class="ops-group">
+                  <div class="ops-group-head">
+                    <span>Engine Diagnostics &amp; Repair</span>
+                    <span class="field-hint">BAY-01</span>
+                  </div>
+                  <div class="ops-row" data-op-id="eng-diag">
+                    <div class="ops-check-wrap">
+                      <input class="ops-checkbox" type="checkbox" id="op-eng-diag" autocomplete="off" data-id="eng-diag" checked>
+                      <label class="ops-label" for="op-eng-diag">
+                        <span class="ops-name">Engine Diagnostic Scan &amp; Pinpoint Circuit Test</span>
+                        <span class="ops-detail">OBD-II live telemetry, freeze-frame analysis, mechanical verification</span>
+                      </label>
+                    </div>
+                    <div class="ops-price-col">
+                      <span class="ops-usd tabular-nums js-op-total">$145</span>
+                      <span class="ops-hrs tabular-nums js-op-hrs">1.2 hrs</span>
+                    </div>
+                  </div>
+                  <div class="ops-row" data-op-id="eng-tune">
+                    <div class="ops-check-wrap">
+                      <input class="ops-checkbox" type="checkbox" id="op-eng-tune" autocomplete="off" data-id="eng-tune">
+                      <label class="ops-label" for="op-eng-tune">
+                        <span class="ops-name">Spark Plugs &amp; Ignition Coil Tune-Up (4–6 Cyl)</span>
+                        <span class="ops-detail">OEM iridium plugs, coil boot inspection, torque-spec seating</span>
+                      </label>
+                    </div>
+                    <div class="ops-price-col">
+                      <span class="ops-usd tabular-nums js-op-total">$355</span>
+                      <span class="ops-hrs tabular-nums js-op-hrs">1.8 hrs</span>
+                    </div>
+                  </div>
+                  <div class="ops-row" data-op-id="eng-cool">
+                    <div class="ops-check-wrap">
+                      <input class="ops-checkbox" type="checkbox" id="op-eng-cool" autocomplete="off" data-id="eng-cool">
+                      <label class="ops-label" for="op-eng-cool">
+                        <span class="ops-name">Cooling System Pressure Test &amp; Thermostat Service</span>
+                        <span class="ops-detail">Thermostat housing, coolant flush, vacuum air-bleed cycle</span>
+                      </label>
+                    </div>
+                    <div class="ops-price-col">
+                      <span class="ops-usd tabular-nums js-op-total">$305</span>
+                      <span class="ops-hrs tabular-nums js-op-hrs">1.6 hrs</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Group 2: Brake Service & Suspension -->
+                <div class="ops-group">
+                  <div class="ops-group-head">
+                    <span>Brake Service &amp; Suspension</span>
+                    <span class="field-hint">BAY-02</span>
+                  </div>
+                  <div class="ops-row" data-op-id="brk-front">
+                    <div class="ops-check-wrap">
+                      <input class="ops-checkbox" type="checkbox" id="op-brk-front" autocomplete="off" data-id="brk-front">
+                      <label class="ops-label" for="op-brk-front">
+                        <span class="ops-name">Front Ceramic Brake Pads &amp; Coated Rotors</span>
+                        <span class="ops-detail">Caliper slide pin service, hub flange cleaning, road-test bedding</span>
+                      </label>
+                    </div>
+                    <div class="ops-price-col">
+                      <span class="ops-usd tabular-nums js-op-total">$375</span>
+                      <span class="ops-hrs tabular-nums js-op-hrs">1.5 hrs</span>
+                    </div>
+                  </div>
+                  <div class="ops-row" data-op-id="brk-rear">
+                    <div class="ops-check-wrap">
+                      <input class="ops-checkbox" type="checkbox" id="op-brk-rear" autocomplete="off" data-id="brk-rear">
+                      <label class="ops-label" for="op-brk-rear">
+                        <span class="ops-name">Rear Brake Service &amp; DOT-4 Hydraulic Fluid Bleed</span>
+                        <span class="ops-detail">Pads, coated rotors, moisture-free brake fluid exchange</span>
+                      </label>
+                    </div>
+                    <div class="ops-price-col">
+                      <span class="ops-usd tabular-nums js-op-total">$355</span>
+                      <span class="ops-hrs tabular-nums js-op-hrs">1.5 hrs</span>
+                    </div>
+                  </div>
+                  <div class="ops-row" data-op-id="susp-arm">
+                    <div class="ops-check-wrap">
+                      <input class="ops-checkbox" type="checkbox" id="op-susp-arm" autocomplete="off" data-id="susp-arm">
+                      <label class="ops-label" for="op-susp-arm">
+                        <span class="ops-name">Front Strut / Control Arm Pair Replacement</span>
+                        <span class="ops-detail">Lower arm bushings or strut assemblies, geometry &amp; torque check</span>
+                      </label>
+                    </div>
+                    <div class="ops-price-col">
+                      <span class="ops-usd tabular-nums js-op-total">$600</span>
+                      <span class="ops-hrs tabular-nums js-op-hrs">2.6 hrs</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Group 3: Oil Change & Preventative Maintenance -->
+                <div class="ops-group">
+                  <div class="ops-group-head">
+                    <span>Oil Change &amp; Preventative Maintenance</span>
+                    <span class="field-hint">BAY-03</span>
+                  </div>
+                  <div class="ops-row" data-op-id="mnt-oil">
+                    <div class="ops-check-wrap">
+                      <input class="ops-checkbox" type="checkbox" id="op-mnt-oil" autocomplete="off" data-id="mnt-oil" checked>
+                      <label class="ops-label" for="op-mnt-oil">
+                        <span class="ops-name">Full-Synthetic Oil Change &amp; 40-Point Bay Inspection</span>
+                        <span class="ops-detail">Up to 6 qts synthetic oil, OEM filter, tread &amp; underbody report</span>
+                      </label>
+                    </div>
+                    <div class="ops-price-col">
+                      <span class="ops-usd tabular-nums js-op-total">$100</span>
+                      <span class="ops-hrs tabular-nums js-op-hrs">0.6 hrs</span>
+                    </div>
+                  </div>
+                  <div class="ops-row" data-op-id="mnt-belt">
+                    <div class="ops-check-wrap">
+                      <input class="ops-checkbox" type="checkbox" id="op-mnt-belt" autocomplete="off" data-id="mnt-belt">
+                      <label class="ops-label" for="op-mnt-belt">
+                        <span class="ops-name">Serpentine Belt, Cabin &amp; Engine Air Filter Package</span>
+                        <span class="ops-detail">Multi-rib drive belt replacement, tensioner check, dual air filters</span>
+                      </label>
+                    </div>
+                    <div class="ops-price-col">
+                      <span class="ops-usd tabular-nums js-op-total">$180</span>
+                      <span class="ops-hrs tabular-nums js-op-hrs">0.8 hrs</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Group 4: Transmission & Electrical Repair -->
+                <div class="ops-group">
+                  <div class="ops-group-head">
+                    <span>Transmission &amp; Electrical Repair</span>
+                    <span class="field-hint">BAY-04</span>
+                  </div>
+                  <div class="ops-row" data-op-id="trn-fluid">
+                    <div class="ops-check-wrap">
+                      <input class="ops-checkbox" type="checkbox" id="op-trn-fluid" autocomplete="off" data-id="trn-fluid">
+                      <label class="ops-label" for="op-trn-fluid">
+                        <span class="ops-name">Transmission Fluid Exchange &amp; Pan Filter Service</span>
+                        <span class="ops-detail">OEM fluid spec drain/fill, pan gasket &amp; filter replacement</span>
+                      </label>
+                    </div>
+                    <div class="ops-price-col">
+                      <span class="ops-usd tabular-nums js-op-total">$303</span>
+                      <span class="ops-hrs tabular-nums js-op-hrs">1.4 hrs</span>
+                    </div>
+                  </div>
+                  <div class="ops-row" data-op-id="elc-diag">
+                    <div class="ops-check-wrap">
+                      <input class="ops-checkbox" type="checkbox" id="op-elc-diag" autocomplete="off" data-id="elc-diag">
+                      <label class="ops-label" for="op-elc-diag">
+                        <span class="ops-name">Charging, Starter &amp; Parasitic Battery Drain Test</span>
+                        <span class="ops-detail">Voltage drop check, ripple load test, ground integrity sweep</span>
+                      </label>
+                    </div>
+                    <div class="ops-price-col">
+                      <span class="ops-usd tabular-nums js-op-total">$167</span>
+                      <span class="ops-hrs tabular-nums js-op-hrs">1.1 hrs</span>
+                    </div>
+                  </div>
+                  <div class="ops-row" data-op-id="elc-alt">
+                    <div class="ops-check-wrap">
+                      <input class="ops-checkbox" type="checkbox" id="op-elc-alt" autocomplete="off" data-id="elc-alt">
+                      <label class="ops-label" for="op-elc-alt">
+                        <span class="ops-name">Alternator Replacement &amp; Charging Output Calibration</span>
+                        <span class="ops-detail">Reman/OEM alternator install, belt inspect, load verification</span>
+                      </label>
+                    </div>
+                    <div class="ops-price-col">
+                      <span class="ops-usd tabular-nums js-op-total">$461</span>
+                      <span class="ops-hrs tabular-nums js-op-hrs">1.8 hrs</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Live Readout + Mon-Fri Bay Booker -->
+          <div class="sticky-quote-wrap">
+            <div class="quote-readout" aria-live="polite">
+              <div class="quote-head">
+                <h3 class="quote-title">Live Shop Estimate (USD)</h3>
+                <span class="quote-tier-badge" id="quote-tier-label">Japanese · 1.00x</span>
+              </div>
+
+              <div class="quote-metrics-grid">
+                <div class="quote-stat">
+                  <div class="quote-stat-label">Estimated Parts</div>
+                  <div class="quote-stat-val tabular-nums" id="quote-parts">$48</div>
+                </div>
+                <div class="quote-stat">
+                  <div class="quote-stat-label">Estimated Labor</div>
+                  <div class="quote-stat-val tabular-nums" id="quote-labor">$197</div>
+                </div>
+                <div class="quote-stat">
+                  <div class="quote-stat-label">Selected Operations</div>
+                  <div class="quote-stat-val tabular-nums" id="quote-count">2 items</div>
+                </div>
+                <div class="quote-stat">
+                  <div class="quote-stat-label">Estimated Bay Time</div>
+                  <div class="quote-stat-val tabular-nums" id="quote-hours">1.8 hrs</div>
+                </div>
+              </div>
+
+              <div class="quote-total-box">
+                <div>
+                  <div class="quote-total-label">Estimated Parts + Labor Total</div>
+                  <div class="quote-total-sub tabular-nums" id="quote-range">Range: $230 – $265 USD</div>
+                </div>
+                <div class="quote-total-usd tabular-nums" id="quote-total">$245</div>
+              </div>
+
+              <div class="quote-selected-list" id="quote-breakdown"></div>
+
+              <p class="quote-note">
+                Figures exclude Ohio sales tax and hazardous shop supplies. Written authorization is always confirmed before work begins at 3440 Morse Rd.
+              </p>
+            </div>
+
+            <!-- Mon-Fri Service Bay Booker -->
+            <div class="booker-card" id="bay-booker-panel">
+              <div id="booking-form-wrap">
+                <div class="step-block">
+                  <div class="field-label">
+                    <span>03 · Mon–Fri Service Bay Schedule</span>
+                    <span class="field-hint">Select Drop-Off Day</span>
+                  </div>
+                  <div class="day-grid" role="group" aria-label="Weekday Service Bay Selection">
+                    <button class="day-btn" type="button" data-day="Mon" aria-pressed="true">
+                      <span class="day-btn-name">Mon</span>
+                      <span class="day-btn-bays tabular-nums">3 Bays</span>
+                    </button>
+                    <button class="day-btn" type="button" data-day="Tue" aria-pressed="false">
+                      <span class="day-btn-name">Tue</span>
+                      <span class="day-btn-bays tabular-nums">2 Bays</span>
+                    </button>
+                    <button class="day-btn" type="button" data-day="Wed" aria-pressed="false">
+                      <span class="day-btn-name">Wed</span>
+                      <span class="day-btn-bays tabular-nums">3 Bays</span>
+                    </button>
+                    <button class="day-btn" type="button" data-day="Thu" aria-pressed="false">
+                      <span class="day-btn-name">Thu</span>
+                      <span class="day-btn-bays tabular-nums">2 Bays</span>
+                    </button>
+                    <button class="day-btn" type="button" data-day="Fri" aria-pressed="false">
+                      <span class="day-btn-name">Fri</span>
+                      <span class="day-btn-bays tabular-nums">1 Bay</span>
+                    </button>
+                  </div>
+
+                  <div class="field-label">
+                    <span>04 · Drop-Off Window</span>
+                    <span class="field-hint" id="selected-slot-summary">Mon · 7:30 AM</span>
+                  </div>
+                  <div class="slot-grid" role="group" aria-label="Service Drop-Off Window">
+                    <button class="slot-btn" type="button" data-slot="7:30 AM Early Drop-Off" aria-pressed="true">
+                      <span class="slot-time tabular-nums">7:30 AM</span>
+                      <span class="slot-name">Early Drop-Off</span>
+                    </button>
+                    <button class="slot-btn" type="button" data-slot="9:30 AM Diagnostic Bay" aria-pressed="false">
+                      <span class="slot-time tabular-nums">9:30 AM</span>
+                      <span class="slot-name">Diagnostic Bay</span>
+                    </button>
+                    <button class="slot-btn" type="button" data-slot="1:00 PM Afternoon Service" aria-pressed="false">
+                      <span class="slot-time tabular-nums">1:00 PM</span>
+                      <span class="slot-name">Afternoon Bay</span>
+                    </button>
+                  </div>
+                </div>
+
+                <form id="bay-booking-form" novalidate>
+                  <div class="form-grid">
+                    <div class="form-field">
+                      <label class="input-label" for="cust-name">Full Name</label>
+                      <input class="form-input" type="text" id="cust-name" name="name" autocomplete="name" placeholder="Jordan Miller" required>
+                    </div>
+                    <div class="form-field">
+                      <label class="input-label" for="cust-phone">Phone Number</label>
+                      <input class="form-input" type="tel" id="cust-phone" name="tel" autocomplete="tel" placeholder="(614) 555-0192" required>
+                    </div>
+                    <div class="form-field">
+                      <label class="input-label" for="cust-email">Email Address</label>
+                      <input class="form-input" type="email" id="cust-email" name="email" autocomplete="email" placeholder="driver@example.com" required>
+                    </div>
+                    <div class="form-field">
+                      <label class="input-label" for="contact-method">Confirmation Preference</label>
+                      <select class="form-select" id="contact-method" name="contactMethod" autocomplete="off">
+                        <option value="Phone Call">Phone Call</option>
+                        <option value="Email">Email</option>
+                      </select>
+                    </div>
+                    <div class="form-field form-field-full">
+                      <label class="input-label" for="vehicle-info">Vehicle Year, Make &amp; Model</label>
+                      <input class="form-input" type="text" id="vehicle-info" name="vehicle" autocomplete="off" placeholder="2019 Honda Accord EX-L · 78,400 mi" required>
+                    </div>
+                    <div class="form-field form-field-full">
+                      <label class="input-label" for="service-notes">Symptom Notes (Optional)</label>
+                      <input class="form-input" type="text" id="service-notes" name="notes" autocomplete="off" placeholder="Brake vibration above 50 mph or check-engine code P0420">
+                    </div>
+                  </div>
+
+                  <div class="form-alert form-alert-error" id="booking-error" role="alert"></div>
+
+                  <button class="btn btn-primary" type="submit" style="width: 100%;">
+                    Reserve Mon–Fri Service Bay
+                  </button>
+                </form>
+              </div>
+
+              <!-- On-Screen Reservation Confirmation -->
+              <div class="confirmation-card" id="booking-confirmation" aria-live="polite">
+                <div class="confirm-head">
+                  <div>
+                    <div class="confirm-kicker">SERVICE BAY REQUEST REGISTERED</div>
+                    <h3 class="confirm-title">Bay Hold Submitted to Shop Desk</h3>
+                  </div>
+                  <span class="confirm-ref tabular-nums" id="conf-ref">EVN-4821</span>
+                </div>
+
+                <div class="confirm-grid">
+                  <div>
+                    <div class="confirm-cell-label">Customer</div>
+                    <div class="confirm-cell-val" id="conf-customer"></div>
+                  </div>
+                  <div>
+                    <div class="confirm-cell-label">Phone &amp; Email</div>
+                    <div class="confirm-cell-val" id="conf-contact"></div>
+                  </div>
+                  <div>
+                    <div class="confirm-cell-label">Vehicle &amp; Class</div>
+                    <div class="confirm-cell-val" id="conf-vehicle"></div>
+                  </div>
+                  <div>
+                    <div class="confirm-cell-label">Mon–Fri Bay Slot</div>
+                    <div class="confirm-cell-val" id="conf-slot"></div>
+                  </div>
+                  <div>
+                    <div class="confirm-cell-label">Estimated Total (USD)</div>
+                    <div class="confirm-cell-val tabular-nums" id="conf-total"></div>
+                  </div>
+                  <div>
+                    <div class="confirm-cell-label">Estimated Bay Time</div>
+                    <div class="confirm-cell-val tabular-nums" id="conf-hours"></div>
+                  </div>
+                </div>
+
+                <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 10px;">
+                  <strong>Requested Operations:</strong>
+                  <span id="conf-services"></span>
+                </div>
+                <div style="font-size: 12.5px; color: var(--text-muted);">
+                  Drop-Off Location: <strong>Evans Automotive Repair Inc.</strong> · 3440 Morse Rd, Columbus, OH 43231 · Direct Desk: <a href="tel:+16144717535">(614) 471-7535</a> · <a href="mailto:evansauto@evansauto.com">evansauto@evansauto.com</a>
+                </div>
+
+                <div class="confirm-actions">
+                  <button class="btn btn-secondary btn-sm" type="button" id="edit-booking-btn">Modify Booking Details</button>
+                  <button class="btn btn-dark btn-sm" type="button" id="new-booking-btn">Start Another Estimate</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Standards + Shop Location -->
+    <section id="shop-location" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-tag">INDEPENDENT SHOP STANDARDS &amp; DISPATCH</div>
+            <h2 class="section-title">Built Around Verifiable Mechanical Work</h2>
+          </div>
+          <p class="section-desc">
+            Serving Northland, Easton, Westerville, and Greater Columbus drivers from our independent facility on Morse Rd.
+          </p>
+        </div>
+
+        <div class="location-grid">
+          <div class="standards-list">
+            <article class="standard-item">
+              <div class="standard-num tabular-nums">01 · TRANSPARENCY</div>
+              <h3 class="standard-title">Upfront Parts &amp; Labor Splits</h3>
+              <p class="standard-copy">
+                Every estimate separates component cost from technician bay hours so you know exactly what each repair covers.
+              </p>
+            </article>
+            <article class="standard-item">
+              <div class="standard-num tabular-nums">02 · MULTI-MAKE</div>
+              <h3 class="standard-title">European, Asian &amp; Domestic</h3>
+              <p class="standard-copy">
+                Dedicated diagnostic tooling and OEM-spec torque data for daily sedans, European platforms, SUVs, and work trucks.
+              </p>
+            </article>
+            <article class="standard-item">
+              <div class="standard-num tabular-nums">03 · ROOT CAUSE</div>
+              <h3 class="standard-title">Test Before Replacing</h3>
+              <p class="standard-copy">
+                Electrical load testing, smoke leak checks, and live fuel-trim logs prevent unnecessary parts swapping.
+              </p>
+            </article>
+            <article class="standard-item">
+              <div class="standard-num tabular-nums">04 · SCHEDULE</div>
+              <h3 class="standard-title">Predictable Mon–Fri Turnaround</h3>
+              <p class="standard-copy">
+                Structured weekday bay reservations keep diagnostic slots moving smoothly from morning drop-off to pickup.
+              </p>
+            </article>
+          </div>
+
+          <aside class="dispatch-card" aria-label="Shop Address and Contact">
+            <div>
+              <h3 style="font-family: var(--font-display); font-size: 20px; font-weight: 700; margin: 0 0 14px 0; color: var(--bg-ink);">
+                Evans Automotive Repair Inc.
+              </h3>
+              <div class="dispatch-rows">
+                <div class="dispatch-row">
+                  <span class="dispatch-key">Status</span>
+                  <span class="dispatch-val">Private Independent Auto Repair Shop</span>
+                </div>
+                <div class="dispatch-row">
+                  <span class="dispatch-key">Address</span>
+                  <span class="dispatch-val">3440 Morse Rd, Columbus, OH 43231</span>
+                </div>
+                <div class="dispatch-row">
+                  <span class="dispatch-key">Telephone</span>
+                  <a class="dispatch-val" href="tel:+16144717535">(614) 471-7535</a>
+                </div>
+                <div class="dispatch-row">
+                  <span class="dispatch-key">Email</span>
+                  <a class="dispatch-val" href="mailto:evansauto@evansauto.com">evansauto@evansauto.com</a>
+                </div>
+                <div class="dispatch-row">
+                  <span class="dispatch-key">Operating Days</span>
+                  <span class="dispatch-val">Mon–Fri</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="map-frame">
+              <svg width="280" height="132" viewBox="0 0 320 150" fill="none" role="img" aria-label="Schematic map showing 3440 Morse Rd, Columbus, OH 43231 between Cleveland Ave and Westerville Rd">
+                <rect width="320" height="150" rx="6" fill="#F4F6F8"></rect>
+                <path d="M16 78H304" stroke="#112236" stroke-width="5" stroke-linecap="round"></path>
+                <path d="M16 78H304" stroke="#FFFFFF" stroke-width="1" stroke-dasharray="6 6"></path>
+                <path d="M68 18V134" stroke="#B4C2D2" stroke-width="3" stroke-linecap="round"></path>
+                <path d="M254 18V134" stroke="#B4C2D2" stroke-width="3" stroke-linecap="round"></path>
+                <path d="M286 18V134" stroke="#94A3B8" stroke-width="4" stroke-linecap="round"></path>
+                <rect x="140" y="34" width="66" height="30" rx="4" fill="#112236"></rect>
+                <circle cx="173" cy="78" r="8" fill="#C66A10" stroke="#FFFFFF" stroke-width="2"></circle>
+                <text x="173" y="53" fill="#FFFFFF" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600" text-anchor="middle">3440 MORSE</text>
+                <text x="128" y="96" fill="#3E4F63" font-family="IBM Plex Mono, monospace" font-size="9" text-anchor="middle">MORSE RD</text>
+                <text x="68" y="144" fill="#5A6B7F" font-family="IBM Plex Mono, monospace" font-size="8.5" text-anchor="middle">CLEVELAND AVE</text>
+                <text x="248" y="144" fill="#5A6B7F" font-family="IBM Plex Mono, monospace" font-size="8.5" text-anchor="middle">WESTERVILLE RD</text>
+              </svg>
+              <div class="map-caption">Schematic Corridor · 3440 Morse Rd, Columbus, OH 43231</div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-meta">
+        <div class="footer-brand">Evans Automotive Repair Inc.</div>
+        <div>Private Independent Auto Repair Shop</div>
+        <div>3440 Morse Rd, Columbus, OH 43231</div>
+      </div>
+      <div class="footer-links">
+        <span>Hours: <strong style="color: #FFFFFF;">Mon–Fri</strong></span>
+        <a href="tel:+16144717535">(614) 471-7535</a>
+        <a href="mailto:evansauto@evansauto.com">evansauto@evansauto.com</a>
+        <a href="#estimator-section">Cost Estimator &amp; Bay Booker</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var TIERS = {
+        european: { label: 'European', mult: 1.28 },
+        japanese: { label: 'Japanese', mult: 1.00 },
+        domestic: { label: 'Domestic', mult: 0.96 },
+        'suv-truck': { label: 'SUV-Truck', mult: 1.18 }
+      };
+
+      var OPERATIONS = {
+        'eng-diag': { name: 'Engine Diagnostic Scan & Pinpoint Circuit Test', parts: 0, labor: 145, hrs: 1.2 },
+        'eng-tune': { name: 'Spark Plugs & Ignition Coil Tune-Up (4–6 Cyl)', parts: 140, labor: 215, hrs: 1.8 },
+        'eng-cool': { name: 'Cooling System Pressure Test & Thermostat Service', parts: 115, labor: 190, hrs: 1.6 },
+        'brk-front': { name: 'Front Ceramic Brake Pads & Coated Rotors', parts: 195, labor: 180, hrs: 1.5 },
+        'brk-rear': { name: 'Rear Brake Service & DOT-4 Hydraulic Fluid Bleed', parts: 175, labor: 180, hrs: 1.5 },
+        'susp-arm': { name: 'Front Strut / Control Arm Pair Replacement', parts: 290, labor: 310, hrs: 2.6 },
+        'mnt-oil': { name: 'Full-Synthetic Oil Change & 40-Point Bay Inspection', parts: 48, labor: 52, hrs: 0.6 },
+        'mnt-belt': { name: 'Serpentine Belt, Cabin & Engine Air Filter Package', parts: 85, labor: 95, hrs: 0.8 },
+        'trn-fluid': { name: 'Transmission Fluid Exchange & Pan Filter Service', parts: 135, labor: 168, hrs: 1.4 },
+        'elc-diag': { name: 'Charging, Starter & Parasitic Battery Drain Test', parts: 35, labor: 132, hrs: 1.1 },
+        'elc-alt': { name: 'Alternator Replacement & Charging Output Calibration', parts: 245, labor: 216, hrs: 1.8 }
+      };
+
+      var PRESETS = {
+        preventative: ['mnt-oil', 'mnt-belt'],
+        brakes: ['brk-front', 'brk-rear'],
+        engine: ['eng-diag', 'eng-tune'],
+        electrical: ['trn-fluid', 'elc-diag'],
+        clear: []
+      };
+
+      var state = {
+        tier: 'japanese',
+        day: 'Mon',
+        slot: '7:30 AM Early Drop-Off'
+      };
+
+      var vehicleBtns = document.querySelectorAll('.vehicle-btn');
+      var checkboxes = document.querySelectorAll('.ops-checkbox');
+      var presetBtns = document.querySelectorAll('.js-preset-btn');
+      var presetJumpBtns = document.querySelectorAll('.js-preset-jump');
+      var dayBtns = document.querySelectorAll('.day-btn');
+      var slotBtns = document.querySelectorAll('.slot-btn');
+
+      var tierBadgeEl = document.getElementById('quote-tier-label');
+      var partsEl = document.getElementById('quote-parts');
+      var laborEl = document.getElementById('quote-labor');
+      var countEl = document.getElementById('quote-count');
+      var hoursEl = document.getElementById('quote-hours');
+      var totalEl = document.getElementById('quote-total');
+      var rangeEl = document.getElementById('quote-range');
+      var breakdownEl = document.getElementById('quote-breakdown');
+      var slotSummaryEl = document.getElementById('selected-slot-summary');
+
+      var bookingForm = document.getElementById('bay-booking-form');
+      var bookingFormWrap = document.getElementById('booking-form-wrap');
+      var bookingErrorEl = document.getElementById('booking-error');
+      var confirmationEl = document.getElementById('booking-confirmation');
+      var editBookingBtn = document.getElementById('edit-booking-btn');
+      var newBookingBtn = document.getElementById('new-booking-btn');
+
+      function formatUSD(amount) {
+        return '$' + Math.round(amount).toLocaleString('en-US');
+      }
+
+      function getCheckedIds() {
+        var list = [];
+        for (var i = 0; i < checkboxes.length; i += 1) {
+          if (checkboxes[i].checked) {
+            list.push(checkboxes[i].getAttribute('data-id'));
+          }
+        }
+        return list;
+      }
+
+      function updateEstimator() {
+        var tier = TIERS[state.tier];
+        var mult = tier.mult;
+
+        tierBadgeEl.textContent = tier.label + ' · ' + mult.toFixed(2) + 'x';
+
+        var totalParts = 0;
+        var totalLabor = 0;
+        var totalHours = 0;
+        var selectedCount = 0;
+        var breakdownHtml = '';
+
+        for (var i = 0; i < checkboxes.length; i += 1) {
+          var cb = checkboxes[i];
+          var id = cb.getAttribute('data-id');
+          var op = OPERATIONS[id];
+          var row = cb.closest('.ops-row');
+
+          var opParts = Math.round(op.parts * mult);
+          var opLabor = Math.round(op.labor * (1 + (mult - 1) * 0.65));
+          var opTotal = opParts + opLabor;
+          var opHrs = Number((op.hrs * (1 + (mult - 1) * 0.25)).toFixed(1));
+
+          var priceLabel = row.querySelector('.js-op-total');
+          var hrsLabel = row.querySelector('.js-op-hrs');
+          priceLabel.textContent = formatUSD(opTotal);
+          hrsLabel.textContent = opHrs.toFixed(1) + ' hrs';
+
+          if (cb.checked) {
+            row.classList.add('is-selected');
+            totalParts += opParts;
+            totalLabor += opLabor;
+            totalHours += opHrs;
+            selectedCount += 1;
+            breakdownHtml += '<div class="quote-selected-item"><span>' + op.name + '</span><span class="tabular-nums">' + formatUSD(opTotal) + '</span></div>';
+          } else {
+            row.classList.remove('is-selected');
+          }
+        }
+
+        var grandTotal = totalParts + totalLabor;
+        var lowRange = Math.max(0, Math.round((grandTotal * 0.94) / 5) * 5);
+        var highRange = Math.round((grandTotal * 1.08) / 5) * 5;
+
+        partsEl.textContent = formatUSD(totalParts);
+        laborEl.textContent = formatUSD(totalLabor);
+        countEl.textContent = selectedCount + (selectedCount === 1 ? ' item' : ' items');
+        hoursEl.textContent = totalHours.toFixed(1) + ' hrs';
+        totalEl.textContent = formatUSD(grandTotal);
+
+        if (selectedCount === 0) {
+          rangeEl.textContent = 'Select 1 or more operations';
+          breakdownEl.innerHTML = '<div class="quote-selected-item"><span>No operations selected yet</span><span class="tabular-nums">$0</span></div>';
+        } else {
+          rangeEl.textContent = 'Range: ' + formatUSD(lowRange) + ' – ' + formatUSD(highRange) + ' USD';
+          breakdownEl.innerHTML = breakdownHtml;
+        }
+      }
+
+      function applyPreset(presetKey) {
+        var ids = PRESETS[presetKey] || [];
+        for (var i = 0; i < checkboxes.length; i += 1) {
+          var id = checkboxes[i].getAttribute('data-id');
+          checkboxes[i].checked = ids.indexOf(id) > -1;
+        }
+        updateEstimator();
+      }
+
+      function updateSlotSummary() {
+        var shortTime = state.slot.split(' ').slice(0, 2).join(' ');
+        slotSummaryEl.textContent = state.day + ' · ' + shortTime;
+      }
+
+      for (var v = 0; v < vehicleBtns.length; v += 1) {
+        vehicleBtns[v].addEventListener('click', function () {
+          state.tier = this.getAttribute('data-tier');
+          for (var j = 0; j < vehicleBtns.length; j += 1) {
+            vehicleBtns[j].setAttribute('aria-pressed', vehicleBtns[j] === this ? 'true' : 'false');
+          }
+          updateEstimator();
+        });
+      }
+
+      for (var c = 0; c < checkboxes.length; c += 1) {
+        checkboxes[c].addEventListener('change', updateEstimator);
+      }
+
+      for (var p = 0; p < presetBtns.length; p += 1) {
+        presetBtns[p].addEventListener('click', function () {
+          applyPreset(this.getAttribute('data-preset'));
+        });
+      }
+
+      for (var j = 0; j < presetJumpBtns.length; j += 1) {
+        presetJumpBtns[j].addEventListener('click', function () {
+          applyPreset(this.getAttribute('data-preset'));
+          var target = document.getElementById('estimator-section');
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+
+      for (var d = 0; d < dayBtns.length; d += 1) {
+        dayBtns[d].addEventListener('click', function () {
+          state.day = this.getAttribute('data-day');
+          for (var k = 0; k < dayBtns.length; k += 1) {
+            dayBtns[k].setAttribute('aria-pressed', dayBtns[k] === this ? 'true' : 'false');
+          }
+          updateSlotSummary();
+        });
+      }
+
+      for (var s = 0; s < slotBtns.length; s += 1) {
+        slotBtns[s].addEventListener('click', function () {
+          state.slot = this.getAttribute('data-slot');
+          for (var k = 0; k < slotBtns.length; k += 1) {
+            slotBtns[k].setAttribute('aria-pressed', slotBtns[k] === this ? 'true' : 'false');
+          }
+          updateSlotSummary();
+        });
+      }
+
+      bookingForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        bookingErrorEl.classList.remove('is-visible');
+        bookingErrorEl.textContent = '';
+
+        var nameVal = document.getElementById('cust-name').value.trim();
+        var phoneVal = document.getElementById('cust-phone').value.trim();
+        var emailVal = document.getElementById('cust-email').value.trim();
+        var vehicleVal = document.getElementById('vehicle-info').value.trim();
+        var prefVal = document.getElementById('contact-method').value;
+        var notesVal = document.getElementById('service-notes').value.trim();
+        var selectedIds = getCheckedIds();
+
+        if (nameVal.length < 2) {
+          bookingErrorEl.textContent = 'Please enter your full name to register the service bay hold.';
+          bookingErrorEl.classList.add('is-visible');
+          document.getElementById('cust-name').focus();
+          return;
+        }
+        if (phoneVal.length < 7) {
+          bookingErrorEl.textContent = 'Please enter a valid contact phone number.';
+          bookingErrorEl.classList.add('is-visible');
+          document.getElementById('cust-phone').focus();
+          return;
+        }
+        if (emailVal.indexOf('@') === -1 || emailVal.indexOf('.') === -1) {
+          bookingErrorEl.textContent = 'Please enter a valid email address for your bay confirmation.';
+          bookingErrorEl.classList.add('is-visible');
+          document.getElementById('cust-email').focus();
+          return;
+        }
+        if (vehicleVal.length < 3) {
+          bookingErrorEl.textContent = 'Please specify your vehicle year, make, and model.';
+          bookingErrorEl.classList.add('is-visible');
+          document.getElementById('vehicle-info').focus();
+          return;
+        }
+        if (selectedIds.length === 0) {
+          bookingErrorEl.textContent = 'Select at least one diagnostic, maintenance, or repair operation from the estimator.';
+          bookingErrorEl.classList.add('is-visible');
+          return;
+        }
+
+        var selectedNames = [];
+        for (var i = 0; i < selectedIds.length; i += 1) {
+          selectedNames.push(OPERATIONS[selectedIds[i]].name);
+        }
+        if (notesVal.length > 0) {
+          selectedNames.push('Note: ' + notesVal);
+        }
+
+        var refNum = 'EVN-' + String(Math.floor(1000 + Math.random() * 9000));
+        document.getElementById('conf-ref').textContent = refNum;
+        document.getElementById('conf-customer').textContent = nameVal + ' (' + prefVal + ')';
+        document.getElementById('conf-contact').textContent = phoneVal + ' · ' + emailVal;
+        document.getElementById('conf-vehicle').textContent = vehicleVal + ' [' + TIERS[state.tier].label + ']';
+        document.getElementById('conf-slot').textContent = state.day + ' · ' + state.slot;
+        document.getElementById('conf-total').textContent = totalEl.textContent + ' USD (' + partsEl.textContent + ' parts / ' + laborEl.textContent + ' labor)';
+        document.getElementById('conf-hours').textContent = hoursEl.textContent;
+        document.getElementById('conf-services').textContent = selectedNames.join('; ');
+
+        bookingFormWrap.style.display = 'none';
+        confirmationEl.classList.add('is-visible');
+      });
+
+      editBookingBtn.addEventListener('click', function () {
+        confirmationEl.classList.remove('is-visible');
+        bookingFormWrap.style.display = 'block';
+      });
+
+      newBookingBtn.addEventListener('click', function () {
+        bookingForm.reset();
+        confirmationEl.classList.remove('is-visible');
+        bookingFormWrap.style.display = 'block';
+        applyPreset('clear');
+      });
+
+      updateSlotSummary();
+      updateEstimator();
+    }());
+  </script>
+</body>
+</html>
