@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Al Coronado Plumbing | Tucson Water Heater Sizing &amp; Plumbing Services</title>
+  <meta name="description" content="Al Coronado Plumbing in Tucson, AZ. Water heater repairs and installs, drain cleaning, leak detection, emergency plumbing, and an interactive Tucson hard-water heater sizing calculator.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F6B74'/%3E%3Cpath d='M16 6C16 6 9 14.2 9 19.2C9 23.1 12.1 26 16 26C19.9 26 23 23.1 23 19.2C23 14.2 16 6 16 6Z' fill='%23F8F6F1'/%3E%3Ccircle cx='14' cy='20' r='2' fill='%230F6B74'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-ivory: #F8F6F1;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #F1EDE4;
+      --ink: #152229;
+      --ink-muted: #4A5962;
+      --ink-soft: #687780;
+      --accent: #0F6B74;
+      --accent-hover: #0B545B;
+      --accent-tint: #E7F2F3;
+      --copper: #A84E32;
+      --copper-tint: #F9ECE7;
+      --border: #E2DBD0;
+      --border-strong: #CEC5B6;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-card: 0 2px 10px rgba(21, 34, 41, 0.04);
+      --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+      --font-serif: 'Newsreader', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-ivory);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: clip;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(248, 246, 241, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      color: var(--ink);
+    }
+
+    .brand:hover {
+      color: var(--ink);
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent);
+      color: #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-muted);
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 15px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .header-cta:hover {
+      background-color: var(--accent-hover);
+      color: #FFFFFF;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 52px 0 44px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4.2vw, 48px);
+      font-weight: 500;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin: 0 0 18px;
+      color: var(--ink);
+    }
+
+    .hero-lead {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink-muted);
+      margin: 0 0 26px;
+      max-width: 58ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent);
+      color: #FFFFFF;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 600;
+      border: 1px solid var(--accent);
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+      color: #FFFFFF;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 600;
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero-spec-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .spec-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .spec-title {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: var(--accent-tint);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent);
+    }
+
+    .spec-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .spec-item {
+      padding: 12px;
+      background-color: var(--bg-ivory);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    .spec-label {
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-bottom: 4px;
+    }
+
+    .spec-value {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .spec-note {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    /* Section shared */
+    .section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-head {
+      max-width: 68ch;
+      margin-bottom: 30px;
+    }
+
+    .section-head h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 500;
+      line-height: 1.18;
+      letter-spacing: -0.015em;
+      margin: 0 0 10px;
+      color: var(--ink);
+    }
+
+    .section-head p {
+      margin: 0;
+      font-size: 16px;
+      color: var(--ink-muted);
+    }
+
+    /* Calculator */
+    .calc-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.12fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .panel-title {
+      font-family: var(--font-serif);
+      font-size: 21px;
+      font-weight: 500;
+      margin: 0 0 18px;
+      color: var(--ink);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label,
+    .field-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .label-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .range-readout {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    select,
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"] {
+      width: 100%;
+      min-height: 42px;
+      padding: 9px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: #FFFFFF;
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      transition: border-color 0.18s ease;
+    }
+
+    select:focus,
+    input[type="text"]:focus,
+    input[type="tel"]:focus,
+    input[type="email"]:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+      margin: 4px 0;
+    }
+
+    .range-scale {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--ink-soft);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .seg-btn {
+      padding: 10px 8px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-ivory);
+      color: var(--ink-muted);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .seg-btn[aria-pressed="true"] {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    /* Results */
+    .result-hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 16px;
+      padding: 18px;
+      background-color: var(--bg-ivory);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 18px;
+    }
+
+    .res-kicker {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .res-main {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .res-sub {
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin-top: 4px;
+    }
+
+    .savings-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 12px 14px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    .savings-val {
+      font-family: var(--font-mono);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .risk-meter-wrap {
+      margin-bottom: 18px;
+    }
+
+    .risk-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .risk-badge {
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .risk-low {
+      background-color: var(--accent-tint);
+      color: var(--accent);
+    }
+
+    .risk-med {
+      background-color: #FBF1DF;
+      color: #8A5300;
+    }
+
+    .risk-high {
+      background-color: var(--copper-tint);
+      color: var(--copper);
+    }
+
+    .risk-track {
+      height: 8px;
+      width: 100%;
+      background-color: var(--bg-subtle);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .risk-fill {
+      height: 100%;
+      width: 50%;
+      background-color: var(--accent);
+      border-radius: 999px;
+      transition: width 0.25s ease, background-color 0.25s ease;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .compare-card {
+      padding: 15px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background-color: var(--bg-surface);
+    }
+
+    .compare-card.recommended {
+      border-color: var(--accent);
+      background-color: #FAFCFC;
+    }
+
+    .compare-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 6px;
+    }
+
+    .compare-card.recommended .compare-tag {
+      color: var(--accent);
+    }
+
+    .compare-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .compare-price {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 6px;
+    }
+
+    .compare-desc {
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.45;
+    }
+
+    /* Booking form inside results panel */
+    .booking-divider {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+
+    .booking-summary-line {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-tint);
+      color: var(--ink);
+      font-size: 13px;
+      margin-bottom: 14px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .booking-confirm {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--accent);
+      background-color: var(--accent-tint);
+      color: var(--ink);
+      font-size: 14px;
+      display: none;
+    }
+
+    .booking-confirm.is-visible {
+      display: block;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .service-top {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .service-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-tint);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .service-card h3 {
+      font-family: var(--font-serif);
+      font-size: 21px;
+      font-weight: 500;
+      margin: 0 0 6px;
+      color: var(--ink);
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 14.5px;
+      color: var(--ink-muted);
+    }
+
+    .service-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
+    .service-action {
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .service-action:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    /* Contact & Coverage */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .coverage-list {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 16px;
+    }
+
+    .coverage-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .contact-box {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      box-shadow: var(--shadow-card);
+      min-width: 0;
+    }
+
+    .contact-box-full {
+      grid-column: 1 / -1;
+    }
+
+    .contact-kicker {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-soft);
+      margin-bottom: 6px;
+    }
+
+    .contact-val {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .contact-box a[href^="mailto:"],
+    .contact-box a[href^="http"] {
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .contact-box a[href^="tel:"] {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .site-footer {
+      padding: 28px 0 36px;
+      background-color: var(--bg-ivory);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px 24px;
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .footer-links a {
+      color: var(--ink-muted);
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .calc-layout,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .header-inner {
+        min-height: 64px;
+      }
+
+      .brand-name {
+        font-size: 16px;
+      }
+
+      .brand-sub {
+        font-size: 11px;
+      }
+
+      .header-cta {
+        padding: 8px 11px;
+        font-size: 12.5px;
+      }
+
+      .hero {
+        padding: 36px 0 32px;
+      }
+
+      .section {
+        padding: 40px 0;
+      }
+
+      .panel {
+        padding: 18px;
+      }
+
+      .form-grid,
+      .services-grid,
+      .compare-grid,
+      .result-hero,
+      .contact-grid,
+      .spec-list,
+      .coverage-list {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-box a[href^="mailto:"],
+      .contact-box a[href^="http"] {
+        font-size: 12.5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Al Coronado Plumbing Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.5C12 2.5 6 10 6 14.5C6 17.8 8.7 20.5 12 20.5C15.3 20.5 18 17.8 18 14.5C18 10 12 2.5 12 2.5Z"/>
+            <path d="M9.5 15.2C9.5 16.6 10.6 17.7 12 17.7"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Al Coronado Plumbing</span>
+          <span class="brand-sub">Tucson, Arizona</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#calculator">Sizing Calculator</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Tucson Dispatch</a>
+      </nav>
+
+      <a class="header-cta tabular" href="tel:+15208348400">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span>(520) 834-8400</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Tucson Residential &amp; Commercial Plumbing</div>
+          <h1>Precision water heater sizing and hard-water care for Tucson homes.</h1>
+          <p class="hero-lead">
+            Southern Arizona mineral content accelerates sediment buildup and premature tank wear. Al Coronado Plumbing provides transparent diagnostics, water heater installations, sewer line clearing, and emergency dispatch from our Travel Center Drive hub.
+          </p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="#calculator">Open Sizing Calculator</a>
+            <a class="btn-secondary tabular" href="tel:+15208348400">Call +1 (520) 834-8400</a>
+          </div>
+        </div>
+
+        <aside class="hero-spec-card" aria-label="Tucson Water Profile">
+          <div class="spec-header">
+            <span class="spec-title">Tucson Water Conditions</span>
+            <span class="status-pill"><span class="status-dot" aria-hidden="true"></span>Dispatch Open</span>
+          </div>
+          <div class="spec-list">
+            <div class="spec-item">
+              <div class="spec-label">Avg. Water Hardness</div>
+              <div class="spec-value">14–20 gpg</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Flush Interval</div>
+              <div class="spec-value">12 Months</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Summer Garage Temp</div>
+              <div class="spec-value">112 °F</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Service Hub</div>
+              <div class="spec-value">AZ 85741</div>
+            </div>
+          </div>
+          <p class="spec-note">
+            High calcium and magnesium levels in Tucson groundwater reduce water heater efficiency by up to 24% when scale coats heating elements and burner chambers.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="calculator">
+      <div class="container">
+        <div class="section-head">
+          <h2>Tucson Water Heater Sizing &amp; Hard-Water Flush Calculator</h2>
+          <p>
+            Configure your household demand, fuel source, and local water hardness to compare a descaling flush against full unit replacement, then reserve a Tucson service window.
+          </p>
+        </div>
+
+        <div class="calc-layout">
+          <div class="panel">
+            <h3 class="panel-title">Home &amp; Equipment Profile</h3>
+            <div class="form-grid">
+              <div class="field">
+                <label for="calc-household">Household Size</label>
+                <select id="calc-household" autocomplete="off">
+                  <option value="1">1–2 Residents</option>
+                  <option value="2" selected>3–4 Residents</option>
+                  <option value="3">5–6 Residents</option>
+                  <option value="4">7+ Residents</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="calc-bathrooms">Full Bathrooms</label>
+                <select id="calc-bathrooms" autocomplete="off">
+                  <option value="1">1 Bathroom</option>
+                  <option value="2" selected>1.5–2 Bathrooms</option>
+                  <option value="3">2.5–3 Bathrooms</option>
+                  <option value="4">3.5+ Bathrooms</option>
+                </select>
+              </div>
+
+              <div class="field field-full">
+                <div class="field-label">Fuel &amp; System Type</div>
+                <div class="segmented" role="group" aria-label="Fuel and System Type">
+                  <button type="button" class="seg-btn" data-fuel="gas" aria-pressed="true">Gas Tank</button>
+                  <button type="button" class="seg-btn" data-fuel="electric" aria-pressed="false">Electric Tank</button>
+                  <button type="button" class="seg-btn" data-fuel="tankless" aria-pressed="false">Tankless Gas</button>
+                </div>
+              </div>
+
+              <div class="field field-full">
+                <div class="label-row">
+                  <label for="calc-age">Current Unit Age</label>
+                  <span class="range-readout" id="age-readout">8 years</span>
+                </div>
+                <input type="range" id="calc-age" min="1" max="18" value="8" autocomplete="off">
+                <div class="range-scale">
+                  <span>1 yr</span>
+                  <span>9 yrs</span>
+                  <span>18 yrs</span>
+                </div>
+              </div>
+
+              <div class="field field-full">
+                <div class="label-row">
+                  <label for="calc-hardness">Tucson Hard-Water Scale Risk</label>
+                  <span class="range-readout" id="hardness-readout">17 gpg (High)</span>
+                </div>
+                <input type="range" id="calc-hardness" min="10" max="24" value="17" autocomplete="off">
+                <div class="range-scale">
+                  <span>10 gpg (Softened)</span>
+                  <span>17 gpg (City Avg)</span>
+                  <span>24 gpg (Well / Severe)</span>
+                </div>
+              </div>
+
+              <div class="field field-full">
+                <label for="calc-symptom">Current Unit Symptoms</label>
+                <select id="calc-symptom" autocomplete="off">
+                  <option value="none">Routine Annual Maintenance</option>
+                  <option value="noise">Popping or Rumbling Sounds</option>
+                  <option value="slow">Slow Recovery or Lukewarm Water</option>
+                  <option value="rust">Rusty Water or Base Moisture</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3 class="panel-title">Sizing &amp; Cost Recommendation</h3>
+
+            <div class="result-hero">
+              <div>
+                <div class="res-kicker" id="res-kicker">Recommended Capacity</div>
+                <div class="res-main" id="res-capacity">50 Gal High-Recovery</div>
+                <div class="res-sub" id="res-recovery">First-hour rating: 82–90 gal/hr</div>
+              </div>
+              <div class="savings-box">
+                <div class="spec-label">Est. Annual Savings</div>
+                <div class="savings-val" id="res-savings">$165 / yr</div>
+                <div class="spec-label" style="margin-top:4px;">vs. scaled legacy unit</div>
+              </div>
+            </div>
+
+            <div class="risk-meter-wrap">
+              <div class="risk-head">
+                <span class="field-label">Hard-Water Scale &amp; Tank Fatigue</span>
+                <span class="risk-badge risk-med tabular" id="risk-label">Elevated (62%)</span>
+              </div>
+              <div class="risk-track">
+                <div class="risk-fill" id="risk-fill"></div>
+              </div>
+            </div>
+
+            <div class="compare-grid">
+              <div class="compare-card" id="card-flush">
+                <span class="compare-tag" id="tag-flush">Preventive Option</span>
+                <div class="compare-title">Hard-Water Flush &amp; Anode</div>
+                <div class="compare-price" id="price-flush">$195 – $265</div>
+                <div class="compare-desc" id="desc-flush">
+                  Full sediment drain, descaling flush, and sacrificial anode inspection to restore heat transfer.
+                </div>
+              </div>
+
+              <div class="compare-card recommended" id="card-replace">
+                <span class="compare-tag" id="tag-replace">Recommended Path</span>
+                <div class="compare-title" id="title-replace">50 Gal Gas Replacement</div>
+                <div class="compare-price" id="price-replace">$1,850 – $2,450</div>
+                <div class="compare-desc" id="desc-replace">
+                  Includes haul-away, code-compliant pan, expansion valve, and Tucson permit inspection.
+                </div>
+              </div>
+            </div>
+
+            <div class="booking-divider" id="booking-section">
+              <h4 class="panel-title" style="font-size:18px; margin-bottom:12px;">Local Booking Summary</h4>
+              <div class="booking-summary-line" id="booking-summary-text">
+                Selected: 50 Gal Gas Replacement • 3–4 Residents • 17 gpg Tucson water
+              </div>
+
+              <form id="booking-form" class="form-grid" novalidate>
+                <div class="field">
+                  <label for="book-name">Full Name</label>
+                  <input type="text" id="book-name" name="name" autocomplete="name" placeholder="Jordan Ramirez" required>
+                </div>
+                <div class="field">
+                  <label for="book-phone">Phone Number</label>
+                  <input type="tel" id="book-phone" name="phone" autocomplete="tel" placeholder="(520) 555-0148" required>
+                </div>
+                <div class="field">
+                  <label for="book-zip">Tucson ZIP Code</label>
+                  <input type="text" id="book-zip" name="postal-code" autocomplete="postal-code" placeholder="85741" required>
+                </div>
+                <div class="field">
+                  <label for="book-service">Requested Service</label>
+                  <select id="book-service" name="service" autocomplete="off">
+                    <option value="Water Heater Repairs &amp; Installs">Water Heater Repairs &amp; Installs</option>
+                    <option value="Hard-Water Descaling Flush">Hard-Water Descaling Flush</option>
+                    <option value="Drain Cleaning &amp; Sewer Lines">Drain Cleaning &amp; Sewer Lines</option>
+                    <option value="Leak Detection &amp; Repiping">Leak Detection &amp; Repiping</option>
+                    <option value="Emergency Plumbing Service">Emergency Plumbing Service</option>
+                  </select>
+                </div>
+                <div class="field field-full">
+                  <button type="submit" class="btn-primary" style="width:100%;">Request Tucson Service Estimate</button>
+                </div>
+              </form>
+
+              <div class="booking-confirm" id="booking-confirm" role="status" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2>Core Tucson Plumbing Services</h2>
+          <p>
+            Licensed technicians equipped for residential and light-commercial systems across Tucson, Oro Valley, Marana, and Vail.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-top">
+              <div class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Water Heater Repairs &amp; Installs</h3>
+                <p>
+                  Standard atmospheric gas, high-efficiency electric, and condensing tankless installations sized for Tucson peak demand, plus annual hard-water flushing and anode rod replacement.
+                </p>
+              </div>
+            </div>
+            <div class="service-meta">
+              <span>Gas, Electric &amp; Tankless</span>
+              <button type="button" class="service-action" data-select-service="Water Heater Repairs &amp; Installs">Schedule Estimate</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-top">
+              <div class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 12h16"/>
+                  <path d="M4 6h16"/>
+                  <path d="M4 18h16"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Drain Cleaning &amp; Sewer Lines</h3>
+                <p>
+                  Video camera sewer inspections, hydro-jetting for desert tree root intrusion, and main line clearing without unnecessary excavation.
+                </p>
+              </div>
+            </div>
+            <div class="service-meta">
+              <span>Camera Inspection &amp; Hydro-Jet</span>
+              <button type="button" class="service-action" data-select-service="Drain Cleaning &amp; Sewer Lines">Schedule Estimate</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-top">
+              <div class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"/>
+                  <path d="m21 21-4.3-4.3"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Leak Detection &amp; Repiping</h3>
+                <p>
+                  Acoustic slab leak locating, pressure testing, and full-home PEX or copper repiping to replace aging polybutylene or pinhole-prone desert lines.
+                </p>
+              </div>
+            </div>
+            <div class="service-meta">
+              <span>Slab Leaks &amp; Whole-Home Repipe</span>
+              <button type="button" class="service-action" data-select-service="Leak Detection &amp; Repiping">Schedule Estimate</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-top">
+              <div class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Emergency Plumbing Service</h3>
+                <p>
+                  Rapid shut-off valve replacement, burst supply line containment, active water heater leaks, and urgent main sewer backups dispatched across Tucson.
+                </p>
+              </div>
+            </div>
+            <div class="service-meta">
+              <span>Rapid Tucson Dispatch</span>
+              <button type="button" class="service-action" data-select-service="Emergency Plumbing Service">Schedule Estimate</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-layout">
+        <div>
+          <div class="section-head" style="margin-bottom:16px;">
+            <h2>Tucson Dispatch &amp; Contact</h2>
+            <p>
+              Reach our local office on North Travel Center Drive for flat-rate estimates, water heater sizing consultations, or urgent plumbing dispatch.
+            </p>
+          </div>
+          <ul class="coverage-list">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F6B74" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Central &amp; Downtown Tucson</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F6B74" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Oro Valley &amp; Casas Adobes</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F6B74" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Marana &amp; Cortaro</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F6B74" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Catalina Foothills &amp; Vail</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-box">
+            <div class="contact-kicker">Phone Dispatch</div>
+            <div class="contact-val">
+              <a href="tel:+15208348400">+1 (520) 834-8400</a>
+            </div>
+          </div>
+
+          <div class="contact-box">
+            <div class="contact-kicker">Tucson Office</div>
+            <div class="contact-val">6149 N Travel Center Dr, Tucson, AZ 85741</div>
+          </div>
+
+          <div class="contact-box contact-box-full">
+            <div class="contact-kicker">Email</div>
+            <div class="contact-val">
+              <a href="mailto:info@alcoronadoplumbing.com">info@alcoronadoplumbing.com</a>
+            </div>
+          </div>
+
+          <div class="contact-box contact-box-full">
+            <div class="contact-kicker">Official Website</div>
+            <div class="contact-val">
+              <a href="https://alcoronadoplumbing.com" target="_blank" rel="noopener noreferrer">https://alcoronadoplumbing.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>Al Coronado Plumbing &bull; 6149 N Travel Center Dr, Tucson, AZ 85741</div>
+      <div class="footer-links">
+        <a href="tel:+15208348400" class="tabular">+1 (520) 834-8400</a>
+        <a href="mailto:info@alcoronadoplumbing.com">info@alcoronadoplumbing.com</a>
+        <a href="https://alcoronadoplumbing.com" target="_blank" rel="noopener noreferrer">alcoronadoplumbing.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const householdEl = document.getElementById('calc-household');
+      const bathroomsEl = document.getElementById('calc-bathrooms');
+      const ageEl = document.getElementById('calc-age');
+      const hardnessEl = document.getElementById('calc-hardness');
+      const symptomEl = document.getElementById('calc-symptom');
+      const fuelButtons = Array.from(document.querySelectorAll('.seg-btn[data-fuel]'));
+
+      const ageReadout = document.getElementById('age-readout');
+      const hardnessReadout = document.getElementById('hardness-readout');
+      const resKicker = document.getElementById('res-kicker');
+      const resCapacity = document.getElementById('res-capacity');
+      const resRecovery = document.getElementById('res-recovery');
+      const resSavings = document.getElementById('res-savings');
+      const riskLabel = document.getElementById('risk-label');
+      const riskFill = document.getElementById('risk-fill');
+
+      const cardFlush = document.getElementById('card-flush');
+      const cardReplace = document.getElementById('card-replace');
+      const tagFlush = document.getElementById('tag-flush');
+      const tagReplace = document.getElementById('tag-replace');
+      const priceFlush = document.getElementById('price-flush');
+      const titleReplace = document.getElementById('title-replace');
+      const priceReplace = document.getElementById('price-replace');
+      const descReplace = document.getElementById('desc-replace');
+      const bookingSummaryText = document.getElementById('booking-summary-text');
+
+      const bookServiceEl = document.getElementById('book-service');
+      const bookingForm = document.getElementById('booking-form');
+      const bookingConfirm = document.getElementById('booking-confirm');
+
+      let selectedFuel = 'gas';
+
+      function getHardnessTier(gpg) {
+        if (gpg <= 12) return 'Moderate';
+        if (gpg <= 18) return 'High';
+        return 'Severe';
+      }
+
+      function updateCalculator() {
+        const hh = parseInt(householdEl.value, 10);
+        const bath = parseInt(bathroomsEl.value, 10);
+        const age = parseInt(ageEl.value, 10);
+        const gpg = parseInt(hardnessEl.value, 10);
+        const symptom = symptomEl.value;
+
+        ageReadout.textContent = age + (age === 1 ? ' year' : ' years');
+        hardnessReadout.textContent = gpg + ' gpg (' + getHardnessTier(gpg) + ')';
+
+        const demandScore = hh + bath;
+        let capacityText = '';
+        let recoveryText = '';
+        let replaceTitle = '';
+        let replacePrice = '';
+        let annualSavings = 120;
+
+        if (selectedFuel === 'tankless') {
+          resKicker.textContent = 'Recommended Tankless Flow';
+          if (demandScore <= 3) {
+            capacityText = '8.0 GPM Condensing Tankless';
+            recoveryText = 'Continuous flow for 2 concurrent fixtures';
+            replaceTitle = '8.0 GPM Tankless Install';
+            replacePrice = '$3,400 – $4,100';
+            annualSavings = 195;
+          } else if (demandScore <= 5) {
+            capacityText = '9.5 GPM Condensing Tankless';
+            recoveryText = 'Continuous flow for 3 concurrent fixtures';
+            replaceTitle = '9.5 GPM Tankless Install';
+            replacePrice = '$3,750 – $4,450';
+            annualSavings = 230;
+          } else {
+            capacityText = '11.0 GPM Condensing Tankless';
+            recoveryText = 'High-demand continuous flow for 4+ fixtures';
+            replaceTitle = '11.0 GPM Tankless Install';
+            replacePrice = '$4,200 – $4,950';
+            annualSavings = 275;
+          }
+          priceFlush.textContent = '$225 – $295';
+          descReplace.textContent = 'Includes gas line sizing check, concentric venting, isolation valves, and scale-filter prep.';
+        } else if (selectedFuel === 'electric') {
+          resKicker.textContent = 'Recommended Electric Tank';
+          if (demandScore <= 2) {
+            capacityText = '40 Gal Standard Electric';
+            recoveryText = 'First-hour rating: 52–58 gal/hr';
+            replaceTitle = '40 Gal Electric Replacement';
+            replacePrice = '$1,550 – $1,980';
+            annualSavings = 115;
+          } else if (demandScore <= 5) {
+            capacityText = '50 Gal High-Efficiency Electric';
+            recoveryText = 'First-hour rating: 62–70 gal/hr';
+            replaceTitle = '50 Gal Electric Replacement';
+            replacePrice = '$1,750 – $2,250';
+            annualSavings = 150;
+          } else {
+            capacityText = '65–80 Gal Hybrid Electric';
+            recoveryText = 'First-hour rating: 78–88 gal/hr';
+            replaceTitle = 'Hybrid Electric Replacement';
+            replacePrice = '$2,650 – $3,350';
+            annualSavings = 310;
+          }
+          priceFlush.textContent = '$195 – $255';
+          descReplace.textContent = 'Includes haul-away, thermal expansion tank, drain pan, and element calibration.';
+        } else {
+          resKicker.textContent = 'Recommended Gas Tank';
+          if (demandScore <= 2) {
+            capacityText = '40 Gal Atmospheric Gas';
+            recoveryText = 'First-hour rating: 67–74 gal/hr';
+            replaceTitle = '40 Gal Gas Replacement';
+            replacePrice = '$1,650 – $2,150';
+            annualSavings = 135;
+          } else if (demandScore <= 5) {
+            capacityText = '50 Gal High-Recovery Gas';
+            recoveryText = 'First-hour rating: 82–90 gal/hr';
+            replaceTitle = '50 Gal Gas Replacement';
+            replacePrice = '$1,850 – $2,450';
+            annualSavings = 165;
+          } else {
+            capacityText = '75 Gal Commercial-Grade Gas';
+            recoveryText = 'First-hour rating: 115–125 gal/hr';
+            replaceTitle = '75 Gal Gas Replacement';
+            replacePrice = '$2,550 – $3,250';
+            annualSavings = 205;
+          }
+          priceFlush.textContent = '$195 – $265';
+          descReplace.textContent = 'Includes haul-away, code-compliant pan, expansion valve, and Tucson permit inspection.';
+        }
+
+        const scaleBonus = Math.round((gpg - 10) * 3.5);
+        const extraSavings = annualSavings + scaleBonus;
+        resCapacity.textContent = capacityText;
+        resRecovery.textContent = recoveryText;
+        resSavings.textContent = '$' + extraSavings + ' / yr';
+        titleReplace.textContent = replaceTitle;
+        priceReplace.textContent = replacePrice;
+
+        // Calculate scale & fatigue risk (0-100)
+        let risk = Math.round((age / 18) * 58 + ((gpg - 10) / 14) * 28);
+        if (symptom === 'noise') risk += 12;
+        if (symptom === 'slow') risk += 16;
+        if (symptom === 'rust') risk += 28;
+        risk = Math.max(12, Math.min(98, risk));
+
+        riskFill.style.width = risk + '%';
+        riskLabel.classList.remove('risk-low', 'risk-med', 'risk-high');
+
+        if (risk < 45) {
+          riskLabel.classList.add('risk-low');
+          riskLabel.textContent = 'Low (' + risk + '%)';
+          riskFill.style.backgroundColor = '#0F6B74';
+        } else if (risk < 72) {
+          riskLabel.classList.add('risk-med');
+          riskLabel.textContent = 'Elevated (' + risk + '%)';
+          riskFill.style.backgroundColor = '#B57418';
+        } else {
+          riskLabel.classList.add('risk-high');
+          riskLabel.textContent = 'High (' + risk + '%)';
+          riskFill.style.backgroundColor = '#A84E32';
+        }
+
+        const preferReplace = age >= 10 || symptom === 'rust' || risk >= 70;
+        if (preferReplace) {
+          cardFlush.classList.remove('recommended');
+          cardReplace.classList.add('recommended');
+          tagFlush.textContent = 'Short-Term Option';
+          tagReplace.textContent = 'Recommended Path';
+        } else {
+          cardReplace.classList.remove('recommended');
+          cardFlush.classList.add('recommended');
+          tagFlush.textContent = 'Recommended Path';
+          tagReplace.textContent = 'Upgrade Option';
+        }
+
+        const chosenLabel = preferReplace ? replaceTitle : 'Hard-Water Flush & Anode';
+        const hhText = householdEl.options[householdEl.selectedIndex].text;
+        bookingSummaryText.textContent = 'Selected: ' + chosenLabel + ' \u2022 ' + hhText + ' \u2022 ' + gpg + ' gpg Tucson water';
+      }
+
+      fuelButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          selectedFuel = btn.getAttribute('data-fuel');
+          fuelButtons.forEach(function (b) {
+            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+          });
+          updateCalculator();
+        });
+      });
+
+      [householdEl, bathroomsEl, ageEl, hardnessEl, symptomEl].forEach(function (el) {
+        el.addEventListener('input', updateCalculator);
+        el.addEventListener('change', updateCalculator);
+      });
+
+      document.querySelectorAll('.service-action[data-select-service]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const svc = btn.getAttribute('data-select-service');
+          bookServiceEl.value = svc;
+          document.getElementById('booking-section').scrollIntoView({ behavior: 'smooth' });
+          document.getElementById('book-name').focus();
+        });
+      });
+
+      bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('book-name').value.trim();
+        const phone = document.getElementById('book-phone').value.trim();
+        const zip = document.getElementById('book-zip').value.trim();
+        const service = bookServiceEl.value;
+
+        if (!name || !phone || !zip) {
+          bookingConfirm.textContent = 'Please complete your name, phone number, and Tucson ZIP code to prepare your estimate request.';
+          bookingConfirm.classList.add('is-visible');
+          return;
+        }
+
+        const refCode = 'TUC-' + String(Math.floor(1000 + Math.random() * 9000));
+        bookingConfirm.textContent =
+          'Request ' + refCode + ' prepared for ' + name + ' (' + zip + ') for ' + service +
+          '. Call +1 (520) 834-8400 or email info@alcoronadoplumbing.com to lock in your arrival window.';
+        bookingConfirm.classList.add('is-visible');
+      });
+
+      updateCalculator();
+    })();
+  </script>
+</body>
+</html>

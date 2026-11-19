@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Madison Veterinary Specialists provides 24/7 emergency veterinary care, surgery and orthopedics, internal medicine, and diagnostic imaging in Madison, WI. Use our interactive Pet Emergency Triage and Specialty Referral Intake Portal.">
+  <title>Madison Veterinary Specialists | 24/7 Emergency &amp; Specialty Care</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E6B52'/%3E%3Cpath d='M14 7h4v7h7v4h-7v7h-4v-7H7v-4h7V7z' fill='%23FFFFFF'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-linen: #F6F8F6;
+      --bg-surface: #FFFFFF;
+      --bg-muted: #EDF2EE;
+      --bg-tint: #E6EFEA;
+      --accent: #1E6B52;
+      --accent-hover: #16523E;
+      --accent-soft: #DCEBE4;
+      --slate: #14211D;
+      --slate-muted: #465751;
+      --slate-subtle: #64756F;
+      --border: #D8E2DD;
+      --border-strong: #BFCFC7;
+      --critical-bg: #FDF2F2;
+      --critical-border: #E5B4B4;
+      --critical-text: #8F2323;
+      --urgent-bg: #FCF6EB;
+      --urgent-border: #E2C693;
+      --urgent-text: #85520D;
+      --specialty-bg: #EDF5F1;
+      --specialty-border: #B4D3C5;
+      --specialty-text: #185742;
+      --shadow-sm: 0 1px 2px rgba(20, 33, 29, 0.05);
+      --shadow-md: 0 8px 24px rgba(20, 33, 29, 0.06);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Fraunces', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-linen);
+      color: var(--slate);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.18s ease;
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+    }
+
+    .tabular {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: rgba(246, 248, 246, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      color: var(--slate);
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background-color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--slate);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--slate-subtle);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--slate-muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: background-color 0.18s ease;
+    }
+
+    .header-cta:hover {
+      background-color: var(--accent-hover);
+      color: #FFFFFF;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 48px 0 36px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      gap: 32px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background-color: var(--bg-tint);
+      border: 1px solid var(--specialty-border);
+      color: var(--accent);
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 18px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4vw, 44px);
+      font-weight: 600;
+      line-height: 1.12;
+      letter-spacing: -0.015em;
+      color: var(--slate);
+    }
+
+    .hero-lead {
+      margin: 0 0 24px;
+      font-size: 17px;
+      color: var(--slate-muted);
+      max-width: 60ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 14.5px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      color: #FFFFFF;
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-surface);
+      color: var(--slate);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-muted);
+      color: var(--slate);
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric-box {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .metric-val {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .metric-label {
+      font-size: 12.5px;
+      color: var(--slate-subtle);
+      line-height: 1.35;
+    }
+
+    .hero-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--accent);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-card-title {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 600;
+      margin: 0 0 8px;
+      color: var(--slate);
+    }
+
+    .hero-card-sub {
+      font-size: 14px;
+      color: var(--slate-muted);
+      margin: 0 0 18px;
+    }
+
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+      background-color: var(--bg-linen);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    .info-row-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--slate-subtle);
+      margin-bottom: 2px;
+    }
+
+    .info-row-val {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--slate);
+    }
+
+    /* Section */
+    .section {
+      padding: 48px 0;
+    }
+
+    .section-header {
+      margin-bottom: 28px;
+    }
+
+    .section-kicker {
+      font-size: 12.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 600;
+      line-height: 1.2;
+      margin: 0 0 8px;
+      color: var(--slate);
+    }
+
+    .section-desc {
+      font-size: 15.5px;
+      color: var(--slate-muted);
+      margin: 0;
+      max-width: 68ch;
+    }
+
+    /* Triage Portal */
+    .portal-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 4px;
+      color: var(--slate);
+    }
+
+    .panel-subtitle {
+      font-size: 13.5px;
+      color: var(--slate-subtle);
+      margin: 0 0 20px;
+    }
+
+    .form-section-heading {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--slate-muted);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      margin: 22px 0 14px;
+    }
+
+    .form-section-heading:first-of-type {
+      margin-top: 0;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .form-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    label, .field-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--slate);
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="tel"],
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
+      color: var(--slate);
+      font-family: var(--font-sans);
+      font-size: 14.5px;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    input[type="number"] {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(30, 107, 82, 0.14);
+    }
+
+    .symptom-group {
+      margin-bottom: 16px;
+    }
+
+    .symptom-group-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--slate);
+      margin-bottom: 8px;
+    }
+
+    .tier-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .tier-pill-critical {
+      background-color: var(--critical-bg);
+      color: var(--critical-text);
+      border: 1px solid var(--critical-border);
+    }
+
+    .tier-pill-urgent {
+      background-color: var(--urgent-bg);
+      color: var(--urgent-text);
+      border: 1px solid var(--urgent-border);
+    }
+
+    .tier-pill-specialty {
+      background-color: var(--specialty-bg);
+      color: var(--specialty-text);
+      border: 1px solid var(--specialty-border);
+    }
+
+    .symptom-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .symptom-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-linen);
+      cursor: pointer;
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .symptom-item:hover {
+      border-color: var(--border-strong);
+      background-color: var(--bg-muted);
+    }
+
+    .symptom-item input[type="checkbox"] {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      accent-color: var(--accent);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .symptom-item label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--slate);
+      cursor: pointer;
+      line-height: 1.4;
+      flex: 1;
+    }
+
+    /* Right Output Panel */
+    .triage-sticky {
+      position: sticky;
+      top: 88px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .triage-banner {
+      border-radius: var(--radius-md);
+      padding: 18px;
+      border: 1px solid var(--border);
+      background-color: var(--bg-linen);
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .triage-banner.is-critical {
+      background-color: var(--critical-bg);
+      border-color: var(--critical-border);
+    }
+
+    .triage-banner.is-urgent {
+      background-color: var(--urgent-bg);
+      border-color: var(--urgent-border);
+    }
+
+    .triage-banner.is-specialty {
+      background-color: var(--specialty-bg);
+      border-color: var(--specialty-border);
+    }
+
+    .triage-banner-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .triage-tier-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--slate-subtle);
+    }
+
+    .triage-tier-value {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--slate);
+      margin-bottom: 6px;
+    }
+
+    .triage-banner.is-critical .triage-tier-value {
+      color: var(--critical-text);
+    }
+
+    .triage-banner.is-urgent .triage-tier-value {
+      color: var(--urgent-text);
+    }
+
+    .triage-banner.is-specialty .triage-tier-value {
+      color: var(--specialty-text);
+    }
+
+    .triage-summary-text {
+      font-size: 14px;
+      color: var(--slate-muted);
+      margin: 0;
+    }
+
+    .triage-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .stat-box {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-linen);
+    }
+
+    .stat-box-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--slate-subtle);
+      margin-bottom: 4px;
+    }
+
+    .stat-box-value {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--slate);
+    }
+
+    .checklist-box {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .checklist-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--slate);
+      margin: 0 0 10px;
+    }
+
+    .checklist-items {
+      margin: 0;
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13.5px;
+      color: var(--slate-muted);
+    }
+
+    .portal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    /* Intake Slip */
+    .intake-slip {
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius-md);
+      background-color: var(--bg-linen);
+      padding: 18px;
+    }
+
+    .slip-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+
+    .slip-title {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--slate);
+      margin: 0 0 2px;
+    }
+
+    .slip-code {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--accent);
+      background-color: var(--bg-tint);
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .slip-rows {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .slip-cell-label {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--slate-subtle);
+      margin-bottom: 2px;
+    }
+
+    .slip-cell-val {
+      font-weight: 600;
+      color: var(--slate);
+      word-break: break-word;
+    }
+
+    .slip-full {
+      grid-column: 1 / -1;
+    }
+
+    .slip-status-note {
+      margin-top: 10px;
+      font-size: 12.5px;
+      color: var(--accent);
+      font-weight: 600;
+      min-height: 18px;
+    }
+
+    /* Departments */
+    .dept-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .dept-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .dept-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-tint);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .dept-card h3 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 8px;
+      color: var(--slate);
+    }
+
+    .dept-card p {
+      font-size: 14.5px;
+      color: var(--slate-muted);
+      margin: 0 0 14px;
+    }
+
+    .dept-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .dept-tag {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--slate-muted);
+      background-color: var(--bg-linen);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    /* Contact & Location */
+    .contact-section {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .contact-box {
+      background-color: var(--bg-linen);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      min-width: 0;
+    }
+
+    .contact-box-full {
+      grid-column: 1 / -1;
+    }
+
+    .contact-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--slate-subtle);
+      margin-bottom: 6px;
+    }
+
+    .contact-value {
+      font-size: 15.5px;
+      font-weight: 600;
+      color: var(--slate);
+    }
+
+    .contact-box a[href^="mailto:"],
+    .contact-box a[href^="http"] {
+      display: inline-block;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* Footer */
+    .site-footer {
+      padding: 28px 0 40px;
+      font-size: 13.5px;
+      color: var(--slate-subtle);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .footer-disclaimer {
+      margin-top: 12px;
+      font-size: 12.5px;
+      color: var(--slate-subtle);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .portal-grid,
+      .dept-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .triage-sticky {
+        position: static;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .header-inner {
+        min-height: 64px;
+      }
+
+      .header-cta {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+
+      .hero {
+        padding: 32px 0 28px;
+      }
+
+      .hero-metrics,
+      .form-grid-2,
+      .form-grid-3,
+      .triage-stats,
+      .slip-rows,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .panel,
+      .hero-card,
+      .dept-card {
+        padding: 18px;
+      }
+
+      .contact-box a[href^="mailto:"],
+      .contact-box a[href^="http"] {
+        font-size: 12.5px;
+      }
+    }
+
+    @media print {
+      .site-header,
+      .hero,
+      #departments,
+      #contact,
+      .site-footer,
+      .portal-actions,
+      .panel:first-child {
+        display: none;
+      }
+
+      body {
+        background-color: #FFFFFF;
+      }
+
+      .portal-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 4H14V10H20V14H14V20H10V14H4V10H10V4Z" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Madison Veterinary Specialists</div>
+          <div class="brand-sub">24/7 Emergency &amp; Specialty Care · Madison, WI</div>
+        </div>
+      </a>
+      <nav class="header-nav" aria-label="Primary navigation">
+        <div class="nav-links">
+          <a href="#triage-portal">Triage Portal</a>
+          <a href="#departments">Departments</a>
+          <a href="#contact">Location &amp; Contact</a>
+        </div>
+        <a href="tel:+16082747772" class="header-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span class="tabular">+1 (608) 274-7772</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Open 24 Hours · 365 Days · Madison, Wisconsin</span>
+          </div>
+          <h1>Emergency Triage &amp; Specialty Veterinary Care</h1>
+          <p class="hero-lead">
+            Board-certified specialists and round-the-clock emergency clinicians working in direct partnership with your family veterinarian. Assess urgency, review pre-arrival preparation, and generate an intake slip before you arrive.
+          </p>
+          <div class="hero-actions">
+            <a href="#triage-portal" class="btn btn-primary">Open Triage &amp; Intake Portal</a>
+            <a href="tel:+16082747772" class="btn btn-secondary">Call Emergency Desk</a>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric-box">
+              <div class="metric-val">24 / 7</div>
+              <div class="metric-label">Continuous emergency triage &amp; ICU monitoring</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val">4</div>
+              <div class="metric-label">Core emergency &amp; specialty clinical services</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val">0–5 min</div>
+              <div class="metric-label">Immediate stabilization for critical arrivals</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Emergency Arrival Information">
+          <h2 class="hero-card-title">Direct Emergency Arrival</h2>
+          <p class="hero-card-sub">No appointment is required for emergency stabilization. Call ahead when possible so our triage team can prepare oxygen or stretcher support.</p>
+          <div class="info-list">
+            <div class="info-row">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6B52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              <div>
+                <div class="info-row-title">Hospital Address</div>
+                <div class="info-row-val">2704 Royal Avenue, Madison, WI 53713</div>
+              </div>
+            </div>
+            <div class="info-row">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6B52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              <div>
+                <div class="info-row-title">Emergency Intake</div>
+                <div class="info-row-val">Walk-in 24/7 · Priority based on medical acuity</div>
+              </div>
+            </div>
+            <div class="info-row">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6B52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+              <div>
+                <div class="info-row-title">Specialty Referrals</div>
+                <div class="info-row-val">Surgery, Internal Medicine &amp; Diagnostic Imaging</div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="triage-portal" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Interactive Clinical Tool</div>
+          <h2 class="section-title">Pet Emergency Triage &amp; Specialty Referral Intake Portal</h2>
+          <p class="section-desc">
+            Enter patient details and select observed clinical signs to receive an immediate urgency classification, recommended hospital department, estimated intake timeline, and a printable pre-registration slip.
+          </p>
+        </div>
+
+        <div class="portal-grid">
+          <div class="panel">
+            <h3 class="panel-title">Patient Profile &amp; Clinical Checklist</h3>
+            <p class="panel-subtitle">All calculations run locally in your browser for immediate guidance.</p>
+
+            <form id="triage-form" onsubmit="return false;">
+              <div class="form-section-heading">1. Patient &amp; Contact Details</div>
+              <div class="form-grid-2">
+                <div class="field">
+                  <label for="patient-species">Species</label>
+                  <select id="patient-species" name="species" autocomplete="off">
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Exotic">Exotic (Rabbit, Avian, Ferret, Reptile)</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="patient-name">Pet Name</label>
+                  <input id="patient-name" name="petName" type="text" placeholder="e.g. Maple" autocomplete="off">
+                </div>
+              </div>
+
+              <div class="form-grid-3" style="margin-top: 14px;">
+                <div class="field">
+                  <label for="patient-weight">Weight</label>
+                  <input id="patient-weight" name="weight" type="number" step="0.1" min="0.1" max="300" value="42" autocomplete="off">
+                </div>
+                <div class="field">
+                  <label for="weight-unit">Weight Unit</label>
+                  <select id="weight-unit" name="weightUnit" autocomplete="off">
+                    <option value="lbs">lbs</option>
+                    <option value="kg">kg</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="patient-age">Age (Years)</label>
+                  <input id="patient-age" name="age" type="number" step="0.5" min="0" max="40" value="6" autocomplete="off">
+                </div>
+              </div>
+
+              <div class="form-grid-3" style="margin-top: 14px;">
+                <div class="field">
+                  <label for="owner-name">Owner Name</label>
+                  <input id="owner-name" name="ownerName" type="text" placeholder="Full name" autocomplete="name">
+                </div>
+                <div class="field">
+                  <label for="owner-phone">Callback Phone</label>
+                  <input id="owner-phone" name="ownerPhone" type="tel" placeholder="(608) 555-0148" autocomplete="tel">
+                </div>
+                <div class="field">
+                  <label for="arrival-eta">Estimated Arrival</label>
+                  <select id="arrival-eta" name="arrivalEta" autocomplete="off">
+                    <option value="En route now (under 20 min)">En route now (under 20 min)</option>
+                    <option value="Within 1 hour">Within 1 hour</option>
+                    <option value="Today (1–4 hours)">Today (1–4 hours)</option>
+                    <option value="Scheduled referral inquiry">Scheduled referral inquiry</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-grid-2" style="margin-top: 14px;">
+                <div class="field">
+                  <label for="referring-clinic">Primary / Referring Clinic (Optional)</label>
+                  <input id="referring-clinic" name="referringClinic" type="text" placeholder="Clinic name" autocomplete="organization">
+                </div>
+                <div class="field">
+                  <label for="clinical-notes">Brief Observation / Medication Note</label>
+                  <input id="clinical-notes" name="clinicalNotes" type="text" placeholder="Onset time, known allergies, or medications" autocomplete="off">
+                </div>
+              </div>
+
+              <div class="form-section-heading">2. Clinical Symptom Checklist</div>
+
+              <div class="symptom-group">
+                <div class="symptom-group-title">
+                  <span>Life-Threatening &amp; Critical Signs</span>
+                  <span class="tier-pill tier-pill-critical">Critical</span>
+                </div>
+                <div class="symptom-list">
+                  <div class="symptom-item">
+                    <input type="checkbox" id="sym-breathing" data-tier="critical" data-dept="Emergency" autocomplete="off">
+                    <label for="sym-breathing">Labored breathing, open-mouth panting at rest, or pale/blue gums</label>
+                  </div>
+                  <div class="symptom-item">
+                    <input type="checkbox" id="sym-collapse" data-tier="critical" data-dept="Emergency" autocomplete="off">
+                    <label for="sym-collapse">Active seizure, sudden collapse, or unresponsiveness</label>
+                  </div>
+                  <div class="symptom-item">
+                    <input type="checkbox" id="sym-trauma" data-tier="critical" data-dept="Emergency" autocomplete="off">
+                    <label for="sym-trauma">Severe bleeding, vehicle impact, or major open wound</label>
+                  </div>
+                  <div class="symptom-item">
+                    <input type="checkbox" id="sym-bloat" data-tier="critical" data-dept="Surgery" autocomplete="off">
+                    <label for="sym-bloat">Distended, tight abdomen with unproductive retching (suspected bloat/GDV)</label>
+                  </div>
+                  <div class="symptom-item">
+                    <input type="checkbox" id="sym-toxin" data-tier="critical" data-dept="Emergency" autocomplete="off">
+                    <label for="sym-toxin">Confirmed ingestion of toxin, lilies, xylitol, antifreeze, or human medication</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="symptom-group">
+                <div class="symptom-group-title">
+                  <span>Acute &amp; Urgent Signs</span>
+                  <span class="tier-pill tier-pill-urgent">Urgent</span>
+                </div>
+                <div class="symptom-list">
+                  <div class="symptom-item">
+                    <input type="checkbox" id="sym-gi" data-tier="urgent" data-dept="Emergency" autocomplete="off">
+                    <label for="sym-gi">Repeated vomiting or diarrhea (3 or more episodes within 12 hours)</label>
+                  </div>
+                  <div class="symptom-item">
+                    <input type="checkbox" id="sym-urinary" data-tier="urgent" data-dept="Emergency" autocomplete="off">
+                    <label for="sym-urinary">Straining to urinate without output or blood in urine</label>
+                  </div>
+                  <div class="symptom-item">
+                    <input type="checkbox" id="sym-lameness" data-tier="urgent" data-dept="Surgery" autocomplete="off">
+                    <label for="sym-lameness">Sudden non-weight-bearing lameness or suspected fracture</label>
+                  </div>
+                  <div class="symptom-item">
+                    <input type="checkbox" id="sym-eye" data-tier="urgent" data-dept="Emergency" autocomplete="off">
+                    <label for="sym-eye">Acute eye trauma, persistent squinting, or sudden vision change</label>
+                  </div>
+                  <div class="symptom-item">
+                    <input type="checkbox" id="sym-lethargy" data-tier="urgent" data-dept="Internal Medicine" autocomplete="off">
+                    <label for="sym-lethargy">Marked lethargy, fever, or complete refusal of food for 24+ hours</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="symptom-group" style="margin-bottom: 0;">
+                <div class="symptom-group-title">
+                  <span>Specialty &amp; Diagnostic Referral</span>
+                  <span class="tier-pill tier-pill-specialty">Specialty Consultation</span>
+                </div>
+                <div class="symptom-list">
+                  <div class="symptom-item">
+                    <input type="checkbox" id="sym-ortho" data-tier="specialty" data-dept="Surgery" autocomplete="off">
+                    <label for="sym-ortho">Cruciate ligament (TPLO), patellar, or orthopedic surgical evaluation</label>
+                  </div>
+                  <div class="symptom-item">
+                    <input type="checkbox" id="sym-mass" data-tier="specialty" data-dept="Surgery" autocomplete="off">
+                    <label for="sym-mass">Soft tissue mass removal or scheduled surgical consultation</label>
+                  </div>
+                  <div class="symptom-item">
+                    <input type="checkbox" id="sym-internal" data-tier="specialty" data-dept="Internal Medicine" autocomplete="off">
+                    <label for="sym-internal">Chronic GI, endocrine, renal, hepatic, or immune-mediated disease workup</label>
+                  </div>
+                  <div class="symptom-item">
+                    <input type="checkbox" id="sym-imaging" data-tier="specialty" data-dept="Imaging" autocomplete="off">
+                    <label for="sym-imaging">Advanced CT, MRI, abdominal ultrasound, or echocardiography referral</label>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="triage-sticky">
+            <div class="panel">
+              <h3 class="panel-title">Triage Assessment &amp; Guidance</h3>
+              <p class="panel-subtitle">Updates automatically as symptoms or species change.</p>
+
+              <div id="triage-banner" class="triage-banner">
+                <div class="triage-banner-top">
+                  <span class="triage-tier-label">Urgency Classification</span>
+                  <span id="triage-badge" class="tier-pill tier-pill-specialty">Ready</span>
+                </div>
+                <div id="triage-tier-title" class="triage-tier-value">Select Clinical Signs</div>
+                <p id="triage-summary" class="triage-summary-text">
+                  Check one or more observed symptoms on the left to determine urgency tier, recommended department, and intake timeline.
+                </p>
+              </div>
+
+              <div class="triage-stats">
+                <div class="stat-box">
+                  <div class="stat-box-label">Recommended Department</div>
+                  <div id="rec-dept" class="stat-box-value">24/7 Emergency</div>
+                </div>
+                <div class="stat-box">
+                  <div class="stat-box-label">Estimated Intake Timeline</div>
+                  <div id="intake-timeline" class="stat-box-value tabular">15–30 min</div>
+                </div>
+              </div>
+
+              <div class="checklist-box">
+                <div class="checklist-title">Pre-Arrival Preparation Checklist</div>
+                <ul id="prearrival-list" class="checklist-items">
+                  <li>Bring a list of current medications, dosages, and any recent primary vet lab records.</li>
+                  <li>Use a secure leash for dogs or a latched hard-sided carrier for cats and exotic pets.</li>
+                  <li>Call +1 (608) 274-7772 when pulling into 2704 Royal Avenue if stretcher assistance is needed.</li>
+                </ul>
+              </div>
+
+              <div class="portal-actions">
+                <button type="button" id="btn-generate-slip" class="btn btn-primary">Generate Intake Slip</button>
+                <button type="button" id="btn-copy-slip" class="btn btn-secondary">Copy Summary</button>
+                <button type="button" id="btn-print-slip" class="btn btn-secondary">Print Slip</button>
+                <button type="button" id="btn-reset-form" class="btn btn-secondary">Reset</button>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="intake-slip" id="intake-slip">
+                <div class="slip-header">
+                  <div>
+                    <h4 class="slip-title">Pre-Registration Intake Slip</h4>
+                    <div style="font-size: 12.5px; color: var(--slate-subtle);">Madison Veterinary Specialists · 2704 Royal Ave</div>
+                  </div>
+                  <div id="slip-ref-code" class="slip-code">MVS-READY</div>
+                </div>
+                <div class="slip-rows">
+                  <div>
+                    <div class="slip-cell-label">Patient</div>
+                    <div id="slip-patient" class="slip-cell-val">Dog · 42 lbs · 6 yrs</div>
+                  </div>
+                  <div>
+                    <div class="slip-cell-label">Urgency / Dept</div>
+                    <div id="slip-urgency" class="slip-cell-val">Pending Selection</div>
+                  </div>
+                  <div>
+                    <div class="slip-cell-label">Owner / Callback</div>
+                    <div id="slip-owner" class="slip-cell-val">Not provided</div>
+                  </div>
+                  <div>
+                    <div class="slip-cell-label">Arrival / Referring</div>
+                    <div id="slip-eta" class="slip-cell-val">En route now (under 20 min)</div>
+                  </div>
+                  <div class="slip-full">
+                    <div class="slip-cell-label">Reported Signs &amp; Notes</div>
+                    <div id="slip-symptoms" class="slip-cell-val">No symptoms selected yet.</div>
+                  </div>
+                  <div class="slip-full">
+                    <div class="slip-cell-label">Generated Timestamp</div>
+                    <div id="slip-timestamp" class="slip-cell-val tabular">--</div>
+                  </div>
+                </div>
+                <div id="slip-status-note" class="slip-status-note" aria-live="polite"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="departments" class="section" style="padding-top: 12px;">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Clinical Capabilities</div>
+          <h2 class="section-title">Integrated Emergency &amp; Specialty Departments</h2>
+          <p class="section-desc">
+            Our Madison hospital brings critical care clinicians, board-certified surgeons, internists, and diagnostic imaging together under one roof.
+          </p>
+        </div>
+
+        <div class="dept-grid">
+          <article class="dept-card">
+            <div class="dept-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
+            <h3>24/7 Emergency Veterinary Care</h3>
+            <p>Continuous triage, oxygen therapy, trauma stabilization, toxin decontamination, and intensive care unit monitoring every day and night of the year.</p>
+            <div class="dept-tags">
+              <span class="dept-tag">Oxygen &amp; ICU</span>
+              <span class="dept-tag">Toxin Management</span>
+              <span class="dept-tag">Trauma Stabilization</span>
+            </div>
+          </article>
+
+          <article class="dept-card">
+            <div class="dept-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+              </svg>
+            </div>
+            <h3>Veterinary Surgery &amp; Orthopedics</h3>
+            <p>Board-certified soft tissue, orthopedic, and minimally invasive surgical procedures including TPLO cruciate repair, fracture fixation, and emergency abdominal surgery.</p>
+            <div class="dept-tags">
+              <span class="dept-tag">TPLO &amp; Orthopedics</span>
+              <span class="dept-tag">Soft Tissue Surgery</span>
+              <span class="dept-tag">GDV &amp; Foreign Body</span>
+            </div>
+          </article>
+
+          <article class="dept-card">
+            <div class="dept-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <h3>Internal Medicine</h3>
+            <p>Comprehensive diagnostic workups and long-term management for complex endocrine, gastrointestinal, hepatic, renal, respiratory, and immune-mediated conditions.</p>
+            <div class="dept-tags">
+              <span class="dept-tag">Endoscopy</span>
+              <span class="dept-tag">Endocrine &amp; Renal</span>
+              <span class="dept-tag">Complex Diagnostics</span>
+            </div>
+          </article>
+
+          <article class="dept-card">
+            <div class="dept-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="12" cy="12" r="4"/>
+                <line x1="12" y1="3" x2="12" y2="5"/>
+                <line x1="12" y1="19" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h3>Diagnostic Imaging</h3>
+            <p>On-site high-resolution ultrasound, digital radiography, computed tomography (CT), and MRI interpretation to guide accurate medical and surgical decisions.</p>
+            <div class="dept-tags">
+              <span class="dept-tag">CT &amp; MRI</span>
+              <span class="dept-tag">Ultrasound</span>
+              <span class="dept-tag">Digital Radiography</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Hospital Location &amp; Referrals</div>
+          <h2 class="section-title">Reach Madison Veterinary Specialists</h2>
+          <p class="section-desc">
+            Located just off the Beltline in Madison, Wisconsin with dedicated emergency parking and direct veterinary referral coordination.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-box">
+            <div class="contact-label">24/7 Emergency &amp; Main Line</div>
+            <div class="contact-value">
+              <a href="tel:+16082747772" class="tabular">+1 (608) 274-7772</a>
+            </div>
+          </div>
+
+          <div class="contact-box">
+            <div class="contact-label">Hospital Address</div>
+            <div class="contact-value">2704 Royal Avenue, Madison, WI 53713</div>
+          </div>
+
+          <div class="contact-box contact-box-full">
+            <div class="contact-label">Referral &amp; Client Inquiries Email</div>
+            <div class="contact-value">
+              <a href="mailto:mvs@mvsvets.com">mvs@mvsvets.com</a>
+            </div>
+          </div>
+
+          <div class="contact-box contact-box-full">
+            <div class="contact-label">Official Hospital Website</div>
+            <div class="contact-value">
+              <a href="https://www.mvsvets.com" target="_blank" rel="noopener noreferrer">https://www.mvsvets.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div><strong>Madison Veterinary Specialists</strong> · 2704 Royal Avenue, Madison, WI 53713</div>
+        <div class="tabular">Emergency Line: +1 (608) 274-7772</div>
+      </div>
+      <p class="footer-disclaimer">
+        Clinical notice: This interactive triage portal supports pre-arrival planning and does not replace an in-person veterinary examination. If your pet is experiencing severe respiratory distress, collapse, active bleeding, or suspected toxin exposure, proceed directly to the hospital or call +1 (608) 274-7772 immediately.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const speciesEl = document.getElementById('patient-species');
+      const nameEl = document.getElementById('patient-name');
+      const weightEl = document.getElementById('patient-weight');
+      const weightUnitEl = document.getElementById('weight-unit');
+      const ageEl = document.getElementById('patient-age');
+      const ownerNameEl = document.getElementById('owner-name');
+      const ownerPhoneEl = document.getElementById('owner-phone');
+      const etaEl = document.getElementById('arrival-eta');
+      const clinicEl = document.getElementById('referring-clinic');
+      const notesEl = document.getElementById('clinical-notes');
+
+      const checkboxes = Array.from(document.querySelectorAll('#triage-form input[type="checkbox"]'));
+      const bannerEl = document.getElementById('triage-banner');
+      const badgeEl = document.getElementById('triage-badge');
+      const tierTitleEl = document.getElementById('triage-tier-title');
+      const summaryEl = document.getElementById('triage-summary');
+      const deptEl = document.getElementById('rec-dept');
+      const timelineEl = document.getElementById('intake-timeline');
+      const prearrivalListEl = document.getElementById('prearrival-list');
+
+      const slipRefEl = document.getElementById('slip-ref-code');
+      const slipPatientEl = document.getElementById('slip-patient');
+      const slipUrgencyEl = document.getElementById('slip-urgency');
+      const slipOwnerEl = document.getElementById('slip-owner');
+      const slipEtaEl = document.getElementById('slip-eta');
+      const slipSymptomsEl = document.getElementById('slip-symptoms');
+      const slipTimestampEl = document.getElementById('slip-timestamp');
+      const slipNoteEl = document.getElementById('slip-status-note');
+
+      const btnGenerate = document.getElementById('btn-generate-slip');
+      const btnCopy = document.getElementById('btn-copy-slip');
+      const btnPrint = document.getElementById('btn-print-slip');
+      const btnReset = document.getElementById('btn-reset-form');
+
+      let currentCode = 'MVS-READY';
+
+      function formatNow() {
+        const now = new Date();
+        const pad = (n) => String(n).padStart(2, '0');
+        return now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate()) + ' ' + pad(now.getHours()) + ':' + pad(now.getMinutes());
+      }
+
+      function generateRefCode() {
+        const num = Math.floor(1000 + Math.random() * 9000);
+        return 'MVS-' + String(new Date().getFullYear()).slice(-2) + '-' + num;
+      }
+
+      function getSpeciesPrepItem(species) {
+        if (species === 'Cat') {
+          return 'Transport your cat in a secure, latched carrier covered lightly with a breathable towel to reduce stress.';
+        }
+        if (species === 'Exotic') {
+          return 'Bring your exotic pet in a temperature-stable travel enclosure and include a sample of their normal diet.';
+        }
+        return 'Keep dogs on a short, non-retractable leash or request a rolling gurney at the front entrance.';
+      }
+
+      function evaluateTriage() {
+        const selected = checkboxes.filter((cb) => cb.checked);
+        const species = speciesEl.value;
+        const petName = nameEl.value.trim();
+        const weight = weightEl.value ? weightEl.value + ' ' + weightUnitEl.value : 'Weight not entered';
+        const age = ageEl.value ? ageEl.value + ' yrs' : 'Age not entered';
+
+        let highestTier = 'none';
+        let deptCounts = {
+          Emergency: 0,
+          Surgery: 0,
+          'Internal Medicine': 0,
+          Imaging: 0
+        };
+
+        selected.forEach((cb) => {
+          const tier = cb.getAttribute('data-tier');
+          const dept = cb.getAttribute('data-dept');
+          if (dept && deptCounts.hasOwnProperty(dept)) {
+            deptCounts[dept] += 1;
+          }
+          if (tier === 'critical') {
+            highestTier = 'critical';
+          } else if (tier === 'urgent' && highestTier !== 'critical') {
+            highestTier = 'urgent';
+          } else if (tier === 'specialty' && highestTier === 'none') {
+            highestTier = 'specialty';
+          }
+        });
+
+        // Determine recommended department
+        let recDept = '24/7 Emergency';
+        if (highestTier === 'critical') {
+          recDept = deptCounts.Surgery > 0 && deptCounts.Emergency === 0 ? 'Emergency & Surgery' : '24/7 Emergency';
+        } else if (highestTier === 'urgent') {
+          if (deptCounts.Surgery > deptCounts.Emergency && deptCounts.Surgery >= deptCounts['Internal Medicine']) {
+            recDept = 'Emergency / Surgery';
+          } else if (deptCounts['Internal Medicine'] > deptCounts.Emergency) {
+            recDept = 'Emergency / Internal Med';
+          } else {
+            recDept = '24/7 Emergency';
+          }
+        } else if (highestTier === 'specialty') {
+          let topDept = 'Surgery';
+          let maxCount = -1;
+          ['Surgery', 'Internal Medicine', 'Imaging'].forEach((d) => {
+            if (deptCounts[d] > maxCount) {
+              maxCount = deptCounts[d];
+              topDept = d;
+            }
+          });
+          if (topDept === 'Surgery') recDept = 'Surgery & Orthopedics';
+          else if (topDept === 'Imaging') recDept = 'Diagnostic Imaging';
+          else recDept = 'Internal Medicine';
+        }
+
+        // Update UI banner & timeline
+        bannerEl.classList.remove('is-critical', 'is-urgent', 'is-specialty');
+        badgeEl.classList.remove('tier-pill-critical', 'tier-pill-urgent', 'tier-pill-specialty');
+
+        let tierText = 'Select Clinical Signs';
+        let timelineText = '15–30 min';
+        let prepItems = [];
+
+        if (highestTier === 'critical') {
+          bannerEl.classList.add('is-critical');
+          badgeEl.classList.add('tier-pill-critical');
+          badgeEl.textContent = 'Critical Priority';
+          tierText = 'Critical — Proceed Immediately';
+          timelineText = '0–5 min (Immediate)';
+          summaryEl.textContent = 'Selected signs indicate a potentially life-threatening emergency. Proceed directly to 2704 Royal Avenue and call +1 (608) 274-7772 while en route.';
+          prepItems = [
+            'Call +1 (608) 274-7772 from the road so our emergency team can meet you at the door.',
+            'If toxin exposure is suspected, bring the original container, plant sample, or medication bottle.',
+            getSpeciesPrepItem(species),
+            'Do not offer food, water, or home pain medications before veterinary evaluation.'
+          ];
+        } else if (highestTier === 'urgent') {
+          bannerEl.classList.add('is-urgent');
+          badgeEl.classList.add('tier-pill-urgent');
+          badgeEl.textContent = 'Urgent Care';
+          tierText = 'Urgent — Same-Day Evaluation';
+          timelineText = '15–35 min';
+          summaryEl.textContent = 'Your pet should be evaluated promptly by our 24/7 emergency clinicians. Bring any recent records from your primary veterinarian.';
+          prepItems = [
+            'Bring current medication lists and any primary clinic lab work from the past 30 days.',
+            'Withhold food if surgery or sedation may be required, unless your pet is diabetic or a young puppy/kitten.',
+            getSpeciesPrepItem(species),
+            'Call +1 (608) 274-7772 if symptoms worsen during transit.'
+          ];
+        } else if (highestTier === 'specialty') {
+          bannerEl.classList.add('is-specialty');
+          badgeEl.classList.add('tier-pill-specialty');
+          badgeEl.textContent = 'Specialty Referral';
+          tierText = 'Specialty Consultation';
+          timelineText = 'Scheduled Intake';
+          summaryEl.textContent = 'Signs align with a scheduled specialty or diagnostic imaging consultation. Coordinate records transfer with your primary veterinarian or email mvs@mvsvets.com.';
+          prepItems = [
+            'Request that your primary veterinarian email medical records and radiographs to mvs@mvsvets.com.',
+            'Confirm fasting instructions prior to scheduled anesthesia, CT, MRI, or ultrasound.',
+            getSpeciesPrepItem(species),
+            'Plan for an initial specialist consultation and diagnostic review window.'
+          ];
+        } else {
+          badgeEl.classList.add('tier-pill-specialty');
+          badgeEl.textContent = 'Ready';
+          tierText = 'Select Clinical Signs';
+          timelineText = '15–30 min';
+          summaryEl.textContent = 'Check one or more observed symptoms on the left to determine urgency tier, recommended department, and intake timeline.';
+          prepItems = [
+            'Bring a list of current medications, dosages, and any recent primary vet lab records.',
+            getSpeciesPrepItem(species),
+            'Call +1 (608) 274-7772 when pulling into 2704 Royal Avenue if stretcher assistance is needed.'
+          ];
+        }
+
+        tierTitleEl.textContent = tierText;
+        deptEl.textContent = recDept;
+        timelineEl.textContent = timelineText;
+
+        prearrivalListEl.innerHTML = '';
+        prepItems.forEach((text) => {
+          const li = document.createElement('li');
+          li.textContent = text;
+          prearrivalListEl.appendChild(li);
+        });
+
+        // Sync Slip Preview
+        const patientDisplay = (petName ? petName + ' · ' : '') + species + ' · ' + weight + ' · ' + age;
+        slipPatientEl.textContent = patientDisplay;
+        slipUrgencyEl.textContent = (highestTier === 'none' ? 'Pending Selection' : tierText.split(' — ')[0]) + ' · ' + recDept;
+
+        const ownerName = ownerNameEl.value.trim();
+        const ownerPhone = ownerPhoneEl.value.trim();
+        slipOwnerEl.textContent = (ownerName || 'Owner not listed') + (ownerPhone ? ' · ' + ownerPhone : '');
+
+        const clinic = clinicEl.value.trim();
+        slipEtaEl.textContent = etaEl.value + (clinic ? ' · Ref: ' + clinic : '');
+
+        if (selected.length > 0) {
+          const labels = selected.map((cb) => {
+            const lbl = document.querySelector('label[for="' + cb.id + '"]');
+            return lbl ? lbl.textContent.trim() : '';
+          }).filter(Boolean);
+          const extraNote = notesEl.value.trim();
+          slipSymptomsEl.textContent = labels.join('; ') + (extraNote ? ' | Note: ' + extraNote : '');
+        } else {
+          const extraNote = notesEl.value.trim();
+          slipSymptomsEl.textContent = extraNote ? 'Note: ' + extraNote : 'No symptoms selected yet.';
+        }
+
+        slipTimestampEl.textContent = formatNow();
+        slipRefEl.textContent = currentCode;
+      }
+
+      btnGenerate.addEventListener('click', function () {
+        currentCode = generateRefCode();
+        evaluateTriage();
+        slipNoteEl.textContent = 'Pre-registration slip generated locally (' + currentCode + '). Present this reference at the front desk.';
+      });
+
+      btnCopy.addEventListener('click', function () {
+        if (currentCode === 'MVS-READY') {
+          currentCode = generateRefCode();
+          evaluateTriage();
+        }
+        const summaryText = [
+          'MADISON VETERINARY SPECIALISTS - PRE-REGISTRATION INTAKE SLIP',
+          'Reference: ' + slipRefEl.textContent,
+          'Patient: ' + slipPatientEl.textContent,
+          'Urgency / Dept: ' + slipUrgencyEl.textContent,
+          'Owner / Callback: ' + slipOwnerEl.textContent,
+          'Arrival / Referring: ' + slipEtaEl.textContent,
+          'Reported Signs: ' + slipSymptomsEl.textContent,
+          'Timestamp: ' + slipTimestampEl.textContent,
+          'Hospital: 2704 Royal Avenue, Madison, WI 53713 | +1 (608) 274-7772'
+        ].join('\n');
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(summaryText).then(function () {
+            slipNoteEl.textContent = 'Intake summary copied to clipboard.';
+          }).catch(function () {
+            slipNoteEl.textContent = 'Copy unavailable in this browser context. Use Print Slip instead.';
+          });
+        } else {
+          slipNoteEl.textContent = 'Clipboard API unavailable. Use Print Slip to save a copy.';
+        }
+      });
+
+      btnPrint.addEventListener('click', function () {
+        if (currentCode === 'MVS-READY') {
+          currentCode = generateRefCode();
+          evaluateTriage();
+        }
+        window.print();
+      });
+
+      btnReset.addEventListener('click', function () {
+        document.getElementById('triage-form').reset();
+        currentCode = 'MVS-READY';
+        slipNoteEl.textContent = '';
+        evaluateTriage();
+      });
+
+      [speciesEl, nameEl, weightEl, weightUnitEl, ageEl, ownerNameEl, ownerPhoneEl, etaEl, clinicEl, notesEl].forEach((el) => {
+        el.addEventListener('input', evaluateTriage);
+        el.addEventListener('change', evaluateTriage);
+      });
+
+      checkboxes.forEach((cb) => {
+        cb.addEventListener('change', evaluateTriage);
+      });
+
+      evaluateTriage();
+    })();
+  </script>
+</body>
+</html>
