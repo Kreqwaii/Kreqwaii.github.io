@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Perth Plumbing and Gas — 24/7 Emergency Plumbing, Gas Fitting, Hot Water Systems, Blocked Drains, and Bathroom &amp; Kitchen Plumbing across Perth, WA. Instant AUD Quote Estimator.">
+  <title>Perth Plumbing and Gas — Quote Estimator &amp; Dispatch (Perth, WA)</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B5D63'/%3E%3Cpath d='M16 6c-4 5.2-7 8.8-7 13a7 7 0 0 0 14 0c0-4.2-3-7.8-7-13zm0 17.5a4.5 4.5 0 0 1-4.5-4.5c0-2.1 1.4-4.3 4.5-8.2 3.1 3.9 4.5 6.1 4.5 8.2A4.5 4.5 0 0 1 16 23.5z' fill='%23F4EDE2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAF7F2;
+      --surface: #FFFFFF;
+      --surface-alt: #F3EDE3;
+      --ink: #132226;
+      --ink-muted: #4C6166;
+      --teal: #0B5D63;
+      --teal-dark: #074449;
+      --teal-soft: #E5F1F2;
+      --sand: #D9CBB8;
+      --border: #E2D9CC;
+      --accent: #C76D3B;
+      --radius: 12px;
+      --shadow: 0 10px 30px rgba(19, 34, 38, 0.06);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', 'DM Sans', system-ui, sans-serif;
+      margin: 0;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      background-color: var(--teal);
+      display: grid;
+      place-items: center;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--teal);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 16px;
+      border-radius: 9px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background-color 0.18s ease;
+    }
+
+    .header-cta:hover {
+      background-color: var(--teal-dark);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 40px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background-color: var(--teal-soft);
+      color: var(--teal-dark);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 11px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 42px);
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+
+    .hero-lead {
+      font-size: 16px;
+      color: var(--ink-muted);
+      margin: 0 0 22px;
+      max-width: 58ch;
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .trust-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .trust-val {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--teal);
+    }
+
+    .trust-lbl {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .contact-panel {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-panel h2 {
+      font-size: 17px;
+      margin-bottom: 12px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .contact-item {
+      background-color: var(--surface-alt);
+      border-radius: 8px;
+      padding: 10px 12px;
+      min-width: 0;
+    }
+
+    .contact-item-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+      margin-bottom: 3px;
+    }
+
+    .contact-item-val {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .contact-link-row {
+      grid-column: 1 / -1;
+      background-color: var(--surface-alt);
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    a[href^="mailto:"],
+    a[href^="http"] {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 12px;
+      color: var(--teal);
+      font-weight: 600;
+      text-decoration: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    a[href^="mailto:"]:hover,
+    a[href^="http"]:hover {
+      text-decoration: underline;
+    }
+
+    /* Main Workspace: Estimator + Summary */
+    .workspace {
+      padding: 12px 0 48px;
+    }
+
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel-title {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .panel-sub {
+      font-size: 14px;
+      color: var(--ink-muted);
+      margin: 0 0 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--sand);
+      border-radius: 8px;
+      background-color: #FFFFFF;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 14px;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(11, 93, 99, 0.14);
+    }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .seg-btn {
+      border: 1px solid var(--sand);
+      background-color: var(--surface-alt);
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .seg-btn[aria-pressed="true"] {
+      background-color: var(--teal);
+      border-color: var(--teal);
+      color: #FFFFFF;
+    }
+
+    .seg-btn span {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    /* Quote Summary */
+    .quote-box {
+      background-color: var(--teal);
+      color: #FFFFFF;
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 18px;
+    }
+
+    .quote-kicker {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.85;
+      margin-bottom: 6px;
+    }
+
+    .quote-range {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(26px, 3vw, 34px);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .quote-note {
+      font-size: 13px;
+      opacity: 0.9;
+      margin: 0;
+    }
+
+    .breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .breakdown-row span:first-child {
+      color: var(--ink-muted);
+    }
+
+    .breakdown-row span:last-child {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .btn-primary {
+      width: 100%;
+      background-color: var(--accent);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 9px;
+      padding: 13px 18px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.18s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #B05B2C;
+    }
+
+    .status-banner {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background-color: var(--teal-soft);
+      color: var(--teal-dark);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .status-banner.visible {
+      display: block;
+    }
+
+    /* Services Strip */
+    .services {
+      padding: 0 0 52px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    .service-card h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: var(--teal-dark);
+    }
+
+    .service-card p {
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin: 0;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background-color: var(--surface);
+      padding: 20px 0;
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .form-grid,
+      .contact-grid,
+      .trust-row,
+      .services-grid,
+      .segmented {
+        grid-template-columns: 1fr;
+      }
+      .header-cta {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3C8.5 7.5 6 10.7 6 14.5a6 6 0 0 0 12 0C18 10.7 15.5 7.5 12 3Z" fill="#F4EDE2"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Perth Plumbing and Gas</div>
+          <div class="brand-sub">Licensed Plumbers &amp; Gas Fitters — Perth, WA</div>
+        </div>
+      </a>
+      <a class="header-cta num" href="tel:0432677338">Call 0432 677 338</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">24/7 Emergency &amp; Scheduled Dispatch — Perth Metro</div>
+          <h1>Perth Plumbing &amp; Hot Water System Quote Estimator</h1>
+          <p class="hero-lead">
+            Calculate an instant AUD estimate for emergency plumbing, gas fitting, hot water system replacement, or blocked drain clearing across Perth, WA.
+          </p>
+          <div class="trust-row">
+            <div class="trust-card">
+              <div class="trust-val num">24/7</div>
+              <div class="trust-lbl">Emergency response</div>
+            </div>
+            <div class="trust-card">
+              <div class="trust-val num">AUD $0</div>
+              <div class="trust-lbl">Upfront quote estimate</div>
+            </div>
+            <div class="trust-card">
+              <div class="trust-val num">60 min</div>
+              <div class="trust-lbl">Target metro arrival</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="contact-panel" aria-label="Direct contact details">
+          <h2>Direct Dispatch Desk</h2>
+          <div class="contact-grid">
+            <div class="contact-item">
+              <div class="contact-item-label">Phone</div>
+              <div class="contact-item-val num">0432 677 338</div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-label">Service Area</div>
+              <div class="contact-item-val">Perth, WA</div>
+            </div>
+            <div class="contact-link-row">
+              <a href="mailto:info@perthplumbing.com.au">info@perthplumbing.com.au</a>
+            </div>
+            <div class="contact-link-row">
+              <a href="https://www.perthplumbing.com.au/" target="_blank" rel="noopener noreferrer">https://www.perthplumbing.com.au/</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="container workspace-grid">
+        <form class="panel" id="quoteForm" novalidate>
+          <h2 class="panel-title">Configure Your Job</h2>
+          <p class="panel-sub">Select your service category, hot water system type if applicable, and urgency level.</p>
+
+          <div class="form-grid">
+            <div class="field field-full">
+              <label for="serviceType">Plumbing or Gas Service</label>
+              <select id="serviceType" name="serviceType" autocomplete="off">
+                <option value="hot-water">Hot Water System Supply &amp; Install</option>
+                <option value="emergency">24/7 Emergency Plumbing &amp; Burst Pipes</option>
+                <option value="drains">Blocked Drains &amp; Leak Detection</option>
+                <option value="gas">Gas Fitting, Bayonets &amp; Leak Testing</option>
+                <option value="renovation">Bathroom &amp; Kitchen Plumbing</option>
+              </select>
+            </div>
+
+            <div class="field field-full" id="hwsGroup">
+              <label for="hwsType">Hot Water System Type</label>
+              <select id="hwsType" name="hwsType" autocomplete="off">
+                <option value="gas-continuous">Gas Continuous Flow (Instantaneous)</option>
+                <option value="electric">Electric Storage Tank</option>
+                <option value="heat-pump">Energy-Efficient Heat Pump</option>
+                <option value="solar">Solar Hot Water System</option>
+              </select>
+            </div>
+
+            <div class="field field-full">
+              <div class="field-label" id="urgencyLabel" style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;">Dispatch Urgency</div>
+              <div class="segmented" role="group" aria-labelledby="urgencyLabel">
+                <button type="button" class="seg-btn" data-urgency="standard" aria-pressed="true">
+                  Standard Booking
+                  <span>Next available weekday slot</span>
+                </button>
+                <button type="button" class="seg-btn" data-urgency="emergency" aria-pressed="false">
+                  24/7 Urgent Dispatch
+                  <span>Same-day or after-hours priority</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="suburb">Perth Suburb</label>
+              <input id="suburb" name="suburb" type="text" placeholder="e.g. Subiaco, Fremantle, Joondalup" autocomplete="address-level2" required>
+            </div>
+
+            <div class="field">
+              <label for="contactName">Your Name</label>
+              <input id="contactName" name="contactName" type="text" placeholder="Full name" autocomplete="name" required>
+            </div>
+
+            <div class="field">
+              <label for="contactPhone">Phone Number</label>
+              <input id="contactPhone" name="contactPhone" type="tel" placeholder="04XX XXX XXX" autocomplete="tel" required>
+            </div>
+
+            <div class="field">
+              <label for="contactEmail">Email Address</label>
+              <input id="contactEmail" name="contactEmail" type="email" placeholder="you@example.com.au" autocomplete="email" required>
+            </div>
+
+            <div class="field field-full">
+              <label for="jobNotes">Job Notes</label>
+              <textarea id="jobNotes" name="jobNotes" rows="3" placeholder="Brief description of the issue, access notes, or preferred time" autocomplete="off"></textarea>
+            </div>
+          </div>
+        </form>
+
+        <aside class="panel" aria-label="Estimated quote and dispatch">
+          <div class="quote-box">
+            <div class="quote-kicker">Estimated Guide Price (AUD)</div>
+            <div class="quote-range num" id="quoteRange">AUD $1,650 – $2,450</div>
+            <p class="quote-note" id="quoteNote">Includes standard installation, compliance certificate, and removal of old unit.</p>
+          </div>
+
+          <div class="breakdown">
+            <div class="breakdown-row">
+              <span>Service</span>
+              <span id="sumService">Hot Water System</span>
+            </div>
+            <div class="breakdown-row" id="sumHwsRow">
+              <span>System Type</span>
+              <span id="sumHws">Gas Continuous Flow</span>
+            </div>
+            <div class="breakdown-row">
+              <span>Urgency</span>
+              <span id="sumUrgency">Standard Booking</span>
+            </div>
+            <div class="breakdown-row">
+              <span>Call-out &amp; Assessment</span>
+              <span class="num" id="sumCallout">AUD $95</span>
+            </div>
+          </div>
+
+          <button type="submit" form="quoteForm" class="btn-primary">Request Dispatch &amp; Lock Estimate</button>
+          <div class="status-banner" id="statusBanner" role="status" aria-live="polite"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="services">
+      <div class="container services-grid">
+        <article class="service-card">
+          <h3>24/7 Emergency Plumbing</h3>
+          <p>Rapid response for burst pipes, overflowing fixtures, and urgent water shut-offs across Perth metro.</p>
+        </article>
+        <article class="service-card">
+          <h3>Gas Fitting &amp; Hot Water</h3>
+          <p>Licensed installation and servicing for Gas Continuous, Electric, Heat Pump, and Solar hot water units.</p>
+        </article>
+        <article class="service-card">
+          <h3>Blocked Drains &amp; Leaks</h3>
+          <p>High-pressure hydro-jetting, CCTV drain inspection, and acoustic leak detection without guesswork.</p>
+        </article>
+        <article class="service-card">
+          <h3>Bathroom &amp; Kitchen</h3>
+          <p>Tapware upgrades, rough-ins, appliance connections, and full wet-area plumbing for renovations.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Perth Plumbing and Gas — Perth, Western Australia</span>
+      <span class="num">Phone: 0432 677 338 | Email: info@perthplumbing.com.au</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const serviceEl = document.getElementById('serviceType');
+      const hwsEl = document.getElementById('hwsType');
+      const hwsGroup = document.getElementById('hwsGroup');
+      const sumHwsRow = document.getElementById('sumHwsRow');
+      const urgencyBtns = document.querySelectorAll('.seg-btn');
+      const quoteRange = document.getElementById('quoteRange');
+      const quoteNote = document.getElementById('quoteNote');
+      const sumService = document.getElementById('sumService');
+      const sumHws = document.getElementById('sumHws');
+      const sumUrgency = document.getElementById('sumUrgency');
+      const sumCallout = document.getElementById('sumCallout');
+      const form = document.getElementById('quoteForm');
+      const statusBanner = document.getElementById('statusBanner');
+
+      let urgency = 'standard';
+
+      const pricing = {
+        'hot-water': {
+          label: 'Hot Water System',
+          note: 'Includes standard installation, compliance certificate, and removal of old unit.',
+          systems: {
+            'gas-continuous': { label: 'Gas Continuous Flow', min: 1650, max: 2450 },
+            'electric': { label: 'Electric Storage Tank', min: 1450, max: 2150 },
+            'heat-pump': { label: 'Heat Pump System', min: 2650, max: 3900 },
+            'solar': { label: 'Solar Hot Water', min: 3400, max: 5200 }
+          }
+        },
+        'emergency': {
+          label: '24/7 Emergency Plumbing',
+          note: 'Covers immediate diagnostics, isolation, and standard repair parts.',
+          min: 220,
+          max: 580
+        },
+        'drains': {
+          label: 'Blocked Drains & Leak Detection',
+          note: 'Includes drain clearing or acoustic leak location and report.',
+          min: 240,
+          max: 620
+        },
+        'gas': {
+          label: 'Gas Fitting & Leak Testing',
+          note: 'Includes pressure testing, bayonet or appliance connection, and compliance.',
+          min: 260,
+          max: 690
+        },
+        'renovation': {
+          label: 'Bathroom & Kitchen Plumbing',
+          note: 'Guide range for fixture swap or rough-in stage; final quote after site check.',
+          min: 380,
+          max: 1450
+        }
+      };
+
+      function formatAud(val) {
+        return 'AUD $' + val.toLocaleString('en-AU');
+      }
+
+      function updateQuote() {
+        const svcKey = serviceEl.value;
+        const svc = pricing[svcKey];
+        const isHws = svcKey === 'hot-water';
+
+        hwsGroup.style.display = isHws ? 'flex' : 'none';
+        sumHwsRow.style.display = isHws ? 'flex' : 'none';
+
+        let min = 0;
+        let max = 0;
+
+        if (isHws) {
+          const sys = svc.systems[hwsEl.value];
+          min = sys.min;
+          max = sys.max;
+          sumHws.textContent = sys.label;
+        } else {
+          min = svc.min;
+          max = svc.max;
+        }
+
+        const calloutFee = urgency === 'emergency' ? 165 : 95;
+        if (urgency === 'emergency') {
+          min += 120;
+          max += 180;
+        }
+
+        sumService.textContent = svc.label;
+        sumUrgency.textContent = urgency === 'emergency' ? '24/7 Urgent Dispatch' : 'Standard Booking';
+        sumCallout.textContent = formatAud(calloutFee);
+        quoteRange.textContent = formatAud(min) + ' – ' + formatAud(max).replace('AUD ', '');
+        quoteNote.textContent = svc.note;
+      }
+
+      urgencyBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          urgency = btn.getAttribute('data-urgency');
+          urgencyBtns.forEach(function (b) {
+            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+          });
+          updateQuote();
+        });
+      });
+
+      serviceEl.addEventListener('change', updateQuote);
+      hwsEl.addEventListener('change', updateQuote);
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('contactName').value.trim();
+        const phone = document.getElementById('contactPhone').value.trim();
+        const suburb = document.getElementById('suburb').value.trim();
+
+        if (!name || !phone || !suburb) {
+          statusBanner.textContent = 'Please enter your suburb, name, and phone number to request dispatch.';
+          statusBanner.classList.add('visible');
+          return;
+        }
+
+        statusBanner.textContent = 'Request logged for ' + name + ' in ' + suburb + ' (' + quoteRange.textContent + '). For immediate dispatch, call 0432 677 338.';
+        statusBanner.classList.add('visible');
+      });
+
+      updateQuote();
+    })();
+  </script>
+</body>
+</html>

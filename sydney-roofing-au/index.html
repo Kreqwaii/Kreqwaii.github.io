@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sydney Roofing — Licensed roof repairs, Colorbond metal &amp; tile roof replacement, roof restoration, and gutter services across Sydney, NSW. Instant AUD cost calculator.">
+  <title>Sydney Roofing | Instant Roof Restoration &amp; Replacement Calculator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F3554'/%3E%3Cpath d='M5 18L16 8l11 10' stroke='%23FFFFFF' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M9 18v7h14v-7' stroke='%23B8502E' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F7F9FB;
+      --surface: #FFFFFF;
+      --surface-alt: #EFF3F7;
+      --navy: #0F3554;
+      --navy-dark: #0A253B;
+      --clay: #B8502E;
+      --clay-hover: #9E4224;
+      --text: #142230;
+      --muted: #526475;
+      --border: #D8E1EA;
+      --success-bg: #EBF6F0;
+      --success-text: #165B38;
+      --radius: 12px;
+      --shadow: 0 8px 24px rgba(15, 53, 84, 0.06);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .brand-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    .num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--navy);
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background: var(--navy);
+      display: grid;
+      place-items: center;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .phone-link {
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      white-space: nowrap;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: var(--surface-alt);
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .phone-link:hover {
+      background: #E2E9F0;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--clay);
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 11px 18px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--clay-hover);
+    }
+
+    .btn-primary:active {
+      transform: translateY(1px);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 44px 0 36px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--clay);
+      background: #FDF2EE;
+      padding: 5px 10px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.12;
+      margin-bottom: 14px;
+    }
+
+    .hero p {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 56ch;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      background: var(--surface-alt);
+      padding: 7px 12px;
+      border-radius: 8px;
+    }
+
+    .hero-card {
+      background: var(--navy);
+      color: #FFFFFF;
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card-title {
+      color: #FFFFFF;
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .stat-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .stat-val {
+      display: block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 2px;
+    }
+
+    .stat-lbl {
+      display: block;
+      font-size: 12px;
+      color: #C9D8E6;
+    }
+
+    /* Main Workspace */
+    .workspace {
+      padding: 40px 0 52px;
+    }
+
+    .section-head {
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .calc-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text);
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(15, 53, 84, 0.12);
+    }
+
+    .range-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      accent-color: var(--clay);
+      cursor: pointer;
+    }
+
+    .area-pill {
+      min-width: 78px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--navy);
+      background: var(--surface-alt);
+      padding: 7px 10px;
+      border-radius: 8px;
+    }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .seg-btn {
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--navy);
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .seg-btn.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: #FFFFFF;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      cursor: pointer;
+    }
+
+    .check-row input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--clay);
+      margin: 0;
+      cursor: pointer;
+    }
+
+    /* Estimate Output */
+    .estimate-box {
+      background: var(--navy);
+      color: #FFFFFF;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .estimate-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #C9D8E6;
+      margin-bottom: 4px;
+    }
+
+    .estimate-range {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(26px, 3vw, 32px);
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+
+    .estimate-note {
+      font-size: 13px;
+      color: #D7E3EE;
+      margin: 0;
+    }
+
+    .breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .breakdown-row span:first-child {
+      color: var(--muted);
+    }
+
+    .breakdown-row span:last-child {
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .form-status {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: var(--success-bg);
+      color: var(--success-text);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .form-status.visible {
+      display: block;
+    }
+
+    /* Services */
+    .services {
+      padding: 0 0 56px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .service-card h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--navy-dark);
+      color: #DCE6F0;
+      padding: 36px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .footer-title {
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .footer-copy {
+      margin: 0;
+      font-size: 13px;
+      color: #B7C8D8;
+    }
+
+    .footer-links-row {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .footer-links-row a[href^="mailto:"],
+    .footer-links-row a[href^="http"] {
+      grid-column: 1 / -1;
+      color: #FFFFFF;
+      text-decoration: none;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .footer-links-row a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .calc-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-inner {
+        min-height: 64px;
+      }
+
+      .phone-link {
+        display: none;
+      }
+
+      .form-grid,
+      .services-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .panel {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M3 12L12 4l9 8" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 12v8h12v-8" stroke="#B8502E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Sydney Roofing</span>
+          <span class="brand-sub">Sydney, NSW Licensed Roofers</span>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="tel:+61413166511" class="phone-link num">+61 413 166 511</a>
+        <a href="#calculator" class="btn-primary">Calculate Roof Cost</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Sydney &amp; Greater NSW</span>
+          <h1>Instant Roof Restoration &amp; Replacement Cost Calculator</h1>
+          <p>Estimate your Colorbond metal, terracotta tile, or concrete tile roofing project in seconds. Built for Sydney homeowners, strata managers, and commercial properties.</p>
+          <div class="hero-badges">
+            <span class="badge">NSW Licensed &amp; Insured</span>
+            <span class="badge">Colorbond &amp; Tile Specialists</span>
+            <span class="badge">10-Year Workmanship Warranty</span>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h2 class="hero-card-title">Sydney Roofing Benchmarks</h2>
+          <div class="stat-grid">
+            <div class="stat-box">
+              <span class="stat-val num">24 hr</span>
+              <span class="stat-lbl">Leak &amp; storm response</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-val num">10 yr</span>
+              <span class="stat-lbl">Workmanship warranty</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-val num">AUD $</span>
+              <span class="stat-lbl">Transparent GST-incl. pricing</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-val num">4.9 / 5</span>
+              <span class="stat-lbl">Local Sydney rating</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculator" class="workspace">
+      <div class="container">
+        <div class="section-head">
+          <h2>Roof Cost &amp; Inspection Estimator</h2>
+          <p>Select your roof size, material, and scope of work to generate an instant AUD estimate.</p>
+        </div>
+
+        <div class="calc-layout">
+          <div class="panel">
+            <h3 class="panel-title">1. Project Specifications</h3>
+            <div class="form-grid">
+              <div class="field field-full">
+                <label for="roof-area">Estimated Roof Area (m&#178;)</label>
+                <div class="range-wrap">
+                  <input id="roof-area" name="roof_area" type="range" min="60" max="450" step="10" value="180" autocomplete="off">
+                  <span id="roof-area-val" class="area-pill num">180 m&#178;</span>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="roof-material">Roof Material</label>
+                <select id="roof-material" name="roof_material" autocomplete="off">
+                  <option value="colorbond">Colorbond Metal</option>
+                  <option value="terracotta">Terracotta Tile</option>
+                  <option value="concrete">Concrete Tile</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="roof-pitch">Roof Pitch / Complexity</label>
+                <select id="roof-pitch" name="roof_pitch" autocomplete="off">
+                  <option value="1">Standard Single Storey</option>
+                  <option value="1.15">Steep Pitch / Two Storey</option>
+                  <option value="1.28">Complex Multi-Gable</option>
+                </select>
+              </div>
+
+              <div class="field field-full">
+                <div class="field-label" style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;">Scope of Work</div>
+                <div class="segmented" role="group" aria-label="Scope of Work">
+                  <button type="button" class="seg-btn active" data-scope="restoration">Roof Restoration &amp; Painting</button>
+                  <button type="button" class="seg-btn" data-scope="replacement">Full Roof Replacement</button>
+                </div>
+              </div>
+
+              <div class="field field-full">
+                <label class="check-row" for="include-gutters">
+                  <input id="include-gutters" name="include_gutters" type="checkbox" checked autocomplete="off">
+                  <span>Include Gutter &amp; Downpipe Replacement (Colorbond)</span>
+                </label>
+              </div>
+
+              <div class="field field-full">
+                <label class="check-row" for="include-leaks">
+                  <input id="include-leaks" name="include_leaks" type="checkbox" autocomplete="off">
+                  <span>Include Valley Iron &amp; Flashing Leak Repairs</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3 class="panel-title">2. Instant AUD Estimate &amp; Inspection</h3>
+            <div class="estimate-box">
+              <div class="estimate-label">Estimated Project Total (Incl. GST)</div>
+              <div id="estimate-range" class="estimate-range num">$9,850 – $12,150 AUD</div>
+              <p id="estimate-summary" class="estimate-note">180 m&#178; Colorbond Metal Roof Restoration + Gutters</p>
+            </div>
+
+            <div class="breakdown">
+              <div class="breakdown-row">
+                <span>Base Roofing Scope</span>
+                <span id="bd-base" class="num">$7,920 AUD</span>
+              </div>
+              <div class="breakdown-row">
+                <span>Gutter &amp; Downpipe Allowance</span>
+                <span id="bd-gutters" class="num">$2,880 AUD</span>
+              </div>
+              <div class="breakdown-row">
+                <span>Leak &amp; Flashing Allowance</span>
+                <span id="bd-leaks" class="num">$0 AUD</span>
+              </div>
+            </div>
+
+            <form id="inspection-form" class="form-grid" novalidate>
+              <div class="field">
+                <label for="client-name">Full Name</label>
+                <input id="client-name" name="name" type="text" placeholder="Liam Henderson" required autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="client-phone">Phone Number</label>
+                <input id="client-phone" name="phone" type="tel" placeholder="0413 166 511" required autocomplete="tel">
+              </div>
+              <div class="field">
+                <label for="client-email">Email Address</label>
+                <input id="client-email" name="email" type="email" placeholder="name@example.com.au" required autocomplete="email">
+              </div>
+              <div class="field">
+                <label for="client-suburb">Sydney Suburb</label>
+                <input id="client-suburb" name="suburb" type="text" placeholder="Parramatta / Bondi / Chatswood" required autocomplete="address-level2">
+              </div>
+              <div class="field field-full">
+                <label for="client-notes">Roof Notes (Optional)</label>
+                <textarea id="client-notes" name="notes" rows="2" placeholder="Active leak near chimney, colour preference, or access notes" autocomplete="off"></textarea>
+              </div>
+              <div class="field field-full">
+                <button type="submit" class="btn-primary" style="width: 100%;">Book Free On-Site Roof Inspection</button>
+              </div>
+            </form>
+            <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services">
+      <div class="container">
+        <div class="section-head">
+          <h2>Core Roofing Services in Sydney</h2>
+          <p>Complete residential and commercial roofing solutions engineered for Australian coastal and storm conditions.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <h3>Roof Repairs &amp; Leak Fixing</h3>
+            <p>Rapid fault-finding for broken tiles, rusted valley irons, ridge capping, and storm-damaged flashings.</p>
+          </article>
+          <article class="service-card">
+            <h3>Metal &amp; Tile Roof Replacement</h3>
+            <p>Full re-roofing in genuine BlueScope Colorbond steel, terracotta, or concrete profiles with sarking.</p>
+          </article>
+          <article class="service-card">
+            <h3>Roof Restoration &amp; Painting</h3>
+            <p>High-pressure cleaning, re-bedding, flexible pointing, and multi-coat Dulux Acratex membrane systems.</p>
+          </article>
+          <article class="service-card">
+            <h3>Gutter &amp; Downpipe Services</h3>
+            <p>Custom Colorbond quad gutters, fascia covers, leaf-guard mesh, and high-capacity downpipe upgrades.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-title">Sydney Roofing</div>
+        <p class="footer-copy">Serving Sydney CBD, North Shore, Eastern Suburbs, Inner West, and Western Sydney, NSW.</p>
+      </div>
+      <div>
+        <div class="footer-title">Direct Contact</div>
+        <p class="footer-copy num">Phone: +61 413 166 511</p>
+      </div>
+      <div class="footer-links-row">
+        <a href="mailto:info@sydneyroofing.com.au">info@sydneyroofing.com.au</a>
+        <a href="https://www.sydneyroofing.com.au/" target="_blank" rel="noopener noreferrer">https://www.sydneyroofing.com.au/</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const areaInput = document.getElementById('roof-area');
+      const areaVal = document.getElementById('roof-area-val');
+      const materialSelect = document.getElementById('roof-material');
+      const pitchSelect = document.getElementById('roof-pitch');
+      const scopeButtons = document.querySelectorAll('.seg-btn');
+      const guttersCheck = document.getElementById('include-gutters');
+      const leaksCheck = document.getElementById('include-leaks');
+
+      const estimateRangeEl = document.getElementById('estimate-range');
+      const estimateSummaryEl = document.getElementById('estimate-summary');
+      const bdBaseEl = document.getElementById('bd-base');
+      const bdGuttersEl = document.getElementById('bd-gutters');
+      const bdLeaksEl = document.getElementById('bd-leaks');
+
+      const form = document.getElementById('inspection-form');
+      const formStatus = document.getElementById('form-status');
+
+      let currentScope = 'restoration';
+
+      const rates = {
+        restoration: {
+          colorbond: 44,
+          terracotta: 48,
+          concrete: 42
+        },
+        replacement: {
+          colorbond: 125,
+          terracotta: 145,
+          concrete: 118
+        }
+      };
+
+      const materialLabels = {
+        colorbond: 'Colorbond Metal',
+        terracotta: 'Terracotta Tile',
+        concrete: 'Concrete Tile'
+      };
+
+      function formatAUD(amount) {
+        return '$' + Math.round(amount).toLocaleString('en-AU') + ' AUD';
+      }
+
+      function calculate() {
+        const area = Number(areaInput.value);
+        const material = materialSelect.value;
+        const pitchMult = Number(pitchSelect.value);
+
+        areaVal.textContent = area + ' m\u00B2';
+
+        const baseRate = rates[currentScope][material];
+        const baseCost = area * baseRate * pitchMult;
+        const gutterCost = guttersCheck.checked ? Math.round(area * 16) : 0;
+        const leakCost = leaksCheck.checked ? 950 : 0;
+
+        const total = baseCost + gutterCost + leakCost;
+        const low = Math.round((total * 0.9) / 50) * 50;
+        const high = Math.round((total * 1.12) / 50) * 50;
+
+        estimateRangeEl.textContent = '$' + low.toLocaleString('en-AU') + ' \u2013 $' + high.toLocaleString('en-AU') + ' AUD';
+        bdBaseEl.textContent = formatAUD(baseCost);
+        bdGuttersEl.textContent = formatAUD(gutterCost);
+        bdLeaksEl.textContent = formatAUD(leakCost);
+
+        const scopeLabel = currentScope === 'restoration' ? 'Roof Restoration' : 'Full Roof Replacement';
+        const extras = [];
+        if (guttersCheck.checked) extras.push('Gutters');
+        if (leaksCheck.checked) extras.push('Leak Repairs');
+        const extrasText = extras.length ? ' + ' + extras.join(' & ') : '';
+        estimateSummaryEl.textContent = area + ' m\u00B2 ' + materialLabels[material] + ' ' + scopeLabel + extrasText;
+      }
+
+      scopeButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          scopeButtons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          currentScope = btn.getAttribute('data-scope');
+          calculate();
+        });
+      });
+
+      [areaInput, materialSelect, pitchSelect, guttersCheck, leaksCheck].forEach(function (el) {
+        el.addEventListener('input', calculate);
+        el.addEventListener('change', calculate);
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('client-name').value.trim();
+        const phone = document.getElementById('client-phone').value.trim();
+        const email = document.getElementById('client-email').value.trim();
+        const suburb = document.getElementById('client-suburb').value.trim();
+
+        if (!name || !phone || !email || !suburb) {
+          formStatus.textContent = 'Please complete your name, phone, email, and Sydney suburb.';
+          formStatus.classList.add('visible');
+          return;
+        }
+
+        formStatus.textContent = 'Inspection request received for ' + suburb + ' (' + estimateRangeEl.textContent + '). Our Sydney Roofing estimator will call ' + phone + ' within 2 business hours.';
+        formStatus.classList.add('visible');
+      });
+
+      calculate();
+    })();
+  </script>
+</body>
+</html>

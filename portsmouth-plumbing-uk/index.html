@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portsmouth Plumbing Supplies — Trade &amp; domestic plumbing, heating, boilers, radiators, bathroom suites, and pipework in Portsmouth, UK. Interactive GBP cost and sizing estimator.">
+  <title>Portsmouth Plumbing Supplies | Trade &amp; Domestic Estimator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2310243E'/%3E%3Cpath d='M9 22V10h7.5c2.8 0 4.5 1.6 4.5 4.2s-1.7 4.3-4.5 4.3H13V22H9zm4-6.8h3.1c1 0 1.6-.5 1.6-1.4s-.6-1.4-1.6-1.4H13v2.8z' fill='%23C9A255'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-cream: #FAF8F4;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #F2EFE9;
+      --navy-900: #10243E;
+      --navy-800: #1A3557;
+      --navy-700: #274872;
+      --brass-600: #8D6A24;
+      --brass-500: #B38936;
+      --brass-100: #F6EFE0;
+      --text-main: #182330;
+      --text-muted: #526071;
+      --border-soft: #E2DDD3;
+      --border-strong: #C9C1B2;
+      --success-bg: #EAF4EE;
+      --success-text: #1B5E38;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-sm: 0 1px 3px rgba(16, 36, 62, 0.06);
+      --shadow-md: 0 8px 24px rgba(16, 36, 62, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--navy-900);
+      margin: 0;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-soft);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 68px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--navy-900);
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background-color: var(--navy-900);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--navy-900);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .phone-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--navy-900);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-subtle);
+      white-space: nowrap;
+      transition: background-color 0.15s ease;
+    }
+
+    .phone-link:hover {
+      background-color: var(--brass-100);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--navy-900);
+      color: #FFFFFF;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--navy-900);
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--navy-800);
+      border-color: var(--navy-800);
+    }
+
+    .btn-brass {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--brass-500);
+      color: #FFFFFF;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 11px 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--brass-500);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.15s ease;
+    }
+
+    .btn-brass:hover {
+      background-color: var(--brass-600);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 40px 0 32px;
+      border-bottom: 1px solid var(--border-soft);
+      background-color: var(--bg-surface);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--brass-600);
+      background-color: var(--brass-100);
+      padding: 5px 10px;
+      border-radius: 4px;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 3.6vw, 40px);
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 16px;
+      max-width: 600px;
+      margin: 0 0 22px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .stat-box {
+      background-color: var(--bg-cream);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      padding: 14px;
+    }
+
+    .stat-val {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy-900);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .hero-card {
+      background-color: var(--navy-900);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-card h2 {
+      color: #FFFFFF;
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .hero-card-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 18px;
+      display: grid;
+      gap: 10px;
+      font-size: 14px;
+      color: #DCE5F0;
+    }
+
+    .hero-card-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .hero-card-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--brass-500);
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .contact-row {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 12px;
+      color: #B9C8D9;
+    }
+
+    .contact-row a[href^="mailto:"],
+    .contact-row a[href^="http"] {
+      grid-column: 1 / -1;
+      color: #FFFFFF;
+      text-decoration: none;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .contact-row a:hover {
+      text-decoration: underline;
+    }
+
+    /* Estimator Section */
+    .section {
+      padding: 40px 0;
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .section-head p {
+      margin: 6px 0 0;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .tier-switch {
+      display: inline-flex;
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-sm);
+      padding: 3px;
+      gap: 4px;
+    }
+
+    .tier-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .tier-btn.active {
+      background-color: var(--navy-900);
+      color: #FFFFFF;
+    }
+
+    .estimator-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .tab-btn {
+      padding: 10px 12px;
+      border: 1px solid var(--border-soft);
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .tab-btn.active {
+      background-color: var(--navy-900);
+      border-color: var(--navy-900);
+      color: #FFFFFF;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy-900);
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: #FFFFFF;
+      color: var(--text-main);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      transition: border-color 0.15s ease;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--navy-900);
+    }
+
+    /* Summary Card */
+    .summary-panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+      position: sticky;
+      top: 88px;
+    }
+
+    .summary-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 16px;
+    }
+
+    .badge-tier {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background-color: var(--brass-100);
+      color: var(--brass-600);
+    }
+
+    .line-items {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .line-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .line-item-name {
+      color: var(--text-muted);
+    }
+
+    .line-item-val {
+      font-weight: 600;
+      color: var(--navy-900);
+      white-space: nowrap;
+    }
+
+    .total-box {
+      background-color: var(--bg-cream);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 18px;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .total-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .total-amount {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--navy-900);
+    }
+
+    .vat-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .spec-box {
+      background-color: var(--bg-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      font-size: 13px;
+      color: var(--navy-900);
+      margin-bottom: 18px;
+    }
+
+    /* Order / Quote Form */
+    .order-section {
+      padding-top: 16px;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .order-section h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .order-status {
+      display: none;
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--success-bg);
+      color: var(--success-text);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .order-status.visible {
+      display: block;
+    }
+
+    /* Categories */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .cat-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .cat-card h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .cat-card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--navy-900);
+      color: #DCE5F0;
+      padding: 28px 0;
+      margin-top: 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .footer-links a[href^="mailto:"],
+    .footer-links a[href^="http"] {
+      grid-column: 1 / -1;
+      color: #FFFFFF;
+      text-decoration: none;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 11px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .estimator-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .cat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .summary-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-actions .phone-link {
+        display: none;
+      }
+
+      .hero-stats,
+      .form-grid,
+      .cat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tabs {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A255" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v6m0 0a4 4 0 0 1 4 4v8H8v-8a4 4 0 0 1 4-4z"/>
+            <path d="M6 20h12"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Portsmouth Plumbing Supplies</div>
+          <div class="brand-sub">Portsmouth, UK · Trade &amp; Domestic</div>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a class="phone-link num" href="tel:02392266662">023 9226 6662</a>
+        <a class="btn-primary" href="#estimator">Estimate Order</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Portsmouth Plumbing &amp; Heating Merchant</span>
+          <h1>Bathroom, Boiler &amp; Pipework Supply Estimator</h1>
+          <p class="hero-desc">
+            Calculate trade or retail material costs in GBP (£) for bathroom suites, central heating boilers, radiators, and copper or PEX pipework. Built for Hampshire installers and homeowners.
+          </p>
+          <div class="hero-stats">
+            <div class="stat-box">
+              <div class="stat-val num">4,500+</div>
+              <div class="stat-label">Stocked lines in Portsmouth</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val num">Same-Day</div>
+              <div class="stat-label">Local trade counter &amp; van</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val num">18%</div>
+              <div class="stat-label">Average Trade Account saving</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <h2>Trade Counter &amp; Direct Dispatch</h2>
+          <ul class="hero-card-list">
+            <li><span class="hero-card-dot"></span><span>Combi, system &amp; regular boilers with flue kits</span></li>
+            <li><span class="hero-card-dot"></span><span>Type 11 / 21 / 22 steel panel radiators &amp; TRVs</span></li>
+            <li><span class="hero-card-dot"></span><span>Complete bathroom suites, brassware &amp; wastes</span></li>
+            <li><span class="hero-card-dot"></span><span>15mm &amp; 22mm copper, PEX barrier &amp; press-fit</span></li>
+          </ul>
+          <div class="contact-grid">
+            <div class="contact-row">
+              <span>Tel: <strong class="num">023 9226 6662</strong></span>
+            </div>
+            <div class="contact-row">
+              <a href="mailto:sales@portsmouthplumbing.co.uk">sales@portsmouthplumbing.co.uk</a>
+            </div>
+            <div class="contact-row">
+              <a href="https://www.portsmouthplumbing.co.uk/" target="_blank" rel="noopener noreferrer">www.portsmouthplumbing.co.uk</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="estimator">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Cost &amp; Sizing Estimator (GBP £)</h2>
+            <p>Select your project scope and pricing tier to generate an itemised supply schedule.</p>
+          </div>
+          <div class="tier-switch" role="group" aria-label="Pricing tier">
+            <button type="button" class="tier-btn active" data-tier="trade">Trade Price</button>
+            <button type="button" class="tier-btn" data-tier="retail">Retail Price</button>
+          </div>
+        </div>
+
+        <div class="estimator-layout">
+          <div class="panel">
+            <div class="tabs" role="tablist">
+              <button type="button" class="tab-btn active" data-tab="heating" role="tab" aria-selected="true">Boilers &amp; Radiators</button>
+              <button type="button" class="tab-btn" data-tab="bathroom" role="tab" aria-selected="false">Bathroom Suite</button>
+              <button type="button" class="tab-btn" data-tab="pipework" role="tab" aria-selected="false">Pipework &amp; Fittings</button>
+            </div>
+
+            <!-- Heating Tab -->
+            <div class="tab-panel active" id="tab-heating">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="heat-rooms">Property Bedrooms / Zones</label>
+                  <select id="heat-rooms" autocomplete="off">
+                    <option value="2">1–2 Bedrooms (Flat / Terrace)</option>
+                    <option value="3" selected>3 Bedrooms (Semi-Detached)</option>
+                    <option value="4">4 Bedrooms (Detached)</option>
+                    <option value="5">5+ Bedrooms (Large Property)</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="heat-rads">Number of Radiators</label>
+                  <input id="heat-rads" type="number" min="1" max="24" value="8" autocomplete="off">
+                </div>
+                <div class="field">
+                  <label for="heat-boiler">Boiler Type</label>
+                  <select id="heat-boiler" autocomplete="off">
+                    <option value="combi" selected>Combi Boiler (24–35 kW)</option>
+                    <option value="system">System Boiler + Cylinder</option>
+                    <option value="none">Radiators Only (No Boiler)</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="heat-rad-type">Radiator Specification</label>
+                  <select id="heat-rad-type" autocomplete="off">
+                    <option value="t11">Type 11 Single Convector</option>
+                    <option value="t22" selected>Type 22 Double Convector</option>
+                    <option value="towel">Include Heated Towel Rails</option>
+                  </select>
+                </div>
+                <div class="field field-full">
+                  <label for="heat-controls">Controls &amp; Magnetic Filter</label>
+                  <select id="heat-controls" autocomplete="off">
+                    <option value="standard" selected>Programmable Thermostat + Magnetic Filter</option>
+                    <option value="smart">Smart Wi-Fi Controls + Filter + Scale Reducer</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bathroom Tab -->
+            <div class="tab-panel" id="tab-bathroom">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="bath-tier">Suite Grade</label>
+                  <select id="bath-tier" autocomplete="off">
+                    <option value="essential">Essential Trade Suite</option>
+                    <option value="mid" selected>Contemporary Mid-Range</option>
+                    <option value="premium">Premium Architectural</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="bath-layout">Bathing Configuration</label>
+                  <select id="bath-layout" autocomplete="off">
+                    <option value="shower-bath" selected>P-Shape Shower Bath + Screen</option>
+                    <option value="enclosure">Quadrant Shower Enclosure + Tray</option>
+                    <option value="wetroom">Walk-In Wetroom Glass + Former</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="bath-wc">WC &amp; Basin Style</label>
+                  <select id="bath-wc" autocomplete="off">
+                    <option value="close-coupled" selected>Close-Coupled WC + Pedestal Basin</option>
+                    <option value="vanity">Back-to-Wall WC + Vanity Unit</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="bath-brass">Brassware Finish</label>
+                  <select id="bath-brass" autocomplete="off">
+                    <option value="chrome" selected>Polished Chrome</option>
+                    <option value="black">Matt Black / Brushed Brass</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pipework Tab -->
+            <div class="tab-panel" id="tab-pipework">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="pipe-mat">Pipework System</label>
+                  <select id="pipe-mat" autocomplete="off">
+                    <option value="copper" selected>British Standard Copper (Table X)</option>
+                    <option value="pex">PEX Barrier Pipe + Push-Fit</option>
+                    <option value="press">Copper Press-Fit (Trade)</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="pipe-15">15mm Pipe Length (metres)</label>
+                  <input id="pipe-15" type="number" min="0" max="300" value="36" autocomplete="off">
+                </div>
+                <div class="field">
+                  <label for="pipe-22">22mm Pipe Length (metres)</label>
+                  <input id="pipe-22" type="number" min="0" max="200" value="18" autocomplete="off">
+                </div>
+                <div class="field">
+                  <label for="pipe-fittings">Fittings &amp; Isolation Pack</label>
+                  <select id="pipe-fittings" autocomplete="off">
+                    <option value="basic">Standard Elbows, Tees &amp; Clips</option>
+                    <option value="full" selected>Full Pack + Lever Valves &amp; Solder/Inserts</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Summary & Quote Request -->
+          <aside class="summary-panel">
+            <div class="summary-header">
+              <h3>Estimated Supply Schedule</h3>
+              <span class="badge-tier" id="summary-tier-badge">Trade Price</span>
+            </div>
+
+            <div class="line-items" id="summary-lines"></div>
+
+            <div class="total-box">
+              <div class="total-row">
+                <span class="total-label">Estimated Total (ex. VAT)</span>
+                <span class="total-amount num" id="summary-total">£0</span>
+              </div>
+              <div class="vat-note num" id="summary-vat">Inc. 20% UK VAT: £0</div>
+            </div>
+
+            <div class="spec-box" id="summary-spec"></div>
+
+            <form class="order-section" id="quote-form">
+              <h3>Request Counter Pick &amp; Quote</h3>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="cust-name">Full Name / Company</label>
+                  <input id="cust-name" type="text" required placeholder="e.g. Solent Heating Ltd" autocomplete="name">
+                </div>
+                <div class="field">
+                  <label for="cust-phone">Phone Number</label>
+                  <input id="cust-phone" type="tel" required placeholder="023 9200 0000" autocomplete="tel">
+                </div>
+                <div class="field field-full">
+                  <label for="cust-email">Email Address</label>
+                  <input id="cust-email" type="email" required placeholder="orders@company.co.uk" autocomplete="email">
+                </div>
+                <div class="field field-full">
+                  <label for="cust-notes">Delivery Postcode or Collection Notes</label>
+                  <textarea id="cust-notes" rows="2" placeholder="PO1 / PO2 / PO3 / PO6 delivery or trade counter collection" autocomplete="street-address"></textarea>
+                </div>
+                <div class="field field-full">
+                  <button type="submit" class="btn-brass">Send Supply List to Portsmouth Counter</button>
+                </div>
+              </div>
+              <div class="order-status" id="order-status" role="status" aria-live="polite"></div>
+            </form>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cat-grid">
+          <article class="cat-card">
+            <h3>Plumbing &amp; Heating Supplies</h3>
+            <p>Pumps, expansion vessels, inhibitor chemicals, and daily trade consumables ready for counter pickup.</p>
+          </article>
+          <article class="cat-card">
+            <h3>Bathroom Suites &amp; Fixtures</h3>
+            <p>Sanitaryware, concealed cisterns, vanity units, thermostatic mixers, and shower enclosures.</p>
+          </article>
+          <article class="cat-card">
+            <h3>Boilers &amp; Radiators</h3>
+            <p>High-efficiency condensing boilers, unvented cylinders, and steel panel radiators in all sizes.</p>
+          </article>
+          <article class="cat-card">
+            <h3>Trade &amp; Domestic Pipework</h3>
+            <p>15mm, 22mm, and 28mm copper tube, PEX barrier coils, end-feed, compression, and press fittings.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><strong>Portsmouth Plumbing Supplies</strong> · Portsmouth, Hampshire, UK</div>
+      <div class="footer-links">
+        <span>Phone: <strong class="num">023 9226 6662</strong></span>
+        <a href="mailto:sales@portsmouthplumbing.co.uk">sales@portsmouthplumbing.co.uk</a>
+        <a href="https://www.portsmouthplumbing.co.uk/" target="_blank" rel="noopener noreferrer">www.portsmouthplumbing.co.uk</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      let currentTier = 'trade';
+      let activeTab = 'heating';
+
+      const tierBtns = document.querySelectorAll('.tier-btn');
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabPanels = document.querySelectorAll('.tab-panel');
+      const summaryLines = document.getElementById('summary-lines');
+      const summaryTotal = document.getElementById('summary-total');
+      const summaryVat = document.getElementById('summary-vat');
+      const summarySpec = document.getElementById('summary-spec');
+      const tierBadge = document.getElementById('summary-tier-badge');
+
+      const gbp = (val) => '£' + Math.round(val).toLocaleString('en-GB');
+
+      function getMultiplier() {
+        return currentTier === 'trade' ? 0.82 : 1.0;
+      }
+
+      function calculate() {
+        const mult = getMultiplier();
+        let items = [];
+        let specText = '';
+
+        if (activeTab === 'heating') {
+          const rooms = parseInt(document.getElementById('heat-rooms').value, 10);
+          const rads = Math.max(1, parseInt(document.getElementById('heat-rads').value || 1, 10));
+          const boiler = document.getElementById('heat-boiler').value;
+          const radType = document.getElementById('heat-rad-type').value;
+          const controls = document.getElementById('heat-controls').value;
+
+          const kwMap = { 2: '24 kW', 3: '28–30 kW', 4: '32–35 kW', 5: '35–40 kW' };
+          let boilerCost = 0;
+          if (boiler === 'combi') boilerCost = (920 + rooms * 95) * mult;
+          if (boiler === 'system') boilerCost = (1280 + rooms * 110) * mult;
+
+          const radUnit = radType === 't11' ? 78 : radType === 't22' ? 112 : 132;
+          const radTotal = rads * radUnit * mult;
+          const trvTotal = rads * 16 * mult;
+          const ctrlCost = (controls === 'smart' ? 245 : 135) * mult;
+
+          if (boilerCost > 0) {
+            items.push({ name: (boiler === 'combi' ? 'Combi Boiler + Flue' : 'System Boiler + Cylinder'), val: boilerCost });
+          }
+          items.push({ name: rads + 'x Steel Radiators (' + radType.toUpperCase() + ')', val: radTotal });
+          items.push({ name: rads + 'x TRV & Lockshield Pack', val: trvTotal });
+          items.push({ name: 'Controls & Magnetic Filter', val: ctrlCost });
+
+          specText = 'Recommended output: ' + kwMap[rooms] + ' · ' + rads + ' emitters sized for ' + rooms + '-bed property.';
+        } else if (activeTab === 'bathroom') {
+          const grade = document.getElementById('bath-tier').value;
+          const layout = document.getElementById('bath-layout').value;
+          const wc = document.getElementById('bath-wc').value;
+          const brass = document.getElementById('bath-brass').value;
+
+          const gradeMult = grade === 'essential' ? 1 : grade === 'mid' ? 1.35 : 1.8;
+          const bathCost = (layout === 'wetroom' ? 540 : layout === 'enclosure' ? 420 : 390) * gradeMult * mult;
+          const wcCost = (wc === 'vanity' ? 380 : 230) * gradeMult * mult;
+          const brassCost = (brass === 'black' ? 260 : 185) * gradeMult * mult;
+          const wasteCost = 85 * mult;
+
+          items.push({ name: 'Bathing / Shower Assembly', val: bathCost });
+          items.push({ name: 'WC & Basin Suite', val: wcCost });
+          items.push({ name: 'Brassware (' + brass + ')', val: brassCost });
+          items.push({ name: 'Traps, Wastes & Pan Connector', val: wasteCost });
+
+          specText = 'Complete ' + grade + ' bathroom supply pack with matching ' + brass + ' brassware.';
+        } else {
+          const mat = document.getElementById('pipe-mat').value;
+          const len15 = Math.max(0, parseInt(document.getElementById('pipe-15').value || 0, 10));
+          const len22 = Math.max(0, parseInt(document.getElementById('pipe-22').value || 0, 10));
+          const fit = document.getElementById('pipe-fittings').value;
+
+          const rate15 = mat === 'copper' ? 3.8 : mat === 'press' ? 4.1 : 1.75;
+          const rate22 = mat === 'copper' ? 6.2 : mat === 'press' ? 6.6 : 2.85;
+          const cost15 = len15 * rate15 * mult;
+          const cost22 = len22 * rate22 * mult;
+          const fitCost = ((len15 + len22) * (fit === 'full' ? 2.4 : 1.35) + 25) * mult;
+
+          items.push({ name: len15 + 'm x 15mm ' + mat.toUpperCase() + ' Pipe', val: cost15 });
+          items.push({ name: len22 + 'm x 22mm ' + mat.toUpperCase() + ' Pipe', val: cost22 });
+          items.push({ name: 'Fittings, Clips & Isolation Valves', val: fitCost });
+
+          specText = 'Total run: ' + (len15 + len22) + 'm (' + mat.toUpperCase() + ' system, ' + fit + ' fittings pack).';
+        }
+
+        const total = items.reduce((acc, it) => acc + it.val, 0);
+        const incVat = total * 1.2;
+
+        summaryLines.innerHTML = items.map(it =>
+          '<div class="line-item"><span class="line-item-name">' + it.name + '</span><span class="line-item-val num">' + gbp(it.val) + '</span></div>'
+        ).join('');
+
+        summaryTotal.textContent = gbp(total);
+        summaryVat.textContent = 'Inc. 20% UK VAT: ' + gbp(incVat);
+        summarySpec.textContent = specText;
+        tierBadge.textContent = currentTier === 'trade' ? 'Trade Price' : 'Retail Price';
+      }
+
+      tierBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tierBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentTier = btn.dataset.tier;
+          calculate();
+        });
+      });
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          tabPanels.forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          activeTab = btn.dataset.tab;
+          document.getElementById('tab-' + activeTab).classList.add('active');
+          calculate();
+        });
+      });
+
+      document.querySelectorAll('#estimator input, #estimator select').forEach(el => {
+        el.addEventListener('input', calculate);
+        el.addEventListener('change', calculate);
+      });
+
+      document.getElementById('quote-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('cust-name').value.trim();
+        const status = document.getElementById('order-status');
+        status.textContent = 'Supply list prepared for ' + name + '. Call 023 9226 6662 or email sales@portsmouthplumbing.co.uk with your schedule.';
+        status.classList.add('visible');
+      });
+
+      calculate();
+    })();
+  </script>
+</body>
+</html>

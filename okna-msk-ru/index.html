@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Окна МСК — пластиковые окна ПВХ, остекление балконов и лоджий, алюминиевые конструкции, замер и монтаж под ключ в Москве. Онлайн-калькулятор стоимости остекления.">
+  <title>Окна МСК — Онлайн-калькулятор остекления и подбора профиля ПВХ</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F172A'/%3E%3Crect x='6' y='6' width='9' height='20' rx='1.5' fill='%23E0F2FE'/%3E%3Crect x='17' y='6' width='9' height='20' rx='1.5' fill='%230284C7'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #F8FAFC;
+      --bg-surface: #FFFFFF;
+      --bg-ice: #F0F9FF;
+      --bg-ice-strong: #E0F2FE;
+      --ink-primary: #0F172A;
+      --ink-secondary: #334155;
+      --ink-muted: #64748B;
+      --accent: #0284C7;
+      --accent-hover: #0369A1;
+      --border-subtle: #E2E8F0;
+      --border-strong: #CBD5E1;
+      --success-bg: #ECFDF5;
+      --success-ink: #065F46;
+      --success-border: #A7F3D0;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.05), 0 10px 24px -12px rgba(15, 23, 42, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--ink-primary);
+      line-height: 1.5;
+      font-size: 15px;
+      overflow-x: hidden;
+    }
+
+    .num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 68px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--ink-primary);
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      background-color: var(--ink-primary);
+      border-radius: var(--radius-sm);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .header-phone {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--ink-primary);
+      text-decoration: none;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .header-phone:hover {
+      color: var(--accent);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-ice);
+      border-color: var(--accent);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 40px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background-color: var(--bg-ice);
+      color: var(--accent-hover);
+      font-size: 12px;
+      font-weight: 600;
+      width: fit-content;
+      border: 1px solid var(--bg-ice-strong);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 3.2vw, 38px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .hero-lead {
+      margin: 0;
+      color: var(--ink-secondary);
+      font-size: 16px;
+      max-width: 58ch;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .metric-val {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .hero-card {
+      background-color: var(--ink-primary);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .hero-card h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+
+    .hero-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hero-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: #E2E8F0;
+    }
+
+    .hero-list svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Calculator Section */
+    .calc-section {
+      padding: 12px 0 48px;
+    }
+
+    .calc-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .panel-title {
+      margin: 0 0 6px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .panel-subtitle {
+      margin: 0 0 24px;
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--ink-primary);
+      background-color: var(--bg-surface);
+      font-variant-numeric: tabular-nums;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.14);
+    }
+
+    .type-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .type-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      padding: 12px 14px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      font-family: inherit;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .type-btn:hover {
+      border-color: var(--accent);
+      background-color: var(--bg-ice);
+    }
+
+    .type-btn.active {
+      border-color: var(--accent);
+      background-color: var(--bg-ice);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+
+    .type-btn-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .type-btn-meta {
+      font-size: 12px;
+      color: var(--ink-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .range-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .range-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .range-val {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-hover);
+      font-variant-numeric: tabular-nums;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .checks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .check-card {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-page);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-primary);
+    }
+
+    .check-card input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--accent);
+      margin: 0;
+      flex-shrink: 0;
+    }
+
+    /* Summary & Lead Form */
+    .summary-box {
+      background-color: var(--bg-ice);
+      border: 1px solid var(--bg-ice-strong);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .summary-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--bg-ice-strong);
+    }
+
+    .summary-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+    }
+
+    .summary-price {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .summary-specs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding-top: 14px;
+      font-size: 13px;
+    }
+
+    .spec-row {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .spec-k {
+      font-size: 11px;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .spec-v {
+      font-weight: 600;
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .divider {
+      height: 1px;
+      background-color: var(--border-subtle);
+      margin: 20px 0;
+    }
+
+    .form-status {
+      display: none;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background-color: var(--success-bg);
+      color: var(--success-ink);
+      border: 1px solid var(--success-border);
+      font-size: 13px;
+      font-weight: 500;
+      margin-top: 12px;
+    }
+
+    .form-status.visible {
+      display: block;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      padding: 28px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      align-items: center;
+    }
+
+    .footer-meta {
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    .footer-links-row {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    a[href^="mailto:"],
+    a[href^="http"] {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 12px;
+      color: var(--accent-hover);
+      text-decoration: none;
+    }
+
+    a[href^="mailto:"]:hover,
+    a[href^="http"]:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .calc-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-inner {
+        flex-wrap: wrap;
+      }
+
+      .header-phone {
+        display: none;
+      }
+
+      .hero-copy,
+      .hero-card,
+      .panel {
+        padding: 20px;
+      }
+
+      .hero-metrics,
+      .form-grid,
+      .type-cards,
+      .checks-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-price {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="8" height="18" rx="1.5" fill="#E0F2FE"/>
+            <rect x="13" y="3" width="8" height="18" rx="1.5" fill="#0284C7"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Окна МСК</span>
+          <span class="brand-sub">Остекление и монтаж в Москве</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <a class="header-phone" href="tel:+74996474555">+7 (499) 647-45-55</a>
+        <a class="btn btn-primary" href="#calculator">Рассчитать стоимость</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div>
+            <span class="eyebrow">Производство и монтаж под ключ в Москве</span>
+            <h1 style="margin-top: 14px;">Пластиковые окна ПВХ, балконы и алюминиевые конструкции</h1>
+            <p class="hero-lead" style="margin-top: 12px;">
+              Точный подбор профильной системы от 60 до 80 мм, энергосберегающих стеклопакетов и комплектации. Предварительный расчёт стоимости за 30 секунд и бесплатный выезд инженера-замерщика.
+            </p>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric-item">
+              <span class="metric-val num">5 дней</span>
+              <span class="metric-label">изготовление изделий</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val num">5 лет</span>
+              <span class="metric-label">гарантия на монтаж</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val num">0 ₽</span>
+              <span class="metric-label">выезд на замер по Москве</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div>
+            <h2>Инженерный стандарт Окна МСК</h2>
+            <ul class="hero-list" style="margin-top: 16px;">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Профильные системы ПВХ 60, 70 и 80 мм с армированием замкнутого контура</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Остекление балконов и лоджий холодным алюминием и тёплым ПВХ</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Монтаж по ГОСТ 30971-2012 с паро- и гидроизоляционными лентами</span>
+              </li>
+            </ul>
+          </div>
+          <a class="btn btn-secondary" href="#lead-form">Заказать бесплатный замер</a>
+        </aside>
+      </div>
+    </section>
+
+    <section id="calculator" class="calc-section">
+      <div class="container calc-layout">
+        <div class="panel">
+          <h2 class="panel-title">Онлайн-калькулятор остекления</h2>
+          <p class="panel-subtitle">Выберите тип конструкции, габариты в миллиметрах и комплектацию</p>
+
+          <div class="form-grid">
+            <div class="field field-full">
+              <div class="field-label" style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;">Тип конструкции</div>
+              <div class="type-cards" role="group" aria-label="Тип конструкции">
+                <button type="button" class="type-btn active" data-type="double" data-base="14200" data-w="1400" data-h="1400">
+                  <span class="type-btn-title">Двустворчатое окно</span>
+                  <span class="type-btn-meta">от 14 200 ₽ · стандарт 1400×1400 мм</span>
+                </button>
+                <button type="button" class="type-btn" data-type="triple" data-base="19800" data-w="2050" data-h="1400">
+                  <span class="type-btn-title">Трёхстворчатое окно</span>
+                  <span class="type-btn-meta">от 19 800 ₽ · стандарт 2050×1400 мм</span>
+                </button>
+                <button type="button" class="type-btn" data-type="balcony" data-base="25600" data-w="2100" data-h="2150">
+                  <span class="type-btn-title">Балконный блок</span>
+                  <span class="type-btn-meta">от 25 600 ₽ · дверь + окно</span>
+                </button>
+                <button type="button" class="type-btn" data-type="loggia" data-base="34900" data-w="3200" data-h="1500">
+                  <span class="type-btn-title">Остекление лоджии</span>
+                  <span class="type-btn-meta">от 34 900 ₽ · ПВХ или алюминий</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="range-wrap">
+                <div class="range-head">
+                  <label for="calc-width">Ширина, мм</label>
+                  <span class="range-val num" id="width-display">1400 мм</span>
+                </div>
+                <input id="calc-width" type="range" min="600" max="4500" step="50" value="1400" autocomplete="off">
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="range-wrap">
+                <div class="range-head">
+                  <label for="calc-height">Высота, мм</label>
+                  <span class="range-val num" id="height-display">1400 мм</span>
+                </div>
+                <input id="calc-height" type="range" min="600" max="2400" step="50" value="1400" autocomplete="off">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="calc-profile">Профиль ПВХ</label>
+              <select id="calc-profile" autocomplete="off">
+                <option value="1.00">60 мм · 3 камеры (Базовый)</option>
+                <option value="1.16" selected>70 мм · 5 камер (Оптимальный)</option>
+                <option value="1.32">80 мм · 6 камер (Максимум тепла)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="calc-glass">Стеклопакет</label>
+              <select id="calc-glass" autocomplete="off">
+                <option value="0">Однокамерный 24 мм (для балкона)</option>
+                <option value="2400" selected>Двухкамерный 32 мм (стандарт)</option>
+                <option value="4600">Энергосберегающий с аргоном 40 мм</option>
+                <option value="6200">Шумоизоляционный триплекс</option>
+              </select>
+            </div>
+
+            <div class="field field-full">
+              <div class="field-label" style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;">Дополнительная комплектация и работы</div>
+              <div class="checks-grid">
+                <label class="check-card" for="opt-mount">
+                  <input id="opt-mount" type="checkbox" checked autocomplete="off">
+                  <span>Монтаж по ГОСТ</span>
+                </label>
+                <label class="check-card" for="opt-sill">
+                  <input id="opt-sill" type="checkbox" checked autocomplete="off">
+                  <span>Подоконник и отлив</span>
+                </label>
+                <label class="check-card" for="opt-slopes">
+                  <input id="opt-slopes" type="checkbox" autocomplete="off">
+                  <span>Отделка откосов</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" id="lead-form">
+          <div class="summary-box">
+            <div class="summary-top">
+              <span class="summary-label">Ориентировочная стоимость</span>
+              <span class="summary-price num" id="total-price">24 850 ₽</span>
+            </div>
+            <div class="summary-specs">
+              <div class="spec-row">
+                <span class="spec-k">Площадь</span>
+                <span class="spec-v num" id="spec-area">1.96 м²</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">Профиль</span>
+                <span class="spec-v" id="spec-profile">70 мм · 5 камер</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">Габариты</span>
+                <span class="spec-v num" id="spec-dims">1400 × 1400 мм</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">Срок готовности</span>
+                <span class="spec-v num">5 рабочих дней</span>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="panel-title" style="font-size: 18px;">Заявка на бесплатный замер</h3>
+          <p class="panel-subtitle" style="margin-bottom: 16px;">Зафиксируем расчёт и согласуем удобное время приезда мастера</p>
+
+          <form id="measure-form" class="form-grid" novalidate>
+            <div class="field">
+              <label for="client-name">Ваше имя</label>
+              <input id="client-name" name="name" type="text" placeholder="Алексей" required autocomplete="name">
+            </div>
+
+            <div class="field">
+              <label for="client-phone">Телефон</label>
+              <input id="client-phone" name="phone" type="tel" placeholder="+7 (999) 000-00-00" required autocomplete="tel">
+            </div>
+
+            <div class="field field-full">
+              <label for="client-address">Район Москвы или адрес</label>
+              <input id="client-address" name="address" type="text" placeholder="Например, ЗАО, ул. Мосфильмовская" autocomplete="street-address">
+            </div>
+
+            <div class="field field-full">
+              <label for="client-comment">Комментарий к заказу</label>
+              <textarea id="client-comment" name="comment" rows="2" placeholder="Этаж, удобное время звонка или количество окон" autocomplete="off"></textarea>
+            </div>
+
+            <div class="field field-full">
+              <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px 18px;">
+                Отправить заявку на замер
+              </button>
+            </div>
+          </form>
+
+          <div id="form-status" class="form-status" role="status" aria-live="polite">
+            Заявка принята. Инженер Окна МСК свяжется с вами в течение 15 минут для подтверждения времени замера.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-meta">Окна МСК · Москва, Россия</div>
+      <div class="footer-meta num">Телефон: +7 (499) 647-45-55</div>
+      <div class="footer-meta">Пластиковые окна ПВХ, балконы, алюминий</div>
+      <div class="footer-links-row">
+        <a href="https://www.okna-msk.ru/" target="_blank" rel="noopener noreferrer">https://www.okna-msk.ru/</a>
+        <a href="mailto:info@okna-msk.ru">info@okna-msk.ru</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var typeButtons = document.querySelectorAll('.type-btn');
+      var widthInput = document.getElementById('calc-width');
+      var heightInput = document.getElementById('calc-height');
+      var widthDisplay = document.getElementById('width-display');
+      var heightDisplay = document.getElementById('height-display');
+      var profileSelect = document.getElementById('calc-profile');
+      var glassSelect = document.getElementById('calc-glass');
+      var optMount = document.getElementById('opt-mount');
+      var optSill = document.getElementById('opt-sill');
+      var optSlopes = document.getElementById('opt-slopes');
+
+      var totalPriceEl = document.getElementById('total-price');
+      var specAreaEl = document.getElementById('spec-area');
+      var specProfileEl = document.getElementById('spec-profile');
+      var specDimsEl = document.getElementById('spec-dims');
+
+      var activeBase = 14200;
+
+      function formatRub(val) {
+        return Math.round(val).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
+      }
+
+      function recalculate() {
+        var w = parseInt(widthInput.value, 10);
+        var h = parseInt(heightInput.value, 10);
+        var area = (w * h) / 1000000;
+        var profileCoef = parseFloat(profileSelect.value);
+        var glassAdd = parseInt(glassSelect.value, 10);
+
+        widthDisplay.textContent = w + ' мм';
+        heightDisplay.textContent = h + ' мм';
+        specDimsEl.textContent = w + ' × ' + h + ' мм';
+        specAreaEl.textContent = area.toFixed(2) + ' м²';
+        specProfileEl.textContent = profileSelect.options[profileSelect.selectedIndex].text.split(' (')[0];
+
+        var areaFactor = Math.max(0.75, area / 1.96);
+        var total = activeBase * areaFactor * profileCoef + glassAdd;
+
+        if (optMount.checked) total += 3900;
+        if (optSill.checked) total += 2400;
+        if (optSlopes.checked) total += 3600;
+
+        totalPriceEl.textContent = formatRub(total);
+      }
+
+      typeButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          typeButtons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          activeBase = parseInt(btn.getAttribute('data-base'), 10);
+          widthInput.value = btn.getAttribute('data-w');
+          heightInput.value = btn.getAttribute('data-h');
+          recalculate();
+        });
+      });
+
+      [widthInput, heightInput, profileSelect, glassSelect, optMount, optSill, optSlopes].forEach(function (el) {
+        el.addEventListener('input', recalculate);
+        el.addEventListener('change', recalculate);
+      });
+
+      var form = document.getElementById('measure-form');
+      var statusEl = document.getElementById('form-status');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var nameInput = document.getElementById('client-name');
+        var phoneInput = document.getElementById('client-phone');
+        if (!nameInput.value.trim() || !phoneInput.value.trim()) {
+          nameInput.focus();
+          return;
+        }
+        statusEl.classList.add('visible');
+        form.reset();
+      });
+
+      recalculate();
+    })();
+  </script>
+</body>
+</html>

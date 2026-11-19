@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Louisville Roofing — Instant Roof Replacement & Storm Repair Cost Estimator for residential and commercial properties in Louisville, KY.">
+  <title>Louisville Roofing | Instant Roof Replacement &amp; Storm Repair Estimator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231B4332'/%3E%3Cpath d='M5 17L16 7l11 10' stroke='%23FFFFFF' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M9 16v9h14v-9' stroke='%23D8E2DC' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F5F3EE;
+      --surface: #FFFFFF;
+      --surface-alt: #EBE7DF;
+      --border: #D9D3C7;
+      --text: #1B241E;
+      --text-muted: #525E56;
+      --primary: #1B4332;
+      --primary-hover: #2D6A4F;
+      --accent: #3A5A40;
+      --accent-soft: #E6EFE9;
+      --radius: 12px;
+      --shadow: 0 4px 20px rgba(27, 67, 50, 0.06);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .brand-name {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    .num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 68px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background-color: var(--primary);
+      display: grid;
+      place-items: center;
+      color: #FFFFFF;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .phone-link {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      background-color: var(--accent-soft);
+      white-space: nowrap;
+      transition: background-color 0.18s ease;
+    }
+
+    .phone-link:hover {
+      background-color: #D7E6DC;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 40px 0 28px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      background-color: var(--accent-soft);
+      border: 1px solid #C9DDD0;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text);
+      max-width: 760px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 680px;
+    }
+
+    /* Main Grid */
+    .estimator-section {
+      padding-bottom: 48px;
+    }
+
+    .estimator-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .card-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--text);
+      background-color: #FAF9F6;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background-color: #FFFFFF;
+    }
+
+    .range-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .range-value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary);
+      background-color: var(--accent-soft);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    /* Material Cards */
+    .material-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .material-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background-color: #FAF9F6;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .material-btn:hover {
+      border-color: var(--primary-hover);
+    }
+
+    .material-btn.active {
+      border-color: var(--primary);
+      background-color: var(--accent-soft);
+    }
+
+    .material-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .material-rate {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Addons */
+    .addons-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .addon-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background-color: #FAF9F6;
+      cursor: pointer;
+    }
+
+    .addon-item input[type="checkbox"] {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      accent-color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .addon-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .addon-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .addon-price {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Summary Panel */
+    .summary-card {
+      background-color: var(--primary);
+      color: #FFFFFF;
+      border: 1px solid var(--primary);
+    }
+
+    .summary-card .card-title {
+      color: #FFFFFF;
+    }
+
+    .summary-card .card-subtitle {
+      color: #D2E3D8;
+    }
+
+    .estimate-box {
+      background-color: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .estimate-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #D2E3D8;
+      margin-bottom: 6px;
+    }
+
+    .estimate-total {
+      font-size: clamp(1.65rem, 2.8vw, 2.15rem);
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.15;
+    }
+
+    .estimate-note {
+      font-size: 0.8rem;
+      color: #D2E3D8;
+      margin-top: 6px;
+    }
+
+    .breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: #E8F1EB;
+    }
+
+    .breakdown-row strong {
+      color: #FFFFFF;
+    }
+
+    /* Lead Form inside Summary */
+    .lead-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .lead-form label {
+      color: #E8F1EB;
+      font-size: 0.8rem;
+    }
+
+    .lead-form input,
+    .lead-form textarea {
+      background-color: rgba(255, 255, 255, 0.96);
+      border-color: transparent;
+      color: var(--text);
+    }
+
+    .btn-submit {
+      grid-column: 1 / -1;
+      background-color: #FFFFFF;
+      color: var(--primary);
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: background-color 0.18s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: #E6EFE9;
+    }
+
+    .form-status {
+      grid-column: 1 / -1;
+      font-size: 0.85rem;
+      color: #E6EFE9;
+      background-color: rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: none;
+    }
+
+    .form-status.visible {
+      display: block;
+    }
+
+    /* Services Strip */
+    .services-section {
+      padding-bottom: 48px;
+    }
+
+    .section-heading {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .service-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    .service-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .service-card p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 24px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 24px;
+      align-items: center;
+    }
+
+    .footer-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .full-row-link {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 12px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .full-row-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 960px) {
+      .estimator-grid {
+        grid-template-columns: 1fr;
+      }
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .form-grid,
+      .material-options,
+      .addons-list,
+      .lead-form,
+      .services-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .card {
+        padding: 18px;
+      }
+      .phone-link {
+        padding: 7px 10px;
+        font-size: 0.82rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="https://www.louisvilleroofing.com/" target="_blank" rel="noopener noreferrer">
+        <span class="brand-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12L12 4l9 8"/>
+            <path d="M6 11v9h12v-9"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Louisville Roofing</span>
+          <span class="brand-sub">Louisville, KY &bull; Residential &amp; Commercial</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a class="phone-link num" href="tel:+15025610375">(502) 561-0375</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge">Louisville, KY Roofing Cost Estimator</div>
+        <h1>Instant Roof Replacement &amp; Storm Repair Cost Estimator</h1>
+        <p>Calculate a transparent USD project range for architectural shingles, standing seam metal, or flat TPO systems, plus gutter replacement and storm damage inspection.</p>
+      </div>
+    </section>
+
+    <section class="estimator-section">
+      <div class="container estimator-grid">
+        <div class="card">
+          <h2 class="card-title">Project Specifications</h2>
+          <p class="card-subtitle">Adjust roof area, pitch, material, and add-on services to update your estimate.</p>
+
+          <div class="form-grid">
+            <div class="field field-full">
+              <div class="range-row">
+                <label for="roof-area">Roof Area (sq ft)</label>
+                <span class="range-value num" id="area-display">2,200 sq ft</span>
+              </div>
+              <input type="range" id="roof-area" name="roof_area" min="800" max="6000" step="100" value="2200" autocomplete="off">
+            </div>
+
+            <div class="field">
+              <label for="roof-pitch">Roof Pitch / Slope</label>
+              <select id="roof-pitch" name="roof_pitch" autocomplete="off">
+                <option value="1.00">Low Slope (2/12 - 4/12)</option>
+                <option value="1.10" selected>Standard Pitch (5/12 - 7/12)</option>
+                <option value="1.24">Steep Pitch (8/12 - 12/12)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="property-type">Property Type</label>
+              <select id="property-type" name="property_type" autocomplete="off">
+                <option value="residential" selected>Residential Home</option>
+                <option value="commercial">Commercial Building</option>
+              </select>
+            </div>
+
+            <div class="field field-full">
+              <label for="material-select">Roofing Material System</label>
+              <select id="material-select" name="material_system" autocomplete="off">
+                <option value="shingles" selected>Architectural Shingles ($5.25 / sq ft)</option>
+                <option value="metal">Standing Seam Metal ($9.75 / sq ft)</option>
+                <option value="tpo">Flat TPO Membrane ($7.40 / sq ft)</option>
+              </select>
+            </div>
+
+            <div class="field field-full">
+              <div class="material-options" role="group" aria-label="Quick Material Selection">
+                <button type="button" class="material-btn active" data-material="shingles">
+                  <span class="material-name">Architectural Shingles</span>
+                  <span class="material-rate num">$5.25 / sq ft</span>
+                </button>
+                <button type="button" class="material-btn" data-material="metal">
+                  <span class="material-name">Standing Seam Metal</span>
+                  <span class="material-rate num">$9.75 / sq ft</span>
+                </button>
+                <button type="button" class="material-btn" data-material="tpo">
+                  <span class="material-name">Flat TPO</span>
+                  <span class="material-rate num">$7.40 / sq ft</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field field-full">
+              <label for="addon-gutters">Optional Add-ons &amp; Storm Services</label>
+              <div class="addons-list">
+                <label class="addon-item" for="addon-gutters">
+                  <input type="checkbox" id="addon-gutters" name="addon_gutters" value="1450" autocomplete="off">
+                  <span class="addon-text">
+                    <span class="addon-title">Seamless Gutters &amp; Downspouts</span>
+                    <span class="addon-price num">+$1,450</span>
+                  </span>
+                </label>
+                <label class="addon-item" for="addon-storm">
+                  <input type="checkbox" id="addon-storm" name="addon_storm" value="350" autocomplete="off">
+                  <span class="addon-text">
+                    <span class="addon-title">Post-Storm &amp; Hail Inspection</span>
+                    <span class="addon-price num">+$350</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card summary-card">
+          <h2 class="card-title">Estimated Project Range</h2>
+          <p class="card-subtitle">Includes tear-off, underlayment, labor, and cleanup.</p>
+
+          <div class="estimate-box">
+            <div class="estimate-label">Total Estimate (USD)</div>
+            <div class="estimate-total num" id="estimate-range">$11,880 - $13,530</div>
+            <div class="estimate-note num" id="estimate-per-sqft">Approx. $5.78 / sq ft installed</div>
+          </div>
+
+          <div class="breakdown">
+            <div class="breakdown-row">
+              <span>Base Material &amp; Labor</span>
+              <strong class="num" id="base-cost">$12,705</strong>
+            </div>
+            <div class="breakdown-row">
+              <span>Add-ons (Gutters / Storm Check)</span>
+              <strong class="num" id="addons-cost">$0</strong>
+            </div>
+            <div class="breakdown-row">
+              <span>Pitch Multiplier</span>
+              <strong class="num" id="pitch-display">1.10x</strong>
+            </div>
+          </div>
+
+          <form class="lead-form" id="quote-form">
+            <div class="field">
+              <label for="lead-name">Full Name</label>
+              <input type="text" id="lead-name" name="name" placeholder="John Miller" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="lead-phone">Phone Number</label>
+              <input type="tel" id="lead-phone" name="phone" placeholder="(502) 555-0192" required autocomplete="tel">
+            </div>
+            <div class="field field-full">
+              <label for="lead-email">Email Address</label>
+              <input type="email" id="lead-email" name="email" placeholder="name@company.com" required autocomplete="email">
+            </div>
+            <div class="field field-full">
+              <label for="lead-notes">Project Notes (Optional)</label>
+              <textarea id="lead-notes" name="notes" rows="2" placeholder="Storm damage date, insurance claim, or preferred inspection time" autocomplete="off"></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Request On-Site Inspection</button>
+            <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+          </form>
+        </aside>
+      </div>
+    </section>
+
+    <section class="services-section">
+      <div class="container">
+        <h2 class="section-heading">Core Roofing Services in Louisville, KY</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>Residential Roof Replacement</h3>
+            <p>Full tear-off and installation of architectural shingles and standing seam metal roofs built for Kentucky weather.</p>
+          </div>
+          <div class="service-card">
+            <h3>Commercial Roofing Systems</h3>
+            <p>Energy-efficient Flat TPO membranes, low-slope coatings, and preventative maintenance for commercial properties.</p>
+          </div>
+          <div class="service-card">
+            <h3>Storm &amp; Wind Damage Repair</h3>
+            <p>Rapid tarping, hail and wind damage restoration, and detailed documentation for insurance claims.</p>
+          </div>
+          <div class="service-card">
+            <h3>Roof Inspections &amp; Gutters</h3>
+            <p>Comprehensive 21-point roof inspections, flashing repairs, and seamless aluminum gutter installations.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-meta">Louisville Roofing &bull; Louisville, KY, USA</div>
+      <div class="footer-meta num">Phone: (502) 561-0375</div>
+      <a class="full-row-link" href="mailto:office@louisvilleroofing.com">office@louisvilleroofing.com</a>
+      <a class="full-row-link" href="https://www.louisvilleroofing.com/" target="_blank" rel="noopener noreferrer">https://www.louisvilleroofing.com/</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var RATES = {
+        shingles: 5.25,
+        metal: 9.75,
+        tpo: 7.40
+      };
+
+      var areaInput = document.getElementById('roof-area');
+      var areaDisplay = document.getElementById('area-display');
+      var pitchSelect = document.getElementById('roof-pitch');
+      var materialSelect = document.getElementById('material-select');
+      var materialBtns = document.querySelectorAll('.material-btn');
+      var addonGutters = document.getElementById('addon-gutters');
+      var addonStorm = document.getElementById('addon-storm');
+
+      var estimateRange = document.getElementById('estimate-range');
+      var estimatePerSqft = document.getElementById('estimate-per-sqft');
+      var baseCostEl = document.getElementById('base-cost');
+      var addonsCostEl = document.getElementById('addons-cost');
+      var pitchDisplayEl = document.getElementById('pitch-display');
+
+      var quoteForm = document.getElementById('quote-form');
+      var formStatus = document.getElementById('form-status');
+
+      function formatUSD(amount) {
+        return '$' + Math.round(amount).toLocaleString('en-US');
+      }
+
+      function syncMaterialButtons(value) {
+        materialBtns.forEach(function (btn) {
+          if (btn.getAttribute('data-material') === value) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+      }
+
+      function updateEstimate() {
+        var area = parseInt(areaInput.value, 10) || 2200;
+        var pitch = parseFloat(pitchSelect.value) || 1.10;
+        var material = materialSelect.value || 'shingles';
+        var rate = RATES[material] || 5.25;
+
+        var baseCost = area * rate * pitch;
+        var addons = 0;
+        if (addonGutters.checked) addons += parseInt(addonGutters.value, 10);
+        if (addonStorm.checked) addons += parseInt(addonStorm.value, 10);
+
+        var midTotal = baseCost + addons;
+        var lowTotal = midTotal * 0.935;
+        var highTotal = midTotal * 1.065;
+        var perSqft = midTotal / area;
+
+        areaDisplay.textContent = area.toLocaleString('en-US') + ' sq ft';
+        estimateRange.textContent = formatUSD(lowTotal) + ' - ' + formatUSD(highTotal);
+        estimatePerSqft.textContent = 'Approx. $' + perSqft.toFixed(2) + ' / sq ft installed';
+        baseCostEl.textContent = formatUSD(baseCost);
+        addonsCostEl.textContent = formatUSD(addons);
+        pitchDisplayEl.textContent = pitch.toFixed(2) + 'x';
+      }
+
+      areaInput.addEventListener('input', updateEstimate);
+      pitchSelect.addEventListener('change', updateEstimate);
+      materialSelect.addEventListener('change', function () {
+        syncMaterialButtons(materialSelect.value);
+        updateEstimate();
+      });
+
+      materialBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var mat = btn.getAttribute('data-material');
+          materialSelect.value = mat;
+          syncMaterialButtons(mat);
+          updateEstimate();
+        });
+      });
+
+      addonGutters.addEventListener('change', updateEstimate);
+      addonStorm.addEventListener('change', updateEstimate);
+
+      quoteForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = document.getElementById('lead-name').value.trim();
+        var est = estimateRange.textContent;
+        formStatus.textContent = 'Thank you, ' + (name || 'valued customer') + '. Your estimate (' + est + ') has been logged for Louisville Roofing. Call (502) 561-0375 for immediate scheduling.';
+        formStatus.classList.add('visible');
+        quoteForm.reset();
+      });
+
+      updateEstimate();
+    })();
+  </script>
+</body>
+</html>

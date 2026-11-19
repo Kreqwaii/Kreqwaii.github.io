@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tucson Plumbing — 24/7 Emergency Plumbing Repairs, Drain Cleaning, Water Heater Installation, and Sewer Line Detection in Tucson, AZ. Instant USD Cost Estimator.">
+  <title>Tucson Plumbing | Interactive Repair &amp; Water Heater Cost Estimator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32'%3E%3Crect width='32' height='32' rx='8' fill='%23B85A3A'/%3E%3Cpath d='M16 6c-3.5 4.2-6 7.5-6 11a6 6 0 0 0 12 0c0-3.5-2.5-6.8-6-11z' fill='%23FFFFFF'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #FAF8F5;
+      --bg-surface: #FFFFFF;
+      --bg-muted: #F2EDE6;
+      --text-primary: #1E293B;
+      --text-secondary: #475569;
+      --text-muted: #64748B;
+      --accent-copper: #B85A3A;
+      --accent-copper-hover: #9A482C;
+      --accent-copper-soft: #FDF3EF;
+      --border-subtle: #E2DBD0;
+      --border-strong: #CBD5E1;
+      --success-bg: #ECFDF5;
+      --success-text: #065F46;
+      --shadow-sm: 0 1px 2px rgba(30, 41, 59, 0.05);
+      --shadow-md: 0 8px 24px rgba(30, 41, 59, 0.06);
+      --radius-md: 10px;
+      --radius-lg: 16px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-shrink: 1;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: var(--accent-copper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background-color: var(--accent-copper-soft);
+      color: var(--accent-copper);
+      border: 1px solid #F3D5C8;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .phone-pill:hover {
+      background-color: #F9E5DC;
+      border-color: var(--accent-copper);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 40px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent-copper);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.15;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 16px;
+      max-width: 600px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-value {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    /* Main Estimator Workspace */
+    .workspace {
+      padding-bottom: 48px;
+    }
+
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .badge-usd {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background-color: var(--bg-muted);
+      color: var(--text-secondary);
+    }
+
+    .form-section {
+      margin-bottom: 22px;
+    }
+
+    .form-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .service-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      padding: 12px 14px;
+      background-color: var(--bg-page);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      color: var(--text-primary);
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .service-btn:hover {
+      border-color: var(--accent-copper);
+    }
+
+    .service-btn.active {
+      background-color: var(--accent-copper-soft);
+      border-color: var(--accent-copper);
+      box-shadow: 0 0 0 1px var(--accent-copper);
+    }
+
+    .service-btn-title {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .service-btn-rate {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .controls-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .input-control, .select-control {
+      width: 100%;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text-primary);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .input-control:focus, .select-control:focus {
+      border-color: var(--accent-copper);
+    }
+
+    .urgency-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .urgency-btn {
+      padding: 10px 8px;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-page);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      text-align: center;
+      transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .urgency-btn.active {
+      background-color: var(--text-primary);
+      color: #FFFFFF;
+      border-color: var(--text-primary);
+    }
+
+    /* Estimate Summary Panel */
+    .estimate-box {
+      background-color: var(--text-primary);
+      color: #FFFFFF;
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .estimate-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #CBD5E1;
+      margin-bottom: 6px;
+    }
+
+    .estimate-total {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .estimate-note {
+      font-size: 12px;
+      color: #94A3B8;
+    }
+
+    .breakdown-list {
+      list-style: none;
+      margin: 0 0 20px 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .breakdown-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--border-subtle);
+    }
+
+    .breakdown-item span:first-child {
+      color: var(--text-secondary);
+    }
+
+    .breakdown-item span:last-child {
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* Dispatch Timeline */
+    .timeline {
+      background-color: var(--bg-page);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      margin-bottom: 20px;
+    }
+
+    .timeline-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .timeline-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .timeline-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-copper);
+      flex-shrink: 0;
+    }
+
+    /* Callback Form */
+    .callback-form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .full-span {
+      grid-column: 1 / -1;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 13px 18px;
+      background-color: var(--accent-copper);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-copper-hover);
+    }
+
+    .status-banner {
+      display: none;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background-color: var(--success-bg);
+      color: var(--success-text);
+      font-size: 13px;
+      font-weight: 600;
+      grid-column: 1 / -1;
+    }
+
+    .status-banner.visible {
+      display: block;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      padding: 28px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      align-items: center;
+    }
+
+    .footer-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-links-row {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .footer-links-row a {
+      color: var(--accent-copper);
+      text-decoration: none;
+      font-weight: 600;
+      white-space: nowrap;
+      word-break: normal;
+      font-size: 12px;
+    }
+
+    .footer-links-row a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .service-grid,
+      .controls-row,
+      .callback-form,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-pill {
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="https://www.tucsonplumbing.com/" class="brand" target="_blank" rel="noopener noreferrer">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Tucson Plumbing</div>
+          <div class="brand-sub">Tucson, AZ &middot; Licensed &amp; Bonded</div>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="tel:+15208816000" class="phone-pill tabular">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          <span>+1 520-881-6000</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Tucson Metro &amp; Pima County</div>
+          <h1>Plumbing Repair &amp; Water Heater Cost Estimator</h1>
+          <p>Calculate transparent USD pricing for emergency repairs, drain clearing, water heater replacement, and sewer line diagnostics based on current Tucson, AZ labor and material rates.</p>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-value tabular">45 min</span>
+            <span class="stat-label">Avg. Emergency Dispatch</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value tabular">24/7</span>
+            <span class="stat-label">Live Tucson Dispatcher</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value tabular">USD</span>
+            <span class="stat-label">Upfront Flat-Rate Quotes</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="container workspace-grid">
+        <!-- Left: Configuration -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">1. Scope &amp; System Parameters</h2>
+            <span class="badge-usd">Tucson AZ Rates</span>
+          </div>
+
+          <div class="form-section">
+            <div class="field-label">Select Plumbing Service</div>
+            <div class="service-grid" id="serviceGrid">
+              <button type="button" class="service-btn active" data-service="emergency" data-base="185">
+                <span class="service-btn-title">Emergency Plumbing Repairs</span>
+                <span class="service-btn-rate tabular">Base $185 &middot; Burst pipes, shutoffs</span>
+              </button>
+              <button type="button" class="service-btn" data-service="drain" data-base="145">
+                <span class="service-btn-title">Drain Cleaning &amp; Unclogging</span>
+                <span class="service-btn-rate tabular">Base $145 &middot; Hydro-jet &amp; snake</span>
+              </button>
+              <button type="button" class="service-btn" data-service="heater" data-base="1350">
+                <span class="service-btn-title">Water Heater Install &amp; Repair</span>
+                <span class="service-btn-rate tabular">Base $1,350 &middot; Tank &amp; tankless</span>
+              </button>
+              <button type="button" class="service-btn" data-service="sewer" data-base="290">
+                <span class="service-btn-title">Sewer Line &amp; Leak Detection</span>
+                <span class="service-btn-rate tabular">Base $290 &middot; Camera &amp; acoustic</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="field-label">Dispatch Urgency</div>
+            <div class="urgency-group" id="urgencyGroup">
+              <button type="button" class="urgency-btn active" data-mult="1.0" data-eta="Next-Day Window (8am - 12pm)">Standard</button>
+              <button type="button" class="urgency-btn" data-mult="1.25" data-eta="Same-Day Priority (2 - 4 hrs)">Same-Day (+25%)</button>
+              <button type="button" class="urgency-btn" data-mult="1.45" data-eta="Emergency Dispatch (45 - 60 min)">24/7 Urgent (+45%)</button>
+            </div>
+          </div>
+
+          <div class="form-section controls-row">
+            <div>
+              <label class="field-label" for="heaterType">Water Heater / Fixture Type</label>
+              <select id="heaterType" class="select-control" autocomplete="off">
+                <option value="0">N/A — Standard Pipe / Drain</option>
+                <option value="0">40-Gal Gas/Electric Tank (Included)</option>
+                <option value="280">50-Gal High-Recovery Tank (+$280)</option>
+                <option value="950">Tankless Condensing Unit (+$950)</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="pipeComplexity">Pipe Access &amp; Complexity</label>
+              <select id="pipeComplexity" class="select-control" autocomplete="off">
+                <option value="1.0">Standard Garage / Crawlspace (1.0x)</option>
+                <option value="1.2">Tight Attic / Wall Cavity (1.2x)</option>
+                <option value="1.4">Concrete Slab / Trenching (1.4x)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Estimate & Dispatch -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">2. Instant Cost Summary</h2>
+            <span class="badge-usd tabular" id="etaBadge">Next-Day Window</span>
+          </div>
+
+          <div class="estimate-box">
+            <div class="estimate-label">Estimated Project Range (USD)</div>
+            <div class="estimate-total tabular" id="estimateRange">$185 – $225</div>
+            <div class="estimate-note">Includes Tucson trip fee, standard fittings, and licensed technician labor.</div>
+          </div>
+
+          <ul class="breakdown-list">
+            <li class="breakdown-item">
+              <span>Base Service Rate</span>
+              <span class="tabular" id="bdBase">$185</span>
+            </li>
+            <li class="breakdown-item">
+              <span>Equipment / Heater Add-on</span>
+              <span class="tabular" id="bdHeater">$0</span>
+            </li>
+            <li class="breakdown-item">
+              <span>Complexity &amp; Urgency Factor</span>
+              <span class="tabular" id="bdFactor">1.00x</span>
+            </li>
+          </ul>
+
+          <div class="timeline">
+            <div class="timeline-title">Tucson Dispatch Timeline</div>
+            <div class="timeline-steps">
+              <div class="timeline-step">
+                <span class="step-dot" aria-hidden="true"></span>
+                <span>1. Quote logged with dispatcher@tucsonplumbing.com</span>
+              </div>
+              <div class="timeline-step">
+                <span class="step-dot" aria-hidden="true"></span>
+                <span id="timelineEta">2. Arrival: Next-Day Window (8am - 12pm)</span>
+              </div>
+              <div class="timeline-step">
+                <span class="step-dot" aria-hidden="true"></span>
+                <span>3. On-site inspection &amp; final written approval before work</span>
+              </div>
+            </div>
+          </div>
+
+          <form class="callback-form" id="dispatchForm">
+            <div>
+              <label class="field-label" for="clientName">Your Name</label>
+              <input type="text" id="clientName" class="input-control" placeholder="e.g. Jordan Miller" autocomplete="name" required>
+            </div>
+            <div>
+              <label class="field-label" for="clientPhone">Phone Number</label>
+              <input type="tel" id="clientPhone" class="input-control" placeholder="(520) 555-0192" autocomplete="tel" required>
+            </div>
+            <div class="full-span">
+              <label class="field-label" for="clientZip">Tucson ZIP Code &amp; Notes</label>
+              <input type="text" id="clientZip" class="input-control" placeholder="85719 — Brief issue description" autocomplete="off">
+            </div>
+            <div class="full-span">
+              <button type="submit" class="btn-primary">Request Dispatch Callback</button>
+            </div>
+            <div class="status-banner" id="statusBanner" role="status">
+              Callback request prepared for Tucson Plumbing dispatch. For immediate emergency assistance, call +1 520-881-6000.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-meta">
+        Tucson Plumbing &middot; Tucson, AZ, USA &middot; Phone: <span class="tabular">+1 520-881-6000</span>
+      </div>
+      <div class="footer-meta" style="text-align: right;">
+        Emergency Repairs &middot; Drain Cleaning &middot; Water Heaters &middot; Sewer Detection
+      </div>
+      <div class="footer-links-row">
+        <a href="https://www.tucsonplumbing.com/" target="_blank" rel="noopener noreferrer">https://www.tucsonplumbing.com/</a>
+        <a href="mailto:dispatcher@tucsonplumbing.com">dispatcher@tucsonplumbing.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const state = {
+        base: 185,
+        urgencyMult: 1.0,
+        eta: 'Next-Day Window (8am - 12pm)',
+        heaterAdd: 0,
+        complexityMult: 1.0
+      };
+
+      const serviceBtns = document.querySelectorAll('.service-btn');
+      const urgencyBtns = document.querySelectorAll('.urgency-btn');
+      const heaterSelect = document.getElementById('heaterType');
+      const complexitySelect = document.getElementById('pipeComplexity');
+
+      const estimateRangeEl = document.getElementById('estimateRange');
+      const bdBaseEl = document.getElementById('bdBase');
+      const bdHeaterEl = document.getElementById('bdHeater');
+      const bdFactorEl = document.getElementById('bdFactor');
+      const etaBadgeEl = document.getElementById('etaBadge');
+      const timelineEtaEl = document.getElementById('timelineEta');
+      const dispatchForm = document.getElementById('dispatchForm');
+      const statusBanner = document.getElementById('statusBanner');
+
+      function formatUSD(amount) {
+        return '$' + Math.round(amount).toLocaleString('en-US');
+      }
+
+      function recalculate() {
+        const combinedFactor = state.urgencyMult * state.complexityMult;
+        const low = (state.base + state.heaterAdd) * combinedFactor;
+        const high = low * 1.18;
+
+        estimateRangeEl.textContent = formatUSD(low) + ' \u2013 ' + formatUSD(high);
+        bdBaseEl.textContent = formatUSD(state.base);
+        bdHeaterEl.textContent = formatUSD(state.heaterAdd);
+        bdFactorEl.textContent = combinedFactor.toFixed(2) + 'x';
+        etaBadgeEl.textContent = state.eta.split('(')[0].trim();
+        timelineEtaEl.textContent = '2. Arrival: ' + state.eta;
+      }
+
+      serviceBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          serviceBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.base = Number(btn.getAttribute('data-base'));
+          recalculate();
+        });
+      });
+
+      urgencyBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          urgencyBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state.urgencyMult = Number(btn.getAttribute('data-mult'));
+          state.eta = btn.getAttribute('data-eta');
+          recalculate();
+        });
+      });
+
+      heaterSelect.addEventListener('change', function () {
+        state.heaterAdd = Number(heaterSelect.value);
+        recalculate();
+      });
+
+      complexitySelect.addEventListener('change', function () {
+        state.complexityMult = Number(complexitySelect.value);
+        recalculate();
+      });
+
+      dispatchForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        statusBanner.classList.add('visible');
+      });
+
+      recalculate();
+    })();
+  </script>
+</body>
+</html>
